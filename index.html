@@ -288,12 +288,8 @@
     footer{color:rgba(255,255,255,0.55);font-size:12px;text-align:center;padding:6px 0 0}
 
     @media (max-width: 980px){
-      body{overflow:hidden}
-      .wrap{height:auto}
-      .dual{grid-template-columns:1fr; height:auto}
-      .views{flex:auto}
-      .view{height:auto}
-      .scroller{max-height:none; overflow:auto; padding-right:0}
+      .dual{grid-template-columns:1fr;}
+      .filters{grid-template-columns:1fr;}
     }
   
     
@@ -1523,6 +1519,22 @@
 
   function drawBars(canvas, labels, values, opts={}){
     const ctx = canvas.getContext("2d");
+
+    // Accept both (labels[], values[]) OR an array of objects [{lab, v}, ...]
+    if(!Array.isArray(values)){
+      if(Array.isArray(labels) && labels.length && typeof labels[0] === "object" && labels[0] !== null){
+        const arr = labels;
+        labels = arr.map(o => (o.lab ?? o.label ?? "") + "");
+        values = arr.map(o => {
+          const n = Number(o.v ?? o.value ?? o.count ?? 0);
+          return Number.isFinite(n) ? n : 0;
+        });
+      }else{
+        values = [];
+      }
+    }
+    if(!Array.isArray(labels)) labels = [];
+
     const dpr = Math.max(1, Math.floor(window.devicePixelRatio||1));
     const w = canvas.clientWidth || canvas.width;
     const h = canvas.height;
@@ -1531,34 +1543,36 @@
 
     ctx.clearRect(0,0,w,h);
 
-    const max = Math.max(1, ...values);
+    const safeVals = values.map(v => {
+      const n = Number(v);
+      return Number.isFinite(n) ? n : 0;
+    });
+    const max = Math.max(1, ...safeVals);
+
     const pad = 18;
     const baseY = h - pad;
     const barH = h - pad*2;
-    const n = Math.max(1, values.length);
+    const n = Math.max(1, safeVals.length);
     const gap = 10;
-    const barW = Math.max(10, Math.floor((w - pad*2 - gap*(n-1)) / n));
+    const barW = Math.max(10, (w - pad*2 - gap*(n-1)) / n);
 
     // grid
-    ctx.globalAlpha = 0.35;
-    ctx.strokeStyle = "rgba(255,255,255,0.25)";
+    ctx.strokeStyle = "rgba(255,255,255,0.08)";
     ctx.lineWidth = 1;
     for(let i=0;i<=3;i++){
       const y = pad + (barH * i/3);
-      ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(w-pad, y); ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(pad, y);
+      ctx.lineTo(w-pad, y);
+      ctx.stroke();
     }
-    ctx.globalAlpha = 1;
 
     // bars
-    for(let i=0;i<n;i++){
-      const v = values[i] || 0;
-      const bh = Math.round((v/max) * barH);
-      const x = pad + i*(barW+gap);
+    for(let i=0;i<safeVals.length;i++){
+      const v = safeVals[i];
+      const x = pad + i * (barW + gap);
+      const bh = Math.max(0, Math.round((v / max) * barH));
       const y = baseY - bh;
-
-      // shadow-ish
-      ctx.fillStyle = "rgba(0,0,0,0.25)";
-      ctx.fillRect(x, y+3, barW, bh);
 
       const grad = ctx.createLinearGradient(0,y,0,baseY);
       grad.addColorStop(0,"rgba(140,210,255,0.95)");
@@ -1567,7 +1581,7 @@
       ctx.fillRect(x, y, barW, bh);
 
       // label (small)
-      const lab = labels[i] || "";
+      const lab = (labels[i] || "");
       ctx.fillStyle = "rgba(255,255,255,0.8)";
       ctx.font = "11px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
       ctx.textAlign = "center";
@@ -1745,7 +1759,7 @@
       v: (typeof it.salesTotal==="number" ? it.salesTotal : 0),
       lab: (it.name || ("#" + it.assetId)).slice(0, 14)
     }));
-    drawBars(cTop, top);
+    drawBars(cTop, top.map(x=>x.lab), top.map(x=>x.v));
 
     // Daily chart = aggregated day totals (last 30 days)
     if(days.length){
