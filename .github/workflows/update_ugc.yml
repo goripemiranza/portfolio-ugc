@@ -3,7 +3,12 @@ name: Update UGC data
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *"
+    # Toutes les 60 minutes (plus stable côté rate-limit)
+    - cron: "0 * * * *"
+
+concurrency:
+  group: ugc-update
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -21,6 +26,8 @@ jobs:
           python-version: "3.11"
 
       - name: Generate JSON
+        env:
+          PYTHONUNBUFFERED: "1"
         run: |
           python fetch_ugc.py
 
