@@ -830,7 +830,6 @@
             <div class="galleryGrid" id="galleryGrid"></div>
           </div>
         </div>
-
       </div>
 
       <!-- SALES -->
@@ -839,6 +838,10 @@
           <div class="salesHeader">
             <div>
               <h2 data-i18n="sales_title">Vente</h2>
+            </div>
+            <div class="control" style="min-width:190px; flex:0 0 auto;">
+              <div class="label" data-i18n="sales_filter_label">Période</div>
+              <select id="salesRange"></select>
             </div>
             <div class="status" id="statusSales">—</div>
           </div>
@@ -860,7 +863,7 @@
 
               <div class="salesBlocks">
                 <div class="block">
-                  <div class="blockTitle" data-i18n="sales_today">Aujourd’hui</div>
+                  <div class="blockTitle" id="salesPeriodTitle" data-i18n="sales_today">Aujourd’hui</div>
                   <div class="salesList" id="salesToday"></div>
                 </div>
                 <div class="block">
@@ -964,7 +967,14 @@
       empty_sales:"Aucune donnée.",
       empty_sales_day:"Aucune vente pour ce jour.",
       sale_created_today:"Créé aujourd’hui",
-},
+      sales_filter_label:"Période",
+      sales_range_day:"Jour",
+      sales_range_week:"Semaine",
+      sales_range_month:"Mois",
+      sales_range_year:"Année",
+      stat_sales_period:"Ventes (période)",
+      stat_sales_total:"Ventes (total)",
+    },
     en:{
       brand:"Roblox Portfolio", tab_ugc:"UGC", tab_gallery:"Gallery",
       btn_profile:"Roblox Profile", btn_group:"Roblox Group", btn_refresh:"Refresh",
@@ -1042,7 +1052,14 @@
       empty_sales:"No data.",
       empty_sales_day:"No sales for this day.",
       sale_created_today:"Created today",
-},
+      sales_filter_label:"Period",
+      sales_range_day:"Day",
+      sales_range_week:"Week",
+      sales_range_month:"Month",
+      sales_range_year:"Year",
+      stat_sales_period:"Sales (period)",
+      stat_sales_total:"Sales (total)",
+    },
     es:{
       brand:"Portafolio Roblox", tab_ugc:"UGC", tab_gallery:"Galería",
       btn_profile:"Perfil Roblox", btn_group:"Grupo Roblox", btn_refresh:"Actualizar",
@@ -1155,7 +1172,7 @@
   }
   tabUgc.addEventListener("click", ()=> setActiveView("ugc"));
   tabGallery.addEventListener("click", ()=> setActiveView("gallery"));
-  tabSales.addEventListener("click", ()=> { setActiveView("sales"); buildSales(); });
+  tabSales.addEventListener("click", ()=> setActiveView("sales"));
 
   /* ---------- UGC rendering ---------- */
   function setStatus(id, text, spinning=false){
@@ -1400,6 +1417,25 @@
       return `<option value="${o.key}">${label}</option>`;
     }).join("");
   }
+  
+  const SALES_RANGE_OPTIONS = [
+    { key:"day",   labelKey:"sales_range_day" },
+    { key:"week",  labelKey:"sales_range_week" },
+    { key:"month", labelKey:"sales_range_month" },
+    { key:"year",  labelKey:"sales_range_year" },
+  ];
+
+  function fillSalesRangeSelect(){
+    const sel = document.getElementById("salesRange");
+    if(!sel) return;
+    const cur = sel.value || "day";
+    sel.innerHTML = SALES_RANGE_OPTIONS.map(o => {
+      const label = t(o.labelKey) || o.key;
+      return `<option value="${o.key}">${label}</option>`;
+    }).join("");
+    if([...sel.options].some(opt => opt.value === cur)) sel.value = cur;
+  }
+
 
 
   function wireSection(source, els){
@@ -1475,7 +1511,7 @@
     if(imgModalImg) imgModalImg.src = "";
   }
   function bindGalleryModal(){
-    const grid = document.getElementById("galleryGrid");
+    const grid = document.getElementById("gridGallery");
     if(!grid || grid.dataset.modalBound) return;
     grid.dataset.modalBound = "1";
     grid.addEventListener("click", (e)=>{
@@ -1650,6 +1686,66 @@
     }
   }
 
+  
+  function ymdLocal(d){
+    const y = d.getFullYear();
+    const m = String(d.getMonth()+1).padStart(2,"0");
+    const dd = String(d.getDate()).padStart(2,"0");
+    return `${y}-${m}-${dd}`;
+  }
+
+  function daysInRange(start, end){
+    const out = [];
+    const d = new Date(start);
+    d.setHours(0,0,0,0);
+    const e = new Date(end);
+    e.setHours(0,0,0,0);
+    while(d <= e){
+      out.push(ymdLocal(d));
+      d.setDate(d.getDate()+1);
+    }
+    return out;
+  }
+
+  function computePeriodSales(items, rangeKey){
+    const today = new Date(); today.setHours(0,0,0,0);
+
+    // counts: day=1, week=7, month=30, year=365 (simple + stable)
+    const back = (rangeKey==="day") ? 0 : (rangeKey==="week" ? 6 : (rangeKey==="month" ? 29 : 364));
+    const start = new Date(today); start.setDate(today.getDate()-back);
+
+    // For "day": list uses today only, chart uses last 14 days
+    const rangeDays = daysInRange(start, today);
+
+    // Aggregate totals per day + per item
+    const dayTotals = {};
+    for(const it of items){
+      let s = 0;
+      for(const d of rangeDays){
+        const n = Number(it.salesByDay?.[d] || 0);
+        if(Number.isFinite(n) && n>0){
+          s += n;
+          dayTotals[d] = (dayTotals[d]||0) + n;
+        }
+      }
+      it.__periodSales = s;
+    }
+
+    const periodTotal = Object.values(dayTotals).reduce((a,b)=>a+b,0);
+
+    // Label
+    const startLbl = fmtDate(start.getTime());
+    const endLbl = fmtDate(today.getTime());
+    let periodLabel = "";
+    if(rangeKey==="day") periodLabel = `${t("sales_range_day")} • ${endLbl}`;
+    else if(rangeKey==="week") periodLabel = `${t("sales_range_week")} • ${startLbl} → ${endLbl}`;
+    else if(rangeKey==="month") periodLabel = `${t("sales_range_month")} • ${startLbl} → ${endLbl}`;
+    else periodLabel = `${t("sales_range_year")} • ${startLbl} → ${endLbl}`;
+
+    return { start, end: today, rangeDays, dayTotals, periodTotal, periodLabel };
+  }
+
+
   function buildSales(){
     const status = document.getElementById("statusSales");
     const statsEl = document.getElementById("salesStats");
@@ -1659,6 +1755,8 @@
     const cDaily = document.getElementById("chartDaily");
 
     if(!status || !statsEl || !listAll || !listDay || !cTop || !cDaily) return;
+
+    const rangeKey = (document.getElementById("salesRange")?.value) || "day";
 
     const store = window.__UGC_STORE || {};
     const userItems = Array.isArray(store.user) ? store.user.map(x=>({...x, __src:"user"})) : [];
@@ -1684,12 +1782,19 @@
     const minP = prices.length ? Math.min(...prices) : null;
     const maxP = prices.length ? Math.max(...prices) : null;
 
+        // Period + total sales stats
+    const totalSalesAll = all.reduce((acc,it)=> acc + (typeof it.salesTotal==="number" ? it.salesTotal : 0), 0);
+    const { periodLabel, periodTotal } = computePeriodSales(all, rangeKey);
     statsEl.innerHTML = `
       <div class="stat"><div class="k">${t("stat_total")}</div><div class="v">${total}</div></div>
+      <div class="stat"><div class="k">${t("stat_sales_period")}</div><div class="v">${periodTotal}</div></div>
+      <div class="stat"><div class="k">${t("stat_sales_total")}</div><div class="v">${totalSalesAll}</div></div>
       <div class="stat"><div class="k">${t("stat_avg_price")}</div><div class="v">${fmtRobux(avg)}</div></div>
-      <div class="stat"><div class="k">${t("stat_min_price")}</div><div class="v">${fmtRobux(minP)}</div></div>
-      <div class="stat"><div class="k">${t("stat_max_price")}</div><div class="v">${fmtRobux(maxP)}</div></div>
     `;
+
+    // Status includes selected period
+    const salesTag2 = SALES_STORE?.updatedAt ? ` • ${t("sales_updated")}: ${SALES_STORE.updatedAt}` : "";
+    status.textContent = `${all.length} item(s)${salesTag2} • ${periodLabel}`;
 
     function row(it, extra){
       const creator = it.__src === "user" ? t("sale_creator_user") : t("sale_creator_group");
@@ -1722,43 +1827,27 @@
       return (b.createdTs||0)-(a.createdTs||0);
     });
 
-    // --------- Daily sales (Option A) ---------
-    const dayTotals = {};
-    for(const it of all){
-      const byDay = it.salesByDay || {};
-      for(const [d,c] of Object.entries(byDay)){
-        const n = Number(c);
-        if(!Number.isFinite(n) || n<=0) continue;
-        dayTotals[d] = (dayTotals[d]||0) + n;
-      }
-    }
-    const days = Object.keys(dayTotals).sort();
-    const lastDay = days.length ? days[days.length-1] : null;
+    // --------- Period sales (filter) ---------
+    const { start, end, rangeDays, dayTotals, periodTotal, periodLabel } = computePeriodSales(all, rangeKey);
 
-    // "Sold in one day" list = items that sold on the latest recorded day
-    let soldThatDay = [];
-    if(lastDay){
-      soldThatDay = all
-        .map(it => ({...it, __daySales: Number(it.salesByDay?.[lastDay]||0)}))
-        .filter(it => it.__daySales>0)
-        .sort((a,b)=>b.__daySales-a.__daySales);
-    }
+    // Update title in the first block
+    const titleEl = document.getElementById("salesPeriodTitle");
+    if(titleEl) titleEl.textContent = periodLabel;
+
+    // List for selected period
+    const soldInPeriod = all
+      .filter(it => (it.__periodSales||0) > 0)
+      .sort((a,b)=>(b.__periodSales||0)-(a.__periodSales||0));
 
     // Render lists
     listAll.innerHTML = sorted.slice(0, 200).map(it => row(it)).join("") || `<div class="muted">${t("empty_sales")}</div>`;
-    if(lastDay){
-      listDay.innerHTML = soldThatDay.slice(0, 200).map(it => row(it, `${lastDay}: ${it.__daySales}`)).join("") || `<div class="muted">${t("empty_sales_day")}</div>`;
-    }else{
-      // Fallback: created today
-      const now = new Date();
-      const todays = all.filter(it => it.createdTs && sameDay(new Date(it.createdTs), now));
-      listDay.innerHTML = todays.slice(0, 200).map(it => row(it, t("sale_created_today"))).join("") || `<div class="muted">${t("empty_sales_day")}</div>`;
-    }
+    listDay.innerHTML = soldInPeriod.slice(0, 200).map(it => row(it, `${it.__periodSales}`)).join("") || `<div class="muted">${t("empty_sales_day")}</div>`;
 
     // Charts
-    // Top chart = by total sales if present, else by price
+
+    // Top chart = by period sales (fallback to total sales)
     const top = sorted.slice(0, 10).map(it => ({
-      v: (typeof it.salesTotal==="number" ? it.salesTotal : 0),
+      v: (it.__periodSales>0 ? it.__periodSales : (typeof it.salesTotal==="number" ? it.salesTotal : 0)),
       lab: (it.name || ("#" + it.assetId)).slice(0, 14)
     }));
     drawBars(cTop, top.map(x=>x.lab), top.map(x=>x.v));
@@ -1814,35 +1903,42 @@
 
   function safeText(s){ return String(s || "").replaceAll("<","&lt;").replaceAll(">","&gt;"); }
 
-  function safeGalleryUrl(url){
-    const s = String(url || "").trim();
-    if(!s) return "";
-    // Encode each path segment to support spaces, accents, apostrophes, #, etc.
-    return s.split("/").map(seg => encodeURIComponent(seg)).join("/");
+  function encodePath(p){
+    const raw = String(p || "");
+    return raw.split("/").map(seg => encodeURIComponent(seg)).join("/");
   }
-
 
   function renderGallery(items){
     const grid = document.getElementById("galleryGrid");
     if(!items.length){
-      grid.innerHTML = `<div class="empty">Aucune image pour le moment. Ajoute des fichiers dans <b>gallery/</b> sur GitHub.</div>`;
+      grid.innerHTML = `<div class="empty">${t("gal_empty")}</div>`;
       return;
     }
     grid.innerHTML = items.map(x => {
       const url = x.url || "";
-      const safeUrl = safeGalleryUrl(url);
       const cap = x.caption ? safeText(x.caption) : "";
       return `
         <div class="shot reveal">
           <div class="imgWrap">
             <img class="shotImg" loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous"
-                 src="${safeUrl}" alt="${cap}"
-                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'empty\'>Image invalide</div>';">
+                 data-src="${escapeHtml(url)}" alt="${cap}">
           </div>
-          <div class="cap">${cap || "<span class='muted'>Sans légende</span>"}</div>
+          <div class="cap">${cap || `<span class="muted">${t("no_caption")}</span>`}</div>
         </div>
       `;
     }).join("");
+
+    // Apply src with proper encoding (handles #, spaces, accents, etc.)
+    grid.querySelectorAll("img[data-src]").forEach(img => {
+      const raw = img.getAttribute("data-src") || "";
+      img.src = encodePath(raw);
+      img.onerror = () => {
+        img.style.display = "none";
+        const p = img.parentElement;
+        if(p) p.innerHTML = `<div class="empty">${t("img_invalid")}</div>`;
+      };
+    });
+
     addReveal(grid);
     bindGalleryModal();
   }
@@ -1922,6 +2018,7 @@
     // Rebuild translated selects
     fillTypeSelect("typeUser");
     fillTypeSelect("typeGroup");
+    fillSalesRangeSelect();
 
     // Refresh sales labels/stats without refetch
     buildSales();
