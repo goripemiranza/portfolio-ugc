@@ -346,46 +346,132 @@
     }
     .langSelect option{background:#0b0f17; color:#e8edf7}
 
+  
+    /* ---------- Responsive + effects (v18) ---------- */
+    body{display:block}
+    .wrap{height:calc(var(--vh, 1vh) * 100);}
+
+    .topbar .brand{user-select:none}
+    .tab, .btn, .langBtn{
+      position:relative;
+      overflow:hidden;
+    }
+    .tab:active, .btn:active, .langBtn:active{transform:translateY(0) scale(0.98)}
+    .tab:focus-visible, .btn:focus-visible, .langBtn:focus-visible, select:focus-visible, input:focus-visible{
+      outline:2px solid rgba(124,92,255,0.55);
+      outline-offset:2px;
+    }
+    /* subtle shine on hover */
+    .btn::after, .tab::after, .langBtn::after{
+      content:"";
+      position:absolute; inset:-40% -60%;
+      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), transparent 55%);
+      transform:translateX(-30%) rotate(10deg);
+      opacity:0;
+      transition:opacity .18s ease, transform .18s ease;
+      pointer-events:none;
+    }
+    .btn:hover::after, .tab:hover::after, .langBtn:hover::after{opacity:1; transform:translateX(0) rotate(10deg)}
+
+    /* language menu */
+    .rightTools{position:relative}
+    .langMenu{
+      position:absolute;
+      right:0; top:42px;
+      background:rgba(12,16,26,0.92);
+      border:1px solid rgba(255,255,255,0.12);
+      border-radius:16px;
+      padding:10px;
+      box-shadow:0 18px 45px rgba(0,0,0,0.45);
+      display:none;
+      min-width:220px;
+      z-index:50;
+      backdrop-filter: blur(10px);
+    }
+    .langMenu.open{display:block}
+    .langSelect{width:100%}
+
+    /* scroll reveal */
+    .reveal{opacity:0; transform:translateY(10px); transition:opacity .22s ease, transform .22s ease}
+    .reveal.in{opacity:1; transform:none}
+    @media (prefers-reduced-motion: reduce){
+      .reveal{transition:none}
+      .btn::after, .tab::after, .langBtn::after{display:none}
+    }
+
+    /* Better mobile layout: prevent overlaps */
+    @media (max-width: 980px){
+      .topbar{flex-wrap:wrap; justify-content:center}
+      .brand{flex:1 1 100%; justify-content:center}
+      .tabs{flex:1 1 100%; justify-content:center}
+      .rightTools{flex:1 1 100%; display:flex; justify-content:center}
+      .langMenu{left:50%; right:auto; transform:translateX(-50%); top:44px; width:min(92vw, 360px)}
+      h1{font-size:34px}
+      .kicker{font-size:12px}
+      .actions{flex-wrap:wrap; justify-content:center}
+      .dual{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(auto-fill, minmax(170px, 1fr));}
+    }
+
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="topbar">
-      <div class="brand"><span class="dot"></span><span>Portfolio Roblox</span></div>
+      <div class="brand"><span class="dot"></span><span data-i18n="brand">Portfolio Roblox</span></div>
       <div class="tabs">
-        <button class="tab active" id="tabUgc" type="button">UGC</button>
-        <button class="tab" id="tabGallery" type="button">Galerie</button>
+        <button class="tab active" id="tabUgc" type="button" data-i18n="tab_ugc">UGC</button>
+        <button class="tab" id="tabGallery" type="button" data-i18n="tab_gallery">Galerie</button>
       </div>
       <div class="rightTools">
-        <button class="langBtn" id="btnTranslate" type="button">🌐 Traduire</button>
-        <select class="langSelect" id="langSelect" aria-label="Langue">
-          <option value="" selected>Choisir une langue…</option>
-          <option value="en">English</option>
-          <option value="es">Español</option>
-          <option value="de">Deutsch</option>
-          <option value="it">Italiano</option>
-          <option value="pt">Português</option>
-          <option value="nl">Nederlands</option>
-          <option value="pl">Polski</option>
-          <option value="tr">Türkçe</option>
-          <option value="ru">Русский</option>
-          <option value="ar">العربية</option>
-          <option value="hi">हिन्दी</option>
-          <option value="ja">日本語</option>
-          <option value="ko">한국어</option>
-          <option value="zh-CN">中文(简体)</option>
-          <option value="zh-TW">中文(繁體)</option>
-        </select>
+        <button class="langBtn" id="btnLang" type="button">🌐 Langue</button>
+        <div class="langMenu" id="langMenu" aria-hidden="true">
+          <select class="langSelect" id="langSelect" aria-label="Langue">
+            <option value="fr" selected>Français</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="de">Deutsch</option>
+            <option value="it">Italiano</option>
+            <option value="pt">Português</option>
+            <option value="nl">Nederlands</option>
+            <option value="pl">Polski</option>
+            <option value="cs">Čeština</option>
+            <option value="hu">Magyar</option>
+            <option value="ro">Română</option>
+            <option value="sv">Svenska</option>
+            <option value="no">Norsk</option>
+            <option value="da">Dansk</option>
+            <option value="fi">Suomi</option>
+            <option value="tr">Türkçe</option>
+            <option value="el">Ελληνικά</option>
+            <option value="ru">Русский</option>
+            <option value="uk">Українська</option>
+            <option value="ar">العربية</option>
+            <option value="he">עברית</option>
+            <option value="fa">فارسی</option>
+            <option value="hi">हिन्दी</option>
+            <option value="bn">বাংলা</option>
+            <option value="ur">اردو</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="ms">Bahasa Melayu</option>
+            <option value="vi">Tiếng Việt</option>
+            <option value="th">ไทย</option>
+            <option value="fil">Filipino</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="zh-CN">中文(简体)</option>
+            <option value="zh-TW">中文(繁體)</option>
+          </select>
+        </div>
       </div>
     </div>
 
     <div class="card hero">
       <div class="kicker">UGC • Accessoires • Vêtements</div>
       <h1>lulu8203 — Portfolio</h1>
-      <p class="subtitle" id="t_hero_sub">Créations UGC <b>en vente</b> — séparées entre <b>Profil</b> (lulu8203) et <b>Groupe</b> (Powerful Artists).</p>
-      <div class="actions">
-        <a class="btn primary" href="https://www.roblox.com/users/828726934/profile" target="_blank" rel="noopener">Profil Roblox</a>
-        <a class="btn" href="https://www.roblox.com/communities/16981319/Powerful-artists" target="_blank" rel="noopener">Groupe Roblox</a>
+<div class="actions">
+        <a class="btn primary" href="https://www.roblox.com/users/828726934/profile" target="_blank" rel="noopener" data-i18n="btn_profile">Profil Roblox</a>
+        <a class="btn" href="https://www.roblox.com/communities/16981319/Powerful-artists" target="_blank" rel="noopener" data-i18n="btn_group">Groupe Roblox</a>
         <button class="btn" id="refreshAllBtn" type="button">Actualiser</button>
       </div>
     </div>
@@ -400,18 +486,18 @@
                 <h2>UGC — lulu8203 (en vente)</h2>
                 <p class="meta" id="metaUser">—</p>
               </div>
-              <div class="status" id="statusUser"><span class="spinner"></span><span>Chargement…</span></div>
+              <div class="status" id="statusUser"><span class="spinner"></span><span data-i18n="loading">Chargement…</span></div>
             </div>
 
             <!-- ✅ ONLY 2 filters -->
             <div class="filters">
               <div class="control">
-                <div class="label">Type d’accessoire</div>
+                <div class="label" data-i18n="label_type">Type d’accessoire</div>
                 <select id="typeUser"></select>
               </div>
               <div class="control">
-                <div class="label">Mot-clé (nom)</div>
-                <input id="kwUser" type="text" placeholder="Ex: corne, crown, sword…" />
+                <div class="label" data-i18n="label_kw">Mot-clé (nom)</div>
+                <input id="kwUser" type="text" placeholder="Ex: corne, crown, sword…" data-i18n-ph="ph_kw" />
               </div>
             </div>
 
@@ -426,17 +512,17 @@
                 <h2>UGC — Powerful Artists (en vente)</h2>
                 <p class="meta" id="metaGroup">—</p>
               </div>
-              <div class="status" id="statusGroup"><span class="spinner"></span><span>Chargement…</span></div>
+              <div class="status" id="statusGroup"><span class="spinner"></span><span data-i18n="loading">Chargement…</span></div>
             </div>
 
             <!-- ✅ ONLY 2 filters -->
             <div class="filters">
               <div class="control">
-                <div class="label">Type d’accessoire</div>
+                <div class="label" data-i18n="label_type">Type d’accessoire</div>
                 <select id="typeGroup"></select>
               </div>
               <div class="control">
-                <div class="label">Mot-clé (nom)</div>
+                <div class="label" data-i18n="label_kw">Mot-clé (nom)</div>
                 <input id="kwGroup" type="text" placeholder="Ex: wing, hair, dragon…" />
               </div>
             </div>
@@ -646,8 +732,7 @@
         setStatus(els.statusId, `${state.items.length} item(s)`, false);
       }catch(e){
         state.items = [];
-        document.getElementById(els.metaId).textContent =
-          "Données indisponibles pour le moment (JSON manquant ou non généré).";
+        document.getElementById(els.metaId).textContent = t("err_short");
         render(els.gridId, [], els.itemPrefix);
         setStatus(els.statusId, "Erreur", false);
       }
@@ -727,24 +812,178 @@
   // charge au clic (et si déjà sur galerie)
   tabGallery.addEventListener("click", refreshGallery);
 
-  /* ---------- Translate (all languages via Google Translate view) ----------
-     Important: A public website cannot fully prevent copying; this is a convenience feature.
-  */
-  const btnTranslate = document.getElementById("btnTranslate");
-  const langSelect = document.getElementById("langSelect");
-  function openTranslate(lang){
-    if(!lang) return;
-    const u = encodeURIComponent(window.location.href);
-    const url = `https://translate.google.com/translate?sl=auto&tl=${encodeURIComponent(lang)}&u=${u}`;
-    window.open(url, "_blank", "noopener");
-    langSelect.value = "";
+  
+  /* ---------- Viewport height fix (mobile address bar) ---------- */
+  function setVh(){
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
   }
-  btnTranslate?.addEventListener("click", () => {
-    // focus the dropdown
-    langSelect?.focus();
-    langSelect?.click?.();
+  window.addEventListener('resize', setVh);
+  setVh();
+
+  /* ---------- Language (in-place UI translation) ---------- */
+  const I18N = {
+    fr:{
+      brand:"Portfolio Roblox", tab_ugc:"UGC", tab_gallery:"Galerie",
+      btn_profile:"Profil Roblox", btn_group:"Groupe Roblox", btn_refresh:"Actualiser",
+      label_type:"Type d’accessoire", label_kw:"Mot-clé (nom)", ph_kw:"Ex: corne, crown, sword…",
+      loading:"Chargement…", err_short:"Données indisponibles."
+    },
+    en:{
+      brand:"Roblox Portfolio", tab_ugc:"UGC", tab_gallery:"Gallery",
+      btn_profile:"Roblox Profile", btn_group:"Roblox Group", btn_refresh:"Refresh",
+      label_type:"Accessory type", label_kw:"Keyword (name)", ph_kw:"e.g. horn, crown, sword…",
+      loading:"Loading…", err_short:"Data unavailable."
+    },
+    es:{
+      brand:"Portafolio Roblox", tab_ugc:"UGC", tab_gallery:"Galería",
+      btn_profile:"Perfil Roblox", btn_group:"Grupo Roblox", btn_refresh:"Actualizar",
+      label_type:"Tipo de accesorio", label_kw:"Palabra clave (nombre)", ph_kw:"Ej.: cuerno, corona, espada…",
+      loading:"Cargando…", err_short:"Datos no disponibles."
+    },
+    de:{
+      brand:"Roblox-Portfolio", tab_ugc:"UGC", tab_gallery:"Galerie",
+      btn_profile:"Roblox-Profil", btn_group:"Roblox‑Gruppe", btn_refresh:"Aktualisieren",
+      label_type:"Accessoire-Typ", label_kw:"Stichwort (Name)", ph_kw:"z.B. Horn, Krone, Schwert…",
+      loading:"Lädt…", err_short:"Daten nicht verfügbar."
+    },
+    it:{
+      brand:"Portfolio Roblox", tab_ugc:"UGC", tab_gallery:"Galleria",
+      btn_profile:"Profilo Roblox", btn_group:"Gruppo Roblox", btn_refresh:"Aggiorna",
+      label_type:"Tipo di accessorio", label_kw:"Parola chiave (nome)", ph_kw:"Es.: corno, corona, spada…",
+      loading:"Caricamento…", err_short:"Dati non disponibili."
+    },
+    pt:{
+      brand:"Portfólio Roblox", tab_ugc:"UGC", tab_gallery:"Galeria",
+      btn_profile:"Perfil Roblox", btn_group:"Grupo Roblox", btn_refresh:"Atualizar",
+      label_type:"Tipo de acessório", label_kw:"Palavra‑chave (nome)", ph_kw:"Ex.: chifre, coroa, espada…",
+      loading:"Carregando…", err_short:"Dados indisponíveis."
+    },
+    nl:{
+      brand:"Roblox‑portfolio", tab_ugc:"UGC", tab_gallery:"Galerij",
+      btn_profile:"Roblox‑profiel", btn_group:"Roblox‑groep", btn_refresh:"Vernieuwen",
+      label_type:"Accessoiretype", label_kw:"Trefwoord (naam)", ph_kw:"Bijv. hoorn, kroon, zwaard…",
+      loading:"Laden…", err_short:"Gegevens niet beschikbaar."
+    },
+    pl:{
+      brand:"Portfolio Roblox", tab_ugc:"UGC", tab_gallery:"Galeria",
+      btn_profile:"Profil Roblox", btn_group:"Grupa Roblox", btn_refresh:"Odśwież",
+      label_type:"Typ akcesorium", label_kw:"Słowo kluczowe (nazwa)", ph_kw:"Np. róg, korona, miecz…",
+      loading:"Ładowanie…", err_short:"Brak danych."
+    },
+    tr:{
+      brand:"Roblox Portföyü", tab_ugc:"UGC", tab_gallery:"Galeri",
+      btn_profile:"Roblox Profili", btn_group:"Roblox Grubu", btn_refresh:"Yenile",
+      label_type:"Aksesuar türü", label_kw:"Anahtar kelime (ad)", ph_kw:"Örn. boynuz, taç, kılıç…",
+      loading:"Yükleniyor…", err_short:"Veri yok."
+    },
+    ru:{
+      brand:"Портфолио Roblox", tab_ugc:"UGC", tab_gallery:"Галерея",
+      btn_profile:"Профиль Roblox", btn_group:"Группа Roblox", btn_refresh:"Обновить",
+      label_type:"Тип аксессуара", label_kw:"Ключевое слово (название)", ph_kw:"Напр.: рог, корона, меч…",
+      loading:"Загрузка…", err_short:"Данные недоступны."
+    },
+    ar:{
+      brand:"معرض روبلوكس", tab_ugc:"UGC", tab_gallery:"معرض الصور",
+      btn_profile:"ملف روبلوكس", btn_group:"مجموعة روبلوكس", btn_refresh:"تحديث",
+      label_type:"نوع الإكسسوار", label_kw:"كلمة مفتاحية (الاسم)", ph_kw:"مثال: قرن، تاج، سيف…",
+      loading:"جارٍ التحميل…", err_short:"البيانات غير متاحة."
+    },
+    ja:{
+      brand:"Roblox ポートフォリオ", tab_ugc:"UGC", tab_gallery:"ギャラリー",
+      btn_profile:"Roblox プロフィール", btn_group:"Roblox グループ", btn_refresh:"更新",
+      label_type:"アクセサリー種類", label_kw:"キーワード（名前）", ph_kw:"例：horn, crown, sword…",
+      loading:"読み込み中…", err_short:"データがありません。"
+    },
+    ko:{
+      brand:"로블록스 포트폴리오", tab_ugc:"UGC", tab_gallery:"갤러리",
+      btn_profile:"로블록스 프로필", btn_group:"로블록스 그룹", btn_refresh:"새로고침",
+      label_type:"액세서리 유형", label_kw:"키워드(이름)", ph_kw:"예: horn, crown, sword…",
+      loading:"불러오는 중…", err_short:"데이터를 불러올 수 없습니다."
+    },
+    "zh-CN":{
+      brand:"Roblox 作品集", tab_ugc:"UGC", tab_gallery:"画廊",
+      btn_profile:"Roblox 主页", btn_group:"Roblox 群组", btn_refresh:"刷新",
+      label_type:"饰品类型", label_kw:"关键词（名称）", ph_kw:"例如：horn、crown、sword…",
+      loading:"加载中…", err_short:"数据不可用。"
+    },
+    "zh-TW":{
+      brand:"Roblox 作品集", tab_ugc:"UGC", tab_gallery:"畫廊",
+      btn_profile:"Roblox 個人頁", btn_group:"Roblox 群組", btn_refresh:"重新整理",
+      label_type:"飾品類型", label_kw:"關鍵字（名稱）", ph_kw:"例如：horn、crown、sword…",
+      loading:"載入中…", err_short:"資料不可用。"
+    }
+  };
+
+  function t(key){
+    const lang = (localStorage.getItem("lang") || "fr");
+    return (I18N[lang] && I18N[lang][key]) || (I18N.fr[key] || "");
+  }
+
+  function applyLang(lang){
+    if(!I18N[lang]) lang = "fr";
+    localStorage.setItem("lang", lang);
+    document.documentElement.lang = lang;
+
+    // text nodes
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const k = el.getAttribute("data-i18n");
+      const v = (I18N[lang] && I18N[lang][k]) || (I18N.fr[k] || null);
+      if(v !== null) el.textContent = v;
+    });
+
+    // placeholders
+    document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+      const k = el.getAttribute("data-i18n-ph");
+      const v = (I18N[lang] && I18N[lang][k]) || (I18N.fr[k] || null);
+      if(v !== null) el.setAttribute("placeholder", v);
+    });
+  }
+
+  // language menu toggle
+  const btnLang = document.getElementById("btnLang");
+  const langMenu = document.getElementById("langMenu");
+  const langSelect = document.getElementById("langSelect");
+
+  function closeLangMenu(){
+    langMenu?.classList.remove("open");
+    langMenu?.setAttribute("aria-hidden", "true");
+  }
+  btnLang?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const open = langMenu.classList.toggle("open");
+    langMenu.setAttribute("aria-hidden", open ? "false" : "true");
   });
-  langSelect?.addEventListener("change", (e) => openTranslate(e.target.value));
+  document.addEventListener("click", closeLangMenu);
+
+  // set initial lang
+  const savedLang = localStorage.getItem("lang") || "fr";
+  if(langSelect) langSelect.value = savedLang;
+  applyLang(savedLang);
+
+  langSelect?.addEventListener("change", (e) => {
+    applyLang(e.target.value);
+    closeLangMenu();
+  });
+
+  /* ---------- Scroll reveal (cards/images appear smoothly) ---------- */
+  function setupReveal(rootEl){
+    if(!rootEl) return;
+    const obs = new IntersectionObserver((entries) => {
+      for(const ent of entries){
+        if(ent.isIntersecting) ent.target.classList.add("in");
+      }
+    }, {root: rootEl, threshold: 0.08});
+    rootEl.querySelectorAll(".reveal").forEach(el => obs.observe(el));
+    // expose helper
+    rootEl._revealObserver = obs;
+  }
+  function addReveal(rootEl, els){
+    if(!rootEl || !els) return;
+    const obs = rootEl._revealObserver;
+    if(!obs) return;
+    els.forEach(el => obs.observe(el));
+  }
+
 </script>
 </body>
 </html>
