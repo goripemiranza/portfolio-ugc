@@ -1,286 +1,93 @@
 {
-  "source": "catalog.v1.search.items.details",
-  "usedBase": "https://catalog.roblox.com",
-  "creator": {
-    "type": "Group",
-    "id": 16981319
-  },
-  "updatedAt": "2025-12-27T15:39:14Z",
+  "generatedAt": "2025-12-27T16:03:03.185552Z",
   "items": [
-    {
-      "assetId": 74983607789715,
-      "name": "White flower parasol",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=74983607789715&width=420&height=420&format=png",
-      "rank": 1
-    },
-    {
-      "assetId": 93192337059930,
-      "name": "⏳Limited⏳Golden and cyan horns CODE : CHGGGMP",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 110,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=93192337059930&width=420&height=420&format=png",
-      "rank": 2
-    },
-    {
-      "assetId": 85708056856563,
-      "name": "Black and gold wings ",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 140,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=85708056856563&width=420&height=420&format=png",
-      "rank": 3
-    },
-    {
-      "assetId": 132266745430466,
-      "name": "Black and gold sword ",
-      "assetTypeId": 47,
-      "assetTypeName": "WaistAccessory",
-      "price": 80,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=132266745430466&width=420&height=420&format=png",
-      "rank": 4
-    },
-    {
-      "assetId": 128611174976041,
-      "name": "Black and gold scepter",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 145,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=128611174976041&width=420&height=420&format=png",
-      "rank": 5
-    },
-    {
-      "assetId": 76584283871633,
-      "name": "White and gold valkyrie ",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 105,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=76584283871633&width=420&height=420&format=png",
-      "rank": 6
-    },
-    {
-      "assetId": 74820048389112,
-      "name": "[PBR] Blue cyber wings",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 135,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=74820048389112&width=420&height=420&format=png",
-      "rank": 7
-    },
-    {
-      "assetId": 114056942238304,
-      "name": "[PBR] Black/red golden jewelled horns ",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=114056942238304&width=420&height=420&format=png",
-      "rank": 8
-    },
-    {
-      "assetId": 71154994010748,
-      "name": "White and gold sword ",
-      "assetTypeId": 47,
-      "assetTypeName": "WaistAccessory",
-      "price": 80,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=71154994010748&width=420&height=420&format=png",
-      "rank": 9
-    },
-    {
-      "assetId": 134630267020145,
-      "name": "Blue and black horns",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=134630267020145&width=420&height=420&format=png",
-      "rank": 10
-    },
-    {
-      "assetId": 117578513893407,
-      "name": "[PBR] Red cyber mask",
-      "assetTypeId": 42,
-      "assetTypeName": "FaceAccessory",
-      "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=117578513893407&width=420&height=420&format=png",
-      "rank": 11
-    },
     {
       "assetId": 121640625346381,
       "name": "[PBR] Mystic jewelled horns",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
+      "type": "Hat",
       "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=121640625346381&width=420&height=420&format=png",
-      "rank": 12
-    },
-    {
-      "assetId": 76680987618680,
-      "name": "[PBR] Crimson red metallic horns",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=76680987618680&width=420&height=420&format=png",
-      "rank": 13
-    },
-    {
-      "assetId": 84767700611805,
-      "name": "Pink flower parasol",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=84767700611805&width=420&height=420&format=png",
-      "rank": 14
-    },
-    {
-      "assetId": 105461065154207,
-      "name": "[PBR] Red cyber wings",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 140,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=105461065154207&width=420&height=420&format=png",
-      "rank": 15
-    },
-    {
-      "assetId": 108418388012974,
-      "name": "Blue cyber sword",
-      "assetTypeId": 47,
-      "assetTypeName": "WaistAccessory",
-      "price": 75,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=108418388012974&width=420&height=420&format=png",
-      "rank": 16
-    },
-    {
-      "assetId": 137769508784035,
-      "name": "Blue and black dragon tail",
-      "assetTypeId": 47,
-      "assetTypeName": "WaistAccessory",
-      "price": 80,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=137769508784035&width=420&height=420&format=png",
-      "rank": 17
+      "created": "2025-12-15T19:01:37.367Z",
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=121640625346381&width=420&height=420&format=png"
     },
     {
       "assetId": 76093476566308,
       "name": "[PBR] Golden white royal crown",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
+      "type": "Hat",
       "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=76093476566308&width=420&height=420&format=png",
-      "rank": 18
+      "created": "2025-10-19T11:42:55.59Z",
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=76093476566308&width=420&height=420&format=png"
     },
     {
-      "assetId": 86312140095193,
-      "name": "[PBR] Black/green golden jewelled horns",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
+      "assetId": 90895163434338,
+      "name": "[PBR] Black/blue golden jewelled horns",
+      "type": "Hat",
       "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=86312140095193&width=420&height=420&format=png",
-      "rank": 19
+      "created": "2025-10-19T11:36:59.36Z",
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=90895163434338&width=420&height=420&format=png"
     },
     {
-      "assetId": 110319499372320,
-      "name": "White and gold wings ",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 145,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=110319499372320&width=420&height=420&format=png",
-      "rank": 20
+      "assetId": 103640681693848,
+      "name": "Blonde messy hair",
+      "type": "HairAccessory",
+      "price": 70,
+      "created": "2025-08-26T21:07:43.41Z",
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=103640681693848&width=420&height=420&format=png"
     },
     {
-      "assetId": 136428742434964,
-      "name": "[PBR] Green cyber wings",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 135,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=136428742434964&width=420&height=420&format=png",
-      "rank": 21
+      "assetId": 119786498249719,
+      "name": "Black and white messy hair",
+      "type": "HairAccessory",
+      "price": 70,
+      "created": "2025-08-25T20:18:08.163Z",
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=119786498249719&width=420&height=420&format=png"
     },
     {
-      "assetId": 86296037478936,
-      "name": "Black bunny umbrella",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=86296037478936&width=420&height=420&format=png",
-      "rank": 22
-    },
-    {
-      "assetId": 80602461847182,
-      "name": "Sun phoenix wings ",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 160,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=80602461847182&width=420&height=420&format=png",
-      "rank": 23
+      "assetId": 97072088397988,
+      "name": "[PBR] white metallic royal sword",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2025-07-28T22:29:02.213Z",
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=97072088397988&width=420&height=420&format=png"
     },
     {
       "assetId": 132428921830890,
       "name": "Poppy flower parasol",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
+      "type": "BackAccessory",
       "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=132428921830890&width=420&height=420&format=png",
-      "rank": 24
+      "created": "2025-04-24T13:25:21.483Z",
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=132428921830890&width=420&height=420&format=png"
     },
     {
-      "assetId": 107095008480456,
-      "name": "[PBR] green metallic horns",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 90,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=107095008480456&width=420&height=420&format=png",
-      "rank": 25
+      "assetId": 74983607789715,
+      "name": "White flower parasol",
+      "type": "BackAccessory",
+      "price": 150,
+      "created": "2025-03-21T21:19:04.767Z",
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=74983607789715&width=420&height=420&format=png"
+    },
+    {
+      "assetId": 134542294659432,
+      "name": "Red flower parasol",
+      "type": "BackAccessory",
+      "price": 150,
+      "created": "2025-03-21T21:02:45.043Z",
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=134542294659432&width=420&height=420&format=png"
+    },
+    {
+      "assetId": 76584283871633,
+      "name": "White and gold valkyrie ",
+      "type": "Hat",
+      "price": 105,
+      "created": "2025-01-17T14:21:58.877Z",
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=76584283871633&width=420&height=420&format=png"
+    },
+    {
+      "assetId": 134402963982838,
+      "name": "White and gold scepter ",
+      "type": "BackAccessory",
+      "price": 145,
+      "created": "2025-01-10T23:46:07.677Z",
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=134402963982838&width=420&height=420&format=png"
     },
     {
       "assetId": 140262181869137,
@@ -294,257 +101,37 @@
       "rank": 26
     },
     {
-      "assetId": 120646608021988,
-      "name": "[PBR] Halloween witch hat",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=120646608021988&width=420&height=420&format=png",
-      "rank": 27
-    },
-    {
-      "assetId": 86984436602601,
-      "name": "Blue flower parasol",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=86984436602601&width=420&height=420&format=png",
-      "rank": 28
-    },
-    {
-      "assetId": 73886642022932,
-      "name": "[PBR] Black metallic horns",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=73886642022932&width=420&height=420&format=png",
-      "rank": 29
-    },
-    {
-      "assetId": 134542294659432,
-      "name": "Red flower parasol",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=134542294659432&width=420&height=420&format=png",
-      "rank": 30
-    },
-    {
-      "assetId": 112911367450195,
-      "name": "Purple shadow sword",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=112911367450195&width=420&height=420&format=png",
-      "rank": 31
-    },
-    {
-      "assetId": 131531497269464,
-      "name": "White and black dragon tail",
+      "assetId": 137769508784035,
+      "name": "Blue and black dragon tail",
       "assetTypeId": 47,
       "assetTypeName": "WaistAccessory",
-      "price": 60,
+      "price": 80,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=131531497269464&width=420&height=420&format=png",
-      "rank": 32
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=137769508784035&width=420&height=420&format=png",
+      "rank": 17
     },
     {
-      "assetId": 88010539838137,
-      "name": "White bunny umbrella ",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=88010539838137&width=420&height=420&format=png",
-      "rank": 33
-    },
-    {
-      "assetId": 95110969483382,
-      "name": "[PBR] Bat wings sword",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 140,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=95110969483382&width=420&height=420&format=png",
-      "rank": 34
-    },
-    {
-      "assetId": 134402963982838,
-      "name": "White and gold scepter ",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 145,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=134402963982838&width=420&height=420&format=png",
-      "rank": 35
-    },
-    {
-      "assetId": 90634979410540,
-      "name": "Moon phoenix halo",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 90,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=90634979410540&width=420&height=420&format=png",
-      "rank": 36
-    },
-    {
-      "assetId": 115245506922433,
-      "name": "Black and gold valkyrie",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 90,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=115245506922433&width=420&height=420&format=png",
-      "rank": 37
-    },
-    {
-      "assetId": 88547779037836,
-      "name": "Green shadow sword",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=88547779037836&width=420&height=420&format=png",
-      "rank": 38
-    },
-    {
-      "assetId": 83398849212814,
-      "name": "[PBR] silver metallic horns",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=83398849212814&width=420&height=420&format=png",
-      "rank": 39
-    },
-    {
-      "assetId": 79209314050343,
-      "name": "Moon valk",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 1,
-      "isOffSale": true,
-      "priceStatus": "Off Sale",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=79209314050343&width=420&height=420&format=png",
-      "rank": 40
-    },
-    {
-      "assetId": 79738540625712,
-      "name": "[PBR] Golden red royal crown ",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=79738540625712&width=420&height=420&format=png",
-      "rank": 41
-    },
-    {
-      "assetId": 125587794762914,
-      "name": "Sun phoenix halo",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 90,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=125587794762914&width=420&height=420&format=png",
-      "rank": 42
-    },
-    {
-      "assetId": 107905103876831,
-      "name": "Heart scepter ",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=107905103876831&width=420&height=420&format=png",
-      "rank": 43
-    },
-    {
-      "assetId": 92867934281767,
-      "name": "White and black dragon wings",
+      "assetId": 136428742434964,
+      "name": "[PBR] Green cyber wings",
       "assetTypeId": 46,
       "assetTypeName": "BackAccessory",
       "price": 135,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=92867934281767&width=420&height=420&format=png",
-      "rank": 44
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=136428742434964&width=420&height=420&format=png",
+      "rank": 21
     },
     {
-      "assetId": 107830760895891,
-      "name": "Blue shadow sword",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=107830760895891&width=420&height=420&format=png",
-      "rank": 45
-    },
-    {
-      "assetId": 90895163434338,
-      "name": "[PBR] Black/blue golden jewelled horns",
+      "assetId": 134630267020145,
+      "name": "Blue and black horns",
       "assetTypeId": 8,
       "assetTypeName": "Hat",
       "price": 100,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=90895163434338&width=420&height=420&format=png",
-      "rank": 46
-    },
-    {
-      "assetId": 131785932364189,
-      "name": "Moon phoenix wings ",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 160,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=131785932364189&width=420&height=420&format=png",
-      "rank": 47
-    },
-    {
-      "assetId": 130134165438299,
-      "name": "White and black horns",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 90,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=130134165438299&width=420&height=420&format=png",
-      "rank": 48
-    },
-    {
-      "assetId": 130462198935793,
-      "name": "Blue and black dragon wings",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 135,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=130462198935793&width=420&height=420&format=png",
-      "rank": 49
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=134630267020145&width=420&height=420&format=png",
+      "rank": 10
     },
     {
       "assetId": 134159126419346,
@@ -558,6 +145,50 @@
       "rank": 50
     },
     {
+      "assetId": 132266745430466,
+      "name": "Black and gold sword ",
+      "assetTypeId": 47,
+      "assetTypeName": "WaistAccessory",
+      "price": 80,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=132266745430466&width=420&height=420&format=png",
+      "rank": 4
+    },
+    {
+      "assetId": 131785932364189,
+      "name": "Moon phoenix wings ",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 160,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=131785932364189&width=420&height=420&format=png",
+      "rank": 47
+    },
+    {
+      "assetId": 131531497269464,
+      "name": "White and black dragon tail",
+      "assetTypeId": 47,
+      "assetTypeName": "WaistAccessory",
+      "price": 60,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=131531497269464&width=420&height=420&format=png",
+      "rank": 32
+    },
+    {
+      "assetId": 130462198935793,
+      "name": "Blue and black dragon wings",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 135,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=130462198935793&width=420&height=420&format=png",
+      "rank": 49
+    },
+    {
       "assetId": 130221398514737,
       "name": "Beige bunny umbrella",
       "assetTypeId": 46,
@@ -569,15 +200,15 @@
       "rank": 51
     },
     {
-      "assetId": 97072088397988,
-      "name": "[PBR] white metallic royal sword",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 140,
+      "assetId": 130134165438299,
+      "name": "White and black horns",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "price": 90,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=97072088397988&width=420&height=420&format=png",
-      "rank": 52
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=130134165438299&width=420&height=420&format=png",
+      "rank": 48
     },
     {
       "assetId": 129193098836002,
@@ -591,6 +222,28 @@
       "rank": 53
     },
     {
+      "assetId": 128611174976041,
+      "name": "Black and gold scepter",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 145,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=128611174976041&width=420&height=420&format=png",
+      "rank": 5
+    },
+    {
+      "assetId": 125587794762914,
+      "name": "Sun phoenix halo",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "price": 90,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=125587794762914&width=420&height=420&format=png",
+      "rank": 42
+    },
+    {
       "assetId": 124182720625549,
       "name": "Crimson shadow sword",
       "assetTypeId": 46,
@@ -602,15 +255,246 @@
       "rank": 54
     },
     {
-      "assetId": 83940501884631,
-      "name": "Brown bunny umbrella",
+      "assetId": 120646608021988,
+      "name": "[PBR] Halloween witch hat",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "price": 100,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=120646608021988&width=420&height=420&format=png",
+      "rank": 27
+    },
+    {
+      "assetId": 117578513893407,
+      "name": "[PBR] Red cyber mask",
+      "assetTypeId": 42,
+      "assetTypeName": "FaceAccessory",
+      "price": 100,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=117578513893407&width=420&height=420&format=png",
+      "rank": 11
+    },
+    {
+      "assetId": 115245506922433,
+      "name": "Black and gold valkyrie",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "price": 90,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=115245506922433&width=420&height=420&format=png",
+      "rank": 37
+    },
+    {
+      "assetId": 114056942238304,
+      "name": "[PBR] Black/red golden jewelled horns ",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "price": 100,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=114056942238304&width=420&height=420&format=png",
+      "rank": 8
+    },
+    {
+      "assetId": 112911367450195,
+      "name": "Purple shadow sword",
       "assetTypeId": 46,
       "assetTypeName": "BackAccessory",
       "price": 150,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=83940501884631&width=420&height=420&format=png",
-      "rank": 55
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=112911367450195&width=420&height=420&format=png",
+      "rank": 31
+    },
+    {
+      "assetId": 110319499372320,
+      "name": "White and gold wings ",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 145,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=110319499372320&width=420&height=420&format=png",
+      "rank": 20
+    },
+    {
+      "assetId": 108418388012974,
+      "name": "Blue cyber sword",
+      "assetTypeId": 47,
+      "assetTypeName": "WaistAccessory",
+      "price": 75,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=108418388012974&width=420&height=420&format=png",
+      "rank": 16
+    },
+    {
+      "assetId": 107905103876831,
+      "name": "Heart scepter ",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 150,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=107905103876831&width=420&height=420&format=png",
+      "rank": 43
+    },
+    {
+      "assetId": 107830760895891,
+      "name": "Blue shadow sword",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 150,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=107830760895891&width=420&height=420&format=png",
+      "rank": 45
+    },
+    {
+      "assetId": 107095008480456,
+      "name": "[PBR] green metallic horns",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "price": 90,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=107095008480456&width=420&height=420&format=png",
+      "rank": 25
+    },
+    {
+      "assetId": 105461065154207,
+      "name": "[PBR] Red cyber wings",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 140,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=105461065154207&width=420&height=420&format=png",
+      "rank": 15
+    },
+    {
+      "assetId": 95110969483382,
+      "name": "[PBR] Bat wings sword",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 140,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=95110969483382&width=420&height=420&format=png",
+      "rank": 34
+    },
+    {
+      "assetId": 93192337059930,
+      "name": "⏳Limited⏳Golden and cyan horns CODE : CHGGGMP",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "price": 110,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=93192337059930&width=420&height=420&format=png",
+      "rank": 2
+    },
+    {
+      "assetId": 92867934281767,
+      "name": "White and black dragon wings",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 135,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=92867934281767&width=420&height=420&format=png",
+      "rank": 44
+    },
+    {
+      "assetId": 90634979410540,
+      "name": "Moon phoenix halo",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "price": 90,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=90634979410540&width=420&height=420&format=png",
+      "rank": 36
+    },
+    {
+      "assetId": 88547779037836,
+      "name": "Green shadow sword",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 150,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=88547779037836&width=420&height=420&format=png",
+      "rank": 38
+    },
+    {
+      "assetId": 88010539838137,
+      "name": "White bunny umbrella ",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 150,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=88010539838137&width=420&height=420&format=png",
+      "rank": 33
+    },
+    {
+      "assetId": 86984436602601,
+      "name": "Blue flower parasol",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 150,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=86984436602601&width=420&height=420&format=png",
+      "rank": 28
+    },
+    {
+      "assetId": 86312140095193,
+      "name": "[PBR] Black/green golden jewelled horns",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "price": 100,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=86312140095193&width=420&height=420&format=png",
+      "rank": 19
+    },
+    {
+      "assetId": 86296037478936,
+      "name": "Black bunny umbrella",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 150,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=86296037478936&width=420&height=420&format=png",
+      "rank": 22
+    },
+    {
+      "assetId": 85708056856563,
+      "name": "Black and gold wings ",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 140,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=85708056856563&width=420&height=420&format=png",
+      "rank": 3
+    },
+    {
+      "assetId": 84767700611805,
+      "name": "Pink flower parasol",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 150,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=84767700611805&width=420&height=420&format=png",
+      "rank": 14
     },
     {
       "assetId": 84062622353279,
@@ -624,6 +508,61 @@
       "rank": 56
     },
     {
+      "assetId": 83940501884631,
+      "name": "Brown bunny umbrella",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 150,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=83940501884631&width=420&height=420&format=png",
+      "rank": 55
+    },
+    {
+      "assetId": 83398849212814,
+      "name": "[PBR] silver metallic horns",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "price": 100,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=83398849212814&width=420&height=420&format=png",
+      "rank": 39
+    },
+    {
+      "assetId": 80602461847182,
+      "name": "Sun phoenix wings ",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 160,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=80602461847182&width=420&height=420&format=png",
+      "rank": 23
+    },
+    {
+      "assetId": 79738540625712,
+      "name": "[PBR] Golden red royal crown ",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "price": 100,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=79738540625712&width=420&height=420&format=png",
+      "rank": 41
+    },
+    {
+      "assetId": 76680987618680,
+      "name": "[PBR] Crimson red metallic horns",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "price": 100,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=76680987618680&width=420&height=420&format=png",
+      "rank": 13
+    },
+    {
       "assetId": 76090521545763,
       "name": "[PBR] Black/white golden jewelled horns",
       "assetTypeId": 8,
@@ -633,6 +572,39 @@
       "priceStatus": null,
       "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=76090521545763&width=420&height=420&format=png",
       "rank": 57
+    },
+    {
+      "assetId": 74820048389112,
+      "name": "[PBR] Blue cyber wings",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 135,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=74820048389112&width=420&height=420&format=png",
+      "rank": 7
+    },
+    {
+      "assetId": 73886642022932,
+      "name": "[PBR] Black metallic horns",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "price": 100,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=73886642022932&width=420&height=420&format=png",
+      "rank": 29
+    },
+    {
+      "assetId": 71154994010748,
+      "name": "White and gold sword ",
+      "assetTypeId": 47,
+      "assetTypeName": "WaistAccessory",
+      "price": 80,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=71154994010748&width=420&height=420&format=png",
+      "rank": 9
     }
   ]
 }

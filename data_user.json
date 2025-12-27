@@ -1,110 +1,37 @@
 {
-  "source": "catalog.v1.search.items.details",
-  "usedBase": "https://catalog.roblox.com",
-  "creator": {
-    "type": "User",
-    "id": 828726934
-  },
-  "updatedAt": "2025-12-27T15:36:26Z",
+  "generatedAt": "2025-12-27T15:59:29.302983Z",
   "items": [
-    {
-      "assetId": 78329863862393,
-      "name": "Christmas wings",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 135,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=78329863862393&width=420&height=420&format=png",
-      "rank": 1
-    },
-    {
-      "assetId": 110801647934192,
-      "name": "Christmas dragon wings",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 145,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=110801647934192&width=420&height=420&format=png",
-      "rank": 2
-    },
-    {
-      "assetId": 104449273621507,
-      "name": "Red horns ",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 90,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=104449273621507&width=420&height=420&format=png",
-      "rank": 3
-    },
-    {
-      "assetId": 115579259474835,
-      "name": "Blue horns",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 90,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=115579259474835&width=420&height=420&format=png",
-      "rank": 4
-    },
-    {
-      "assetId": 83934865672699,
-      "name": "Blue scythe",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=83934865672699&width=420&height=420&format=png",
-      "rank": 5
-    },
-    {
-      "assetId": 106885001707506,
-      "name": "Red dragon wings",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 145,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=106885001707506&width=420&height=420&format=png",
-      "rank": 6
-    },
     {
       "assetId": 90778459718692,
       "name": "[PBR] Golden and blue celestial sword",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
+      "type": "BackAccessory",
       "price": 140,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=90778459718692&width=420&height=420&format=png",
-      "rank": 7
+      "created": "2025-12-20T23:36:32.44Z",
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=90778459718692&width=420&height=420&format=png"
     },
     {
-      "assetId": 78068249113582,
-      "name": "Valk GoMi",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": null,
-      "isOffSale": true,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=78068249113582&width=420&height=420&format=png",
-      "rank": 8
+      "assetId": 72460352241415,
+      "name": "[PBR] Golden green royal crown",
+      "type": "Hat",
+      "price": 100,
+      "created": "2025-09-20T18:31:10.347Z",
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=72460352241415&width=420&height=420&format=png"
     },
     {
-      "assetId": 105405757476156,
-      "name": "Shadow sword",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=105405757476156&width=420&height=420&format=png",
-      "rank": 9
+      "assetId": 79433470925362,
+      "name": "Brown messy hair",
+      "type": "HairAccessory",
+      "price": 70,
+      "created": "2025-08-27T16:17:51.857Z",
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=79433470925362&width=420&height=420&format=png"
+    },
+    {
+      "assetId": 78329863862393,
+      "name": "Christmas wings",
+      "type": "BackAccessory",
+      "price": 135,
+      "created": "2024-11-21T22:50:56.287Z",
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=78329863862393&width=420&height=420&format=png"
     },
     {
       "assetId": 131797570873536,
@@ -118,17 +45,6 @@
       "rank": 10
     },
     {
-      "assetId": 98552322484440,
-      "name": "Le seul et l'unique",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": null,
-      "isOffSale": true,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=98552322484440&width=420&height=420&format=png",
-      "rank": 11
-    },
-    {
       "assetId": 118071060681751,
       "name": "[PBR] Golden metallic horns",
       "assetTypeId": 8,
@@ -140,37 +56,70 @@
       "rank": 12
     },
     {
-      "assetId": 72460352241415,
-      "name": "[PBR] Golden green royal crown",
+      "assetId": 115579259474835,
+      "name": "Blue horns",
       "assetTypeId": 8,
       "assetTypeName": "Hat",
-      "price": 100,
+      "price": 90,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=72460352241415&width=420&height=420&format=png",
-      "rank": 13
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=115579259474835&width=420&height=420&format=png",
+      "rank": 4
     },
     {
-      "assetId": 105395775776058,
-      "name": "Gomi's teddybear",
-      "assetTypeId": 47,
-      "assetTypeName": "WaistAccessory",
-      "price": null,
-      "isOffSale": true,
+      "assetId": 110801647934192,
+      "name": "Christmas dragon wings",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 145,
+      "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=105395775776058&width=420&height=420&format=png",
-      "rank": 14
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=110801647934192&width=420&height=420&format=png",
+      "rank": 2
     },
     {
-      "assetId": 104708824634621,
-      "name": "Inséparable",
-      "assetTypeId": 43,
-      "assetTypeName": "NeckAccessory",
-      "price": null,
-      "isOffSale": true,
+      "assetId": 106885001707506,
+      "name": "Red dragon wings",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 145,
+      "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=104708824634621&width=420&height=420&format=png",
-      "rank": 15
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=106885001707506&width=420&height=420&format=png",
+      "rank": 6
+    },
+    {
+      "assetId": 105405757476156,
+      "name": "Shadow sword",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 150,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=105405757476156&width=420&height=420&format=png",
+      "rank": 9
+    },
+    {
+      "assetId": 104449273621507,
+      "name": "Red horns ",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "price": 90,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=104449273621507&width=420&height=420&format=png",
+      "rank": 3
+    },
+    {
+      "assetId": 83934865672699,
+      "name": "Blue scythe",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "price": 150,
+      "isOffSale": null,
+      "priceStatus": null,
+      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=83934865672699&width=420&height=420&format=png",
+      "rank": 5
     }
   ]
 }
