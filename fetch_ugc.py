@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-fetch_ugc.py (v9) — Portfolio UGC (User + Group) pour GitHub Pages
+fetch_ugc.py (v9.2) — Portfolio UGC (User + Group) pour GitHub Pages
 
 Fixes principaux vs v8 :
 - L’API /v1/search/items/details renvoie l’assetId dans le champ **id** (pas assetId).
@@ -26,6 +26,7 @@ import time
 import random
 import urllib.parse
 import urllib.request
+from pathlib import Path
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -143,7 +144,7 @@ def get_with_backoff(url: str, max_retries: int = 6) -> HttpResult:
 
 def build_catalog_url(base: str, creator_type: int, creator_target_id: int, cursor: str = "", limit: int = 30) -> str:
     params = {
-        "Category": "1",                 # "All" (on filtre ensuite par assetTypeId)
+        "Category": "11",                # Accessories (UGC avatar items)
         "CreatorType": str(creator_type),        # 1 user / 2 group
         "CreatorTargetId": str(creator_target_id),
         "IncludeNotForSale": "true",
