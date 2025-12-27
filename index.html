@@ -47,8 +47,9 @@
     .hero>*{position:relative}
     .kicker{color:var(--muted);font-size:13px;letter-spacing:.4px;text-transform:uppercase}
     h1{margin:10px 0 10px;font-size:34px;line-height:1.12}
-    .subtitle{margin:0 0 16px;color:var(--muted);font-size:15px;line-height:1.5;max-width:75ch}
-    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+    .subtitle{margin:0 0 16px;color:var(--muted);font-size:15px;line-height:1.5;max-width:82ch}
+    .note{margin:0;color:rgba(255,255,255,0.60);font-size:13px;line-height:1.4;max-width:90ch}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
       padding:10px 12px;border-radius:14px;border:1px solid var(--line);
@@ -60,7 +61,7 @@
     .section{margin-top:18px;padding:18px}
     .sectionHeader{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:12px}
     .sectionHeader h2{margin:0;font-size:18px;letter-spacing:.2px}
-    .sectionHeader .meta{margin:0;color:var(--muted);font-size:13px;line-height:1.35;max-width:70ch}
+    .sectionHeader .meta{margin:0;color:var(--muted);font-size:13px;line-height:1.35;max-width:78ch}
     .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:10px 0 4px}
     .search{
       flex:1 1 280px;display:flex;gap:10px;align-items:center;
@@ -104,6 +105,7 @@
     .spinner{width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,0.25);border-top-color:rgba(255,255,255,0.85);animation:spin 1s linear infinite;display:inline-block;vertical-align:-3px}
     @keyframes spin{to{transform:rotate(360deg)}}
     footer{margin-top:18px;color:rgba(255,255,255,0.55);font-size:12px;text-align:center}
+    .warn{color:rgba(255,255,255,0.72)}
   </style>
 </head>
 <body>
@@ -120,8 +122,10 @@
       <div class="kicker">UGC • Accessoires • Vêtements</div>
       <h1>lulu8203 — Portfolio</h1>
       <p class="subtitle">
-        Affiche automatiquement les UGC <b>mis en vente</b> pour l'utilisateur <b>lulu8203</b> et le groupe <b>Powerful Artists</b> (images + tri + filtres).
-        <br/>Le site essaie d'abord les JSON du repo, puis bascule sur l'API Roblox si besoin (plus fiable que GitHub Actions en cas de rate-limit).
+        Affiche les UGC <b>mis en vente</b> pour l'utilisateur <b>lulu8203</b> et le groupe <b>Powerful Artists</b>.
+      </p>
+      <p class="note">
+        ⚠️ Roblox bloque les appels API directement depuis un site statique (CORS). Ici, le site lit uniquement les fichiers <b>data_user.json</b> et <b>data_group.json</b> générés automatiquement par GitHub Actions.
       </p>
       <div class="actions">
         <a class="btn primary" href="https://www.roblox.com/users/828726934/profile" target="_blank" rel="noopener">Profil Roblox</a>
@@ -198,23 +202,13 @@
   </div>
 
 <script>
-  // IDs
-  const USER_ID = 828726934;
-  const GROUP_ID = 16981319;
-
-  // Roblox endpoints (public):
-  // - Catalog search (creatorType + creatorTargetId)  
-  // - Thumbnails API for reliable imageUrl          
-  const CATALOG = "https://catalog.roblox.com/v1/search/items";
-  const THUMBS = "https://thumbnails.roblox.com/v1/assets";
-
   function setStatus(id, text, spinning=false){
     const el = document.getElementById(id);
     if(!el) return;
     el.innerHTML = spinning ? `<span class="spinner"></span><span>${text}</span>` : `<span>${text}</span>`;
   }
   function catalogUrl(assetId){ return `https://www.roblox.com/catalog/${assetId}`; }
-  function thumbFallback(assetId){ return `https://www.roblox.com/asset-thumbnail/image?assetId=${assetId}&width=420&height=420&format=png`; }
+  function thumbUrl(assetId){ return `https://www.roblox.com/asset-thumbnail/image?assetId=${assetId}&width=420&height=420&format=png`; }
 
   function fmtDate(iso){
     if(!iso) return "";
@@ -229,21 +223,26 @@
     return Number.isFinite(n) ? n : null;
   }
 
-  async function fetchWithTimeout(url, ms=12000){
-    const ctrl = new AbortController();
-    const t = setTimeout(()=>ctrl.abort(), ms);
-    try{
-      const r = await fetch(url, { cache:"no-store", signal: ctrl.signal });
-      return r;
-    } finally {
-      clearTimeout(t);
-    }
+  async function fetchJsonLocal(path){
+    const res = await fetch(`${path}?v=${Date.now()}`, { cache:"no-store" });
+    if(!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
   }
 
-  async function loadLocalJson(path){
-    const res = await fetchWithTimeout(`${path}?v=${Date.now()}`, 8000);
-    if(!res.ok) throw new Error(`local HTTP ${res.status}`);
-    return await res.json();
+  function normalizeItem(x){
+    const created = x.created || x.createdAt || x.createdUtc || null;
+    const createdTs = created ? (Date.parse(created) || null) : null;
+    const price = (typeof x.price === "number") ? x.price : null;
+    const assetId = (typeof x.assetId === "number") ? x.assetId : x.id;
+    return {
+      assetId,
+      name: x.name || `Item ${assetId}`,
+      type: x.type || (x.assetType && x.assetType.name) || x.itemType || "UGC",
+      price,
+      created,
+      createdTs,
+      thumb: x.thumb || null
+    };
   }
 
   function uniqueTypes(items){
@@ -262,11 +261,10 @@
       const okQuery = !query || name.includes(query) || typ.toLowerCase().includes(query);
       const okType = !type || type === "Tous" || typ === type;
 
-      // on-sale only, but still allow filters to work
+      // on-sale only (price must exist)
       const price = (typeof it.price === "number") ? it.price : null;
       const okMin = (minP == null) ? true : (price != null && price >= minP);
       const okMax = (maxP == null) ? true : (price != null && price <= maxP);
-
       return okQuery && okType && okMin && okMax;
     });
   }
@@ -291,12 +289,12 @@
     grid.innerHTML = items.map(it => {
       const price = (typeof it.price === "number") ? `${it.price} R$` : "Offsale";
       const date = it.created ? fmtDate(it.created) : "";
-      const img = it.thumb || thumbFallback(it.assetId);
+      const img = it.thumb || thumbUrl(it.assetId);
       return `
         <div class="item">
           <div class="thumb">
             <span class="badge">${it.type || "UGC"}</span>
-            <img loading="lazy" alt="${it.name || ""}" src="${img}" onerror="this.onerror=null;this.src='${thumbFallback(it.assetId)}';">
+            <img loading="lazy" alt="${it.name || ""}" src="${img}" onerror="this.onerror=null;this.src='${thumbUrl(it.assetId)}';">
           </div>
           <div class="body">
             <div class="title">${it.name || ""}</div>
@@ -314,132 +312,34 @@
     }).join("");
   }
 
-  async function fetchThumbnails(items){
-    const ids = Array.from(new Set(items.map(x => x.assetId).filter(n => typeof n === "number")));
-    if(!ids.length) return;
-
-    // Use small batches and do NOT block the UI (no await chain in refresh)
-    const B = 25;
-    for(let i=0;i<ids.length;i+=B){
-      const chunk = ids.slice(i,i+B);
-      const qs = `assetIds=${encodeURIComponent(chunk.join(","))}&size=420x420&format=Png&isCircular=false`;
-      try{
-        const res = await fetchWithTimeout(`${THUMBS}?${qs}`, 12000);
-        if(!res.ok) continue;
-        const j = await res.json();
-        const map = new Map();
-        for(const t of (j.data || [])){
-          if(t && typeof t.targetId === "number" && typeof t.imageUrl === "string" && t.state === "Completed"){
-            map.set(t.targetId, t.imageUrl);
-          }
-        }
-        for(const it of items){
-          if(map.has(it.assetId)) it.thumb = map.get(it.assetId);
-        }
-      }catch(e){
-        // ignore
-      }
-    }
-  }
-
-  function normalizeItem(x){
-    const created = x.created || x.createdAt || x.createdUtc || null;
-    const createdTs = created ? (Date.parse(created) || null) : null;
-    const price = (typeof x.price === "number") ? x.price : null;
-    return {
-      assetId: x.assetId ?? x.id,
-      name: x.name || `Item ${x.assetId ?? x.id}`,
-      type: (x.assetType && x.assetType.name) ? x.assetType.name : (x.type || x.itemType || "UGC"),
-      price,
-      created,
-      createdTs
-    };
-  }
-
-  async function fetchCatalogOnSale({creatorType, creatorTargetId}){
-    const out = [];
-    let cursor = "";
-    // salesTypeFilter: used by catalog search endpoints 
-    const base = new URL(CATALOG);
-    base.searchParams.set("category", "1");
-    base.searchParams.set("creatorType", String(creatorType));
-    base.searchParams.set("creatorTargetId", String(creatorTargetId));
-    base.searchParams.set("salesTypeFilter", "1"); // All sales types (still returns price when on-sale)
-    base.searchParams.set("limit", "30");
-    // Don't include offsale
-    base.searchParams.set("includeNotForSale", "false");
-
-    for(let page=0; page<25; page++){
-      const u = new URL(base.toString());
-      if(cursor) u.searchParams.set("cursor", cursor);
-
-      const res = await fetchWithTimeout(u.toString(), 12000);
-      if(!res.ok) throw new Error(`catalog HTTP ${res.status}`);
-      const j = await res.json();
-
-      for(const d of (j.data || [])){
-        const it = normalizeItem(d);
-        // on-sale only: needs a numeric price
-        if(typeof it.price === "number") out.push(it);
-      }
-
-      cursor = j.nextPageCursor || "";
-      if(!cursor) break;
-    }
-
-    // sort newest first (created may be missing; fallback by id)
-    out.sort((a,b)=> (b.createdTs || -1) - (a.createdTs || -1) || (b.assetId - a.assetId));
-    return out;
-  }
-
   function wireSection(source, els){
     const state = { items: [] };
 
     async function refresh(){
       setStatus(els.statusId, "Chargement…", true);
-
-      // Always end loading (no infinite spinner)
       try{
-        let payload = null;
-        let items = [];
+        const payload = await fetchJsonLocal(source.localJson);
+        const updated = payload.generatedAt ? new Date(payload.generatedAt).toLocaleString("fr-FR") : "—";
 
-        // 1) Try local JSON (fast, no CORS)
-        try{
-          payload = await loadLocalJson(source.localJson);
-          items = (payload.items || []).map(normalizeItem).filter(it => typeof it.price === "number");
-        }catch(e){
-          // ignore, fallback to live API
-        }
+        // on-sale only
+        state.items = (payload.items || []).map(normalizeItem).filter(it => typeof it.price === "number");
 
-        // 2) Fallback: live Roblox API (on-sale only)
-        if(!items.length){
-          items = await fetchCatalogOnSale(source.live);
-        }
-
-        state.items = items;
-
-        // Build type dropdown
+        // dropdown types
         const types = uniqueTypes(state.items);
-        const typeSel = document.getElementById(els.typeSelId);
-        typeSel.innerHTML = types.map(t => `<option value="${t}">${t}</option>`).join("");
+        document.getElementById(els.typeSelId).innerHTML = types.map(t => `<option value="${t}">${t}</option>`).join("");
 
-        // Meta
-        const meta = document.getElementById(els.metaId);
-        meta.textContent = `${state.items.length} item(s) • en vente`;
+        document.getElementById(els.metaId).innerHTML =
+          `${state.items.length} item(s) • en vente • <span class="warn">mise à jour :</span> ${updated}`;
 
-        // Render immediately (no waiting for thumbnails)
         apply();
         setStatus(els.statusId, `${state.items.length} item(s)`, false);
 
-        // Thumbnails async: update grid after they load
-        fetchThumbnails(state.items).then(() => apply()).catch(() => {});
-
       }catch(e){
         state.items = [];
-        setStatus(els.statusId, "Erreur", false);
-        const meta = document.getElementById(els.metaId);
-        meta.textContent = "Impossible de charger les items (API Roblox).";
+        document.getElementById(els.metaId).textContent =
+          "Données indisponibles pour le moment. (GitHub Actions a peut-être été rate-limit.)";
         render(els.gridId, []);
+        setStatus(els.statusId, "Erreur", false);
       }
     }
 
@@ -463,14 +363,14 @@
   }
 
   const userSec = wireSection(
-    { localJson: "data_user.json", live: { creatorType: 1, creatorTargetId: USER_ID } },
+    { localJson: "data_user.json" },
     { statusId:"statusUser", metaId:"metaUser", gridId:"gridUser",
       searchId:"searchUser", typeSelId:"typeUser", sortSelId:"sortUser",
       minId:"minUser", maxId:"maxUser", applyBtnId:"applyUserBtn" }
   );
 
   const groupSec = wireSection(
-    { localJson: "data_group.json", live: { creatorType: 2, creatorTargetId: GROUP_ID } },
+    { localJson: "data_group.json" },
     { statusId:"statusGroup", metaId:"metaGroup", gridId:"gridGroup",
       searchId:"searchGroup", typeSelId:"typeGroup", sortSelId:"sortGroup",
       minId:"minGroup", maxId:"maxGroup", applyBtnId:"applyGroupBtn" }
