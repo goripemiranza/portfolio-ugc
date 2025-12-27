@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio Roblox — lulu8203</title>
+  <meta name="description" content="Portfolio Roblox : créations UGC de l'utilisateur lulu8203 et du groupe Powerful Artists." />
+  <style>
+    :root{
+      --bg:#0b0f19; --card:rgba(255,255,255,0.06); --text:rgba(255,255,255,0.92);
+      --muted:rgba(255,255,255,0.66); --line:rgba(255,255,255,0.12);
+      --accent:#7c5cff; --accent2:#31d0aa; --shadow:0 14px 40px rgba(0,0,0,0.35);
+      --r:18px; --r2:26px; --maxw:1180px;
+      --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;color:var(--text);font-family:var(--sans);min-height:100vh;
+      background:
+        radial-gradient(1000px 600px at 20% -10%, rgba(124,92,255,0.35), transparent 55%),
+        radial-gradient(900px 700px at 80% 0%, rgba(49,208,170,0.25), transparent 60%),
+        radial-gradient(900px 700px at 50% 110%, rgba(255,255,255,0.06), transparent 60%),
+        var(--bg);
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:22px 18px 70px}
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;padding:10px 2px 18px;gap:14px;
+      position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);
+      background:linear-gradient(to bottom, rgba(11,15,25,0.85), rgba(11,15,25,0.25));
+    }
+    .brand{display:flex;gap:10px;align-items:center;font-weight:900;letter-spacing:.2px}
+    .dot{width:11px;height:11px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 0 6px rgba(124,92,255,0.15)}
+    .nav{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+    .nav a{padding:10px 12px;border-radius:12px;border:1px solid transparent}
+    .nav a:hover{border-color:var(--line);background:rgba(255,255,255,0.04);color:var(--text)}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);box-shadow:var(--shadow)}
+    .hero{padding:22px 22px 18px;overflow:hidden;position:relative}
+    .hero::before{
+      content:"";position:absolute;inset:-2px;
+      background:
+        radial-gradient(700px 240px at 20% 0%, rgba(124,92,255,0.30), transparent 55%),
+        radial-gradient(700px 240px at 80% 10%, rgba(49,208,170,0.20), transparent 55%);
+      pointer-events:none;
+    }
+    .hero>*{position:relative}
+    .kicker{color:var(--muted);font-size:13px;letter-spacing:.4px;text-transform:uppercase}
+    h1{margin:10px 0 10px;font-size:34px;line-height:1.12}
+    .subtitle{margin:0 0 16px;color:var(--muted);font-size:15px;line-height:1.5;max-width:70ch}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:10px 12px;border-radius:14px;border:1px solid var(--line);
+      background:rgba(255,255,255,0.04);color:var(--text);
+      font-weight:900;font-size:14px;cursor:pointer
+    }
+    .btn.primary{border-color:rgba(124,92,255,0.55);background:linear-gradient(135deg, rgba(124,92,255,0.22), rgba(49,208,170,0.10))}
+    .btn:hover{background:rgba(255,255,255,0.07)}
+    .section{margin-top:18px;padding:18px}
+    .sectionHeader{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:12px}
+    .sectionHeader h2{margin:0;font-size:18px;letter-spacing:.2px}
+    .sectionHeader .meta{margin:0;color:var(--muted);font-size:13px;line-height:1.35;max-width:70ch}
+    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:10px 0 4px}
+    .search{
+      flex:1 1 280px;display:flex;gap:10px;align-items:center;
+      border:1px solid var(--line);background:rgba(255,255,255,0.04);
+      border-radius:14px;padding:10px 12px;min-width:220px
+    }
+    .search input{width:100%;background:transparent;border:none;outline:none;color:var(--text);font-size:14px}
+    .controls{flex:0 0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    select,input[type="number"]{
+      border:1px solid var(--line);background:rgba(255,255,255,0.04);color:var(--text);
+      border-radius:14px;padding:10px 12px;font-weight:900;outline:none
+    }
+    input[type="number"]{width:130px}
+    .status{color:var(--muted);font-size:13px;display:flex;gap:10px;align-items:center}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}
+    @media (max-width: 980px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width: 560px){.grid{grid-template-columns:1fr}}
+    .item{
+      background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+      display:flex;flex-direction:column;min-height:310px
+    }
+    .item:hover{transform:translateY(-2px);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.20)}
+    .thumb{height:170px;border-bottom:1px solid var(--line);background:linear-gradient(135deg, rgba(124,92,255,0.15), rgba(49,208,170,0.08));position:relative}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.02)}
+    .badge{
+      position:absolute;top:10px;left:10px;font-size:12px;padding:6px 9px;border-radius:999px;
+      background:rgba(0,0,0,0.38);border:1px solid rgba(255,255,255,0.18);backdrop-filter:blur(10px);
+      font-weight:900
+    }
+    .body{padding:12px 12px 14px;display:flex;flex-direction:column;gap:8px;flex:1 1 auto}
+    .title{font-weight:950;line-height:1.2}
+    .meta2{color:var(--muted);font-size:13px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .kv{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.72)}
+    .date{font-size:12px;color:rgba(255,255,255,0.72)}
+    .foot{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;padding-top:6px}
+    .price{font-weight:950;letter-spacing:.2px}
+    .link{color:rgba(255,255,255,0.90);border:1px solid var(--line);background:rgba(255,255,255,0.03);padding:8px 10px;border-radius:12px;font-size:13px;font-weight:950}
+    .link:hover{background:rgba(255,255,255,0.06)}
+    .empty{color:var(--muted);font-size:14px;padding:12px}
+    .spinner{width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,0.25);border-top-color:rgba(255,255,255,0.85);animation:spin 1s linear infinite;display:inline-block;vertical-align:-3px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    footer{margin-top:18px;color:rgba(255,255,255,0.55);font-size:12px;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand"><span class="dot"></span><span>Portfolio Roblox</span></div>
+      <div class="nav">
+        <a href="#ugc-user">UGC — lulu8203</a>
+        <a href="#ugc-group">UGC — Powerful Artists</a>
+      </div>
+    </div>
+
+    <div class="card hero">
+      <div class="kicker">UGC • Accessoires • Vêtements</div>
+      <h1>lulu8203 — Portfolio</h1>
+      <p class="subtitle">
+        Toutes les créations UGC de l'utilisateur <b>lulu8203</b> et du groupe <b>Powerful Artists</b> (images + tri + filtres).
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="https://www.roblox.com/users/828726934/profile" target="_blank" rel="noopener">Profil Roblox</a>
+        <a class="btn" href="https://www.roblox.com/communities/16981319/Powerful-artists" target="_blank" rel="noopener">Groupe Roblox</a>
+        <button class="btn" id="refreshAllBtn" type="button">Actualiser</button>
+      </div>
+    </div>
+
+    <div id="ugc-user" class="card section">
+      <div class="sectionHeader">
+        <div>
+          <h2>UGC — créations de lulu8203</h2>
+          <p class="meta" id="metaUser">—</p>
+        </div>
+        <div class="status" id="statusUser"><span class="spinner"></span><span>Chargement…</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="search">
+          <span style="color:var(--muted)">🔎</span>
+          <input id="searchUser" type="search" placeholder="Rechercher un item…" />
+        </div>
+        <div class="controls">
+          <select id="typeUser"></select>
+          <select id="sortUser">
+            <option value="new">Plus récent</option>
+            <option value="old">Plus ancien</option>
+            <option value="priceUp">Prix croissant</option>
+            <option value="priceDown">Prix décroissant</option>
+            <option value="name">Nom (A→Z)</option>
+          </select>
+          <input id="minUser" type="number" min="0" placeholder="Prix min" />
+          <input id="maxUser" type="number" min="0" placeholder="Prix max" />
+          <button class="btn" id="applyUserBtn" type="button">Filtrer</button>
+        </div>
+      </div>
+
+      <div class="grid" id="gridUser"></div>
+    </div>
+
+    <div id="ugc-group" class="card section">
+      <div class="sectionHeader">
+        <div>
+          <h2>UGC — créations du groupe Powerful Artists</h2>
+          <p class="meta" id="metaGroup">—</p>
+        </div>
+        <div class="status" id="statusGroup"><span class="spinner"></span><span>Chargement…</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="search">
+          <span style="color:var(--muted)">🔎</span>
+          <input id="searchGroup" type="search" placeholder="Rechercher dans le groupe…" />
+        </div>
+        <div class="controls">
+          <select id="typeGroup"></select>
+          <select id="sortGroup">
+            <option value="new">Plus récent</option>
+            <option value="old">Plus ancien</option>
+            <option value="priceUp">Prix croissant</option>
+            <option value="priceDown">Prix décroissant</option>
+            <option value="name">Nom (A→Z)</option>
+          </select>
+          <input id="minGroup" type="number" min="0" placeholder="Prix min" />
+          <input id="maxGroup" type="number" min="0" placeholder="Prix max" />
+          <button class="btn" id="applyGroupBtn" type="button">Filtrer</button>
+        </div>
+      </div>
+
+      <div class="grid" id="gridGroup"></div>
+    </div>
+
+    <footer>© Portfolio Roblox — lulu8203</footer>
+  </div>
+
+<script>
+  function setStatus(id, text, spinning=false){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.innerHTML = spinning ? `<span class="spinner"></span><span>${text}</span>` : `<span>${text}</span>`;
+  }
+  function catalogUrl(assetId){ return `https://www.roblox.com/catalog/${assetId}`; }
+  function thumbUrl(assetId){ return `https://www.roblox.com/asset-thumbnail/image?assetId=${assetId}&width=420&height=420&format=png`; }
+
+  async function loadJson(path){
+    const res = await fetch(`${path}?v=${Date.now()}`, { cache:"no-store" });
+    if(!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  }
+  function fmtDate(iso){
+    if(!iso) return "";
+    try{ return new Date(iso).toLocaleDateString("fr-FR"); }catch(e){ return ""; }
+  }
+  function uniqueTypes(items){
+    const s = new Set(items.map(x => x.type || "Autre"));
+    const arr = Array.from(s).sort((a,b)=> a.localeCompare(b, "fr"));
+    return ["Tous", ...arr];
+  }
+  function toNum(v){
+    const n = Number(v);
+    return Number.isFinite(n) ? n : null;
+  }
+  function applyFilters(items, {q, type, minPrice, maxPrice}){
+    const query = (q || "").trim().toLowerCase();
+    const minP = toNum(minPrice);
+    const maxP = toNum(maxPrice);
+    return items.filter(it => {
+      const name = (it.name || "").toLowerCase();
+      const typ = (it.type || "");
+      const okQuery = !query || name.includes(query) || typ.toLowerCase().includes(query);
+      const okType = !type || type === "Tous" || typ === type;
+      const price = (typeof it.price === "number") ? it.price : null;
+      const okMin = (minP == null) ? true : (price != null && price >= minP);
+      const okMax = (maxP == null) ? true : (price != null && price <= maxP);
+      return okQuery && okType && okMin && okMax;
+    });
+  }
+  function sortItems(items, mode){
+    const arr = [...items];
+    const safeTime = (it) => (it.createdTs != null ? it.createdTs : -1);
+    const safePrice = (it) => (typeof it.price === "number" ? it.price : Number.POSITIVE_INFINITY);
+    if(mode === "new") arr.sort((a,b)=> safeTime(b) - safeTime(a));
+    else if(mode === "old") arr.sort((a,b)=> safeTime(a) - safeTime(b));
+    else if(mode === "priceUp") arr.sort((a,b)=> safePrice(a) - safePrice(b));
+    else if(mode === "priceDown") arr.sort((a,b)=> safePrice(b) - safePrice(a));
+    else if(mode === "name") arr.sort((a,b)=> (a.name||"").localeCompare((b.name||""), "fr"));
+    return arr;
+  }
+  function render(gridId, items){
+    const grid = document.getElementById(gridId);
+    if(!grid) return;
+    if(!items.length){ grid.innerHTML = `<div class="empty">Aucun item trouvé.</div>`; return; }
+    grid.innerHTML = items.map(it => {
+      const price = (typeof it.price === "number") ? `${it.price} R$` : "Offsale / N/A";
+      const date = it.created ? fmtDate(it.created) : "";
+      return `
+        <div class="item">
+          <div class="thumb">
+            <span class="badge">${it.type || "UGC"}</span>
+            <img loading="lazy" alt="${it.name || ""}" src="${thumbUrl(it.assetId)}">
+          </div>
+          <div class="body">
+            <div class="title">${it.name || ""}</div>
+            <div class="meta2">
+              <span class="kv">Asset ${it.assetId}</span>
+              ${date ? `<span class="date">• ${date}</span>` : ""}
+            </div>
+            <div class="foot">
+              <div class="price">${price}</div>
+              <a class="link" href="${catalogUrl(it.assetId)}" target="_blank" rel="noopener">Ouvrir</a>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function wireSection(jsonPath, els){
+    const state = { items: [] };
+
+    async function refresh(){
+      setStatus(els.statusId, "Chargement…", true);
+      try{
+        const data = await loadJson(jsonPath);
+        state.items = (data.items || []).map(x => ({
+          assetId: x.assetId, name: x.name, type: x.type,
+          price: x.price, created: x.created, createdTs: x.createdTs
+        }));
+
+        const types = uniqueTypes(state.items);
+        const typeSel = document.getElementById(els.typeSelId);
+        typeSel.innerHTML = types.map(t => `<option value="${t}">${t}</option>`).join("");
+
+        const meta = document.getElementById(els.metaId);
+        const updated = data.generatedAt ? fmtDate(data.generatedAt) : "";
+        meta.textContent = `${state.items.length} item(s)` + (updated ? ` • mise à jour le ${updated}` : "");
+
+        setStatus(els.statusId, `${state.items.length} item(s)`, false);
+        apply();
+      }catch(e){
+        state.items = [];
+        setStatus(els.statusId, "Erreur", false);
+        document.getElementById(els.metaId).textContent = "Impossible de charger les données.";
+        render(els.gridId, []);
+      }
+    }
+
+    function apply(){
+      const q = document.getElementById(els.searchId).value;
+      const type = document.getElementById(els.typeSelId).value;
+      const sortMode = document.getElementById(els.sortSelId).value;
+      const minP = document.getElementById(els.minId).value;
+      const maxP = document.getElementById(els.maxId).value;
+      const filtered = applyFilters(state.items, { q, type, minPrice: minP, maxPrice: maxP });
+      const sorted = sortItems(filtered, sortMode);
+      render(els.gridId, sorted);
+    }
+
+    document.getElementById(els.applyBtnId).addEventListener("click", apply);
+    document.getElementById(els.searchId).addEventListener("input", apply);
+    document.getElementById(els.typeSelId).addEventListener("change", apply);
+    document.getElementById(els.sortSelId).addEventListener("change", apply);
+
+    return { refresh };
+  }
+
+  const userSec = wireSection("data_user.json", {
+    statusId:"statusUser", metaId:"metaUser", gridId:"gridUser",
+    searchId:"searchUser", typeSelId:"typeUser", sortSelId:"sortUser",
+    minId:"minUser", maxId:"maxUser", applyBtnId:"applyUserBtn"
+  });
+  const groupSec = wireSection("data_group.json", {
+    statusId:"statusGroup", metaId:"metaGroup", gridId:"gridGroup",
+    searchId:"searchGroup", typeSelId:"typeGroup", sortSelId:"sortGroup",
+    minId:"minGroup", maxId:"maxGroup", applyBtnId:"applyGroupBtn"
+  });
+
+  async function refreshAll(){ await Promise.all([userSec.refresh(), groupSec.refresh()]); }
+  document.getElementById("refreshAllBtn").addEventListener("click", refreshAll);
+
+  setInterval(()=>{ groupSec.refresh(); }, 5 * 60 * 1000);
+  refreshAll();
+</script>
+</body>
+</html>
