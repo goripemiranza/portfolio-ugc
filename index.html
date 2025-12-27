@@ -636,6 +636,133 @@
   </div>
 
 <script>
+  /* ---------- i18n dictionary (must be defined before first refresh) ---------- */
+  const I18N = {
+    fr:{
+      brand:"Portfolio Roblox", tab_ugc:"UGC", tab_gallery:"Galerie",
+      btn_profile:"Profil Roblox", btn_group:"Groupe Roblox", btn_refresh:"Actualiser",
+      label_type:"Type d’accessoire", label_kw:"Mot-clé (nom)", ph_kw:"Ex: corne, crown, sword…",
+      open:"Ouvrir",
+      ugc_empty:"Aucun UGC en vente trouvé.",
+      gal_empty:"Aucune image trouvée.",
+      ugc_title_user:"UGC — lulu8203 (en vente)",
+      ugc_title_group:"UGC — Powerful Artists (en vente)",
+      updated:"mise à jour",
+      saleCount:(n)=>`${n} UGC en vente`,
+      itemsCount:(n)=>`${n} item(s)`,
+      ms_profile:"Profil", ms_group:"Groupe",
+      ph_search:"Rechercher…", ph_search_group:"Rechercher…",
+      type_all:"Tous",
+      loading:"Chargement…", err_short:"Données indisponibles."
+    },
+    en:{
+      brand:"Roblox Portfolio", tab_ugc:"UGC", tab_gallery:"Gallery",
+      btn_profile:"Roblox Profile", btn_group:"Roblox Group", btn_refresh:"Refresh",
+      label_type:"Accessory type", label_kw:"Keyword (name)", ph_kw:"e.g. horn, crown, sword…",
+      open:"Open",
+      ugc_empty:"No UGC for sale found.",
+      gal_empty:"No images found.",
+      ugc_title_user:"UGC — lulu8203 (for sale)",
+      ugc_title_group:"UGC — Powerful Artists (for sale)",
+      updated:"updated",
+      saleCount:(n)=>`${n} UGC for sale`,
+      itemsCount:(n)=>`${n} item(s)`,
+      ms_profile:"Profile", ms_group:"Group",
+      ph_search:"Search…", ph_search_group:"Search…",
+      type_all:"All",
+      loading:"Loading…", err_short:"Data unavailable."
+    },
+    es:{
+      brand:"Portafolio Roblox", tab_ugc:"UGC", tab_gallery:"Galería",
+      btn_profile:"Perfil Roblox", btn_group:"Grupo Roblox", btn_refresh:"Actualizar",
+      label_type:"Tipo de accesorio", label_kw:"Palabra clave (nombre)", ph_kw:"Ej.: cuerno, corona, espada…",
+      open:"Abrir",
+      ugc_empty:"No se encontró UGC en venta.",
+      gal_empty:"No se encontraron imágenes.",
+      ugc_title_user:"UGC — lulu8203 (en venta)",
+      ugc_title_group:"UGC — Powerful Artists (en venta)",
+      updated:"actualizado",
+      saleCount:(n)=>`${n} UGC en venta`,
+      itemsCount:(n)=>`${n} elemento(s)`,
+      ms_profile:"Perfil", ms_group:"Grupo",
+      ph_search:"Buscar…", ph_search_group:"Buscar…",
+      type_all:"Todos",
+      loading:"Cargando…", err_short:"Datos no disponibles."
+    },
+    de:{
+      brand:"Roblox-Portfolio", tab_ugc:"UGC", tab_gallery:"Galerie",
+      btn_profile:"Roblox-Profil", btn_group:"Roblox‑Gruppe", btn_refresh:"Aktualisieren",
+      label_type:"Accessoire-Typ", label_kw:"Stichwort (Name)", ph_kw:"z.B. Horn, Krone, Schwert…",
+      loading:"Lädt…", err_short:"Daten nicht verfügbar."
+    },
+    it:{
+      brand:"Portfolio Roblox", tab_ugc:"UGC", tab_gallery:"Galleria",
+      btn_profile:"Profilo Roblox", btn_group:"Gruppo Roblox", btn_refresh:"Aggiorna",
+      label_type:"Tipo di accessorio", label_kw:"Parola chiave (nome)", ph_kw:"Es.: corno, corona, spada…",
+      loading:"Caricamento…", err_short:"Dati non disponibili."
+    },
+    pt:{
+      brand:"Portfólio Roblox", tab_ugc:"UGC", tab_gallery:"Galeria",
+      btn_profile:"Perfil Roblox", btn_group:"Grupo Roblox", btn_refresh:"Atualizar",
+      label_type:"Tipo de acessório", label_kw:"Palavra‑chave (nome)", ph_kw:"Ex.: chifre, coroa, espada…",
+      loading:"Carregando…", err_short:"Dados indisponíveis."
+    },
+    nl:{
+      brand:"Roblox‑portfolio", tab_ugc:"UGC", tab_gallery:"Galerij",
+      btn_profile:"Roblox‑profiel", btn_group:"Roblox‑groep", btn_refresh:"Vernieuwen",
+      label_type:"Accessoiretype", label_kw:"Trefwoord (naam)", ph_kw:"Bijv. hoorn, kroon, zwaard…",
+      loading:"Laden…", err_short:"Gegevens niet beschikbaar."
+    },
+    pl:{
+      brand:"Portfolio Roblox", tab_ugc:"UGC", tab_gallery:"Galeria",
+      btn_profile:"Profil Roblox", btn_group:"Grupa Roblox", btn_refresh:"Odśwież",
+      label_type:"Typ akcesorium", label_kw:"Słowo kluczowe (nazwa)", ph_kw:"Np. róg, korona, miecz…",
+      loading:"Ładowanie…", err_short:"Brak danych."
+    },
+    tr:{
+      brand:"Roblox Portföyü", tab_ugc:"UGC", tab_gallery:"Galeri",
+      btn_profile:"Roblox Profili", btn_group:"Roblox Grubu", btn_refresh:"Yenile",
+      label_type:"Aksesuar türü", label_kw:"Anahtar kelime (ad)", ph_kw:"Örn. boynuz, taç, kılıç…",
+      loading:"Yükleniyor…", err_short:"Veri yok."
+    },
+    ru:{
+      brand:"Портфолио Roblox", tab_ugc:"UGC", tab_gallery:"Галерея",
+      btn_profile:"Профиль Roblox", btn_group:"Группа Roblox", btn_refresh:"Обновить",
+      label_type:"Тип аксессуара", label_kw:"Ключевое слово (название)", ph_kw:"Напр.: рог, корона, меч…",
+      loading:"Загрузка…", err_short:"Данные недоступны."
+    },
+    ar:{
+      brand:"معرض روبلوكس", tab_ugc:"UGC", tab_gallery:"معرض الصور",
+      btn_profile:"ملف روبلوكس", btn_group:"مجموعة روبلوكس", btn_refresh:"تحديث",
+      label_type:"نوع الإكسسوار", label_kw:"كلمة مفتاحية (الاسم)", ph_kw:"مثال: قرن، تاج، سيف…",
+      loading:"جارٍ التحميل…", err_short:"البيانات غير متاحة."
+    },
+    ja:{
+      brand:"Roblox ポートフォリオ", tab_ugc:"UGC", tab_gallery:"ギャラリー",
+      btn_profile:"Roblox プロフィール", btn_group:"Roblox グループ", btn_refresh:"更新",
+      label_type:"アクセサリー種類", label_kw:"キーワード（名前）", ph_kw:"例：horn, crown, sword…",
+      loading:"読み込み中…", err_short:"データがありません。"
+    },
+    ko:{
+      brand:"로블록스 포트폴리오", tab_ugc:"UGC", tab_gallery:"갤러리",
+      btn_profile:"로블록스 프로필", btn_group:"로블록스 그룹", btn_refresh:"새로고침",
+      label_type:"액세서리 유형", label_kw:"키워드(이름)", ph_kw:"예: horn, crown, sword…",
+      loading:"불러오는 중…", err_short:"데이터를 불러올 수 없습니다."
+    },
+    "zh-CN":{
+      brand:"Roblox 作品集", tab_ugc:"UGC", tab_gallery:"画廊",
+      btn_profile:"Roblox 主页", btn_group:"Roblox 群组", btn_refresh:"刷新",
+      label_type:"饰品类型", label_kw:"关键词（名称）", ph_kw:"例如：horn、crown、sword…",
+      loading:"加载中…", err_short:"数据不可用。"
+    },
+    "zh-TW":{
+      brand:"Roblox 作品集", tab_ugc:"UGC", tab_gallery:"畫廊",
+      btn_profile:"Roblox 個人頁", btn_group:"Roblox 群組", btn_refresh:"重新整理",
+      label_type:"飾品類型", label_kw:"關鍵字（名稱）", ph_kw:"例如：horn、crown、sword…",
+      loading:"載入中…", err_short:"資料不可用。"
+    }
+  };
+
   /* ---------- View toggle ---------- */
   const tabUgc = document.getElementById("tabUgc");
   const tabGallery = document.getElementById("tabGallery");
@@ -902,131 +1029,7 @@
   setVh();
 
   /* ---------- Language (in-place UI translation) ---------- */
-  const I18N = {
-    fr:{
-      brand:"Portfolio Roblox", tab_ugc:"UGC", tab_gallery:"Galerie",
-      btn_profile:"Profil Roblox", btn_group:"Groupe Roblox", btn_refresh:"Actualiser",
-      label_type:"Type d’accessoire", label_kw:"Mot-clé (nom)", ph_kw:"Ex: corne, crown, sword…",
-      open:"Ouvrir",
-      ugc_empty:"Aucun UGC en vente trouvé.",
-      gal_empty:"Aucune image trouvée.",
-      ugc_title_user:"UGC — lulu8203 (en vente)",
-      ugc_title_group:"UGC — Powerful Artists (en vente)",
-      updated:"mise à jour",
-      saleCount:(n)=>`${n} UGC en vente`,
-      itemsCount:(n)=>`${n} item(s)`,
-      ms_profile:"Profil", ms_group:"Groupe",
-      ph_search:"Rechercher…", ph_search_group:"Rechercher…",
-      type_all:"Tous",
-      loading:"Chargement…", err_short:"Données indisponibles."
-    },
-    en:{
-      brand:"Roblox Portfolio", tab_ugc:"UGC", tab_gallery:"Gallery",
-      btn_profile:"Roblox Profile", btn_group:"Roblox Group", btn_refresh:"Refresh",
-      label_type:"Accessory type", label_kw:"Keyword (name)", ph_kw:"e.g. horn, crown, sword…",
-      open:"Open",
-      ugc_empty:"No UGC for sale found.",
-      gal_empty:"No images found.",
-      ugc_title_user:"UGC — lulu8203 (for sale)",
-      ugc_title_group:"UGC — Powerful Artists (for sale)",
-      updated:"updated",
-      saleCount:(n)=>`${n} UGC for sale`,
-      itemsCount:(n)=>`${n} item(s)`,
-      ms_profile:"Profile", ms_group:"Group",
-      ph_search:"Search…", ph_search_group:"Search…",
-      type_all:"All",
-      loading:"Loading…", err_short:"Data unavailable."
-    },
-    es:{
-      brand:"Portafolio Roblox", tab_ugc:"UGC", tab_gallery:"Galería",
-      btn_profile:"Perfil Roblox", btn_group:"Grupo Roblox", btn_refresh:"Actualizar",
-      label_type:"Tipo de accesorio", label_kw:"Palabra clave (nombre)", ph_kw:"Ej.: cuerno, corona, espada…",
-      open:"Abrir",
-      ugc_empty:"No se encontró UGC en venta.",
-      gal_empty:"No se encontraron imágenes.",
-      ugc_title_user:"UGC — lulu8203 (en venta)",
-      ugc_title_group:"UGC — Powerful Artists (en venta)",
-      updated:"actualizado",
-      saleCount:(n)=>`${n} UGC en venta`,
-      itemsCount:(n)=>`${n} elemento(s)`,
-      ms_profile:"Perfil", ms_group:"Grupo",
-      ph_search:"Buscar…", ph_search_group:"Buscar…",
-      type_all:"Todos",
-      loading:"Cargando…", err_short:"Datos no disponibles."
-    },
-    de:{
-      brand:"Roblox-Portfolio", tab_ugc:"UGC", tab_gallery:"Galerie",
-      btn_profile:"Roblox-Profil", btn_group:"Roblox‑Gruppe", btn_refresh:"Aktualisieren",
-      label_type:"Accessoire-Typ", label_kw:"Stichwort (Name)", ph_kw:"z.B. Horn, Krone, Schwert…",
-      loading:"Lädt…", err_short:"Daten nicht verfügbar."
-    },
-    it:{
-      brand:"Portfolio Roblox", tab_ugc:"UGC", tab_gallery:"Galleria",
-      btn_profile:"Profilo Roblox", btn_group:"Gruppo Roblox", btn_refresh:"Aggiorna",
-      label_type:"Tipo di accessorio", label_kw:"Parola chiave (nome)", ph_kw:"Es.: corno, corona, spada…",
-      loading:"Caricamento…", err_short:"Dati non disponibili."
-    },
-    pt:{
-      brand:"Portfólio Roblox", tab_ugc:"UGC", tab_gallery:"Galeria",
-      btn_profile:"Perfil Roblox", btn_group:"Grupo Roblox", btn_refresh:"Atualizar",
-      label_type:"Tipo de acessório", label_kw:"Palavra‑chave (nome)", ph_kw:"Ex.: chifre, coroa, espada…",
-      loading:"Carregando…", err_short:"Dados indisponíveis."
-    },
-    nl:{
-      brand:"Roblox‑portfolio", tab_ugc:"UGC", tab_gallery:"Galerij",
-      btn_profile:"Roblox‑profiel", btn_group:"Roblox‑groep", btn_refresh:"Vernieuwen",
-      label_type:"Accessoiretype", label_kw:"Trefwoord (naam)", ph_kw:"Bijv. hoorn, kroon, zwaard…",
-      loading:"Laden…", err_short:"Gegevens niet beschikbaar."
-    },
-    pl:{
-      brand:"Portfolio Roblox", tab_ugc:"UGC", tab_gallery:"Galeria",
-      btn_profile:"Profil Roblox", btn_group:"Grupa Roblox", btn_refresh:"Odśwież",
-      label_type:"Typ akcesorium", label_kw:"Słowo kluczowe (nazwa)", ph_kw:"Np. róg, korona, miecz…",
-      loading:"Ładowanie…", err_short:"Brak danych."
-    },
-    tr:{
-      brand:"Roblox Portföyü", tab_ugc:"UGC", tab_gallery:"Galeri",
-      btn_profile:"Roblox Profili", btn_group:"Roblox Grubu", btn_refresh:"Yenile",
-      label_type:"Aksesuar türü", label_kw:"Anahtar kelime (ad)", ph_kw:"Örn. boynuz, taç, kılıç…",
-      loading:"Yükleniyor…", err_short:"Veri yok."
-    },
-    ru:{
-      brand:"Портфолио Roblox", tab_ugc:"UGC", tab_gallery:"Галерея",
-      btn_profile:"Профиль Roblox", btn_group:"Группа Roblox", btn_refresh:"Обновить",
-      label_type:"Тип аксессуара", label_kw:"Ключевое слово (название)", ph_kw:"Напр.: рог, корона, меч…",
-      loading:"Загрузка…", err_short:"Данные недоступны."
-    },
-    ar:{
-      brand:"معرض روبلوكس", tab_ugc:"UGC", tab_gallery:"معرض الصور",
-      btn_profile:"ملف روبلوكس", btn_group:"مجموعة روبلوكس", btn_refresh:"تحديث",
-      label_type:"نوع الإكسسوار", label_kw:"كلمة مفتاحية (الاسم)", ph_kw:"مثال: قرن، تاج، سيف…",
-      loading:"جارٍ التحميل…", err_short:"البيانات غير متاحة."
-    },
-    ja:{
-      brand:"Roblox ポートフォリオ", tab_ugc:"UGC", tab_gallery:"ギャラリー",
-      btn_profile:"Roblox プロフィール", btn_group:"Roblox グループ", btn_refresh:"更新",
-      label_type:"アクセサリー種類", label_kw:"キーワード（名前）", ph_kw:"例：horn, crown, sword…",
-      loading:"読み込み中…", err_short:"データがありません。"
-    },
-    ko:{
-      brand:"로블록스 포트폴리오", tab_ugc:"UGC", tab_gallery:"갤러리",
-      btn_profile:"로블록스 프로필", btn_group:"로블록스 그룹", btn_refresh:"새로고침",
-      label_type:"액세서리 유형", label_kw:"키워드(이름)", ph_kw:"예: horn, crown, sword…",
-      loading:"불러오는 중…", err_short:"데이터를 불러올 수 없습니다."
-    },
-    "zh-CN":{
-      brand:"Roblox 作品集", tab_ugc:"UGC", tab_gallery:"画廊",
-      btn_profile:"Roblox 主页", btn_group:"Roblox 群组", btn_refresh:"刷新",
-      label_type:"饰品类型", label_kw:"关键词（名称）", ph_kw:"例如：horn、crown、sword…",
-      loading:"加载中…", err_short:"数据不可用。"
-    },
-    "zh-TW":{
-      brand:"Roblox 作品集", tab_ugc:"UGC", tab_gallery:"畫廊",
-      btn_profile:"Roblox 個人頁", btn_group:"Roblox 群組", btn_refresh:"重新整理",
-      label_type:"飾品類型", label_kw:"關鍵字（名稱）", ph_kw:"例如：horn、crown、sword…",
-      loading:"載入中…", err_short:"資料不可用。"
-    }
-  };
+  
 
   function t(key){
     const lang = (localStorage.getItem("lang") || "fr");
