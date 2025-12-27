@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-12-27T13:00:10.596620Z",
+  "generatedAt": "2025-12-27T13:08:03.762923Z",
   "items": [
     {
       "assetId": 79433470925362,
@@ -45,7 +45,7 @@
       "assetId": 78329863862393,
       "name": "Item 78329863862393",
       "type": "Asset",
-      "price": null,
+      "price": 135,
       "created": "2024-11-21T22:50:56.287Z",
       "createdTs": 1732229456
     },
