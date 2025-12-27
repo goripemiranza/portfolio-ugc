@@ -203,7 +203,7 @@
     el.innerHTML = spinning ? `<span class="spinner"></span><span>${text}</span>` : `<span>${text}</span>`;
   }
   function catalogUrl(assetId){ return `https://www.roblox.com/catalog/${assetId}`; }
-  function thumbUrl(assetId){ return `https://www.roblox.com/asset-thumbnail/image?assetId=${assetId}&width=420&height=420&format=png`; }
+  function thumbUrl(assetId){ return `https://www.roblox.com/asset-thumbnail/image?assetId=${assetId}&width=420&height=420&format=png`; }&width=420&height=420&format=png`; }
 
   async function loadJson(path){
     const res = await fetch(`${path}?v=${Date.now()}`, { cache:"no-store" });
@@ -257,13 +257,13 @@
     if(!grid) return;
     if(!items.length){ grid.innerHTML = `<div class="empty">Aucun item trouvé.</div>`; return; }
     grid.innerHTML = items.map(it => {
-      const price = (typeof it.price === "number") ? `${it.price} R$` : "Offsale / N/A";
+      const price = (typeof it.price === "number") ? `${it.price} R$` : "Offsale";
       const date = it.created ? fmtDate(it.created) : "";
       return `
         <div class="item">
           <div class="thumb">
             <span class="badge">${it.type || "UGC"}</span>
-            <img loading="lazy" alt="${it.name || ""}" src="${thumbUrl(it.assetId)}">
+            <img loading="lazy" alt="${it.name || ""}" src="${it.thumb || thumbUrl(it.assetId)}" onerror="this.onerror=null;this.src=thumbUrl(${it.assetId});">
           </div>
           <div class="body">
             <div class="title">${it.name || ""}</div>
@@ -292,6 +292,10 @@
           assetId: x.assetId, name: x.name, type: x.type,
           price: x.price, created: x.created, createdTs: x.createdTs
         }));
+
+        // Load thumbnails (non-bloquant)
+        await hydrateThumbs(state.items);
+
 
         const types = uniqueTypes(state.items);
         const typeSel = document.getElementById(els.typeSelId);
