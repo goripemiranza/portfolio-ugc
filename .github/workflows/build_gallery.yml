@@ -1,1 +1,31 @@
 
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+build_gallery.py
+- Scanne le dossier ./gallery/
+- Génère ./gallery.json avec la liste des images (chemins relatifs pour GitHub Pages)
+- Tri: par nom de fichier (stable)
+Formats: png, jpg, jpeg, webp, gif
+"""
+
+import json
+from pathlib import Path
+
+GALLERY_DIR = Path("gallery")
+OUT_JSON = Path("gallery.json")
+EXTS = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
+
+def main() -> None:
+    items = []
+    if GALLERY_DIR.exists() and GALLERY_DIR.is_dir():
+        for p in sorted(GALLERY_DIR.rglob("*")):
+            if p.is_file() and p.suffix.lower() in EXTS:
+                rel = p.as_posix()  # "gallery/xxx.png"
+                caption = p.stem.replace("_", " ").replace("-", " ").strip()
+                items.append({"url": rel, "caption": caption})
+    OUT_JSON.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"[ok] {OUT_JSON} -> {len(items)} image(s)")
+
+if __name__ == "__main__":
+    main()
