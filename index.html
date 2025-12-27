@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Portfolio Roblox — lulu8203</title>
-  <meta name="description" content="Portfolio Roblox : UGC mis en vente de l'utilisateur lulu8203 et du groupe Powerful Artists." />
+  <meta name="description" content="Portfolio Roblox : UGC de l'utilisateur lulu8203 et du groupe Powerful Artists." />
   <style>
     :root{
       --bg:#0b0f19; --card:rgba(255,255,255,0.06); --text:rgba(255,255,255,0.92);
@@ -122,10 +122,11 @@
       <div class="kicker">UGC • Accessoires • Vêtements</div>
       <h1>lulu8203 — Portfolio</h1>
       <p class="subtitle">
-        Affiche les UGC <b>mis en vente</b> pour l'utilisateur <b>lulu8203</b> et le groupe <b>Powerful Artists</b>.
+        Affiche les UGC de l'utilisateur <b>lulu8203</b> et du groupe <b>Powerful Artists</b> (images + tri + filtres).
       </p>
       <p class="note">
-        ⚠️ Roblox bloque les appels API directement depuis un site statique (CORS). Ici, le site lit uniquement les fichiers <b>data_user.json</b> et <b>data_group.json</b> générés automatiquement par GitHub Actions.
+        ⚠️ Roblox bloque les appels API directement depuis un site statique (CORS). Le site lit uniquement les fichiers
+        <b>data_user.json</b> et <b>data_group.json</b> générés automatiquement par GitHub Actions.
       </p>
       <div class="actions">
         <a class="btn primary" href="https://www.roblox.com/users/828726934/profile" target="_blank" rel="noopener">Profil Roblox</a>
@@ -137,7 +138,7 @@
     <div id="ugc-user" class="card section">
       <div class="sectionHeader">
         <div>
-          <h2>UGC — créations de lulu8203 (en vente)</h2>
+          <h2>UGC — créations de lulu8203</h2>
           <p class="meta" id="metaUser">—</p>
         </div>
         <div class="status" id="statusUser"><span class="spinner"></span><span>Chargement…</span></div>
@@ -169,7 +170,7 @@
     <div id="ugc-group" class="card section">
       <div class="sectionHeader">
         <div>
-          <h2>UGC — créations du groupe Powerful Artists (en vente)</h2>
+          <h2>UGC — créations du groupe Powerful Artists</h2>
           <p class="meta" id="metaGroup">—</p>
         </div>
         <div class="status" id="statusGroup"><span class="spinner"></span><span>Chargement…</span></div>
@@ -209,12 +210,10 @@
   }
   function catalogUrl(assetId){ return `https://www.roblox.com/catalog/${assetId}`; }
   function thumbUrl(assetId){ return `https://www.roblox.com/asset-thumbnail/image?assetId=${assetId}&width=420&height=420&format=png`; }
-
   function fmtDate(iso){
     if(!iso) return "";
     try{ return new Date(iso).toLocaleDateString("fr-FR"); }catch(e){ return ""; }
   }
-
   function toNum(v){
     if(v === null || v === undefined) return null;
     const s = String(v).trim();
@@ -222,13 +221,11 @@
     const n = Number(s);
     return Number.isFinite(n) ? n : null;
   }
-
   async function fetchJsonLocal(path){
     const res = await fetch(`${path}?v=${Date.now()}`, { cache:"no-store" });
     if(!res.ok) throw new Error(`HTTP ${res.status}`);
     return await res.json();
   }
-
   function normalizeItem(x){
     const created = x.created || x.createdAt || x.createdUtc || null;
     const createdTs = created ? (Date.parse(created) || null) : null;
@@ -241,16 +238,14 @@
       price,
       created,
       createdTs,
-      thumb: x.thumb || null
+      thumb: x.thumb || thumbUrl(assetId)
     };
   }
-
   function uniqueTypes(items){
     const s = new Set(items.map(x => x.type || "Autre"));
     const arr = Array.from(s).sort((a,b)=> a.localeCompare(b, "fr"));
     return ["Tous", ...arr];
   }
-
   function applyFilters(items, {q, type, minPrice, maxPrice}){
     const query = (q || "").trim().toLowerCase();
     const minP = toNum(minPrice);
@@ -260,15 +255,12 @@
       const typ = (it.type || "");
       const okQuery = !query || name.includes(query) || typ.toLowerCase().includes(query);
       const okType = !type || type === "Tous" || typ === type;
-
-      // on-sale only (price must exist)
       const price = (typeof it.price === "number") ? it.price : null;
       const okMin = (minP == null) ? true : (price != null && price >= minP);
       const okMax = (maxP == null) ? true : (price != null && price <= maxP);
       return okQuery && okType && okMin && okMax;
     });
   }
-
   function sortItems(items, mode){
     const arr = [...items];
     const safeTime = (it) => (it.createdTs != null ? it.createdTs : -1);
@@ -280,21 +272,18 @@
     else if(mode === "name") arr.sort((a,b)=> (a.name||"").localeCompare((b.name||""), "fr"));
     return arr;
   }
-
   function render(gridId, items){
     const grid = document.getElementById(gridId);
     if(!grid) return;
     if(!items.length){ grid.innerHTML = `<div class="empty">Aucun item trouvé.</div>`; return; }
-
     grid.innerHTML = items.map(it => {
       const price = (typeof it.price === "number") ? `${it.price} R$` : "Offsale";
       const date = it.created ? fmtDate(it.created) : "";
-      const img = it.thumb || thumbUrl(it.assetId);
       return `
         <div class="item">
           <div class="thumb">
             <span class="badge">${it.type || "UGC"}</span>
-            <img loading="lazy" alt="${it.name || ""}" src="${img}" onerror="this.onerror=null;this.src='${thumbUrl(it.assetId)}';">
+            <img loading="lazy" alt="${it.name || ""}" src="${it.thumb}" onerror="this.onerror=null;this.src='${thumbUrl(it.assetId)}';">
           </div>
           <div class="body">
             <div class="title">${it.name || ""}</div>
@@ -311,38 +300,28 @@
       `;
     }).join("");
   }
-
   function wireSection(source, els){
     const state = { items: [] };
-
     async function refresh(){
       setStatus(els.statusId, "Chargement…", true);
       try{
         const payload = await fetchJsonLocal(source.localJson);
         const updated = payload.generatedAt ? new Date(payload.generatedAt).toLocaleString("fr-FR") : "—";
-
-        // on-sale only
-        state.items = (payload.items || []).map(normalizeItem).filter(it => typeof it.price === "number");
-
-        // dropdown types
+        state.items = (payload.items || []).map(normalizeItem);
         const types = uniqueTypes(state.items);
         document.getElementById(els.typeSelId).innerHTML = types.map(t => `<option value="${t}">${t}</option>`).join("");
-
         document.getElementById(els.metaId).innerHTML =
-          `${state.items.length} item(s) • en vente • <span class="warn">mise à jour :</span> ${updated}`;
-
+          `${state.items.length} item(s) • <span class="warn">mise à jour :</span> ${updated}`;
         apply();
         setStatus(els.statusId, `${state.items.length} item(s)`, false);
-
       }catch(e){
         state.items = [];
         document.getElementById(els.metaId).textContent =
-          "Données indisponibles pour le moment. (GitHub Actions a peut-être été rate-limit.)";
+          "Données indisponibles pour le moment (JSON manquant ou non généré).";
         render(els.gridId, []);
         setStatus(els.statusId, "Erreur", false);
       }
     }
-
     function apply(){
       const q = document.getElementById(els.searchId).value;
       const type = document.getElementById(els.typeSelId).value;
@@ -353,32 +332,26 @@
       const sorted = sortItems(filtered, sortMode);
       render(els.gridId, sorted);
     }
-
     document.getElementById(els.applyBtnId).addEventListener("click", apply);
     document.getElementById(els.searchId).addEventListener("input", apply);
     document.getElementById(els.typeSelId).addEventListener("change", apply);
     document.getElementById(els.sortSelId).addEventListener("change", apply);
-
     return { refresh };
   }
-
   const userSec = wireSection(
     { localJson: "data_user.json" },
     { statusId:"statusUser", metaId:"metaUser", gridId:"gridUser",
       searchId:"searchUser", typeSelId:"typeUser", sortSelId:"sortUser",
       minId:"minUser", maxId:"maxUser", applyBtnId:"applyUserBtn" }
   );
-
   const groupSec = wireSection(
     { localJson: "data_group.json" },
     { statusId:"statusGroup", metaId:"metaGroup", gridId:"gridGroup",
       searchId:"searchGroup", typeSelId:"typeGroup", sortSelId:"sortGroup",
       minId:"minGroup", maxId:"maxGroup", applyBtnId:"applyGroupBtn" }
   );
-
   async function refreshAll(){ await Promise.all([userSec.refresh(), groupSec.refresh()]); }
   document.getElementById("refreshAllBtn").addEventListener("click", refreshAll);
-
   refreshAll();
 </script>
 </body>
