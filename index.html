@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Portfolio Roblox — lulu8203</title>
-  <meta name="description" content="Portfolio Roblox : UGC en vente (profil lulu8203 + groupe Powerful Artists)." />
+  <meta name="description" content="Portfolio Roblox : UGC en vente (profil lulu8203 + groupe Powerful Artists) + galerie d'images." />
   <style>
     :root{
       --bg:#0b0f19; --card:rgba(255,255,255,0.06); --text:rgba(255,255,255,0.92);
@@ -29,17 +29,18 @@
     .wrap{
       max-width:var(--maxw);
       margin:0 auto;
-      padding:14px 14px 14px;
-      height:100vh;               /* ✅ une seule page */
+      padding:14px;
+      height:100vh;
       display:flex;
       flex-direction:column;
       gap:12px;
     }
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);box-shadow:var(--shadow)}
 
-    /* Top bar */
+    /* Top bar + tabs */
     .topbar{
       display:flex;align-items:center;justify-content:space-between;gap:12px;
-      padding:10px 6px 8px;
+      padding:10px 10px;
       border-radius:18px;
       background:rgba(255,255,255,0.03);
       border:1px solid var(--line);
@@ -47,19 +48,21 @@
     }
     .brand{display:flex;gap:10px;align-items:center;font-weight:950;letter-spacing:.2px}
     .dot{width:11px;height:11px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 0 6px rgba(124,92,255,0.15)}
-    .nav{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:13px}
-    .nav a{padding:9px 10px;border-radius:12px;border:1px solid transparent}
-    .nav a:hover{border-color:var(--line);background:rgba(255,255,255,0.04);color:var(--text)}
-
-    /* Cards */
-    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);box-shadow:var(--shadow)}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap}
+    .tab{
+      padding:9px 12px;border-radius:14px;border:1px solid var(--line);
+      background:rgba(255,255,255,0.04);color:var(--text);
+      font-weight:950;font-size:13px;cursor:pointer
+    }
+    .tab.active{border-color:rgba(124,92,255,0.55);background:linear-gradient(135deg, rgba(124,92,255,0.22), rgba(49,208,170,0.10))}
+    .tab:hover{background:rgba(255,255,255,0.07)}
 
     /* Hero */
     .hero{
       padding:18px 18px 14px;
       position:relative;
       overflow:hidden;
-      text-align:center; /* ✅ grand titre centré */
+      text-align:center;
     }
     .hero::before{
       content:"";position:absolute;inset:-2px;
@@ -83,74 +86,72 @@
     .btn:hover{background:rgba(255,255,255,0.07)}
     .heroNote{margin:0;color:rgba(255,255,255,0.60);font-size:12px;line-height:1.5}
 
-    /* Dual columns take the remaining height */
+    /* Views take remaining height */
+    .views{flex:1; min-height:0;}
+    .view{height:100%; min-height:0; display:none;}
+    .view.active{display:block;}
+
+    /* UGC view */
     .dual{
-      flex:1;               /* ✅ prend l'espace restant */
-      min-height:0;         /* ✅ permet le scroll interne */
+      height:100%;
+      min-height:0;
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:12px;
       align-items:stretch;
     }
-    @media (max-width: 980px){
-      body{overflow:auto} /* mobile: autoriser scroll page */
-      .wrap{height:auto; overflow:visible}
-      .dual{grid-template-columns:1fr; min-height:auto}
-    }
-
-    /* Section as vertical flex so scroller can fill */
     .section{
       padding:12px;
       display:flex;
       flex-direction:column;
-      min-height:0; /* ✅ important */
+      min-height:0;
     }
     .sectionHeader{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:10px}
     .sectionHeader h2{margin:0;font-size:16px;letter-spacing:.2px}
     .sectionHeader .meta{margin:0;color:var(--muted);font-size:12px;line-height:1.35;max-width:64ch}
     .status{color:var(--muted);font-size:12px;display:flex;gap:8px;align-items:center;white-space:nowrap}
 
-    /* Toolbar: stacked, never overflows */
-    .toolbar{
-      display:grid;
-      grid-template-columns: 1fr;
+    /* ✅ Filters (ONLY requested) */
+    .filters{
+      display:flex;
+      flex-wrap:wrap;
       gap:10px;
+      align-items:center;
       margin:0 0 10px;
     }
-    .row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-      justify-content:space-between;
+    .filters .label{
+      color:rgba(255,255,255,0.72);
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.2px;
     }
-    .search{
+    .control{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-width:190px;
       flex:1 1 220px;
-      display:flex;gap:10px;align-items:center;
-      border:1px solid var(--line);background:rgba(255,255,255,0.04);
-      border-radius:14px;padding:9px 11px;min-width:180px
-    }
-    .search input{width:100%;background:transparent;border:none;outline:none;color:var(--text);font-size:13px}
-    .controls{
-      flex:1 1 560px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-      justify-content:flex-start;
       max-width:100%;
     }
-    select,input[type="number"]{
-      border:1px solid var(--line);background:rgba(255,255,255,0.04);color:var(--text);
-      border-radius:14px;padding:9px 11px;font-weight:950;outline:none;font-size:13px;
-      max-width:100%;
-    }
-    .w-sm{min-width:150px}
-    .w-md{min-width:180px}
-    .w-lg{min-width:240px}
-    input[type="number"]{width:120px}
 
-    /* Scroller fills remaining height in the section */
+    select, input[type="text"]{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,0.04);
+      color:var(--text);
+      border-radius:14px;
+      padding:10px 11px;
+      font-weight:950;
+      outline:none;
+      font-size:13px;
+      max-width:100%;
+    }
+    /* Important: options lisibles dans le dropdown */
+    select option{
+      color:#111;
+      background:#fff;
+    }
+    input[type="text"]::placeholder{color:rgba(255,255,255,0.55);font-weight:800}
+
     .scroller{
       flex:1;
       min-height:0;
@@ -158,7 +159,6 @@
       padding-right:6px;
     }
 
-    /* Items: compact */
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fill, minmax(210px, 1fr));
@@ -188,7 +188,7 @@
     .thumb img{
       width:100%;
       height:100%;
-      object-fit:contain; /* ✅ ne dépasse pas */
+      object-fit:contain;
       display:block;
       border-radius:12px;
       background:rgba(0,0,0,0.14);
@@ -219,13 +219,81 @@
     .spinner{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,0.25);border-top-color:rgba(255,255,255,0.85);animation:spin 1s linear infinite;display:inline-block;vertical-align:-3px}
     @keyframes spin{to{transform:rotate(360deg)}}
 
+    /* Gallery view */
+    .gallery{
+      height:100%;
+      min-height:0;
+      padding:12px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .galleryHeader{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .galleryHeader h2{margin:0;font-size:16px;letter-spacing:.2px}
+    .galleryHeader p{margin:0;color:var(--muted);font-size:12px;line-height:1.35;max-width:70ch}
+    .galleryTools{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+    .galleryTools input{
+      min-width:280px;
+      flex:1 1 320px;
+    }
+    .galleryGrid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+      gap:12px;
+    }
+    .shot{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,0.04);
+      border-radius:18px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+    .shot .imgWrap{
+      height:170px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(0,0,0,0.14);
+      padding:10px;
+    }
+    .shot img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      border-radius:12px;
+      display:block;
+      background:rgba(0,0,0,0.10);
+    }
+    .shot .cap{
+      padding:10px;
+      color:rgba(255,255,255,0.80);
+      font-size:12px;
+      line-height:1.35;
+      border-top:1px solid var(--line);
+      min-height:44px;
+    }
+    .muted{color:rgba(255,255,255,0.60)}
+
     footer{color:rgba(255,255,255,0.55);font-size:12px;text-align:center;padding:6px 0 0}
 
-    .flash{animation:flash 1.1s ease}
-    @keyframes flash{
-      0%{box-shadow:0 0 0 0 rgba(124,92,255,0.0)}
-      20%{box-shadow:0 0 0 3px rgba(124,92,255,0.55)}
-      100%{box-shadow:0 0 0 0 rgba(124,92,255,0.0)}
+    @media (max-width: 980px){
+      body{overflow:auto}
+      .wrap{height:auto}
+      .dual{grid-template-columns:1fr; height:auto}
+      .views{flex:auto}
+      .view{height:auto}
+      .scroller{max-height:none; overflow:visible; padding-right:0}
     }
   </style>
 </head>
@@ -233,9 +301,9 @@
   <div class="wrap">
     <div class="topbar">
       <div class="brand"><span class="dot"></span><span>Portfolio Roblox</span></div>
-      <div class="nav">
-        <a href="#col-user">UGC — lulu8203</a>
-        <a href="#col-group">UGC — Powerful Artists</a>
+      <div class="tabs">
+        <button class="tab active" id="tabUgc" type="button">UGC</button>
+        <button class="tab" id="tabGallery" type="button">Galerie</button>
       </div>
     </div>
 
@@ -243,10 +311,10 @@
       <div class="kicker">UGC • Accessoires • Vêtements</div>
       <h1>lulu8203 — Portfolio</h1>
       <p class="subtitle">
-        Retrouvez toutes les créations <b>UGC en vente</b> — séparées en deux colonnes :
-        <b>Profil</b> (lulu8203) et <b>Groupe</b> (Powerful Artists). Utilisez les filtres pour affiner rapidement.
+        Toutes les créations <b>UGC en vente</b>, séparées en deux colonnes (Profil / Groupe).
+        + une <b>Galerie</b> dédiée pour ajouter des images d’avancement (WIP) à partager.
       </p>
-      <p class="heroNote">Données : <b>data_user.json</b> et <b>data_group.json</b> (générés par GitHub Actions).</p>
+      <p class="heroNote">Données UGC : <b>data_user.json</b> et <b>data_group.json</b> (GitHub Actions). Galerie : <b>gallery.json</b> (optionnel).</p>
       <div class="actions">
         <a class="btn primary" href="https://www.roblox.com/users/828726934/profile" target="_blank" rel="noopener">Profil Roblox</a>
         <a class="btn" href="https://www.roblox.com/communities/16981319/Powerful-artists" target="_blank" rel="noopener">Groupe Roblox</a>
@@ -254,98 +322,88 @@
       </div>
     </div>
 
-    <div class="dual">
-      <!-- LEFT: USER -->
-      <div id="col-user" class="card section">
-        <div class="sectionHeader">
-          <div>
-            <h2>UGC — lulu8203 (en vente)</h2>
-            <p class="meta" id="metaUser">—</p>
-          </div>
-          <div class="status" id="statusUser"><span class="spinner"></span><span>Chargement…</span></div>
-        </div>
+    <div class="views">
+      <!-- VIEW: UGC -->
+      <div class="view active" id="viewUgc">
+        <div class="dual">
+          <div class="card section">
+            <div class="sectionHeader">
+              <div>
+                <h2>UGC — lulu8203 (en vente)</h2>
+                <p class="meta" id="metaUser">—</p>
+              </div>
+              <div class="status" id="statusUser"><span class="spinner"></span><span>Chargement…</span></div>
+            </div>
 
-        <div class="toolbar">
-          <div class="row">
-            <div class="search">
-              <span style="color:var(--muted)">🔎</span>
-              <input id="searchUser" type="search" placeholder="Recherche (ex: corne, crown, sword…)" />
+            <!-- ✅ ONLY 2 filters -->
+            <div class="filters">
+              <div class="control">
+                <div class="label">Type d’accessoire</div>
+                <select id="typeUser"></select>
+              </div>
+              <div class="control">
+                <div class="label">Mot-clé (nom)</div>
+                <input id="kwUser" type="text" placeholder="Ex: corne, crown, sword…" />
+              </div>
+            </div>
+
+            <div class="scroller">
+              <div class="grid" id="gridUser"></div>
             </div>
           </div>
 
-          <div class="row">
-            <div class="controls">
-              <select id="jumpUser" class="w-md" title="Aller directement à un UGC"></select>
-              <select id="typeUser" class="w-sm" title="Type (Dos/Tête/Taille…)"></select>
+          <div class="card section">
+            <div class="sectionHeader">
+              <div>
+                <h2>UGC — Powerful Artists (en vente)</h2>
+                <p class="meta" id="metaGroup">—</p>
+              </div>
+              <div class="status" id="statusGroup"><span class="spinner"></span><span>Chargement…</span></div>
+            </div>
 
-              <!-- ✅ nouveau filtre "Mot-clé" basé sur le nom -->
-              <select id="kwUser" class="w-sm" title="Catégorie par mot-clé (nom)"></select>
+            <!-- ✅ ONLY 2 filters -->
+            <div class="filters">
+              <div class="control">
+                <div class="label">Type d’accessoire</div>
+                <select id="typeGroup"></select>
+              </div>
+              <div class="control">
+                <div class="label">Mot-clé (nom)</div>
+                <input id="kwGroup" type="text" placeholder="Ex: wing, hair, dragon…" />
+              </div>
+            </div>
 
-              <select id="sortUser" class="w-sm" title="Tri">
-                <option value="new">Plus récent</option>
-                <option value="old">Plus ancien</option>
-                <option value="priceUp">Prix croissant</option>
-                <option value="priceDown">Prix décroissant</option>
-                <option value="name">Nom (A→Z)</option>
-                <option value="nameDesc">Nom (Z→A)</option>
-              </select>
-
-              <input id="minUser" type="number" min="0" placeholder="Prix min" />
-              <input id="maxUser" type="number" min="0" placeholder="Prix max" />
-              <button class="btn" id="applyUserBtn" type="button">Filtrer</button>
+            <div class="scroller">
+              <div class="grid" id="gridGroup"></div>
             </div>
           </div>
-        </div>
-
-        <div class="scroller">
-          <div class="grid" id="gridUser"></div>
         </div>
       </div>
 
-      <!-- RIGHT: GROUP -->
-      <div id="col-group" class="card section">
-        <div class="sectionHeader">
-          <div>
-            <h2>UGC — Powerful Artists (en vente)</h2>
-            <p class="meta" id="metaGroup">—</p>
-          </div>
-          <div class="status" id="statusGroup"><span class="spinner"></span><span>Chargement…</span></div>
-        </div>
-
-        <div class="toolbar">
-          <div class="row">
-            <div class="search">
-              <span style="color:var(--muted)">🔎</span>
-              <input id="searchGroup" type="search" placeholder="Recherche (ex: horn, wings, hair…)" />
+      <!-- VIEW: GALLERY -->
+      <div class="view" id="viewGallery">
+        <div class="card gallery">
+          <div class="galleryHeader">
+            <div>
+              <h2>Galerie — images d’avancement</h2>
+              <p class="muted">
+                Ajoute des images (WIP, renders, screenshots) pour montrer ton avancement.
+                <br><span class="muted">Pour que tout le monde les voie via le lien, mets-les dans <b>gallery.json</b> (dans le repo).</span>
+              </p>
             </div>
+            <div class="status" id="statusGallery">—</div>
           </div>
 
-          <div class="row">
-            <div class="controls">
-              <select id="jumpGroup" class="w-md" title="Aller directement à un UGC"></select>
-              <select id="typeGroup" class="w-sm" title="Type (Dos/Tête/Taille…)"></select>
-
-              <!-- ✅ nouveau filtre "Mot-clé" basé sur le nom -->
-              <select id="kwGroup" class="w-sm" title="Catégorie par mot-clé (nom)"></select>
-
-              <select id="sortGroup" class="w-sm" title="Tri">
-                <option value="new">Plus récent</option>
-                <option value="old">Plus ancien</option>
-                <option value="priceUp">Prix croissant</option>
-                <option value="priceDown">Prix décroissant</option>
-                <option value="name">Nom (A→Z)</option>
-                <option value="nameDesc">Nom (Z→A)</option>
-              </select>
-
-              <input id="minGroup" type="number" min="0" placeholder="Prix min" />
-              <input id="maxGroup" type="number" min="0" placeholder="Prix max" />
-              <button class="btn" id="applyGroupBtn" type="button">Filtrer</button>
-            </div>
+          <div class="galleryTools">
+            <input id="galleryUrl" type="text" placeholder="URL d’une image (PNG/JPG/WebP) — optionnel (prévisualisation locale)" />
+            <input id="galleryCap" type="text" placeholder="Légende (optionnel)" />
+            <button class="btn" id="addGalleryBtn" type="button">Ajouter</button>
+            <button class="btn" id="clearGalleryBtn" type="button">Vider (local)</button>
           </div>
-        </div>
 
-        <div class="scroller">
-          <div class="grid" id="gridGroup"></div>
+          <div class="scroller">
+            <div class="galleryGrid" id="galleryGrid"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -354,6 +412,23 @@
   </div>
 
 <script>
+  /* ---------- View toggle ---------- */
+  const tabUgc = document.getElementById("tabUgc");
+  const tabGallery = document.getElementById("tabGallery");
+  const viewUgc = document.getElementById("viewUgc");
+  const viewGallery = document.getElementById("viewGallery");
+
+  function setActiveView(which){
+    const ugc = which === "ugc";
+    tabUgc.classList.toggle("active", ugc);
+    tabGallery.classList.toggle("active", !ugc);
+    viewUgc.classList.toggle("active", ugc);
+    viewGallery.classList.toggle("active", !ugc);
+  }
+  tabUgc.addEventListener("click", ()=> setActiveView("ugc"));
+  tabGallery.addEventListener("click", ()=> setActiveView("gallery"));
+
+  /* ---------- UGC rendering ---------- */
   function setStatus(id, text, spinning=false){
     const el = document.getElementById(id);
     if(!el) return;
@@ -365,13 +440,6 @@
   function fmtDate(iso){
     if(!iso) return "";
     try{ return new Date(iso).toLocaleDateString("fr-FR"); }catch(e){ return ""; }
-  }
-  function toNum(v){
-    if(v === null || v === undefined) return null;
-    const s = String(v).trim();
-    if(s === "") return null;
-    const n = Number(s);
-    return Number.isFinite(n) ? n : null;
   }
 
   function ugcBadge(typeName){
@@ -390,26 +458,15 @@
     return typeName || "UGC";
   }
 
-  // ✅ Mot-clé (catégorie) à partir du nom — simple & efficace
-  const KEYWORDS = [
-    { key:"Cornes",  rx: /(horn|horns|corne|cornes)/i },
-    { key:"Couronne",rx: /(crown|tiara|couronne)/i },
-    { key:"Épée",    rx: /(sword|blade|katana|epee|épée)/i },
-    { key:"Ailes",   rx: /(wing|wings|aile|ailes)/i },
-    { key:"Cheveux", rx: /(hair|cheveu|cheveux)/i },
-    { key:"Queue",   rx: /(tail|queue)/i },
-    { key:"Faux",    rx: /(scythe|faux)/i },
-    { key:"Dragon",  rx: /(dragon|drake)/i },
-    { key:"PBR",     rx: /pbr/i },
+  // ✅ Requested accessory type groups: Tête / Corps / Taille (+ Vêtements)
+  const TYPE_GROUPS = [
+    { label:"Tous", key:"ALL" },
+    { label:"Tête", key:"HEAD", badges:["Tête","Cheveux","Visage"] },
+    { label:"Corps", key:"BODY", badges:["Cou","Épaule","Avant","Dos"] },
+    { label:"Taille", key:"WAIST", badges:["Taille"] },
+    { label:"Vêtements", key:"CLOTH", badges:["Haut","Bas","Robe/Jupe"] },
+    { label:"Autre", key:"OTHER" }
   ];
-
-  function keywordFromName(name){
-    const n = String(name || "");
-    for(const k of KEYWORDS){
-      if(k.rx.test(n)) return k.key;
-    }
-    return "Autre";
-  }
 
   function normalizeItem(x){
     const assetId = (typeof x.assetId === "number") ? x.assetId : (typeof x.id === "number" ? x.id : null);
@@ -418,13 +475,13 @@
     const price = (typeof x.price === "number") ? x.price : (typeof x.priceInRobux === "number" ? x.priceInRobux : null);
     const typeName = x.type || x.assetTypeName || "UGC";
     const name = x.name || `Item ${assetId}`;
+    const badge = ugcBadge(typeName);
 
     return {
       assetId,
       name,
       type: typeName,
-      badge: ugcBadge(typeName),
-      keyword: keywordFromName(name),   // ✅ NEW
+      badge,
       price,
       created,
       createdTs,
@@ -432,75 +489,32 @@
     };
   }
 
-  function uniqueBadges(items){
-    const s = new Set(items.map(x => x.badge || "UGC"));
-    const arr = Array.from(s).sort((a,b)=> a.localeCompare(b, "fr"));
-    return ["Tous", ...arr];
-  }
+  function applyFilters(items, typeKey, kw){
+    const q = String(kw || "").trim().toLowerCase();
 
-  function uniqueKeywords(items){
-    const s = new Set(items.map(x => x.keyword || "Autre"));
-    const arr = Array.from(s).sort((a,b)=> a.localeCompare(b, "fr"));
-    return ["Tous", ...arr];
-  }
-
-  function applyFilters(items, {q, badge, kw, minPrice, maxPrice}){
-    const query = (q || "").trim().toLowerCase();
-    const minP = toNum(minPrice);
-    const maxP = toNum(maxPrice);
+    const group = TYPE_GROUPS.find(g => g.key === typeKey) || TYPE_GROUPS[0];
 
     return items.filter(it => {
-      const name = (it.name || "").toLowerCase();
-      const typ = (it.type || "").toLowerCase();
-      const keyw = (it.keyword || "").toLowerCase();
-      const okQuery = !query || name.includes(query) || typ.includes(query) || keyw.includes(query) || String(it.badge||"").toLowerCase().includes(query);
-      const okBadge = !badge || badge === "Tous" || it.badge === badge;
-      const okKw = !kw || kw === "Tous" || it.keyword === kw;
+      const name = String(it.name || "").toLowerCase();
+      const okKw = !q || name.includes(q);
 
-      const price = (typeof it.price === "number") ? it.price : null;
-      const okMin = (minP == null) ? true : (price != null && price >= minP);
-      const okMax = (maxP == null) ? true : (price != null && price <= maxP);
+      let okType = true;
+      if(group.key === "ALL"){
+        okType = true;
+      }else if(group.key === "OTHER"){
+        const allBadges = new Set(TYPE_GROUPS.filter(g=>Array.isArray(g.badges)).flatMap(g=>g.badges));
+        okType = !allBadges.has(it.badge);
+      }else{
+        okType = Array.isArray(group.badges) ? group.badges.includes(it.badge) : true;
+      }
 
-      return okQuery && okBadge && okKw && okMin && okMax;
+      return okKw && okType;
     });
   }
 
-  function sortItems(items, mode){
-    const arr = [...items];
+  function sortByNewest(items){
     const safeTime = (it) => (it.createdTs != null ? it.createdTs : -1);
-    const safePrice = (it) => (typeof it.price === "number" ? it.price : Number.POSITIVE_INFINITY);
-    if(mode === "new") arr.sort((a,b)=> safeTime(b) - safeTime(a));
-    else if(mode === "old") arr.sort((a,b)=> safeTime(a) - safeTime(b));
-    else if(mode === "priceUp") arr.sort((a,b)=> safePrice(a) - safePrice(b));
-    else if(mode === "priceDown") arr.sort((a,b)=> safePrice(b) - safePrice(a));
-    else if(mode === "name") arr.sort((a,b)=> (a.name||"").localeCompare((b.name||""), "fr"));
-    else if(mode === "nameDesc") arr.sort((a,b)=> (b.name||"").localeCompare((a.name||""), "fr"));
-    return arr;
-  }
-
-  function fillJump(selectId, items, prefix){
-    const sel = document.getElementById(selectId);
-    if(!sel) return;
-    const opts = [`<option value="">Aller à…</option>`].concat(
-      items.map(it => {
-        const label = (it.name || `Item ${it.assetId}`).slice(0, 60);
-        return `<option value="${it.assetId}">${label}</option>`;
-      })
-    );
-    sel.innerHTML = opts.join("");
-    sel.onchange = () => {
-      const v = sel.value;
-      if(!v) return;
-      const el = document.getElementById(prefix + v);
-      if(el){
-        el.scrollIntoView({behavior:"smooth", block:"nearest"});
-        el.classList.remove("flash");
-        void el.offsetWidth;
-        el.classList.add("flash");
-        setTimeout(()=> el.classList.remove("flash"), 1200);
-      }
-      sel.value = "";
-    };
+    return [...items].sort((a,b)=> safeTime(b) - safeTime(a));
   }
 
   function render(gridId, items, prefix){
@@ -543,8 +557,22 @@
     return await res.json();
   }
 
+  function fillTypeSelect(selectId){
+    const sel = document.getElementById(selectId);
+    sel.innerHTML = TYPE_GROUPS.map(g => `<option value="${g.key}">${g.label}</option>`).join("");
+    sel.value = "ALL";
+  }
+
   function wireSection(source, els){
     const state = { items: [] };
+
+    function apply(){
+      const typeKey = document.getElementById(els.typeSelId).value;
+      const kw = document.getElementById(els.kwId).value;
+      const filtered = applyFilters(state.items, typeKey, kw);
+      const sorted = sortByNewest(filtered);
+      render(els.gridId, sorted, els.itemPrefix);
+    }
 
     async function refresh(){
       setStatus(els.statusId, "Chargement…", true);
@@ -553,14 +581,6 @@
         const updated = payload.generatedAt ? new Date(payload.generatedAt).toLocaleString("fr-FR") : "—";
 
         state.items = (payload.items || []).map(normalizeItem).filter(x => x.assetId != null);
-
-        const badges = uniqueBadges(state.items);
-        document.getElementById(els.badgeSelId).innerHTML = badges.map(t => `<option value="${t}">${t}</option>`).join("");
-
-        const kws = uniqueKeywords(state.items);
-        document.getElementById(els.kwSelId).innerHTML = kws.map(t => `<option value="${t}">${t}</option>`).join("");
-
-        fillJump(els.jumpSelId, state.items, els.itemPrefix);
 
         document.getElementById(els.metaId).innerHTML =
           `${state.items.length} UGC en vente • <span style="color:rgba(255,255,255,0.72)">mise à jour :</span> ${updated}`;
@@ -576,47 +596,117 @@
       }
     }
 
-    function apply(){
-      const q = document.getElementById(els.searchId).value;
-      const badge = document.getElementById(els.badgeSelId).value;
-      const kw = document.getElementById(els.kwSelId).value;
-      const sortMode = document.getElementById(els.sortSelId).value;
-      const minP = document.getElementById(els.minId).value;
-      const maxP = document.getElementById(els.maxId).value;
+    document.getElementById(els.typeSelId).addEventListener("change", apply);
+    document.getElementById(els.kwId).addEventListener("input", apply);
 
-      const filtered = applyFilters(state.items, { q, badge, kw, minPrice: minP, maxPrice: maxP });
-      const sorted = sortItems(filtered, sortMode);
-      render(els.gridId, sorted, els.itemPrefix);
-    }
-
-    document.getElementById(els.applyBtnId).addEventListener("click", apply);
-    document.getElementById(els.searchId).addEventListener("input", apply);
-    document.getElementById(els.badgeSelId).addEventListener("change", apply);
-    document.getElementById(els.kwSelId).addEventListener("change", apply);
-    document.getElementById(els.sortSelId).addEventListener("change", apply);
-
-    return { refresh };
+    return { refresh, fill: ()=> fillTypeSelect(els.typeSelId) };
   }
 
   const userSec = wireSection(
     { localJson: "data_user.json" },
     { statusId:"statusUser", metaId:"metaUser", gridId:"gridUser",
-      searchId:"searchUser", badgeSelId:"typeUser", kwSelId:"kwUser", sortSelId:"sortUser",
-      minId:"minUser", maxId:"maxUser", applyBtnId:"applyUserBtn",
-      jumpSelId:"jumpUser", itemPrefix:"u-" }
+      typeSelId:"typeUser", kwId:"kwUser", itemPrefix:"u-" }
   );
 
   const groupSec = wireSection(
     { localJson: "data_group.json" },
     { statusId:"statusGroup", metaId:"metaGroup", gridId:"gridGroup",
-      searchId:"searchGroup", badgeSelId:"typeGroup", kwSelId:"kwGroup", sortSelId:"sortGroup",
-      minId:"minGroup", maxId:"maxGroup", applyBtnId:"applyGroupBtn",
-      jumpSelId:"jumpGroup", itemPrefix:"g-" }
+      typeSelId:"typeGroup", kwId:"kwGroup", itemPrefix:"g-" }
   );
 
   async function refreshAll(){ await Promise.all([userSec.refresh(), groupSec.refresh()]); }
   document.getElementById("refreshAllBtn").addEventListener("click", refreshAll);
+
+  userSec.fill();
+  groupSec.fill();
   refreshAll();
+
+  /* ---------- Gallery (progress images) ----------
+     - Reads gallery.json if present in repo (for sharing)
+     - Allows local preview additions (localStorage) for convenience
+  */
+  const LS_KEY = "portfolio_gallery_local_v1";
+
+  function setGalleryStatus(text){
+    document.getElementById("statusGallery").textContent = text;
+  }
+
+  function safeText(s){ return String(s || "").replaceAll("<","&lt;").replaceAll(">","&gt;"); }
+
+  function renderGallery(items){
+    const grid = document.getElementById("galleryGrid");
+    if(!items.length){
+      grid.innerHTML = `<div class="empty">Aucune image pour le moment. Ajoute-en via <span class="muted">gallery.json</span> (partage) ou via l'input (local).</div>`;
+      return;
+    }
+    grid.innerHTML = items.map(x => {
+      const url = x.url || "";
+      const cap = x.caption ? safeText(x.caption) : "";
+      return `
+        <div class="shot">
+          <div class="imgWrap">
+            <img loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous"
+                 src="${url}" alt="${cap}"
+                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'empty\'>Image invalide</div>';">
+          </div>
+          <div class="cap">${cap || "<span class='muted'>Sans légende</span>"}</div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function loadLocalGallery(){
+    try{
+      const raw = localStorage.getItem(LS_KEY);
+      if(!raw) return [];
+      const j = JSON.parse(raw);
+      return Array.isArray(j) ? j : [];
+    }catch(e){ return []; }
+  }
+
+  function saveLocalGallery(items){
+    try{ localStorage.setItem(LS_KEY, JSON.stringify(items)); }catch(e){}
+  }
+
+  async function loadRepoGallery(){
+    try{
+      const j = await fetchJsonLocal("gallery.json");
+      const items = Array.isArray(j) ? j : (Array.isArray(j.items) ? j.items : []);
+      return items.filter(x => x && typeof x.url === "string" && x.url.trim());
+    }catch(e){
+      return [];
+    }
+  }
+
+  async function refreshGallery(){
+    setGalleryStatus("Chargement…");
+    const repoItems = await loadRepoGallery();       // shared
+    const localItems = loadLocalGallery();           // local preview
+    const merged = [...repoItems, ...localItems];
+    renderGallery(merged);
+    setGalleryStatus(`${repoItems.length} image(s) (repo) + ${localItems.length} (local)`);
+  }
+
+  document.getElementById("addGalleryBtn").addEventListener("click", async ()=>{
+    const url = document.getElementById("galleryUrl").value.trim();
+    const caption = document.getElementById("galleryCap").value.trim();
+    if(!url) return;
+    const items = loadLocalGallery();
+    items.unshift({ url, caption });
+    saveLocalGallery(items);
+    document.getElementById("galleryUrl").value = "";
+    document.getElementById("galleryCap").value = "";
+    await refreshGallery();
+    setActiveView("gallery");
+  });
+
+  document.getElementById("clearGalleryBtn").addEventListener("click", async ()=>{
+    saveLocalGallery([]);
+    await refreshGallery();
+  });
+
+  // load when opening gallery
+  tabGallery.addEventListener("click", refreshGallery);
 </script>
 </body>
 </html>
