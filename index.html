@@ -10,7 +10,7 @@
       --bg:#0b0f19; --card:rgba(255,255,255,0.06); --text:rgba(255,255,255,0.92);
       --muted:rgba(255,255,255,0.66); --line:rgba(255,255,255,0.12);
       --accent:#7c5cff; --accent2:#31d0aa; --shadow:0 14px 40px rgba(0,0,0,0.35);
-      --r2:26px; --maxw:1260px;
+      --r2:26px; --maxw:1320px;
       --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
       --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
     }
@@ -23,86 +23,142 @@
         radial-gradient(900px 700px at 80% 0%, rgba(49,208,170,0.25), transparent 60%),
         radial-gradient(900px 700px at 50% 110%, rgba(255,255,255,0.06), transparent 60%),
         var(--bg);
+      overflow:hidden; /* ✅ pas de scroll page */
     }
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:18px 16px 22px}
-    .topbar{
-      display:flex;align-items:center;justify-content:space-between;padding:10px 2px 14px;gap:14px;
-      position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);
-      background:linear-gradient(to bottom, rgba(11,15,25,0.85), rgba(11,15,25,0.25));
+    .wrap{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:14px 14px 14px;
+      height:100vh;               /* ✅ une seule page */
+      display:flex;
+      flex-direction:column;
+      gap:12px;
     }
-    .brand{display:flex;gap:10px;align-items:center;font-weight:900;letter-spacing:.2px}
+
+    /* Top bar */
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:10px 6px 8px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.03);
+      border:1px solid var(--line);
+      backdrop-filter:blur(12px);
+    }
+    .brand{display:flex;gap:10px;align-items:center;font-weight:950;letter-spacing:.2px}
     .dot{width:11px;height:11px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 0 6px rgba(124,92,255,0.15)}
-    .nav{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:14px}
-    .nav a{padding:10px 12px;border-radius:12px;border:1px solid transparent}
+    .nav{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+    .nav a{padding:9px 10px;border-radius:12px;border:1px solid transparent}
     .nav a:hover{border-color:var(--line);background:rgba(255,255,255,0.04);color:var(--text)}
+
+    /* Cards */
     .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);box-shadow:var(--shadow)}
-    .hero{padding:18px 18px 14px;overflow:hidden;position:relative}
+
+    /* Hero */
+    .hero{
+      padding:18px 18px 14px;
+      position:relative;
+      overflow:hidden;
+      text-align:center; /* ✅ grand titre centré */
+    }
     .hero::before{
       content:"";position:absolute;inset:-2px;
       background:
-        radial-gradient(700px 240px at 20% 0%, rgba(124,92,255,0.30), transparent 55%),
-        radial-gradient(700px 240px at 80% 10%, rgba(49,208,170,0.20), transparent 55%);
+        radial-gradient(800px 260px at 20% 0%, rgba(124,92,255,0.30), transparent 55%),
+        radial-gradient(800px 260px at 80% 10%, rgba(49,208,170,0.20), transparent 55%);
       pointer-events:none;
     }
     .hero>*{position:relative}
-    .kicker{color:var(--muted);font-size:12px;letter-spacing:.4px;text-transform:uppercase}
-    h1{margin:8px 0 8px;font-size:32px;line-height:1.12}
-    .subtitle{margin:0 0 8px;color:var(--muted);font-size:14px;line-height:1.5;max-width:90ch}
-    .note{margin:0;color:rgba(255,255,255,0.60);font-size:12px;line-height:1.4;max-width:92ch}
-    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .kicker{color:var(--muted);font-size:12px;letter-spacing:.45px;text-transform:uppercase}
+    h1{margin:10px 0 10px;font-size:40px;line-height:1.08}
+    .subtitle{margin:0 auto 8px;color:var(--muted);font-size:14px;line-height:1.55;max-width:92ch}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;justify-content:center}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
       padding:9px 12px;border-radius:14px;border:1px solid var(--line);
       background:rgba(255,255,255,0.04);color:var(--text);
-      font-weight:900;font-size:14px;cursor:pointer
+      font-weight:950;font-size:14px;cursor:pointer
     }
     .btn.primary{border-color:rgba(124,92,255,0.55);background:linear-gradient(135deg, rgba(124,92,255,0.22), rgba(49,208,170,0.10))}
     .btn:hover{background:rgba(255,255,255,0.07)}
+    .heroNote{margin:0;color:rgba(255,255,255,0.60);font-size:12px;line-height:1.5}
 
-    /* --- NEW: 2 colonnes (gauche user / droite groupe) --- */
+    /* Dual columns take the remaining height */
     .dual{
+      flex:1;               /* ✅ prend l'espace restant */
+      min-height:0;         /* ✅ permet le scroll interne */
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:14px;
-      margin-top:14px;
-      align-items:start;
+      gap:12px;
+      align-items:stretch;
     }
     @media (max-width: 980px){
-      .dual{grid-template-columns:1fr}
+      body{overflow:auto} /* mobile: autoriser scroll page */
+      .wrap{height:auto; overflow:visible}
+      .dual{grid-template-columns:1fr; min-height:auto}
     }
 
-    .section{padding:14px}
-    .sectionHeader{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:10px}
+    /* Section as vertical flex so scroller can fill */
+    .section{
+      padding:12px;
+      display:flex;
+      flex-direction:column;
+      min-height:0; /* ✅ important */
+    }
+    .sectionHeader{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:10px}
     .sectionHeader h2{margin:0;font-size:16px;letter-spacing:.2px}
-    .sectionHeader .meta{margin:0;color:var(--muted);font-size:12px;line-height:1.35;max-width:68ch}
-    .status{color:var(--muted);font-size:12px;display:flex;gap:10px;align-items:center;white-space:nowrap}
+    .sectionHeader .meta{margin:0;color:var(--muted);font-size:12px;line-height:1.35;max-width:64ch}
+    .status{color:var(--muted);font-size:12px;display:flex;gap:8px;align-items:center;white-space:nowrap}
 
-    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:8px 0 10px}
+    /* Toolbar: stacked, never overflows */
+    .toolbar{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin:0 0 10px;
+    }
+    .row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+    }
     .search{
-      flex:1 1 220px;display:flex;gap:10px;align-items:center;
+      flex:1 1 220px;
+      display:flex;gap:10px;align-items:center;
       border:1px solid var(--line);background:rgba(255,255,255,0.04);
       border-radius:14px;padding:9px 11px;min-width:180px
     }
     .search input{width:100%;background:transparent;border:none;outline:none;color:var(--text);font-size:13px}
-    .controls{flex:0 0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .controls{
+      flex:1 1 560px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-start;
+      max-width:100%;
+    }
     select,input[type="number"]{
       border:1px solid var(--line);background:rgba(255,255,255,0.04);color:var(--text);
-      border-radius:14px;padding:9px 11px;font-weight:900;outline:none;font-size:13px
+      border-radius:14px;padding:9px 11px;font-weight:950;outline:none;font-size:13px;
+      max-width:100%;
     }
-    input[type="number"]{width:110px}
+    .w-sm{min-width:150px}
+    .w-md{min-width:180px}
+    .w-lg{min-width:240px}
+    input[type="number"]{width:120px}
 
-    /* Scroll interne pour éviter une page trop longue */
+    /* Scroller fills remaining height in the section */
     .scroller{
-      max-height: calc(100vh - 355px);
+      flex:1;
+      min-height:0;
       overflow:auto;
       padding-right:6px;
     }
-    @media (max-width: 980px){
-      .scroller{max-height:none; overflow:visible; padding-right:0}
-    }
 
-    /* Cartes plus petites + images "contain" */
+    /* Items: compact */
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fill, minmax(210px, 1fr));
@@ -132,7 +188,7 @@
     .thumb img{
       width:100%;
       height:100%;
-      object-fit:contain;
+      object-fit:contain; /* ✅ ne dépasse pas */
       display:block;
       border-radius:12px;
       background:rgba(0,0,0,0.14);
@@ -140,7 +196,7 @@
     .badge{
       position:absolute;top:10px;left:10px;font-size:12px;padding:5px 8px;border-radius:999px;
       background:rgba(0,0,0,0.38);border:1px solid rgba(255,255,255,0.18);backdrop-filter:blur(10px);
-      font-weight:900
+      font-weight:950
     }
     .body{padding:10px 10px 12px;display:flex;flex-direction:column;gap:7px;flex:1 1 auto}
     .title{font-weight:950;line-height:1.2;font-size:14px}
@@ -162,9 +218,9 @@
     .empty{color:var(--muted);font-size:13px;padding:12px}
     .spinner{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,0.25);border-top-color:rgba(255,255,255,0.85);animation:spin 1s linear infinite;display:inline-block;vertical-align:-3px}
     @keyframes spin{to{transform:rotate(360deg)}}
-    footer{margin-top:12px;color:rgba(255,255,255,0.55);font-size:12px;text-align:center}
 
-    /* Highlight quand on "saute" sur un item */
+    footer{color:rgba(255,255,255,0.55);font-size:12px;text-align:center;padding:6px 0 0}
+
     .flash{animation:flash 1.1s ease}
     @keyframes flash{
       0%{box-shadow:0 0 0 0 rgba(124,92,255,0.0)}
@@ -187,9 +243,10 @@
       <div class="kicker">UGC • Accessoires • Vêtements</div>
       <h1>lulu8203 — Portfolio</h1>
       <p class="subtitle">
-        Affiche uniquement les <b>UGC mis en vente</b> (accessoires / vêtements) créés par <b>lulu8203</b> et par le groupe <b>Powerful Artists</b>.
+        Retrouvez toutes les créations <b>UGC en vente</b> — séparées en deux colonnes :
+        <b>Profil</b> (lulu8203) et <b>Groupe</b> (Powerful Artists). Utilisez les filtres pour affiner rapidement.
       </p>
-      <p class="note">Données : <b>data_user.json</b> et <b>data_group.json</b> (générés par GitHub Actions).</p>
+      <p class="heroNote">Données : <b>data_user.json</b> et <b>data_group.json</b> (générés par GitHub Actions).</p>
       <div class="actions">
         <a class="btn primary" href="https://www.roblox.com/users/828726934/profile" target="_blank" rel="noopener">Profil Roblox</a>
         <a class="btn" href="https://www.roblox.com/communities/16981319/Powerful-artists" target="_blank" rel="noopener">Groupe Roblox</a>
@@ -197,8 +254,8 @@
       </div>
     </div>
 
-    <!-- 2 colonnes : user à gauche / groupe à droite -->
     <div class="dual">
+      <!-- LEFT: USER -->
       <div id="col-user" class="card section">
         <div class="sectionHeader">
           <div>
@@ -209,23 +266,34 @@
         </div>
 
         <div class="toolbar">
-          <div class="search">
-            <span style="color:var(--muted)">🔎</span>
-            <input id="searchUser" type="search" placeholder="Rechercher…" />
+          <div class="row">
+            <div class="search">
+              <span style="color:var(--muted)">🔎</span>
+              <input id="searchUser" type="search" placeholder="Recherche (ex: corne, crown, sword…)" />
+            </div>
           </div>
-          <div class="controls">
-            <select id="jumpUser" title="Aller directement à un UGC"></select>
-            <select id="typeUser" title="Type d'UGC"></select>
-            <select id="sortUser" title="Tri">
-              <option value="new">Plus récent</option>
-              <option value="old">Plus ancien</option>
-              <option value="priceUp">Prix croissant</option>
-              <option value="priceDown">Prix décroissant</option>
-              <option value="name">Nom (A→Z)</option>
-            </select>
-            <input id="minUser" type="number" min="0" placeholder="Prix min" />
-            <input id="maxUser" type="number" min="0" placeholder="Prix max" />
-            <button class="btn" id="applyUserBtn" type="button">Filtrer</button>
+
+          <div class="row">
+            <div class="controls">
+              <select id="jumpUser" class="w-md" title="Aller directement à un UGC"></select>
+              <select id="typeUser" class="w-sm" title="Type (Dos/Tête/Taille…)"></select>
+
+              <!-- ✅ nouveau filtre "Mot-clé" basé sur le nom -->
+              <select id="kwUser" class="w-sm" title="Catégorie par mot-clé (nom)"></select>
+
+              <select id="sortUser" class="w-sm" title="Tri">
+                <option value="new">Plus récent</option>
+                <option value="old">Plus ancien</option>
+                <option value="priceUp">Prix croissant</option>
+                <option value="priceDown">Prix décroissant</option>
+                <option value="name">Nom (A→Z)</option>
+                <option value="nameDesc">Nom (Z→A)</option>
+              </select>
+
+              <input id="minUser" type="number" min="0" placeholder="Prix min" />
+              <input id="maxUser" type="number" min="0" placeholder="Prix max" />
+              <button class="btn" id="applyUserBtn" type="button">Filtrer</button>
+            </div>
           </div>
         </div>
 
@@ -234,6 +302,7 @@
         </div>
       </div>
 
+      <!-- RIGHT: GROUP -->
       <div id="col-group" class="card section">
         <div class="sectionHeader">
           <div>
@@ -244,23 +313,34 @@
         </div>
 
         <div class="toolbar">
-          <div class="search">
-            <span style="color:var(--muted)">🔎</span>
-            <input id="searchGroup" type="search" placeholder="Rechercher…" />
+          <div class="row">
+            <div class="search">
+              <span style="color:var(--muted)">🔎</span>
+              <input id="searchGroup" type="search" placeholder="Recherche (ex: horn, wings, hair…)" />
+            </div>
           </div>
-          <div class="controls">
-            <select id="jumpGroup" title="Aller directement à un UGC"></select>
-            <select id="typeGroup" title="Type d'UGC"></select>
-            <select id="sortGroup" title="Tri">
-              <option value="new">Plus récent</option>
-              <option value="old">Plus ancien</option>
-              <option value="priceUp">Prix croissant</option>
-              <option value="priceDown">Prix décroissant</option>
-              <option value="name">Nom (A→Z)</option>
-            </select>
-            <input id="minGroup" type="number" min="0" placeholder="Prix min" />
-            <input id="maxGroup" type="number" min="0" placeholder="Prix max" />
-            <button class="btn" id="applyGroupBtn" type="button">Filtrer</button>
+
+          <div class="row">
+            <div class="controls">
+              <select id="jumpGroup" class="w-md" title="Aller directement à un UGC"></select>
+              <select id="typeGroup" class="w-sm" title="Type (Dos/Tête/Taille…)"></select>
+
+              <!-- ✅ nouveau filtre "Mot-clé" basé sur le nom -->
+              <select id="kwGroup" class="w-sm" title="Catégorie par mot-clé (nom)"></select>
+
+              <select id="sortGroup" class="w-sm" title="Tri">
+                <option value="new">Plus récent</option>
+                <option value="old">Plus ancien</option>
+                <option value="priceUp">Prix croissant</option>
+                <option value="priceDown">Prix décroissant</option>
+                <option value="name">Nom (A→Z)</option>
+                <option value="nameDesc">Nom (Z→A)</option>
+              </select>
+
+              <input id="minGroup" type="number" min="0" placeholder="Prix min" />
+              <input id="maxGroup" type="number" min="0" placeholder="Prix max" />
+              <button class="btn" id="applyGroupBtn" type="button">Filtrer</button>
+            </div>
           </div>
         </div>
 
@@ -310,18 +390,41 @@
     return typeName || "UGC";
   }
 
+  // ✅ Mot-clé (catégorie) à partir du nom — simple & efficace
+  const KEYWORDS = [
+    { key:"Cornes",  rx: /(horn|horns|corne|cornes)/i },
+    { key:"Couronne",rx: /(crown|tiara|couronne)/i },
+    { key:"Épée",    rx: /(sword|blade|katana|epee|épée)/i },
+    { key:"Ailes",   rx: /(wing|wings|aile|ailes)/i },
+    { key:"Cheveux", rx: /(hair|cheveu|cheveux)/i },
+    { key:"Queue",   rx: /(tail|queue)/i },
+    { key:"Faux",    rx: /(scythe|faux)/i },
+    { key:"Dragon",  rx: /(dragon|drake)/i },
+    { key:"PBR",     rx: /pbr/i },
+  ];
+
+  function keywordFromName(name){
+    const n = String(name || "");
+    for(const k of KEYWORDS){
+      if(k.rx.test(n)) return k.key;
+    }
+    return "Autre";
+  }
+
   function normalizeItem(x){
     const assetId = (typeof x.assetId === "number") ? x.assetId : (typeof x.id === "number" ? x.id : null);
     const created = x.created || x.createdAt || x.createdUtc || null;
     const createdTs = created ? (Date.parse(created) || null) : null;
     const price = (typeof x.price === "number") ? x.price : (typeof x.priceInRobux === "number" ? x.priceInRobux : null);
     const typeName = x.type || x.assetTypeName || "UGC";
+    const name = x.name || `Item ${assetId}`;
 
     return {
       assetId,
-      name: x.name || `Item ${assetId}`,
+      name,
       type: typeName,
       badge: ugcBadge(typeName),
+      keyword: keywordFromName(name),   // ✅ NEW
       price,
       created,
       createdTs,
@@ -335,7 +438,13 @@
     return ["Tous", ...arr];
   }
 
-  function applyFilters(items, {q, badge, minPrice, maxPrice}){
+  function uniqueKeywords(items){
+    const s = new Set(items.map(x => x.keyword || "Autre"));
+    const arr = Array.from(s).sort((a,b)=> a.localeCompare(b, "fr"));
+    return ["Tous", ...arr];
+  }
+
+  function applyFilters(items, {q, badge, kw, minPrice, maxPrice}){
     const query = (q || "").trim().toLowerCase();
     const minP = toNum(minPrice);
     const maxP = toNum(maxPrice);
@@ -343,14 +452,16 @@
     return items.filter(it => {
       const name = (it.name || "").toLowerCase();
       const typ = (it.type || "").toLowerCase();
-      const okQuery = !query || name.includes(query) || typ.includes(query) || String(it.badge||"").toLowerCase().includes(query);
+      const keyw = (it.keyword || "").toLowerCase();
+      const okQuery = !query || name.includes(query) || typ.includes(query) || keyw.includes(query) || String(it.badge||"").toLowerCase().includes(query);
       const okBadge = !badge || badge === "Tous" || it.badge === badge;
+      const okKw = !kw || kw === "Tous" || it.keyword === kw;
 
       const price = (typeof it.price === "number") ? it.price : null;
       const okMin = (minP == null) ? true : (price != null && price >= minP);
       const okMax = (maxP == null) ? true : (price != null && price <= maxP);
 
-      return okQuery && okBadge && okMin && okMax;
+      return okQuery && okBadge && okKw && okMin && okMax;
     });
   }
 
@@ -363,6 +474,7 @@
     else if(mode === "priceUp") arr.sort((a,b)=> safePrice(a) - safePrice(b));
     else if(mode === "priceDown") arr.sort((a,b)=> safePrice(b) - safePrice(a));
     else if(mode === "name") arr.sort((a,b)=> (a.name||"").localeCompare((b.name||""), "fr"));
+    else if(mode === "nameDesc") arr.sort((a,b)=> (b.name||"").localeCompare((a.name||""), "fr"));
     return arr;
   }
 
@@ -383,7 +495,6 @@
       if(el){
         el.scrollIntoView({behavior:"smooth", block:"nearest"});
         el.classList.remove("flash");
-        // force reflow
         void el.offsetWidth;
         el.classList.add("flash");
         setTimeout(()=> el.classList.remove("flash"), 1200);
@@ -446,11 +557,13 @@
         const badges = uniqueBadges(state.items);
         document.getElementById(els.badgeSelId).innerHTML = badges.map(t => `<option value="${t}">${t}</option>`).join("");
 
-        // dropdown "Aller à…"
+        const kws = uniqueKeywords(state.items);
+        document.getElementById(els.kwSelId).innerHTML = kws.map(t => `<option value="${t}">${t}</option>`).join("");
+
         fillJump(els.jumpSelId, state.items, els.itemPrefix);
 
         document.getElementById(els.metaId).innerHTML =
-          `${state.items.length} UGC en vente • <span class="warn">mise à jour :</span> ${updated}`;
+          `${state.items.length} UGC en vente • <span style="color:rgba(255,255,255,0.72)">mise à jour :</span> ${updated}`;
 
         apply();
         setStatus(els.statusId, `${state.items.length} item(s)`, false);
@@ -466,11 +579,12 @@
     function apply(){
       const q = document.getElementById(els.searchId).value;
       const badge = document.getElementById(els.badgeSelId).value;
+      const kw = document.getElementById(els.kwSelId).value;
       const sortMode = document.getElementById(els.sortSelId).value;
       const minP = document.getElementById(els.minId).value;
       const maxP = document.getElementById(els.maxId).value;
 
-      const filtered = applyFilters(state.items, { q, badge, minPrice: minP, maxPrice: maxP });
+      const filtered = applyFilters(state.items, { q, badge, kw, minPrice: minP, maxPrice: maxP });
       const sorted = sortItems(filtered, sortMode);
       render(els.gridId, sorted, els.itemPrefix);
     }
@@ -478,6 +592,7 @@
     document.getElementById(els.applyBtnId).addEventListener("click", apply);
     document.getElementById(els.searchId).addEventListener("input", apply);
     document.getElementById(els.badgeSelId).addEventListener("change", apply);
+    document.getElementById(els.kwSelId).addEventListener("change", apply);
     document.getElementById(els.sortSelId).addEventListener("change", apply);
 
     return { refresh };
@@ -486,7 +601,7 @@
   const userSec = wireSection(
     { localJson: "data_user.json" },
     { statusId:"statusUser", metaId:"metaUser", gridId:"gridUser",
-      searchId:"searchUser", badgeSelId:"typeUser", sortSelId:"sortUser",
+      searchId:"searchUser", badgeSelId:"typeUser", kwSelId:"kwUser", sortSelId:"sortUser",
       minId:"minUser", maxId:"maxUser", applyBtnId:"applyUserBtn",
       jumpSelId:"jumpUser", itemPrefix:"u-" }
   );
@@ -494,7 +609,7 @@
   const groupSec = wireSection(
     { localJson: "data_group.json" },
     { statusId:"statusGroup", metaId:"metaGroup", gridId:"gridGroup",
-      searchId:"searchGroup", badgeSelId:"typeGroup", sortSelId:"sortGroup",
+      searchId:"searchGroup", badgeSelId:"typeGroup", kwSelId:"kwGroup", sortSelId:"sortGroup",
       minId:"minGroup", maxId:"maxGroup", applyBtnId:"applyGroupBtn",
       jumpSelId:"jumpGroup", itemPrefix:"g-" }
   );
