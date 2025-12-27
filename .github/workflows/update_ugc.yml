@@ -3,7 +3,7 @@ name: Update UGC data
 on:
   workflow_dispatch:
   schedule:
-    # Toutes les 60 minutes (plus stable côté rate-limit)
+    # 1 fois par heure (moins agressif)
     - cron: "0 * * * *"
 
 concurrency:
