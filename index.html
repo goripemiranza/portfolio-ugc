@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Portfolio Roblox — lulu8203</title>
-  <meta name="description" content="Portfolio Roblox : créations UGC de l'utilisateur lulu8203 et du groupe Powerful Artists." />
+  <meta name="description" content="Portfolio Roblox : UGC mis en vente de l'utilisateur lulu8203 et du groupe Powerful Artists." />
   <style>
     :root{
       --bg:#0b0f19; --card:rgba(255,255,255,0.06); --text:rgba(255,255,255,0.92);
       --muted:rgba(255,255,255,0.66); --line:rgba(255,255,255,0.12);
       --accent:#7c5cff; --accent2:#31d0aa; --shadow:0 14px 40px rgba(0,0,0,0.35);
-      --r:18px; --r2:26px; --maxw:1180px;
+      --r2:26px; --maxw:1180px;
       --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
       --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
     }
@@ -47,7 +47,7 @@
     .hero>*{position:relative}
     .kicker{color:var(--muted);font-size:13px;letter-spacing:.4px;text-transform:uppercase}
     h1{margin:10px 0 10px;font-size:34px;line-height:1.12}
-    .subtitle{margin:0 0 16px;color:var(--muted);font-size:15px;line-height:1.5;max-width:70ch}
+    .subtitle{margin:0 0 16px;color:var(--muted);font-size:15px;line-height:1.5;max-width:75ch}
     .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
@@ -120,7 +120,8 @@
       <div class="kicker">UGC • Accessoires • Vêtements</div>
       <h1>lulu8203 — Portfolio</h1>
       <p class="subtitle">
-        Toutes les créations UGC de l'utilisateur <b>lulu8203</b> et du groupe <b>Powerful Artists</b> (images + tri + filtres).
+        Affiche automatiquement les UGC <b>mis en vente</b> pour l'utilisateur <b>lulu8203</b> et le groupe <b>Powerful Artists</b> (images + tri + filtres).
+        <br/>Le site essaie d'abord les JSON du repo, puis bascule sur l'API Roblox si besoin (plus fiable que GitHub Actions en cas de rate-limit).
       </p>
       <div class="actions">
         <a class="btn primary" href="https://www.roblox.com/users/828726934/profile" target="_blank" rel="noopener">Profil Roblox</a>
@@ -132,7 +133,7 @@
     <div id="ugc-user" class="card section">
       <div class="sectionHeader">
         <div>
-          <h2>UGC — créations de lulu8203</h2>
+          <h2>UGC — créations de lulu8203 (en vente)</h2>
           <p class="meta" id="metaUser">—</p>
         </div>
         <div class="status" id="statusUser"><span class="spinner"></span><span>Chargement…</span></div>
@@ -164,7 +165,7 @@
     <div id="ugc-group" class="card section">
       <div class="sectionHeader">
         <div>
-          <h2>UGC — créations du groupe Powerful Artists</h2>
+          <h2>UGC — créations du groupe Powerful Artists (en vente)</h2>
           <p class="meta" id="metaGroup">—</p>
         </div>
         <div class="status" id="statusGroup"><span class="spinner"></span><span>Chargement…</span></div>
@@ -197,35 +198,60 @@
   </div>
 
 <script>
+  // IDs
+  const USER_ID = 828726934;
+  const GROUP_ID = 16981319;
+
+  // Roblox endpoints (public):
+  // - Catalog search (creatorType + creatorTargetId)  
+  // - Thumbnails API for reliable imageUrl          
+  const CATALOG = "https://catalog.roblox.com/v1/search/items";
+  const THUMBS = "https://thumbnails.roblox.com/v1/assets";
+
   function setStatus(id, text, spinning=false){
     const el = document.getElementById(id);
     if(!el) return;
     el.innerHTML = spinning ? `<span class="spinner"></span><span>${text}</span>` : `<span>${text}</span>`;
   }
   function catalogUrl(assetId){ return `https://www.roblox.com/catalog/${assetId}`; }
-  function thumbUrl(assetId){ return `https://www.roblox.com/asset-thumbnail/image?assetId=${assetId}&width=420&height=420&format=png`; }&width=420&height=420&format=png`; }
+  function thumbFallback(assetId){ return `https://www.roblox.com/asset-thumbnail/image?assetId=${assetId}&width=420&height=420&format=png`; }
 
-  async function loadJson(path){
-    const res = await fetch(`${path}?v=${Date.now()}`, { cache:"no-store" });
-    if(!res.ok) throw new Error(`HTTP ${res.status}`);
-    return await res.json();
-  }
   function fmtDate(iso){
     if(!iso) return "";
     try{ return new Date(iso).toLocaleDateString("fr-FR"); }catch(e){ return ""; }
   }
+
+  function toNum(v){
+    if(v === null || v === undefined) return null;
+    const s = String(v).trim();
+    if(s === "") return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  async function fetchWithTimeout(url, ms=12000){
+    const ctrl = new AbortController();
+    const t = setTimeout(()=>ctrl.abort(), ms);
+    try{
+      const r = await fetch(url, { cache:"no-store", signal: ctrl.signal });
+      return r;
+    } finally {
+      clearTimeout(t);
+    }
+  }
+
+  async function loadLocalJson(path){
+    const res = await fetchWithTimeout(`${path}?v=${Date.now()}`, 8000);
+    if(!res.ok) throw new Error(`local HTTP ${res.status}`);
+    return await res.json();
+  }
+
   function uniqueTypes(items){
     const s = new Set(items.map(x => x.type || "Autre"));
     const arr = Array.from(s).sort((a,b)=> a.localeCompare(b, "fr"));
     return ["Tous", ...arr];
   }
-  function toNum(v){
-    if(v === null || v === undefined) return null;
-    const s = String(v).trim();
-    if(s === "") return null;           // IMPORTANT: empty input means "no filter"
-    const n = Number(s);
-    return Number.isFinite(n) ? n : null;
-  }
+
   function applyFilters(items, {q, type, minPrice, maxPrice}){
     const query = (q || "").trim().toLowerCase();
     const minP = toNum(minPrice);
@@ -235,12 +261,16 @@
       const typ = (it.type || "");
       const okQuery = !query || name.includes(query) || typ.toLowerCase().includes(query);
       const okType = !type || type === "Tous" || typ === type;
+
+      // on-sale only, but still allow filters to work
       const price = (typeof it.price === "number") ? it.price : null;
       const okMin = (minP == null) ? true : (price != null && price >= minP);
       const okMax = (maxP == null) ? true : (price != null && price <= maxP);
+
       return okQuery && okType && okMin && okMax;
     });
   }
+
   function sortItems(items, mode){
     const arr = [...items];
     const safeTime = (it) => (it.createdTs != null ? it.createdTs : -1);
@@ -252,18 +282,21 @@
     else if(mode === "name") arr.sort((a,b)=> (a.name||"").localeCompare((b.name||""), "fr"));
     return arr;
   }
+
   function render(gridId, items){
     const grid = document.getElementById(gridId);
     if(!grid) return;
     if(!items.length){ grid.innerHTML = `<div class="empty">Aucun item trouvé.</div>`; return; }
+
     grid.innerHTML = items.map(it => {
       const price = (typeof it.price === "number") ? `${it.price} R$` : "Offsale";
       const date = it.created ? fmtDate(it.created) : "";
+      const img = it.thumb || thumbFallback(it.assetId);
       return `
         <div class="item">
           <div class="thumb">
             <span class="badge">${it.type || "UGC"}</span>
-            <img loading="lazy" alt="${it.name || ""}" src="${it.thumb || thumbUrl(it.assetId)}" onerror="this.onerror=null;this.src=thumbUrl(${it.assetId});">
+            <img loading="lazy" alt="${it.name || ""}" src="${img}" onerror="this.onerror=null;this.src='${thumbFallback(it.assetId)}';">
           </div>
           <div class="body">
             <div class="title">${it.name || ""}</div>
@@ -281,36 +314,131 @@
     }).join("");
   }
 
-  function wireSection(jsonPath, els){
+  async function fetchThumbnails(items){
+    const ids = Array.from(new Set(items.map(x => x.assetId).filter(n => typeof n === "number")));
+    if(!ids.length) return;
+
+    // Use small batches and do NOT block the UI (no await chain in refresh)
+    const B = 25;
+    for(let i=0;i<ids.length;i+=B){
+      const chunk = ids.slice(i,i+B);
+      const qs = `assetIds=${encodeURIComponent(chunk.join(","))}&size=420x420&format=Png&isCircular=false`;
+      try{
+        const res = await fetchWithTimeout(`${THUMBS}?${qs}`, 12000);
+        if(!res.ok) continue;
+        const j = await res.json();
+        const map = new Map();
+        for(const t of (j.data || [])){
+          if(t && typeof t.targetId === "number" && typeof t.imageUrl === "string" && t.state === "Completed"){
+            map.set(t.targetId, t.imageUrl);
+          }
+        }
+        for(const it of items){
+          if(map.has(it.assetId)) it.thumb = map.get(it.assetId);
+        }
+      }catch(e){
+        // ignore
+      }
+    }
+  }
+
+  function normalizeItem(x){
+    const created = x.created || x.createdAt || x.createdUtc || null;
+    const createdTs = created ? (Date.parse(created) || null) : null;
+    const price = (typeof x.price === "number") ? x.price : null;
+    return {
+      assetId: x.assetId ?? x.id,
+      name: x.name || `Item ${x.assetId ?? x.id}`,
+      type: (x.assetType && x.assetType.name) ? x.assetType.name : (x.type || x.itemType || "UGC"),
+      price,
+      created,
+      createdTs
+    };
+  }
+
+  async function fetchCatalogOnSale({creatorType, creatorTargetId}){
+    const out = [];
+    let cursor = "";
+    // salesTypeFilter: used by catalog search endpoints 
+    const base = new URL(CATALOG);
+    base.searchParams.set("category", "1");
+    base.searchParams.set("creatorType", String(creatorType));
+    base.searchParams.set("creatorTargetId", String(creatorTargetId));
+    base.searchParams.set("salesTypeFilter", "1"); // All sales types (still returns price when on-sale)
+    base.searchParams.set("limit", "30");
+    // Don't include offsale
+    base.searchParams.set("includeNotForSale", "false");
+
+    for(let page=0; page<25; page++){
+      const u = new URL(base.toString());
+      if(cursor) u.searchParams.set("cursor", cursor);
+
+      const res = await fetchWithTimeout(u.toString(), 12000);
+      if(!res.ok) throw new Error(`catalog HTTP ${res.status}`);
+      const j = await res.json();
+
+      for(const d of (j.data || [])){
+        const it = normalizeItem(d);
+        // on-sale only: needs a numeric price
+        if(typeof it.price === "number") out.push(it);
+      }
+
+      cursor = j.nextPageCursor || "";
+      if(!cursor) break;
+    }
+
+    // sort newest first (created may be missing; fallback by id)
+    out.sort((a,b)=> (b.createdTs || -1) - (a.createdTs || -1) || (b.assetId - a.assetId));
+    return out;
+  }
+
+  function wireSection(source, els){
     const state = { items: [] };
 
     async function refresh(){
       setStatus(els.statusId, "Chargement…", true);
+
+      // Always end loading (no infinite spinner)
       try{
-        const data = await loadJson(jsonPath);
-        state.items = (data.items || []).map(x => ({
-          assetId: x.assetId, name: x.name, type: x.type,
-          price: x.price, created: x.created, createdTs: x.createdTs
-        }));
+        let payload = null;
+        let items = [];
 
-        // Load thumbnails (non-bloquant)
-        await hydrateThumbs(state.items);
+        // 1) Try local JSON (fast, no CORS)
+        try{
+          payload = await loadLocalJson(source.localJson);
+          items = (payload.items || []).map(normalizeItem).filter(it => typeof it.price === "number");
+        }catch(e){
+          // ignore, fallback to live API
+        }
 
+        // 2) Fallback: live Roblox API (on-sale only)
+        if(!items.length){
+          items = await fetchCatalogOnSale(source.live);
+        }
 
+        state.items = items;
+
+        // Build type dropdown
         const types = uniqueTypes(state.items);
         const typeSel = document.getElementById(els.typeSelId);
         typeSel.innerHTML = types.map(t => `<option value="${t}">${t}</option>`).join("");
 
+        // Meta
         const meta = document.getElementById(els.metaId);
-        const updated = data.generatedAt ? fmtDate(data.generatedAt) : "";
-        meta.textContent = `${state.items.length} item(s)` + (updated ? ` • mise à jour le ${updated}` : "");
+        meta.textContent = `${state.items.length} item(s) • en vente`;
 
-        setStatus(els.statusId, `${state.items.length} item(s)`, false);
+        // Render immediately (no waiting for thumbnails)
         apply();
+        setStatus(els.statusId, `${state.items.length} item(s)`, false);
+
+        // Thumbnails async: update grid after they load
+        fetchThumbnails(state.items).then(() => apply()).catch(() => {});
+
       }catch(e){
         state.items = [];
         setStatus(els.statusId, "Erreur", false);
-        document.getElementById(els.metaId).textContent = "Impossible de charger les données.";
+        const meta = document.getElementById(els.metaId);
+        meta.textContent = "Impossible de charger les items (API Roblox).";
         render(els.gridId, []);
       }
     }
@@ -334,21 +462,23 @@
     return { refresh };
   }
 
-  const userSec = wireSection("data_user.json", {
-    statusId:"statusUser", metaId:"metaUser", gridId:"gridUser",
-    searchId:"searchUser", typeSelId:"typeUser", sortSelId:"sortUser",
-    minId:"minUser", maxId:"maxUser", applyBtnId:"applyUserBtn"
-  });
-  const groupSec = wireSection("data_group.json", {
-    statusId:"statusGroup", metaId:"metaGroup", gridId:"gridGroup",
-    searchId:"searchGroup", typeSelId:"typeGroup", sortSelId:"sortGroup",
-    minId:"minGroup", maxId:"maxGroup", applyBtnId:"applyGroupBtn"
-  });
+  const userSec = wireSection(
+    { localJson: "data_user.json", live: { creatorType: 1, creatorTargetId: USER_ID } },
+    { statusId:"statusUser", metaId:"metaUser", gridId:"gridUser",
+      searchId:"searchUser", typeSelId:"typeUser", sortSelId:"sortUser",
+      minId:"minUser", maxId:"maxUser", applyBtnId:"applyUserBtn" }
+  );
+
+  const groupSec = wireSection(
+    { localJson: "data_group.json", live: { creatorType: 2, creatorTargetId: GROUP_ID } },
+    { statusId:"statusGroup", metaId:"metaGroup", gridId:"gridGroup",
+      searchId:"searchGroup", typeSelId:"typeGroup", sortSelId:"sortGroup",
+      minId:"minGroup", maxId:"maxGroup", applyBtnId:"applyGroupBtn" }
+  );
 
   async function refreshAll(){ await Promise.all([userSec.refresh(), groupSec.refresh()]); }
   document.getElementById("refreshAllBtn").addEventListener("click", refreshAll);
 
-  setInterval(()=>{ groupSec.refresh(); }, 5 * 60 * 1000);
   refreshAll();
 </script>
 </body>
