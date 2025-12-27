@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-12-27T16:03:03.185552Z",
+  "generatedAt": "2025-12-27T16:16:35.506776Z",
   "items": [
     {
       "assetId": 121640625346381,
@@ -7,7 +7,7 @@
       "type": "Hat",
       "price": 100,
       "created": "2025-12-15T19:01:37.367Z",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=121640625346381&width=420&height=420&format=png"
+      "thumb": "https://tr.rbxcdn.com/180DAY-425cfb2e060109e7adbdcf31642856f2/420/420/Hat/Png/noFilter"
     },
     {
       "assetId": 76093476566308,
@@ -15,7 +15,7 @@
       "type": "Hat",
       "price": 100,
       "created": "2025-10-19T11:42:55.59Z",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=76093476566308&width=420&height=420&format=png"
+      "thumb": "https://tr.rbxcdn.com/180DAY-8055d98b146511b71f0a0c274ec27f71/420/420/Hat/Png/noFilter"
     },
     {
       "assetId": 90895163434338,
@@ -23,7 +23,23 @@
       "type": "Hat",
       "price": 100,
       "created": "2025-10-19T11:36:59.36Z",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=90895163434338&width=420&height=420&format=png"
+      "thumb": "https://tr.rbxcdn.com/180DAY-b34f48cd7fc27f8cf4c4c0d7b7c50253/420/420/Hat/Png/noFilter"
+    },
+    {
+      "assetId": 114056942238304,
+      "name": "[PBR] Black/red golden jewelled horns ",
+      "type": "Hat",
+      "price": 100,
+      "created": "2025-09-25T20:38:02.477Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-d5220e92dfa8cc90b4aee2a0f28556fd/420/420/Hat/Png/noFilter"
+    },
+    {
+      "assetId": 131531497269464,
+      "name": "White and black dragon tail",
+      "type": "WaistAccessory",
+      "price": 60,
+      "created": "2025-09-18T19:57:55.397Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-44a9fa44652fca33c25477247d876a64/420/420/WaistAccessory/Png/noFilter"
     },
     {
       "assetId": 103640681693848,
@@ -31,7 +47,7 @@
       "type": "HairAccessory",
       "price": 70,
       "created": "2025-08-26T21:07:43.41Z",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=103640681693848&width=420&height=420&format=png"
+      "thumb": "https://tr.rbxcdn.com/180DAY-0592d4783339d0a60392521922b7aabf/420/420/HairAccessory/Png/noFilter"
     },
     {
       "assetId": 119786498249719,
@@ -39,7 +55,15 @@
       "type": "HairAccessory",
       "price": 70,
       "created": "2025-08-25T20:18:08.163Z",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=119786498249719&width=420&height=420&format=png"
+      "thumb": "https://tr.rbxcdn.com/180DAY-cac5a262cd9b82887980ed87f67f9d19/420/420/HairAccessory/Png/noFilter"
+    },
+    {
+      "assetId": 83398849212814,
+      "name": "[PBR] silver metallic horns",
+      "type": "Hat",
+      "price": 100,
+      "created": "2025-08-02T14:15:33.503Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-e0cc8d1f7cebf068efb744093df4642b/420/420/Hat/Png/noFilter"
     },
     {
       "assetId": 97072088397988,
@@ -47,7 +71,7 @@
       "type": "BackAccessory",
       "price": 140,
       "created": "2025-07-28T22:29:02.213Z",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=97072088397988&width=420&height=420&format=png"
+      "thumb": "https://tr.rbxcdn.com/180DAY-337dfac4a53d39bb73020026da4d800a/420/420/BackAccessory/Png/noFilter"
     },
     {
       "assetId": 132428921830890,
@@ -55,7 +79,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-04-24T13:25:21.483Z",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=132428921830890&width=420&height=420&format=png"
+      "thumb": "https://tr.rbxcdn.com/180DAY-deb3d0010a09501ac37611b9916b3631/420/420/BackAccessory/Png/noFilter"
     },
     {
       "assetId": 74983607789715,
@@ -63,7 +87,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=74983607789715&width=420&height=420&format=png"
+      "thumb": "https://tr.rbxcdn.com/180DAY-2f7ad69ffabfea8aa192adce4616d696/420/420/BackAccessory/Png/noFilter"
     },
     {
       "assetId": 134542294659432,
@@ -71,7 +95,15 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-03-21T21:02:45.043Z",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=134542294659432&width=420&height=420&format=png"
+      "thumb": "https://tr.rbxcdn.com/180DAY-23caae7d94f6b82a0fcb9bbf0afbc1be/420/420/BackAccessory/Png/noFilter"
+    },
+    {
+      "assetId": 124182720625549,
+      "name": "Crimson shadow sword",
+      "type": "BackAccessory",
+      "price": 150,
+      "created": "2025-03-04T13:56:35.313Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-725816df2c6f09495b379d4f143988af/420/420/BackAccessory/Png/noFilter"
     },
     {
       "assetId": 76584283871633,
@@ -79,7 +111,7 @@
       "type": "Hat",
       "price": 105,
       "created": "2025-01-17T14:21:58.877Z",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=76584283871633&width=420&height=420&format=png"
+      "thumb": "https://tr.rbxcdn.com/180DAY-8e03044fbd1238699cbde6da1e2b17ab/420/420/Hat/Png/noFilter"
     },
     {
       "assetId": 134402963982838,
@@ -87,7 +119,15 @@
       "type": "BackAccessory",
       "price": 145,
       "created": "2025-01-10T23:46:07.677Z",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=134402963982838&width=420&height=420&format=png"
+      "thumb": "https://tr.rbxcdn.com/180DAY-65867c39a3761ccf60b69339090f0325/420/420/BackAccessory/Png/noFilter"
+    },
+    {
+      "assetId": 108418388012974,
+      "name": "Blue cyber sword",
+      "type": "WaistAccessory",
+      "price": 75,
+      "created": "2024-12-25T19:01:01.19Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-82de5036cc748f920d923ac56a0998bc/420/420/WaistAccessory/Png/noFilter"
     },
     {
       "assetId": 140262181869137,
@@ -97,7 +137,7 @@
       "price": 85,
       "isOffSale": true,
       "priceStatus": "Off Sale",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=140262181869137&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-10dc30ce0cb8e39111bd3ae69f791dc6/420/420/Hat/Png/noFilter",
       "rank": 26
     },
     {
@@ -108,7 +148,7 @@
       "price": 80,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=137769508784035&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-b128dc08fc1d232daee9c1759ceaf960/420/420/WaistAccessory/Png/noFilter",
       "rank": 17
     },
     {
@@ -119,7 +159,7 @@
       "price": 135,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=136428742434964&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-33ac98f42ef0e666354bc832bb24653a/420/420/BackAccessory/Png/noFilter",
       "rank": 21
     },
     {
@@ -130,7 +170,7 @@
       "price": 100,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=134630267020145&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-d72b6dc2603733dd8ed35d9625782cf7/420/420/Hat/Png/noFilter",
       "rank": 10
     },
     {
@@ -141,7 +181,7 @@
       "price": 100,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=134159126419346&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-35aa1c52371862c5e5fd6afbf871ce18/420/420/Hat/Png/noFilter",
       "rank": 50
     },
     {
@@ -152,7 +192,7 @@
       "price": 80,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=132266745430466&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-5125d55819e2d1dd0731f0516d561154/420/420/WaistAccessory/Png/noFilter",
       "rank": 4
     },
     {
@@ -163,19 +203,8 @@
       "price": 160,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=131785932364189&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-4d86f3e6bff2d8dcb88cf906424c43dd/420/420/BackAccessory/Png/noFilter",
       "rank": 47
-    },
-    {
-      "assetId": 131531497269464,
-      "name": "White and black dragon tail",
-      "assetTypeId": 47,
-      "assetTypeName": "WaistAccessory",
-      "price": 60,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=131531497269464&width=420&height=420&format=png",
-      "rank": 32
     },
     {
       "assetId": 130462198935793,
@@ -185,7 +214,7 @@
       "price": 135,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=130462198935793&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-9d5bcfa3de33a9324b640361364e2965/420/420/BackAccessory/Png/noFilter",
       "rank": 49
     },
     {
@@ -196,7 +225,7 @@
       "price": 150,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=130221398514737&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-7fdee469609b06f07f66e52882b69667/420/420/BackAccessory/Png/noFilter",
       "rank": 51
     },
     {
@@ -207,7 +236,7 @@
       "price": 90,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=130134165438299&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-33dbec529d15bac4341568f276dab784/420/420/Hat/Png/noFilter",
       "rank": 48
     },
     {
@@ -218,7 +247,7 @@
       "price": 140,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=129193098836002&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-c6a80607d7ca833262ee3ab276a1b1be/420/420/BackAccessory/Png/noFilter",
       "rank": 53
     },
     {
@@ -229,7 +258,7 @@
       "price": 145,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=128611174976041&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-f68738a70c9d56508c63fd85ffe2b850/420/420/BackAccessory/Png/noFilter",
       "rank": 5
     },
     {
@@ -240,19 +269,8 @@
       "price": 90,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=125587794762914&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-c89f23de722f7538dde218a5ccd4afaa/420/420/Hat/Png/noFilter",
       "rank": 42
-    },
-    {
-      "assetId": 124182720625549,
-      "name": "Crimson shadow sword",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=124182720625549&width=420&height=420&format=png",
-      "rank": 54
     },
     {
       "assetId": 120646608021988,
@@ -262,7 +280,7 @@
       "price": 100,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=120646608021988&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-30e8cdd50f705612e7a45b4cedf4c350/420/420/Hat/Png/noFilter",
       "rank": 27
     },
     {
@@ -273,7 +291,7 @@
       "price": 100,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=117578513893407&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-1a82a65b20f9022d650d4f5667336c1f/420/420/FaceAccessory/Png/noFilter",
       "rank": 11
     },
     {
@@ -284,19 +302,8 @@
       "price": 90,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=115245506922433&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-0ed1d83e0c84b2f177aa2daf9d60a76c/420/420/Hat/Png/noFilter",
       "rank": 37
-    },
-    {
-      "assetId": 114056942238304,
-      "name": "[PBR] Black/red golden jewelled horns ",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=114056942238304&width=420&height=420&format=png",
-      "rank": 8
     },
     {
       "assetId": 112911367450195,
@@ -306,7 +313,7 @@
       "price": 150,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=112911367450195&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-83d2b68addb0e17daec6c016e12b822b/420/420/BackAccessory/Png/noFilter",
       "rank": 31
     },
     {
@@ -317,19 +324,8 @@
       "price": 145,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=110319499372320&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-649d76d0946904c87bb4f08ab9b75bbe/420/420/BackAccessory/Png/noFilter",
       "rank": 20
-    },
-    {
-      "assetId": 108418388012974,
-      "name": "Blue cyber sword",
-      "assetTypeId": 47,
-      "assetTypeName": "WaistAccessory",
-      "price": 75,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=108418388012974&width=420&height=420&format=png",
-      "rank": 16
     },
     {
       "assetId": 107905103876831,
@@ -339,7 +335,7 @@
       "price": 150,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=107905103876831&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-ec1487436ae0c915e83b4379783d3879/420/420/BackAccessory/Png/noFilter",
       "rank": 43
     },
     {
@@ -350,7 +346,7 @@
       "price": 150,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=107830760895891&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-5af1600c27a53cf8f622d8dd6e52f263/420/420/BackAccessory/Png/noFilter",
       "rank": 45
     },
     {
@@ -361,7 +357,7 @@
       "price": 90,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=107095008480456&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-54bc6172616ad8477dbef16a2871e4d0/420/420/Hat/Png/noFilter",
       "rank": 25
     },
     {
@@ -372,7 +368,7 @@
       "price": 140,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=105461065154207&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-958304f210ec32f13319a363a3fcc977/420/420/BackAccessory/Png/noFilter",
       "rank": 15
     },
     {
@@ -383,7 +379,7 @@
       "price": 140,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=95110969483382&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-addec21bb6580231ef7bf26b4b707cac/420/420/BackAccessory/Png/noFilter",
       "rank": 34
     },
     {
@@ -394,7 +390,7 @@
       "price": 110,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=93192337059930&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-77077b25ab3e933a8069c9790d58dd2e/420/420/Hat/Png/noFilter",
       "rank": 2
     },
     {
@@ -405,7 +401,7 @@
       "price": 135,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=92867934281767&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-d2d472d979ad7bb83214a5bb985669e3/420/420/BackAccessory/Png/noFilter",
       "rank": 44
     },
     {
@@ -416,7 +412,7 @@
       "price": 90,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=90634979410540&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-2c50bf6fb1847469f9dd8db7e7436e38/420/420/Hat/Png/noFilter",
       "rank": 36
     },
     {
@@ -427,7 +423,7 @@
       "price": 150,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=88547779037836&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-f02d47e5411cbc970924201a91686ace/420/420/BackAccessory/Png/noFilter",
       "rank": 38
     },
     {
@@ -438,7 +434,7 @@
       "price": 150,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=88010539838137&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-67187e36c18244a9ba967e3a9fad4ac7/420/420/BackAccessory/Png/noFilter",
       "rank": 33
     },
     {
@@ -449,7 +445,7 @@
       "price": 150,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=86984436602601&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-f6c08188007759890cc4a91dcb627448/420/420/BackAccessory/Png/noFilter",
       "rank": 28
     },
     {
@@ -460,7 +456,7 @@
       "price": 100,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=86312140095193&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-df1fb1001a390a28c696e99868029064/420/420/Hat/Png/noFilter",
       "rank": 19
     },
     {
@@ -471,7 +467,7 @@
       "price": 150,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=86296037478936&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-8116d3a70bab5083a88b414e737bb787/420/420/BackAccessory/Png/noFilter",
       "rank": 22
     },
     {
@@ -482,7 +478,7 @@
       "price": 140,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=85708056856563&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-6445c240f10113b277e262779e6d552e/420/420/BackAccessory/Png/noFilter",
       "rank": 3
     },
     {
@@ -493,7 +489,7 @@
       "price": 150,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=84767700611805&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-054487f44298ba817286d43dfc469596/420/420/BackAccessory/Png/noFilter",
       "rank": 14
     },
     {
@@ -504,7 +500,7 @@
       "price": 150,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=84062622353279&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-c8c90665cfe160b0b279cf6b131fdec0/420/420/BackAccessory/Png/noFilter",
       "rank": 56
     },
     {
@@ -515,19 +511,8 @@
       "price": 150,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=83940501884631&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-b17ee24996ffcae6baa1c694cc720688/420/420/BackAccessory/Png/noFilter",
       "rank": 55
-    },
-    {
-      "assetId": 83398849212814,
-      "name": "[PBR] silver metallic horns",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=83398849212814&width=420&height=420&format=png",
-      "rank": 39
     },
     {
       "assetId": 80602461847182,
@@ -537,7 +522,7 @@
       "price": 160,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=80602461847182&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-d2c56895841756d780c23505fe198c3b/420/420/BackAccessory/Png/noFilter",
       "rank": 23
     },
     {
@@ -548,7 +533,7 @@
       "price": 100,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=79738540625712&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-b8ecc01d4e3c9455adc0220fd039606c/420/420/Hat/Png/noFilter",
       "rank": 41
     },
     {
@@ -559,7 +544,7 @@
       "price": 100,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=76680987618680&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-626052fbce1fddf0cbf84b43f4ca22f3/420/420/Hat/Png/noFilter",
       "rank": 13
     },
     {
@@ -570,7 +555,7 @@
       "price": 100,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=76090521545763&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-4b5a374980b7723aaf40156a93bba3df/420/420/Hat/Png/noFilter",
       "rank": 57
     },
     {
@@ -581,7 +566,7 @@
       "price": 135,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=74820048389112&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-a52d9fee1c19726f2cbba596afea37d6/420/420/BackAccessory/Png/noFilter",
       "rank": 7
     },
     {
@@ -592,7 +577,7 @@
       "price": 100,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=73886642022932&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-e1d85b7dc09e06f7fc3eb8129ab4fd81/420/420/Hat/Png/noFilter",
       "rank": 29
     },
     {
@@ -603,7 +588,7 @@
       "price": 80,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=71154994010748&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-73da8077a9fd1f7c26b01cb5bbc4767a/420/420/WaistAccessory/Png/noFilter",
       "rank": 9
     }
   ]

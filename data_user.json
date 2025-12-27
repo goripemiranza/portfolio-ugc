@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-12-27T15:59:29.302983Z",
+  "generatedAt": "2025-12-27T16:15:36.677283Z",
   "items": [
     {
       "assetId": 90778459718692,
@@ -7,7 +7,7 @@
       "type": "BackAccessory",
       "price": 140,
       "created": "2025-12-20T23:36:32.44Z",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=90778459718692&width=420&height=420&format=png"
+      "thumb": "https://tr.rbxcdn.com/180DAY-f4c31e60dc83a92530aeceecf53c3ff7/420/420/BackAccessory/Png/noFilter"
     },
     {
       "assetId": 72460352241415,
@@ -15,7 +15,7 @@
       "type": "Hat",
       "price": 100,
       "created": "2025-09-20T18:31:10.347Z",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=72460352241415&width=420&height=420&format=png"
+      "thumb": "https://tr.rbxcdn.com/180DAY-0d774b302de1b3afaa0a73e46a0591cd/420/420/Hat/Png/noFilter"
     },
     {
       "assetId": 79433470925362,
@@ -23,7 +23,15 @@
       "type": "HairAccessory",
       "price": 70,
       "created": "2025-08-27T16:17:51.857Z",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=79433470925362&width=420&height=420&format=png"
+      "thumb": "https://tr.rbxcdn.com/180DAY-f58d12d0115edd6308874587d98a0c00/420/420/HairAccessory/Png/noFilter"
+    },
+    {
+      "assetId": 105405757476156,
+      "name": "Shadow sword",
+      "type": "BackAccessory",
+      "price": 150,
+      "created": "2025-02-28T20:23:02.187Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-937e094a0a51aa3f54a8e79beb1be2a7/420/420/BackAccessory/Png/noFilter"
     },
     {
       "assetId": 78329863862393,
@@ -31,7 +39,7 @@
       "type": "BackAccessory",
       "price": 135,
       "created": "2024-11-21T22:50:56.287Z",
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=78329863862393&width=420&height=420&format=png"
+      "thumb": "https://tr.rbxcdn.com/180DAY-5f3ca706c5eef5a32ffed609f03b7963/420/420/BackAccessory/Png/noFilter"
     },
     {
       "assetId": 131797570873536,
@@ -41,7 +49,7 @@
       "price": 75,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=131797570873536&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-5edb2c371c57128691e3599651c7ee71/420/420/WaistAccessory/Png/noFilter",
       "rank": 10
     },
     {
@@ -52,7 +60,7 @@
       "price": 100,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=118071060681751&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-a78406f62c380ee819c7a03d79eba3d5/420/420/Hat/Png/noFilter",
       "rank": 12
     },
     {
@@ -63,7 +71,7 @@
       "price": 90,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=115579259474835&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-d008e8f59377f12029f1751c1b53061e/420/420/Hat/Png/noFilter",
       "rank": 4
     },
     {
@@ -74,7 +82,7 @@
       "price": 145,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=110801647934192&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-61cffe793b03a057b30df93f76a32868/420/420/BackAccessory/Png/noFilter",
       "rank": 2
     },
     {
@@ -85,19 +93,8 @@
       "price": 145,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=106885001707506&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-6d04ef91437e27da506a47b12a7df96f/420/420/BackAccessory/Png/noFilter",
       "rank": 6
-    },
-    {
-      "assetId": 105405757476156,
-      "name": "Shadow sword",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=105405757476156&width=420&height=420&format=png",
-      "rank": 9
     },
     {
       "assetId": 104449273621507,
@@ -107,7 +104,7 @@
       "price": 90,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=104449273621507&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-e82c0207684bb3488f5d63c99569cfda/420/420/Hat/Png/noFilter",
       "rank": 3
     },
     {
@@ -118,7 +115,7 @@
       "price": 150,
       "isOffSale": null,
       "priceStatus": null,
-      "thumb": "https://www.roblox.com/asset-thumbnail/image?assetId=83934865672699&width=420&height=420&format=png",
+      "thumb": "https://tr.rbxcdn.com/180DAY-a8ba5216b1c2493f33e695466260c77c/420/420/BackAccessory/Png/noFilter",
       "rank": 5
     }
   ]
