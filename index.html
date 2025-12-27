@@ -904,7 +904,7 @@
       ms_profile:"Profil", ms_group:"Groupe",
       ph_search:"Rechercher…", ph_search_group:"Rechercher…",
       type_all:"Tous",
-      loading:"Chargement…", err_short:"Données indisponibles."
+      loading:"Chargement…", err_short:"Données indisponibles.",
       type_all:"Tous",
       type_hat:"Chapeau",
       type_head:"Tête",
@@ -939,6 +939,33 @@
       stat_top_label:"Top",
       sale_creator_user:"Profil",
       sale_creator_group:"Groupe",
+
+      type_hat:"Chapeau",
+      type_hair:"Cheveux",
+      type_face:"Visage",
+      type_ears:"Oreilles",
+      type_neck:"Cou",
+      type_shoulder:"Épaule",
+      type_front:"Avant",
+      type_back:"Dos",
+      type_waist:"Taille",
+      type_tshirt:"T-Shirt",
+      type_shirt:"Chemise",
+      type_pants:"Pantalon",
+      type_sweater:"Pull",
+      type_jacket:"Veste",
+      type_dress:"Robe / Jupe",
+      type_shorts:"Short",
+      type_shoes:"Chaussures",
+      type_gear:"Équipement",
+      type_bundle:"Pack",
+      type_other:"Autre",
+      sales_updated:"MAJ ventes",
+      sales_day_label:"Ventes du jour",
+
+      empty_sales:"Aucune donnée.",
+      empty_sales_day:"Aucune vente pour ce jour.",
+      sale_created_today:"Créé aujourd’hui",
 },
     en:{
       brand:"Roblox Portfolio", tab_ugc:"UGC", tab_gallery:"Gallery",
@@ -955,7 +982,7 @@
       ms_profile:"Profile", ms_group:"Group",
       ph_search:"Search…", ph_search_group:"Search…",
       type_all:"All",
-      loading:"Loading…", err_short:"Data unavailable."
+      loading:"Loading…", err_short:"Data unavailable.",
       type_all:"All",
       type_hat:"Hat",
       type_head:"Head",
@@ -990,6 +1017,33 @@
       stat_top_label:"Top",
       sale_creator_user:"Profile",
       sale_creator_group:"Group",
+
+      type_hat:"Hat",
+      type_hair:"Hair",
+      type_face:"Face",
+      type_ears:"Ears",
+      type_neck:"Neck",
+      type_shoulder:"Shoulder",
+      type_front:"Front",
+      type_back:"Back",
+      type_waist:"Waist",
+      type_tshirt:"T-Shirt",
+      type_shirt:"Shirt",
+      type_pants:"Pants",
+      type_sweater:"Sweater",
+      type_jacket:"Jacket",
+      type_dress:"Dress / Skirt",
+      type_shorts:"Shorts",
+      type_shoes:"Shoes",
+      type_gear:"Gear",
+      type_bundle:"Bundle",
+      type_other:"Other",
+      sales_updated:"Sales updated",
+      sales_day_label:"Sales day",
+
+      empty_sales:"No data.",
+      empty_sales_day:"No sales for this day.",
+      sale_created_today:"Created today",
 },
     es:{
       brand:"Portafolio Roblox", tab_ugc:"UGC", tab_gallery:"Galería",
@@ -1138,34 +1192,33 @@
   // ✅ Requested accessory type groups: Tête / Corps / Taille (+ Vêtements)
   
   const TYPE_OPTIONS = [
-    { key:"ALL", labelKey:"type_all", badges:null },
+    { key:"ALL", labelKey:"type_all", badges:["Tous","All","—"] },
 
-    // Accessories (classic)
-    { key:"HAT", labelKey:"type_hat", badges:["Chapeau"] },
-    { key:"HEAD", labelKey:"type_head", badges:["Tête"] },
-    { key:"HAIR", labelKey:"type_hair", badges:["Cheveux"] },
-    { key:"FACE", labelKey:"type_face", badges:["Visage"] },
-    { key:"NECK", labelKey:"type_neck", badges:["Cou"] },
-    { key:"SHOULDER", labelKey:"type_shoulder", badges:["Épaule","Épaules"] },
-    { key:"FRONT", labelKey:"type_front", badges:["Avant"] },
-    { key:"BACK", labelKey:"type_back", badges:["Dos"] },
-    { key:"WAIST", labelKey:"type_waist", badges:["Taille"] },
+    // Accessoires (Roblox)
+    { key:"HAT", labelKey:"type_hat", badges:["Chapeau","Hat","Head","Tête"] },
+    { key:"HAIR", labelKey:"type_hair", badges:["Cheveux","Hair"] },
+    { key:"FACE", labelKey:"type_face", badges:["Visage","Face"] },
+    { key:"EARS", labelKey:"type_ears", badges:["Oreilles","Ears"] },
+    { key:"NECK", labelKey:"type_neck", badges:["Cou","Neck"] },
+    { key:"SHOULDER", labelKey:"type_shoulder", badges:["Épaule","Epaule","Shoulder"] },
+    { key:"FRONT", labelKey:"type_front", badges:["Avant","Front"] },
+    { key:"BACK", labelKey:"type_back", badges:["Dos","Back"] },
+    { key:"WAIST", labelKey:"type_waist", badges:["Taille","Waist"] },
 
-    // Clothing (2D / classic)
-    { key:"TOP", labelKey:"type_top", badges:["Haut"] },
-    { key:"BOTTOM", labelKey:"type_bottom", badges:["Bas"] },
-    { key:"DRESS", labelKey:"type_dress", badges:["Robe/Jupe"] },
+    // Vêtements (Classique / Layered)
+    { key:"TSHIRT", labelKey:"type_tshirt", badges:["T-Shirt","TShirt","T-shirt"] },
+    { key:"SHIRT", labelKey:"type_shirt", badges:["Shirt","Chemise","Haut"] },
+    { key:"PANTS", labelKey:"type_pants", badges:["Pants","Pantalon","Bas"] },
+    { key:"SWEATER", labelKey:"type_sweater", badges:["Sweater","Pull"] },
+    { key:"JACKET", labelKey:"type_jacket", badges:["Jacket","Veste"] },
+    { key:"DRESSSKIRT", labelKey:"type_dress", badges:["Dress","Skirt","Robe","Jupe","Dress & Skirt"] },
+    { key:"SHORTS", labelKey:"type_shorts", badges:["Shorts","Short"] },
+    { key:"SHOES", labelKey:"type_shoes", badges:["Shoes","Chaussures"] },
 
-    // Layered clothing (if present in data)
-    { key:"JACKET", labelKey:"type_jacket", badges:["Veste"] },
-    { key:"SWEATER", labelKey:"type_sweater", badges:["Pull"] },
-    { key:"SHIRTLC", labelKey:"type_shirt", badges:["Chemise"] },
-    { key:"PANTSLC", labelKey:"type_pants", badges:["Pantalon"] },
-    { key:"SHORTS", labelKey:"type_shorts", badges:["Short"] },
-    { key:"LSHOE", labelKey:"type_leftshoe", badges:["Chaussure (G)"] },
-    { key:"RSHOE", labelKey:"type_rightshoe", badges:["Chaussure (D)"] },
-
-    { key:"OTHER", labelKey:"type_other", badges:"OTHER" }
+    // Autres (au cas où)
+    { key:"GEAR", labelKey:"type_gear", badges:["Gear","Équipement","Equipement"] },
+    { key:"BUNDLE", labelKey:"type_bundle", badges:["Bundle","Pack"] },
+    { key:"OTHER", labelKey:"type_other", badges:["Other","Autre"] },
   ];
 
 
@@ -1261,6 +1314,84 @@
     if(!res.ok) throw new Error(`HTTP ${res.status}`);
     return await res.json();
   }
+
+
+  /* ---------- sales.json (Option A) ----------
+     Expected format (recommended):
+     {
+       "updated_at": "YYYY-MM-DD",
+       "items": {
+         "ASSET_ID": { "total_sales": 123, "sales_by_day": { "YYYY-MM-DD": 5 } }
+       }
+     }
+     - total_sales: total lifetime sales (number)
+     - sales_by_day: per-day sales counts (object)
+  ------------------------------------------- */
+  let SALES_STORE = null;
+
+  function numOrNull(x){ const n = Number(x); return (Number.isFinite(n) ? n : null); }
+
+  function normalizeByDay(byDay){
+    const m = {};
+    if(!byDay) return m;
+    if(Array.isArray(byDay)){
+      for(const e of byDay){
+        const d = e?.date ?? e?.day;
+        const c = numOrNull(e?.count ?? e?.sales ?? e?.v);
+        if(d && c!=null) m[String(d)] = c;
+      }
+      return m;
+    }
+    if(typeof byDay === "object"){
+      for(const [d,c] of Object.entries(byDay)){
+        const n = numOrNull(c);
+        if(n!=null) m[String(d)] = n;
+      }
+      return m;
+    }
+    return m;
+  }
+
+  function normalizeSales(raw){
+    const out = { updatedAt:null, items:{} };
+    if(!raw) return out;
+    out.updatedAt = raw.updated_at || raw.updatedAt || raw.updated || null;
+
+    const src = raw.items || raw.data || raw;
+    if(Array.isArray(src)){
+      for(const r of src){
+        const id = r?.assetId ?? r?.asset_id ?? r?.id;
+        if(!id) continue;
+        out.items[String(id)] = {
+          totalSales: numOrNull(r?.total_sales ?? r?.totalSales ?? r?.salesTotal ?? r?.sales ?? r?.total ?? null),
+          byDay: normalizeByDay(r?.sales_by_day ?? r?.salesByDay ?? r?.byDay ?? r?.daily ?? null),
+        };
+      }
+      return out;
+    }
+
+    if(typeof src === "object"){
+      for(const [k,v] of Object.entries(src)){
+        if(k==="updated_at" || k==="updatedAt" || k==="updated") continue;
+        if(!v || typeof v !== "object") continue;
+        out.items[String(k)] = {
+          totalSales: numOrNull(v?.total_sales ?? v?.totalSales ?? v?.salesTotal ?? v?.sales ?? v?.total ?? null),
+          byDay: normalizeByDay(v?.sales_by_day ?? v?.salesByDay ?? v?.byDay ?? v?.daily ?? null),
+        };
+      }
+    }
+    return out;
+  }
+
+  async function loadSales(){
+    try{
+      const raw = await fetchJsonLocal("sales.json");
+      SALES_STORE = normalizeSales(raw);
+    }catch(e){
+      SALES_STORE = null;
+    }
+  }
+
 
   
   function fillTypeSelect(selId){
@@ -1360,7 +1491,8 @@
   document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeImgModal(); });
 
 
-  async function refreshAll(){ await Promise.all([userSec.refresh(), groupSec.refresh()]); buildSales(); }
+  async function refreshAll(){ await Promise.all([userSec.refresh(), groupSec.refresh()]); await loadSales();
+    buildSales(); }
 
 
 
@@ -1506,19 +1638,30 @@
     const status = document.getElementById("statusSales");
     const statsEl = document.getElementById("salesStats");
     const listAll = document.getElementById("salesAll");
-    const listToday = document.getElementById("salesToday");
+    const listDay = document.getElementById("salesToday");
     const cTop = document.getElementById("chartTop");
     const cDaily = document.getElementById("chartDaily");
 
-    if(!status || !statsEl || !listAll || !listToday || !cTop || !cDaily) return;
+    if(!status || !statsEl || !listAll || !listDay || !cTop || !cDaily) return;
 
     const store = window.__UGC_STORE || {};
     const userItems = Array.isArray(store.user) ? store.user.map(x=>({...x, __src:"user"})) : [];
     const groupItems = Array.isArray(store.group) ? store.group.map(x=>({...x, __src:"group"})) : [];
     const all = [...userItems, ...groupItems];
 
-    status.textContent = `${all.length} item(s)`;
+    // Merge sales.json (Option A) if present
+    const sItems = SALES_STORE?.items || {};
+    for(const it of all){
+      const s = sItems[String(it.assetId)];
+      it.salesTotal = (s && typeof s.totalSales==="number") ? s.totalSales : null;
+      it.salesByDay = (s && s.byDay && typeof s.byDay==="object") ? s.byDay : {};
+    }
 
+    // Header status
+    const salesTag = SALES_STORE?.updatedAt ? ` • ${t("sales_updated")}: ${SALES_STORE.updatedAt}` : "";
+    status.textContent = `${all.length} item(s)${salesTag}`;
+
+    // Quick stats (still useful)
     const prices = all.map(x=>x.price).filter(n => typeof n==="number" && isFinite(n));
     const total = all.length;
     const avg = prices.length ? Math.round(prices.reduce((a,b)=>a+b,0)/prices.length) : null;
@@ -1532,14 +1675,10 @@
       <div class="stat"><div class="k">${t("stat_max_price")}</div><div class="v">${fmtRobux(maxP)}</div></div>
     `;
 
-    // "Today" = created today (fallback) — if sales-per-day is ever added, you can swap logic here.
-    const now = new Date();
-    const todays = all.filter(it => it.createdTs && sameDay(new Date(it.createdTs), now));
-
-    function row(it){
+    function row(it, extra){
       const creator = it.__src === "user" ? t("sale_creator_user") : t("sale_creator_group");
-      const sales = (typeof it.sales === "number") ? `${it.sales}` : "—";
-      const sub = `${creator} • ${it.badge || "—"} • ${fmtRobux(it.price)} • ${fmtDate(it.createdTs)} • ${sales}`;
+      const salesTxt = (typeof it.salesTotal==="number") ? `${it.salesTotal}` : "—";
+      const sub = `${creator} • ${it.badge || "—"} • ${fmtRobux(it.price)} • ${fmtDate(it.createdTs)} • ${salesTxt}`;
       const url = `https://www.roblox.com/catalog/${it.assetId}`;
       return `
         <a class="saleRow hoverLift" href="${url}" target="_blank" rel="noreferrer">
@@ -1549,14 +1688,15 @@
             <div class="saleSub">
               <span class="pill">${escapeHtml(it.badge || "—")}</span>
               <span>${escapeHtml(sub)}</span>
+              ${extra ? `<span class="pill">${escapeHtml(extra)}</span>` : ``}
             </div>
           </div>
         </a>
       `;
     }
 
-    // Sort by sales desc if present, else by price desc, then newest
-    const score = (it) => (typeof it.sales==="number" ? it.sales : 0);
+    // Sort by total sales desc (if available), else fallback to price desc then newest
+    const score = (it) => (typeof it.salesTotal==="number" ? it.salesTotal : 0);
     const sorted = [...all].sort((a,b)=>{
       const sa = score(a), sb = score(b);
       if(sb!==sa) return sb-sa;
@@ -1566,33 +1706,74 @@
       return (b.createdTs||0)-(a.createdTs||0);
     });
 
-    listToday.innerHTML = todays.length ? todays.slice(0,20).map(row).join("") : `<div class="muted">—</div>`;
-    listAll.innerHTML = sorted.map(row).join("");
-
-    // Top chart: top 8 labels + values
-    const top8 = sorted.slice(0,8);
-    const useSales = top8.some(x => typeof x.sales==="number");
-    const topVals = top8.map(x => useSales ? (x.sales||0) : (x.price||0));
-    const topLabs = top8.map(x => (x.name||"").replace(/^\[[^\]]+\]\s*/,"").slice(0,10) || String(x.assetId).slice(-6));
-    drawBars(cTop, topLabs, topVals);
-
-    // Daily trend: items created per day (last 14 days)
-    const days = 14;
-    const buckets = [];
-    for(let i=days-1;i>=0;i--){
-      const d = new Date(now);
-      d.setDate(now.getDate()-i);
-      d.setHours(0,0,0,0);
-      buckets.push({d, v:0});
-    }
+    // --------- Daily sales (Option A) ---------
+    const dayTotals = {};
     for(const it of all){
-      if(!it.createdTs) continue;
-      const d = new Date(it.createdTs);
-      for(const b of buckets){
-        if(sameDay(d,b.d)){ b.v++; break; }
+      const byDay = it.salesByDay || {};
+      for(const [d,c] of Object.entries(byDay)){
+        const n = Number(c);
+        if(!Number.isFinite(n) || n<=0) continue;
+        dayTotals[d] = (dayTotals[d]||0) + n;
       }
     }
-    drawLine(cDaily, buckets.map(b=>({v:b.v, lab:String(b.d.getDate())})));
+    const days = Object.keys(dayTotals).sort();
+    const lastDay = days.length ? days[days.length-1] : null;
+
+    // "Sold in one day" list = items that sold on the latest recorded day
+    let soldThatDay = [];
+    if(lastDay){
+      soldThatDay = all
+        .map(it => ({...it, __daySales: Number(it.salesByDay?.[lastDay]||0)}))
+        .filter(it => it.__daySales>0)
+        .sort((a,b)=>b.__daySales-a.__daySales);
+    }
+
+    // Render lists
+    listAll.innerHTML = sorted.slice(0, 200).map(it => row(it)).join("") || `<div class="muted">${t("empty_sales")}</div>`;
+    if(lastDay){
+      listDay.innerHTML = soldThatDay.slice(0, 200).map(it => row(it, `${lastDay}: ${it.__daySales}`)).join("") || `<div class="muted">${t("empty_sales_day")}</div>`;
+    }else{
+      // Fallback: created today
+      const now = new Date();
+      const todays = all.filter(it => it.createdTs && sameDay(new Date(it.createdTs), now));
+      listDay.innerHTML = todays.slice(0, 200).map(it => row(it, t("sale_created_today"))).join("") || `<div class="muted">${t("empty_sales_day")}</div>`;
+    }
+
+    // Charts
+    // Top chart = by total sales if present, else by price
+    const top = sorted.slice(0, 10).map(it => ({
+      v: (typeof it.salesTotal==="number" ? it.salesTotal : 0),
+      lab: (it.name || ("#" + it.assetId)).slice(0, 14)
+    }));
+    drawBars(cTop, top);
+
+    // Daily chart = aggregated day totals (last 30 days)
+    if(days.length){
+      const points = days.map(d => ({ d, ts: Date.parse(d+"T00:00:00Z")||Date.parse(d), v: dayTotals[d] }))
+        .filter(p => Number.isFinite(p.ts))
+        .sort((a,b)=>a.ts-b.ts)
+        .slice(-30)
+        .map(p => ({ v:p.v, lab: p.d.slice(5) }));
+      drawLine(cDaily, points);
+    }else{
+      // fallback (created per day) — last 14 days
+      const buckets = [];
+      const now = new Date();
+      for(let i=13;i>=0;i--){
+        const d = new Date(now);
+        d.setDate(now.getDate()-i);
+        d.setHours(0,0,0,0);
+        buckets.push({d, v:0});
+      }
+      for(const it of all){
+        if(!it.createdTs) continue;
+        const d = new Date(it.createdTs);
+        for(const b of buckets){
+          if(sameDay(d,b.d)){ b.v++; break; }
+        }
+      }
+      drawLine(cDaily, buckets.map(b=>({v:b.v, lab:String(b.d.getDate())})));
+    }
   }
 
   document.getElementById("refreshAllBtn").addEventListener("click", refreshAll);
