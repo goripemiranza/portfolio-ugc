@@ -147,8 +147,8 @@
     }
     /* Important: options lisibles dans le dropdown */
     select option{
-      color:#111;
-      background:#fff;
+      color:#e8edf7;
+      background:#0b0f17;
     }
     input[type="text"]::placeholder{color:rgba(255,255,255,0.55);font-weight:800}
 
@@ -288,13 +288,64 @@
     footer{color:rgba(255,255,255,0.55);font-size:12px;text-align:center;padding:6px 0 0}
 
     @media (max-width: 980px){
-      body{overflow:auto}
+      body{overflow:hidden}
       .wrap{height:auto}
       .dual{grid-template-columns:1fr; height:auto}
       .views{flex:auto}
       .view{height:auto}
-      .scroller{max-height:none; overflow:visible; padding-right:0}
+      .scroller{max-height:none; overflow:auto; padding-right:0}
     }
+  
+    /* ---------- Pretty scrollbars ---------- */
+    *{scrollbar-width:thin; scrollbar-color: rgba(255,255,255,0.28) rgba(255,255,255,0.10);}
+    ::-webkit-scrollbar{width:10px;height:10px}
+    ::-webkit-scrollbar-track{background:rgba(255,255,255,0.08); border-radius:999px}
+    ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.24); border-radius:999px; border:2px solid rgba(0,0,0,0.35)}
+    ::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.34)}
+    ::-webkit-scrollbar-corner{background:transparent}
+
+    /* Keep page fixed: scroll only inside scrollers */
+    html, body{height:100%; overflow:hidden}
+
+    /* ---------- Gallery captions: hidden unless hover ---------- */
+    .shot{position:relative}
+    .shot .cap{
+      position:absolute; left:10px; right:10px; bottom:10px;
+      padding:10px 12px; border-radius:14px;
+      background:linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.65));
+      color:rgba(255,255,255,0.92);
+      opacity:0; transform:translateY(6px);
+      transition:opacity .18s ease, transform .18s ease;
+      pointer-events:none;
+    }
+    .shot:hover .cap{opacity:1; transform:translateY(0)}
+
+    /* ---------- Topbar language ---------- */
+    .topbar{gap:12px}
+    .rightTools{display:flex; align-items:center; gap:10px}
+    .langBtn{
+      border:1px solid rgba(255,255,255,0.12);
+      background:rgba(0,0,0,0.18);
+      color:rgba(255,255,255,0.92);
+      padding:8px 10px;
+      border-radius:999px;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+      white-space:nowrap;
+    }
+    .langBtn:hover{transform:translateY(-1px); background:rgba(0,0,0,0.26); border-color:rgba(255,255,255,0.18)}
+    .langSelect{
+      border:1px solid rgba(255,255,255,0.12);
+      background:rgba(0,0,0,0.18);
+      color:rgba(255,255,255,0.92);
+      padding:8px 10px;
+      border-radius:999px;
+      font-weight:700;
+      outline:none;
+    }
+    .langSelect option{background:#0b0f17; color:#e8edf7}
+
   </style>
 </head>
 <body>
@@ -305,16 +356,33 @@
         <button class="tab active" id="tabUgc" type="button">UGC</button>
         <button class="tab" id="tabGallery" type="button">Galerie</button>
       </div>
+      <div class="rightTools">
+        <button class="langBtn" id="btnTranslate" type="button">🌐 Traduire</button>
+        <select class="langSelect" id="langSelect" aria-label="Langue">
+          <option value="" selected>Choisir une langue…</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="de">Deutsch</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Português</option>
+          <option value="nl">Nederlands</option>
+          <option value="pl">Polski</option>
+          <option value="tr">Türkçe</option>
+          <option value="ru">Русский</option>
+          <option value="ar">العربية</option>
+          <option value="hi">हिन्दी</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="zh-CN">中文(简体)</option>
+          <option value="zh-TW">中文(繁體)</option>
+        </select>
+      </div>
     </div>
 
     <div class="card hero">
       <div class="kicker">UGC • Accessoires • Vêtements</div>
       <h1>lulu8203 — Portfolio</h1>
-      <p class="subtitle">
-        Toutes les créations <b>UGC en vente</b>, séparées en deux colonnes (Profil / Groupe).
-        + une <b>Galerie</b> dédiée pour ajouter des images d’avancement (WIP) à partager.
-      </p>
-      <p class="heroNote">Données UGC : <b>data_user.json</b> et <b>data_group.json</b> (GitHub Actions). Galerie : <b>gallery.json</b> (optionnel).</p>
+      <p class="subtitle" id="t_hero_sub">Créations UGC <b>en vente</b> — séparées entre <b>Profil</b> (lulu8203) et <b>Groupe</b> (Powerful Artists).</p>
       <div class="actions">
         <a class="btn primary" href="https://www.roblox.com/users/828726934/profile" target="_blank" rel="noopener">Profil Roblox</a>
         <a class="btn" href="https://www.roblox.com/communities/16981319/Powerful-artists" target="_blank" rel="noopener">Groupe Roblox</a>
@@ -385,22 +453,11 @@
         <div class="card gallery">
           <div class="galleryHeader">
             <div>
-              <h2>Galerie — images d’avancement</h2>
-              <p class="muted">
-                Ajoute des images (WIP, renders, screenshots) pour montrer ton avancement.
-                <br><span class="muted">Pour que tout le monde les voie via le lien, mets-les dans <b>gallery.json</b> (dans le repo).</span>
-              </p>
+              <h2 id="t_gallery_title">Galerie</h2>
             </div>
             <div class="status" id="statusGallery">—</div>
           </div>
 
-          <div class="galleryTools">
-            <div class="muted" style="max-width:92ch">
-              ✅ Pour ajouter des images : mets-les dans le dossier <b>gallery/</b> sur GitHub (commit),
-              puis le workflow génère automatiquement <b>gallery.json</b>.
-              <br>Les images seront visibles ici pour tous les visiteurs.
-            </div>
-          </div>
           <div class="scroller">
             <div class="galleryGrid" id="galleryGrid"></div>
           </div>
@@ -669,6 +726,25 @@
 
   // charge au clic (et si déjà sur galerie)
   tabGallery.addEventListener("click", refreshGallery);
+
+  /* ---------- Translate (all languages via Google Translate view) ----------
+     Important: A public website cannot fully prevent copying; this is a convenience feature.
+  */
+  const btnTranslate = document.getElementById("btnTranslate");
+  const langSelect = document.getElementById("langSelect");
+  function openTranslate(lang){
+    if(!lang) return;
+    const u = encodeURIComponent(window.location.href);
+    const url = `https://translate.google.com/translate?sl=auto&tl=${encodeURIComponent(lang)}&u=${u}`;
+    window.open(url, "_blank", "noopener");
+    langSelect.value = "";
+  }
+  btnTranslate?.addEventListener("click", () => {
+    // focus the dropdown
+    langSelect?.focus();
+    langSelect?.click?.();
+  });
+  langSelect?.addEventListener("change", (e) => openTranslate(e.target.value));
 </script>
 </body>
 </html>
