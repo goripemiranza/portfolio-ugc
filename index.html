@@ -395,12 +395,12 @@
           </div>
 
           <div class="galleryTools">
-            <input id="galleryUrl" type="text" placeholder="URL d’une image (PNG/JPG/WebP) — optionnel (prévisualisation locale)" />
-            <input id="galleryCap" type="text" placeholder="Légende (optionnel)" />
-            <button class="btn" id="addGalleryBtn" type="button">Ajouter</button>
-            <button class="btn" id="clearGalleryBtn" type="button">Vider (local)</button>
+            <div class="muted" style="max-width:92ch">
+              ✅ Pour ajouter des images : mets-les dans le dossier <b>gallery/</b> sur GitHub (commit),
+              puis le workflow génère automatiquement <b>gallery.json</b>.
+              <br>Les images seront visibles ici pour tous les visiteurs.
+            </div>
           </div>
-
           <div class="scroller">
             <div class="galleryGrid" id="galleryGrid"></div>
           </div>
@@ -622,11 +622,8 @@
   refreshAll();
 
   /* ---------- Gallery (progress images) ----------
-     - Reads gallery.json if present in repo (for sharing)
-     - Allows local preview additions (localStorage) for convenience
+     - Lit gallery.json (généré par GitHub Actions à partir du dossier /gallery)
   */
-  const LS_KEY = "portfolio_gallery_local_v1";
-
   function setGalleryStatus(text){
     document.getElementById("statusGallery").textContent = text;
   }
@@ -636,7 +633,7 @@
   function renderGallery(items){
     const grid = document.getElementById("galleryGrid");
     if(!items.length){
-      grid.innerHTML = `<div class="empty">Aucune image pour le moment. Ajoute-en via <span class="muted">gallery.json</span> (partage) ou via l'input (local).</div>`;
+      grid.innerHTML = `<div class="empty">Aucune image pour le moment. Ajoute des fichiers dans <b>gallery/</b> sur GitHub.</div>`;
       return;
     }
     grid.innerHTML = items.map(x => {
@@ -655,57 +652,21 @@
     }).join("");
   }
 
-  function loadLocalGallery(){
-    try{
-      const raw = localStorage.getItem(LS_KEY);
-      if(!raw) return [];
-      const j = JSON.parse(raw);
-      return Array.isArray(j) ? j : [];
-    }catch(e){ return []; }
-  }
-
-  function saveLocalGallery(items){
-    try{ localStorage.setItem(LS_KEY, JSON.stringify(items)); }catch(e){}
-  }
-
-  async function loadRepoGallery(){
+  async function refreshGallery(){
+    setGalleryStatus("Chargement…");
     try{
       const j = await fetchJsonLocal("gallery.json");
       const items = Array.isArray(j) ? j : (Array.isArray(j.items) ? j.items : []);
-      return items.filter(x => x && typeof x.url === "string" && x.url.trim());
+      const clean = items.filter(x => x && typeof x.url === "string" && x.url.trim());
+      renderGallery(clean);
+      setGalleryStatus(`${clean.length} image(s)`);
     }catch(e){
-      return [];
+      renderGallery([]);
+      setGalleryStatus("gallery.json introuvable");
     }
   }
 
-  async function refreshGallery(){
-    setGalleryStatus("Chargement…");
-    const repoItems = await loadRepoGallery();       // shared
-    const localItems = loadLocalGallery();           // local preview
-    const merged = [...repoItems, ...localItems];
-    renderGallery(merged);
-    setGalleryStatus(`${repoItems.length} image(s) (repo) + ${localItems.length} (local)`);
-  }
-
-  document.getElementById("addGalleryBtn").addEventListener("click", async ()=>{
-    const url = document.getElementById("galleryUrl").value.trim();
-    const caption = document.getElementById("galleryCap").value.trim();
-    if(!url) return;
-    const items = loadLocalGallery();
-    items.unshift({ url, caption });
-    saveLocalGallery(items);
-    document.getElementById("galleryUrl").value = "";
-    document.getElementById("galleryCap").value = "";
-    await refreshGallery();
-    setActiveView("gallery");
-  });
-
-  document.getElementById("clearGalleryBtn").addEventListener("click", async ()=>{
-    saveLocalGallery([]);
-    await refreshGallery();
-  });
-
-  // load when opening gallery
+  // charge au clic (et si déjà sur galerie)
   tabGallery.addEventListener("click", refreshGallery);
 </script>
 </body>
