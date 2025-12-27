@@ -322,7 +322,7 @@
 
     /* ---------- Topbar language ---------- */
     .topbar{gap:12px}
-    .rightTools{display:flex; align-items:center; gap:10px}
+    .rightTools{display:flex; align-items:center; gap:10px; position:relative}
     .langBtn{
       border:1px solid rgba(255,255,255,0.12);
       background:rgba(0,0,0,0.18);
@@ -335,15 +335,6 @@
       white-space:nowrap;
     }
     .langBtn:hover{transform:translateY(-1px); background:rgba(0,0,0,0.26); border-color:rgba(255,255,255,0.18)}
-    .langSelect{
-      border:1px solid rgba(255,255,255,0.12);
-      background:rgba(0,0,0,0.18);
-      color:rgba(255,255,255,0.92);
-      padding:8px 10px;
-      border-radius:999px;
-      font-weight:700;
-      outline:none;
-    }
     .langSelect option{background:#0b0f17; color:#e8edf7}
 
   
@@ -375,21 +366,67 @@
 
     /* language menu */
     .rightTools{position:relative}
+    
+    .langMini{
+      border:1px solid rgba(255,255,255,0.14);
+      background:rgba(0,0,0,0.22);
+      color:rgba(255,255,255,0.96);
+      width:40px;
+      height:40px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      font-size:18px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.35);
+      transform:translateX(6px) scale(.92);
+      opacity:0;
+      transition:opacity .16s ease, transform .16s ease, box-shadow .2s ease;
+      cursor:pointer;
+    }
+    .langMini.show{
+      opacity:1;
+      transform:translateX(0) scale(1);
+    }
+    .langMini:hover{box-shadow:0 14px 34px rgba(0,0,0,0.45); transform:translateY(-1px) scale(1.02)}
+    .langMini:active{transform:translateY(0) scale(.98)}
+    .langTitle{font-weight:950; letter-spacing:.2px; margin:2px 2px 10px; opacity:.92}
     .langMenu{
-      position:absolute;
-      right:0; top:42px;
-      background:rgba(12,16,26,0.92);
+      position:fixed;
+      background:rgba(12,16,26,0.94);
       border:1px solid rgba(255,255,255,0.12);
       border-radius:16px;
-      padding:10px;
-      box-shadow:0 18px 45px rgba(0,0,0,0.45);
-      display:none;
-      min-width:220px;
-      z-index:50;
-      backdrop-filter: blur(10px);
+      padding:12px;
+      box-shadow:0 18px 55px rgba(0,0,0,0.55);
+      width:min(360px, 92vw);
+      z-index:1000;
+      backdrop-filter: blur(12px);
+      opacity:0;
+      transform:translateY(-8px) scale(.98);
+      pointer-events:none;
+      visibility:hidden;
+      transition:opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
     }
-    .langMenu.open{display:block}
-    .langSelect{width:100%}
+    .langMenu.open{
+      opacity:1;
+      transform:translateY(0) scale(1);
+      pointer-events:auto;
+      visibility:visible;
+      transition:opacity .18s ease, transform .18s ease, visibility 0s;
+    }
+    .langSelect{
+      width:100%;
+      border:1px solid rgba(255,255,255,0.12);
+      background:rgba(0,0,0,0.18);
+      color:rgba(255,255,255,0.92);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:900;
+      outline:none;
+    }
+    .langSelect:focus{border-color:rgba(131,107,255,0.8); box-shadow:0 0 0 3px rgba(131,107,255,0.22)}
+
+.langSelect{width:100%}
 
     /* scroll reveal */
     .reveal{opacity:0; transform:translateY(10px); transition:opacity .22s ease, transform .22s ease}
@@ -497,6 +534,100 @@
       .scroller{flex:1 !important; min-height:0 !important; overflow:auto !important; max-height:none !important; padding-right:0 !important;}
     }
 
+
+    /* lively micro-interactions */
+    .tab,.btn,.langBtn,.link{
+      transition:transform .14s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+      will-change:transform;
+    }
+    .tab:hover,.btn:hover,.langBtn:hover,.link:hover{transform:translateY(-1px)}
+    .tab:active,.btn:active,.langBtn:active,.link:active{transform:translateY(0) scale(.98)}
+    .item{
+      box-shadow:0 16px 40px rgba(0,0,0,0.25);
+    }
+    .item:hover{box-shadow:0 22px 55px rgba(0,0,0,0.35)}
+    .thumb img{transition:transform .28s ease, filter .28s ease;}
+    .item:hover .thumb img{transform:scale(1.03); filter:saturate(1.05)}
+    .scroller{position:relative; scroll-behavior:smooth; overscroll-behavior:contain;}
+    .scroller::before,.scroller::after{
+      content:"";
+      position:sticky;
+      left:0; right:0;
+      height:18px;
+      pointer-events:none;
+      display:block;
+      z-index:2;
+    }
+    .scroller::before{top:0; background:linear-gradient(to bottom, rgba(8,10,16,0.92), rgba(8,10,16,0));}
+    .scroller::after{bottom:0; background:linear-gradient(to top, rgba(8,10,16,0.92), rgba(8,10,16,0));}
+    /* subtle animated aurora */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-20%;
+      background:radial-gradient(60% 50% at 20% 30%, rgba(131,107,255,0.18), transparent 60%),
+                 radial-gradient(55% 45% at 80% 40%, rgba(0,255,209,0.10), transparent 60%),
+                 radial-gradient(45% 40% at 55% 80%, rgba(255,180,90,0.06), transparent 55%);
+      filter:blur(40px);
+      animation:auroraMove 18s ease-in-out infinite;
+      z-index:-1;
+      transform:translateZ(0);
+    }
+    @keyframes auroraMove{
+      0%{transform:translate(-2%, -1%) scale(1)}
+      50%{transform:translate(2%, 1%) scale(1.03)}
+      100%{transform:translate(-2%, -1%) scale(1)}
+    }
+
+    /* gallery lightbox */
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background:rgba(0,0,0,0.62);
+      z-index:2000;
+      backdrop-filter: blur(10px);
+    }
+    .modal.open{display:flex; animation:fadeIn .18s ease-out;}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .modalCard{
+      width:min(980px, 96vw);
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.14);
+      background:rgba(12,16,26,0.96);
+      box-shadow:0 26px 80px rgba(0,0,0,0.65);
+    }
+    .modalBar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:10px 12px;
+      border-bottom:1px solid rgba(255,255,255,0.10);
+    }
+    .modalCap{font-weight:900; opacity:.9; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+    .closeBtn{
+      border:1px solid rgba(255,255,255,0.14);
+      background:rgba(0,0,0,0.20);
+      color:rgba(255,255,255,0.92);
+      border-radius:12px;
+      padding:8px 10px;
+      cursor:pointer;
+      font-weight:950;
+    }
+    .closeBtn:hover{transform:translateY(-1px)}
+    .closeBtn:active{transform:translateY(0) scale(.98)}
+    .modalImg{
+      display:block;
+      width:100%;
+      max-height:80vh;
+      object-fit:contain;
+      background:#0b0d14;
+    }
 </style>
 </head>
 <body>
@@ -508,35 +639,56 @@
         <button class="tab" id="tabGallery" type="button" data-i18n="tab_gallery">Galerie</button>
       </div>
       <div class="rightTools">
-        <button class="langBtn" id="btnLang" type="button">🌐 Langue</button>
+        <button class="langMini" id="btnLangMini" type="button" aria-label="Langue actuelle" title="Langue" hidden>🇫🇷</button>
+        <button class="langBtn" id="btnLang" type="button">🌐 <span data-i18n="lang">Langue</span></button>
         <div class="langMenu" id="langMenu" aria-hidden="true">
+          <div class="langTitle">🌐 <span data-i18n="choose_lang">Choisir une langue</span></div>
           <select class="langSelect" id="langSelect" aria-label="Langue">
-            <option value="fr">Français</option>
-            <option value="en">English</option>
-            <option value="es">Español</option>
-            <option value="de">Deutsch</option>
-            <option value="pt">Português</option>
-            <option value="it">Italiano</option>
-            <option value="nl">Nederlands</option>
-            <option value="pl">Polski</option>
-            <option value="tr">Türkçe</option>
-            <option value="ru">Русский</option>
-            <option value="uk">Українська</option>
-            <option value="ar">العربية</option>
-            <option value="he">עברית</option>
-            <option value="hi">हिन्दी</option>
-            <option value="bn">বাংলা</option>
-            <option value="id">Bahasa Indonesia</option>
-            <option value="vi">Tiếng Việt</option>
-            <option value="th">ไทย</option>
-            <option value="ja">日本語</option>
-            <option value="ko">한국어</option>
-            <option value="zh">中文</option>
-            <option value="sv">Svenska</option>
-            <option value="no">Norsk</option>
-            <option value="da">Dansk</option>
-            <option value="fi">Suomi</option>
-            <option value="el">Ελληνικά</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="nl">🇳🇱 Nederlands</option>
+            <option value="pl">🇵🇱 Polski</option>
+            <option value="tr">🇹🇷 Türkçe</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="uk">🇺🇦 Українська</option>
+            <option value="ar">🇸🇦 العربية</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+            <option value="bn">🇧🇩 বাংলা</option>
+            <option value="ur">🇵🇰 اردو</option>
+            <option value="id">🇮🇩 Bahasa Indonesia</option>
+            <option value="ms">🇲🇾 Bahasa Melayu</option>
+            <option value="vi">🇻🇳 Tiếng Việt</option>
+            <option value="th">🇹🇭 ไทย</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="zh">🇨🇳 中文</option>
+            <option value="he">🇮🇱 עברית</option>
+            <option value="fa">🇮🇷 فارسی</option>
+            <option value="sv">🇸🇪 Svenska</option>
+            <option value="no">🇳🇴 Norsk</option>
+            <option value="da">🇩🇰 Dansk</option>
+            <option value="fi">🇫🇮 Suomi</option>
+            <option value="el">🇬🇷 Ελληνικά</option>
+            <option value="cs">🇨🇿 Čeština</option>
+            <option value="hu">🇭🇺 Magyar</option>
+            <option value="ro">🇷🇴 Română</option>
+            <option value="bg">🇧🇬 Български</option>
+            <option value="sr">🇷🇸 Срpski</option>
+            <option value="hr">🇭🇷 Hrvatski</option>
+            <option value="sk">🇸🇰 Slovenčina</option>
+            <option value="sl">🇸🇮 Slovenščina</option>
+            <option value="lt">🇱🇹 Lietuvių</option>
+            <option value="lv">🇱🇻 Latviešu</option>
+            <option value="et">🇪🇪 Eesti</option>
+            <option value="sw">🇰🇪 Kiswahili</option>
+            <option value="tl">🇵🇭 Filipino</option>
+            <option value="ta">🇮🇳 தமிழ்</option>
+            <option value="te">🇮🇳 తెలుగు</option>
+            <option value="mr">🇮🇳 मराठी</option>
           </select>
         </div>
       </div>
@@ -639,7 +791,12 @@
   /* ---------- i18n dictionary (must be defined before first refresh) ---------- */
   const I18N = {
     fr:{
-      brand:"Portfolio Roblox", tab_ugc:"UGC", tab_gallery:"Galerie",
+      brand:"Portfolio Roblox",
+      img_invalid:"Image invalide",
+      no_caption:"Sans légende",
+      gal_missing:"Galerie introuvable.",
+      choose_lang:"Choisir une langue",
+      lang:"Langue", tab_ugc:"UGC", tab_gallery:"Galerie",
       btn_profile:"Profil Roblox", btn_group:"Groupe Roblox", btn_refresh:"Actualiser",
       label_type:"Type d’accessoire", label_kw:"Mot-clé (nom)", ph_kw:"Ex: corne, crown, sword…",
       open:"Ouvrir",
@@ -879,7 +1036,7 @@
       const img = it.thumb || thumbFallback(it.assetId);
       const safeTitle = (it.name || "").replaceAll('"', '&quot;');
       return `
-        <div class="item" id="${prefix}${it.assetId}">
+        <div class="item reveal" id="${prefix}${it.assetId}">
           <div class="thumb">
             <span class="badge">${it.badge}</span>
             <img loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous"
@@ -900,6 +1057,7 @@
         </div>
       `;
     }).join("");
+    addReveal(grid);
   }
 
   async function fetchJsonLocal(path){
@@ -964,6 +1122,41 @@
       typeSelId:"typeGroup", kwId:"kwGroup", itemPrefix:"g-" }
   );
 
+  // Gallery lightbox (visual only)
+  const imgModal = document.getElementById("imgModal");
+  const imgModalImg = document.getElementById("imgModalImg");
+  const imgModalCap = document.getElementById("imgModalCap");
+  const imgModalClose = document.getElementById("imgModalClose");
+
+  function openImgModal(src, caption){
+    if(!imgModal || !imgModalImg) return;
+    imgModalImg.src = src;
+    imgModalImg.alt = caption || "";
+    if(imgModalCap) imgModalCap.textContent = caption || "";
+    imgModal.classList.add("open");
+    imgModal.setAttribute("aria-hidden", "false");
+  }
+  function closeImgModal(){
+    if(!imgModal) return;
+    imgModal.classList.remove("open");
+    imgModal.setAttribute("aria-hidden", "true");
+    if(imgModalImg) imgModalImg.src = "";
+  }
+  function bindGalleryModal(){
+    const grid = document.getElementById("gridGallery");
+    if(!grid || grid.dataset.modalBound) return;
+    grid.dataset.modalBound = "1";
+    grid.addEventListener("click", (e)=>{
+      const img = e.target.closest(".shotImg");
+      if(!img) return;
+      openImgModal(img.src, img.alt || "");
+    });
+  }
+  imgModalClose?.addEventListener("click", closeImgModal);
+  imgModal?.addEventListener("click", (e)=>{ if(e.target === imgModal) closeImgModal(); });
+  document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeImgModal(); });
+
+
   async function refreshAll(){ await Promise.all([userSec.refresh(), groupSec.refresh()]); }
   document.getElementById("refreshAllBtn").addEventListener("click", refreshAll);
 
@@ -991,7 +1184,7 @@
       const safeUrl = encodeURI(url);
       const cap = x.caption ? safeText(x.caption) : "";
       return `
-        <div class="shot">
+        <div class="shot reveal">
           <div class="imgWrap">
             <img loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous"
                  src="${safeUrl}" alt="${cap}"
@@ -1001,6 +1194,8 @@
         </div>
       `;
     }).join("");
+    addReveal(grid);
+    bindGalleryModal();
   }
 
   async function refreshGallery(){
@@ -1078,28 +1273,68 @@
 
   // language menu toggle
   const btnLang = document.getElementById("btnLang");
+  const btnLangMini = document.getElementById("btnLangMini");
   const langMenu = document.getElementById("langMenu");
   const langSelect = document.getElementById("langSelect");
+
+  const FLAGS = {
+    fr:"🇫🇷", en:"🇺🇸", es:"🇪🇸", de:"🇩🇪", pt:"🇵🇹", it:"🇮🇹", nl:"🇳🇱", pl:"🇵🇱",
+    tr:"🇹🇷", ru:"🇷🇺", uk:"🇺🇦", ar:"🇸🇦", hi:"🇮🇳", bn:"🇧🇩", ur:"🇵🇰",
+    id:"🇮🇩", ms:"🇲🇾", vi:"🇻🇳", th:"🇹🇭", ja:"🇯🇵", ko:"🇰🇷", zh:"🇨🇳",
+    he:"🇮🇱", fa:"🇮🇷", sv:"🇸🇪", no:"🇳🇴", da:"🇩🇰", fi:"🇫🇮", el:"🇬🇷",
+    cs:"🇨🇿", hu:"🇭🇺", ro:"🇷🇴", bg:"🇧🇬", sr:"🇷🇸", hr:"🇭🇷", sk:"🇸🇰",
+    sl:"🇸🇮", lt:"🇱🇹", lv:"🇱🇻", et:"🇪🇪", sw:"🇰🇪", tl:"🇵🇭",
+    ta:"🇮🇳", te:"🇮🇳", mr:"🇮🇳"
+  };
+  function flagFor(code){ return FLAGS[code] || "🌐"; }
+
+  function syncLangMini(visible){
+    if(!btnLangMini) return;
+    btnLangMini.hidden = !visible;
+    btnLangMini.classList.toggle("show", !!visible);
+    if(visible) btnLangMini.textContent = flagFor(currentLang());
+  }
+
+  function positionLangMenu(){
+    if(!btnLang || !langMenu) return;
+    const r = btnLang.getBoundingClientRect();
+    const w = Math.min(360, window.innerWidth - 20);
+    langMenu.style.width = w + "px";
+    // align the menu to the left of the button (so it never overflows on the right)
+    const left = Math.max(10, Math.min(window.innerWidth - w - 10, Math.floor(r.right - w)));
+    langMenu.style.left = left + "px";
+    langMenu.style.top = Math.floor(r.bottom + 10) + "px";
+  }
 
   function closeLangMenu(){
     langMenu?.classList.remove("open");
     langMenu?.setAttribute("aria-hidden", "true");
+    syncLangMini(false);
   }
+
   btnLang?.addEventListener("click", (e) => {
     e.stopPropagation();
     const open = langMenu.classList.toggle("open");
     langMenu.setAttribute("aria-hidden", open ? "false" : "true");
     if(open){
-      const r = btnLang.getBoundingClientRect();
-      const w = Math.min(360, Math.floor(window.innerWidth * 0.92));
-      const left = Math.max(10, Math.min(window.innerWidth - w - 10, Math.floor(r.left + r.width/2 - w/2)));
-      const top = Math.min(Math.floor(r.bottom + 10), Math.floor(window.innerHeight - 70));
-      langMenu.style.width = w + "px";
-      langMenu.style.left = left + "px";
-      langMenu.style.top = top + "px";
+      syncLangMini(true);
+      positionLangMenu();
+      // focus after paint for mobile
+      setTimeout(()=>{ try{ langSelect.focus(); }catch(_){} }, 0);
+    }else{
+      syncLangMini(false);
     }
   });
-  document.addEventListener("click", (e)=>{ if(!langMenu?.contains(e.target) && e.target!==btnLang) closeLangMenu(); });
+  btnLangMini?.addEventListener("click", (e)=>{ e.stopPropagation(); btnLang?.click(); });
+  window.addEventListener("resize", ()=>{ if(langMenu?.classList.contains("open")) positionLangMenu(); });
+
+  document.addEventListener("click", (e)=>{
+    if(!langMenu) return;
+    if(langMenu.classList.contains("open") && !langMenu.contains(e.target) && e.target !== btnLang && e.target !== btnLangMini){
+      closeLangMenu();
+    }
+  });
+
   langMenu?.addEventListener("click",(e)=>e.stopPropagation());
   langMenu?.addEventListener("pointerdown",(e)=>e.stopPropagation());
   langSelect?.addEventListener("pointerdown",(e)=>e.stopPropagation());
@@ -1158,5 +1393,16 @@
   }
 
 </script>
+
+  <div class="modal" id="imgModal" aria-hidden="true">
+    <div class="modalCard" role="dialog" aria-modal="true">
+      <div class="modalBar">
+        <div class="modalCap" id="imgModalCap"></div>
+        <button class="closeBtn" id="imgModalClose" type="button">✕</button>
+      </div>
+      <img class="modalImg" id="imgModalImg" alt="" />
+    </div>
+  </div>
+
 </body>
 </html>
