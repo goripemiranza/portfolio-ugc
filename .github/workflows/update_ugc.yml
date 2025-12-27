@@ -3,8 +3,8 @@ name: Update UGC data
 on:
   workflow_dispatch:
   schedule:
-    # 1 fois par heure (moins agressif)
-    - cron: "0 * * * *"
+    # Toutes les 3 heures (beaucoup plus stable côté rate-limit)
+    - cron: "0 */3 * * *"
 
 concurrency:
   group: ugc-update
@@ -16,6 +16,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
