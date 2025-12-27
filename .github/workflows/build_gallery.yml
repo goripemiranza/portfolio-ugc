@@ -1,11 +1,11 @@
-
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 build_gallery.py
 - Scanne le dossier ./gallery/
-- Génère ./gallery.json avec la liste des images (chemins relatifs pour GitHub Pages)
+- Génère ./gallery.json avec la liste des images (chemins relatifs pour l'hébergement)
 - Tri: par nom de fichier (stable)
+
 Formats: png, jpg, jpeg, webp, gif
 """
 
@@ -21,7 +21,7 @@ def main() -> None:
     if GALLERY_DIR.exists() and GALLERY_DIR.is_dir():
         for p in sorted(GALLERY_DIR.rglob("*")):
             if p.is_file() and p.suffix.lower() in EXTS:
-                rel = p.as_posix()  # "gallery/xxx.png"
+                rel = p.as_posix()  # ex: "gallery/xxx.png"
                 caption = p.stem.replace("_", " ").replace("-", " ").strip()
                 items.append({"url": rel, "caption": caption})
     OUT_JSON.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
