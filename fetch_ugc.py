@@ -1,33 +1,24 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-fetch_ugc.py (v6) — On-sale only + thumbs in JSON (no client CORS)
+fetch_ugc.py (v7) — "ancienne logique" : afficher tout (Onsale + Offsale), et rester stable.
 
 Pourquoi :
-- GitHub Pages (site statique) ne peut PAS appeler catalog.roblox.com / thumbnails.roblox.com en JS
-  à cause de CORS (pas de Access-Control-Allow-Origin).
-- Donc : on récupère les données côté GitHub Actions (serveur) et on écrit data_user.json / data_group.json.
-- Le site lit uniquement ces JSON => 0 CORS côté visiteurs.
+- Roblox rate-limit parfois GitHub Actions (HTTP 429), surtout sur le GROUP.
+- Le site GitHub Pages ne peut pas appeler les API Roblox (CORS).
+=> On génère data_user.json / data_group.json côté GitHub Actions, et le site lit uniquement ces JSON.
 
-Ce script récupère UNIQUEMENT les items mis en vente :
-- includeNotForSale=false
-- on garde seulement ceux avec price numérique
+v7 :
+- includeNotForSale=true (on récupère tout, comme au début)
+- on stocke 'thumb' direct via URL image roblox (pas besoin de thumbnails API)
+- si 429 => on garde l'ancien JSON (aucune régression côté site)
 
-Bonus :
-- On hydrate les thumbnails via thumbnails.roblox.com côté GitHub Actions et on stocke 'thumb' dans le JSON.
-  Ainsi le site n'a pas besoin de fetch thumbnail API (CORS), il affiche l'image directement.
-
-⚠️ Rate-limit :
-- Roblox peut renvoyer 429 depuis GitHub Actions. On "fail-open" :
-  si erreur => on garde le JSON précédent (le site continue de marcher).
+Fichiers :
+- data_user.json
+- data_group.json
 """
 
-import json
-import time
-import random
-import datetime
-import urllib.parse
-import urllib.request
+import json, time, random, datetime, urllib.parse, urllib.request
 from urllib.error import HTTPError, URLError
 from typing import Any, Dict, List, Optional, Set
 
@@ -35,18 +26,18 @@ USER_ID = 828726934
 GROUP_ID = 16981319
 
 CATALOG_LIST = "https://catalog.roblox.com/v1/search/items"
-THUMBS = "https://thumbnails.roblox.com/v1/assets"
+THUMB_TEMPLATE = "https://www.roblox.com/asset-thumbnail/image?assetId={asset_id}&width=420&height=420&format=png"
 
 HEADERS = {
     "Accept": "application/json",
-    "User-Agent": "PortfolioUGCFetch/6.0 (+https://roblox.com)",
+    "User-Agent": "PortfolioUGCFetch/7.0 (+https://roblox.com)",
 }
 
 class RateLimited(Exception):
     pass
 
 RATE_LIMIT_HITS = 0
-RATE_LIMIT_BUDGET = 10
+RATE_LIMIT_BUDGET = 14  # stop total if too many 429
 
 def now_iso() -> str:
     return datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00", "Z")
@@ -62,7 +53,7 @@ def write_json(path: str, payload: Dict[str, Any]) -> None:
     with open(path, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
-def http_get_json(url: str, timeout: int = 30, max_retries: int = 4) -> Dict[str, Any]:
+def http_get_json(url: str, timeout: int = 30, max_retries: int = 6) -> Dict[str, Any]:
     global RATE_LIMIT_HITS
     last_err: Optional[Exception] = None
 
@@ -88,12 +79,13 @@ def http_get_json(url: str, timeout: int = 30, max_retries: int = 4) -> Dict[str
                 except Exception:
                     retry_after = None
 
+                # backoff plus long (chance de passer)
                 if retry_after and str(retry_after).strip().isdigit():
                     sleep_s = float(int(retry_after))
                 else:
-                    sleep_s = 4.0 + random.random() * 2.0
+                    sleep_s = 6.0 + random.random() * 3.0
+                sleep_s = min(90.0, sleep_s + attempt * 10.0)
 
-                sleep_s = min(25.0, sleep_s + attempt * 4.0)
                 print(f"[http] 429 -> sleep {sleep_s:.1f}s (attempt {attempt+1}/{max_retries})")
                 time.sleep(sleep_s)
                 continue
@@ -138,7 +130,7 @@ def pick_str(d: Dict[str, Any], keys: List[str]) -> Optional[str]:
             return v
     return None
 
-def fetch_on_sale_catalog(creator_type: int, creator_target_id: int, limit: int = 30, max_pages: int = 120) -> List[Dict[str, Any]]:
+def fetch_catalog_all(creator_type: int, creator_target_id: int, limit: int = 30, max_pages: int = 180) -> List[Dict[str, Any]]:
     items: List[Dict[str, Any]] = []
     cursor = ""
 
@@ -147,7 +139,7 @@ def fetch_on_sale_catalog(creator_type: int, creator_target_id: int, limit: int 
             "category": "1",
             "creatorType": str(creator_type),
             "creatorTargetId": str(creator_target_id),
-            "includeNotForSale": "false",
+            "includeNotForSale": "true",
             "limit": str(limit),
         }
         if cursor:
@@ -161,31 +153,28 @@ def fetch_on_sale_catalog(creator_type: int, creator_target_id: int, limit: int 
             if aid is None:
                 continue
 
+            # price can be absent (offsale)
             price = pick_int(d, ["price", "priceInRobux", "lowestPrice", "PriceInRobux"])
-            if price is None:
-                # on-sale only => needs numeric price
-                continue
 
             name = pick_str(d, ["name", "itemName", "title"]) or f"Item {aid}"
-
             at = d.get("assetType") if isinstance(d.get("assetType"), dict) else {}
             typ = pick_str(at, ["name"]) or pick_str(d, ["assetTypeName", "itemType", "type"]) or "UGC"
-
             created = pick_str(d, ["created", "Created", "createdUtc", "createdAt"])
 
             items.append({
                 "assetId": int(aid),
                 "name": name,
                 "type": typ,
-                "price": int(price),
+                "price": int(price) if isinstance(price, int) else None,
                 "created": created,
+                "thumb": THUMB_TEMPLATE.format(asset_id=int(aid)),
             })
 
         cursor = j.get("nextPageCursor") or ""
         if not cursor:
             break
 
-        time.sleep(0.45)
+        time.sleep(0.55)
 
     # dedupe
     seen: Set[int] = set()
@@ -208,46 +197,12 @@ def fetch_on_sale_catalog(creator_type: int, creator_target_id: int, limit: int 
     out.sort(key=key, reverse=True)
     return out
 
-def hydrate_thumbs(items: List[Dict[str, Any]]) -> None:
-    ids = [it["assetId"] for it in items if isinstance(it.get("assetId"), int)]
-    if not ids:
-        return
-
-    # thumbnails API supports batching; keep conservative
-    B = 50
-    for i in range(0, len(ids), B):
-        chunk = ids[i:i+B]
-        qs = urllib.parse.urlencode({
-            "assetIds": ",".join(str(x) for x in chunk),
-            "size": "420x420",
-            "format": "Png",
-            "isCircular": "false",
-        })
-        url = THUMBS + "?" + qs
-        try:
-            j = http_get_json(url, max_retries=3, timeout=30)
-            m: Dict[int, str] = {}
-            for t in (j.get("data") or []):
-                tid = t.get("targetId")
-                img = t.get("imageUrl")
-                st = t.get("state")
-                if isinstance(tid, int) and isinstance(img, str) and st == "Completed":
-                    m[tid] = img
-            for it in items:
-                aid = it["assetId"]
-                if aid in m:
-                    it["thumb"] = m[aid]
-        except Exception:
-            pass
-        time.sleep(0.25)
-
 def safe_update(path: str, creator_type: int, creator_target_id: int) -> None:
     prev = read_json(path)
     try:
-        items = fetch_on_sale_catalog(creator_type, creator_target_id)
-        hydrate_thumbs(items)
+        items = fetch_catalog_all(creator_type, creator_target_id)
         write_json(path, {"generatedAt": now_iso(), "items": items})
-        print(f"[ok] {path}: {len(items)} items (on-sale)")
+        print(f"[ok] {path}: {len(items)} items")
     except Exception as e:
         print(f"[warn] {path}: keep previous ({e})")
         if prev is None:
@@ -255,9 +210,9 @@ def safe_update(path: str, creator_type: int, creator_target_id: int) -> None:
 
 def main() -> None:
     # jitter
-    time.sleep(3.0 + random.random() * 7.0)
+    time.sleep(4.0 + random.random() * 10.0)
     safe_update("data_user.json", 1, USER_ID)
-    time.sleep(4.0 + random.random() * 6.0)
+    time.sleep(6.0 + random.random() * 10.0)
     safe_update("data_group.json", 2, GROUP_ID)
 
 if __name__ == "__main__":
