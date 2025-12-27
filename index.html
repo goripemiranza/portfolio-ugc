@@ -132,7 +132,7 @@
       </p>
       <p class="note">
         Le site lit les fichiers <b>data_user.json</b> et <b>data_group.json</b> (générés par GitHub Actions).<br/>
-        Par défaut : <b>En vente seulement</b> (pour afficher les prix). Tu peux décocher pour voir aussi les UGC Offsale.
+        Par défaut : <b>Tous les UGC</b> (pour afficher les prix). Tu peux décocher pour voir aussi les UGC Offsale.
       </p>
       <div class="actions">
         <a class="btn primary" href="https://www.roblox.com/users/828726934/profile" target="_blank" rel="noopener">Profil Roblox</a>
@@ -156,8 +156,8 @@
           <input id="searchUser" type="search" placeholder="Rechercher un UGC…" />
         </div>
         <div class="controls">
-          <label class="pill" title="Afficher seulement les UGC actuellement en vente (prix disponible)">
-            <input id="saleOnlyUser" type="checkbox" checked />
+          <label class="pill" title="Afficher seulement les UGC actuellement en vente">
+            <input id="saleOnlyUser" type="checkbox" />
             En vente seulement
           </label>
           <select id="typeUser"></select>
@@ -192,8 +192,8 @@
           <input id="searchGroup" type="search" placeholder="Rechercher un UGC dans le groupe…" />
         </div>
         <div class="controls">
-          <label class="pill" title="Afficher seulement les UGC actuellement en vente (prix disponible)">
-            <input id="saleOnlyGroup" type="checkbox" checked />
+          <label class="pill" title="Afficher seulement les UGC actuellement en vente">
+            <input id="saleOnlyGroup" type="checkbox" />
             En vente seulement
           </label>
           <select id="typeGroup"></select>
@@ -260,23 +260,29 @@
     return assetType || "UGC";
   }
 
-  function normalizeItem(x){
+  function normalizeItem(x, idx){
     const created = x.created || x.createdAt || x.createdUtc || null;
     const createdTs = created ? (Date.parse(created) || null) : null;
+
     const price = (typeof x.price === "number") ? x.price : null;
-    const assetId = (typeof x.assetId === "number") ? x.assetId : x.id;
+    const assetId = (typeof x.assetId === "number") ? x.assetId : (typeof x.id === "number" ? x.id : null);
 
     const rawType = x.assetTypeName || x.type || (x.assetType && x.assetType.name) || x.itemType || "UGC";
+    const isOffSale = (x.isOffSale === true) || (String(x.priceStatus||"").toLowerCase().includes("off"));
+    const rank = (typeof x.rank === "number") ? x.rank : (typeof idx === "number" ? (idx+1) : null);
 
     return {
       assetId,
-      name: x.name || `Item ${assetId}`,
+      name: x.name || (assetId ? `Item ${assetId}` : "Item"),
       type: rawType,
       badge: ugcBadge(rawType),
       price,
+      isOffSale,
+      priceStatus: x.priceStatus || null,
       created,
       createdTs,
-      thumb: x.thumb || thumbFallback(assetId)
+      rank,
+      thumb: x.thumb || (assetId ? thumbFallback(assetId) : "")
     };
   }
 
@@ -308,7 +314,8 @@
       const okBadge = !badge || badge === "Tous" || it.badge === badge;
 
       const price = (typeof it.price === "number") ? it.price : null;
-      const okSale = saleOnly ? (price != null) : true;
+      const off = (it.isOffSale === true) || (String(it.priceStatus||"").toLowerCase().includes("off"));
+      const okSale = saleOnly ? (!off && price != null) : true;
       const okMin = (minP == null) ? true : (price != null && price >= minP);
       const okMax = (maxP == null) ? true : (price != null && price <= maxP);
 
@@ -318,7 +325,7 @@
 
   function sortItems(items, mode){
     const arr = [...items];
-    const safeTime = (it) => (it.createdTs != null ? it.createdTs : -1);
+    const safeTime = (it) => (it.createdTs != null ? it.createdTs : (typeof it.rank === "number" ? -it.rank : -1));
     const safePrice = (it) => (typeof it.price === "number" ? it.price : Number.POSITIVE_INFINITY);
     if(mode === "new") arr.sort((a,b)=> safeTime(b) - safeTime(a));
     else if(mode === "old") arr.sort((a,b)=> safeTime(a) - safeTime(b));
@@ -368,7 +375,7 @@
         const payload = await fetchJsonLocal(source.localJson);
         const updated = payload.generatedAt ? new Date(payload.generatedAt).toLocaleString("fr-FR") : "—";
 
-        state.items = (payload.items || []).map(normalizeItem).filter(isUgcItem);
+        state.items = (payload.items || []).map((x,i)=>normalizeItem(x,i)).filter(isUgcItem);
 
         const badges = uniqueBadges(state.items);
         document.getElementById(els.badgeSelId).innerHTML = badges.map(t => `<option value="${t}">${t}</option>`).join("");
