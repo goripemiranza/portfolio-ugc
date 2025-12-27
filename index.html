@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Portfolio Roblox — lulu8203</title>
-  <meta name="description" content="Portfolio Roblox : UGC de l'utilisateur lulu8203 et du groupe Powerful Artists." />
+  <meta name="description" content="Portfolio Roblox : UGC en vente (profil lulu8203 + groupe Powerful Artists)." />
   <style>
     :root{
       --bg:#0b0f19; --card:rgba(255,255,255,0.06); --text:rgba(255,255,255,0.92);
@@ -75,12 +75,6 @@
       border-radius:14px;padding:10px 12px;font-weight:900;outline:none
     }
     input[type="number"]{width:130px}
-    .pill{
-      border:1px solid var(--line);background:rgba(255,255,255,0.04);color:var(--text);
-      border-radius:999px;padding:9px 12px;font-weight:900;font-size:13px;display:inline-flex;gap:8px;align-items:center;
-      user-select:none;
-    }
-    .pill input{accent-color:var(--accent);}
     .status{color:var(--muted);font-size:13px;display:flex;gap:10px;align-items:center}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}
     @media (max-width: 980px){.grid{grid-template-columns:repeat(2,1fr)}}
@@ -128,11 +122,10 @@
       <div class="kicker">UGC • Accessoires • Vêtements</div>
       <h1>lulu8203 — Portfolio</h1>
       <p class="subtitle">
-        Affiche uniquement les <b>UGC (accessoires / vêtements)</b> créés par <b>lulu8203</b> et par le groupe <b>Powerful Artists</b>.
+        Affiche uniquement les <b>UGC mis en vente</b> (accessoires / vêtements) créés par <b>lulu8203</b> et par le groupe <b>Powerful Artists</b>.
       </p>
       <p class="note">
-        Le site lit les fichiers <b>data_user.json</b> et <b>data_group.json</b> (générés par GitHub Actions).<br/>
-        Par défaut : <b>Tous les UGC</b> (pour afficher les prix). Tu peux décocher pour voir aussi les UGC Offsale.
+        Les données viennent de <b>data_user.json</b> et <b>data_group.json</b> (générés par GitHub Actions).
       </p>
       <div class="actions">
         <a class="btn primary" href="https://www.roblox.com/users/828726934/profile" target="_blank" rel="noopener">Profil Roblox</a>
@@ -144,7 +137,7 @@
     <div id="ugc-user" class="card section">
       <div class="sectionHeader">
         <div>
-          <h2>UGC — créations de lulu8203</h2>
+          <h2>UGC — créations de lulu8203 (en vente)</h2>
           <p class="meta" id="metaUser">—</p>
         </div>
         <div class="status" id="statusUser"><span class="spinner"></span><span>Chargement…</span></div>
@@ -156,10 +149,6 @@
           <input id="searchUser" type="search" placeholder="Rechercher un UGC…" />
         </div>
         <div class="controls">
-          <label class="pill" title="Afficher seulement les UGC actuellement en vente">
-            <input id="saleOnlyUser" type="checkbox" />
-            En vente seulement
-          </label>
           <select id="typeUser"></select>
           <select id="sortUser">
             <option value="new">Plus récent</option>
@@ -180,7 +169,7 @@
     <div id="ugc-group" class="card section">
       <div class="sectionHeader">
         <div>
-          <h2>UGC — créations du groupe Powerful Artists</h2>
+          <h2>UGC — créations du groupe Powerful Artists (en vente)</h2>
           <p class="meta" id="metaGroup">—</p>
         </div>
         <div class="status" id="statusGroup"><span class="spinner"></span><span>Chargement…</span></div>
@@ -192,10 +181,6 @@
           <input id="searchGroup" type="search" placeholder="Rechercher un UGC dans le groupe…" />
         </div>
         <div class="controls">
-          <label class="pill" title="Afficher seulement les UGC actuellement en vente">
-            <input id="saleOnlyGroup" type="checkbox" />
-            En vente seulement
-          </label>
           <select id="typeGroup"></select>
           <select id="sortGroup">
             <option value="new">Plus récent</option>
@@ -229,7 +214,6 @@
     if(!iso) return "";
     try{ return new Date(iso).toLocaleDateString("fr-FR"); }catch(e){ return ""; }
   }
-
   function toNum(v){
     if(v === null || v === undefined) return null;
     const s = String(v).trim();
@@ -238,14 +222,8 @@
     return Number.isFinite(n) ? n : null;
   }
 
-  async function fetchJsonLocal(path){
-    const res = await fetch(`${path}?v=${Date.now()}`, { cache:"no-store" });
-    if(!res.ok) throw new Error(`HTTP ${res.status}`);
-    return await res.json();
-  }
-
-  function ugcBadge(assetType){
-    const t = String(assetType || "").toLowerCase();
+  function ugcBadge(typeName){
+    const t = String(typeName || "").toLowerCase();
     if(t.includes("back")) return "Dos";
     if(t.includes("waist")) return "Taille";
     if(t.includes("hat") || t.includes("head")) return "Tête";
@@ -257,43 +235,26 @@
     if(t.includes("shirt")) return "Haut";
     if(t.includes("pants") || t.includes("shorts")) return "Bas";
     if(t.includes("dress") || t.includes("skirt")) return "Robe/Jupe";
-    return assetType || "UGC";
+    return typeName || "UGC";
   }
 
-  function normalizeItem(x, idx){
+  function normalizeItem(x){
+    const assetId = (typeof x.assetId === "number") ? x.assetId : (typeof x.id === "number" ? x.id : null);
     const created = x.created || x.createdAt || x.createdUtc || null;
     const createdTs = created ? (Date.parse(created) || null) : null;
-
-    const price = (typeof x.price === "number") ? x.price : null;
-    const assetId = (typeof x.assetId === "number") ? x.assetId : (typeof x.id === "number" ? x.id : null);
-
-    const rawType = x.assetTypeName || x.type || (x.assetType && x.assetType.name) || x.itemType || "UGC";
-    const isOffSale = (x.isOffSale === true) || (String(x.priceStatus||"").toLowerCase().includes("off"));
-    const rank = (typeof x.rank === "number") ? x.rank : (typeof idx === "number" ? (idx+1) : null);
+    const price = (typeof x.price === "number") ? x.price : (typeof x.priceInRobux === "number" ? x.priceInRobux : null);
+    const typeName = x.type || x.assetTypeName || "UGC";
 
     return {
       assetId,
-      name: x.name || (assetId ? `Item ${assetId}` : "Item"),
-      type: rawType,
-      badge: ugcBadge(rawType),
+      name: x.name || `Item ${assetId}`,
+      type: typeName,
+      badge: ugcBadge(typeName),
       price,
-      isOffSale,
-      priceStatus: x.priceStatus || null,
       created,
       createdTs,
-      rank,
       thumb: x.thumb || (assetId ? thumbFallback(assetId) : "")
     };
-  }
-
-  function isUgcItem(it){
-    const t = String(it.type || "").toLowerCase();
-    return (
-      t.includes("accessory") || t.includes("hat") || t.includes("hair") || t.includes("face") ||
-      t.includes("neck") || t.includes("shoulder") || t.includes("front") || t.includes("back") || t.includes("waist") ||
-      t.includes("shirt") || t.includes("pants") || t.includes("tshirt") || t.includes("dress") || t.includes("skirt") ||
-      t.includes("jacket") || t.includes("sweater") || t.includes("shorts")
-    );
   }
 
   function uniqueBadges(items){
@@ -302,7 +263,7 @@
     return ["Tous", ...arr];
   }
 
-  function applyFilters(items, {q, badge, minPrice, maxPrice, saleOnly}){
+  function applyFilters(items, {q, badge, minPrice, maxPrice}){
     const query = (q || "").trim().toLowerCase();
     const minP = toNum(minPrice);
     const maxP = toNum(maxPrice);
@@ -314,18 +275,16 @@
       const okBadge = !badge || badge === "Tous" || it.badge === badge;
 
       const price = (typeof it.price === "number") ? it.price : null;
-      const off = (it.isOffSale === true) || (String(it.priceStatus||"").toLowerCase().includes("off"));
-      const okSale = saleOnly ? (!off && price != null) : true;
       const okMin = (minP == null) ? true : (price != null && price >= minP);
       const okMax = (maxP == null) ? true : (price != null && price <= maxP);
 
-      return okQuery && okBadge && okSale && okMin && okMax;
+      return okQuery && okBadge && okMin && okMax;
     });
   }
 
   function sortItems(items, mode){
     const arr = [...items];
-    const safeTime = (it) => (it.createdTs != null ? it.createdTs : (typeof it.rank === "number" ? -it.rank : -1));
+    const safeTime = (it) => (it.createdTs != null ? it.createdTs : -1);
     const safePrice = (it) => (typeof it.price === "number" ? it.price : Number.POSITIVE_INFINITY);
     if(mode === "new") arr.sort((a,b)=> safeTime(b) - safeTime(a));
     else if(mode === "old") arr.sort((a,b)=> safeTime(a) - safeTime(b));
@@ -338,10 +297,10 @@
   function render(gridId, items){
     const grid = document.getElementById(gridId);
     if(!grid) return;
-    if(!items.length){ grid.innerHTML = `<div class="empty">Aucun UGC trouvé.</div>`; return; }
+    if(!items.length){ grid.innerHTML = `<div class="empty">Aucun UGC en vente trouvé.</div>`; return; }
 
     grid.innerHTML = items.map(it => {
-      const price = (typeof it.price === "number") ? `${it.price} R$` : "Offsale";
+      const price = (typeof it.price === "number") ? `${it.price} R$` : "—";
       const date = it.created ? fmtDate(it.created) : "";
       const img = it.thumb || thumbFallback(it.assetId);
       return `
@@ -366,6 +325,12 @@
     }).join("");
   }
 
+  async function fetchJsonLocal(path){
+    const res = await fetch(`${path}?v=${Date.now()}`, { cache:"no-store" });
+    if(!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  }
+
   function wireSection(source, els){
     const state = { items: [] };
 
@@ -375,16 +340,16 @@
         const payload = await fetchJsonLocal(source.localJson);
         const updated = payload.generatedAt ? new Date(payload.generatedAt).toLocaleString("fr-FR") : "—";
 
-        state.items = (payload.items || []).map((x,i)=>normalizeItem(x,i)).filter(isUgcItem);
+        state.items = (payload.items || []).map(normalizeItem).filter(x => x.assetId != null);
 
         const badges = uniqueBadges(state.items);
         document.getElementById(els.badgeSelId).innerHTML = badges.map(t => `<option value="${t}">${t}</option>`).join("");
 
         document.getElementById(els.metaId).innerHTML =
-          `${state.items.length} UGC • <span class="warn">mise à jour :</span> ${updated}`;
+          `${state.items.length} UGC en vente • <span class="warn">mise à jour :</span> ${updated}`;
 
         apply();
-        setStatus(els.statusId, `${state.items.length} UGC`, false);
+        setStatus(els.statusId, `${state.items.length} item(s)`, false);
       }catch(e){
         state.items = [];
         document.getElementById(els.metaId).textContent =
@@ -400,9 +365,8 @@
       const sortMode = document.getElementById(els.sortSelId).value;
       const minP = document.getElementById(els.minId).value;
       const maxP = document.getElementById(els.maxId).value;
-      const saleOnly = document.getElementById(els.saleOnlyId).checked;
 
-      const filtered = applyFilters(state.items, { q, badge, minPrice: minP, maxPrice: maxP, saleOnly });
+      const filtered = applyFilters(state.items, { q, badge, minPrice: minP, maxPrice: maxP });
       const sorted = sortItems(filtered, sortMode);
       render(els.gridId, sorted);
     }
@@ -411,7 +375,6 @@
     document.getElementById(els.searchId).addEventListener("input", apply);
     document.getElementById(els.badgeSelId).addEventListener("change", apply);
     document.getElementById(els.sortSelId).addEventListener("change", apply);
-    document.getElementById(els.saleOnlyId).addEventListener("change", apply);
 
     return { refresh };
   }
@@ -420,19 +383,18 @@
     { localJson: "data_user.json" },
     { statusId:"statusUser", metaId:"metaUser", gridId:"gridUser",
       searchId:"searchUser", badgeSelId:"typeUser", sortSelId:"sortUser",
-      minId:"minUser", maxId:"maxUser", applyBtnId:"applyUserBtn", saleOnlyId:"saleOnlyUser" }
+      minId:"minUser", maxId:"maxUser", applyBtnId:"applyUserBtn" }
   );
 
   const groupSec = wireSection(
     { localJson: "data_group.json" },
     { statusId:"statusGroup", metaId:"metaGroup", gridId:"gridGroup",
       searchId:"searchGroup", badgeSelId:"typeGroup", sortSelId:"sortGroup",
-      minId:"minGroup", maxId:"maxGroup", applyBtnId:"applyGroupBtn", saleOnlyId:"saleOnlyGroup" }
+      minId:"minGroup", maxId:"maxGroup", applyBtnId:"applyGroupBtn" }
   );
 
   async function refreshAll(){ await Promise.all([userSec.refresh(), groupSec.refresh()]); }
   document.getElementById("refreshAllBtn").addEventListener("click", refreshAll);
-
   refreshAll();
 </script>
 </body>
