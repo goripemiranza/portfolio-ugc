@@ -1,0 +1,32 @@
+name: Update UGC data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate JSON
+        run: |
+          python fetch_ugc.py
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "ugc-bot"
+          git config user.email "ugc-bot@users.noreply.github.com"
+          git add data_user.json data_group.json
+          git diff --cached --quiet || (git commit -m "Update UGC data" && git push)
