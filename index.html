@@ -831,6 +831,8 @@
           </div>
         </div>
 
+      </div>
+
       <!-- SALES -->
       <div class="view" id="viewSales">
         <div class="card sales">
@@ -1153,7 +1155,7 @@
   }
   tabUgc.addEventListener("click", ()=> setActiveView("ugc"));
   tabGallery.addEventListener("click", ()=> setActiveView("gallery"));
-  tabSales.addEventListener("click", ()=> setActiveView("sales"));
+  tabSales.addEventListener("click", ()=> { setActiveView("sales"); buildSales(); });
 
   /* ---------- UGC rendering ---------- */
   function setStatus(id, text, spinning=false){
@@ -1473,7 +1475,7 @@
     if(imgModalImg) imgModalImg.src = "";
   }
   function bindGalleryModal(){
-    const grid = document.getElementById("gridGallery");
+    const grid = document.getElementById("galleryGrid");
     if(!grid || grid.dataset.modalBound) return;
     grid.dataset.modalBound = "1";
     grid.addEventListener("click", (e)=>{
@@ -1812,6 +1814,14 @@
 
   function safeText(s){ return String(s || "").replaceAll("<","&lt;").replaceAll(">","&gt;"); }
 
+  function safeGalleryUrl(url){
+    const s = String(url || "").trim();
+    if(!s) return "";
+    // Encode each path segment to support spaces, accents, apostrophes, #, etc.
+    return s.split("/").map(seg => encodeURIComponent(seg)).join("/");
+  }
+
+
   function renderGallery(items){
     const grid = document.getElementById("galleryGrid");
     if(!items.length){
@@ -1820,12 +1830,12 @@
     }
     grid.innerHTML = items.map(x => {
       const url = x.url || "";
-      const safeUrl = encodeURI(url);
+      const safeUrl = safeGalleryUrl(url);
       const cap = x.caption ? safeText(x.caption) : "";
       return `
         <div class="shot reveal">
           <div class="imgWrap">
-            <img loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous"
+            <img class="shotImg" loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous"
                  src="${safeUrl}" alt="${cap}"
                  onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'empty\'>Image invalide</div>';">
           </div>
