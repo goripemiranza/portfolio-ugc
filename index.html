@@ -307,7 +307,7 @@
         <div class="item">
           <div class="thumb">
             <span class="badge">${it.badge}</span>
-            <img loading="lazy" alt="${it.name || ""}" src="${img}" onerror="this.onerror=null;this.src='${thumbFallback(it.assetId)}';">
+            <img loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous" alt="${it.name || ""}" src="${img}" onerror="this.onerror=null;this.src='${thumbFallback(it.assetId)}';">
           </div>
           <div class="body">
             <div class="title">${it.name || ""}</div>
