@@ -1548,20 +1548,6 @@ html, body{ height:100%; overflow:hidden; }
       rSel.value = cur;
     }
   }
-    const lSel = document.getElementById("salesItemsLimit");
-    const sSel = document.getElementById("salesSeriesCount");
-    if(sSel){
-      const cur3 = sSel.value || "10";
-      sSel.innerHTML = SALES_SERIES_COUNTS.map(o => `<option value="${o.key}">${o.label}</option>`).join("");
-      sSel.value = cur3;
-    }
-
-    if(lSel){
-      const cur2 = lSel.value || "20";
-      lSel.innerHTML = SALES_ITEMS_LIMITS.map(o => `<option value="${o.key}">${t(o.labelKey) || o.key}</option>`).join("");
-      lSel.value = cur2;
-    }
-  }
 
   function parseYMD(s){
     const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s||""));
