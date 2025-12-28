@@ -2112,7 +2112,7 @@ function drawBars(canvas, labels, values, opts={}){
     (rangeKey==="month") ? `${t("sales_range_month")} • ${fmtDate(start.toISOString())} → ${fmtDate(end.toISOString())}` :
                            `${t("sales_range_year")} • ${fmtDate(start.toISOString())} → ${fmtDate(end.toISOString())}`;
 
-  document.getElementById("salesPeriodTitle")?.textContent = label;
+  const periodTitleEl = document.getElementById("salesPeriodTitle"); if(periodTitleEl) periodTitleEl.textContent = label;
   status.textContent = `${allItems.length} item(s) • ${label}${salesTag}`;
 
   statsEl.innerHTML = `
