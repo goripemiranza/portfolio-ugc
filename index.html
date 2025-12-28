@@ -1228,15 +1228,21 @@ const I18N = {
   const viewSales = document.getElementById("viewSales");
 
   function setActiveView(which){
+    const hasSales = !!tabSales && !!viewSales;
+    if(which === "sales" && !hasSales) which = "ugc";
+    if(which !== "ugc" && which !== "gallery" && which !== "sales") which = "ugc";
+
     const ugc = which === "ugc";
     const gal = which === "gallery";
-    const sales = which === "sales";
-    tabUgc.classList.toggle("active", ugc);
-    tabGallery.classList.toggle("active", gal);
-    tabSales.classList.toggle("active", sales);
-    viewUgc.classList.toggle("active", ugc);
-    viewGallery.classList.toggle("active", gal);
-    viewSales.classList.toggle("active", sales);
+    const sales = hasSales && which === "sales";
+
+    tabUgc?.classList.toggle("active", ugc);
+    tabGallery?.classList.toggle("active", gal);
+    tabSales?.classList.toggle("active", sales);
+
+    viewUgc?.classList.toggle("active", ugc);
+    viewGallery?.classList.toggle("active", gal);
+    viewSales?.classList.toggle("active", sales);
   }
   tabUgc?.addEventListener("click", ()=> setActiveView("ugc"));
   tabGallery?.addEventListener("click", ()=> setActiveView("gallery"));
