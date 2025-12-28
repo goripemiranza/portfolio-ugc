@@ -1684,7 +1684,6 @@ main{ max-width: 1200px; margin: 0 auto; }
     const m = String(d.getUTCMonth()+1).padStart(2,"0");
     const dd = String(d.getUTCDate()).padStart(2,"0");
     return `${y}-${m}-${dd}`;
-  }-${m}-${dd}`;
   }
 
   function daysInRange(start, end){
@@ -1867,29 +1866,27 @@ main{ max-width: 1200px; margin: 0 auto; }
       grid.innerHTML = `<div class="empty">${t("gal_empty")}</div>`;
       return;
     }
-
     grid.innerHTML = items.map(x => {
       const url = x.url || "";
       const cap = x.caption ? safeText(x.caption) : "";
       return `
         <div class="shot reveal">
           <div class="imgWrap">
-            <img class="shotImg" loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous"
-                 data-src="${escapeHtml(url)}" alt="${cap}">
+            <img class="shotImg" loading="lazy" data-src="${escapeHtml(url)}" alt="${cap}">
           </div>
           <div class="cap">${cap || `<span class="muted">${t("no_caption")}</span>`}</div>
         </div>
       `;
     }).join("");
 
+    // Browser resolves + encodes special chars correctly
     grid.querySelectorAll("img[data-src]").forEach(img => {
       const raw = img.getAttribute("data-src") || "";
-      img.src = encodePath(raw.startsWith("./") ? raw : ("./"+raw));
+      try{ img.src = new URL(raw, window.location.href).href; }
+      catch(e){ img.src = raw; }
       img.onerror = () => {
-        img.removeAttribute("src");
-        img.style.display = "none";
-        const wrap = img.parentElement;
-        if(wrap) wrap.innerHTML = `<div class="muted">${t("img_invalid")}</div>`;
+        const p = img.parentElement;
+        if(p) p.innerHTML = `<div class="empty">${t("img_invalid")}</div>`;
       };
     });
 
