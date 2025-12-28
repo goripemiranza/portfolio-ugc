@@ -1283,9 +1283,9 @@ const I18N = {
     viewGallery.classList.toggle("active", gal);
     viewSales.classList.toggle("active", sales);
   }
-  tabUgc.addEventListener("click", ()=> setActiveView("ugc"));
-  tabGallery.addEventListener("click", ()=> setActiveView("gallery"));
-  tabSales.addEventListener("click", ()=> setActiveView("sales"));
+  tabUgc?.addEventListener("click", ()=> setActiveView("ugc"));
+  tabGallery?.addEventListener("click", ()=> setActiveView("gallery"));
+  tabSales?.addEventListener("click", ()=> setActiveView("sales"));
 
   /* ---------- UGC rendering ---------- */
   function setStatus(id, text, spinning=false){
@@ -1668,8 +1668,8 @@ function fillTypeSelect(selId){
       }
     }
 
-    document.getElementById(els.typeSelId).addEventListener("change", apply);
-    document.getElementById(els.kwId).addEventListener("input", apply);
+    document.getElementById(els.typeSelId)?.addEventListener("change", apply);
+    document.getElementById(els.kwId)?.addEventListener("input", apply);
 
     return { refresh, fill: ()=> fillTypeSelect(els.typeSelId) };
   }
@@ -1710,7 +1710,7 @@ function fillTypeSelect(selId){
     const grid = document.getElementById("gridGallery");
     if(!grid || grid.dataset.modalBound) return;
     grid.dataset.modalBound = "1";
-    grid.addEventListener("click", (e)=>{
+    grid?.addEventListener("click", (e)=>{
       const img = e.target.closest(".shotImg");
       if(!img) return;
       openImgModal(img.src, img.alt || "");
@@ -1718,7 +1718,7 @@ function fillTypeSelect(selId){
   }
   imgModalClose?.addEventListener("click", closeImgModal);
   imgModal?.addEventListener("click", (e)=>{ if(e.target === imgModal) closeImgModal(); });
-  document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeImgModal(); });
+  document?.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeImgModal(); });
 
 
   async function refreshAll(){ await Promise.all([userSec.refresh(), groupSec.refresh()]); await loadSales();
@@ -2247,7 +2247,7 @@ function drawBars(canvas, labels, values, opts={}){
   drawMultiLine(cDaily, series.map(ss=>({ ...ss, active: !!window.__salesActive[ss.id] })), labels);
 }
 
-  document.getElementById("refreshAllBtn").addEventListener("click", refreshAll);
+  document.getElementById("refreshAllBtn")?.addEventListener("click", refreshAll);
 
   userSec.fill();
   groupSec.fill();
@@ -2257,12 +2257,12 @@ function drawBars(canvas, labels, values, opts={}){
   // Sales controls
   if (document.getElementById('viewSales')) fillSalesSelects();
   document.getElementById("salesRange")?.addEventListener("change", ()=> buildSales());
-tabSales.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
+tabSales?.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
 
 
   // Redraw charts on resize (mobile rotation, etc.)
   let _salesRaf = 0;
-  window.addEventListener("resize", ()=>{
+  window?.addEventListener("resize", ()=>{
     cancelAnimationFrame(_salesRaf);
     _salesRaf = requestAnimationFrame(()=> buildSales());
   });
@@ -2316,14 +2316,14 @@ tabSales.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
   }
 
   // charge au clic (et si déjà sur galerie)
-  tabGallery.addEventListener("click", refreshGallery);
+  tabGallery?.addEventListener("click", refreshGallery);
 
   
   /* ---------- Viewport height fix (mobile address bar) ---------- */
   function setVh(){
     document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
   }
-  window.addEventListener('resize', setVh);
+  window?.addEventListener('resize', setVh);
   setVh();
 
   /* ---------- Language (in-place UI translation) ---------- */
@@ -2438,9 +2438,9 @@ tabSales.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
     }
   });
   btnLangMini?.addEventListener("click", (e)=>{ e.stopPropagation(); btnLang?.click(); });
-  window.addEventListener("resize", ()=>{ if(langMenu?.classList.contains("open")) positionLangMenu(); });
+  window?.addEventListener("resize", ()=>{ if(langMenu?.classList.contains("open")) positionLangMenu(); });
 
-  document.addEventListener("click", (e)=>{
+  document?.addEventListener("click", (e)=>{
     if(!langMenu) return;
     if(langMenu.classList.contains("open") && !langMenu.contains(e.target) && e.target !== btnLang && e.target !== btnLangMini){
       closeLangMenu();
@@ -3178,7 +3178,7 @@ function buildSales(){
     if(timer){ clearInterval(timer); timer=null; }
   }
   start();
-  document.addEventListener("visibilitychange", ()=>{
+  document?.addEventListener("visibilitychange", ()=>{
     if(document.hidden) stop();
     else { start(); loadSales().then(buildSales).catch(()=>{}); }
   });
