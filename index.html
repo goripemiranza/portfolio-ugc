@@ -30,7 +30,8 @@
       max-width:var(--maxw);
       margin:0 auto;
       padding:14px;
-      height:100vh;
+      min-height:100vh;
+      height:auto;
       display:flex;
       flex-direction:column;
       gap:12px;
@@ -356,7 +357,7 @@
   
     /* ---------- Responsive + effects (v18) ---------- */
     body{display:block}
-    .wrap{height:calc(var(--vh, 1vh) * 100);}
+    .wrap{min-height:calc(var(--vh, 1vh) * 100);}
 
     .topbar .brand{user-select:none}
     .tab, .btn, .langBtn{
@@ -680,7 +681,7 @@
 /* PATCH_SALES_GALLERY_2025 */
 
 /* Keep everything inside internal scrollers (no page scroll) */
-html, body { height:100%; overflow:hidden; }
+html, body { height:auto; min-height:100%; overflow:auto; }
 
 /* Gallery: ensure cards are visible even if observer fails */
 .reveal { opacity:1 !important; transform:none !important; }
@@ -716,12 +717,7 @@ html, body { height:100%; overflow:hidden; }
         <button class="tab" id="tabGallery" type="button" data-i18n="tab_gallery">Galerie</button>
         <button class="tab" id="tabSales" type="button" data-i18n="tab_sales">Vente</button>
       </div>
-      <div class="rightTools">
-        <button class="langMini" id="btnLangMini" type="button" aria-label="Langue actuelle" title="Langue" hidden>🇫🇷</button>
-        <button class="langBtn" id="btnLang" type="button">🌐 <span data-i18n="lang">Langue</span></button>
-        <div class="langMenu" id="langMenu" aria-hidden="true">
-          <div class="langTitle">🌐 <span data-i18n="choose_lang">Choisir une langue</span></div>
-          <select class="langSelect" id="langSelect" aria-label="Langue">
+      <select class="langSelect" id="langSelect" aria-label="Langue">
             <option value="fr">🇫🇷 Français</option>
             <option value="en">🇺🇸 English</option>
             <option value="es">🇪🇸 Español</option>
@@ -1216,6 +1212,10 @@ html, body { height:100%; overflow:hidden; }
     viewUgc.classList.toggle("active", ugc);
     viewGallery.classList.toggle("active", gal);
     viewSales.classList.toggle("active", sales);
+    if(sales){
+      fillSalesSelects?.();
+      buildSales?.();
+    }
   }
   tabUgc.addEventListener("click", ()=> setActiveView("ugc"));
   tabGallery.addEventListener("click", ()=> setActiveView("gallery"));
@@ -1916,6 +1916,7 @@ function fillTypeSelect(selId){
 
   userSec.fill();
   groupSec.fill();
+  applyLang();
   refreshAll();
 
   // Redraw charts on resize (mobile rotation, etc.)
@@ -1998,7 +1999,7 @@ function fillTypeSelect(selId){
   }
 
 
-  function currentLang(){ return (window.__lang || localStorage.getItem("lang") || "fr"); }
+  function currentLang(){ return "en"; }
   function currentLocale(){
     const l=currentLang();
     const map={fr:"fr-FR",en:"en-US",es:"es-ES",de:"de-DE",pt:"pt-PT",it:"it-IT",nl:"nl-NL",pl:"pl-PL",tr:"tr-TR",ru:"ru-RU",uk:"uk-UA",ar:"ar-SA",he:"he-IL",hi:"hi-IN",bn:"bn-BD",id:"id-ID",vi:"vi-VN",th:"th-TH",ja:"ja-JP",ko:"ko-KR",zh:"zh-CN",sv:"sv-SE",no:"nb-NO",da:"da-DK",fi:"fi-FI",el:"el-GR"};
@@ -2046,10 +2047,6 @@ function fillTypeSelect(selId){
   }
 
   // language menu toggle
-  const btnLang = document.getElementById("btnLang");
-  const btnLangMini = document.getElementById("btnLangMini");
-  const langMenu = document.getElementById("langMenu");
-  const langSelect = document.getElementById("langSelect");
 
   const FLAGS = {
     fr:"🇫🇷", en:"🇺🇸", es:"🇪🇸", de:"🇩🇪", pt:"🇵🇹", it:"🇮🇹", nl:"🇳🇱", pl:"🇵🇱",
@@ -2086,7 +2083,6 @@ function fillTypeSelect(selId){
     syncLangMini(false);
   }
 
-  btnLang?.addEventListener("click", (e) => {
     e.stopPropagation();
     const open = langMenu.classList.toggle("open");
     langMenu.setAttribute("aria-hidden", open ? "false" : "true");
@@ -2099,7 +2095,6 @@ function fillTypeSelect(selId){
       syncLangMini(false);
     }
   });
-  btnLangMini?.addEventListener("click", (e)=>{ e.stopPropagation(); btnLang?.click(); });
   window.addEventListener("resize", ()=>{ if(langMenu?.classList.contains("open")) positionLangMenu(); });
 
   document.addEventListener("click", (e)=>{
@@ -2111,8 +2106,6 @@ function fillTypeSelect(selId){
 
   langMenu?.addEventListener("click",(e)=>e.stopPropagation());
   langMenu?.addEventListener("pointerdown",(e)=>e.stopPropagation());
-  langSelect?.addEventListener("pointerdown",(e)=>e.stopPropagation());
-  langSelect?.addEventListener("click",(e)=>e.stopPropagation());
 
   // set initial lang
   const savedLang = localStorage.getItem("lang") || "fr";
@@ -2142,7 +2135,6 @@ function fillTypeSelect(selId){
   msGroup?.addEventListener("click", ()=>setMobilePanel("group"));
 
 
-  langSelect?.addEventListener("change", (e) => {
     applyLang(e.target.value);
     closeLangMenu();
   });
