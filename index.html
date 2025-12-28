@@ -23,15 +23,14 @@
         radial-gradient(900px 700px at 80% 0%, rgba(49,208,170,0.25), transparent 60%),
         radial-gradient(900px 700px at 50% 110%, rgba(255,255,255,0.06), transparent 60%),
         var(--bg);
-      overflow:auto; /* ✅ pas de scroll page */
+      overflow:hidden; /* ✅ pas de scroll page */
     }
     a{color:inherit;text-decoration:none}
     .wrap{
       max-width:var(--maxw);
       margin:0 auto;
       padding:14px;
-      min-height:100vh;
-      height:auto;
+      height:100vh;
       display:flex;
       flex-direction:column;
       gap:12px;
@@ -62,7 +61,7 @@
     .hero{
       padding:18px 18px 14px;
       position:relative;
-      overflow:auto;
+      overflow:hidden;
       text-align:center;
     }
     .hero::before{
@@ -169,7 +168,7 @@
       background:rgba(255,255,255,0.04);
       border:1px solid var(--line);
       border-radius:18px;
-      overflow:auto;
+      overflow:hidden;
       transition:transform .12s ease, background .12s ease, border-color .12s ease;
       display:flex;
       flex-direction:column;
@@ -256,7 +255,7 @@
       border:1px solid var(--line);
       background:rgba(255,255,255,0.04);
       border-radius:18px;
-      overflow:auto;
+      overflow:hidden;
       display:flex;
       flex-direction:column;
     }
@@ -296,8 +295,8 @@
     
     /* ---------- Mobile fix (override) : keep internal scrollers usable ---------- */
     @media (max-width: 980px){
-      html, body{height:100%; overflow:auto;}
-      body{overflow:auto;}
+      html, body{height:100%; overflow:hidden;}
+      body{overflow:hidden;}
       .wrap{height:100vh !important;}
       @supports (height: 100dvh){ .wrap{height:100dvh !important;} }
       .views{flex:1 !important; min-height:0 !important;}
@@ -322,7 +321,7 @@
     ::-webkit-scrollbar-corner{background:transparent}
 
     /* Keep page fixed: scroll only inside scrollers */
-    html, body{height:100%; overflow:auto}
+    html, body{height:100%; overflow:hidden}
 
     /* ---------- Gallery captions: hidden unless hover ---------- */
     .shot{position:relative}
@@ -352,16 +351,17 @@
       white-space:nowrap;
     }
     .langBtn:hover{transform:translateY(-1px); background:rgba(0,0,0,0.26); border-color:rgba(255,255,255,0.18)}
+    .langSelect option{background:#0b0f17; color:#e8edf7}
 
   
     /* ---------- Responsive + effects (v18) ---------- */
     body{display:block}
-    .wrap{min-height:calc(var(--vh, 1vh) * 100);}
+    .wrap{height:calc(var(--vh, 1vh) * 100);}
 
     .topbar .brand{user-select:none}
     .tab, .btn, .langBtn{
       position:relative;
-      overflow:auto;
+      overflow:hidden;
     }
     .tab:active, .btn:active, .langBtn:active{transform:translateY(0) scale(0.98)}
     .tab:focus-visible, .btn:focus-visible, .langBtn:focus-visible, select:focus-visible, input:focus-visible{
@@ -407,6 +407,7 @@
     .langMini:hover{box-shadow:0 14px 34px rgba(0,0,0,0.45); transform:translateY(-1px) scale(1.02)}
     .langMini:active{transform:translateY(0) scale(.98)}
     .langTitle{font-weight:950; letter-spacing:.2px; margin:2px 2px 10px; opacity:.92}
+    .langMenu{
       position:fixed;
       background:rgba(12,16,26,0.94);
       border:1px solid rgba(255,255,255,0.12);
@@ -422,12 +423,14 @@
       visibility:hidden;
       transition:opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
     }
+    .langMenu.open{
       opacity:1;
       transform:translateY(0) scale(1);
       pointer-events:auto;
       visibility:visible;
       transition:opacity .18s ease, transform .18s ease, visibility 0s;
     }
+    .langSelect{
       width:100%;
       border:1px solid rgba(255,255,255,0.12);
       background:rgba(0,0,0,0.18);
@@ -437,6 +440,9 @@
       font-weight:900;
       outline:none;
     }
+    .langSelect:focus{border-color:rgba(131,107,255,0.8); box-shadow:0 0 0 3px rgba(131,107,255,0.22)}
+
+.langSelect{width:100%}
 
     /* scroll reveal */
     .reveal{opacity:0; transform:translateY(10px); transition:opacity .22s ease, transform .22s ease}
@@ -452,6 +458,7 @@
       .brand{flex:1 1 100%; justify-content:center}
       .tabs{flex:1 1 100%; justify-content:center}
       .rightTools{flex:1 1 100%; display:flex; justify-content:center}
+      .langMenu{left:50%; right:auto; transform:translateX(-50%); top:44px; width:min(92vw, 360px)}
       h1{font-size:34px}
       .kicker{font-size:12px}
       .actions{flex-wrap:wrap; justify-content:center}
@@ -520,6 +527,7 @@
     }
 
     /* ---------- Language menu (clickable, above everything) ---------- */
+    .langMenu{
       position:fixed !important;
       z-index:300 !important;
       max-height:min(62vh, 520px);
@@ -527,9 +535,10 @@
       -webkit-overflow-scrolling: touch;
     }
 
+
     /* ---------- Mobile hard-fix: keep the app scrollable (no frozen page) ---------- */
     @media (max-width: 980px){
-      html, body{height:100%; overflow:auto;}
+      html, body{height:100%; overflow:hidden;}
       .wrap{height:100vh;}
       @supports (height: 100dvh){
         .wrap{height:100dvh;}
@@ -540,6 +549,7 @@
       .card.section{height:100% !important;}
       .scroller{flex:1 !important; min-height:0 !important; overflow:auto !important; max-height:none !important; padding-right:0 !important;}
     }
+
 
     /* lively micro-interactions */
     .tab,.btn,.langBtn,.link{
@@ -602,7 +612,7 @@
     .modalCard{
       width:min(980px, 96vw);
       border-radius:18px;
-      overflow:auto;
+      overflow:hidden;
       border:1px solid rgba(255,255,255,0.14);
       background:rgba(12,16,26,0.96);
       box-shadow:0 26px 80px rgba(0,0,0,0.65);
@@ -615,7 +625,7 @@
       padding:10px 12px;
       border-bottom:1px solid rgba(255,255,255,0.10);
     }
-    .modalCap{font-weight:900; opacity:.9; white-space:nowrap; overflow:auto; text-overflow:ellipsis;}
+    .modalCap{font-weight:900; opacity:.9; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
     .closeBtn{
       border:1px solid rgba(255,255,255,0.14);
       background:rgba(0,0,0,0.20);
@@ -653,10 +663,10 @@
     .salesList{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px;}
     .saleRow{display:flex; gap:10px; padding:10px; border-radius:14px; border:1px solid rgba(255,255,255,0.07); background:rgba(0,0,0,0.18); text-decoration:none; color:inherit; transition:transform .18s ease, border-color .18s ease, background .18s ease;}
     .saleRow:hover{transform:translateY(-2px); border-color:rgba(170,235,255,0.28); background:rgba(0,0,0,0.24);}
-    .saleThumb{width:64px; height:64px; border-radius:12px; overflow:auto; background:rgba(255,255,255,0.04); flex:0 0 auto;}
+    .saleThumb{width:64px; height:64px; border-radius:12px; overflow:hidden; background:rgba(255,255,255,0.04); flex:0 0 auto;}
     .saleThumb img{width:100%; height:100%; object-fit:cover; display:block;}
     .saleMeta{min-width:0; display:flex; flex-direction:column; gap:2px}
-    .saleName{font-weight:800; font-size:13px; white-space:nowrap; overflow:auto; text-overflow:ellipsis}
+    .saleName{font-weight:800; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
     .saleSub{font-size:12px; opacity:.78; display:flex; gap:8px; flex-wrap:wrap}
     .pill{font-size:11px; padding:3px 8px; border-radius:999px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.06);}
 
@@ -666,34 +676,18 @@
       .salesList{grid-template-columns:1fr;}
     }
 
-/* PATCH_SALES_GALLERY_2025 */
 
-/* Keep everything inside internal scrollers (no page scroll) */
-html, body { height:auto; min-height:100%; overflow:auto; }
-
-/* Gallery: ensure cards are visible even if observer fails */
-.reveal { opacity:1 !important; transform:none !important; }
-.reveal.in { opacity:1 !important; transform:none !important; }
-
-/* Sales: prevent overflow + give internal scrolling for lists */
-#salesAll{ max-height: 360px; overflow:auto; padding-right:6px; }
-#salesToday{ max-height: 220px; overflow:auto; padding-right:6px; }
-
-/* Sales header controls */
-.salesHeader{ align-items:center; gap:12px; }
-.salesControls{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+/* SALES_OPT_2025 */
+.salesHeader{ display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+.salesControls{ display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; }
 .salesControls .control{ display:flex; flex-direction:column; gap:6px; min-width:160px; }
 .salesControls .label{ font-size:12px; color:rgba(255,255,255,0.70); }
-
-/* Top list under chart */
-.miniList{ margin-top:8px; display:flex; flex-direction:column; gap:6px; }
+#salesAll{ max-height:360px; overflow:auto; padding-right:6px; }
+#salesToday{ max-height:240px; overflow:auto; padding-right:6px; }
+.miniList{ margin-top:10px; display:flex; flex-direction:column; gap:6px; }
 .miniRow{ display:flex; justify-content:space-between; gap:10px; font-size:12px; color:rgba(255,255,255,0.82); }
-.miniRow .name{ overflow:auto; text-overflow:ellipsis; white-space:nowrap; }
+.miniRow .name{ flex:1 1 auto; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .miniRow .val{ flex:0 0 auto; color:rgba(255,255,255,0.70); }
-
-/* Items grid responsiveness */
-.salesList{ grid-template-columns:repeat(2, minmax(0,1fr)); }
-@media (max-width: 900px){ .salesList{ grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -705,6 +699,12 @@ html, body { height:auto; min-height:100%; overflow:auto; }
         <button class="tab" id="tabGallery" type="button" data-i18n="tab_gallery">Galerie</button>
         <button class="tab" id="tabSales" type="button" data-i18n="tab_sales">Vente</button>
       </div>
+      <div class="rightTools">
+        <button class="langMini" id="btnLangMini" type="button" aria-label="Langue actuelle" title="Langue" hidden>🇫🇷</button>
+        <button class="langBtn" id="btnLang" type="button">🌐 <span data-i18n="lang">Langue</span></button>
+        <div class="langMenu" id="langMenu" aria-hidden="true">
+          <div class="langTitle">🌐 <span data-i18n="choose_lang">Choisir une langue</span></div>
+          <select class="langSelect" id="langSelect" aria-label="Langue">
             <option value="fr">🇫🇷 Français</option>
             <option value="en">🇺🇸 English</option>
             <option value="es">🇪🇸 Español</option>
@@ -847,6 +847,9 @@ html, body { height:auto; min-height:100%; overflow:auto; }
       <div class="view" id="viewSales">
         <div class="card sales">
           <div class="salesHeader">
+            <div>
+              <h2 data-i18n="sales_title">Vente</h2>
+            </div>
             <div class="salesControls">
               <div class="control">
                 <div class="label" data-i18n="sales_filter_label">Période</div>
@@ -856,11 +859,6 @@ html, body { height:auto; min-height:100%; overflow:auto; }
                 <div class="label" data-i18n="sales_items_label">Items</div>
                 <select id="salesItemsLimit"></select>
               </div>
-            </div>
-
-            <div>
-              <h2 data-i18n="sales_title">Vente</h2>
-            </div>
             </div>
             <div class="status" id="statusSales">—</div>
           </div>
@@ -883,7 +881,7 @@ html, body { height:auto; min-height:100%; overflow:auto; }
 
               <div class="salesBlocks">
                 <div class="block">
-                  <div class="blockTitle" data-i18n="sales_today">Aujourd’hui</div>
+                  <div class="blockTitle" id="salesPeriodTitle" data-i18n="sales_today">Aujourd’hui</div>
                   <div class="salesList" id="salesToday"></div>
                 </div>
                 <div class="block">
@@ -993,7 +991,6 @@ html, body { height:auto; min-height:100%; overflow:auto; }
       sales_range_week:"Semaine",
       sales_range_month:"Mois",
       sales_range_year:"Année",
-      sales_items_10:"10",
       sales_items_20:"20",
       sales_items_50:"50",
       sales_items_all:"Tous",
@@ -1083,7 +1080,6 @@ html, body { height:auto; min-height:100%; overflow:auto; }
       sales_range_week:"Week",
       sales_range_month:"Month",
       sales_range_year:"Year",
-      sales_items_10:"10",
       sales_items_20:"20",
       sales_items_50:"50",
       sales_items_all:"All",
@@ -1199,10 +1195,7 @@ html, body { height:auto; min-height:100%; overflow:auto; }
     viewUgc.classList.toggle("active", ugc);
     viewGallery.classList.toggle("active", gal);
     viewSales.classList.toggle("active", sales);
-    if(sales){
-      fillSalesSelects?.();
-      buildSales?.();
-    }
+    if(sales){ buildSales(); }
   }
   tabUgc.addEventListener("click", ()=> setActiveView("ugc"));
   tabGallery.addEventListener("click", ()=> setActiveView("gallery"));
@@ -1270,6 +1263,7 @@ html, body { height:auto; min-height:100%; overflow:auto; }
     { key:"OTHER", labelKey:"type_other", badges:["Other","Autre"] },
   ];
 
+
   function normalizeItem(x){
     const assetId = (typeof x.assetId === "number") ? x.assetId : (typeof x.id === "number" ? x.id : null);
     const created = x.created || x.createdAt || x.createdUtc || null;
@@ -1316,6 +1310,7 @@ html, body { height:auto; min-height:100%; overflow:auto; }
     });
   }
 
+
   function sortByNewest(items){
     const safeTime = (it) => (it.createdTs != null ? it.createdTs : -1);
     return [...items].sort((a,b)=> safeTime(b) - safeTime(a));
@@ -1361,6 +1356,7 @@ html, body { height:auto; min-height:100%; overflow:auto; }
     if(!res.ok) throw new Error(`HTTP ${res.status}`);
     return await res.json();
   }
+
 
   /* ---------- sales.json (Option A) ----------
      Expected format (recommended):
@@ -1429,20 +1425,7 @@ html, body { height:auto; min-height:100%; overflow:auto; }
     return out;
   }
 
-  
-  function normalizeSalesStore(raw){
-    if(!raw || typeof raw !== "object") return { updatedAt:null, items:{} };
-    const out = { updatedAt: raw.updated_at || raw.updatedAt || null, items:{} };
-    const srcItems = raw.items && typeof raw.items === "object" ? raw.items : {};
-    for(const [aid, v] of Object.entries(srcItems)){
-      const o = v && typeof v === "object" ? v : {};
-      const totalSales = Number(o.totalSales ?? o.total_sales ?? o.total_sales_count ?? o.total_sales_total ?? o.total_sales_value ?? o.total_sales_num ?? o.total_sales_amount ?? o.total_sales_sum ?? o.total_sales_robux ?? o.total_sales_rbx ?? o.total_sales_r ?? o.totalSalesCount ?? o.total_sales_count_value ?? o.total_sales_count_total ?? o.total_sales_count_sum ?? o.total_sales_count_num ?? o.total_sales_count_amount ?? o.total_sales_count_robux ?? o.total_sales_count_rbx ?? o.total_sales_count_r ?? o.total_sales_count_sales ?? o.total_sales_count_total_sales ?? o.total_sales_count_totalSales ?? o.total_sales_count_total_sales_count ?? o.total_sales_count_total_sales_total ?? o.total_sales_count_total_sales_value ?? o.total_sales_count_total_sales_num ?? o.total_sales_count_total_sales_amount ?? o.total_sales_count_total_sales_sum ?? o.total_sales_count_total_sales_robux ?? o.total_sales_count_total_sales_rbx ?? o.total_sales_count_total_sales_r ?? o.total_sales_count_totalSalesCount ?? o.total_sales_count_total_sales_count_value ?? o.total_sales_count_total_sales_count_total ?? o.total_sales_count_total_sales_count_sum ?? o.total_sales_count_total_sales_count_num ?? o.total_sales_count_total_sales_count_amount ?? o.total_sales_count_total_sales_count_robux ?? o.total_sales_count_total_sales_count_rbx ?? o.total_sales_count_total_sales_count_r ?? o.total_sales_count_total_sales_count_sales ?? o.total_sales_count_total_sales_count_total_sales ?? o.total_sales_count_total_sales_count_totalSales ?? o.total_sales_count_total_sales_count_total_sales_count ?? o.total_sales_count_total_sales_count_total_sales_total ?? o.total_sales_count_total_sales_count_total_sales_value ?? o.total_sales_count_total_sales_count_total_sales_num ?? o.total_sales_count_total_sales_count_total_sales_amount ?? o.total_sales_count_total_sales_count_total_sales_sum ?? o.total_sales_count_total_sales_count_total_sales_robux ?? o.total_sales_count_total_sales_count_total_sales_rbx ?? o.total_sales_count_total_sales_count_total_sales_r ?? o.total_sales_count_total_sales_count_totalSalesCount ?? o.total_sales_count_total_sales_count_total_sales_count_value ?? o.total_sales_count_total_sales_count_total_sales_count_total ?? o.total_sales_count_total_sales_count_total_sales_count_sum ?? o.total_sales_count_total_sales_count_total_sales_count_num ?? o.total_sales_count_total_sales_count_total_sales_count_amount ?? o.total_sales_count_total_sales_count_total_sales_count_robux ?? o.total_sales_count_total_sales_count_total_sales_count_rbx ?? o.total_sales_count_total_sales_count_total_sales_count_r ?? o.total_sales_count_total_sales_count_total_sales_count_sales ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales ?? o.total_sales_count_total_sales_count_total_sales_count_totalSales ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_count ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_total ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_value ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_num ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_amount ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_sum ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_robux ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_rbx ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_r ?? 0) || 0;
-      const byDay = (o.byDay && typeof o.byDay==="object") ? o.byDay : (o.sales_by_day && typeof o.sales_by_day==="object" ? o.sales_by_day : (o.salesByDay && typeof o.salesByDay==="object" ? o.salesByDay : {}));
-      out.items[String(aid)] = { totalSales, byDay };
-    }
-    return out;
-  }
-async function loadSales(){
+  async function loadSales(){
     try{
       const raw = await fetchJsonLocal("sales.json");
       SALES_STORE = normalizeSales(raw);
@@ -1450,6 +1433,7 @@ async function loadSales(){
       SALES_STORE = null;
     }
   }
+
 
   
   
@@ -1460,7 +1444,6 @@ async function loadSales(){
     { key:"year",  labelKey:"sales_range_year" },
   ];
   const SALES_ITEMS_LIMITS = [
-    { key:"10",  labelKey:"sales_items_10" },
     { key:"20",  labelKey:"sales_items_20" },
     { key:"50",  labelKey:"sales_items_50" },
     { key:"all", labelKey:"sales_items_all" },
@@ -1470,15 +1453,39 @@ async function loadSales(){
     const rSel = document.getElementById("salesRange");
     if(rSel){
       const cur = rSel.value || "day";
-      rSel.innerHTML = SALES_RANGE_OPTIONS.map(o => `<option value="${o.key}">${t(o.labelKey)}</option>`).join("");
+      rSel.innerHTML = SALES_RANGE_OPTIONS.map(o => `<option value="${o.key}">${t(o.labelKey) || o.key}</option>`).join("");
       rSel.value = cur;
     }
     const lSel = document.getElementById("salesItemsLimit");
     if(lSel){
       const cur2 = lSel.value || "20";
-      lSel.innerHTML = SALES_ITEMS_LIMITS.map(o => `<option value="${o.key}">${t(o.labelKey)}</option>`).join("");
+      lSel.innerHTML = SALES_ITEMS_LIMITS.map(o => `<option value="${o.key}">${t(o.labelKey) || o.key}</option>`).join("");
       lSel.value = cur2;
     }
+  }
+
+  function parseYMD(s){
+    // s = YYYY-MM-DD
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s||""));
+    if(!m) return null;
+    const d = new Date(Date.UTC(+m[1], +m[2]-1, +m[3]));
+    return isNaN(d.getTime()) ? null : d;
+  }
+  function ymdUTC(d){
+    const y = d.getUTCFullYear();
+    const m = String(d.getUTCMonth()+1).padStart(2,"0");
+    const dd = String(d.getUTCDate()).padStart(2,"0");
+    return `${y}-${m}-${dd}`;
+  }
+  function daysRangeUTC(start, end){
+    const out = [];
+    const d = new Date(start); d.setUTCHours(0,0,0,0);
+    const e = new Date(end);   e.setUTCHours(0,0,0,0);
+    while(d <= e){
+      out.push(ymdUTC(d));
+      d.setUTCDate(d.getUTCDate()+1);
+    }
+    return out;
   }
 
 function fillTypeSelect(selId){
@@ -1489,6 +1496,7 @@ function fillTypeSelect(selId){
       return `<option value="${o.key}">${label}</option>`;
     }).join("");
   }
+
 
   function wireSection(source, els){
     const state = { items: [] };
@@ -1576,8 +1584,11 @@ function fillTypeSelect(selId){
   imgModal?.addEventListener("click", (e)=>{ if(e.target === imgModal) closeImgModal(); });
   document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeImgModal(); });
 
+
   async function refreshAll(){ await Promise.all([userSec.refresh(), groupSec.refresh()]); await loadSales();
     buildSales(); }
+
+
 
   function escapeHtml(s){
     return String(s || "")
@@ -1735,45 +1746,17 @@ function fillTypeSelect(selId){
     }
   }
 
-  function ymdUTC(d){
-    const y = d.getUTCFullYear();
-    const m = String(d.getUTCMonth()+1).padStart(2,"0");
-    const dd = String(d.getUTCDate()).padStart(2,"0");
-    return `${y}-${m}-${dd}`;
-  }
-  function daysInRangeUTC(start, end){
-    const out = [];
-    const d = new Date(start);
-    d.setUTCHours(0,0,0,0);
-    const e = new Date(end);
-    e.setUTCHours(0,0,0,0);
-    while(d <= e){
-      out.push(ymdUTC(d));
-      d.setUTCDate(d.getUTCDate()+1);
-    }
-    return out;
-  }
-  function computePeriod(rangeKey){
-    const today = new Date(); today.setUTCHours(0,0,0,0);
-    let back = 0;
-    if(rangeKey==="week") back = 6;
-    else if(rangeKey==="month") back = 29;
-    else if(rangeKey==="year") back = 364;
-    const start = new Date(today);
-    start.setUTCDate(today.getUTCDate()-back);
-    return { start, end: today, days: daysInRangeUTC(start, today) };
-  }
-
   function buildSales(){
     const status = document.getElementById("statusSales");
     const statsEl = document.getElementById("salesStats");
     const listAll = document.getElementById("salesAll");
-    const listDay = document.getElementById("salesToday");
+    const listPeriod = document.getElementById("salesToday");
+    const titleEl = document.getElementById("salesPeriodTitle");
     const topList = document.getElementById("salesTopList");
     const cTop = document.getElementById("chartTop");
     const cDaily = document.getElementById("chartDaily");
 
-    if(!status || !statsEl || !listAll || !listDay || !cTop || !cDaily) return;
+    if(!status || !statsEl || !listAll || !listPeriod || !cTop || !cDaily) return;
 
     const rangeKey = (document.getElementById("salesRange")?.value) || "day";
     const limitKey = (document.getElementById("salesItemsLimit")?.value) || "20";
@@ -1781,95 +1764,117 @@ function fillTypeSelect(selId){
     const store = window.__UGC_STORE || {};
     const userItems = Array.isArray(store.user) ? store.user.map(x=>({...x, __src:"user"})) : [];
     const groupItems = Array.isArray(store.group) ? store.group.map(x=>({...x, __src:"group"})) : [];
-    const all = [...userItems, ...groupItems];
+    const all = [...userItems, ...groupItems].filter(it => it.assetId);
 
-    // Merge normalized sales store if present
+    // Merge sales.json (normalized by existing normalizeSales)
     const sItems = SALES_STORE?.items || {};
     for(const it of all){
       const s = sItems[String(it.assetId)];
       it.salesTotal = (s && typeof s.totalSales==="number") ? s.totalSales : 0;
       it.salesByDay = (s && s.byDay && typeof s.byDay==="object") ? s.byDay : {};
+      it.__periodSales = 0;
     }
 
-    const { start, end, days } = computePeriod(rangeKey);
-
-    // Period totals
-    const dayTotals = {};
-    for(const d of days) dayTotals[d] = 0;
-
+    // Determine end day = latest in sales_by_day (fallback today)
+    let end = new Date(); end.setUTCHours(0,0,0,0);
+    let maxDay = null;
     for(const it of all){
-      let p = 0;
+      for(const k of Object.keys(it.salesByDay||{})){
+        const d = parseYMD(k);
+        if(!d) continue;
+        if(!maxDay || d > maxDay) maxDay = d;
+      }
+    }
+    if(maxDay) end = maxDay;
+
+    let back = 0;
+    if(rangeKey==="week") back = 6;
+    else if(rangeKey==="month") back = 29;
+    else if(rangeKey==="year") back = 364;
+
+    const start = new Date(end);
+    start.setUTCDate(end.getUTCDate()-back);
+    const days = daysRangeUTC(start, end);
+
+    // Aggregate period + day totals
+    const dayTotals = Object.fromEntries(days.map(d=>[d,0]));
+    for(const it of all){
+      let ps = 0;
       for(const d of days){
         const n = Number(it.salesByDay?.[d] || 0);
-        if(n>0){
-          p += n;
+        if(Number.isFinite(n) && n>0){
+          ps += n;
           dayTotals[d] += n;
         }
       }
-      it.__periodSales = p;
+      it.__periodSales = ps;
     }
 
+    const totalItems = all.length;
     const salesTotalAll = all.reduce((a,it)=>a+(Number(it.salesTotal)||0),0);
     const salesTotalPeriod = Object.values(dayTotals).reduce((a,b)=>a+(Number(b)||0),0);
 
-    // Status
-    const salesTag = SALES_STORE?.updatedAt ? ` • ${t("sales_updated")}: ${SALES_STORE.updatedAt}` : "";
-    const label = (rangeKey==="day") ? `${t("sales_range_day")} • ${fmtDate(end.getTime())}` :
-                  `${t(rangeKey==="week"?"sales_range_week":rangeKey==="month"?"sales_range_month":"sales_range_year")} • ${fmtDate(start.getTime())} → ${fmtDate(end.getTime())}`;
-    status.textContent = `${all.length} item(s) • ${label}${salesTag}`;
+    // Labels
+    const label =
+      (rangeKey==="day") ? `${t("sales_range_day")} • ${fmtDate(end.toISOString())}` :
+      (rangeKey==="week") ? `${t("sales_range_week")} • ${fmtDate(start.toISOString())} → ${fmtDate(end.toISOString())}` :
+      (rangeKey==="month") ? `${t("sales_range_month")} • ${fmtDate(start.toISOString())} → ${fmtDate(end.toISOString())}` :
+      `${t("sales_range_year")} • ${fmtDate(start.toISOString())} → ${fmtDate(end.toISOString())}`;
 
-    // Stats (no Robux)
+    if(titleEl) titleEl.textContent = label;
+
+    const salesTag = SALES_STORE?.updatedAt ? ` • ${t("sales_updated")}: ${SALES_STORE.updatedAt}` : "";
+    status.textContent = `${totalItems} item(s) • ${label}${salesTag}`;
+
+    // Stats (NO ROBUX)
     statsEl.innerHTML = `
-      <div class="stat"><div class="k">${t("stat_total")}</div><div class="v">${all.length}</div></div>
+      <div class="stat"><div class="k">${t("stat_total")}</div><div class="v">${totalItems}</div></div>
       <div class="stat"><div class="k">${t("stat_sales_period")}</div><div class="v">${salesTotalPeriod}</div></div>
       <div class="stat"><div class="k">${t("stat_sales_total")}</div><div class="v">${salesTotalAll}</div></div>
     `;
 
-    function row(it, extraSales){
+    function row(it, count){
       const creator = it.__src === "user" ? t("sale_creator_user") : t("sale_creator_group");
-      const salesTxt = (typeof extraSales==="number") ? `${extraSales}` : `${it.salesTotal||0}`;
-      const sub = `${creator} • ${it.badge || "—"} • ${fmtDate(it.createdTs)} • ${salesTxt}`;
       const url = `https://www.roblox.com/catalog/${it.assetId}`;
+      const sub = `${creator} • ${it.badge || "—"} • ${fmtDate(it.createdTs)} • ${count}`;
       return `
-        <a class="saleRow" href="${url}" target="_blank" rel="noreferrer">
-          <img class="saleThumb" src="${it.thumb || ''}" alt="">
+        <a class="saleRow hoverLift" href="${url}" target="_blank" rel="noreferrer">
+          <div class="saleThumb"><img loading="lazy" src="${it.thumb}" alt=""></div>
           <div class="saleMeta">
-            <div class="saleName">${safeText(it.name || ("#" + it.assetId))}</div>
-            <div class="saleSub">${safeText(sub)}</div>
+            <div class="saleName">${escapeHtml(it.name || ("Item " + it.assetId))}</div>
+            <div class="saleSub">
+              <span class="pill">${escapeHtml(it.badge || "—")}</span>
+              <span>${escapeHtml(sub)}</span>
+            </div>
           </div>
         </a>
       `;
     }
 
-    // Lists
-    const soldInPeriod = all.filter(it => (it.__periodSales||0) > 0).sort((a,b)=>(b.__periodSales||0)-(a.__periodSales||0));
-    const allSorted = all.slice().sort((a,b)=>(b.salesTotal||0)-(a.salesTotal||0));
+    const sortedAll = [...all].sort((a,b)=>(b.salesTotal||0)-(a.salesTotal||0));
+    const sortedPeriod = [...all].filter(it=>(it.__periodSales||0)>0).sort((a,b)=>(b.__periodSales||0)-(a.__periodSales||0));
 
-    // Today block title text updates via existing i18n key; keep content only
-    listDay.innerHTML = soldInPeriod.slice(0,200).map(it => row(it, it.__periodSales)).join("") || `<div class="muted">${t("empty_sales_day")}</div>`;
+    // Items limit
+    let lim = 20;
+    if(limitKey==="50") lim = 50;
+    else if(limitKey==="all") lim = 9999;
 
-    // Apply items limit
-    let limit = 20;
-    if(limitKey==="10") limit = 10;
-    else if(limitKey==="20") limit = 20;
-    else if(limitKey==="50") limit = 50;
-    else limit = 9999;
-
-    listAll.innerHTML = allSorted.slice(0, limit).map(it => row(it, it.salesTotal||0)).join("") || `<div class="muted">${t("empty_sales")}</div>`;
+    listAll.innerHTML = sortedAll.slice(0, lim).map(it => row(it, it.salesTotal||0)).join("") || `<div class="muted">${t("empty_sales")}</div>`;
+    listPeriod.innerHTML = sortedPeriod.slice(0, 200).map(it => row(it, it.__periodSales||0)).join("") || `<div class="muted">${t("empty_sales_day")}</div>`;
 
     // Top chart + Top list (avoid label overlap)
-    const top = soldInPeriod.length ? soldInPeriod.slice(0,10) : allSorted.slice(0,10);
-    const topVals = top.map(it => (it.__periodSales>0 ? it.__periodSales : (it.salesTotal||0)));
+    const top = (sortedPeriod.length ? sortedPeriod : sortedAll).slice(0, 10);
+    const topVals = top.map(it => (sortedPeriod.length ? (it.__periodSales||0) : (it.salesTotal||0)));
     drawBars(cTop, top.map(_=>""), topVals);
 
     if(topList){
       topList.innerHTML = top.map(it => {
-        const n = (it.__periodSales>0 ? it.__periodSales : (it.salesTotal||0));
-        return `<div class="miniRow"><span class="name">${safeText(it.name || ("#" + it.assetId))}</span><span class="val">${n}</span></div>`;
-      }).join("") || "";
+        const v = sortedPeriod.length ? (it.__periodSales||0) : (it.salesTotal||0);
+        return `<div class="miniRow"><span class="name">${escapeHtml(it.name || ("Item " + it.assetId))}</span><span class="val">${v}</span></div>`;
+      }).join("");
     }
 
-    // Evolution chart: last 14 days for day; else use period days (cap to 30), year -> monthly
+    // Evolution chart
     if(rangeKey==="year"){
       const monthTotals = {};
       for(const d of days){
@@ -1879,11 +1884,11 @@ function fillTypeSelect(selId){
       const months = Object.keys(monthTotals).sort().slice(-12);
       drawBars(cDaily, months.map(m=>m.slice(5)+"/"+m.slice(2,4)), months.map(m=>monthTotals[m]||0));
     }else{
+      // For "day" show last 14 days ending on end
       let chartDays = days;
       if(rangeKey==="day"){
-        const today = new Date(); today.setUTCHours(0,0,0,0);
-        const start14 = new Date(today); start14.setUTCDate(today.getUTCDate()-13);
-        chartDays = daysInRangeUTC(start14, today);
+        const s14 = new Date(end); s14.setUTCDate(end.getUTCDate()-13);
+        chartDays = daysRangeUTC(s14, end);
       }
       if(chartDays.length > 30) chartDays = chartDays.slice(-30);
       const pts = chartDays.map(d => ({ lab: d.slice(5), v: (dayTotals[d]||0) }));
@@ -1895,10 +1900,16 @@ function fillTypeSelect(selId){
 
   userSec.fill();
   groupSec.fill();
-  applyLang();
-  applyLang();
   refreshAll();
-// Redraw charts on resize (mobile rotation, etc.)
+
+  // Sales controls
+  fillSalesSelects();
+  document.getElementById("salesRange")?.addEventListener("change", ()=> buildSales());
+  document.getElementById("salesItemsLimit")?.addEventListener("change", ()=> buildSales());
+  window.addEventListener("resize", ()=> { if(document.getElementById("viewSales")?.classList.contains("active")) buildSales(); });
+  setInterval(()=>{ if(document.getElementById("viewSales")?.classList.contains("active")) buildSales(); }, 30000);
+
+  // Redraw charts on resize (mobile rotation, etc.)
   let _salesRaf = 0;
   window.addEventListener("resize", ()=>{
     cancelAnimationFrame(_salesRaf);
@@ -1914,33 +1925,28 @@ function fillTypeSelect(selId){
 
   function safeText(s){ return String(s || "").replaceAll("<","&lt;").replaceAll(">","&gt;"); }
 
-  function encodePath(p){
-    const raw = String(p || "");
-    return raw.split("/").map(seg => encodeURIComponent(seg)).join("/");
-  }
-
   function renderGallery(items){
     const grid = document.getElementById("galleryGrid");
     if(!items.length){
-      grid.innerHTML = `<div class="empty">${t("gal_empty")} Ajoute des fichiers dans <b>gallery/</b> sur GitHub.</div>`;
+      grid.innerHTML = `<div class="empty">Aucune image pour le moment. Ajoute des fichiers dans <b>gallery/</b> sur GitHub.</div>`;
       return;
     }
     grid.innerHTML = items.map(x => {
       const url = x.url || "";
+      const safeUrl = encodeURI(url);
       const cap = x.caption ? safeText(x.caption) : "";
       return `
-        <div class="shot reveal in">
+        <div class="shot reveal">
           <div class="imgWrap">
-            <img loading="lazy" src="./${encodePath(url)}" alt="${cap}"
-                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'empty\'>${t('img_invalid')}</div>';">
+            <img loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous"
+                 src="${safeUrl}" alt="${cap}"
+                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'empty\'>Image invalide</div>';">
           </div>
-          <div class="cap">${cap || `<span class="muted">${t("no_caption")}</span>`}</div>
+          <div class="cap">${cap || "<span class='muted'>Sans légende</span>"}</div>
         </div>
       `;
     }).join("");
-
-    // Ensure reveal observer is attached (and force visible)
-    ensureRevealForGrid(grid);
+    addReveal(grid);
     bindGalleryModal();
   }
 
@@ -1973,11 +1979,12 @@ function fillTypeSelect(selId){
   
 
   function t(key){
-    const lang = "en";
+    const lang = (localStorage.getItem("lang") || "fr");
     return (I18N[lang] && I18N[lang][key]) || (I18N.en && I18N.en[key]) || (I18N.fr[key] || "");
   }
 
-  function currentLang(){ return "en"; }
+
+  function currentLang(){ return (window.__lang || localStorage.getItem("lang") || "fr"); }
   function currentLocale(){
     const l=currentLang();
     const map={fr:"fr-FR",en:"en-US",es:"es-ES",de:"de-DE",pt:"pt-PT",it:"it-IT",nl:"nl-NL",pl:"pl-PL",tr:"tr-TR",ru:"ru-RU",uk:"uk-UA",ar:"ar-SA",he:"he-IL",hi:"hi-IN",bn:"bn-BD",id:"id-ID",vi:"vi-VN",th:"th-TH",ja:"ja-JP",ko:"ko-KR",zh:"zh-CN",sv:"sv-SE",no:"nb-NO",da:"da-DK",fi:"fi-FI",el:"el-GR"};
@@ -1994,18 +2001,109 @@ function fillTypeSelect(selId){
     return (typeof fn === "function") ? fn(n) : `${n}`;
   }
 
-  function applyLang(){
-    const lang = "en";
+
+  function applyLang(lang){
+    if(!lang) lang="fr";
+    localStorage.setItem("lang", lang);
     window.__lang = lang;
     document.documentElement.lang = lang;
+
+    // text nodes
     document.querySelectorAll("[data-i18n]").forEach(el => {
-      const key = el.getAttribute("data-i18n");
-      if(!key) return;
-      el.textContent = t(key);
+      const k = el.getAttribute("data-i18n");
+      const v = (I18N[lang] && I18N[lang][k]) || (I18N.fr[k] || null);
+      if(v !== null) el.textContent = v;
     });
+
+    // placeholders
+    document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+      const k = el.getAttribute("data-i18n-ph");
+      const v = (I18N[lang] && I18N[lang][k]) || (I18N.fr[k] || null);
+      if(v !== null) el.setAttribute("placeholder", v);
+    });
+
+    // Rebuild translated selects
+    fillTypeSelect("typeUser");
+    fillTypeSelect("typeGroup");
+    fillSalesSelects();
+
+    // Refresh sales labels/stats without refetch
+    buildSales();
   }
 
   // language menu toggle
+  const btnLang = document.getElementById("btnLang");
+  const btnLangMini = document.getElementById("btnLangMini");
+  const langMenu = document.getElementById("langMenu");
+  const langSelect = document.getElementById("langSelect");
+
+  const FLAGS = {
+    fr:"🇫🇷", en:"🇺🇸", es:"🇪🇸", de:"🇩🇪", pt:"🇵🇹", it:"🇮🇹", nl:"🇳🇱", pl:"🇵🇱",
+    tr:"🇹🇷", ru:"🇷🇺", uk:"🇺🇦", ar:"🇸🇦", hi:"🇮🇳", bn:"🇧🇩", ur:"🇵🇰",
+    id:"🇮🇩", ms:"🇲🇾", vi:"🇻🇳", th:"🇹🇭", ja:"🇯🇵", ko:"🇰🇷", zh:"🇨🇳",
+    he:"🇮🇱", fa:"🇮🇷", sv:"🇸🇪", no:"🇳🇴", da:"🇩🇰", fi:"🇫🇮", el:"🇬🇷",
+    cs:"🇨🇿", hu:"🇭🇺", ro:"🇷🇴", bg:"🇧🇬", sr:"🇷🇸", hr:"🇭🇷", sk:"🇸🇰",
+    sl:"🇸🇮", lt:"🇱🇹", lv:"🇱🇻", et:"🇪🇪", sw:"🇰🇪", tl:"🇵🇭",
+    ta:"🇮🇳", te:"🇮🇳", mr:"🇮🇳"
+  };
+  function flagFor(code){ return FLAGS[code] || "🌐"; }
+
+  function syncLangMini(visible){
+    if(!btnLangMini) return;
+    btnLangMini.hidden = !visible;
+    btnLangMini.classList.toggle("show", !!visible);
+    if(visible) btnLangMini.textContent = flagFor(currentLang());
+  }
+
+  function positionLangMenu(){
+    if(!btnLang || !langMenu) return;
+    const r = btnLang.getBoundingClientRect();
+    const w = Math.min(360, window.innerWidth - 20);
+    langMenu.style.width = w + "px";
+    // align the menu to the left of the button (so it never overflows on the right)
+    const left = Math.max(10, Math.min(window.innerWidth - w - 10, Math.floor(r.right - w)));
+    langMenu.style.left = left + "px";
+    langMenu.style.top = Math.floor(r.bottom + 10) + "px";
+  }
+
+  function closeLangMenu(){
+    langMenu?.classList.remove("open");
+    langMenu?.setAttribute("aria-hidden", "true");
+    syncLangMini(false);
+  }
+
+  btnLang?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const open = langMenu.classList.toggle("open");
+    langMenu.setAttribute("aria-hidden", open ? "false" : "true");
+    if(open){
+      syncLangMini(true);
+      positionLangMenu();
+      // focus after paint for mobile
+      setTimeout(()=>{ try{ langSelect.focus(); }catch(_){} }, 0);
+    }else{
+      syncLangMini(false);
+    }
+  });
+  btnLangMini?.addEventListener("click", (e)=>{ e.stopPropagation(); btnLang?.click(); });
+  window.addEventListener("resize", ()=>{ if(langMenu?.classList.contains("open")) positionLangMenu(); });
+
+  document.addEventListener("click", (e)=>{
+    if(!langMenu) return;
+    if(langMenu.classList.contains("open") && !langMenu.contains(e.target) && e.target !== btnLang && e.target !== btnLangMini){
+      closeLangMenu();
+    }
+  });
+
+  langMenu?.addEventListener("click",(e)=>e.stopPropagation());
+  langMenu?.addEventListener("pointerdown",(e)=>e.stopPropagation());
+  langSelect?.addEventListener("pointerdown",(e)=>e.stopPropagation());
+  langSelect?.addEventListener("click",(e)=>e.stopPropagation());
+
+  // set initial lang
+  const savedLang = localStorage.getItem("lang") || "fr";
+  if(langSelect) langSelect.value = savedLang;
+  applyLang(savedLang);
 
   /* ---------- Mobile panel switch (Option A) ---------- */
   const msUser = document.getElementById("msUser");
@@ -2028,6 +2126,13 @@ function fillTypeSelect(selId){
   setMobilePanel(localStorage.getItem("mobilePanel") || "user");
   msUser?.addEventListener("click", ()=>setMobilePanel("user"));
   msGroup?.addEventListener("click", ()=>setMobilePanel("group"));
+
+
+  langSelect?.addEventListener("change", (e) => {
+    applyLang(e.target.value);
+    closeLangMenu();
+  });
+
   /* ---------- Scroll reveal (cards/images appear smoothly) ---------- */
   function setupReveal(rootEl){
     if(!rootEl) return;
@@ -2046,6 +2151,7 @@ function fillTypeSelect(selId){
     if(!obs) return;
     els.forEach(el => obs.observe(el));
   }
+
 
   function ensureRevealForGrid(grid){
     if(!grid) return;
@@ -2072,6 +2178,8 @@ function fillTypeSelect(selId){
     // Safety: first paint (avoid "empty page" if observer doesn't trigger immediately)
     requestAnimationFrame(() => els.forEach(el => el.classList.add("in")));
   }
+
+
 
 </script>
 
