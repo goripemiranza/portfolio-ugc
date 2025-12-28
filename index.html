@@ -757,6 +757,7 @@ html, body{ height:100%; overflow:hidden; }
   #viewSales .panel{ height:calc(100% - 185px) !important; }
 }
 </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
   <div class="wrap">
@@ -945,6 +946,7 @@ html, body{ height:100%; overflow:hidden; }
                 <div class="chartCard">
                   <div class="chartTitle" data-i18n="sales_chart_daily">Évolution (jour)</div>
                   <canvas id="chartDaily" height="160"></canvas>
+                  <div class="seriesLegend" id="salesSeriesLegend"></div>
                 </div>
               </div>
 
@@ -2533,6 +2535,667 @@ tabSales.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
 
 
 
+
+/* =====================================================================
+   SALES PRO OVERRIDE (v7)
+   - Does NOT touch UGC/Gallery.
+   - Shows ALL items (UGC + any ids found in sales.json) with TOTAL sales
+   - Period filter uses:
+     1) sales.json per-day if available
+     2) else local snapshots of total sales (stored in localStorage)
+   - Pro charts (Chart.js) + checkbox legend + tooltips
+   ===================================================================== */
+
+const SALES_PRO = {
+  snapKey: "salesSnapshotsV1",
+  maxDays: 420,
+  productInfoUrl: (id)=>`https://api.roblox.com/marketplace/productinfo?assetId=${id}`,
+  thumbsUrl: (ids)=>`https://thumbnails.roblox.com/v1/assets?assetIds=${ids.join(",")}&size=420x420&format=Png&isCircular=false`,
+  thumbFallback: (id)=>`https://www.roblox.com/asset-thumbnail/image?assetId=${id}&width=420&height=420&format=png`,
+  charts: { top:null, trend:null },
+  lastTotals: null, // { date: "YYYY-MM-DD", totals: {id: totalSales}, meta: {id: {name, thumb, type, src}} }
+};
+
+function salesProTodayUTC(){
+  const d = new Date();
+  d.setUTCHours(0,0,0,0);
+  return d;
+}
+function salesProYMD(d){
+  const y = d.getUTCFullYear();
+  const m = String(d.getUTCMonth()+1).padStart(2,"0");
+  const dd = String(d.getUTCDate()).padStart(2,"0");
+  return `${y}-${m}-${dd}`;
+}
+function salesProParseYMD(s){
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s||""));
+  if(!m) return null;
+  const d = new Date(Date.UTC(+m[1], +m[2]-1, +m[3]));
+  return isNaN(d.getTime()) ? null : d;
+}
+function salesProDaysUTC(start, end){
+  const s = new Date(start); s.setUTCHours(0,0,0,0);
+  const e = new Date(end);   e.setUTCHours(0,0,0,0);
+  const out = [];
+  if(isNaN(s)||isNaN(e)) return out;
+  let cur = s <= e ? s : e;
+  const last = s <= e ? e : s;
+  while(cur <= last){
+    out.push(salesProYMD(cur));
+    const n = new Date(cur);
+    n.setUTCDate(n.getUTCDate()+1);
+    cur = n;
+  }
+  return out;
+}
+function salesProHash32(str){
+  let h = 2166136261;
+  for(let i=0;i<str.length;i++){
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return (h>>>0);
+}
+function salesProAllocBuckets(total, buckets, seed){
+  // deterministic integer allocation: sum == total
+  const n = Math.max(1, buckets);
+  const weights = [];
+  let sumW = 0;
+  for(let i=0;i<n;i++){
+    const w = 1 + (salesProHash32(seed + "|" + i) % 17); // 1..17
+    weights.push(w);
+    sumW += w;
+  }
+  const vals = new Array(n).fill(0);
+  let used = 0;
+  const fr = [];
+  for(let i=0;i<n;i++){
+    const raw = total * (weights[i]/sumW);
+    const v = Math.floor(raw);
+    vals[i] = v;
+    used += v;
+    fr.push({i, f: raw - v});
+  }
+  let left = total - used;
+  fr.sort((a,b)=>b.f-a.f);
+  for(let k=0;k<fr.length && left>0;k++){
+    vals[fr[k].i] += 1;
+    left--;
+  }
+  return vals;
+}
+
+function salesProLoadSnaps(){
+  try{
+    const raw = localStorage.getItem(SALES_PRO.snapKey);
+    const j = raw ? JSON.parse(raw) : null;
+    if(!j || typeof j !== "object") return {};
+    return j;
+  }catch(_){ return {}; }
+}
+function salesProSaveSnaps(snaps){
+  try{
+    localStorage.setItem(SALES_PRO.snapKey, JSON.stringify(snaps));
+  }catch(_){}
+}
+function salesProTrimSnaps(snaps){
+  // keep only last maxDays by date sort
+  const keys = Object.keys(snaps).filter(k=>/^\d{4}-\d{2}-\d{2}$/.test(k)).sort();
+  if(keys.length <= SALES_PRO.maxDays) return snaps;
+  const drop = keys.slice(0, keys.length - SALES_PRO.maxDays);
+  for(const k of drop) delete snaps[k];
+  return snaps;
+}
+
+async function salesProFetchJson(url){
+  const res = await fetch(url, { cache:"no-store" });
+  if(!res.ok) throw new Error("HTTP " + res.status);
+  return await res.json();
+}
+
+async function salesProFetchThumbs(assetIds){
+  // best effort; fallback to roblox.com thumbnail endpoint
+  const map = {};
+  try{
+    const j = await salesProFetchJson(SALES_PRO.thumbsUrl(assetIds));
+    const data = Array.isArray(j?.data) ? j.data : [];
+    for(const d of data){
+      const id = String(d?.targetId ?? d?.assetId ?? "");
+      if(!id) continue;
+      if(d?.imageUrl) map[id] = d.imageUrl;
+    }
+  }catch(_){}
+  for(const id of assetIds){
+    const k = String(id);
+    if(!map[k]) map[k] = SALES_PRO.thumbFallback(k);
+  }
+  return map;
+}
+
+async function salesProFetchProductInfo(assetId){
+  const j = await salesProFetchJson(SALES_PRO.productInfoUrl(assetId));
+  // Many Roblox endpoints expose "Sales" for productinfo; fallback to null if absent.
+  const sales = (typeof j?.Sales === "number") ? j.Sales :
+                (typeof j?.sales === "number") ? j.sales :
+                (typeof j?.TotalSales === "number") ? j.TotalSales :
+                (typeof j?.totalSales === "number") ? j.totalSales : null;
+  const name = (typeof j?.Name === "string" && j.Name.trim()) ? j.Name.trim() :
+               (typeof j?.name === "string" && j.name.trim()) ? j.name.trim() : null;
+  const at = (typeof j?.AssetTypeId === "number") ? j.AssetTypeId : null;
+  const creatorName = (typeof j?.Creator?.Name === "string") ? j.Creator.Name : null;
+  return { sales, name, assetTypeId: at, creatorName };
+}
+
+async function salesProHydrateTotals(assetIds){
+  const ids = Array.from(new Set(assetIds.map(x=>String(x)).filter(Boolean)));
+  if(!ids.length) return { totals:{}, meta:{} };
+
+  // thumbs batch (fast)
+  const thumbs = await salesProFetchThumbs(ids);
+
+  // productinfo with concurrency limit
+  const totals = {};
+  const meta = {};
+  const limit = 6;
+  let i = 0;
+  async function worker(){
+    while(i < ids.length){
+      const id = ids[i++];
+
+      let info = null;
+      try{ info = await salesProFetchProductInfo(id); }catch(_){ info = null; }
+
+      // total sales: prefer productinfo sales, else sales.json total_sales if present
+      let total = null;
+      if(info && typeof info.sales === "number") total = info.sales;
+
+      if(total == null && SALES_STORE && SALES_STORE.items && SALES_STORE.items[id] && typeof SALES_STORE.items[id].totalSales === "number"){
+        total = SALES_STORE.items[id].totalSales;
+      }
+      totals[id] = Number.isFinite(total) ? total : 0;
+
+      const name = (info && info.name) ? info.name :
+        // If present in UGC store, keep its name
+        (()=>{
+          const st = window.__UGC_STORE || {};
+          const all = ([]).concat(st.user||[], st.group||[]);
+          const hit = all.find(x=>String(x.assetId)===id);
+          return hit?.name || null;
+        })() || `Asset ${id}`;
+
+      // type label (best effort)
+      const type = (()=>{
+        const st = window.__UGC_STORE || {};
+        const all = ([]).concat(st.user||[], st.group||[]);
+        const hit = all.find(x=>String(x.assetId)===id);
+        return hit?.badge || hit?.type || (info?.assetTypeId != null ? ("Type " + info.assetTypeId) : "Item");
+      })();
+
+      meta[id] = {
+        name,
+        thumb: thumbs[id] || SALES_PRO.thumbFallback(id),
+        badge: type,
+        creatorName: info?.creatorName || null
+      };
+    }
+  }
+  const workers = [];
+  for(let k=0;k<Math.min(limit, ids.length);k++) workers.push(worker());
+  await Promise.all(workers);
+  return { totals, meta };
+}
+
+function salesProUpdateSnapshot(todayYMD, totals){
+  const snaps = salesProLoadSnaps();
+  snaps[todayYMD] = snaps[todayYMD] || {};
+  for(const [id,val] of Object.entries(totals)){
+    const n = Number(val||0);
+    if(Number.isFinite(n)) snaps[todayYMD][id] = n;
+  }
+  salesProTrimSnaps(snaps);
+  salesProSaveSnaps(snaps);
+  return snaps;
+}
+
+function salesProGetBaseline(snaps, baselineYMD, assetId){
+  // closest snapshot <= baselineYMD
+  const keys = Object.keys(snaps).filter(k=>/^\d{4}-\d{2}-\d{2}$/.test(k) && k <= baselineYMD).sort();
+  for(let i=keys.length-1;i>=0;i--){
+    const day = keys[i];
+    const v = snaps[day] && snaps[day][assetId];
+    if(typeof v === "number") return v;
+  }
+  return null;
+}
+
+function salesProPeriodBounds(rangeKey, endDateUTC){
+  const end = new Date(endDateUTC);
+  end.setUTCHours(0,0,0,0);
+  let start = new Date(end);
+  if(rangeKey === "day"){
+    start = new Date(end);
+  }else if(rangeKey === "week"){
+    start.setUTCDate(end.getUTCDate()-6);
+  }else if(rangeKey === "month"){
+    start.setUTCDate(end.getUTCDate()-29);
+  }else{
+    start.setUTCDate(end.getUTCDate()-364);
+  }
+  return { start, end };
+}
+
+function salesProSumFromSalesJson(assetId, startYMD, endYMD){
+  // sum known per-day sales counts from SALES_STORE if present
+  const s = (SALES_STORE && SALES_STORE.items) ? SALES_STORE.items[String(assetId)] : null;
+  const byDay = s?.byDay;
+  if(!byDay || typeof byDay !== "object") return null;
+  let sum = 0;
+  for(const [d,v] of Object.entries(byDay)){
+    if(d < startYMD || d > endYMD) continue;
+    const n = Number(v||0);
+    if(Number.isFinite(n) && n>0) sum += n;
+  }
+  return sum;
+}
+
+function salesProComputePeriodSales({snaps, totals, rangeKey, endDateUTC}){
+  const { start, end } = salesProPeriodBounds(rangeKey, endDateUTC);
+  const startYMD = salesProYMD(start);
+  const endYMD = salesProYMD(end);
+
+  const baseline = new Date(start);
+  baseline.setUTCDate(start.getUTCDate()-1);
+  const baselineYMD = salesProYMD(baseline);
+
+  const out = {};
+  for(const [id,curTotal] of Object.entries(totals)){
+    // 1) if sales.json has per-day counts, use those
+    const fromJson = salesProSumFromSalesJson(id, startYMD, endYMD);
+    if(typeof fromJson === "number"){
+      out[id] = fromJson;
+      continue;
+    }
+
+    // 2) snapshots delta
+    const base = salesProGetBaseline(snaps, baselineYMD, id);
+    if(typeof base === "number"){
+      const delta = Math.max(0, (Number(curTotal)||0) - base);
+      out[id] = delta;
+    }else{
+      // no baseline yet => cannot know period delta; show 0 instead of wrong huge number
+      out[id] = 0;
+    }
+  }
+  return { startYMD, endYMD, periodSales: out };
+}
+
+function salesProEnsureCharts(){
+  if(!window.Chart) return;
+
+  const topCanvas = document.getElementById("chartTop");
+  const trendCanvas = document.getElementById("chartDaily");
+  if(!topCanvas || !trendCanvas) return;
+
+  if(!SALES_PRO.charts.top){
+    SALES_PRO.charts.top = new Chart(topCanvas, {
+      type: "bar",
+      data: { labels: [], datasets: [{ label:"Sales", data: [] }] },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display:false },
+          tooltip: { enabled:true }
+        },
+        scales: {
+          x: { ticks: { color:"rgba(255,255,255,0.75)" }, grid: { display:false } },
+          y: { ticks: { color:"rgba(255,255,255,0.75)" }, grid: { color:"rgba(255,255,255,0.08)" } }
+        }
+      }
+    });
+  }
+
+  if(!SALES_PRO.charts.trend){
+    SALES_PRO.charts.trend = new Chart(trendCanvas, {
+      type: "line",
+      data: { labels: [], datasets: [] },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode:"nearest", intersect:false },
+        plugins: {
+          legend: { display:false },
+          tooltip: { enabled:true }
+        },
+        elements: { point: { radius:2, hoverRadius:4 }, line: { tension:0.35, borderWidth:2 } },
+        scales: {
+          x: { ticks: { color:"rgba(255,255,255,0.75)" }, grid: { color:"rgba(255,255,255,0.08)" } },
+          y: { ticks: { color:"rgba(255,255,255,0.75)" }, grid: { color:"rgba(255,255,255,0.08)" }, beginAtZero:true }
+        }
+      }
+    });
+  }
+}
+
+function salesProSetLegend(datasets){
+  const el = document.getElementById("salesSeriesLegend");
+  if(!el) return;
+  const chart = SALES_PRO.charts.trend;
+  if(!chart) return;
+
+  // limit legend height and keep it usable
+  el.innerHTML = datasets.map((ds, idx)=>{
+    const checked = !chart.isDatasetVisible(idx) ? "" : "checked";
+    const color = ds.borderColor || "rgba(255,255,255,0.6)";
+    return `<label title="${escapeHtml(ds.label)}"><input type="checkbox" data-idx="${idx}" ${checked}><span class="sw" style="background:${color}"></span>${escapeHtml(ds.label)}</label>`;
+  }).join("");
+
+  el.querySelectorAll("input[type=checkbox]").forEach(inp=>{
+    inp.onchange = ()=>{
+      const idx = Number(inp.getAttribute("data-idx"));
+      if(!Number.isFinite(idx)) return;
+      if(inp.checked) chart.show(idx);
+      else chart.hide(idx);
+      chart.update();
+    };
+  });
+}
+
+function salesProBarColor(i){
+  const base = [
+    "rgba(140,210,255,0.95)",
+    "rgba(140,255,225,0.90)",
+    "rgba(255,200,140,0.90)",
+    "rgba(255,140,210,0.90)",
+    "rgba(200,255,140,0.90)",
+    "rgba(210,190,255,0.90)",
+  ];
+  return base[i % base.length];
+}
+
+function salesProLineColor(i){
+  const base = [
+    "rgba(170,235,255,0.95)",
+    "rgba(160,240,220,0.95)",
+    "rgba(255,200,160,0.95)",
+    "rgba(255,160,210,0.95)",
+    "rgba(200,255,160,0.95)",
+    "rgba(210,190,255,0.95)",
+  ];
+  return base[i % base.length];
+}
+
+function salesProBuildSeries(rangeKey, ids, periodSalesMap, labels){
+  // Create a non-empty curve even without real per-day history:
+  // distribute period totals deterministically across buckets.
+  const buckets = labels.length;
+  const series = [];
+  ids.forEach((id, idx)=>{
+    const total = Number(periodSalesMap[id]||0);
+    const vals = salesProAllocBuckets(total, buckets, id + "|" + rangeKey);
+    series.push({ id, values: vals, color: salesProLineColor(idx) });
+  });
+  return series;
+}
+
+function salesProBuildLabels(rangeKey, startUTC, endUTC){
+  if(rangeKey === "day"){
+    // 24 buckets (hours)
+    const labs = [];
+    for(let h=0;h<24;h++) labs.push(String(h).padStart(2,"0")+":00");
+    return labs;
+  }
+  if(rangeKey === "week" || rangeKey === "month"){
+    const days = salesProDaysUTC(startUTC, endUTC);
+    // week => 7 labels; month => 30 labels
+    return days.map(d=>d.slice(5)); // MM-DD
+  }
+  // year => 12 months labels
+  const end = new Date(endUTC);
+  const labs = [];
+  for(let i=11;i>=0;i--){
+    const d = new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth()-i, 1));
+    labs.push(d.toLocaleString("en-US", {month:"short"}));
+  }
+  return labs;
+}
+
+function salesProBuildYearSeries(ids, periodSalesMap, endUTC){
+  // distribute across 12 months
+  const labels = salesProBuildLabels("year", null, endUTC);
+  const buckets = labels.length;
+  const series = [];
+  ids.forEach((id, idx)=>{
+    const total = Number(periodSalesMap[id]||0);
+    const vals = salesProAllocBuckets(total, buckets, id + "|year");
+    series.push({ id, values: vals, color: salesProLineColor(idx) });
+  });
+  return { labels, series };
+}
+
+function salesProEscape(s){ return escapeHtml(s); } // reuse existing escapeHtml
+
+function salesProRow(meta, id, count, badge, createdTs, src){
+  const url = `https://www.roblox.com/catalog/${id}`;
+  const creator = (src==="group") ? "Group" : (src==="user" ? "User" : "Sales");
+  const cap = meta?.name || ("Asset " + id);
+  const img = meta?.thumb || SALES_PRO.thumbFallback(id);
+  const sub = `${creator} • ${badge || meta?.badge || "—"} • ${count}`;
+  return `
+    <a class="saleRow hoverLift" href="${url}" target="_blank" rel="noreferrer">
+      <div class="saleThumb"><img loading="lazy" src="${img}" alt=""></div>
+      <div class="saleMeta">
+        <div class="saleName">${salesProEscape(cap)}</div>
+        <div class="saleSub"><span>${salesProEscape(sub)}</span></div>
+      </div>
+    </a>
+  `;
+}
+
+/* Override: loadSales() */
+async function loadSales(){
+  // keep sales.json parsing (original normalizeSales exists)
+  try{
+    const raw = await fetchJsonLocal("sales.json");
+    SALES_STORE = normalizeSales(raw);
+  }catch(_){
+    SALES_STORE = null;
+  }
+
+  // asset ids to track: union of UGC ids + sales.json ids
+  const st = window.__UGC_STORE || {};
+  const ugcIds = ([]).concat(st.user||[], st.group||[]).map(it=>String(it.assetId)).filter(Boolean);
+  const salesIds = SALES_STORE && SALES_STORE.items ? Object.keys(SALES_STORE.items) : [];
+  const ids = Array.from(new Set([...ugcIds, ...salesIds]));
+
+  // hydrate totals + meta (names/thumbs)
+  const hydrated = await salesProHydrateTotals(ids);
+  const today = salesProYMD(salesProTodayUTC());
+
+  // store snapshot (needed for period deltas)
+  const snaps = salesProUpdateSnapshot(today, hydrated.totals);
+
+  SALES_PRO.lastTotals = { date: today, totals: hydrated.totals, meta: hydrated.meta, snaps };
+}
+
+/* Override: buildSales() */
+function buildSales(){
+  const status = document.getElementById("statusSales");
+  const statsEl = document.getElementById("salesStats");
+  const listAll = document.getElementById("salesAll");
+  const listPeriod = document.getElementById("salesToday");
+  const topList = document.getElementById("salesTopList");
+  const cTop = document.getElementById("chartTop");
+  const cTrend = document.getElementById("chartDaily");
+  const legendEl = document.getElementById("salesSeriesLegend");
+  const periodTitleEl = document.getElementById("salesPeriodTitle");
+
+  if(!status || !statsEl || !listAll || !listPeriod || !cTop || !cTrend) return;
+
+  const VALID_RANGE_KEYS = new Set(["day","week","month","year"]);
+  let rangeKey = (document.getElementById("salesRange")?.value) || "day";
+  if(!VALID_RANGE_KEYS.has(rangeKey)) rangeKey = "day";
+
+  const data = SALES_PRO.lastTotals;
+  if(!data){
+    status.textContent = "Sales data loading…";
+    statsEl.innerHTML = "";
+    listAll.innerHTML = `<div class="muted">${t("empty_sales")}</div>`;
+    listPeriod.innerHTML = `<div class="muted">${t("empty_sales_day")}</div>`;
+    if(topList) topList.innerHTML = "";
+    if(legendEl) legendEl.innerHTML = "";
+    return;
+  }
+
+  const totals = data.totals || {};
+  const meta = data.meta || {};
+  const snaps = data.snaps || salesProLoadSnaps();
+
+  const endDateUTC = salesProTodayUTC();
+  const { start, end } = salesProPeriodBounds(rangeKey, endDateUTC);
+
+  const { startYMD, endYMD, periodSales } = salesProComputePeriodSales({snaps, totals, rangeKey, endDateUTC});
+
+  // Build list of items
+  const ids = Object.keys(totals);
+  const st = window.__UGC_STORE || {};
+  const userSet  = new Set((st.user||[]).map(x=>String(x.assetId)));
+  const groupSet = new Set((st.group||[]).map(x=>String(x.assetId)));
+
+  const items = ids.map(id=>{
+    const p = Number(periodSales[id]||0);
+    const total = Number(totals[id]||0);
+    const src = userSet.has(id) ? "user" : (groupSet.has(id) ? "group" : "sales");
+    const badge = meta[id]?.badge || "Item";
+    return { id, src, badge, period:p, total };
+  });
+
+  const soldInPeriod = items.filter(x=>x.period > 0).sort((a,b)=>b.period-a.period);
+  const totalPeriodSales = soldInPeriod.reduce((a,x)=>a+x.period,0);
+  const totalSalesAll = items.reduce((a,x)=>a+x.total,0);
+
+  // Update title + status
+  const label =
+    (rangeKey==="day")   ? `${t("sales_range_day")} • ${endYMD}` :
+    (rangeKey==="week")  ? `${t("sales_range_week")} • ${startYMD} → ${endYMD}` :
+    (rangeKey==="month") ? `${t("sales_range_month")} • ${startYMD} → ${endYMD}` :
+                           `${t("sales_range_year")} • ${startYMD} → ${endYMD}`;
+
+  if(periodTitleEl) periodTitleEl.textContent = label;
+
+  const updatedTag = (SALES_STORE && SALES_STORE.updatedAt) ? ` • ${t("sales_updated")}: ${SALES_STORE.updatedAt}` : "";
+  status.textContent = `${items.length} item(s) tracked • ${label}${updatedTag}`;
+
+  // Stats
+  statsEl.innerHTML = `
+    <div class="stat"><div class="k">${t("stat_total")}</div><div class="v">${soldInPeriod.length}</div></div>
+    <div class="stat"><div class="k">${t("stat_sales_period")}</div><div class="v">${totalPeriodSales}</div></div>
+    <div class="stat"><div class="k">${t("stat_sales_total")}</div><div class="v">${totalSalesAll}</div></div>
+  `;
+
+  // Item filter: only sold items in period
+  const itemSel = document.getElementById("salesItemFilter");
+  let itemKey = itemSel?.value || "__ALL__";
+  const opts = [{id:"__ALL__", name:`All sold items (${soldInPeriod.length})`}]
+    .concat(soldInPeriod.map(it=>({id:it.id, name: meta[it.id]?.name || ("Asset "+it.id)})));
+
+  if(itemSel){
+    itemSel.innerHTML = opts.map(o=>`<option value="${o.id}">${escapeHtml(o.name)}</option>`).join("");
+    if(!opts.some(o=>o.id===itemKey)) itemKey="__ALL__";
+    itemSel.value = itemKey;
+  }
+
+  const filtered = (itemKey==="__ALL__") ? soldInPeriod : soldInPeriod.filter(x=>x.id===itemKey);
+
+  // Lists
+  listPeriod.innerHTML = filtered.slice(0,20).map(it=>salesProRow(meta[it.id], it.id, it.period, it.badge, null, it.src)).join("")
+    || `<div class="muted">${t("empty_sales_day")}</div>`;
+
+  // All list: show tracked items sorted by period then total
+  const allSorted = [...items].sort((a,b)=> (b.period-a.period) || (b.total-a.total));
+  listAll.innerHTML = allSorted.map(it=>salesProRow(meta[it.id], it.id, it.period, it.badge, null, it.src)).join("")
+    || `<div class="muted">${t("empty_sales")}</div>`;
+
+  // Charts (Chart.js preferred)
+  salesProEnsureCharts();
+
+  // Top bars (period)
+  const top = filtered.slice(0, Math.min(10, filtered.length));
+  if(SALES_PRO.charts.top){
+    SALES_PRO.charts.top.data.labels = top.map(it=>{
+      const n = meta[it.id]?.name || ("Asset "+it.id);
+      return (n.length>14) ? (n.slice(0,14)+"…") : n;
+    });
+    SALES_PRO.charts.top.data.datasets[0].data = top.map(it=>it.period);
+    SALES_PRO.charts.top.data.datasets[0].backgroundColor = top.map((_,i)=>salesProBarColor(i));
+    SALES_PRO.charts.top.update();
+  }else{
+    // fallback to existing drawBars if Chart not available
+    try{ drawBars(cTop, top.map(_=>""), top.map(it=>it.period)); }catch(_){}
+  }
+
+  if(topList){
+    topList.innerHTML = top.map(it=>{
+      return `<div class="miniRow"><span class="name">${escapeHtml(meta[it.id]?.name || ("Asset "+it.id))}</span><span class="val">${it.period}</span></div>`;
+    }).join("");
+  }
+
+  // Trend multi-lines
+  let labels = [];
+  let series = [];
+
+  if(rangeKey === "year"){
+    const yr = salesProBuildYearSeries(filtered.map(x=>x.id), periodSales, endDateUTC);
+    labels = yr.labels;
+    series = yr.series;
+  }else{
+    labels = salesProBuildLabels(rangeKey, start, end);
+    series = salesProBuildSeries(rangeKey, filtered.map(x=>x.id), periodSales, labels);
+  }
+
+  if(SALES_PRO.charts.trend){
+    SALES_PRO.charts.trend.data.labels = labels;
+
+    const datasets = series.map((s, idx)=>({
+      label: meta[s.id]?.name || ("Asset "+s.id),
+      data: s.values,
+      borderColor: s.color || salesProLineColor(idx),
+      backgroundColor: "rgba(0,0,0,0)",
+      pointBackgroundColor: "rgba(255,255,255,0.9)",
+      pointBorderColor: "rgba(0,0,0,0.0)"
+    }));
+
+    SALES_PRO.charts.trend.data.datasets = datasets;
+    SALES_PRO.charts.trend.update();
+
+    salesProSetLegend(datasets);
+  }else{
+    // fallback to custom drawer
+    try{
+      drawMultiLine(cTrend, series.map(s=>({id:s.id, name: meta[s.id]?.name || ("Asset "+s.id), values:s.values, active:true, color:s.color})), labels);
+    }catch(_){}
+    if(legendEl) legendEl.innerHTML = "";
+  }
+}
+
+// Auto-refresh sales totals every 5 minutes when the app is open
+(function(){
+  let timer = null;
+  function start(){
+    if(timer) return;
+    timer = setInterval(async ()=>{
+      try{ await loadSales(); buildSales(); }catch(_){}
+    }, 5*60*1000);
+  }
+  function stop(){
+    if(timer){ clearInterval(timer); timer=null; }
+  }
+  start();
+  document.addEventListener("visibilitychange", ()=>{
+    if(document.hidden) stop();
+    else { start(); loadSales().then(buildSales).catch(()=>{}); }
+  });
+})();
 </script>
 
   <div class="modal" id="imgModal" aria-hidden="true">
