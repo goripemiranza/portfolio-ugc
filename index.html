@@ -799,6 +799,75 @@ html, body{
   .scroller{ overflow:visible !important; padding-right:0 !important; }
 }
 
+
+
+    /* ===============================
+       RESPONSIVE FIX (v2)
+       - Allow full-page scroll (mobile + desktop)
+       - Prevent ugly gaps on resize
+       - Keep UGC/Gallery usable on phone/tablet/PC/console
+    =============================== */
+    html, body{
+      height:auto !important;
+      min-height:100%;
+      overflow-x:hidden !important;
+      overflow-y:auto !important;
+    }
+    body{
+      -webkit-overflow-scrolling:touch;
+      touch-action:pan-y;
+      overscroll-behavior-y:auto;
+    }
+
+    /* Let layout grow naturally (removes the 100vh trap) */
+    .wrap{
+      height:auto !important;
+      min-height:100vh;
+    }
+    .views{ flex:unset !important; }
+    .view{
+      height:auto !important;
+      min-height:auto !important;
+      flex:unset !important;
+    }
+
+    /* Two panels become responsive grid */
+    #viewUgc .dual{
+      height:auto !important;
+      grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)) !important;
+      align-items:start;
+    }
+
+    /* Filters: no forced min widths on small screens */
+    .control{ min-width:0 !important; }
+
+    /* Cards/sections: avoid stretching into empty space */
+    .section{ height:auto !important; }
+    .section .scroller{
+      /* Desktop: keep a clean contained scroll area without breaking page scroll */
+      max-height:min(62vh, 720px);
+      -webkit-overflow-scrolling:touch;
+    }
+
+    /* Grid: better behavior when resizing */
+    .grid{
+      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)) !important;
+      align-content:start;
+    }
+
+    /* Mobile/tablet: page scrolls, inner scrollers expand */
+    @media (max-width: 900px){
+      #viewUgc .dual{ grid-template-columns:1fr !important; }
+      .section .scroller{
+        max-height:none;
+        overflow:visible;
+      }
+      .tile{ min-height:0 !important; }
+    }
+    @media (max-width: 520px){
+      .grid{ grid-template-columns:1fr !important; }
+    }
+
 </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
