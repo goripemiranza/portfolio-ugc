@@ -830,6 +830,7 @@
             <div class="galleryGrid" id="galleryGrid"></div>
           </div>
         </div>
+      </div>
 
       <!-- SALES -->
       <div class="view" id="viewSales">
@@ -837,6 +838,10 @@
           <div class="salesHeader">
             <div>
               <h2 data-i18n="sales_title">Vente</h2>
+            </div>
+            <div class="control" style="min-width:190px; flex:0 0 auto;">
+              <div class="label" data-i18n="sales_filter_label">Période</div>
+              <select id="salesRange"></select>
             </div>
             <div class="status" id="statusSales">—</div>
           </div>
@@ -858,7 +863,7 @@
 
               <div class="salesBlocks">
                 <div class="block">
-                  <div class="blockTitle" data-i18n="sales_today">Aujourd’hui</div>
+                  <div class="blockTitle" id="salesPeriodTitle" data-i18n="sales_today">Aujourd’hui</div>
                   <div class="salesList" id="salesToday"></div>
                 </div>
                 <div class="block">
@@ -1057,6 +1062,15 @@
       ph_search:"Buscar…", ph_search_group:"Buscar…",
       type_all:"Todos",
       loading:"Cargando…", err_short:"Datos no disponibles."
+      sales_filter_label:"Période",
+      sales_range_day:"Jour",
+      sales_range_week:"Semaine",
+      sales_range_month:"Mois",
+      sales_range_year:"Année",
+      sales_period_day:"Jour",
+      sales_period_week:"Semaine",
+      sales_period_month:"Mois",
+      sales_period_year:"Année",
     },
     de:{
       brand:"Roblox-Portfolio", tab_ugc:"UGC", tab_gallery:"Galerie",
@@ -1399,6 +1413,25 @@
     }).join("");
   }
 
+  const SALES_RANGE_OPTIONS = [
+    { key:"day",   labelKey:"sales_range_day" },
+    { key:"week",  labelKey:"sales_range_week" },
+    { key:"month", labelKey:"sales_range_month" },
+    { key:"year",  labelKey:"sales_range_year" },
+  ];
+
+  function fillSalesRangeSelect(){
+    const sel = document.getElementById("salesRange");
+    if(!sel) return;
+    const cur = sel.value || localStorage.getItem("salesRange") || "day";
+    sel.innerHTML = SALES_RANGE_OPTIONS.map(o => {
+      const label = t(o.labelKey) || o.key;
+      return `<option value="${o.key}">${label}</option>`;
+    }).join("");
+    sel.value = cur;
+  }
+
+
 
   function wireSection(source, els){
     const state = { items: [] };
@@ -1443,13 +1476,13 @@
   const userSec = wireSection(
     { localJson: "data_user.json" },
     { statusId:"statusUser", metaId:"metaUser", gridId:"gridUser",
-      typeSelId:"typeUser", kwId:"kwUser", itemPrefix:"u-" }
+      typeSelId:"typeUser", kwId:"kwUser", itemPrefix:"u-", storeKey:"user" }
   );
 
   const groupSec = wireSection(
     { localJson: "data_group.json" },
     { statusId:"statusGroup", metaId:"metaGroup", gridId:"gridGroup",
-      typeSelId:"typeGroup", kwId:"kwGroup", itemPrefix:"g-" }
+      typeSelId:"typeGroup", kwId:"kwGroup", itemPrefix:"g-", storeKey:"group" }
   );
 
   // Gallery lightbox (visual only)
@@ -1473,7 +1506,7 @@
     if(imgModalImg) imgModalImg.src = "";
   }
   function bindGalleryModal(){
-    const grid = document.getElementById("gridGallery");
+    const grid = document.getElementById("galleryGrid");
     if(!grid || grid.dataset.modalBound) return;
     grid.dataset.modalBound = "1";
     grid.addEventListener("click", (e)=>{
@@ -1652,18 +1685,22 @@
     const status = document.getElementById("statusSales");
     const statsEl = document.getElementById("salesStats");
     const listAll = document.getElementById("salesAll");
-    const listDay = document.getElementById("salesToday");
+    const listPeriod = document.getElementById("salesToday");
     const cTop = document.getElementById("chartTop");
     const cDaily = document.getElementById("chartDaily");
 
-    if(!status || !statsEl || !listAll || !listDay || !cTop || !cDaily) return;
+    if(!status || !statsEl || !listAll || !listPeriod || !cTop || !cDaily) return;
 
     const store = window.__UGC_STORE || {};
-    const userItems = Array.isArray(store.user) ? store.user.map(x=>({...x, __src:"user"})) : [];
-    const groupItems = Array.isArray(store.group) ? store.group.map(x=>({...x, __src:"group"})) : [];
+    // Compat: storeKey fixed => user/group. Old versions used u-/g-.
+    const rawUser = Array.isArray(store.user) ? store.user : (Array.isArray(store["u-"]) ? store["u-"] : []);
+    const rawGroup = Array.isArray(store.group) ? store.group : (Array.isArray(store["g-"]) ? store["g-"] : []);
+
+    const userItems = rawUser.map(x=>({...x, __src:"user"}));
+    const groupItems = rawGroup.map(x=>({...x, __src:"group"}));
     const all = [...userItems, ...groupItems];
 
-    // Merge sales.json (Option A) if present
+    // Merge sales.json (optional)
     const sItems = SALES_STORE?.items || {};
     for(const it of all){
       const s = sItems[String(it.assetId)];
@@ -1671,11 +1708,10 @@
       it.salesByDay = (s && s.byDay && typeof s.byDay==="object") ? s.byDay : {};
     }
 
-    // Header status
     const salesTag = SALES_STORE?.updatedAt ? ` • ${t("sales_updated")}: ${SALES_STORE.updatedAt}` : "";
     status.textContent = `${all.length} item(s)${salesTag}`;
 
-    // Quick stats (still useful)
+    // Stats (prices)
     const prices = all.map(x=>x.price).filter(n => typeof n==="number" && isFinite(n));
     const total = all.length;
     const avg = prices.length ? Math.round(prices.reduce((a,b)=>a+b,0)/prices.length) : null;
@@ -1709,84 +1745,87 @@
       `;
     }
 
-    // Sort by total sales desc (if available), else fallback to price desc then newest
+    // Sort (total sales desc if present, else newest)
     const score = (it) => (typeof it.salesTotal==="number" ? it.salesTotal : 0);
     const sorted = [...all].sort((a,b)=>{
       const sa = score(a), sb = score(b);
       if(sb!==sa) return sb-sa;
-      const pa = (typeof a.price==="number"?a.price:-1);
-      const pb = (typeof b.price==="number"?b.price:-1);
-      if(pb!==pa) return pb-pa;
       return (b.createdTs||0)-(a.createdTs||0);
     });
 
-    // --------- Daily sales (Option A) ---------
+    // --- Range ---
+    const rangeKey = (document.getElementById("salesRange")?.value) || (localStorage.getItem("salesRange") || "day");
+    localStorage.setItem("salesRange", rangeKey);
+
+    function ymdLocal(d){
+      const y = d.getFullYear();
+      const m = String(d.getMonth()+1).padStart(2,"0");
+      const dd = String(d.getDate()).padStart(2,"0");
+      return `${y}-${m}-${dd}`;
+    }
+    function buildRangeDays(key){
+      const today = new Date(); today.setHours(0,0,0,0);
+      let back = 0;
+      if(key==="week") back=6;
+      else if(key==="month") back=29;
+      else if(key==="year") back=364;
+      const start = new Date(today); start.setDate(today.getDate()-back);
+      const days=[];
+      const cur = new Date(start);
+      while(cur<=today){ days.push(ymdLocal(cur)); cur.setDate(cur.getDate()+1); }
+      return {start, end:today, days};
+    }
+
+    const {start:rangeStart, end:rangeEnd, days:rangeDays} = buildRangeDays(rangeKey);
+
     const dayTotals = {};
     for(const it of all){
-      const byDay = it.salesByDay || {};
-      for(const [d,c] of Object.entries(byDay)){
-        const n = Number(c);
-        if(!Number.isFinite(n) || n<=0) continue;
-        dayTotals[d] = (dayTotals[d]||0) + n;
+      let s=0;
+      for(const d of rangeDays){
+        const n = Number(it.salesByDay?.[d]||0);
+        if(Number.isFinite(n) && n>0){
+          s += n;
+          dayTotals[d] = (dayTotals[d]||0) + n;
+        }
       }
-    }
-    const days = Object.keys(dayTotals).sort();
-    const lastDay = days.length ? days[days.length-1] : null;
-
-    // "Sold in one day" list = items that sold on the latest recorded day
-    let soldThatDay = [];
-    if(lastDay){
-      soldThatDay = all
-        .map(it => ({...it, __daySales: Number(it.salesByDay?.[lastDay]||0)}))
-        .filter(it => it.__daySales>0)
-        .sort((a,b)=>b.__daySales-a.__daySales);
+      it.__periodSales = s;
     }
 
-    // Render lists
-    listAll.innerHTML = sorted.slice(0, 200).map(it => row(it)).join("") || `<div class="muted">${t("empty_sales")}</div>`;
-    if(lastDay){
-      listDay.innerHTML = soldThatDay.slice(0, 200).map(it => row(it, `${lastDay}: ${it.__daySales}`)).join("") || `<div class="muted">${t("empty_sales_day")}</div>`;
-    }else{
-      // Fallback: created today
-      const now = new Date();
-      const todays = all.filter(it => it.createdTs && sameDay(new Date(it.createdTs), now));
-      listDay.innerHTML = todays.slice(0, 200).map(it => row(it, t("sale_created_today"))).join("") || `<div class="muted">${t("empty_sales_day")}</div>`;
-    }
+    const titleEl = document.getElementById("salesPeriodTitle");
+    const startLbl = fmtDate(rangeStart.getTime());
+    const endLbl = fmtDate(rangeEnd.getTime());
+    const periodLabel = (rangeKey==="day")
+      ? `${t("sales_period_day")} • ${endLbl}`
+      : `${t("sales_period_"+rangeKey)} • ${startLbl} → ${endLbl}`;
+    if(titleEl) titleEl.textContent = periodLabel;
+
+    // Lists
+    listAll.innerHTML = sorted.slice(0,200).map(it=>row(it)).join("") || `<div class="muted">${t("empty_sales")}</div>`;
+
+    const soldInPeriod = all.filter(it => (it.__periodSales||0)>0).sort((a,b)=>(b.__periodSales||0)-(a.__periodSales||0));
+    listPeriod.innerHTML = soldInPeriod.slice(0,200).map(it=>row(it, `${it.__periodSales}`)).join("") || `<div class="muted">${t("empty_sales_day")}</div>`;
 
     // Charts
-    // Top chart = by total sales if present, else by price
-    const top = sorted.slice(0, 10).map(it => ({
-      v: (typeof it.salesTotal==="number" ? it.salesTotal : 0),
-      lab: (it.name || ("#" + it.assetId)).slice(0, 14)
+    const top = sorted.slice(0,10).map(it=>({
+      v: (it.__periodSales>0 ? it.__periodSales : (typeof it.salesTotal==="number" ? it.salesTotal : 0)),
+      lab: (it.name || ("#"+it.assetId)).slice(0,14)
     }));
     drawBars(cTop, top.map(x=>x.lab), top.map(x=>x.v));
 
-    // Daily chart = aggregated day totals (last 30 days)
-    if(days.length){
-      const points = days.map(d => ({ d, ts: Date.parse(d+"T00:00:00Z")||Date.parse(d), v: dayTotals[d] }))
-        .filter(p => Number.isFinite(p.ts))
-        .sort((a,b)=>a.ts-b.ts)
-        .slice(-30)
-        .map(p => ({ v:p.v, lab: p.d.slice(5) }));
-      drawLine(cDaily, points);
+    if(rangeKey==="year"){
+      const monthTotals={};
+      for(const d of rangeDays){
+        const ym=d.slice(0,7);
+        monthTotals[ym] = (monthTotals[ym]||0) + (dayTotals[d]||0);
+      }
+      const months = Object.keys(monthTotals).sort().slice(-12);
+      const labels = months.map(m => m.slice(5) + "/" + m.slice(2,4));
+      const values = months.map(m => monthTotals[m]||0);
+      drawBars(cDaily, labels, values);
     }else{
-      // fallback (created per day) — last 14 days
-      const buckets = [];
-      const now = new Date();
-      for(let i=13;i>=0;i--){
-        const d = new Date(now);
-        d.setDate(now.getDate()-i);
-        d.setHours(0,0,0,0);
-        buckets.push({d, v:0});
-      }
-      for(const it of all){
-        if(!it.createdTs) continue;
-        const d = new Date(it.createdTs);
-        for(const b of buckets){
-          if(sameDay(d,b.d)){ b.v++; break; }
-        }
-      }
-      drawLine(cDaily, buckets.map(b=>({v:b.v, lab:String(b.d.getDate())})));
+      const points = rangeDays.map(d=>({v:(dayTotals[d]||0), lab:d.slice(5)}));
+      const p2 = points.slice(-30);
+      drawLine(cDaily, p2.length>=2 ? p2 : [{v:0,lab:""},{v:(p2[0]?.v||0),lab:(p2[0]?.lab||"")}]);
     }
   }
 
@@ -1795,6 +1834,9 @@
   userSec.fill();
   groupSec.fill();
   refreshAll();
+
+  fillSalesRangeSelect();
+  document.getElementById("salesRange")?.addEventListener("change", ()=> buildSales());
 
   // Redraw charts on resize (mobile rotation, etc.)
   let _salesRaf = 0;
@@ -1812,30 +1854,22 @@
 
   function safeText(s){ return String(s || "").replaceAll("<","&lt;").replaceAll(">","&gt;"); }
 
+
+  function safeGalleryUrl(url){
+    const s = String(url || "").trim();
+    if(!s) return "";
+    return s.split("/").map(seg => encodeURIComponent(seg)).join("/");
+  }
+
   function renderGallery(items){
     const grid = document.getElementById("galleryGrid");
-    if(!items || !items.length){
-      grid.innerHTML = `<div class="empty">${t("gal_empty")}</div>`;
+    if(!items.length){
+      grid.innerHTML = `<div class="empty">Aucune image pour le moment. Ajoute des fichiers dans <b>gallery/</b> sur GitHub.</div>`;
       return;
     }
     grid.innerHTML = items.map(x => {
-      const cap = x.caption ? safeText(x.caption) : "";
-      const url = encodeURI(x.url);
-      return `
-        <div class="shot reveal">
-          <div class="imgWrap">
-            <img src="${url}" alt="${cap}" loading="lazy">
-          </div>
-          <div class="cap">${cap}</div>
-        </div>
-      `;
-    }).join("");
-    addReveal(grid);
-    bindGalleryModal();
-  }
-    grid.innerHTML = items.map(x => {
       const url = x.url || "";
-      const safeUrl = encodeURI(url);
+      const safeUrl = safeGalleryUrl(url);
       const cap = x.caption ? safeText(x.caption) : "";
       return `
         <div class="shot reveal">
@@ -1927,6 +1961,7 @@
     // Rebuild translated selects
     fillTypeSelect("typeUser");
     fillTypeSelect("typeGroup");
+    fillSalesRangeSelect();
 
     // Refresh sales labels/stats without refetch
     buildSales();
