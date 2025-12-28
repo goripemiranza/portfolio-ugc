@@ -971,6 +971,17 @@ html, body{ height:100%; overflow:hidden; }
   </div>
 
 <script>
+  // Hoisted config (avoid TDZ)
+  var SALES_PRO = {
+  snapKey: "salesSnapshotsV1",
+  maxDays: 420,
+  productInfoUrl: (id)=>`https://api.roblox.com/marketplace/productinfo?assetId=${id}`,
+  thumbsUrl: (ids)=>`https://thumbnails.roblox.com/v1/assets?assetIds=${ids.join(",")}&size=420x420&format=Png&isCircular=false`,
+  thumbFallback: (id)=>`https://www.roblox.com/asset-thumbnail/image?assetId=${id}&width=420&height=420&format=png`,
+  charts: { top:null, trend:null },
+  lastTotals: null, // { date: "YYYY-MM-DD", totals: {id: totalSales}, meta: {id: {name, thumb, type, src}} }
+};
+
   /* ---------- i18n dictionary (must be defined before first refresh) ---------- */
   
   const SALES_RANGES = [
@@ -2546,15 +2557,7 @@ tabSales.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
    - Pro charts (Chart.js) + checkbox legend + tooltips
    ===================================================================== */
 
-const SALES_PRO = {
-  snapKey: "salesSnapshotsV1",
-  maxDays: 420,
-  productInfoUrl: (id)=>`https://api.roblox.com/marketplace/productinfo?assetId=${id}`,
-  thumbsUrl: (ids)=>`https://thumbnails.roblox.com/v1/assets?assetIds=${ids.join(",")}&size=420x420&format=Png&isCircular=false`,
-  thumbFallback: (id)=>`https://www.roblox.com/asset-thumbnail/image?assetId=${id}&width=420&height=420&format=png`,
-  charts: { top:null, trend:null },
-  lastTotals: null, // { date: "YYYY-MM-DD", totals: {id: totalSales}, meta: {id: {name, thumb, type, src}} }
-};
+
 
 function salesProTodayUTC(){
   const d = new Date();
