@@ -677,26 +677,34 @@
     }
 
 
-/* SALES_LAYOUT_FIX */
-html, body{ height:auto !important; min-height:100%; overflow:auto !important; }
-body{ overscroll-behavior: auto; }
-main{ max-width: 1200px; margin: 0 auto; }
-.view{ min-height: unset !important; }
-#viewSales{ overflow: visible !important; }
-#viewSales .grid{ align-items: stretch; }
-#viewSales .cards{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; }
-@media (max-width: 1100px){ #viewSales .cards{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
-@media (max-width: 640px){ #viewSales .cards{ grid-template-columns: 1fr; } }
-#viewSales .split{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-@media (max-width: 900px){ #viewSales .split{ grid-template-columns: 1fr; } }
-#viewSales .list{ max-height: 420px; overflow:auto; }
-#viewSales .itemsGrid{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
-@media (max-width: 900px){ #viewSales .itemsGrid{ grid-template-columns: 1fr; } }
-#viewSales .itemCard{ min-width:0; }
-#viewSales .itemMeta{ min-width:0; }
-#viewSales .itemName{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-#viewSales .itemSub{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-#viewSales canvas{ width:100% !important; height: 260px !important; display:block; }
+/* PATCH_SALES_GALLERY_2025 */
+
+/* Keep everything inside internal scrollers (no page scroll) */
+html, body { height:100%; overflow:hidden; }
+
+/* Gallery: ensure cards are visible even if observer fails */
+.reveal { opacity:1 !important; transform:none !important; }
+.reveal.in { opacity:1 !important; transform:none !important; }
+
+/* Sales: prevent overflow + give internal scrolling for lists */
+#salesAll{ max-height: 360px; overflow:auto; padding-right:6px; }
+#salesToday{ max-height: 220px; overflow:auto; padding-right:6px; }
+
+/* Sales header controls */
+.salesHeader{ align-items:center; gap:12px; }
+.salesControls{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.salesControls .control{ display:flex; flex-direction:column; gap:6px; min-width:160px; }
+.salesControls .label{ font-size:12px; color:rgba(255,255,255,0.70); }
+
+/* Top list under chart */
+.miniList{ margin-top:8px; display:flex; flex-direction:column; gap:6px; }
+.miniRow{ display:flex; justify-content:space-between; gap:10px; font-size:12px; color:rgba(255,255,255,0.82); }
+.miniRow .name{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.miniRow .val{ flex:0 0 auto; color:rgba(255,255,255,0.70); }
+
+/* Items grid responsiveness */
+.salesList{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+@media (max-width: 900px){ .salesList{ grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -851,23 +859,25 @@ main{ max-width: 1200px; margin: 0 auto; }
             <div class="galleryGrid" id="galleryGrid"></div>
           </div>
         </div>
-      </div>
 
       <!-- SALES -->
       <div class="view" id="viewSales">
         <div class="card sales">
           <div class="salesHeader">
+            <div class="salesControls">
+              <div class="control">
+                <div class="label" data-i18n="sales_filter_label">Période</div>
+                <select id="salesRange"></select>
+              </div>
+              <div class="control">
+                <div class="label" data-i18n="sales_items_label">Items</div>
+                <select id="salesItemsLimit"></select>
+              </div>
+            </div>
+
             <div>
               <h2 data-i18n="sales_title">Vente</h2>
             </div>
-            <div class="control" style="min-width:190px; flex:0 0 auto;">
-              <div class="label">Période</div>
-              <select id="salesRange">
-                <option value="day">Jour</option>
-                <option value="week">Semaine</option>
-                <option value="month">Mois</option>
-                <option value="year">Année</option>
-              </select>
             </div>
             <div class="status" id="statusSales">—</div>
           </div>
@@ -880,6 +890,7 @@ main{ max-width: 1200px; margin: 0 auto; }
                 <div class="chartCard">
                   <div class="chartTitle" data-i18n="sales_chart_top">Top (ventes)</div>
                   <canvas id="chartTop" height="160"></canvas>
+                  <div class="miniList" id="salesTopList"></div>
                 </div>
                 <div class="chartCard">
                   <div class="chartTitle" data-i18n="sales_chart_daily">Évolution (jour)</div>
@@ -889,7 +900,7 @@ main{ max-width: 1200px; margin: 0 auto; }
 
               <div class="salesBlocks">
                 <div class="block">
-                  <div class="blockTitle" id="salesPeriodTitle" data-i18n="sales_today">Aujourd’hui</div>
+                  <div class="blockTitle" data-i18n="sales_today">Aujourd’hui</div>
                   <div class="salesList" id="salesToday"></div>
                 </div>
                 <div class="block">
@@ -993,7 +1004,19 @@ main{ max-width: 1200px; margin: 0 auto; }
       empty_sales:"Aucune donnée.",
       empty_sales_day:"Aucune vente pour ce jour.",
       sale_created_today:"Créé aujourd’hui",
-},
+      sales_filter_label:"Période",
+      sales_items_label:"Items",
+      sales_range_day:"Jour",
+      sales_range_week:"Semaine",
+      sales_range_month:"Mois",
+      sales_range_year:"Année",
+      sales_items_10:"10",
+      sales_items_20:"20",
+      sales_items_50:"50",
+      sales_items_all:"Tous",
+      stat_sales_period:"Ventes (période)",
+      stat_sales_total:"Ventes (total)",
+    },
     en:{
       brand:"Roblox Portfolio", tab_ugc:"UGC", tab_gallery:"Gallery",
       btn_profile:"Roblox Profile", btn_group:"Roblox Group", btn_refresh:"Refresh",
@@ -1071,7 +1094,19 @@ main{ max-width: 1200px; margin: 0 auto; }
       empty_sales:"No data.",
       empty_sales_day:"No sales for this day.",
       sale_created_today:"Created today",
-},
+      sales_filter_label:"Period",
+      sales_items_label:"Items",
+      sales_range_day:"Day",
+      sales_range_week:"Week",
+      sales_range_month:"Month",
+      sales_range_year:"Year",
+      sales_items_10:"10",
+      sales_items_20:"20",
+      sales_items_50:"50",
+      sales_items_all:"All",
+      stat_sales_period:"Sales (period)",
+      stat_sales_total:"Sales (total)",
+    },
     es:{
       brand:"Portafolio Roblox", tab_ugc:"UGC", tab_gallery:"Galería",
       btn_profile:"Perfil Roblox", btn_group:"Grupo Roblox", btn_refresh:"Actualizar",
@@ -1307,7 +1342,7 @@ main{ max-width: 1200px; margin: 0 auto; }
     if(!items.length){ grid.innerHTML = `<div class="empty">${t("ugc_empty")}</div>`; return; }
 
     grid.innerHTML = items.map(it => {
-      const price = (typeof it.price === "number") ? `${it.price}` : "—";
+      const price = (typeof it.price === "number") ? `${it.price} R$` : "—";
       const date = it.created ? fmtDate(it.created) : "";
       const img = it.thumb || thumbFallback(it.assetId);
       const safeTitle = (it.name || "").replaceAll('"', '&quot;');
@@ -1410,7 +1445,20 @@ main{ max-width: 1200px; margin: 0 auto; }
     return out;
   }
 
-  async function loadSales(){
+  
+  function normalizeSalesStore(raw){
+    if(!raw || typeof raw !== "object") return { updatedAt:null, items:{} };
+    const out = { updatedAt: raw.updated_at || raw.updatedAt || null, items:{} };
+    const srcItems = raw.items && typeof raw.items === "object" ? raw.items : {};
+    for(const [aid, v] of Object.entries(srcItems)){
+      const o = v && typeof v === "object" ? v : {};
+      const totalSales = Number(o.totalSales ?? o.total_sales ?? o.total_sales_count ?? o.total_sales_total ?? o.total_sales_value ?? o.total_sales_num ?? o.total_sales_amount ?? o.total_sales_sum ?? o.total_sales_robux ?? o.total_sales_rbx ?? o.total_sales_r ?? o.totalSalesCount ?? o.total_sales_count_value ?? o.total_sales_count_total ?? o.total_sales_count_sum ?? o.total_sales_count_num ?? o.total_sales_count_amount ?? o.total_sales_count_robux ?? o.total_sales_count_rbx ?? o.total_sales_count_r ?? o.total_sales_count_sales ?? o.total_sales_count_total_sales ?? o.total_sales_count_totalSales ?? o.total_sales_count_total_sales_count ?? o.total_sales_count_total_sales_total ?? o.total_sales_count_total_sales_value ?? o.total_sales_count_total_sales_num ?? o.total_sales_count_total_sales_amount ?? o.total_sales_count_total_sales_sum ?? o.total_sales_count_total_sales_robux ?? o.total_sales_count_total_sales_rbx ?? o.total_sales_count_total_sales_r ?? o.total_sales_count_totalSalesCount ?? o.total_sales_count_total_sales_count_value ?? o.total_sales_count_total_sales_count_total ?? o.total_sales_count_total_sales_count_sum ?? o.total_sales_count_total_sales_count_num ?? o.total_sales_count_total_sales_count_amount ?? o.total_sales_count_total_sales_count_robux ?? o.total_sales_count_total_sales_count_rbx ?? o.total_sales_count_total_sales_count_r ?? o.total_sales_count_total_sales_count_sales ?? o.total_sales_count_total_sales_count_total_sales ?? o.total_sales_count_total_sales_count_totalSales ?? o.total_sales_count_total_sales_count_total_sales_count ?? o.total_sales_count_total_sales_count_total_sales_total ?? o.total_sales_count_total_sales_count_total_sales_value ?? o.total_sales_count_total_sales_count_total_sales_num ?? o.total_sales_count_total_sales_count_total_sales_amount ?? o.total_sales_count_total_sales_count_total_sales_sum ?? o.total_sales_count_total_sales_count_total_sales_robux ?? o.total_sales_count_total_sales_count_total_sales_rbx ?? o.total_sales_count_total_sales_count_total_sales_r ?? o.total_sales_count_total_sales_count_totalSalesCount ?? o.total_sales_count_total_sales_count_total_sales_count_value ?? o.total_sales_count_total_sales_count_total_sales_count_total ?? o.total_sales_count_total_sales_count_total_sales_count_sum ?? o.total_sales_count_total_sales_count_total_sales_count_num ?? o.total_sales_count_total_sales_count_total_sales_count_amount ?? o.total_sales_count_total_sales_count_total_sales_count_robux ?? o.total_sales_count_total_sales_count_total_sales_count_rbx ?? o.total_sales_count_total_sales_count_total_sales_count_r ?? o.total_sales_count_total_sales_count_total_sales_count_sales ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales ?? o.total_sales_count_total_sales_count_total_sales_count_totalSales ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_count ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_total ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_value ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_num ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_amount ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_sum ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_robux ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_rbx ?? o.total_sales_count_total_sales_count_total_sales_count_total_sales_r ?? 0) || 0;
+      const byDay = (o.byDay && typeof o.byDay==="object") ? o.byDay : (o.sales_by_day && typeof o.sales_by_day==="object" ? o.sales_by_day : (o.salesByDay && typeof o.salesByDay==="object" ? o.salesByDay : {}));
+      out.items[String(aid)] = { totalSales, byDay };
+    }
+    return out;
+  }
+async function loadSales(){
     try{
       const raw = await fetchJsonLocal("sales.json");
       SALES_STORE = normalizeSales(raw);
@@ -1421,7 +1469,36 @@ main{ max-width: 1200px; margin: 0 auto; }
 
 
   
-  function fillTypeSelect(selId){
+  
+  const SALES_RANGE_OPTIONS = [
+    { key:"day",   labelKey:"sales_range_day" },
+    { key:"week",  labelKey:"sales_range_week" },
+    { key:"month", labelKey:"sales_range_month" },
+    { key:"year",  labelKey:"sales_range_year" },
+  ];
+  const SALES_ITEMS_LIMITS = [
+    { key:"10",  labelKey:"sales_items_10" },
+    { key:"20",  labelKey:"sales_items_20" },
+    { key:"50",  labelKey:"sales_items_50" },
+    { key:"all", labelKey:"sales_items_all" },
+  ];
+
+  function fillSalesSelects(){
+    const rSel = document.getElementById("salesRange");
+    if(rSel){
+      const cur = rSel.value || "day";
+      rSel.innerHTML = SALES_RANGE_OPTIONS.map(o => `<option value="${o.key}">${t(o.labelKey)}</option>`).join("");
+      rSel.value = cur;
+    }
+    const lSel = document.getElementById("salesItemsLimit");
+    if(lSel){
+      const cur2 = lSel.value || "20";
+      lSel.innerHTML = SALES_ITEMS_LIMITS.map(o => `<option value="${o.key}">${t(o.labelKey)}</option>`).join("");
+      lSel.value = cur2;
+    }
+  }
+
+function fillTypeSelect(selId){
     const sel = document.getElementById(selId);
     if(!sel) return;
     sel.innerHTML = TYPE_OPTIONS.map(o => {
@@ -1534,7 +1611,7 @@ main{ max-width: 1200px; margin: 0 auto; }
 
   function fmtRobux(n){
     const v = (typeof n === "number" && isFinite(n)) ? n : null;
-    return v == null ? "—" : `${v}`;
+    return v == null ? "—" : `${v} R$`;
   }
   function fmtDate(ts){
     if(!ts) return "—";
@@ -1685,8 +1762,7 @@ main{ max-width: 1200px; margin: 0 auto; }
     const dd = String(d.getUTCDate()).padStart(2,"0");
     return `${y}-${m}-${dd}`;
   }
-
-  function daysInRange(start, end){
+  function daysInRangeUTC(start, end){
     const out = [];
     const d = new Date(start);
     d.setUTCHours(0,0,0,0);
@@ -1698,138 +1774,141 @@ main{ max-width: 1200px; margin: 0 auto; }
     }
     return out;
   }
-
   function computePeriod(rangeKey){
     const today = new Date(); today.setUTCHours(0,0,0,0);
-    const back = (rangeKey==="day") ? 0 : (rangeKey==="week" ? 6 : (rangeKey==="month" ? 29 : 364));
-    const start = new Date(today); start.setUTCDate(today.getUTCDate()-back);
-    const rangeDays = daysInRange(start, today);
-
-    const startLbl = fmtDate(start.getTime());
-    const endLbl = fmtDate(today.getTime());
-
-    let label = "";
-    if(rangeKey==="day") label = `Jour • ${endLbl}`;
-    else if(rangeKey==="week") label = `Semaine • ${startLbl} → ${endLbl}`;
-    else if(rangeKey==="month") label = `Mois • ${startLbl} → ${endLbl}`;
-    else label = `Année • ${startLbl} → ${endLbl}`;
-
-    return { today, start, rangeDays, label };
+    let back = 0;
+    if(rangeKey==="week") back = 6;
+    else if(rangeKey==="month") back = 29;
+    else if(rangeKey==="year") back = 364;
+    const start = new Date(today);
+    start.setUTCDate(today.getUTCDate()-back);
+    return { start, end: today, days: daysInRangeUTC(start, today) };
   }
 
   function buildSales(){
     const status = document.getElementById("statusSales");
     const statsEl = document.getElementById("salesStats");
     const listAll = document.getElementById("salesAll");
-    const listPeriod = document.getElementById("salesToday");
+    const listDay = document.getElementById("salesToday");
+    const topList = document.getElementById("salesTopList");
     const cTop = document.getElementById("chartTop");
     const cDaily = document.getElementById("chartDaily");
-    const rangeKey = (document.getElementById("salesRange")?.value) || "day";
 
-    if(!status || !statsEl || !listAll || !listPeriod || !cTop || !cDaily) return;
+    if(!status || !statsEl || !listAll || !listDay || !cTop || !cDaily) return;
+
+    const rangeKey = (document.getElementById("salesRange")?.value) || "day";
+    const limitKey = (document.getElementById("salesItemsLimit")?.value) || "20";
 
     const store = window.__UGC_STORE || {};
-    const userItems = Array.isArray(store["u-"]) ? store["u-"].map(x=>({...x, __src:"user"})) : [];
-    const groupItems = Array.isArray(store["g-"]) ? store["g-"].map(x=>({...x, __src:"group"})) : [];
+    const userItems = Array.isArray(store.user) ? store.user.map(x=>({...x, __src:"user"})) : [];
+    const groupItems = Array.isArray(store.group) ? store.group.map(x=>({...x, __src:"group"})) : [];
     const all = [...userItems, ...groupItems];
 
-    // sales.json schema in repo: { updated_at, items: { assetId: { total_sales, sales_by_day } } }
+    // Merge normalized sales store if present
     const sItems = SALES_STORE?.items || {};
     for(const it of all){
       const s = sItems[String(it.assetId)];
-      it.salesTotal = (s && typeof s.total_sales==="number") ? s.total_sales : 0;
-      it.salesByDay = (s && s.sales_by_day && typeof s.sales_by_day==="object") ? s.sales_by_day : {};
+      it.salesTotal = (s && typeof s.totalSales==="number") ? s.totalSales : 0;
+      it.salesByDay = (s && s.byDay && typeof s.byDay==="object") ? s.byDay : {};
     }
 
-    // Period aggregation
-    const period = computePeriod(rangeKey);
-    const periodDays = (rangeKey==="day")
-      ? (()=>{ const s = new Date(period.today); s.setDate(period.today.getDate()-13); return daysInRange(s, period.today); })()
-      : period.rangeDays;
+    const { start, end, days } = computePeriod(rangeKey);
+
+    // Period totals
+    const dayTotals = {};
+    for(const d of days) dayTotals[d] = 0;
 
     for(const it of all){
       let p = 0;
-      for(const d of period.rangeDays){
+      for(const d of days){
         const n = Number(it.salesByDay?.[d] || 0);
-        if(Number.isFinite(n) && n>0) p += n;
+        if(n>0){
+          p += n;
+          dayTotals[d] += n;
+        }
       }
       it.__periodSales = p;
     }
 
-    const periodTotal = all.reduce((a,it)=>a+(it.__periodSales||0),0);
-    const totalSalesAll = all.reduce((a,it)=>a+(it.salesTotal||0),0);
+    const salesTotalAll = all.reduce((a,it)=>a+(Number(it.salesTotal)||0),0);
+    const salesTotalPeriod = Object.values(dayTotals).reduce((a,b)=>a+(Number(b)||0),0);
 
-    // Header
-    const salesTag = SALES_STORE?.updated_at ? ` • ${t("sales_updated")}: ${SALES_STORE.updated_at}` : "";
-    status.textContent = `${all.length} item(s)${salesTag} • ${period.label}`;
+    // Status
+    const salesTag = SALES_STORE?.updatedAt ? ` • ${t("sales_updated")}: ${SALES_STORE.updatedAt}` : "";
+    const label = (rangeKey==="day") ? `${t("sales_range_day")} • ${fmtDate(end.getTime())}` :
+                  `${t(rangeKey==="week"?"sales_range_week":rangeKey==="month"?"sales_range_month":"sales_range_year")} • ${fmtDate(start.getTime())} → ${fmtDate(end.getTime())}`;
+    status.textContent = `${all.length} item(s) • ${label}${salesTag}`;
 
-    const titleEl = document.getElementById("salesPeriodTitle");
-    if(titleEl) titleEl.textContent = period.label;
-
-    // Stats
-    const prices = all.map(x=>x.price).filter(n => typeof n==="number" && isFinite(n));
-    const total = all.length;
-    const avg = prices.length ? Math.round(prices.reduce((a,b)=>a+b,0)/prices.length) : null;
-
+    // Stats (no Robux)
     statsEl.innerHTML = `
-      <div class="stat"><div class="k">${t("stat_total")}</div><div class="v">${total}</div></div>
-      <div class="stat"><div class="k">Ventes (période)</div><div class="v">${periodTotal}</div></div>
-      <div class="stat"><div class="k">Ventes (total)</div><div class="v">${totalSalesAll}</div></div>
-      `;
+      <div class="stat"><div class="k">${t("stat_total")}</div><div class="v">${all.length}</div></div>
+      <div class="stat"><div class="k">${t("stat_sales_period")}</div><div class="v">${salesTotalPeriod}</div></div>
+      <div class="stat"><div class="k">${t("stat_sales_total")}</div><div class="v">${salesTotalAll}</div></div>
+    `;
 
-    function row(it, extra){
+    function row(it, extraSales){
       const creator = it.__src === "user" ? t("sale_creator_user") : t("sale_creator_group");
-      const salesTxt = (typeof it.salesTotal==="number") ? `${it.salesTotal}` : "—";
-      const extraTxt = (extra != null) ? `<span class="pill">${extra}</span>` : "";
+      const salesTxt = (typeof extraSales==="number") ? `${extraSales}` : `${it.salesTotal||0}`;
+      const sub = `${creator} • ${it.badge || "—"} • ${fmtDate(it.createdTs)} • ${salesTxt}`;
+      const url = `https://www.roblox.com/catalog/${it.assetId}`;
       return `
-        <div class="saleRow">
-          <div class="thumb"><img src="${escapeHtml(it.thumb || "")}" alt=""></div>
-          <div class="sMain">
-            <div class="sName">${safeText(it.name || ("#" + it.assetId))}</div>
-            <div class="sMeta">${creator} • ${safeText(it.type || "—")} • —</div>
+        <a class="saleRow" href="${url}" target="_blank" rel="noreferrer">
+          <img class="saleThumb" src="${it.thumb || ''}" alt="">
+          <div class="saleMeta">
+            <div class="saleName">${safeText(it.name || ("#" + it.assetId))}</div>
+            <div class="saleSub">${safeText(sub)}</div>
           </div>
-          <div class="sRight">
-            ${extraTxt}
-            <div class="sSales">${salesTxt}</div>
-          </div>
-        </div>
+        </a>
       `;
     }
 
     // Lists
-    const sortedAll = [...all].sort((a,b)=> (b.salesTotal||0)-(a.salesTotal||0));
-    listAll.innerHTML = sortedAll.slice(0,200).map(it => row(it)).join("") || `<div class="muted">${t("empty_sales")}</div>`;
+    const soldInPeriod = all.filter(it => (it.__periodSales||0) > 0).sort((a,b)=>(b.__periodSales||0)-(a.__periodSales||0));
+    const allSorted = all.slice().sort((a,b)=>(b.salesTotal||0)-(a.salesTotal||0));
 
-    const sortedPeriod = [...all].filter(it => (it.__periodSales||0) > 0).sort((a,b)=> (b.__periodSales||0)-(a.__periodSales||0));
-    listPeriod.innerHTML = sortedPeriod.slice(0,200).map(it => row(it, it.__periodSales)).join("") || `<div class="muted">${t("empty_sales_day")}</div>`;
+    // Today block title text updates via existing i18n key; keep content only
+    listDay.innerHTML = soldInPeriod.slice(0,200).map(it => row(it, it.__periodSales)).join("") || `<div class="muted">${t("empty_sales_day")}</div>`;
 
-    // Charts
-    const top = sortedAll.slice(0,10).map(it => ({
-      v: (it.__periodSales>0 ? it.__periodSales : (it.salesTotal||0)),
-      lab: (it.name || ("#" + it.assetId)).slice(0,14)
-    }));
-    drawBars(cTop, top.map(x=>x.lab), top.map(x=>x.v));
+    // Apply items limit
+    let limit = 20;
+    if(limitKey==="10") limit = 10;
+    else if(limitKey==="20") limit = 20;
+    else if(limitKey==="50") limit = 50;
+    else limit = 9999;
 
-    if(rangeKey === "year"){
-      // monthly aggregation last 12 months (from period.rangeDays)
+    listAll.innerHTML = allSorted.slice(0, limit).map(it => row(it, it.salesTotal||0)).join("") || `<div class="muted">${t("empty_sales")}</div>`;
+
+    // Top chart + Top list (avoid label overlap)
+    const top = soldInPeriod.length ? soldInPeriod.slice(0,10) : allSorted.slice(0,10);
+    const topVals = top.map(it => (it.__periodSales>0 ? it.__periodSales : (it.salesTotal||0)));
+    drawBars(cTop, top.map(_=>""), topVals);
+
+    if(topList){
+      topList.innerHTML = top.map(it => {
+        const n = (it.__periodSales>0 ? it.__periodSales : (it.salesTotal||0));
+        return `<div class="miniRow"><span class="name">${safeText(it.name || ("#" + it.assetId))}</span><span class="val">${n}</span></div>`;
+      }).join("") || "";
+    }
+
+    // Evolution chart: last 14 days for day; else use period days (cap to 30), year -> monthly
+    if(rangeKey==="year"){
       const monthTotals = {};
-      for(const d of period.rangeDays){
+      for(const d of days){
         const ym = d.slice(0,7);
-        monthTotals[ym] = (monthTotals[ym]||0) + (all.reduce((acc,it)=> acc + Number(it.salesByDay?.[d]||0), 0));
+        monthTotals[ym] = (monthTotals[ym]||0) + (dayTotals[d]||0);
       }
       const months = Object.keys(monthTotals).sort().slice(-12);
-      const labels = months.map(m => m.slice(5) + "/" + m.slice(2,4));
-      const values = months.map(m => monthTotals[m]||0);
-      drawBars(cDaily, labels, values);
+      drawBars(cDaily, months.map(m=>m.slice(5)+"/"+m.slice(2,4)), months.map(m=>monthTotals[m]||0));
     }else{
-      const dayTotals = {};
-      for(const d of periodDays){
-        let s = 0;
-        for(const it of all) s += Number(it.salesByDay?.[d]||0);
-        dayTotals[d] = s;
+      let chartDays = days;
+      if(rangeKey==="day"){
+        const today = new Date(); today.setUTCHours(0,0,0,0);
+        const start14 = new Date(today); start14.setUTCDate(today.getUTCDate()-13);
+        chartDays = daysInRangeUTC(start14, today);
       }
-      const pts = periodDays.map(d => ({ v: (dayTotals[d]||0), lab: d.slice(5) }));
-      drawLine(cDaily, pts.length>=2 ? pts : [{v:0, lab:""},{v:(pts[0]?.v||0), lab:(pts[0]?.lab||"")}]);
+      if(chartDays.length > 30) chartDays = chartDays.slice(-30);
+      const pts = chartDays.map(d => ({ lab: d.slice(5), v: (dayTotals[d]||0) }));
+      drawLine(cDaily, pts.length>=2 ? pts : [{lab:"",v:0},{lab:pts[0]?.lab||"", v:pts[0]?.v||0}]);
     }
   }
 
@@ -1863,34 +1942,25 @@ main{ max-width: 1200px; margin: 0 auto; }
   function renderGallery(items){
     const grid = document.getElementById("galleryGrid");
     if(!items.length){
-      grid.innerHTML = `<div class="empty">${t("gal_empty")}</div>`;
+      grid.innerHTML = `<div class="empty">${t("gal_empty")} Ajoute des fichiers dans <b>gallery/</b> sur GitHub.</div>`;
       return;
     }
     grid.innerHTML = items.map(x => {
       const url = x.url || "";
       const cap = x.caption ? safeText(x.caption) : "";
       return `
-        <div class="shot reveal">
+        <div class="shot reveal in">
           <div class="imgWrap">
-            <img class="shotImg" loading="lazy" data-src="${escapeHtml(url)}" alt="${cap}">
+            <img loading="lazy" src="./${encodePath(url)}" alt="${cap}"
+                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'empty\'>${t('img_invalid')}</div>';">
           </div>
           <div class="cap">${cap || `<span class="muted">${t("no_caption")}</span>`}</div>
         </div>
       `;
     }).join("");
 
-    // Browser resolves + encodes special chars correctly
-    grid.querySelectorAll("img[data-src]").forEach(img => {
-      const raw = img.getAttribute("data-src") || "";
-      try{ img.src = new URL(raw, window.location.href).href; }
-      catch(e){ img.src = raw; }
-      img.onerror = () => {
-        const p = img.parentElement;
-        if(p) p.innerHTML = `<div class="empty">${t("img_invalid")}</div>`;
-      };
-    });
-
-    addReveal(grid);
+    // Ensure reveal observer is attached (and force visible)
+    ensureRevealForGrid(grid);
     bindGalleryModal();
   }
 
@@ -1969,6 +2039,7 @@ main{ max-width: 1200px; margin: 0 auto; }
     // Rebuild translated selects
     fillTypeSelect("typeUser");
     fillTypeSelect("typeGroup");
+    fillSalesSelects();
 
     // Refresh sales labels/stats without refetch
     buildSales();
