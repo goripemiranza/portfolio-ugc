@@ -692,21 +692,32 @@
 /* LANG_FORCE_EN */
 #btnLang, #btnLangMini, #langMenu, #langSelect, .langBtn, .langMenu, .langSelect { display:none !important; }
 
-/* SALES_ONEPAGE_SCROLL */
+
+
+/* SALES_LAYOUT_2025 */
+/* Keep app fixed; allow internal scrolling only where needed */
 html, body{ height:100%; overflow:hidden; }
 .wrap{ height:calc(var(--vh, 1vh) * 100); overflow:hidden; }
 .views{ height:100%; }
-.view.active{ height:100%; overflow:hidden; }
+
+/* Sales view scrolls internally */
 #viewSales{ height:100%; overflow:hidden; }
-#viewSales .panel{ height:calc(100% - 220px); overflow:hidden; } /* panel content area */
-#viewSales .grid{ height:100%; overflow:hidden; display:grid; grid-template-rows:auto auto 1fr; gap:12px; }
+#viewSales .panel{ height:calc(100% - 200px); overflow:auto; padding-bottom:20px; }
+
+/* Keep header + filters visible */
+#viewSales .salesHeader{ position:sticky; top:0; z-index:5; background:rgba(10,12,18,0.55); backdrop-filter: blur(12px); padding-top:10px; padding-bottom:10px; }
+
+/* Cards: prevent content pushing page */
 #viewSales .split{ min-height:0; }
-#viewSales .split .card{ min-height:0; }
-#salesAll{ max-height:none !important; height:360px; overflow:auto; }
-#salesToday{ max-height:none !important; height:240px; overflow:auto; }
-#viewSales .salesList{ min-height:0; }
-#viewSales .card{ overflow:hidden; }
-#viewSales .card .contentScroll{ overflow:auto; max-height:360px; }
+#viewSales .card{ min-height:0; overflow:hidden; }
+#salesAll{ height:320px; overflow:auto; }
+#salesToday{ height:220px; overflow:auto; }
+
+/* Legend for multi lines */
+.seriesLegend{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+.seriesLegend label{ display:flex; align-items:center; gap:8px; font-size:12px; color:rgba(255,255,255,0.85); cursor:pointer; user-select:none; }
+.seriesLegend .sw{ width:10px; height:10px; border-radius:3px; background:rgba(255,255,255,0.35); border:1px solid rgba(255,255,255,0.20); display:inline-block; }
+.seriesLegend input{ accent-color: rgba(180,200,255,0.95); }
 </style>
 </head>
 <body>
@@ -1687,7 +1698,94 @@ function fillTypeSelect(selId){
     return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
   }
 
-  function drawBars(canvas, labels, values, opts={}){
+  
+
+  function pickColors(n){
+    const base = ["rgba(180,200,255,0.95)","rgba(160,240,220,0.95)","rgba(255,200,160,0.95)","rgba(255,160,210,0.95)","rgba(200,255,160,0.95)","rgba(210,190,255,0.95)"];
+    const out = [];
+    for(let i=0;i<n;i++) out.push(base[i % base.length]);
+    return out;
+  }
+
+  function drawMultiLine(canvas, series, labels){
+    const ctx = canvas.getContext("2d");
+    const W = canvas.width = canvas.clientWidth * devicePixelRatio;
+    const H = canvas.height = canvas.clientHeight * devicePixelRatio;
+    ctx.clearRect(0,0,W,H);
+
+    const pad = 26 * devicePixelRatio;
+    const innerW = W - pad*2;
+    const innerH = H - pad*2;
+
+    // Grid
+    ctx.globalAlpha = 0.35;
+    ctx.strokeStyle = "rgba(255,255,255,0.18)";
+    ctx.lineWidth = 1 * devicePixelRatio;
+    for(let i=0;i<4;i++){
+      const y = pad + (innerH*(i/3));
+      ctx.beginPath();
+      ctx.moveTo(pad, y);
+      ctx.lineTo(W-pad, y);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+
+    const allVals = [];
+    series.forEach(s=>{ if(s.active) allVals.push(...s.values); });
+    const maxV = Math.max(1, ...allVals.map(v=>Number(v)||0));
+    const n = labels.length;
+    const xs = labels.map((_,i)=> pad + (innerW*(n<=1?0:(i/(n-1)))) );
+    const colors = pickColors(series.length);
+
+    // Store points for tooltip
+    const pts = [];
+    series.forEach((s, idx)=>{
+      s.color = s.color || colors[idx];
+      if(!s.active) return;
+      const ys = s.values.map(v => pad + innerH*(1 - ((Number(v)||0)/maxV)) );
+      // Line
+      ctx.strokeStyle = s.color;
+      ctx.lineWidth = 2.2 * devicePixelRatio;
+      ctx.beginPath();
+      xs.forEach((x,i)=>{
+        const y = ys[i];
+        if(i===0) ctx.moveTo(x,y);
+        else ctx.lineTo(x,y);
+      });
+      ctx.stroke();
+
+      // Dots
+      ctx.fillStyle = "rgba(255,255,255,0.90)";
+      xs.forEach((x,i)=>{
+        const y = ys[i];
+        ctx.beginPath();
+        ctx.arc(x,y,2.7*devicePixelRatio,0,Math.PI*2);
+        ctx.fill();
+        pts.push({x:x/devicePixelRatio, y:y/devicePixelRatio, lab:labels[i], series:s.name, v:(Number(s.values[i])||0)});
+      });
+    });
+
+    canvas.__multiPts = pts;
+
+    canvas.onmousemove = (ev)=>{
+      const r = canvas.getBoundingClientRect();
+      const mx = ev.clientX - r.left;
+      const my = ev.clientY - r.top;
+      let best = null;
+      for(const p of (canvas.__multiPts||[])){
+        const dx = p.x - mx, dy = p.y - my;
+        const d = Math.sqrt(dx*dx+dy*dy);
+        if(!best || d < best.d) best = {p, d};
+      }
+      if(best && best.d <= 14){
+        showChartTip(ev.clientX, ev.clientY, `<b>${escapeHtml(best.p.lab)}</b><br>${escapeHtml(best.p.series)}: <b>${best.p.v}</b>`);
+      }else{
+        hideChartTip();
+      }
+    };
+    canvas.onmouseleave = ()=> hideChartTip();
+  }
+function drawBars(canvas, labels, values, opts={}){
     const ctx = canvas.getContext("2d");
 
     // Accept both (labels[], values[]) OR an array of objects [{lab, v}, ...]
