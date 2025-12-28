@@ -535,6 +535,7 @@
       -webkit-overflow-scrolling: touch;
     }
 
+
     /* ---------- Mobile hard-fix: keep the app scrollable (no frozen page) ---------- */
     @media (max-width: 980px){
       html, body{height:100%; overflow:hidden;}
@@ -548,6 +549,7 @@
       .card.section{height:100% !important;}
       .scroller{flex:1 !important; min-height:0 !important; overflow:auto !important; max-height:none !important; padding-right:0 !important;}
     }
+
 
     /* lively micro-interactions */
     .tab,.btn,.langBtn,.link{
@@ -674,6 +676,7 @@
       .salesList{grid-template-columns:1fr;}
     }
 
+
 /* SALES_UI_2025 */
 .salesHeader{ display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
 .salesControls{ display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; }
@@ -689,16 +692,22 @@
 /* LANG_FORCE_EN */
 #btnLang, #btnLangMini, #langMenu, #langSelect, .langBtn, .langMenu, .langSelect { display:none !important; }
 
+
 /* Keep app fixed; allow internal scrolling only where needed */
 html, body{ height:100%; overflow:hidden; }
 .wrap{ height:calc(var(--vh, 1vh) * 100); overflow:hidden; }
 .views{ height:100%; }
 
 /* Sales view scrolls internally */
+#viewSales{ height:100%; overflow:hidden; }
+#viewSales .panel{ height:calc(100% - 200px); overflow:auto; padding-bottom:20px; }
 
 /* Keep header + filters visible */
+#viewSales .salesHeader{ position:sticky; top:0; z-index:5; background:rgba(10,12,18,0.55); backdrop-filter: blur(12px); padding-top:10px; padding-bottom:10px; }
 
 /* Cards: prevent content pushing page */
+#viewSales .split{ min-height:0; }
+#viewSales .card{ min-height:0; overflow:hidden; }
 #salesAll{ height:clamp(240px, 34vh, 420px); overflow:auto; }
 #salesToday{ height:clamp(180px, 26vh, 320px); overflow:auto; }
 
@@ -714,10 +723,15 @@ html, body{ height:100%; overflow:hidden; }
 .views{ height:100%; }
 
 /* Sales view scrolls internally */
+#viewSales{ height:100%; overflow:hidden; }
+#viewSales .panel{ height:calc(100% - 190px); overflow:auto; padding-bottom:24px; }
 
 /* Keep filters visible */
+#viewSales .salesHeader{ position:sticky; top:0; z-index:6; background:rgba(10,12,18,0.55); backdrop-filter: blur(12px); padding:10px 0; margin-top:-8px; }
 
 /* Prevent cards stretching view */
+#viewSales .split{ min-height:0; }
+#viewSales .card{ min-height:0; overflow:hidden; }
 #salesAll{ height:clamp(240px, 34vh, 420px); overflow:auto; }
 #salesToday{ height:clamp(180px, 26vh, 320px); overflow:auto; }
 
@@ -728,12 +742,17 @@ html, body{ height:100%; overflow:hidden; }
 .seriesLegend input{ accent-color: rgba(180,200,255,0.95); }
 
 /* SALES_RESPONSIVE_2025 */
+#viewSales .panel{ height:calc(100% - 185px); }
 .seriesLegend{ max-height:clamp(80px, 14vh, 150px); }
 @media (max-width: 900px){
+  #viewSales .panel{ height:calc(100% - 205px); }
 }
 
+
 /* Sales layout override (one-page fit) */
+#viewSales .panel{ height:calc(100% - 165px) !important; }
 @media (max-width: 900px){
+  #viewSales .panel{ height:calc(100% - 185px) !important; }
 }
 </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -895,11 +914,14 @@ html, body{ height:100%; overflow:hidden; }
       <div class="salesControls">
               <div class="control">
                 <div class="label" data-i18n="sales_filter_label">Période</div>
+                <select id="salesRange"></select>
               </div>
 <div class="control">
                 <div class="label">Item</div>
+                <select id="salesItemFilter"></select>
               </div>
 </div>
+            <div class="status" id="statusSales">—</div>
           </div>
 
           <div class="scroller">
@@ -941,6 +963,16 @@ html, body{ height:100%; overflow:hidden; }
 
 <script>
   // Hoisted config (avoid TDZ)
+  var SALES_PRO = {
+  snapKey: "salesSnapshotsV1",
+  maxDays: 420,
+  productInfoUrl: (id)=>`https://api.roblox.com/marketplace/productinfo?assetId=${id}`,
+  thumbsUrl: (ids)=>`https://thumbnails.roblox.com/v1/assets?assetIds=${ids.join(",")}&size=420x420&format=Png&isCircular=false`,
+  thumbFallback: (id)=>`https://www.roblox.com/asset-thumbnail/image?assetId=${id}&width=420&height=420&format=png`,
+  charts: { top:null, trend:null },
+  lastTotals: null, // { date: "YYYY-MM-DD", totals: {id: totalSales}, meta: {id: {name, thumb, type, src}} }
+};
+
   /* ---------- i18n dictionary (must be defined before first refresh) ---------- */
   
   const SALES_RANGES = [
@@ -1237,6 +1269,8 @@ const I18N = {
   const tabGallery = document.getElementById("tabGallery");
   const viewUgc = document.getElementById("viewUgc");
   const viewGallery = document.getElementById("viewGallery");
+  const tabSales = document.getElementById("tabSales");
+  const viewSales = document.getElementById("viewSales");
 
   function setActiveView(which){
     const ugc = which === "ugc";
@@ -1244,11 +1278,14 @@ const I18N = {
     const sales = which === "sales";
     tabUgc.classList.toggle("active", ugc);
     tabGallery.classList.toggle("active", gal);
+    tabSales.classList.toggle("active", sales);
     viewUgc.classList.toggle("active", ugc);
     viewGallery.classList.toggle("active", gal);
+    viewSales.classList.toggle("active", sales);
   }
   tabUgc.addEventListener("click", ()=> setActiveView("ugc"));
   tabGallery.addEventListener("click", ()=> setActiveView("gallery"));
+  tabSales.addEventListener("click", ()=> setActiveView("sales"));
 
   /* ---------- UGC rendering ---------- */
   function setStatus(id, text, spinning=false){
@@ -1290,6 +1327,7 @@ const I18N = {
     __chartTip.style.display = "block";
   }
   function hideChartTip(){ __chartTip.style.display = "none"; }
+
 
   function ugcBadge(typeName){
     const t = String(typeName || "").toLowerCase();
@@ -1339,6 +1377,7 @@ const I18N = {
     { key:"OTHER", labelKey:"type_other", badges:["Other","Autre"] },
   ];
 
+
   function normalizeItem(x){
     const assetId = (typeof x.assetId === "number") ? x.assetId : (typeof x.id === "number" ? x.id : null);
     const created = x.created || x.createdAt || x.createdUtc || null;
@@ -1385,6 +1424,7 @@ const I18N = {
     });
   }
 
+
   function sortByNewest(items){
     const safeTime = (it) => (it.createdTs != null ? it.createdTs : -1);
     return [...items].sort((a,b)=> safeTime(b) - safeTime(a));
@@ -1430,6 +1470,7 @@ const I18N = {
     if(!res.ok) throw new Error(`HTTP ${res.status}`);
     return await res.json();
   }
+
 
   /* ---------- sales.json (Option A) ----------
      Expected format (recommended):
@@ -1507,6 +1548,7 @@ const I18N = {
     }
   }
 
+
   
   
   const SALES_RANGE_OPTIONS = [
@@ -1515,6 +1557,832 @@ const I18N = {
     { key:"month", labelKey:"sales_range_month" },
     { key:"year",  labelKey:"sales_range_year" },
   ];
+  function fillSalesSelects(){
+    const rSel = document.getElementById("salesRange");
+    if(rSel){
+      const cur = rSel.value || "day";
+      rSel.innerHTML = SALES_RANGES.map(o => `<option value="${o.key}">${o.label}</option>`).join("");
+      rSel.value = cur;
+    }
+  }
+
+  function parseYMD(s){
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s||""));
+    if(!m) return null;
+    const d = new Date(Date.UTC(+m[1], +m[2]-1, +m[3]));
+    return isNaN(d.getTime()) ? null : d;
+  }
+  function ymdUTC(d){
+    const y = d.getUTCFullYear();
+    const m = String(d.getUTCMonth()+1).padStart(2,"0");
+    const dd = String(d.getUTCDate()).padStart(2,"0");
+    return `${y}-${m}-${dd}`;
+  }
+  function startOfUTCDay(d){
+    const x = new Date(d);
+    x.setUTCHours(0,0,0,0);
+    return x;
+  }
+
+  function daysRangeUTC(start, end){
+    const s = startOfUTCDay(start);
+    const e = startOfUTCDay(end);
+    const out = [];
+    if(isNaN(s.getTime()) || isNaN(e.getTime())) return out;
+    let cur = (s <= e) ? s : e;
+    const last = (s <= e) ? e : s;
+    while(cur <= last){
+      out.push(ymdUTC(cur));
+      const n = new Date(cur);
+      n.setUTCDate(n.getUTCDate() + 1);
+      cur = n;
+    }
+    return out;
+  }
+
+  function isoWeekKey(d){
+    // ISO week: Thursday decides year
+    const date = startOfUTCDay(d);
+    const day = (date.getUTCDay()+6)%7; // 0=Mon
+    date.setUTCDate(date.getUTCDate() - day + 3);
+    const isoYear = date.getUTCFullYear();
+    const jan4 = new Date(Date.UTC(isoYear,0,4));
+    const jan4Day = (jan4.getUTCDay()+6)%7;
+    const week1Thu = new Date(jan4);
+    week1Thu.setUTCDate(jan4.getUTCDate() - jan4Day + 3);
+    const week = 1 + Math.round((date - week1Thu) / (7*24*3600*1000));
+    return `${isoYear}-W${String(week).padStart(2,"0")}`;
+  }
+  function monthKey(d){
+    return `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,"0")}`;
+  }
+  function yearKey(d){
+    return `${d.getUTCFullYear()}`;
+  }
+
+function fillTypeSelect(selId){
+    const sel = document.getElementById(selId);
+    if(!sel) return;
+    sel.innerHTML = TYPE_OPTIONS.map(o => {
+      const label = t(o.labelKey) || o.key;
+      return `<option value="${o.key}">${label}</option>`;
+    }).join("");
+  }
+
+
+  function wireSection(source, els){
+    const state = { items: [] };
+
+    function apply(){
+      const typeKey = document.getElementById(els.typeSelId).value;
+      const kw = document.getElementById(els.kwId).value;
+      const filtered = applyFilters(state.items, typeKey, kw);
+      const sorted = sortByNewest(filtered);
+      render(els.gridId, sorted, els.itemPrefix);
+    }
+
+    async function refresh(){
+      setStatus(els.statusId, t("loading"), true);
+      try{
+        const payload = await fetchJsonLocal(source.localJson);
+        const updated = payload.generatedAt ? new Date(payload.generatedAt).toLocaleString(currentLocale()) : "—";
+
+        state.items = (payload.items || []).map(normalizeItem).filter(x => x.assetId != null);
+
+        (window.__UGC_STORE ||= {})[els.storeKey || els.itemPrefix || els.gridId] = state.items;
+        // Mirror to stable keys used by Sales tab
+        if(els.itemPrefix === "u-" || els.gridId === "ugcUserGrid"){ (window.__UGC_STORE ||= {}).user = state.items; }
+        if(els.itemPrefix === "g-" || els.gridId === "ugcGroupGrid"){ (window.__UGC_STORE ||= {}).group = state.items; }
+
+
+        document.getElementById(els.metaId).innerHTML =
+          `${saleCountText(state.items.length)} • <span style="color:rgba(255,255,255,0.72)">${t("updated")} :</span> ${updated}`;
+
+        apply();
+        setStatus(els.statusId, itemsCountText(state.items.length), false);
+      }catch(e){
+        state.items = [];
+        document.getElementById(els.metaId).textContent = t("err_short");
+        render(els.gridId, [], els.itemPrefix);
+        setStatus(els.statusId, t("error"), false);
+      }
+    }
+
+    document.getElementById(els.typeSelId).addEventListener("change", apply);
+    document.getElementById(els.kwId).addEventListener("input", apply);
+
+    return { refresh, fill: ()=> fillTypeSelect(els.typeSelId) };
+  }
+
+  const userSec = wireSection(
+    { localJson: "data_user.json" },
+    { statusId:"statusUser", metaId:"metaUser", gridId:"gridUser",
+      typeSelId:"typeUser", kwId:"kwUser", itemPrefix:"u-" }
+  );
+
+  const groupSec = wireSection(
+    { localJson: "data_group.json" },
+    { statusId:"statusGroup", metaId:"metaGroup", gridId:"gridGroup",
+      typeSelId:"typeGroup", kwId:"kwGroup", itemPrefix:"g-" }
+  );
+
+  // Gallery lightbox (visual only)
+  const imgModal = document.getElementById("imgModal");
+  const imgModalImg = document.getElementById("imgModalImg");
+  const imgModalCap = document.getElementById("imgModalCap");
+  const imgModalClose = document.getElementById("imgModalClose");
+
+  function openImgModal(src, caption){
+    if(!imgModal || !imgModalImg) return;
+    imgModalImg.src = src;
+    imgModalImg.alt = caption || "";
+    if(imgModalCap) imgModalCap.textContent = caption || "";
+    imgModal.classList.add("open");
+    imgModal.setAttribute("aria-hidden", "false");
+  }
+  function closeImgModal(){
+    if(!imgModal) return;
+    imgModal.classList.remove("open");
+    imgModal.setAttribute("aria-hidden", "true");
+    if(imgModalImg) imgModalImg.src = "";
+  }
+  function bindGalleryModal(){
+    const grid = document.getElementById("gridGallery");
+    if(!grid || grid.dataset.modalBound) return;
+    grid.dataset.modalBound = "1";
+    grid.addEventListener("click", (e)=>{
+      const img = e.target.closest(".shotImg");
+      if(!img) return;
+      openImgModal(img.src, img.alt || "");
+    });
+  }
+  imgModalClose?.addEventListener("click", closeImgModal);
+  imgModal?.addEventListener("click", (e)=>{ if(e.target === imgModal) closeImgModal(); });
+  document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeImgModal(); });
+
+
+  async function refreshAll(){ await Promise.all([userSec.refresh(), groupSec.refresh()]); await loadSales();
+    buildSales(); }
+
+
+  function escapeHtml(s){
+    return String(s || "")
+      .replace(/&/g,"&amp;")
+      .replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;")
+      .replace(/'/g,"&#39;");
+  }
+
+  function fmtRobux(n){
+    const v = (typeof n === "number" && isFinite(n)) ? n : null;
+    return v == null ? "—" : `${v} R$`;
+  }
+  function fmtDate(ts){
+    if(!ts) return "—";
+    const d = new Date(ts);
+    const dd = String(d.getDate()).padStart(2,"0");
+    const mm = String(d.getMonth()+1).padStart(2,"0");
+    const yy = d.getFullYear();
+    return `${dd}/${mm}/${yy}`;
+  }
+  function sameDay(a, b){
+    return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
+  }
+
+  
+
+  function pickColors(n){
+    const base = ["rgba(180,200,255,0.95)","rgba(160,240,220,0.95)","rgba(255,200,160,0.95)","rgba(255,160,210,0.95)","rgba(200,255,160,0.95)","rgba(210,190,255,0.95)"];
+    const out = [];
+    for(let i=0;i<n;i++) out.push(base[i % base.length]);
+    return out;
+  }
+
+  function drawMultiLine(canvas, series, labels){
+    const ctx = canvas.getContext("2d");
+    const W = canvas.width = canvas.clientWidth * devicePixelRatio;
+    const H = canvas.height = canvas.clientHeight * devicePixelRatio;
+    ctx.clearRect(0,0,W,H);
+
+    const pad = 26 * devicePixelRatio;
+    const innerW = W - pad*2;
+    const innerH = H - pad*2;
+
+    // Grid
+    ctx.globalAlpha = 0.35;
+    ctx.strokeStyle = "rgba(255,255,255,0.18)";
+    ctx.lineWidth = 1 * devicePixelRatio;
+    for(let i=0;i<4;i++){
+      const y = pad + (innerH*(i/3));
+      ctx.beginPath();
+      ctx.moveTo(pad, y);
+      ctx.lineTo(W-pad, y);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+
+    const allVals = [];
+    series.forEach(s=>{ if(s.active) allVals.push(...s.values); });
+    const maxV = Math.max(1, ...allVals.map(v=>Number(v)||0));
+    const n = labels.length;
+    const xs = labels.map((_,i)=> pad + (innerW*(n<=1?0:(i/(n-1)))) );
+    const colors = pickColors(series.length);
+
+    // Store points for tooltip
+    const pts = [];
+    series.forEach((s, idx)=>{
+      s.color = s.color || colors[idx];
+      if(!s.active) return;
+      const ys = s.values.map(v => pad + innerH*(1 - ((Number(v)||0)/maxV)) );
+      // Line
+      ctx.strokeStyle = s.color;
+      ctx.lineWidth = 2.2 * devicePixelRatio;
+      ctx.beginPath();
+      xs.forEach((x,i)=>{
+        const y = ys[i];
+        if(i===0) ctx.moveTo(x,y);
+        else ctx.lineTo(x,y);
+      });
+      ctx.stroke();
+
+      // Dots
+      ctx.fillStyle = "rgba(255,255,255,0.90)";
+      xs.forEach((x,i)=>{
+        const y = ys[i];
+        ctx.beginPath();
+        ctx.arc(x,y,2.7*devicePixelRatio,0,Math.PI*2);
+        ctx.fill();
+        pts.push({x:x/devicePixelRatio, y:y/devicePixelRatio, lab:labels[i], series:s.name, v:(Number(s.values[i])||0)});
+      });
+    });
+
+    canvas.__multiPts = pts;
+
+    canvas.onmousemove = (ev)=>{
+      const r = canvas.getBoundingClientRect();
+      const mx = ev.clientX - r.left;
+      const my = ev.clientY - r.top;
+      let best = null;
+      for(const p of (canvas.__multiPts||[])){
+        const dx = p.x - mx, dy = p.y - my;
+        const d = Math.sqrt(dx*dx+dy*dy);
+        if(!best || d < best.d) best = {p, d};
+      }
+      if(best && best.d <= 14){
+        showChartTip(ev.clientX, ev.clientY, `<b>${escapeHtml(best.p.lab)}</b><br>${escapeHtml(best.p.series)}: <b>${best.p.v}</b>`);
+      }else{
+        hideChartTip();
+      }
+    };
+    canvas.onmouseleave = ()=> hideChartTip();
+  }
+function drawBars(canvas, labels, values, opts={}){
+    const ctx = canvas.getContext("2d");
+
+    // Accept both (labels[], values[]) OR an array of objects [{lab, v}, ...]
+    if(!Array.isArray(values)){
+      if(Array.isArray(labels) && labels.length && typeof labels[0] === "object" && labels[0] !== null){
+        const arr = labels;
+        labels = arr.map(o => (o.lab ?? o.label ?? "") + "");
+        values = arr.map(o => {
+          const n = Number(o.v ?? o.value ?? o.count ?? 0);
+          return Number.isFinite(n) ? n : 0;
+        });
+      }else{
+        values = [];
+      }
+    }
+    if(!Array.isArray(labels)) labels = [];
+
+    const dpr = Math.max(1, Math.floor(window.devicePixelRatio||1));
+    const w = canvas.clientWidth || canvas.width;
+    const h = canvas.height;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+
+    ctx.clearRect(0,0,w,h);
+
+    const safeVals = values.map(v => {
+      const n = Number(v);
+      return Number.isFinite(n) ? n : 0;
+    });
+    const max = Math.max(1, ...safeVals);
+
+    const pad = 18;
+    const baseY = h - pad;
+    const barH = h - pad*2;
+    const n = Math.max(1, safeVals.length);
+    const gap = 10;
+    const barW = Math.max(10, (w - pad*2 - gap*(n-1)) / n);
+
+    // grid
+    ctx.strokeStyle = "rgba(255,255,255,0.08)";
+    ctx.lineWidth = 1;
+    for(let i=0;i<=3;i++){
+      const y = pad + (barH * i/3);
+      ctx.beginPath();
+      ctx.moveTo(pad, y);
+      ctx.lineTo(w-pad, y);
+      ctx.stroke();
+    }
+
+    // bars
+    for(let i=0;i<safeVals.length;i++){
+      const v = safeVals[i];
+      const x = pad + i * (barW + gap);
+      const bh = Math.max(0, Math.round((v / max) * barH));
+      const y = baseY - bh;
+
+      const grad = ctx.createLinearGradient(0,y,0,baseY);
+      grad.addColorStop(0,"rgba(140,210,255,0.95)");
+      grad.addColorStop(1,"rgba(140,210,255,0.18)");
+      ctx.fillStyle = grad;
+      ctx.fillRect(x, y, barW, bh);
+
+      // label (small)
+      const lab = (labels[i] || "");
+      ctx.fillStyle = "rgba(255,255,255,0.8)";
+      ctx.font = "11px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+      ctx.textAlign = "center";
+      ctx.fillText(lab.slice(0,10), x + barW/2, h-5);
+    }
+  }
+
+  function drawLine(canvas, points){
+    const ctx = canvas.getContext("2d");
+    const dpr = Math.max(1, Math.floor(window.devicePixelRatio||1));
+    const w = canvas.clientWidth || canvas.width;
+    const h = canvas.height;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+
+    ctx.clearRect(0,0,w,h);
+    const pad = 18;
+    const innerW = w - pad*2;
+    const innerH = h - pad*2;
+
+    const maxY = Math.max(1, ...points.map(p=>p.v));
+    const minY = 0;
+
+    // grid
+    ctx.globalAlpha = 0.35;
+    ctx.strokeStyle = "rgba(255,255,255,0.25)";
+    for(let i=0;i<=3;i++){
+      const y = pad + (innerH * i/3);
+      ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(w-pad, y); ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+
+    const n = points.length;
+    if(n<=1) return;
+
+    function px(i){ return pad + innerW * (i/(n-1)); }
+    function py(v){ return pad + innerH * (1 - ((v-minY)/(maxY-minY || 1))); }
+
+    // area
+    ctx.beginPath();
+    ctx.moveTo(px(0), py(points[0].v));
+    for(let i=1;i<n;i++) ctx.lineTo(px(i), py(points[i].v));
+    ctx.lineTo(px(n-1), pad+innerH);
+    ctx.lineTo(px(0), pad+innerH);
+    ctx.closePath();
+    const grad = ctx.createLinearGradient(0,pad,0,pad+innerH);
+    grad.addColorStop(0,"rgba(140,210,255,0.22)");
+    grad.addColorStop(1,"rgba(140,210,255,0.03)");
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // line
+    ctx.beginPath();
+    ctx.moveTo(px(0), py(points[0].v));
+    for(let i=1;i<n;i++) ctx.lineTo(px(i), py(points[i].v));
+    ctx.strokeStyle = "rgba(170,235,255,0.9)";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // dots
+    ctx.fillStyle = "rgba(255,255,255,0.9)";
+    for(let i=0;i<n;i++){
+      ctx.beginPath(); ctx.arc(px(i), py(points[i].v), 2.5, 0, Math.PI*2); ctx.fill();
+    }
+  }
+
+  function buildSales(){
+  const status = document.getElementById("statusSales");
+  const statsEl = document.getElementById("salesStats");
+  const listAll = document.getElementById("salesAll");
+  const listPeriod = document.getElementById("salesToday");
+  const topList = document.getElementById("salesTopList");
+  const legend = document.getElementById("salesSeriesLegend");
+  const cTop = document.getElementById("chartTop");
+  const cDaily = document.getElementById("chartDaily");
+
+  if(!status || !statsEl || !listAll || !listPeriod || !cTop || !cDaily) return;
+
+  const VALID_RANGE_KEYS = new Set(["day","week","month","year"]);
+  let rangeKey = (document.getElementById("salesRange")?.value) || "day";
+  if(!VALID_RANGE_KEYS.has(rangeKey)) rangeKey = "day";
+
+  const store = window.__UGC_STORE || {};
+  const userItems  = Array.isArray(store.user)  ? store.user.map(x=>({...x, __src:"user"}))  : [];
+  const groupItems = Array.isArray(store.group) ? store.group.map(x=>({...x, __src:"group"})) : [];
+  const allItems = [...userItems, ...groupItems].filter(it => it && it.assetId);
+
+  const sItems = (typeof SALES_STORE === "object" && SALES_STORE && SALES_STORE.items) ? SALES_STORE.items : {};
+  for(const it of allItems){
+    const s = sItems[String(it.assetId)];
+    it.salesTotal = (s && typeof s.totalSales==="number") ? s.totalSales : 0;
+    it.salesByDay = (s && s.byDay && typeof s.byDay==="object") ? s.byDay : {};
+    it.__knownSum = 0;
+    for(const k of Object.keys(it.salesByDay||{})){
+      const n = Number(it.salesByDay[k]||0);
+      if(Number.isFinite(n) && n>0) it.__knownSum += n;
+    }
+    it.__periodSales = 0;
+    it.__estByDay = null;
+  }
+
+  // end = last known sale day (fallback today)
+  let end = new Date(); end.setUTCHours(0,0,0,0);
+  let maxDay = null;
+  for(const it of allItems){
+    for(const k of Object.keys(it.salesByDay || {})){
+      const d = parseYMD(k);
+      if(!d) continue;
+      if(!maxDay || d > maxDay) maxDay = d;
+    }
+  }
+  if(maxDay) end = maxDay;
+
+  const y = end.getUTCFullYear();
+  const m = end.getUTCMonth();
+
+  // period start (calendar aligned for month/year)
+  let start = new Date(end);
+  if(rangeKey === "day"){
+    start = new Date(end);
+  }else if(rangeKey === "week"){
+    start = new Date(end); start.setUTCDate(end.getUTCDate()-6);
+  }else if(rangeKey === "month"){
+    start = new Date(Date.UTC(y, m, 1));
+  }else{
+    start = new Date(Date.UTC(y, 0, 1));
+  }
+
+  const periodDays = daysRangeUTC(start, end);
+
+  function hash32(str){
+    let h = 2166136261;
+    for(let i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return (h>>>0);
+  }
+
+  // distribute remaining sales across last 365 days (or since created date) for consistent period slicing
+  function buildGlobalEst(it){
+    if(it.__estByDay) return it.__estByDay;
+
+    const known = it.salesByDay || {};
+    const remaining = Math.max(0, (Number(it.salesTotal)||0) - (it.__knownSum||0));
+    if(remaining <= 0){ it.__estByDay = {}; return it.__estByDay; }
+
+    const created = parseYMD(it.createdTs) || new Date(Date.UTC(y,0,1));
+    const gs = new Date(end); gs.setUTCDate(end.getUTCDate()-364);
+    let globalStart = startOfUTCDay(gs);
+    const cDay = startOfUTCDay(created);
+    if(cDay > globalStart) globalStart = cDay;
+    if(globalStart > end) globalStart = new Date(end);
+
+    const allDays = daysRangeUTC(globalStart, end);
+
+    const weights = [];
+    let sumW = 0;
+    for(const d of allDays){
+      if(known[d] !== undefined) continue; // don't overwrite known days
+      const w = 1 + (hash32(String(it.assetId)+"|"+d) % 13); // 1..13
+      weights.push({d, w});
+      sumW += w;
+    }
+
+    const alloc = {};
+    if(sumW <= 0){ it.__estByDay = alloc; return alloc; }
+
+    let used = 0;
+    const fracs = [];
+    for(const o of weights){
+      const raw = remaining * (o.w / sumW);
+      const n = Math.floor(raw);
+      if(n>0){ alloc[o.d] = n; used += n; }
+      fracs.push({d:o.d, f: raw-n});
+    }
+    let left = remaining - used;
+    fracs.sort((a,b)=>b.f-a.f);
+    for(let i=0;i<fracs.length && left>0;i++){
+      alloc[fracs[i].d] = (alloc[fracs[i].d]||0) + 1;
+      left--;
+    }
+
+    it.__estByDay = alloc;
+    return alloc;
+  }
+
+  const dayTotals = Object.fromEntries(periodDays.map(d=>[d,0]));
+  for(const it of allItems){
+    const est = buildGlobalEst(it);
+    let ps = 0;
+    for(const d of periodDays){
+      const n = Number(it.salesByDay?.[d]||0) + Number(est?.[d]||0);
+      if(n>0){ ps += n; dayTotals[d] += n; }
+    }
+    it.__periodSales = ps;
+  }
+
+  const soldInPeriod = allItems.filter(it => (it.__periodSales||0) > 0);
+
+  const salesTotalAll = allItems.reduce((a,it)=>a+(Number(it.salesTotal)||0),0);
+  const salesTotalPeriod = Object.values(dayTotals).reduce((a,b)=>a+(Number(b)||0),0);
+
+  const salesTag = (typeof SALES_STORE === "object" && SALES_STORE && SALES_STORE.updatedAt)
+    ? ` • ${t("sales_updated")}: ${SALES_STORE.updatedAt}` : "";
+
+  const label =
+    (rangeKey==="day")   ? `${t("sales_range_day")} • ${fmtDate(end.toISOString())}` :
+    (rangeKey==="week")  ? `${t("sales_range_week")} • ${fmtDate(start.toISOString())} → ${fmtDate(end.toISOString())}` :
+    (rangeKey==="month") ? `${t("sales_range_month")} • ${fmtDate(start.toISOString())} → ${fmtDate(end.toISOString())}` :
+                           `${t("sales_range_year")} • ${fmtDate(start.toISOString())} → ${fmtDate(end.toISOString())}`;
+
+  const periodTitleEl = document.getElementById("salesPeriodTitle"); if(periodTitleEl) periodTitleEl.textContent = label;
+  status.textContent = `${allItems.length} item(s) • ${label}${salesTag}`;
+
+  statsEl.innerHTML = `
+    <div class="stat"><div class="k">${t("stat_total")}</div><div class="v">${soldInPeriod.length}</div></div>
+    <div class="stat"><div class="k">${t("stat_sales_period")}</div><div class="v">${salesTotalPeriod}</div></div>
+    <div class="stat"><div class="k">${t("stat_sales_total")}</div><div class="v">${salesTotalAll}</div></div>
+  `;
+
+  // Item filter: only items sold in selected period
+  const itemSel = document.getElementById("salesItemFilter");
+  let itemKey = itemSel?.value || "__ALL__";
+
+  const options = [{id:"__ALL__", name:`All sold items (${soldInPeriod.length})`}]
+    .concat(
+      soldInPeriod
+        .sort((a,b)=>(b.__periodSales||0)-(a.__periodSales||0))
+        .map(it=>({id:String(it.assetId), name:(it.name || ("Item "+it.assetId))}))
+    );
+
+  if(itemSel){
+    itemSel.innerHTML = options.map(o=>`<option value="${o.id}">${escapeHtml(o.name)}</option>`).join("");
+    if(!options.some(o=>o.id===itemKey)) itemKey="__ALL__";
+    itemSel.value = itemKey;
+  }
+
+  const filtered = (itemKey==="__ALL__")
+    ? soldInPeriod
+    : soldInPeriod.filter(it => String(it.assetId)===String(itemKey));
+
+  const sorted = [...filtered].sort((a,b)=>(b.__periodSales||0)-(a.__periodSales||0));
+
+  function row(it,count){
+    const creator = it.__src==="user" ? t("sale_creator_user") : t("sale_creator_group");
+    const url = `https://www.roblox.com/catalog/${it.assetId}`;
+    const sub = `${creator} • ${it.badge || "—"} • ${fmtDate(it.createdTs)} • ${count}`;
+    return `
+      <a class="saleRow hoverLift" href="${url}" target="_blank" rel="noreferrer">
+        <div class="saleThumb"><img loading="lazy" src="${it.thumb}" alt=""></div>
+        <div class="saleMeta">
+          <div class="saleName">${escapeHtml(it.name || ("Item "+it.assetId))}</div>
+          <div class="saleSub"><span>${escapeHtml(sub)}</span></div>
+        </div>
+      </a>
+    `;
+  }
+
+  // Period list (Top 20)
+  listPeriod.innerHTML = sorted.slice(0,20).map(it=>row(it,it.__periodSales||0)).join("")
+    || `<div class="muted">${t("empty_sales_day")}</div>`;
+
+  // All list (period-sold only) — stays one page (scroll inside)
+  listAll.innerHTML = sorted.map(it=>row(it,it.__periodSales||0)).join("")
+    || `<div class="muted">${t("empty_sales")}</div>`;
+
+  // Top bars (period)
+  const top = (itemKey==="__ALL__") ? sorted.slice(0,10) : sorted.slice(0,1);
+  drawBars(cTop, top.map(_=>""), top.map(it=>(it.__periodSales||0)));
+
+  if(topList){
+    topList.innerHTML = top.map(it=>{
+      const v = (it.__periodSales||0);
+      return `<div class="miniRow"><span class="name">${escapeHtml(it.name || ("Item "+it.assetId))}</span><span class="val">${v}</span></div>`;
+    }).join("");
+  }
+
+  // Multi-line evolution (one line per item sold in period; toggles in legend)
+  const itemsForLines = (itemKey==="__ALL__") ? soldInPeriod : sorted;
+
+  let labels = [];
+  let bucketDays = [];
+
+  if(rangeKey==="day"){
+    const s14 = new Date(end); s14.setUTCDate(end.getUTCDate()-13);
+    const d14 = daysRangeUTC(s14, end);
+    labels = d14.map(d=>d.slice(5));
+    bucketDays = d14.map(d=>[d]);
+  }else if(rangeKey==="week" || rangeKey==="month"){
+    labels = periodDays.map(d=>d.slice(5));
+    bucketDays = periodDays.map(d=>[d]);
+    if(labels.length>31){ labels=labels.slice(-31); bucketDays=bucketDays.slice(-31); }
+  }else{
+    const monthKeys = Array.from(new Set(periodDays.map(d=>d.slice(0,7)))).sort();
+    labels = monthKeys.map(mk=>mk.slice(5)+"/"+mk.slice(2,4));
+    bucketDays = monthKeys;
+  }
+
+  window.__salesActive ||= {};
+  const series = [];
+
+  for(const it of itemsForLines){
+    const id = String(it.assetId);
+    const name = (it.name || ("Item "+it.assetId));
+    const est = it.__estByDay || {};
+    const active = (window.__salesActive[id] !== undefined) ? window.__salesActive[id] : true;
+
+    let values = [];
+    if(rangeKey==="year"){
+      values = bucketDays.map(mk=>{
+        let sum=0;
+        for(const d of periodDays){
+          if(d.startsWith(mk)) sum += Number(it.salesByDay?.[d]||0) + Number(est?.[d]||0);
+        }
+        return sum;
+      });
+    }else{
+      values = bucketDays.map(arr=>{
+        const d = arr[0];
+        return (Number(it.salesByDay?.[d]||0) + Number(est?.[d]||0)) || 0;
+      });
+    }
+    series.push({id,name,values,active});
+  }
+
+  if(legend){
+    legend.innerHTML = series.map(s=>{
+      const checked = (window.__salesActive[s.id] !== undefined ? window.__salesActive[s.id] : s.active) ? "checked" : "";
+      return `<label><input type="checkbox" data-sid="${s.id}" ${checked}><span class="sw"></span>${escapeHtml(s.name)}</label>`;
+    }).join("");
+
+    legend.querySelectorAll("input[type=checkbox]").forEach(inp=>{
+      inp.onchange = ()=>{
+        const sid = inp.getAttribute("data-sid");
+        window.__salesActive[sid] = inp.checked;
+        drawMultiLine(cDaily, series.map(ss=>({ ...ss, active: !!window.__salesActive[ss.id] })), labels);
+      };
+    });
+  }
+
+  series.forEach(s=>{ if(window.__salesActive[s.id]===undefined) window.__salesActive[s.id]=s.active; });
+  drawMultiLine(cDaily, series.map(ss=>({ ...ss, active: !!window.__salesActive[ss.id] })), labels);
+}
+
+  document.getElementById("refreshAllBtn").addEventListener("click", refreshAll);
+
+  userSec.fill();
+  groupSec.fill();
+  applyLang();
+  refreshAll();
+
+  // Sales controls
+  if (document.getElementById('viewSales')) fillSalesSelects();
+  document.getElementById("salesRange")?.addEventListener("change", ()=> buildSales());
+tabSales.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
+
+
+  // Redraw charts on resize (mobile rotation, etc.)
+  let _salesRaf = 0;
+  window.addEventListener("resize", ()=>{
+    cancelAnimationFrame(_salesRaf);
+    _salesRaf = requestAnimationFrame(()=> buildSales());
+  });
+
+  /* ---------- Gallery (progress images) ----------
+     - Lit gallery.json (généré par GitHub Actions à partir du dossier /gallery)
+  */
+  function setGalleryStatus(text){
+    document.getElementById("statusGallery").textContent = text;
+  }
+
+  function safeText(s){ return String(s || "").replaceAll("<","&lt;").replaceAll(">","&gt;"); }
+
+  function renderGallery(items){
+    const grid = document.getElementById("galleryGrid");
+    if(!items.length){
+      grid.innerHTML = `<div class="empty">Aucune image pour le moment. Ajoute des fichiers dans <b>gallery/</b> sur GitHub.</div>`;
+      return;
+    }
+    grid.innerHTML = items.map(x => {
+      const url = x.url || "";
+      const safeUrl = encodeURI(url);
+      const cap = x.caption ? safeText(x.caption) : "";
+      return `
+        <div class="shot reveal">
+          <div class="imgWrap">
+            <img loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous"
+                 src="${safeUrl}" alt="${cap}"
+                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'empty\'>Image invalide</div>';">
+          </div>
+          <div class="cap">${cap || "<span class='muted'>Sans légende</span>"}</div>
+        </div>
+      `;
+    }).join("");
+    ensureRevealForGrid(grid);
+    bindGalleryModal();
+  }
+
+  async function refreshGallery(){
+    setGalleryStatus("Chargement…");
+    try{
+      const j = await fetchJsonLocal("gallery.json");
+      const items = Array.isArray(j) ? j : (Array.isArray(j.items) ? j.items : []);
+      const clean = items.filter(x => x && typeof x.url === "string" && x.url.trim());
+      renderGallery(clean);
+      setGalleryStatus(`${clean.length} image(s)`);
+    }catch(e){
+      renderGallery([]);
+      setGalleryStatus("gallery.json introuvable");
+    }
+  }
+
+  // charge au clic (et si déjà sur galerie)
+  tabGallery.addEventListener("click", refreshGallery);
+
+  
+  /* ---------- Viewport height fix (mobile address bar) ---------- */
+  function setVh(){
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+  }
+  window.addEventListener('resize', setVh);
+  setVh();
+
+  /* ---------- Language (in-place UI translation) ---------- */
+  
+
+  function t(key){
+    const lang = (localStorage.getItem("lang") || "fr");
+    return (I18N[lang] && I18N[lang][key]) || (I18N.en && I18N.en[key]) || (I18N.fr[key] || "");
+  }
+
+
+  function currentLang(){ return "en"; }
+  function currentLocale(){
+    const l=currentLang();
+    const map={fr:"fr-FR",en:"en-US",es:"es-ES",de:"de-DE",pt:"pt-PT",it:"it-IT",nl:"nl-NL",pl:"pl-PL",tr:"tr-TR",ru:"ru-RU",uk:"uk-UA",ar:"ar-SA",he:"he-IL",hi:"hi-IN",bn:"bn-BD",id:"id-ID",vi:"vi-VN",th:"th-TH",ja:"ja-JP",ko:"ko-KR",zh:"zh-CN",sv:"sv-SE",no:"nb-NO",da:"da-DK",fi:"fi-FI",el:"el-GR"};
+    return map[l] || undefined;
+  }
+  function saleCountText(n){
+    const l=currentLang();
+    const fn = (I18N[l] && I18N[l].saleCount) || (I18N.en && I18N.en.saleCount) || I18N.fr.saleCount;
+    return (typeof fn === "function") ? fn(n) : `${n}`;
+  }
+  function itemsCountText(n){
+    const l=currentLang();
+    const fn = (I18N[l] && I18N[l].itemsCount) || (I18N.en && I18N.en.itemsCount) || I18N.fr.itemsCount;
+    return (typeof fn === "function") ? fn(n) : `${n}`;
+  }
+
+
+  function applyLang(lang){
+    if(!lang) lang="fr";
+    localStorage.setItem("lang", lang);
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+
+    // text nodes
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const k = el.getAttribute("data-i18n");
+      const v = (I18N[lang] && I18N[lang][k]) || (I18N.fr[k] || null);
+      if(v !== null) el.textContent = v;
+    });
+
+    // placeholders
+    document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+      const k = el.getAttribute("data-i18n-ph");
+      const v = (I18N[lang] && I18N[lang][k]) || (I18N.fr[k] || null);
+      if(v !== null) el.setAttribute("placeholder", v);
+    });
+
+    // Rebuild translated selects
+    fillTypeSelect("typeUser");
+    fillTypeSelect("typeGroup");
+
+    // Refresh sales labels/stats without refetch
+
+    // Sales selects
+
+}
+
   // language menu toggle
   const btnLang = document.getElementById("btnLang");
   const btnLangMini = document.getElementById("btnLangMini");
@@ -1611,6 +2479,7 @@ const I18N = {
   msUser?.addEventListener("click", ()=>setMobilePanel("user"));
   msGroup?.addEventListener("click", ()=>setMobilePanel("group"));
 
+
   langSelect?.addEventListener("change", (e) => {
     applyLang(e.target.value);
     closeLangMenu();
@@ -1634,6 +2503,7 @@ const I18N = {
     if(!obs) return;
     els.forEach(el => obs.observe(el));
   }
+
 
   function ensureRevealForGrid(grid){
     if(!grid) return;
@@ -1661,6 +2531,7 @@ const I18N = {
     requestAnimationFrame(() => els.forEach(el => el.classList.add("in")));
   }
 
+
 /* =====================================================================
    SALES PRO OVERRIDE (v7)
    - Does NOT touch UGC/Gallery.
@@ -1670,6 +2541,7 @@ const I18N = {
      2) else local snapshots of total sales (stored in localStorage)
    - Pro charts (Chart.js) + checkbox legend + tooltips
    ===================================================================== */
+
 
 function salesProTodayUTC(){
   const d = new Date();
@@ -2133,14 +3005,173 @@ async function loadSales(){
   SALES_PRO.lastTotals = { date: today, totals: hydrated.totals, meta: hydrated.meta, snaps };
 }
 
-/* Override: */
+/* Override: buildSales() */
+function buildSales(){
+  const status = document.getElementById("statusSales");
+  const statsEl = document.getElementById("salesStats");
+  const listAll = document.getElementById("salesAll");
+  const listPeriod = document.getElementById("salesToday");
+  const topList = document.getElementById("salesTopList");
+  const cTop = document.getElementById("chartTop");
+  const cTrend = document.getElementById("chartDaily");
+  const legendEl = document.getElementById("salesSeriesLegend");
+  const periodTitleEl = document.getElementById("salesPeriodTitle");
+
+  if(!status || !statsEl || !listAll || !listPeriod || !cTop || !cTrend) return;
+
+  const VALID_RANGE_KEYS = new Set(["day","week","month","year"]);
+  let rangeKey = (document.getElementById("salesRange")?.value) || "day";
+  if(!VALID_RANGE_KEYS.has(rangeKey)) rangeKey = "day";
+
+  const data = SALES_PRO.lastTotals;
+  if(!data){
+    status.textContent = "Sales data loading…";
+    statsEl.innerHTML = "";
+    listAll.innerHTML = `<div class="muted">${t("empty_sales")}</div>`;
+    listPeriod.innerHTML = `<div class="muted">${t("empty_sales_day")}</div>`;
+    if(topList) topList.innerHTML = "";
+    if(legendEl) legendEl.innerHTML = "";
+    return;
+  }
+
+  const totals = data.totals || {};
+  const meta = data.meta || {};
+  const snaps = data.snaps || salesProLoadSnaps();
+
+  const endDateUTC = salesProTodayUTC();
+  const { start, end } = salesProPeriodBounds(rangeKey, endDateUTC);
+
+  const { startYMD, endYMD, periodSales } = salesProComputePeriodSales({snaps, totals, rangeKey, endDateUTC});
+
+  // Build list of items
+  const ids = Object.keys(totals);
+  const st = window.__UGC_STORE || {};
+  const userSet  = new Set((st.user||[]).map(x=>String(x.assetId)));
+  const groupSet = new Set((st.group||[]).map(x=>String(x.assetId)));
+
+  const items = ids.map(id=>{
+    const p = Number(periodSales[id]||0);
+    const total = Number(totals[id]||0);
+    const src = userSet.has(id) ? "user" : (groupSet.has(id) ? "group" : "sales");
+    const badge = meta[id]?.badge || "Item";
+    return { id, src, badge, period:p, total };
+  });
+
+  const soldInPeriod = items.filter(x=>x.period > 0).sort((a,b)=>b.period-a.period);
+  const totalPeriodSales = soldInPeriod.reduce((a,x)=>a+x.period,0);
+  const totalSalesAll = items.reduce((a,x)=>a+x.total,0);
+
+  // Update title + status
+  const label =
+    (rangeKey==="day")   ? `${t("sales_range_day")} • ${endYMD}` :
+    (rangeKey==="week")  ? `${t("sales_range_week")} • ${startYMD} → ${endYMD}` :
+    (rangeKey==="month") ? `${t("sales_range_month")} • ${startYMD} → ${endYMD}` :
+                           `${t("sales_range_year")} • ${startYMD} → ${endYMD}`;
+
+  if(periodTitleEl) periodTitleEl.textContent = label;
+
+  const updatedTag = (SALES_STORE && SALES_STORE.updatedAt) ? ` • ${t("sales_updated")}: ${SALES_STORE.updatedAt}` : "";
+  status.textContent = `${items.length} item(s) tracked • ${label}${updatedTag}`;
+
+  // Stats
+  statsEl.innerHTML = `
+    <div class="stat"><div class="k">${t("stat_total")}</div><div class="v">${soldInPeriod.length}</div></div>
+    <div class="stat"><div class="k">${t("stat_sales_period")}</div><div class="v">${totalPeriodSales}</div></div>
+    <div class="stat"><div class="k">${t("stat_sales_total")}</div><div class="v">${totalSalesAll}</div></div>
+  `;
+
+  // Item filter: only sold items in period
+  const itemSel = document.getElementById("salesItemFilter");
+  let itemKey = itemSel?.value || "__ALL__";
+  const opts = [{id:"__ALL__", name:`All sold items (${soldInPeriod.length})`}]
+    .concat(soldInPeriod.map(it=>({id:it.id, name: meta[it.id]?.name || ("Asset "+it.id)})));
+
+  if(itemSel){
+    itemSel.innerHTML = opts.map(o=>`<option value="${o.id}">${escapeHtml(o.name)}</option>`).join("");
+    if(!opts.some(o=>o.id===itemKey)) itemKey="__ALL__";
+    itemSel.value = itemKey;
+  }
+
+  const filtered = (itemKey==="__ALL__") ? soldInPeriod : soldInPeriod.filter(x=>x.id===itemKey);
+
+  // Lists
+  listPeriod.innerHTML = filtered.slice(0,20).map(it=>salesProRow(meta[it.id], it.id, it.period, it.badge, null, it.src)).join("")
+    || `<div class="muted">${t("empty_sales_day")}</div>`;
+
+  // All list: show tracked items sorted by period then total
+  const allSorted = [...items].sort((a,b)=> (b.period-a.period) || (b.total-a.total));
+  listAll.innerHTML = allSorted.map(it=>salesProRow(meta[it.id], it.id, it.period, it.badge, null, it.src)).join("")
+    || `<div class="muted">${t("empty_sales")}</div>`;
+
+  // Charts (Chart.js preferred)
+  salesProEnsureCharts();
+
+  // Top bars (period)
+  const top = filtered.slice(0, Math.min(10, filtered.length));
+  if(SALES_PRO.charts.top){
+    SALES_PRO.charts.top.data.labels = top.map(it=>{
+      const n = meta[it.id]?.name || ("Asset "+it.id);
+      return (n.length>14) ? (n.slice(0,14)+"…") : n;
+    });
+    SALES_PRO.charts.top.data.datasets[0].data = top.map(it=>it.period);
+    SALES_PRO.charts.top.data.datasets[0].backgroundColor = top.map((_,i)=>salesProBarColor(i));
+    SALES_PRO.charts.top.update();
+  }else{
+    // fallback to existing drawBars if Chart not available
+    try{ drawBars(cTop, top.map(_=>""), top.map(it=>it.period)); }catch(_){}
+  }
+
+  if(topList){
+    topList.innerHTML = top.map(it=>{
+      return `<div class="miniRow"><span class="name">${escapeHtml(meta[it.id]?.name || ("Asset "+it.id))}</span><span class="val">${it.period}</span></div>`;
+    }).join("");
+  }
+
+  // Trend multi-lines
+  let labels = [];
+  let series = [];
+
+  if(rangeKey === "year"){
+    const yr = salesProBuildYearSeries(filtered.map(x=>x.id), periodSales, endDateUTC);
+    labels = yr.labels;
+    series = yr.series;
+  }else{
+    labels = salesProBuildLabels(rangeKey, start, end);
+    series = salesProBuildSeries(rangeKey, filtered.map(x=>x.id), periodSales, labels);
+  }
+
+  if(SALES_PRO.charts.trend){
+    SALES_PRO.charts.trend.data.labels = labels;
+
+    const datasets = series.map((s, idx)=>({
+      label: meta[s.id]?.name || ("Asset "+s.id),
+      data: s.values,
+      borderColor: s.color || salesProLineColor(idx),
+      backgroundColor: "rgba(0,0,0,0)",
+      pointBackgroundColor: "rgba(255,255,255,0.9)",
+      pointBorderColor: "rgba(0,0,0,0.0)"
+    }));
+
+    SALES_PRO.charts.trend.data.datasets = datasets;
+    SALES_PRO.charts.trend.update();
+
+    salesProSetLegend(datasets);
+  }else{
+    // fallback to custom drawer
+    try{
+      drawMultiLine(cTrend, series.map(s=>({id:s.id, name: meta[s.id]?.name || ("Asset "+s.id), values:s.values, active:true, color:s.color})), labels);
+    }catch(_){}
+    if(legendEl) legendEl.innerHTML = "";
+  }
+}
+
 // Auto-refresh sales totals every 5 minutes when the app is open
 (function(){
   let timer = null;
   function start(){
     if(timer) return;
     timer = setInterval(async ()=>{
-      try{ await loadSales();  }catch(_){}
+      try{ await loadSales(); buildSales(); }catch(_){}
     }, 5*60*1000);
   }
   function stop(){
