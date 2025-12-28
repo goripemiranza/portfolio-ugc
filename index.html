@@ -1784,7 +1784,9 @@
 
         // Period + total sales stats
     const totalSalesAll = all.reduce((acc,it)=> acc + (typeof it.salesTotal==="number" ? it.salesTotal : 0), 0);
-    const { periodLabel, periodTotal } = computePeriodSales(all, rangeKey);
+    const period = computePeriodSales(all, rangeKey);
+    const periodLabel = period.periodLabel;
+    const periodTotal = period.periodTotal;
     statsEl.innerHTML = `
       <div class="stat"><div class="k">${t("stat_total")}</div><div class="v">${total}</div></div>
       <div class="stat"><div class="k">${t("stat_sales_period")}</div><div class="v">${periodTotal}</div></div>
@@ -1828,7 +1830,7 @@
     });
 
     // --------- Period sales (filter) ---------
-    const { start, end, rangeDays, dayTotals, periodTotal, periodLabel } = computePeriodSales(all, rangeKey);
+    const { start, end, rangeDays, dayTotals } = period;
 
     // Update title in the first block
     const titleEl = document.getElementById("salesPeriodTitle");
