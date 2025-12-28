@@ -293,10 +293,32 @@
     }
   
     
-    /* ---------- Mobile fix (override) : keep internal scrollers usable ---------- */
-    @media (max-width: 980px){
-      html, body{height:100%; overflow:hidden;}
-      body{overflow:hidden;}
+    /* ---------- Mobile responsive (scroll + rescale) ---------- */
+@media (max-width: 980px){
+  /* Allow page scroll (so stacked panels are reachable) */
+  html, body{height:auto !important; overflow:auto !important;}
+  body{overflow-x:hidden !important; overflow-y:auto !important; -webkit-overflow-scrolling: touch;}
+
+  /* Let layout grow naturally */
+  .wrap{height:auto !important; min-height:100vh !important;}
+  @supports (height: 100dvh){ .wrap{min-height:100dvh !important;} }
+
+  .views{flex:unset !important; min-height:auto !important;}
+  .view{height:auto !important; min-height:auto !important;}
+  .dual{height:auto !important; min-height:auto !important; grid-template-columns:1fr !important;}
+
+  /* Disable nested scroll traps on mobile */
+  .card.section{height:auto !important; min-height:auto !important;}
+  .scroller{
+    flex:unset !important;
+    min-height:auto !important;
+    overflow:visible !important;
+    padding-right:0 !important;
+    overscroll-behavior:auto;
+    touch-action:auto;
+  }
+}
+body{overflow:hidden;}
       .wrap{height:100vh !important;}
       @supports (height: 100dvh){ .wrap{height:100dvh !important;} }
       .views{flex:1 !important; min-height:0 !important;}
