@@ -691,6 +691,22 @@
 
 /* LANG_FORCE_EN */
 #btnLang, #btnLangMini, #langMenu, #langSelect, .langBtn, .langMenu, .langSelect { display:none !important; }
+
+/* SALES_ONEPAGE_SCROLL */
+html, body{ height:100%; overflow:hidden; }
+.wrap{ height:calc(var(--vh, 1vh) * 100); overflow:hidden; }
+.views{ height:100%; }
+.view.active{ height:100%; overflow:hidden; }
+#viewSales{ height:100%; overflow:hidden; }
+#viewSales .panel{ height:calc(100% - 220px); overflow:hidden; } /* panel content area */
+#viewSales .grid{ height:100%; overflow:hidden; display:grid; grid-template-rows:auto auto 1fr; gap:12px; }
+#viewSales .split{ min-height:0; }
+#viewSales .split .card{ min-height:0; }
+#salesAll{ max-height:none !important; height:360px; overflow:auto; }
+#salesToday{ max-height:none !important; height:240px; overflow:auto; }
+#viewSales .salesList{ min-height:0; }
+#viewSales .card{ overflow:hidden; }
+#viewSales .card .contentScroll{ overflow:auto; max-height:360px; }
 </style>
 </head>
 <body>
@@ -1224,6 +1240,35 @@
     if(!iso) return "";
     try{ return new Date(iso).toLocaleDateString("fr-FR"); }catch(e){ return ""; }
   }
+
+  // Chart tooltip (simple)
+  const __chartTip = (()=>{
+    const d = document.createElement("div");
+    d.id = "chartTip";
+    d.style.position = "fixed";
+    d.style.zIndex = "9999";
+    d.style.pointerEvents = "none";
+    d.style.padding = "8px 10px";
+    d.style.borderRadius = "10px";
+    d.style.fontSize = "12px";
+    d.style.background = "rgba(10,12,18,0.85)";
+    d.style.border = "1px solid rgba(255,255,255,0.12)";
+    d.style.backdropFilter = "blur(10px)";
+    d.style.color = "rgba(255,255,255,0.92)";
+    d.style.transform = "translate(8px, 8px)";
+    d.style.display = "none";
+    document.body.appendChild(d);
+    return d;
+  })();
+  function showChartTip(x, y, html){
+    __chartTip.innerHTML = html;
+    __chartTip.style.left = x + "px";
+    __chartTip.style.top = y + "px";
+    __chartTip.style.display = "block";
+  }
+  function hideChartTip(){ __chartTip.style.display = "none"; }
+
+
 
   function ugcBadge(typeName){
     const t = String(typeName || "").toLowerCase();
@@ -1785,8 +1830,13 @@ function fillTypeSelect(selId){
 
     if(!status || !statsEl || !listAll || !listPeriod || !cTop || !cTrend) return;
 
-    const rangeKey = (document.getElementById("salesRange")?.value) || "day";
-    const limitKey = (document.getElementById("salesItemsLimit")?.value) || "20";
+    
+    const VALID_RANGE_KEYS = new Set(["day","week","month","year"]);
+    const VALID_LIMIT_KEYS = new Set(["20","50","all"]);
+    let rangeKey = (document.getElementById("salesRange")?.value) || "day";
+    let limitKey = (document.getElementById("salesItemsLimit")?.value) || "20";
+    if(!VALID_RANGE_KEYS.has(rangeKey)) rangeKey = "day";
+    if(!VALID_LIMIT_KEYS.has(limitKey)) limitKey = "20";
 
     const store = window.__UGC_STORE || {};
     const userItems = Array.isArray(store.user) ? store.user.map(x=>({...x, __src:"user"})) : [];
@@ -1985,8 +2035,8 @@ function fillTypeSelect(selId){
 
   // Sales controls
   fillSalesSelects();
-  document.getElementById("salesRange")?.addEventListener("change", ()=> buildSales());
-  document.getElementById("salesItemsLimit")?.addEventListener("change", ()=> buildSales());
+  document.getElementById("salesRange")?.addEventListener("change", ()=> { fillSalesSelects(); buildSales(); });
+  document.getElementById("salesItemsLimit")?.addEventListener("change", ()=> { fillSalesSelects(); buildSales(); });
   tabSales.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
 
 
