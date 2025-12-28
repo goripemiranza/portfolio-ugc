@@ -1603,6 +1603,23 @@ html, body{ height:100%; overflow:hidden; }
     x.setUTCHours(0,0,0,0);
     return x;
   }
+
+  function daysRangeUTC(start, end){
+    const s = startOfUTCDay(start);
+    const e = startOfUTCDay(end);
+    const out = [];
+    if(isNaN(s.getTime()) || isNaN(e.getTime())) return out;
+    let cur = (s <= e) ? s : e;
+    const last = (s <= e) ? e : s;
+    while(cur <= last){
+      out.push(ymdUTC(cur));
+      const n = new Date(cur);
+      n.setUTCDate(n.getUTCDate() + 1);
+      cur = n;
+    }
+    return out;
+  }
+
   function isoWeekKey(d){
     // ISO week: Thursday decides year
     const date = startOfUTCDay(d);
