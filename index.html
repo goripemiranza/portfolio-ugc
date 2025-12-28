@@ -963,7 +963,14 @@ html, body{ height:100%; overflow:hidden; }
 
 <script>
   /* ---------- i18n dictionary (must be defined before first refresh) ---------- */
-  const I18N = {
+  
+  const SALES_RANGES = [
+    { key:"day",   label:"Jour" },
+    { key:"week",  label:"Semaine" },
+    { key:"month", label:"Mois" },
+    { key:"year",  label:"Année" },
+  ];
+const I18N = {
     fr:{
       brand:"Portfolio Roblox",
       img_invalid:"Image invalide",
