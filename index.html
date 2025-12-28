@@ -688,6 +688,9 @@
 .miniRow{ display:flex; justify-content:space-between; gap:10px; font-size:12px; color:rgba(255,255,255,0.82); }
 .miniRow .name{ flex:1 1 auto; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .miniRow .val{ flex:0 0 auto; color:rgba(255,255,255,0.70); }
+
+/* LANG_FORCE_EN */
+#btnLang, #btnLangMini, #langMenu, #langSelect, .langBtn, .langMenu, .langSelect { display:none !important; }
 </style>
 </head>
 <body>
@@ -1538,6 +1541,10 @@ function fillTypeSelect(selId){
         state.items = (payload.items || []).map(normalizeItem).filter(x => x.assetId != null);
 
         (window.__UGC_STORE ||= {})[els.storeKey || els.itemPrefix || els.gridId] = state.items;
+        // Mirror to stable keys used by Sales tab
+        if(els.itemPrefix === "u-" || els.gridId === "ugcUserGrid"){ (window.__UGC_STORE ||= {}).user = state.items; }
+        if(els.itemPrefix === "g-" || els.gridId === "ugcGroupGrid"){ (window.__UGC_STORE ||= {}).group = state.items; }
+
 
         document.getElementById(els.metaId).innerHTML =
           `${saleCountText(state.items.length)} • <span style="color:rgba(255,255,255,0.72)">${t("updated")} :</span> ${updated}`;
@@ -1973,6 +1980,7 @@ function fillTypeSelect(selId){
 
   userSec.fill();
   groupSec.fill();
+  applyLang();
   refreshAll();
 
   // Sales controls
@@ -2057,7 +2065,7 @@ function fillTypeSelect(selId){
   }
 
 
-  function currentLang(){ return (window.__lang || localStorage.getItem("lang") || "fr"); }
+  function currentLang(){ return "en"; }
   function currentLocale(){
     const l=currentLang();
     const map={fr:"fr-FR",en:"en-US",es:"es-ES",de:"de-DE",pt:"pt-PT",it:"it-IT",nl:"nl-NL",pl:"pl-PL",tr:"tr-TR",ru:"ru-RU",uk:"uk-UA",ar:"ar-SA",he:"he-IL",hi:"hi-IN",bn:"bn-BD",id:"id-ID",vi:"vi-VN",th:"th-TH",ja:"ja-JP",ko:"ko-KR",zh:"zh-CN",sv:"sv-SE",no:"nb-NO",da:"da-DK",fi:"fi-FI",el:"el-GR"};
