@@ -677,7 +677,7 @@
     }
 
 
-/* SALES_FIX_2025 */
+/* SALES_TAB_OPT */
 .salesHeader{ display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
 .salesControls{ display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; }
 .salesControls .control{ display:flex; flex-direction:column; gap:6px; min-width:160px; }
@@ -1764,7 +1764,6 @@ function fillTypeSelect(selId){
     const groupItems = Array.isArray(store.group) ? store.group.map(x=>({...x, __src:"group"})) : [];
     const all = [...userItems, ...groupItems].filter(it => it && it.assetId);
 
-    // Merge sales.json
     const sItems = SALES_STORE?.items || {};
     for(const it of all){
       const s = sItems[String(it.assetId)];
@@ -1773,7 +1772,7 @@ function fillTypeSelect(selId){
       it.__periodSales = 0;
     }
 
-    // End date = latest key present in sales_by_day (fallback today)
+    // End date = latest day present in sales_by_day (fallback today)
     let end = new Date(); end.setUTCHours(0,0,0,0);
     let maxDay = null;
     for(const it of all){
@@ -1794,7 +1793,6 @@ function fillTypeSelect(selId){
     start.setUTCDate(end.getUTCDate()-back);
     const days = daysRangeUTC(start, end);
 
-    // Aggregate
     const dayTotals = Object.fromEntries(days.map(d => [d, 0]));
     for(const it of all){
       let ps = 0;
@@ -1821,7 +1819,6 @@ function fillTypeSelect(selId){
 
     status.textContent = `${totalItems} item(s) • ${label}${salesTag}`;
 
-    // Stats (counts only)
     statsEl.innerHTML = `
       <div class="stat"><div class="k">${t("stat_total")}</div><div class="v">${totalItems}</div></div>
       <div class="stat"><div class="k">${t("stat_sales_period")}</div><div class="v">${salesTotalPeriod}</div></div>
@@ -1834,7 +1831,7 @@ function fillTypeSelect(selId){
       const sub = `${creator} • ${it.badge || "—"} • ${fmtDate(it.createdTs)} • ${count}`;
       return `
         <a class="saleRow hoverLift" href="${url}" target="_blank" rel="noreferrer">
-          <div class="saleThumb"><img loading="lazy" src="${it.thumb}" alt=""></div>
+          <div class="saleThumb"><img loading="lazy" src="${it.thumb || ""}" alt=""></div>
           <div class="saleMeta">
             <div class="saleName">${escapeHtml(it.name || ("Item " + it.assetId))}</div>
             <div class="saleSub"><span>${escapeHtml(sub)}</span></div>
@@ -1846,7 +1843,6 @@ function fillTypeSelect(selId){
     const sortedAll = [...all].sort((a,b)=>(b.salesTotal||0)-(a.salesTotal||0));
     const sortedPeriod = [...all].filter(it=>(it.__periodSales||0)>0).sort((a,b)=>(b.__periodSales||0)-(a.__periodSales||0));
 
-    // Limit
     let lim = 20;
     if(limitKey==="50") lim = 50;
     else if(limitKey==="all") lim = 9999;
@@ -1854,7 +1850,7 @@ function fillTypeSelect(selId){
     listAll.innerHTML = sortedAll.slice(0, lim).map(it => row(it, it.salesTotal||0)).join("") || `<div class="muted">${t("empty_sales")}</div>`;
     listPeriod.innerHTML = sortedPeriod.slice(0, 200).map(it => row(it, it.__periodSales||0)).join("") || `<div class="muted">${t("empty_sales_day")}</div>`;
 
-    // Top chart + list (avoid label overlap by using blank labels on bars)
+    // Top sales chart + list (avoid long labels overlap)
     const top = (sortedPeriod.length ? sortedPeriod : sortedAll).slice(0, 10);
     const topVals = top.map(it => (sortedPeriod.length ? (it.__periodSales||0) : (it.salesTotal||0)));
     drawBars(cTop, top.map(_=>""), topVals);
@@ -1893,14 +1889,24 @@ function fillTypeSelect(selId){
   groupSec.fill();
   refreshAll();
 
+
+  // Sales controls (filter + auto refresh)
+  fillSalesSelects();
+  document.getElementById("salesRange")?.addEventListener("change", ()=> buildSales());
+  document.getElementById("salesItemsLimit")?.addEventListener("change", ()=> buildSales());
+  setInterval(()=>{
+    if(document.getElementById("viewSales")?.classList.contains("active")) buildSales();
+  }, 60000);
   // Redraw charts on resize (mobile rotation, etc.)
   let _salesRaf = 0;
   window.addEventListener("resize", ()=>{
     cancelAnimationFrame(_salesRaf);
-    _salesRaf = requestAnimationFrame(()=> buildSales());
+    _salesRaf = requestAnimationFrame(()=>{
+      if(document.getElementById("viewSales")?.classList.contains("active")) buildSales();
+    });
   });
 
-  /* ---------- Gallery (progress images) ----------
+/* ---------- Gallery (progress images) ----------
      - Lit gallery.json (généré par GitHub Actions à partir du dossier /gallery)
   */
   function setGalleryStatus(text){
@@ -1911,33 +1917,32 @@ function fillTypeSelect(selId){
 
   function encodePath(p){
     const raw = String(p || "");
-    // Encode each segment to handle spaces + accents + quotes safely in URLs
     return raw.split("/").map(seg => encodeURIComponent(seg)).join("/");
   }
 
   function renderGallery(items){
     const grid = document.getElementById("galleryGrid");
     if(!items.length){
-      grid.innerHTML = `<div class="empty">Aucune image pour le moment. Ajoute des fichiers dans <b>gallery/</b> sur GitHub.</div>`;
+      grid.innerHTML = `<div class="empty">${t("gal_empty")}</div>`;
       return;
     }
 
     grid.innerHTML = items.map(x => {
       const url = x.url || "";
       const cap = x.caption ? safeText(x.caption) : "";
-      const src = (url.startsWith("http://") || url.startsWith("https://")) ? url : ("./" + encodePath(url));
+      const src = (url.startsWith("http://") || url.startsWith("https://"))
+        ? url
+        : ("./" + encodePath(url));
       return `
         <div class="shot reveal">
           <div class="imgWrap">
-            <img loading="lazy" src="${src}" alt="${cap}"
-                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'empty\\'>Image invalide</div>';">
+            <img loading="lazy" src="${src}" alt="${cap}">
           </div>
-          <div class="cap">${cap || "<span class='muted'>Sans légende</span>"}</div>
+          <div class="cap">${cap || `<span class="muted">${t("no_caption")}</span>`}</div>
         </div>
       `;
     }).join("");
 
-    // IMPORTANT: original code called addReveal(grid) with wrong signature => images stay invisible.
     ensureRevealForGrid(grid);
     bindGalleryModal();
   }
