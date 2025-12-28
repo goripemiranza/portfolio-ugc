@@ -1,6 +1,22 @@
 {
-  "generatedAt": "2025-12-28T04:17:35.120039Z",
+  "generatedAt": "2025-12-28T13:41:58.469449Z",
   "items": [
+    {
+      "assetId": 93774719738585,
+      "name": "[PBR] Green cyber mask",
+      "type": "FaceAccessory",
+      "price": 100,
+      "created": "2025-12-27T23:11:28.7307839Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-0af3c719ea6d37a49f0166cf6f9fae9c/420/420/FaceAccessory/Png/noFilter"
+    },
+    {
+      "assetId": 112163449988496,
+      "name": "[PBR] Blue cyber mask",
+      "type": "FaceAccessory",
+      "price": 100,
+      "created": "2025-12-27T23:10:07.9492155Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-a57c1894fba8d7b2c6ea7fd74a73c54d/420/420/FaceAccessory/Png/noFilter"
+    },
     {
       "assetId": 121640625346381,
       "name": "[PBR] Mystic jewelled horns",
@@ -40,6 +56,14 @@
       "price": 60,
       "created": "2025-09-18T19:57:55.397Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-44a9fa44652fca33c25477247d876a64/420/420/WaistAccessory/Png/noFilter"
+    },
+    {
+      "assetId": 92867934281767,
+      "name": "White and black dragon wings",
+      "type": "BackAccessory",
+      "price": 135,
+      "created": "2025-09-17T10:48:24.237Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-d2d472d979ad7bb83214a5bb985669e3/420/420/BackAccessory/Png/noFilter"
     },
     {
       "assetId": 103640681693848,
@@ -104,6 +128,14 @@
       "price": 150,
       "created": "2025-03-21T20:25:38.197Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-054487f44298ba817286d43dfc469596/420/420/BackAccessory/Png/noFilter"
+    },
+    {
+      "assetId": 112911367450195,
+      "name": "Purple shadow sword",
+      "type": "BackAccessory",
+      "price": 150,
+      "created": "2025-03-09T17:40:46.817Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-83d2b68addb0e17daec6c016e12b822b/420/420/BackAccessory/Png/noFilter"
     },
     {
       "assetId": 124182720625549,
@@ -314,17 +346,6 @@
       "rank": 37
     },
     {
-      "assetId": 112911367450195,
-      "name": "Purple shadow sword",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://tr.rbxcdn.com/180DAY-83d2b68addb0e17daec6c016e12b822b/420/420/BackAccessory/Png/noFilter",
-      "rank": 31
-    },
-    {
       "assetId": 110319499372320,
       "name": "White and gold wings ",
       "assetTypeId": 46,
@@ -400,17 +421,6 @@
       "priceStatus": null,
       "thumb": "https://tr.rbxcdn.com/180DAY-77077b25ab3e933a8069c9790d58dd2e/420/420/Hat/Png/noFilter",
       "rank": 2
-    },
-    {
-      "assetId": 92867934281767,
-      "name": "White and black dragon wings",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 135,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://tr.rbxcdn.com/180DAY-d2d472d979ad7bb83214a5bb985669e3/420/420/BackAccessory/Png/noFilter",
-      "rank": 44
     },
     {
       "assetId": 90634979410540,
