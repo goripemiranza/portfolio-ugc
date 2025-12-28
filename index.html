@@ -917,23 +917,11 @@ html, body{ height:100%; overflow:hidden; }
                 <div class="label" data-i18n="sales_filter_label">Période</div>
                 <select id="salesRange"></select>
               </div>
-              <div class="control">
-                <div class="label" data-i18n="sales_items_label">Items</div>
-                <select id="salesItemsLimit"></select>
-              </div>
-              <div class="control">
+<div class="control">
                 <div class="label">Item</div>
                 <select id="salesItemFilter"></select>
               </div>
-              <div class="control">
-                <div class="label">Lines</div>
-                <select id="salesSeriesCount">
-                  <option value="5">Top 5</option>
-                  <option value="10" selected>Top 10</option>
-                  <option value="20">Top 20</option>
-                </select>
-              </div>
-            </div>
+</div>
             <div class="status" id="statusSales">—</div>
           </div>
 
@@ -1552,25 +1540,14 @@ html, body{ height:100%; overflow:hidden; }
     { key:"month", labelKey:"sales_range_month" },
     { key:"year",  labelKey:"sales_range_year" },
   ];
-  const SALES_SERIES_COUNTS = [
-    { key:"5",  label:"Top 5" },
-    { key:"10", label:"Top 10" },
-    { key:"20", label:"Top 20" },
-  ];
-
-  const SALES_ITEMS_LIMITS = [
-    { key:"20",  labelKey:"sales_items_20" },
-    { key:"50",  labelKey:"sales_items_50" },
-    { key:"all", labelKey:"sales_items_all" },
-  ];
-
   function fillSalesSelects(){
     const rSel = document.getElementById("salesRange");
     if(rSel){
       const cur = rSel.value || "day";
-      rSel.innerHTML = SALES_RANGE_OPTIONS.map(o => `<option value="${o.key}">${t(o.labelKey) || o.key}</option>`).join("");
+      rSel.innerHTML = SALES_RANGES.map(o => `<option value="${o.key}">${o.label}</option>`).join("");
       rSel.value = cur;
     }
+  }
     const lSel = document.getElementById("salesItemsLimit");
     const sSel = document.getElementById("salesSeriesCount");
     if(sSel){
@@ -2002,29 +1979,280 @@ function drawBars(canvas, labels, values, opts={}){
     if(!status || !statsEl || !listAll || !listPeriod || !cTop || !cDaily) return;
 
     const VALID_RANGE_KEYS = new Set(["day","week","month","year"]);
-    const VALID_LIMIT_KEYS = new Set(["20","50","all"]);
-    const VALID_SERIES_KEYS = new Set(["5","10","20"]);
-
     let rangeKey = (document.getElementById("salesRange")?.value) || "day";
-    let limitKey = (document.getElementById("salesItemsLimit")?.value) || "20";
-    let seriesKey = (document.getElementById("salesSeriesCount")?.value) || "10";
     if(!VALID_RANGE_KEYS.has(rangeKey)) rangeKey = "day";
-    if(!VALID_LIMIT_KEYS.has(limitKey)) limitKey = "20";
-    if(!VALID_SERIES_KEYS.has(seriesKey)) seriesKey = "10";
 
     const store = window.__UGC_STORE || {};
     const userItems = Array.isArray(store.user) ? store.user.map(x=>({...x, __src:"user"})) : [];
     const groupItems = Array.isArray(store.group) ? store.group.map(x=>({...x, __src:"group"})) : [];
     const allItems = [...userItems, ...groupItems].filter(it => it && it.assetId);
 
-    // Merge sales.json
     const sItems = SALES_STORE?.items || {};
     for(const it of allItems){
       const s = sItems[String(it.assetId)];
       it.salesTotal = (s && typeof s.totalSales==="number") ? s.totalSales : 0;
       it.salesByDay = (s && s.byDay && typeof s.byDay==="object") ? s.byDay : {};
       it.__periodSales = 0;
+      it.__knownSum = 0;
+      for(const k of Object.keys(it.salesByDay||{})){
+        const n = Number(it.salesByDay[k]||0);
+        if(Number.isFinite(n) && n>0) it.__knownSum += n;
+      }
     }
+
+    // End date = latest day in data (fallback today)
+    let end = new Date(); end.setUTCHours(0,0,0,0);
+    let maxDay = null;
+    for(const it of allItems){
+      for(const k of Object.keys(it.salesByDay || {})){
+        const d = parseYMD(k);
+        if(!d) continue;
+        if(!maxDay || d > maxDay) maxDay = d;
+      }
+    }
+    if(maxDay) end = maxDay;
+
+    const y = end.getUTCFullYear();
+    const m = end.getUTCMonth();
+    let start = new Date(end);
+    if(rangeKey === "day"){
+      start = new Date(end);
+    }else if(rangeKey === "week"){
+      start = new Date(end); start.setUTCDate(end.getUTCDate()-6);
+    }else if(rangeKey === "month"){
+      start = new Date(Date.UTC(y, m, 1));
+    }else if(rangeKey === "year"){
+      start = new Date(Date.UTC(y, 0, 1));
+    }
+
+    const days = daysRangeUTC(start, end);
+
+    // Deterministic hash for estimates
+    function hash32(str){
+      let h = 2166136261;
+      for(let i=0;i<str.length;i++){
+        h ^= str.charCodeAt(i);
+        h = Math.imul(h, 16777619);
+      }
+      return (h>>>0);
+    }
+
+    // Build estimated daily sales for missing dates so that sum(all days) ~= totalSales
+    // We only estimate within [start, end] for period metrics (keeps UI consistent)
+    function buildEstForPeriod(it){
+      const known = it.salesByDay || {};
+      const knownSum = it.__knownSum || 0;
+      const total = Number(it.salesTotal)||0;
+      const remaining = Math.max(0, total - knownSum);
+
+      if(remaining <= 0) return {};
+
+      // Build weight per day (exclude days already known)
+      const weights = [];
+      let sumW = 0;
+      for(const d of days){
+        if(known[d] !== undefined) continue;
+        const w = 1 + (hash32(String(it.assetId)+"|"+d) % 13); // 1..13
+        weights.push({d, w});
+        sumW += w;
+      }
+      if(sumW <= 0) return {};
+
+      const alloc = {};
+      let used = 0;
+      const fracs = [];
+      for(const o of weights){
+        const raw = remaining * (o.w / sumW);
+        const n = Math.floor(raw);
+        if(n>0){ alloc[o.d] = n; used += n; }
+        fracs.push({d:o.d, f: raw - n});
+      }
+      // distribute leftover
+      let left = remaining - used;
+      fracs.sort((a,b)=>b.f-a.f);
+      for(let i=0;i<fracs.length && left>0;i++){
+        alloc[fracs[i].d] = (alloc[fracs[i].d]||0) + 1;
+        left--;
+      }
+      return alloc;
+    }
+
+    // Aggregate day totals + per item period sales (using known + estimated)
+    const dayTotals = Object.fromEntries(days.map(d => [d, 0]));
+
+    for(const it of allItems){
+      const est = buildEstForPeriod(it);
+      let ps = 0;
+      for(const d of days){
+        const nKnown = Number(it.salesByDay?.[d] || 0);
+        const nEst = Number(est?.[d] || 0);
+        const n = (Number.isFinite(nKnown)?nKnown:0) + (Number.isFinite(nEst)?nEst:0);
+        if(n>0){
+          ps += n;
+          dayTotals[d] += n;
+        }
+      }
+      it.__periodSales = ps;
+      it.__estPeriod = est; // keep for chart series
+    }
+
+    const soldInPeriod = allItems.filter(it => (it.__periodSales || 0) > 0);
+
+    const totalItemsAll = allItems.length;
+    const totalItemsPeriod = soldInPeriod.length;
+    const salesTotalAll = allItems.reduce((a,it)=>a+(Number(it.salesTotal)||0),0);
+    const salesTotalPeriod = Object.values(dayTotals).reduce((a,b)=>a+(Number(b)||0),0);
+
+    const salesTag = SALES_STORE?.updatedAt ? ` • ${t("sales_updated")}: ${SALES_STORE.updatedAt}` : "";
+    const label =
+      (rangeKey==="day") ? `${t("sales_range_day")} • ${fmtDate(end.toISOString())}` :
+      (rangeKey==="week") ? `${t("sales_range_week")} • ${fmtDate(start.toISOString())} → ${fmtDate(end.toISOString())}` :
+      (rangeKey==="month") ? `${t("sales_range_month")} • ${fmtDate(start.toISOString())} → ${fmtDate(end.toISOString())}` :
+      `${t("sales_range_year")} • ${fmtDate(start.toISOString())} → ${fmtDate(end.toISOString())}`;
+
+    const periodTitleEl = document.getElementById("salesPeriodTitle");
+    if(periodTitleEl) periodTitleEl.textContent = label;
+
+    status.textContent = `${totalItemsAll} item(s) • ${label}${salesTag}`;
+
+    // Stats are period-driven
+    statsEl.innerHTML = `
+      <div class="stat"><div class="k">${t("stat_total")}</div><div class="v">${totalItemsPeriod}</div></div>
+      <div class="stat"><div class="k">${t("stat_sales_period")}</div><div class="v">${salesTotalPeriod}</div></div>
+      <div class="stat"><div class="k">${t("stat_sales_total")}</div><div class="v">${salesTotalAll}</div></div>
+    `;
+
+    // Item filter: only items sold in current period
+    const itemSel = document.getElementById("salesItemFilter");
+    let itemKey = itemSel?.value || "__ALL__";
+    const options = [{ id:"__ALL__", name:`All sold items (${totalItemsPeriod})` }]
+      .concat(soldInPeriod
+        .sort((a,b)=>(b.__periodSales||0)-(a.__periodSales||0))
+        .map(it => ({ id:String(it.assetId), name: (it.name || ("Item " + it.assetId)) }))
+      );
+
+    if(itemSel){
+      itemSel.innerHTML = options.map(o => `<option value="${o.id}">${escapeHtml(o.name)}</option>`).join("");
+      if(!options.some(o=>o.id===itemKey)) itemKey = "__ALL__";
+      itemSel.value = itemKey;
+    }
+
+    const filteredItems = (itemKey === "__ALL__")
+      ? soldInPeriod
+      : soldInPeriod.filter(it => String(it.assetId) === String(itemKey));
+
+    const sortedPeriod = [...filteredItems].sort((a,b)=>(b.__periodSales||0)-(a.__periodSales||0));
+
+    function row(it, count){
+      const creator = it.__src === "user" ? t("sale_creator_user") : t("sale_creator_group");
+      const url = `https://www.roblox.com/catalog/${it.assetId}`;
+      const sub = `${creator} • ${it.badge || "—"} • ${fmtDate(it.createdTs)} • ${count}`;
+      return `
+        <a class="saleRow hoverLift" href="${url}" target="_blank" rel="noreferrer">
+          <div class="saleThumb"><img loading="lazy" src="${it.thumb}" alt=""></div>
+          <div class="saleMeta">
+            <div class="saleName">${escapeHtml(it.name || ("Item " + it.assetId))}</div>
+            <div class="saleSub"><span>${escapeHtml(sub)}</span></div>
+          </div>
+        </a>
+      `;
+    }
+
+    listPeriod.innerHTML = sortedPeriod.slice(0, 20).map(it => row(it, it.__periodSales||0)).join("")
+      || `<div class="muted">${t("empty_sales_day")}</div>`;
+
+    listAll.innerHTML = sortedPeriod.map(it => row(it, it.__periodSales||0)).join("")
+      || `<div class="muted">${t("empty_sales")}</div>`;
+
+    // Top chart uses period sales
+    const top = (itemKey === "__ALL__") ? sortedPeriod.slice(0, 10) : sortedPeriod.slice(0, 1);
+    drawBars(cTop, top.map(_=>""), top.map(it => (it.__periodSales||0)));
+
+    if(topList){
+      topList.innerHTML = top.map(it => {
+        const v = (it.__periodSales||0);
+        return `<div class="miniRow"><span class="name">${escapeHtml(it.name || ("Item " + it.assetId))}</span><span class="val">${v}</span></div>`;
+      }).join("");
+    }
+
+    // Evolution chart: one line per item sold in the period (or one item if selected)
+    const itemsForLines = (itemKey==="__ALL__") ? soldInPeriod : sortedPeriod;
+
+    // X labels and bucket aggregation
+    let labels = [];
+    let buckets = []; // each bucket is list of dates or a month key
+
+    if(rangeKey==="day"){
+      // Show last 14 days ending at end
+      const s14 = new Date(end); s14.setUTCDate(end.getUTCDate()-13);
+      const d14 = daysRangeUTC(s14, end);
+      labels = d14.map(d=>d.slice(5));
+      buckets = d14.map(d=>[d]);
+    }else if(rangeKey==="week" || rangeKey==="month"){
+      labels = days.map(d=>d.slice(5));
+      buckets = days.map(d=>[d]);
+      if(labels.length > 31){ // safety
+        labels = labels.slice(-31);
+        buckets = buckets.slice(-31);
+      }
+    }else{
+      // year -> months
+      const monthKeys = Array.from(new Set(days.map(d=>d.slice(0,7)))).sort();
+      labels = monthKeys.map(mk=>mk.slice(5)+"/"+mk.slice(2,4));
+      buckets = monthKeys.map(mk => mk); // month key
+    }
+
+    window.__salesActive ||= {};
+
+    // Build series values
+    const series = [];
+    for(const it of itemsForLines){
+      const id = String(it.assetId);
+      const name = (it.name || ("Item " + it.assetId));
+      const active = (window.__salesActive[id] !== undefined) ? window.__salesActive[id] : true;
+
+      let values = [];
+      if(rangeKey === "year"){
+        values = buckets.map(mk => {
+          let sum = 0;
+          for(const d of days){
+            if(d.startsWith(mk)){
+              const k = Number(it.salesByDay?.[d]||0) + Number(it.__estPeriod?.[d]||0);
+              sum += (Number.isFinite(k)?k:0);
+            }
+          }
+          return sum;
+        });
+      }else{
+        values = buckets.map(arr => {
+          const d = arr[0];
+          const k = Number(it.salesByDay?.[d]||0) + Number(it.__estPeriod?.[d]||0);
+          return (Number.isFinite(k)?k:0);
+        });
+      }
+
+      series.push({ id, name, values, active });
+    }
+
+    // Legend toggles
+    if(legend){
+      legend.innerHTML = series.map(s=>{
+        const checked = (window.__salesActive[s.id] !== undefined ? window.__salesActive[s.id] : s.active) ? "checked" : "";
+        return `<label><input type="checkbox" data-sid="${s.id}" ${checked}><span class="sw"></span>${escapeHtml(s.name)}</label>`;
+      }).join("");
+      legend.querySelectorAll("input[type=checkbox]").forEach(inp=>{
+        inp.onchange = ()=>{
+          const sid = inp.getAttribute("data-sid");
+          window.__salesActive[sid] = inp.checked;
+          const updated = series.map(ss=>({ ...ss, active: !!window.__salesActive[ss.id] }));
+          drawMultiLine(cDaily, updated, labels);
+        };
+      });
+    }
+
+    series.forEach(s=>{ if(window.__salesActive[s.id]===undefined) window.__salesActive[s.id]=s.active; });
+    drawMultiLine(cDaily, series.map(ss=>({ ...ss, active: !!window.__salesActive[ss.id] })), labels);
+  }
 
     // End date = latest key present in sales_by_day (fallback today)
     let end = new Date(); end.setUTCHours(0,0,0,0);
@@ -2280,8 +2508,7 @@ function drawBars(canvas, labels, values, opts={}){
   // Sales controls
   fillSalesSelects();
   document.getElementById("salesRange")?.addEventListener("change", ()=> buildSales());
-  document.getElementById("salesItemsLimit")?.addEventListener("change", ()=> buildSales());
-  tabSales.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
+tabSales.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
 
 
   // Redraw charts on resize (mobile rotation, etc.)
