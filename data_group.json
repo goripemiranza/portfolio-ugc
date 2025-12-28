@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-12-28T00:02:59.929931Z",
+  "generatedAt": "2025-12-28T04:17:35.120039Z",
   "items": [
     {
       "assetId": 121640625346381,
@@ -96,6 +96,14 @@
       "price": 150,
       "created": "2025-03-21T21:02:45.043Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-23caae7d94f6b82a0fcb9bbf0afbc1be/420/420/BackAccessory/Png/noFilter"
+    },
+    {
+      "assetId": 84767700611805,
+      "name": "Pink flower parasol",
+      "type": "BackAccessory",
+      "price": 150,
+      "created": "2025-03-21T20:25:38.197Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-054487f44298ba817286d43dfc469596/420/420/BackAccessory/Png/noFilter"
     },
     {
       "assetId": 124182720625549,
@@ -480,17 +488,6 @@
       "priceStatus": null,
       "thumb": "https://tr.rbxcdn.com/180DAY-6445c240f10113b277e262779e6d552e/420/420/BackAccessory/Png/noFilter",
       "rank": 3
-    },
-    {
-      "assetId": 84767700611805,
-      "name": "Pink flower parasol",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 150,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://tr.rbxcdn.com/180DAY-054487f44298ba817286d43dfc469596/420/420/BackAccessory/Png/noFilter",
-      "rank": 14
     },
     {
       "assetId": 84062622353279,
