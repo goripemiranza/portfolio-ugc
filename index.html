@@ -106,7 +106,7 @@
       flex-direction:column;
       min-height:0;
     }
-    .sectionHeader{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:10px}
+    .sectionHeader{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:8px}
     .sectionHeader h2{margin:0;font-size:16px;letter-spacing:.2px}
     .sectionHeader .meta{margin:0;color:var(--muted);font-size:12px;line-height:1.35;max-width:64ch}
     .status{color:var(--muted);font-size:12px;display:flex;gap:8px;align-items:center;white-space:nowrap}
@@ -838,7 +838,11 @@
   }
 
   /* Stack filters and keep them close */
-  .filters{ grid-template-columns: 1fr !important; gap: 10px !important; }
+  .filters{ display:flex !important; flex-direction:column !important; align-items:stretch !important; gap:8px !important; margin:0 0 10px !important; }
+  .filters .field{ width:100% !important; }
+  .filters .field .control{ width:100% !important; min-width:0 !important; }
+  .field{ margin-top: 0 !important; }
+  .field label{ margin-bottom: 6px !important; }
 
   /* Compact hero so we see more content */
   .hero{ padding: 18px 14px !important; }
@@ -862,7 +866,12 @@
   }
 
   /* Hide heavy details to keep cards small */
-  .meta2, .kv, .date, .price, .foot{ display: none !important; }
+  .meta2, .kv, .date{ display: none !important; }
+  .reveal{ opacity: 1 !important; transform: none !important; }
+  /* Keep the open button under each item on mobile */
+  .foot{ display: flex !important; align-items: center !important; justify-content: flex-end !important; gap: 8px !important; margin-top: 6px !important; }
+  .foot .price{ font-size: 12px !important; opacity: .9 !important; }
+  .foot .open{ display: inline-flex !important; justify-content: center !important; padding: 8px 10px !important; border-radius: 12px !important; font-size: 11px !important; }
   .badge{ font-size: 10px !important; padding: 4px 7px !important; }
 
   /* Sticky header feels better on phone */
