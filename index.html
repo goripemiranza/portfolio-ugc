@@ -4,68 +4,153 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Portfolio Roblox — lulu8203</title>
-  <meta name="description" content="Portfolio Roblox : UGC en vente (profil lulu8203 + groupe Powerful Artists) + galerie d'images." />
+  <meta name="description" content="Portfolio Roblox : créations (profil + groupe), galerie et commissions (modèles + textures)." />
+
   <style>
     :root{
-      --bg:#0b0f19; --card:rgba(255,255,255,0.06); --text:rgba(255,255,255,0.92);
-      --muted:rgba(255,255,255,0.66); --line:rgba(255,255,255,0.12);
-      --accent:#7c5cff; --accent2:#31d0aa; --shadow:0 14px 40px rgba(0,0,0,0.35);
-      --r2:26px; --maxw:1320px;
+      --bg:#0b0f19;
+      --card:rgba(255,255,255,0.06);
+      --text:rgba(255,255,255,0.92);
+      --muted:rgba(255,255,255,0.66);
+      --line:rgba(255,255,255,0.12);
+      --accent:#7c5cff;
+      --accent2:#31d0aa;
+      --shadow:0 14px 40px rgba(0,0,0,0.35);
+      --r2:22px;
+      --maxw:1320px;
       --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
       --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;color:var(--text);font-family:var(--sans);
+      margin:0;
+      color:var(--text);
+      font-family:var(--sans);
       background:
         radial-gradient(1000px 600px at 20% -10%, rgba(124,92,255,0.35), transparent 55%),
         radial-gradient(900px 700px at 80% 0%, rgba(49,208,170,0.25), transparent 60%),
         radial-gradient(900px 700px at 50% 110%, rgba(255,255,255,0.06), transparent 60%),
         var(--bg);
-      overflow:hidden; /* ✅ pas de scroll page */
+      overflow-x:hidden;
     }
     a{color:inherit;text-decoration:none}
     .wrap{
       max-width:var(--maxw);
       margin:0 auto;
       padding:14px;
-      height:100vh;
+      min-height:100vh;
       display:flex;
       flex-direction:column;
       gap:12px;
     }
-    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);box-shadow:var(--shadow)}
-
-    /* Top bar + tabs */
-    .topbar{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      padding:10px 10px;
-      border-radius:18px;
-      background:rgba(255,255,255,0.03);
+    @supports (min-height: 100dvh){
+      .wrap{min-height:100dvh}
+    }
+    .card{
+      background:var(--card);
       border:1px solid var(--line);
-      backdrop-filter:blur(12px);
+      border-radius:var(--r2);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(10px);
     }
-    .brand{display:flex;gap:10px;align-items:center;font-weight:950;letter-spacing:.2px}
-    .dot{width:11px;height:11px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 0 6px rgba(124,92,255,0.15)}
-    .tabs{display:flex;gap:8px;flex-wrap:wrap}
+
+    /* Topbar */
+    .topbar{
+      position:sticky;
+      top:10px;
+      z-index:30;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 12px;
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:950;letter-spacing:.2px;user-select:none}
+    .dot{
+      width:11px;height:11px;border-radius:999px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow:0 0 0 6px rgba(124,92,255,0.15);
+    }
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
     .tab{
-      padding:9px 12px;border-radius:14px;border:1px solid var(--line);
-      background:rgba(255,255,255,0.04);color:var(--text);
-      font-weight:950;font-size:13px;cursor:pointer
+      padding:9px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,0.04);
+      color:var(--text);
+      font-weight:950;
+      font-size:13px;
+      cursor:pointer;
+      transition:transform .16s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+      position:relative;
+      overflow:hidden;
     }
-    .tab.active{border-color:rgba(124,92,255,0.55);background:linear-gradient(135deg, rgba(124,92,255,0.22), rgba(49,208,170,0.10))}
-    .tab:hover{background:rgba(255,255,255,0.07)}
+    .tab.active{
+      border-color:rgba(124,92,255,0.60);
+      background:linear-gradient(135deg, rgba(124,92,255,0.22), rgba(49,208,170,0.10));
+      box-shadow:0 10px 28px rgba(0,0,0,0.28);
+    }
+    .tab:hover{transform:translateY(-1px); background:rgba(255,255,255,0.07)}
+    .tab:active{transform:translateY(0) scale(.98)}
+    .tab::after{
+      content:"";
+      position:absolute;
+      inset:-40% -60%;
+      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), transparent 55%);
+      transform:translateX(-30%) rotate(10deg);
+      opacity:0;
+      transition:opacity .18s ease, transform .18s ease;
+      pointer-events:none;
+    }
+    .tab:hover::after{opacity:1; transform:translateX(0) rotate(10deg)}
+
+    .topTools{display:flex; gap:10px; align-items:center; justify-content:flex-end}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:9px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,0.04);
+      color:var(--text);
+      font-weight:950;
+      font-size:14px;
+      cursor:pointer;
+      transition:transform .16s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease, filter .18s ease;
+      position:relative;
+      overflow:hidden;
+      will-change:transform;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn.primary{
+      border-color:rgba(124,92,255,0.60);
+      background:linear-gradient(135deg, rgba(124,92,255,0.22), rgba(49,208,170,0.10));
+      box-shadow:0 10px 28px rgba(0,0,0,0.25);
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,0.07)}
+    .btn:active{transform:translateY(0) scale(.98); filter:brightness(1.05)}
+    .btn::after{
+      content:"";
+      position:absolute;
+      inset:-40% -60%;
+      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), transparent 55%);
+      transform:translateX(-30%) rotate(10deg);
+      opacity:0;
+      transition:opacity .18s ease, transform .18s ease;
+      pointer-events:none;
+    }
+    .btn:hover::after{opacity:1; transform:translateX(0) rotate(10deg)}
 
     /* Hero */
     .hero{
       padding:18px 18px 14px;
+      text-align:center;
       position:relative;
       overflow:hidden;
-      text-align:center;
     }
     .hero::before{
-      content:"";position:absolute;inset:-2px;
+      content:"";
+      position:absolute; inset:-2px;
       background:
         radial-gradient(800px 260px at 20% 0%, rgba(124,92,255,0.30), transparent 55%),
         radial-gradient(800px 260px at 80% 10%, rgba(49,208,170,0.20), transparent 55%);
@@ -73,67 +158,66 @@
     }
     .hero>*{position:relative}
     .kicker{color:var(--muted);font-size:12px;letter-spacing:.45px;text-transform:uppercase}
-    h1{margin:10px 0 10px;font-size:40px;line-height:1.08}
-    .subtitle{margin:0 auto 8px;color:var(--muted);font-size:14px;line-height:1.55;max-width:92ch}
+    h1{margin:10px 0 8px;font-size:40px;line-height:1.08}
+    .subtitle{
+      margin:0 auto 10px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+      max-width:92ch
+    }
     .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;justify-content:center}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      padding:9px 12px;border-radius:14px;border:1px solid var(--line);
-      background:rgba(255,255,255,0.04);color:var(--text);
-      font-weight:950;font-size:14px;cursor:pointer
-    }
-    .btn.primary{border-color:rgba(124,92,255,0.55);background:linear-gradient(135deg, rgba(124,92,255,0.22), rgba(49,208,170,0.10))}
-    .btn:hover{background:rgba(255,255,255,0.07)}
-    .heroNote{margin:0;color:rgba(255,255,255,0.60);font-size:12px;line-height:1.5}
 
-    /* Views take remaining height */
+    /* Views */
     .views{flex:1; min-height:0;}
-    .view{height:100%; min-height:0; display:none;}
-    .view.active{display:block;}
+    .view{display:none; min-height:0;}
+    .view.active{display:block; animation:viewIn .22s ease-out;}
+    @keyframes viewIn{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
 
-    /* UGC view */
-    .dual{
-      height:100%;
-      min-height:0;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-      align-items:stretch;
-    }
-    .section{
+    /* Panels */
+    .panel{
       padding:12px;
       display:flex;
       flex-direction:column;
+      gap:10px;
       min-height:0;
     }
-    .sectionHeader{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:8px}
-    .sectionHeader h2{margin:0;font-size:16px;letter-spacing:.2px}
-    .sectionHeader .meta{margin:0;color:var(--muted);font-size:12px;line-height:1.35;max-width:64ch}
-    .status{color:var(--muted);font-size:12px;display:flex;gap:8px;align-items:center;white-space:nowrap}
+    .panelHeader{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .panelHeader h2{margin:0;font-size:16px;letter-spacing:.2px}
+    .panelHeader p{margin:0;color:var(--muted);font-size:12px;line-height:1.35;max-width:72ch}
+    .status{color:var(--muted);font-size:12px;display:flex;gap:8px;align-items:center}
+    .spinner{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,0.25);border-top-color:rgba(255,255,255,0.85);animation:spin 1s linear infinite;display:inline-block;vertical-align:-3px}
+    @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* ✅ Filters (ONLY requested) */
+    /* Filters */
     .filters{
       display:flex;
       flex-wrap:wrap;
-      gap:8px;
-      align-items:center;
-      margin:0 0 8px;
-    }
-    .filters .label{
-      color:rgba(255,255,255,0.72);
-      font-size:12px;
-      font-weight:900;
-      letter-spacing:.2px;
+      gap:10px;
+      align-items:flex-end;
+      margin-top:2px;
     }
     .control{
       display:flex;
       flex-direction:column;
-      gap:5px;
+      gap:6px;
       min-width:190px;
       flex:1 1 220px;
       max-width:100%;
     }
-
+    .control.wide{flex:2 1 320px; min-width:260px}
+    .label{
+      color:rgba(255,255,255,0.75);
+      font-size:12px;
+      font-weight:950;
+      letter-spacing:.2px;
+    }
     select, input[type="text"]{
       border:1px solid var(--line);
       background:rgba(255,255,255,0.04);
@@ -143,40 +227,62 @@
       font-weight:950;
       outline:none;
       font-size:13px;
-      max-width:100%;
+      transition:border-color .18s ease, box-shadow .18s ease, transform .16s ease;
     }
-    /* Important: options lisibles dans le dropdown */
-    select option{
-      color:#e8edf7;
-      background:#0b0f17;
-    }
+    select option{color:#e8edf7; background:#0b0f17;}
     input[type="text"]::placeholder{color:rgba(255,255,255,0.55);font-weight:800}
+    select:focus, input[type="text"]:focus{
+      border-color:rgba(124,92,255,0.60);
+      box-shadow:0 0 0 3px rgba(124,92,255,0.18);
+    }
+    .pulse{
+      animation:pulse .24s ease-out;
+    }
+    @keyframes pulse{
+      from{transform:scale(0.99)}
+      to{transform:none}
+    }
 
+    /* Scroller + grids */
     .scroller{
       flex:1;
       min-height:0;
       overflow:auto;
       padding-right:6px;
+      scroll-behavior:smooth;
+      overscroll-behavior:contain;
+      -webkit-overflow-scrolling: touch;
     }
-
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
       gap:12px;
     }
+
+    /* UGC cards */
     .item{
       background:rgba(255,255,255,0.04);
       border:1px solid var(--line);
       border-radius:18px;
       overflow:hidden;
-      transition:transform .12s ease, background .12s ease, border-color .12s ease;
       display:flex;
       flex-direction:column;
-      min-height:266px;
+      min-height:270px;
+      box-shadow:0 16px 40px rgba(0,0,0,0.25);
+      transform:translateY(8px);
+      opacity:0;
+      transition:transform .22s ease, opacity .22s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+      will-change:transform;
     }
-    .item:hover{transform:translateY(-2px);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.20)}
+    .item.in{transform:none; opacity:1;}
+    .item:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,0.06);
+      border-color:rgba(255,255,255,0.20);
+      box-shadow:0 22px 55px rgba(0,0,0,0.35);
+    }
     .thumb{
-      height:138px;
+      height:140px;
       border-bottom:1px solid var(--line);
       background:linear-gradient(135deg, rgba(124,92,255,0.10), rgba(49,208,170,0.06));
       position:relative;
@@ -184,6 +290,7 @@
       align-items:center;
       justify-content:center;
       padding:10px;
+      cursor:zoom-in;
     }
     .thumb img{
       width:100%;
@@ -192,11 +299,40 @@
       display:block;
       border-radius:12px;
       background:rgba(0,0,0,0.14);
+      transition:transform .28s ease, filter .28s ease;
+    }
+    .item:hover .thumb img{transform:scale(1.04); filter:saturate(1.06)}
+    .badgeRow{
+      position:absolute;
+      top:10px; left:10px; right:10px;
+      display:flex; gap:8px; justify-content:space-between; align-items:flex-start;
+      pointer-events:none;
     }
     .badge{
-      position:absolute;top:10px;left:10px;font-size:12px;padding:5px 8px;border-radius:999px;
-      background:rgba(0,0,0,0.38);border:1px solid rgba(255,255,255,0.18);backdrop-filter:blur(10px);
-      font-weight:950
+      font-size:11px;
+      padding:5px 8px;
+      border-radius:999px;
+      background:rgba(0,0,0,0.38);
+      border:1px solid rgba(255,255,255,0.18);
+      backdrop-filter:blur(10px);
+      font-weight:950;
+      max-width:70%;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+    .src{
+      font-size:11px;
+      padding:5px 8px;
+      border-radius:999px;
+      background:rgba(124,92,255,0.18);
+      border:1px solid rgba(124,92,255,0.35);
+      backdrop-filter:blur(10px);
+      font-weight:950;
+      max-width:40%;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
     }
     .body{padding:10px 10px 12px;display:flex;flex-direction:column;gap:7px;flex:1 1 auto}
     .title{font-weight:950;line-height:1.2;font-size:14px}
@@ -204,53 +340,34 @@
     .kv{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.72)}
     .date{font-size:11px;color:rgba(255,255,255,0.72)}
     .foot{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;padding-top:6px}
-    .price{font-weight:950;letter-spacing:.2px;font-size:13px}
+    .pill{
+      font-size:11px;
+      padding:4px 9px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.14);
+      background:rgba(255,255,255,0.06);
+      font-weight:950;
+      color:rgba(255,255,255,0.88);
+    }
     .link{
-      color:rgba(255,255,255,0.90);
       border:1px solid var(--line);
       background:rgba(255,255,255,0.03);
-      padding:7px 10px;
+      padding:8px 10px;
       border-radius:12px;
       font-size:13px;
-      font-weight:950
+      font-weight:950;
+      transition:transform .16s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
     }
-    .link:hover{background:rgba(255,255,255,0.06)}
+    .link:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,0.06);
+      border-color:rgba(255,255,255,0.20);
+      box-shadow:0 12px 26px rgba(0,0,0,0.25);
+    }
+    .link:active{transform:translateY(0) scale(.98)}
     .empty{color:var(--muted);font-size:13px;padding:12px}
-    .spinner{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,0.25);border-top-color:rgba(255,255,255,0.85);animation:spin 1s linear infinite;display:inline-block;vertical-align:-3px}
-    @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* Gallery view */
-    .gallery{
-      height:100%;
-      min-height:0;
-      padding:12px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-    .galleryHeader{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .galleryHeader h2{margin:0;font-size:16px;letter-spacing:.2px}
-    .galleryHeader p{margin:0;color:var(--muted);font-size:12px;line-height:1.35;max-width:70ch}
-    .galleryTools{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-    }
-    .galleryTools input{
-      min-width:280px;
-      flex:1 1 320px;
-    }
-    .galleryGrid{
-      display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
-      gap:12px;
-    }
+    /* Gallery + Commission cards */
     .shot{
       border:1px solid var(--line);
       background:rgba(255,255,255,0.04);
@@ -258,359 +375,86 @@
       overflow:hidden;
       display:flex;
       flex-direction:column;
+      transform:translateY(8px);
+      opacity:0;
+      transition:transform .22s ease, opacity .22s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+      will-change:transform;
     }
-    .shot .imgWrap{
-      height:170px;
+    .shot.in{transform:none; opacity:1;}
+    .shot:hover{border-color:rgba(255,255,255,0.20); background:rgba(255,255,255,0.06); box-shadow:0 20px 52px rgba(0,0,0,0.35)}
+    .imgWrap{
+      aspect-ratio: 4 / 3;
       display:flex;
       align-items:center;
       justify-content:center;
       background:rgba(0,0,0,0.14);
       padding:10px;
+      cursor:zoom-in;
     }
-    .shot img{
+    .imgWrap img{
       width:100%;
       height:100%;
-      object-fit:contain;
+      object-fit:contain; /* ✅ autoscale (no scroll) */
       border-radius:12px;
       display:block;
       background:rgba(0,0,0,0.10);
+      transition:transform .28s ease, filter .28s ease;
     }
-    .shot .cap{
-      padding:10px;
-      color:rgba(255,255,255,0.80);
+    .shot:hover .imgWrap img{transform:scale(1.03); filter:saturate(1.05)}
+    .cap{
+      padding:10px 12px;
+      color:rgba(255,255,255,0.86);
       font-size:12px;
       line-height:1.35;
       border-top:1px solid var(--line);
       min-height:44px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
     }
-    .muted{color:rgba(255,255,255,0.60)}
+    .cap .left{min-width:0}
+    .cap .left b{display:block; font-size:12px}
+    .cap .left span{display:block; opacity:.75}
+    .cap .mini{opacity:.75; font-size:11px; white-space:nowrap}
 
-    footer{color:rgba(255,255,255,0.55);font-size:12px;text-align:center;padding:6px 0 0}
-
-    
-  
-    
-    /* ---------- Mobile responsive (scroll + rescale) ---------- */
-@media (max-width: 980px){
-  /* Allow page scroll (so stacked panels are reachable) */
-  html, body{height:auto !important; overflow:auto !important;}
-  body{overflow-x:hidden !important; overflow-y:auto !important; -webkit-overflow-scrolling: touch;}
-
-  /* Let layout grow naturally */
-  .wrap{height:auto !important; min-height:100vh !important;}
-  @supports (height: 100dvh){ .wrap{min-height:100dvh !important;} }
-
-  .views{flex:unset !important; min-height:auto !important;}
-  .view{height:auto !important; min-height:auto !important;}
-  .dual{height:auto !important; min-height:auto !important; grid-template-columns:1fr !important;}
-
-  /* Disable nested scroll traps on mobile */
-  .card.section{height:auto !important; min-height:auto !important;}
-  .scroller{
-    flex:unset !important;
-    min-height:auto !important;
-    overflow:visible !important;
-    padding-right:0 !important;
-    overscroll-behavior:auto;
-    touch-action:auto;
-  }
-}
-.wrap{height:100vh !important;}
-      @supports (height: 100dvh){ .wrap{height:100dvh !important;} }
-      .views{flex:1 !important; min-height:0 !important;}
-      .view{height:100% !important; min-height:0 !important;}
-      .dual{height:100% !important; min-height:0 !important;}
-      .card.section{height:100% !important; min-height:0 !important;}
-      .scroller{
-        flex:1 !important; min-height:0 !important;
-        overflow:auto !important; max-height:none !important;
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior: contain;
-        touch-action: pan-y;
-      }
+    /* Commission toggle */
+    .seg{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
     }
-
-    /* ---------- Pretty scrollbars ---------- */
-    *{scrollbar-width:thin; scrollbar-color: rgba(255,255,255,0.28) rgba(255,255,255,0.10);}
-    ::-webkit-scrollbar{width:10px;height:10px}
-    ::-webkit-scrollbar-track{background:rgba(255,255,255,0.08); border-radius:999px}
-    ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.24); border-radius:999px; border:2px solid rgba(0,0,0,0.35)}
-    ::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.34)}
-    ::-webkit-scrollbar-corner{background:transparent}
-
-    /* Keep page fixed: scroll only inside scrollers */
-    html, /* ---------- Gallery captions: hidden unless hover ---------- */
-    .shot{position:relative}
-    .shot .cap{
-      position:absolute; left:10px; right:10px; bottom:10px;
-      padding:10px 12px; border-radius:14px;
-      background:linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.65));
-      color:rgba(255,255,255,0.92);
-      opacity:0; transform:translateY(6px);
-      transition:opacity .18s ease, transform .18s ease;
-      pointer-events:none;
-    }
-    .shot:hover .cap{opacity:1; transform:translateY(0)}
-
-    /* ---------- Topbar language ---------- */
-    .topbar{gap:12px}
-    .rightTools{display:flex; align-items:center; gap:10px; position:relative}
-    .langBtn{
-      border:1px solid rgba(255,255,255,0.12);
+    .segBtn{
+      border:1px solid rgba(255,255,255,0.14);
       background:rgba(0,0,0,0.18);
       color:rgba(255,255,255,0.92);
-      padding:8px 10px;
+      padding:10px 14px;
       border-radius:999px;
-      font-weight:700;
+      font-weight:950;
       cursor:pointer;
-      transition:transform .12s ease, background .12s ease, border-color .12s ease;
-      white-space:nowrap;
-    }
-    .langBtn:hover{transform:translateY(-1px); background:rgba(0,0,0,0.26); border-color:rgba(255,255,255,0.18)}
-    .langSelect option{background:#0b0f17; color:#e8edf7}
-
-  
-    /* ---------- Responsive + effects (v18) ---------- */
-    body{display:block}
-    .wrap{height:calc(var(--vh, 1vh) * 100);}
-
-    .topbar .brand{user-select:none}
-    .tab, .btn, .langBtn{
+      transition:transform .16s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
       position:relative;
       overflow:hidden;
     }
-    .tab:active, .btn:active, .langBtn:active{transform:translateY(0) scale(0.98)}
-    .tab:focus-visible, .btn:focus-visible, .langBtn:focus-visible, select:focus-visible, input:focus-visible{
-      outline:2px solid rgba(124,92,255,0.55);
-      outline-offset:2px;
-    }
-    /* subtle shine on hover */
-    .btn::after, .tab::after, .langBtn::after{
+    .segBtn:hover{transform:translateY(-1px); background:rgba(0,0,0,0.26); border-color:rgba(255,255,255,0.18)}
+    .segBtn:active{transform:translateY(0) scale(.98)}
+    .segBtn.active{background:rgba(124,92,255,0.22); border-color:rgba(124,92,255,0.55); box-shadow:0 12px 30px rgba(0,0,0,0.28)}
+    .segBtn::after{
       content:"";
-      position:absolute; inset:-40% -60%;
+      position:absolute;
+      inset:-40% -60%;
       background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), transparent 55%);
       transform:translateX(-30%) rotate(10deg);
       opacity:0;
       transition:opacity .18s ease, transform .18s ease;
       pointer-events:none;
     }
-    .btn:hover::after, .tab:hover::after, .langBtn:hover::after{opacity:1; transform:translateX(0) rotate(10deg)}
+    .segBtn:hover::after{opacity:1; transform:translateX(0) rotate(10deg)}
 
-    /* language menu */
-    .rightTools{position:relative}
-    
-    .langMini{
-      border:1px solid rgba(255,255,255,0.14);
-      background:rgba(0,0,0,0.22);
-      color:rgba(255,255,255,0.96);
-      width:40px;
-      height:40px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:999px;
-      font-size:18px;
-      box-shadow:0 10px 25px rgba(0,0,0,0.35);
-      transform:translateX(6px) scale(.92);
-      opacity:0;
-      transition:opacity .16s ease, transform .16s ease, box-shadow .2s ease;
-      cursor:pointer;
-    }
-    .langMini.show{
-      opacity:1;
-      transform:translateX(0) scale(1);
-    }
-    .langMini:hover{box-shadow:0 14px 34px rgba(0,0,0,0.45); transform:translateY(-1px) scale(1.02)}
-    .langMini:active{transform:translateY(0) scale(.98)}
-    .langTitle{font-weight:950; letter-spacing:.2px; margin:2px 2px 10px; opacity:.92}
-    .langMenu{
-      position:fixed;
-      background:rgba(12,16,26,0.94);
-      border:1px solid rgba(255,255,255,0.12);
-      border-radius:16px;
-      padding:12px;
-      box-shadow:0 18px 55px rgba(0,0,0,0.55);
-      width:min(360px, 92vw);
-      z-index:1000;
-      backdrop-filter: blur(12px);
-      opacity:0;
-      transform:translateY(-8px) scale(.98);
-      pointer-events:none;
-      visibility:hidden;
-      transition:opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
-    }
-    .langMenu.open{
-      opacity:1;
-      transform:translateY(0) scale(1);
-      pointer-events:auto;
-      visibility:visible;
-      transition:opacity .18s ease, transform .18s ease, visibility 0s;
-    }
-    .langSelect{
-      width:100%;
-      border:1px solid rgba(255,255,255,0.12);
-      background:rgba(0,0,0,0.18);
-      color:rgba(255,255,255,0.92);
-      padding:10px 12px;
-      border-radius:14px;
-      font-weight:900;
-      outline:none;
-    }
-    .langSelect:focus{border-color:rgba(131,107,255,0.8); box-shadow:0 0 0 3px rgba(131,107,255,0.22)}
+    footer{color:rgba(255,255,255,0.55);font-size:12px;text-align:center;padding:6px 0 0}
 
-.langSelect{width:100%}
-
-    /* scroll reveal */
-    .reveal{opacity:0; transform:translateY(10px); transition:opacity .22s ease, transform .22s ease}
-    .reveal.in{opacity:1; transform:none}
-    @media (prefers-reduced-motion: reduce){
-      .reveal{transition:none}
-      .btn::after, .tab::after, .langBtn::after{display:none}
-    }
-
-    /* Better mobile layout: prevent overlaps */
-    @media (max-width: 980px){
-      .topbar{flex-wrap:wrap; justify-content:center}
-      .brand{flex:1 1 100%; justify-content:center}
-      .tabs{flex:1 1 100%; justify-content:center}
-      .rightTools{flex:1 1 100%; display:flex; justify-content:center}
-      .langMenu{left:50%; right:auto; transform:translateX(-50%); top:44px; width:min(92vw, 360px)}
-      h1{font-size:34px}
-      .kicker{font-size:12px}
-      .actions{flex-wrap:wrap; justify-content:center}
-      .dual{grid-template-columns:1fr}
-      .grid{grid-template-columns:repeat(auto-fill, minmax(170px, 1fr));}
-    }
-
-  
-    /* ---------- Layout fixes (v19) ---------- */
-    .topbar{
-      position:sticky; top:0;
-      display:grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items:center;
-      gap:10px;
-      z-index:160;
-    }
-    .topbar .brand{justify-self:start}
-    .topbar .tabs{justify-self:center}
-    .topbar .rightTools{justify-self:end}
-    .views{flex:1; min-height:0}
-    .view{height:100%; min-height:0}
-
-    /* Better dynamic viewport on mobile */
-    .wrap{height:100vh}
-    @supports (height: 100dvh){
-      .wrap{height:100dvh}
-    }
-
-    /* Filters: keep tidy */
-    @media (max-width: 980px){
-      .topbar{grid-template-columns:1fr; justify-items:center; gap:10px}
-      .topbar .brand, .topbar .tabs, .topbar .rightTools{justify-self:center}
-      .filters{flex-direction:column; align-items:stretch}
-      .control{width:100%}
-      .control select, .control input{width:100%}
-    }
-
-    /* ---------- Mobile (Option A): 1 panel visible ---------- */
-    .mobileSwitch{display:none; gap:10px; justify-content:center; margin:10px 0 6px}
-    .msBtn{
-      border:1px solid rgba(255,255,255,0.12);
-      background:rgba(0,0,0,0.18);
-      color:rgba(255,255,255,0.92);
-      padding:10px 14px;
-      border-radius:999px;
-      font-weight:800;
-      cursor:pointer;
-      transition:transform .12s ease, background .12s ease, border-color .12s ease;
-    }
-    .msBtn:hover{transform:translateY(-1px); background:rgba(0,0,0,0.26); border-color:rgba(255,255,255,0.18)}
-    .msBtn:active{transform:translateY(0) scale(0.98)}
-    .msBtn.active{background:rgba(124,92,255,0.22); border-color:rgba(124,92,255,0.55)}
-    @media (max-width: 980px){
-      
-      #viewUgc .dual{grid-template-columns:1fr}
-      body.mobile-show-user #secGroup{display:none}
-      body.mobile-show-group #secUser{display:none}
-    }
-
-    /* ---------- Touch scroll fixes ---------- */
-    .scroller{
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior: contain;
-      touch-action: pan-y;
-    }
-
-    /* ---------- Language menu (clickable, above everything) ---------- */
-    .langMenu{
-      position:fixed !important;
-      z-index:300 !important;
-      max-height:min(62vh, 520px);
-      overflow:auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-
-    /* ---------- Mobile hard-fix: keep the app scrollable (no frozen page) ---------- */
-    @media (max-width: 980px){
-      .wrap{height:100vh;}
-      @supports (height: 100dvh){
-        .wrap{height:100dvh;}
-      }
-      .views{flex:1 !important; min-height:0 !important;}
-      .view{height:100% !important; min-height:0 !important;}
-      .dual{height:100% !important;}
-      .card.section{height:100% !important;}
-      .scroller{flex:1 !important; min-height:0 !important; overflow:auto !important; max-height:none !important; padding-right:0 !important;}
-    }
-
-
-    /* lively micro-interactions */
-    .tab,.btn,.langBtn,.link{
-      transition:transform .14s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
-      will-change:transform;
-    }
-    .tab:hover,.btn:hover,.langBtn:hover,.link:hover{transform:translateY(-1px)}
-    .tab:active,.btn:active,.langBtn:active,.link:active{transform:translateY(0) scale(.98)}
-    .item{
-      box-shadow:0 16px 40px rgba(0,0,0,0.25);
-    }
-    .item:hover{box-shadow:0 22px 55px rgba(0,0,0,0.35)}
-    .thumb img{transition:transform .28s ease, filter .28s ease;}
-    .item:hover .thumb img{transform:scale(1.03); filter:saturate(1.05)}
-    .scroller{position:relative; scroll-behavior:smooth; overscroll-behavior:contain;}
-    .scroller::before,.scroller::after{
-      content:"";
-      position:sticky;
-      left:0; right:0;
-      height:18px;
-      pointer-events:none;
-      display:block;
-      z-index:2;
-    }
-    .scroller::before{top:0; background:linear-gradient(to bottom, rgba(8,10,16,0.92), rgba(8,10,16,0));}
-    .scroller::after{bottom:0; background:linear-gradient(to top, rgba(8,10,16,0.92), rgba(8,10,16,0));}
-    /* subtle animated aurora */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:-20%;
-      background:radial-gradient(60% 50% at 20% 30%, rgba(131,107,255,0.18), transparent 60%),
-                 radial-gradient(55% 45% at 80% 40%, rgba(0,255,209,0.10), transparent 60%),
-                 radial-gradient(45% 40% at 55% 80%, rgba(255,180,90,0.06), transparent 55%);
-      filter:blur(40px);
-      animation:auroraMove 18s ease-in-out infinite;
-      z-index:-1;
-      transform:translateZ(0);
-    }
-    @keyframes auroraMove{
-      0%{transform:translate(-2%, -1%) scale(1)}
-      50%{transform:translate(2%, 1%) scale(1.03)}
-      100%{transform:translate(-2%, -1%) scale(1)}
-    }
-
-    /* gallery lightbox */
+    /* Modal (Zoom) */
     .modal{
       position:fixed;
       inset:0;
@@ -625,7 +469,7 @@
     .modal.open{display:flex; animation:fadeIn .18s ease-out;}
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
     .modalCard{
-      width:min(980px, 96vw);
+      width:min(1080px, 96vw);
       border-radius:18px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,0.14);
@@ -636,12 +480,20 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
+      gap:10px;
       padding:10px 12px;
       border-bottom:1px solid rgba(255,255,255,0.10);
     }
-    .modalCap{font-weight:900; opacity:.9; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-    .closeBtn{
+    .modalCap{
+      font-weight:950;
+      opacity:.92;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      min-width:0;
+    }
+    .modalBtns{display:flex; gap:8px; align-items:center}
+    .iconBtn{
       border:1px solid rgba(255,255,255,0.14);
       background:rgba(0,0,0,0.20);
       color:rgba(255,255,255,0.92);
@@ -649,3033 +501,713 @@
       padding:8px 10px;
       cursor:pointer;
       font-weight:950;
+      transition:transform .16s ease, background .18s ease, border-color .18s ease;
+      min-width:40px;
     }
-    .closeBtn:hover{transform:translateY(-1px)}
-    .closeBtn:active{transform:translateY(0) scale(.98)}
-    .modalImg{
-      display:block;
+    .iconBtn:hover{transform:translateY(-1px); background:rgba(0,0,0,0.28); border-color:rgba(255,255,255,0.20)}
+    .iconBtn:active{transform:translateY(0) scale(.98)}
+    .modalStage{
+      position:relative;
       width:100%;
-      max-height:80vh;
-      object-fit:contain;
+      height:min(82vh, 820px);
       background:#0b0d14;
+      overflow:hidden;
+      touch-action:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .modalImg{
+      max-width:100%;
+      max-height:100%;
+      object-fit:contain;
+      transform-origin:center;
+      transform:translate3d(var(--pan-x, 0px), var(--pan-y, 0px), 0) scale(var(--zoom, 1));
+      transition:transform .18s ease;
+      user-select:none;
+      -webkit-user-drag:none;
+      cursor:grab;
+    }
+    .modalStage.grabbing .modalImg{cursor:grabbing}
+    .hint{
+      position:absolute;
+      left:12px; bottom:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:950;
+      color:rgba(255,255,255,0.85);
+      background:rgba(0,0,0,0.35);
+      border:1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(10px);
+      pointer-events:none;
+      opacity:.85;
     }
 
-    /* ---------- Sales view ---------- */
-    .card.sales{display:flex; flex-direction:column; min-height:0;}
-    .salesHeader{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:10px;}
-    .salesWrap{display:flex; flex-direction:column; gap:12px; min-height:0;}
-    .salesStats{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:10px;}
-    .stat{background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:10px 12px;}
-    .stat .k{font-size:12px; opacity:.75}
-    .stat .v{font-size:18px; font-weight:800; margin-top:4px}
-    .salesCharts{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
-    .chartCard{background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:10px 12px;}
-    .chartTitle{font-weight:700; font-size:13px; margin-bottom:8px; opacity:.9}
-    canvas{width:100%; display:block;}
-    .salesBlocks{display:grid; grid-template-columns:1fr; gap:12px;}
-    .block{background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:10px 12px;}
-    .blockTitle{font-weight:800; margin-bottom:10px}
-    .salesList{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px;}
-    .saleRow{display:flex; gap:10px; padding:10px; border-radius:14px; border:1px solid rgba(255,255,255,0.07); background:rgba(0,0,0,0.18); text-decoration:none; color:inherit; transition:transform .18s ease, border-color .18s ease, background .18s ease;}
-    .saleRow:hover{transform:translateY(-2px); border-color:rgba(170,235,255,0.28); background:rgba(0,0,0,0.24);}
-    .saleThumb{width:64px; height:64px; border-radius:12px; overflow:hidden; background:rgba(255,255,255,0.04); flex:0 0 auto;}
-    .saleThumb img{width:100%; height:100%; object-fit:cover; display:block;}
-    .saleMeta{min-width:0; display:flex; flex-direction:column; gap:2px}
-    .saleName{font-weight:800; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-    .saleSub{font-size:12px; opacity:.78; display:flex; gap:8px; flex-wrap:wrap}
-    .pill{font-size:11px; padding:3px 8px; border-radius:999px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.06);}
+    /* Pretty scrollbars */
+    *{scrollbar-width:thin; scrollbar-color: rgba(255,255,255,0.28) rgba(255,255,255,0.10);}
+    ::-webkit-scrollbar{width:10px;height:10px}
+    ::-webkit-scrollbar-track{background:rgba(255,255,255,0.08); border-radius:999px}
+    ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.24); border-radius:999px; border:2px solid rgba(0,0,0,0.35)}
+    ::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.34)}
+    ::-webkit-scrollbar-corner{background:transparent}
 
+    /* Mobile */
     @media (max-width: 980px){
-      .salesStats{grid-template-columns:repeat(2, minmax(0,1fr));}
-      .salesCharts{grid-template-columns:1fr;}
-      .salesList{grid-template-columns:1fr;}
+      .topbar{flex-wrap:wrap; justify-content:center}
+      .brand{flex:1 1 100%; justify-content:center}
+      .tabs{flex:1 1 100%; justify-content:center}
+      .topTools{flex:1 1 100%; justify-content:center}
+      h1{font-size:34px}
+      .filters{flex-direction:column; align-items:stretch}
+      .control, .control.wide{min-width:0}
+      .grid{grid-template-columns:repeat(auto-fill, minmax(170px, 1fr));}
+      .modalStage{height:min(78vh, 720px)}
     }
 
-
-/* SALES_UI_2025 */
-.salesHeader{ display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
-.salesControls{ display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; }
-.salesControls .control{ display:flex; flex-direction:column; gap:6px; min-width:160px; }
-.salesControls .label{ font-size:12px; color:rgba(255,255,255,0.70); }
-#salesAll{ height:clamp(240px, 34vh, 420px); overflow:auto; }
-#salesToday{ height:clamp(180px, 26vh, 320px); overflow:auto; }
-.miniList{ margin-top:10px; display:flex; flex-direction:column; gap:6px; }
-.miniRow{ display:flex; justify-content:space-between; gap:10px; font-size:12px; color:rgba(255,255,255,0.82); }
-.miniRow .name{ flex:1 1 auto; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.miniRow .val{ flex:0 0 auto; color:rgba(255,255,255,0.70); }
-
-/* LANG_FORCE_EN */
-#btnLang, #btnLangMini, #langMenu, #langSelect, .langBtn, .langMenu, .langSelect { display:none !important; }
-
-
-/* Keep app fixed; allow internal scrolling only where needed */
-.views{ height:100%; }
-
-/* Sales view scrolls internally */
-#viewSales{ height:100%; overflow:hidden; }
-#viewSales .panel{ height:calc(100% - 200px); overflow:auto; padding-bottom:20px; }
-
-/* Keep header + filters visible */
-#viewSales .salesHeader{ position:sticky; top:0; z-index:5; background:rgba(10,12,18,0.55); backdrop-filter: blur(12px); padding-top:10px; padding-bottom:10px; }
-
-/* Cards: prevent content pushing page */
-#viewSales .split{ min-height:0; }
-#viewSales .card{ min-height:0; overflow:hidden; }
-#salesAll{ height:clamp(240px, 34vh, 420px); overflow:auto; }
-#salesToday{ height:clamp(180px, 26vh, 320px); overflow:auto; }
-
-/* Legend for multi lines */
-.seriesLegend{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
-.seriesLegend label{ display:flex; align-items:center; gap:8px; font-size:12px; color:rgba(255,255,255,0.85); cursor:pointer; user-select:none; }
-.seriesLegend .sw{ width:10px; height:10px; border-radius:3px; background:rgba(255,255,255,0.35); border:1px solid rgba(255,255,255,0.20); display:inline-block; }
-.seriesLegend input{ accent-color: rgba(180,200,255,0.95); }
-
-
-/* Sales view scrolls internally */
-#viewSales{ height:100%; overflow:hidden; }
-#viewSales .panel{ height:calc(100% - 190px); overflow:auto; padding-bottom:24px; }
-
-/* Keep filters visible */
-#viewSales .salesHeader{ position:sticky; top:0; z-index:6; background:rgba(10,12,18,0.55); backdrop-filter: blur(12px); padding:10px 0; margin-top:-8px; }
-
-/* Prevent cards stretching view */
-#viewSales .split{ min-height:0; }
-#viewSales .card{ min-height:0; overflow:hidden; }
-#salesAll{ height:clamp(240px, 34vh, 420px); overflow:auto; }
-#salesToday{ height:clamp(180px, 26vh, 320px); overflow:auto; }
-
-/* Legend */
-.seriesLegend{ max-height:120px; overflow:auto; padding-right:6px; margin-top:10px; }
-.seriesLegend label{ display:flex; align-items:center; gap:8px; font-size:12px; color:rgba(255,255,255,0.85); cursor:pointer; user-select:none; }
-.seriesLegend .sw{ width:10px; height:10px; border-radius:3px; background:rgba(255,255,255,0.35); border:1px solid rgba(255,255,255,0.20); display:inline-block; }
-.seriesLegend input{ accent-color: rgba(180,200,255,0.95); }
-
-/* SALES_RESPONSIVE_2025 */
-#viewSales .panel{ height:calc(100% - 185px); }
-.seriesLegend{ max-height:clamp(80px, 14vh, 150px); }
-@media (max-width: 900px){
-  .wrap{padding:14px}
-  .hero{padding:18px 16px}
-  .heroTitle{font-size:40px;line-height:1.05}
-  .heroActions{flex-wrap:wrap;justify-content:center;gap:10px}
-  .heroActions .btn{flex:1 1 auto;min-width:140px}
-}
-@media (max-width: 720px){
-  /* Mobile/tablet: allow page scroll + compact layout */
-  html, body{height:auto;overflow:auto}
-  body{overflow-x:hidden}
-  .wrap{height:auto;min-height:100vh}
-  .view{height:auto;min-height:unset}
-  .dual{grid-template-columns:1fr;height:auto}
-  .section{min-height:unset}
-  .listWrap{overflow:visible;flex:0 0 auto;max-height:none;-webkit-overflow-scrolling:touch}
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .filters{flex-direction:column;align-items:stretch}
-  .control{width:100%;min-width:0}
-  .mobileSwitch{display:flex;justify-content:center}
-  .mobileSwitch .seg{width:100%}
-  .mobileSwitch button{flex:1}
-}
-@media (max-width: 420px){
-  .heroTitle{font-size:34px}
-  .heroSubtitle{font-size:12px}
-  .btn{padding:10px 12px}
-  .sectionTitle{font-size:18px}
-  .card{border-radius:18px}
-}
-
-
-/* =====================
-   MOBILE/RESIZE OVERRIDES (v5)
-   - Fix missing UGC items on phone (avoid flex/height collapse)
-   - Enable finger scrolling on mobile
-   - Compact UI + 3x3 item grid on mobile
-   - Small touch effects
-   ===================== */
-
-/* Make the 2-panel grid behave nicely during resize */
-.dual{ align-items: stretch; align-content: start; }
-
-@media (max-width: 980px){
-  /* On smaller widths, stack panels to avoid awkward gaps */
-  .dual{ grid-template-columns: 1fr !important; height: auto !important; }
-  .section{ width: 100% !important; }
-}
-
-@media (max-width: 640px){
-  /* Always allow page scroll on mobile */
-  html, body{
-    height: auto !important;
-    min-height: 100% !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Let the layout flow naturally (no fixed viewport-height traps) */
-  .wrap{
-    height: auto !important;
-    min-height: 100dvh !important;
-    padding-bottom: 24px !important;
-  }
-  .views, .view{
-    height: auto !important;
-    min-height: 0 !important;
-    overflow: visible !important;
-  }
-
-  /* Prevent the UGC section scroller from collapsing (show items!) */
-  .section{
-    display: block !important;
-    height: auto !important;
-    min-height: unset !important;
-  }
-  .scroller{
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
-    padding-bottom: 6px !important;
-  }
-
-  /* Stack filters and keep them close */
-  .filters{ display:flex !important; flex-direction:column !important; align-items:stretch !important; gap:8px !important; margin:0 0 10px !important; }
-  .filters .field{ width:100% !important; }
-  .filters .field .control{ width:100% !important; min-width:0 !important; }
-  .field{ margin-top: 0 !important; }
-  .field label{ margin-bottom: 6px !important; }
-
-  /* Compact hero so we see more content */
-  .hero{ padding: 18px 14px !important; }
-  .hero h1{ font-size: 40px !important; line-height: 1.05 !important; }
-  .hero .subtitle{ font-size: 12px !important; }
-  .heroActions{ flex-direction: column !important; align-items: stretch !important; gap: 10px !important; }
-  .heroActions .btn{ width: 100% !important; }
-
-  /* 3x3 compact grid on mobile */
-  .grid{ grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 10px !important; }
-  .item{ min-height: 0 !important; border-radius: 16px !important; }
-  .thumb{ height: 92px !important; padding: 6px !important; border-radius: 14px !important; }
-  .body{ padding: 8px !important; gap: 6px !important; }
-  .title{
-    font-size: 11px !important;
-    line-height: 1.2 !important;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  /* Hide heavy details to keep cards small */
-  .meta2, .kv, .date{ display: none !important; }
-  .reveal{ opacity: 1 !important; transform: none !important; }
-  /* Keep the open button under each item on mobile */
-  .foot{ display: flex !important; align-items: center !important; justify-content: flex-end !important; gap: 8px !important; margin-top: 6px !important; }
-  .foot .price{ font-size: 12px !important; opacity: .9 !important; }
-  .foot .open{ display: inline-flex !important; justify-content: center !important; padding: 8px 10px !important; border-radius: 12px !important; font-size: 11px !important; }
-  .badge{ font-size: 10px !important; padding: 4px 7px !important; }
-
-  /* Sticky header feels better on phone */
-  .topbar{ position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px); }
-  .tabs{ flex-wrap: wrap; }
-
-  /* Touch-friendly micro effects */
-  .btn, .tab, .msBtn, .segBtn, .item{ -webkit-tap-highlight-color: transparent; }
-}
-
-@media (max-width: 640px) and (hover: none){
-  .btn:active, .tab:active, .msBtn:active, .segBtn:active{
-    transform: translateY(1px) scale(0.98);
-    filter: brightness(1.06);
-  }
-  .item:active{
-    transform: scale(0.99);
-    filter: brightness(1.04);
-  }
-}
-
-
-/* --- Source filter + compact filters --- */
-.sourceRow{display:flex; gap:8px; margin:0 0 8px; align-items:flex-end; flex-wrap:wrap;}
-.sourceRow .control{min-width:190px; flex:1 1 220px;}
-.dual.one{grid-template-columns:1fr !important;}
-.commissionGrid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
-  gap:14px;
-  padding-bottom:6px;
-}
-.commissionCard{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.10);
-  border-radius:18px;
-  overflow:hidden;
-  transform:translateZ(0);
-  transition:transform .15s ease, box-shadow .15s ease;
-}
-.commissionCard:active{transform:scale(.99);}
-.commissionHead{
-  padding:12px 12px 0;
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:10px;
-}
-.commissionTitle{font-weight:950; font-size:14px; line-height:1.2;}
-.commissionMeta{margin-top:6px; color:rgba(255,255,255,0.70); font-size:11px; font-weight:800;}
-.commissionPill{
-  margin-top:2px;
-  font-size:10px;
-  font-weight:950;
-  padding:6px 10px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,0.14);
-  background:rgba(255,255,255,0.06);
-  color:rgba(255,255,255,0.92);
-  white-space:nowrap;
-}
-.commissionText{
-  padding:10px 12px 0;
-  display:grid;
-  gap:8px;
-}
-.commissionRow{display:flex; gap:10px; align-items:flex-start;}
-.commissionLabel{
-  min-width:72px;
-  font-size:11px;
-  font-weight:950;
-  color:rgba(255,255,255,0.62);
-  text-transform:uppercase;
-  letter-spacing:.04em;
-}
-.commissionValue{
-  flex:1;
-  font-size:12px;
-  font-weight:800;
-  color:rgba(255,255,255,0.88);
-  line-height:1.35;
-}
-.commissionMedia{
-  padding:12px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-.commissionMediaBlock{
-  background:rgba(0,0,0,0.14);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:14px;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  min-width:0;
-}
-.commissionMediaLabel{
-  padding:8px 10px;
-  font-size:11px;
-  font-weight:950;
-  color:rgba(255,255,255,0.85);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-}
-.commissionCount{
-  font-size:10px;
-  font-weight:900;
-  color:rgba(255,255,255,0.70);
-}
-.commissionMediaThumb{
-  border:0;
-  padding:0;
-  margin:0;
-  width:100%;
-  background:rgba(255,255,255,0.04);
-  cursor:pointer;
-}
-.commissionMediaThumb:disabled{cursor:not-allowed; opacity:0.6;}
-.commissionMediaThumb img{
-  width:100%;
-  height:auto;
-  aspect-ratio:16/10;
-  object-fit:cover;
-  display:block;
-}
-@media (max-width: 520px){
-  .commissionGrid{grid-template-columns:1fr;}
-  .commissionMedia{grid-template-columns:1fr;}
-  .commissionLabel{min-width:64px;}
-}
-@media (max-width: 520px){
-  /* remove ugly gaps on mobile */
-  .filters{gap:6px !important; margin:0 0 6px !important;}
-  .sourceRow{margin:0 0 6px !important;}
-  .control{min-width:0 !important; flex:1 1 100% !important;}
-}
-
-
-/* ---------- Responsive: source selector only on mobile ---------- */
-.sourceRow{ display:none; }
-@media (max-width: 980px){
-  .sourceRow{ display:flex; }
-}
-
-
-/* ---------- Commission help ---------- */
-.commissionHelp{ margin-top:10px; border:1px solid rgba(255,255,255,.08); border-radius:16px; background:rgba(0,0,0,.12); padding:10px 12px; }
-.commissionHelp > summary{ cursor:pointer; list-style:none; font-weight:700; }
-.commissionHelp > summary::-webkit-details-marker{ display:none; }
-.commissionHelpBody{ margin-top:10px; display:grid; gap:10px; color:rgba(255,255,255,.86); }
-.commissionHelpCode{ margin:0; padding:10px 12px; border-radius:12px; background:rgba(0,0,0,.22); overflow:auto; font-size:12px; line-height:1.35; }
-
-/* ---------- Commission (media only) ---------- */
-.commissionTabs{ display:flex; gap:10px; margin:10px 0 12px; flex-wrap:wrap; }
-.commissionTabs .btn{ flex:1 1 180px; justify-content:center; }
-.commissionGrid.mediaOnly{ grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:12px; }
-@media (max-width: 520px){
-  .commissionGrid.mediaOnly{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
-}
-
-</style>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    @media (prefers-reduced-motion: reduce){
+      .tab,.btn,.segBtn,.link,.item,.shot{transition:none !important}
+      .view.active{animation:none !important}
+      .spinner{animation:none !important}
+      body{scroll-behavior:auto}
+      .modal.open{animation:none !important}
+      .modalImg{transition:none !important}
+    }
+  </style>
 </head>
+
 <body>
   <div class="wrap">
-    <div class="topbar">
-      <div class="brand"><span class="dot"></span><span data-i18n="brand">Portfolio Roblox</span></div>
+    <div class="topbar card">
+      <div class="brand"><span class="dot"></span>Portfolio Roblox</div>
+
       <div class="tabs">
-        <button class="tab active" id="tabUgc" type="button" data-i18n="tab_ugc">UGC</button>
-        <button class="tab" id="tabGallery" type="button" data-i18n="tab_gallery">Galerie</button>
-                <button class="tab" id="tabCommission" type="button">Commission</button>
-</div>
-      <div class="rightTools">
-        <button class="langMini" id="btnLangMini" type="button" aria-label="Langue actuelle" title="Langue" hidden>🇫🇷</button>
-        <button class="langBtn" id="btnLang" type="button">🌐 <span data-i18n="lang">Langue</span></button>
-        <div class="langMenu" id="langMenu" aria-hidden="true">
-          <div class="langTitle">🌐 <span data-i18n="choose_lang">Choisir une langue</span></div>
-          <select class="langSelect" id="langSelect" aria-label="Langue">
-            <option value="fr">🇫🇷 Français</option>
-            <option value="en">🇺🇸 English</option>
-            <option value="es">🇪🇸 Español</option>
-            <option value="de">🇩🇪 Deutsch</option>
-            <option value="pt">🇵🇹 Português</option>
-            <option value="it">🇮🇹 Italiano</option>
-            <option value="nl">🇳🇱 Nederlands</option>
-            <option value="pl">🇵🇱 Polski</option>
-            <option value="tr">🇹🇷 Türkçe</option>
-            <option value="ru">🇷🇺 Русский</option>
-            <option value="uk">🇺🇦 Українська</option>
-            <option value="ar">🇸🇦 العربية</option>
-            <option value="hi">🇮🇳 हिन्दी</option>
-            <option value="bn">🇧🇩 বাংলা</option>
-            <option value="ur">🇵🇰 اردو</option>
-            <option value="id">🇮🇩 Bahasa Indonesia</option>
-            <option value="ms">🇲🇾 Bahasa Melayu</option>
-            <option value="vi">🇻🇳 Tiếng Việt</option>
-            <option value="th">🇹🇭 ไทย</option>
-            <option value="ja">🇯🇵 日本語</option>
-            <option value="ko">🇰🇷 한국어</option>
-            <option value="zh">🇨🇳 中文</option>
-            <option value="he">🇮🇱 עברית</option>
-            <option value="fa">🇮🇷 فارسی</option>
-            <option value="sv">🇸🇪 Svenska</option>
-            <option value="no">🇳🇴 Norsk</option>
-            <option value="da">🇩🇰 Dansk</option>
-            <option value="fi">🇫🇮 Suomi</option>
-            <option value="el">🇬🇷 Ελληνικά</option>
-            <option value="cs">🇨🇿 Čeština</option>
-            <option value="hu">🇭🇺 Magyar</option>
-            <option value="ro">🇷🇴 Română</option>
-            <option value="bg">🇧🇬 Български</option>
-            <option value="sr">🇷🇸 Срpski</option>
-            <option value="hr">🇭🇷 Hrvatski</option>
-            <option value="sk">🇸🇰 Slovenčina</option>
-            <option value="sl">🇸🇮 Slovenščina</option>
-            <option value="lt">🇱🇹 Lietuvių</option>
-            <option value="lv">🇱🇻 Latviešu</option>
-            <option value="et">🇪🇪 Eesti</option>
-            <option value="sw">🇰🇪 Kiswahili</option>
-            <option value="tl">🇵🇭 Filipino</option>
-            <option value="ta">🇮🇳 தமிழ்</option>
-            <option value="te">🇮🇳 తెలుగు</option>
-            <option value="mr">🇮🇳 मराठी</option>
-          </select>
-        </div>
+        <button class="tab active" data-view="ugc" type="button">UGC</button>
+        <button class="tab" data-view="gallery" type="button">Galerie</button>
+        <button class="tab" data-view="commission" type="button">Commission</button>
+      </div>
+
+      <div class="topTools">
+        <button class="btn" id="refreshBtn" type="button">Actualiser</button>
       </div>
     </div>
 
     <div class="card hero">
-      <div class="kicker">UGC • Accessoires • Vêtements</div>
+      <div class="kicker">UGC • Animations • Galerie • Commissions</div>
       <h1>lulu8203 — Portfolio</h1>
-<div class="actions">
-        <a class="btn primary" href="https://www.roblox.com/users/828726934/profile" target="_blank" rel="noopener" data-i18n="btn_profile">Profil Roblox</a>
-        <a class="btn" href="https://www.roblox.com/communities/16981319/Powerful-artists" target="_blank" rel="noopener" data-i18n="btn_group">Groupe Roblox</a>
-        <button class="btn" id="refreshAllBtn" type="button">Actualiser</button>
+      <p class="subtitle">
+        Toutes les créations du <b>profil</b> + du <b>groupe</b>, avec zoom sur chaque image.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="https://www.roblox.com/users/828726934/profile" target="_blank" rel="noopener">Profil Roblox</a>
+        <a class="btn" href="https://www.roblox.com/communities/16981319/Powerful-artists" target="_blank" rel="noopener">Groupe Roblox</a>
       </div>
     </div>
 
     <div class="views">
-      <!-- VIEW: UGC -->
-      <div class="view active" id="viewUgc">
-
-        
-
-        <div class="dual one">
-          <div class="card section" id="secAll">
-            <div class="sectionHeader">
-              <div>
-                <h2 id="titleAll">UGC — en vente</h2>
-                <p class="meta" id="metaAll">—</p>
-              </div>
-              <div class="status" id="statusAll"><span class="spinner"></span><span data-i18n="loading">Chargement…</span></div>
-            </div>
-
-            <div class="filters">
-              <div class="control">
-                <div class="label" data-i18n="label_type">Type d’accessoire</div>
-                <select id="typeAll"></select>
-              </div>
-
-              <div class="control">
-                <div class="label" data-i18n="label_sort">Tri</div>
-                <select id="sortAll"></select>
-              </div>
-
-              <div class="control">
-                <div class="label" data-i18n="label_price_min">Prix min (R$)</div>
-                <input id="minPriceAll" type="number" inputmode="numeric" min="0" step="1" placeholder="0" />
-              </div>
-
-              <div class="control">
-                <div class="label" data-i18n="label_price_max">Prix max (R$)</div>
-                <input id="maxPriceAll" type="number" inputmode="numeric" min="0" step="1" placeholder="999" />
-              </div>
-
-              <div class="control">
-                <div class="label" data-i18n="label_kw">Mot-clé (nom)</div>
-                <input id="kwAll" type="text" placeholder="Ex: crown, hair, sword…" data-i18n-ph="ph_kw" />
-              </div>
-            </div>
-
-            <div class="scroller">
-              <div class="grid" id="gridAll"></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- VIEW: GALLERY -->
-      <div class="view" id="viewGallery">
-        <div class="card gallery">
-          <div class="galleryHeader">
+      <!-- UGC -->
+      <div class="view active" id="view-ugc">
+        <div class="card panel">
+          <div class="panelHeader">
             <div>
-              <h2 id="t_gallery_title">Galerie</h2>
+              <h2>Créations (Profil + Groupe)</h2>
+              <p id="ugcMeta">—</p>
             </div>
-            <div class="status" id="statusGallery">—</div>
+            <div class="status" id="ugcStatus"><span class="spinner"></span>Chargement…</div>
+          </div>
+
+          <div class="filters">
+            <div class="control">
+              <div class="label">Filtres Roblox</div>
+              <select id="ugcType"></select>
+            </div>
+            <div class="control wide">
+              <div class="label">Recherche</div>
+              <input id="ugcSearch" type="text" placeholder="Ex: crown, sword, animation…" />
+            </div>
           </div>
 
           <div class="scroller">
-            <div class="galleryGrid" id="galleryGrid"></div>
+            <div class="grid" id="ugcGrid"></div>
           </div>
         </div>
       </div>
 
-            <!-- VIEW: COMMISSION -->
-      <div class="view" id="viewCommission">
-        <div class="card gallery">
-          <div class="galleryHeader">
+      <!-- GALLERY -->
+      <div class="view" id="view-gallery">
+        <div class="card panel">
+          <div class="panelHeader">
             <div>
-              <h2 id="t_commission_title">Commission</h2>
+              <h2>Galerie</h2>
+              <p id="galMeta">—</p>
             </div>
-            <div class="status" id="statusCommission" style="display:none;">—</div>
+            <div class="status" id="galStatus"><span class="spinner"></span>Chargement…</div>
           </div>
 
-          <div class="commissionTabs">
-            <button class="btn primary" id="comBtnModels" type="button">Modèles</button>
-            <button class="btn" id="comBtnTextures" type="button">Textures</button>
+          <div class="filters">
+            <div class="control wide">
+              <div class="label">Recherche</div>
+              <input id="galSearch" type="text" placeholder="Ex: capture, render, work…" />
+            </div>
           </div>
 
           <div class="scroller">
-            <div class="commissionGrid mediaOnly" id="commissionGrid"></div>
+            <div class="grid" id="galleryGrid"></div>
           </div>
         </div>
       </div>
 
-      
+      <!-- COMMISSION -->
+      <div class="view" id="view-commission">
+        <div class="card panel">
+          <div class="panelHeader">
+            <div>
+              <h2>Commission</h2>
+            </div>
+            <div class="status" id="comStatus"><span class="spinner"></span>Chargement…</div>
+          </div>
+
+          <div class="seg">
+            <button class="segBtn active" id="btnModels" type="button">Modèles</button>
+            <button class="segBtn" id="btnTextures" type="button">Textures</button>
+          </div>
+
+          <div class="scroller">
+            <div class="grid" id="commissionGrid"></div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <footer>© Portfolio Roblox — lulu8203</footer>
   </div>
 
-<script>
-  // Hoisted config (avoid TDZ)
-  var SALES_PRO = {
-  snapKey: "salesSnapshotsV1",
-  maxDays: 420,
-  productInfoUrl: (id)=>`https://api.roblox.com/marketplace/productinfo?assetId=${id}`,
-  thumbsUrl: (ids)=>`https://thumbnails.roblox.com/v1/assets?assetIds=${ids.join(",")}&size=420x420&format=Png&isCircular=false`,
-  thumbFallback: (id)=>`https://www.roblox.com/asset-thumbnail/image?assetId=${id}&width=420&height=420&format=png`,
-  charts: { top:null, trend:null },
-  lastTotals: null, // { date: "YYYY-MM-DD", totals: {id: totalSales}, meta: {id: {name, thumb, type, src}} }
-};
-
-  /* ---------- i18n dictionary (must be defined before first refresh) ---------- */
-  
-  const SALES_RANGES = [
-    { key:"day",   label:"Jour" },
-    { key:"week",  label:"Semaine" },
-    { key:"month", label:"Mois" },
-    { key:"year",  label:"Année" },
-  ];
-const I18N = {
-    fr:{
-      brand:"Portfolio Roblox",
-      img_invalid:"Image invalide",
-      no_caption:"Sans légende",
-      gal_missing:"Galerie introuvable.",
-      choose_lang:"Choisir une langue",
-      lang:"Langue", tab_ugc:"UGC", tab_gallery:"Galerie",
-      tab_commission:"Commission",
-      btn_profile:"Profil Roblox", btn_group:"Groupe Roblox", btn_refresh:"Actualiser",
-      label_type:"Type d’accessoire", label_kw:"Mot-clé (nom)", ph_kw:"Ex: corne, crown, sword…",
-      open:"Ouvrir",
-      ugc_empty:"Aucun UGC en vente trouvé.",
-      gal_empty:"Aucune image trouvée.",
-      ugc_title_user:"UGC — lulu8203 (en vente)",
-      ugc_title_group:"UGC — Powerful Artists (en vente)",
-      updated:"mise à jour",
-      saleCount:(n)=>`${n} UGC en vente`,
-      itemsCount:(n)=>`${n} item(s)`,
-      ms_profile:"Profil", ms_group:"Groupe",
-      ph_search:"Rechercher…", ph_search_group:"Rechercher…",
-      type_all:"Tous",
-      loading:"Chargement…", err_short:"Données indisponibles.",
-      type_all:"Tous",
-      type_hat:"Chapeau",
-      type_head:"Tête",
-      type_hair:"Cheveux",
-      type_face:"Visage",
-      type_neck:"Cou",
-      type_shoulder:"Épaules",
-      type_front:"Avant",
-      type_back:"Dos",
-      type_waist:"Taille",
-      type_top:"Haut",
-      type_bottom:"Bas",
-      type_dress:"Robe/Jupe",
-      type_jacket:"Veste",
-      type_sweater:"Pull",
-      type_shirt:"Chemise",
-      type_pants:"Pantalon",
-      type_shorts:"Short",
-      type_leftshoe:"Chaussure (G)",
-      type_rightshoe:"Chaussure (D)",
-      type_other:"Autre",
-      tab_sales:"Vente",
-      sales_title:"Vente",
-      sales_chart_top:"Top (ventes)",
-      sales_chart_daily:"Évolution (jour)",
-      sales_today:"Aujourd’hui",
-      sales_all:"Tous les items",
-      stat_total:"Total",
-      stat_avg_price:"Prix moyen",
-      stat_max_price:"Prix max",
-      stat_min_price:"Prix min",
-      stat_top_label:"Top",
-      sale_creator_user:"Profil",
-      sale_creator_group:"Groupe",
-
-      type_hat:"Chapeau",
-      type_hair:"Cheveux",
-      type_face:"Visage",
-      type_ears:"Oreilles",
-      type_neck:"Cou",
-      type_shoulder:"Épaule",
-      type_front:"Avant",
-      type_back:"Dos",
-      type_waist:"Taille",
-      type_tshirt:"T-Shirt",
-      type_shirt:"Chemise",
-      type_pants:"Pantalon",
-      type_sweater:"Pull",
-      type_jacket:"Veste",
-      type_dress:"Robe / Jupe",
-      type_shorts:"Short",
-      type_shoes:"Chaussures",
-      type_gear:"Équipement",
-      type_bundle:"Pack",
-      type_other:"Autre",
-      sales_updated:"MAJ ventes",
-      sales_day_label:"Ventes du jour",
-
-      empty_sales:"Aucune donnée.",
-      empty_sales_day:"Aucune vente pour ce jour.",
-      sale_created_today:"Créé aujourd’hui",
-      sales_filter_label:"Période",
-      sales_items_label:"Items",
-      sales_range_day:"Jour",
-      sales_range_week:"Semaine",
-      sales_range_month:"Mois",
-      sales_range_year:"Année",
-      sales_items_20:"20",
-      sales_items_50:"50",
-      sales_items_all:"Tous",
-      stat_sales_period:"Ventes (période)",
-      stat_sales_total:"Ventes (total)",
-      sales_chart_daily_day:"Évolution (jour)",
-      sales_chart_daily_week:"Évolution (semaine)",
-      sales_chart_daily_month:"Évolution (mois)",
-      sales_chart_daily_year:"Évolution (année)",
-    },
-    en:{
-      brand:"Roblox Portfolio", tab_ugc:"UGC", tab_gallery:"Gallery",
-      btn_profile:"Roblox Profile", btn_group:"Roblox Group", btn_refresh:"Refresh",
-      label_type:"Accessory type", label_kw:"Keyword (name)", ph_kw:"e.g. horn, crown, sword…",
-      open:"Open",
-      ugc_empty:"No UGC for sale found.",
-      gal_empty:"No images found.",
-      ugc_title_user:"UGC — lulu8203 (for sale)",
-      ugc_title_group:"UGC — Powerful Artists (for sale)",
-      updated:"updated",
-      saleCount:(n)=>`${n} UGC for sale`,
-      itemsCount:(n)=>`${n} item(s)`,
-      ms_profile:"Profile", ms_group:"Group",
-      ph_search:"Search…", ph_search_group:"Search…",
-      type_all:"All",
-      loading:"Loading…", err_short:"Data unavailable.",
-      type_all:"All",
-      type_hat:"Hat",
-      type_head:"Head",
-      type_hair:"Hair",
-      type_face:"Face",
-      type_neck:"Neck",
-      type_shoulder:"Shoulder",
-      type_front:"Front",
-      type_back:"Back",
-      type_waist:"Waist",
-      type_top:"Top",
-      type_bottom:"Bottom",
-      type_dress:"Dress/Skirt",
-      type_jacket:"Jacket",
-      type_sweater:"Sweater",
-      type_shirt:"Shirt",
-      type_pants:"Pants",
-      type_shorts:"Shorts",
-      type_leftshoe:"Left shoe",
-      type_rightshoe:"Right shoe",
-      type_other:"Other",
-      tab_sales:"Sales",
-      sales_title:"Sales",
-      sales_chart_top:"Top (sales)",
-      sales_chart_daily:"Trend (daily)",
-      sales_today:"Today",
-      sales_all:"All items",
-      stat_total:"Total",
-      stat_avg_price:"Avg price",
-      stat_max_price:"Max price",
-      stat_min_price:"Min price",
-      stat_top_label:"Top",
-      sale_creator_user:"Profile",
-      sale_creator_group:"Group",
-
-      type_hat:"Hat",
-      type_hair:"Hair",
-      type_face:"Face",
-      type_ears:"Ears",
-      type_neck:"Neck",
-      type_shoulder:"Shoulder",
-      type_front:"Front",
-      type_back:"Back",
-      type_waist:"Waist",
-      type_tshirt:"T-Shirt",
-      type_shirt:"Shirt",
-      type_pants:"Pants",
-      type_sweater:"Sweater",
-      type_jacket:"Jacket",
-      type_dress:"Dress / Skirt",
-      type_shorts:"Shorts",
-      type_shoes:"Shoes",
-      type_gear:"Gear",
-      type_bundle:"Bundle",
-      type_other:"Other",
-      sales_updated:"Sales updated",
-      sales_day_label:"Sales day",
-
-      empty_sales:"No data.",
-      empty_sales_day:"No sales for this day.",
-      sale_created_today:"Created today",
-      sales_filter_label:"Period",
-      sales_items_label:"Items",
-      sales_range_day:"Day",
-      sales_range_week:"Week",
-      sales_range_month:"Month",
-      sales_range_year:"Year",
-      sales_items_20:"20",
-      sales_items_50:"50",
-      sales_items_all:"All",
-      stat_sales_period:"Sales (period)",
-      stat_sales_total:"Sales (total)",
-      sales_chart_daily_day:"Trend (day)",
-      sales_chart_daily_week:"Trend (week)",
-      sales_chart_daily_month:"Trend (month)",
-      sales_chart_daily_year:"Trend (year)",
-    },
-    es:{
-      brand:"Portafolio Roblox", tab_ugc:"UGC", tab_gallery:"Galería",
-      btn_profile:"Perfil Roblox", btn_group:"Grupo Roblox", btn_refresh:"Actualizar",
-      label_type:"Tipo de accesorio", label_kw:"Palabra clave (nombre)", ph_kw:"Ej.: cuerno, corona, espada…",
-      open:"Abrir",
-      ugc_empty:"No se encontró UGC en venta.",
-      gal_empty:"No se encontraron imágenes.",
-      ugc_title_user:"UGC — lulu8203 (en venta)",
-      ugc_title_group:"UGC — Powerful Artists (en venta)",
-      updated:"actualizado",
-      saleCount:(n)=>`${n} UGC en venta`,
-      itemsCount:(n)=>`${n} elemento(s)`,
-      ms_profile:"Perfil", ms_group:"Grupo",
-      ph_search:"Buscar…", ph_search_group:"Buscar…",
-      type_all:"Todos",
-      loading:"Cargando…", err_short:"Datos no disponibles."
-    },
-    de:{
-      brand:"Roblox-Portfolio", tab_ugc:"UGC", tab_gallery:"Galerie",
-      tab_commission:"Commission",
-      btn_profile:"Roblox-Profil", btn_group:"Roblox‑Gruppe", btn_refresh:"Aktualisieren",
-      label_type:"Accessoire-Typ", label_kw:"Stichwort (Name)", ph_kw:"z.B. Horn, Krone, Schwert…",
-      loading:"Lädt…", err_short:"Daten nicht verfügbar."
-    },
-    it:{
-      brand:"Portfolio Roblox", tab_ugc:"UGC", tab_gallery:"Galleria",
-      btn_profile:"Profilo Roblox", btn_group:"Gruppo Roblox", btn_refresh:"Aggiorna",
-      label_type:"Tipo di accessorio", label_kw:"Parola chiave (nome)", ph_kw:"Es.: corno, corona, spada…",
-      loading:"Caricamento…", err_short:"Dati non disponibili."
-    },
-    pt:{
-      brand:"Portfólio Roblox", tab_ugc:"UGC", tab_gallery:"Galeria",
-      btn_profile:"Perfil Roblox", btn_group:"Grupo Roblox", btn_refresh:"Atualizar",
-      label_type:"Tipo de acessório", label_kw:"Palavra‑chave (nome)", ph_kw:"Ex.: chifre, coroa, espada…",
-      loading:"Carregando…", err_short:"Dados indisponíveis."
-    },
-    nl:{
-      brand:"Roblox‑portfolio", tab_ugc:"UGC", tab_gallery:"Galerij",
-      btn_profile:"Roblox‑profiel", btn_group:"Roblox‑groep", btn_refresh:"Vernieuwen",
-      label_type:"Accessoiretype", label_kw:"Trefwoord (naam)", ph_kw:"Bijv. hoorn, kroon, zwaard…",
-      loading:"Laden…", err_short:"Gegevens niet beschikbaar."
-    },
-    pl:{
-      brand:"Portfolio Roblox", tab_ugc:"UGC", tab_gallery:"Galeria",
-      btn_profile:"Profil Roblox", btn_group:"Grupa Roblox", btn_refresh:"Odśwież",
-      label_type:"Typ akcesorium", label_kw:"Słowo kluczowe (nazwa)", ph_kw:"Np. róg, korona, miecz…",
-      loading:"Ładowanie…", err_short:"Brak danych."
-    },
-    tr:{
-      brand:"Roblox Portföyü", tab_ugc:"UGC", tab_gallery:"Galeri",
-      btn_profile:"Roblox Profili", btn_group:"Roblox Grubu", btn_refresh:"Yenile",
-      label_type:"Aksesuar türü", label_kw:"Anahtar kelime (ad)", ph_kw:"Örn. boynuz, taç, kılıç…",
-      loading:"Yükleniyor…", err_short:"Veri yok."
-    },
-    ru:{
-      brand:"Портфолио Roblox", tab_ugc:"UGC", tab_gallery:"Галерея",
-      btn_profile:"Профиль Roblox", btn_group:"Группа Roblox", btn_refresh:"Обновить",
-      label_type:"Тип аксессуара", label_kw:"Ключевое слово (название)", ph_kw:"Напр.: рог, корона, меч…",
-      loading:"Загрузка…", err_short:"Данные недоступны."
-    },
-    ar:{
-      brand:"معرض روبلوكس", tab_ugc:"UGC", tab_gallery:"معرض الصور",
-      btn_profile:"ملف روبلوكس", btn_group:"مجموعة روبلوكس", btn_refresh:"تحديث",
-      label_type:"نوع الإكسسوار", label_kw:"كلمة مفتاحية (الاسم)", ph_kw:"مثال: قرن، تاج، سيف…",
-      loading:"جارٍ التحميل…", err_short:"البيانات غير متاحة."
-    },
-    ja:{
-      brand:"Roblox ポートフォリオ", tab_ugc:"UGC", tab_gallery:"ギャラリー",
-      btn_profile:"Roblox プロフィール", btn_group:"Roblox グループ", btn_refresh:"更新",
-      label_type:"アクセサリー種類", label_kw:"キーワード（名前）", ph_kw:"例：horn, crown, sword…",
-      loading:"読み込み中…", err_short:"データがありません。"
-    },
-    ko:{
-      brand:"로블록스 포트폴리오", tab_ugc:"UGC", tab_gallery:"갤러리",
-      btn_profile:"로블록스 프로필", btn_group:"로블록스 그룹", btn_refresh:"새로고침",
-      label_type:"액세서리 유형", label_kw:"키워드(이름)", ph_kw:"예: horn, crown, sword…",
-      loading:"불러오는 중…", err_short:"데이터를 불러올 수 없습니다."
-    },
-    "zh-CN":{
-      brand:"Roblox 作品集", tab_ugc:"UGC", tab_gallery:"画廊",
-      btn_profile:"Roblox 主页", btn_group:"Roblox 群组", btn_refresh:"刷新",
-      label_type:"饰品类型", label_kw:"关键词（名称）", ph_kw:"例如：horn、crown、sword…",
-      loading:"加载中…", err_short:"数据不可用。"
-    },
-    "zh-TW":{
-      brand:"Roblox 作品集", tab_ugc:"UGC", tab_gallery:"畫廊",
-      btn_profile:"Roblox 個人頁", btn_group:"Roblox 群組", btn_refresh:"重新整理",
-      label_type:"飾品類型", label_kw:"關鍵字（名稱）", ph_kw:"例如：horn、crown、sword…",
-      loading:"載入中…", err_short:"資料不可用。"
-    }
-  };
-
-  /* ---------- View toggle ---------- */
-  const tabUgc = document.getElementById("tabUgc");
-  const tabGallery = document.getElementById("tabGallery");
-  const viewUgc = document.getElementById("viewUgc");
-  const viewGallery = document.getElementById("viewGallery");
-    const tabCommission = document.getElementById("tabCommission");
-  const viewCommission = document.getElementById("viewCommission");
-const tabSales = document.getElementById("tabSales");
-  const viewSales = document.getElementById("viewSales");
-
-  
-  function setActiveView(which){
-    const hasSales = !!tabSales && !!viewSales;
-    const hasCommission = !!tabCommission && !!viewCommission;
-
-    if(which === "sales" && !hasSales) which = "ugc";
-    if(which === "commission" && !hasCommission) which = "ugc";
-    if(which !== "ugc" && which !== "gallery" && which !== "sales" && which !== "commission") which = "ugc";
-
-    const ugc = which === "ugc";
-    const gal = which === "gallery";
-    const sales = hasSales && which === "sales";
-    const com = hasCommission && which === "commission";
-
-    tabUgc?.classList.toggle("active", ugc);
-    tabGallery?.classList.toggle("active", gal);
-    tabSales?.classList.toggle("active", sales);
-    tabCommission?.classList.toggle("active", com);
-
-    viewUgc?.classList.toggle("active", ugc);
-    viewGallery?.classList.toggle("active", gal);
-    viewSales?.classList.toggle("active", sales);
-    viewCommission?.classList.toggle("active", com);
-
-    if(com) refreshCommission();
-  }
-  tabUgc?.addEventListener("click", ()=> setActiveView("ugc"));
-  tabGallery?.addEventListener("click", ()=> setActiveView("gallery"));
-    tabCommission?.addEventListener("click", ()=>setActiveView("commission"));
-tabSales?.addEventListener("click", ()=> setActiveView("sales"));
-
-  /* ---------- UGC rendering ---------- */
-  function setStatus(id, text, spinning=false){
-    const el = document.getElementById(id);
-    if(!el) return;
-    el.innerHTML = spinning ? `<span class="spinner"></span><span>${text}</span>` : `<span>${text}</span>`;
-  }
-  function catalogUrl(assetId){ return `https://www.roblox.com/catalog/${assetId}`; }
-  function thumbFallback(assetId){ return `https://www.roblox.com/asset-thumbnail/image?assetId=${assetId}&width=420&height=420&format=png`; }
-
-  function fmtDate(iso){
-    if(!iso) return "";
-    try{ return new Date(iso).toLocaleDateString("fr-FR"); }catch(e){ return ""; }
-  }
-
-  // Chart tooltip (simple)
-  const __chartTip = (()=>{
-    const d = document.createElement("div");
-    d.id = "chartTip";
-    d.style.position = "fixed";
-    d.style.zIndex = "9999";
-    d.style.pointerEvents = "none";
-    d.style.padding = "8px 10px";
-    d.style.borderRadius = "10px";
-    d.style.fontSize = "12px";
-    d.style.background = "rgba(10,12,18,0.85)";
-    d.style.border = "1px solid rgba(255,255,255,0.12)";
-    d.style.backdropFilter = "blur(10px)";
-    d.style.color = "rgba(255,255,255,0.92)";
-    d.style.transform = "translate(8px, 8px)";
-    d.style.display = "none";
-    document.body.appendChild(d);
-    return d;
-  })();
-  function showChartTip(x, y, html){
-    __chartTip.innerHTML = html;
-    __chartTip.style.left = x + "px";
-    __chartTip.style.top = y + "px";
-    __chartTip.style.display = "block";
-  }
-  function hideChartTip(){ __chartTip.style.display = "none"; }
-
-
-  function ugcBadge(typeName){
-    const t = String(typeName || "");
-    // Exact Roblox types (stable)
-    if(t === "Hat") return "Tête";
-    if(t === "HairAccessory") return "Cheveux";
-    if(t === "FaceAccessory") return "Visage";
-    if(t === "NeckAccessory") return "Cou";
-    if(t === "ShoulderAccessory") return "Épaule";
-    if(t === "FrontAccessory") return "Avant";
-    if(t === "BackAccessory") return "Dos";
-    if(t === "WaistAccessory") return "Taille";
-
-    // Classic clothing
-    if(t === "TShirt") return "T-Shirt";
-    if(t === "Shirt") return "Chemise";
-    if(t === "Pants") return "Pantalon";
-
-    // Layered clothing (Roblox)
-    if(t === "TShirtAccessory") return "T-Shirt (Layered)";
-    if(t === "ShirtAccessory") return "Chemise (Layered)";
-    if(t === "PantsAccessory") return "Pantalon (Layered)";
-    if(t === "JacketAccessory") return "Veste (Layered)";
-    if(t === "SweaterAccessory") return "Pull (Layered)";
-    if(t === "ShortsAccessory") return "Short (Layered)";
-    if(t === "LeftShoeAccessory") return "Chaussure gauche";
-    if(t === "RightShoeAccessory") return "Chaussure droite";
-    if(t === "DressSkirtAccessory") return "Robe/Jupe (Layered)";
-
-    // Fallback (safe)
-    const tl = t.toLowerCase();
-    if(tl.includes("back")) return "Dos";
-    if(tl.includes("waist")) return "Taille";
-    if(tl.includes("hat") || tl.includes("head")) return "Tête";
-    if(tl.includes("hair")) return "Cheveux";
-    if(tl.includes("face")) return "Visage";
-    if(tl.includes("neck")) return "Cou";
-    if(tl.includes("shoulder")) return "Épaule";
-    if(tl.includes("front")) return "Avant";
-    if(tl.includes("shirt")) return "Chemise";
-    if(tl.includes("pants")) return "Pantalon";
-    if(tl.includes("shorts")) return "Short";
-    if(tl.includes("dress") || tl.includes("skirt")) return "Robe/Jupe";
-    return t || "UGC";
-  }
-
-  // ✅ Types Roblox (uniquement des filtres qui existent sur la plateforme)
-  const ROBLOX_TYPE_OPTIONS = [
-    { value:"ALL", label:"Tous" },
-
-    // Accessoires Roblox
-    { value:"Hat",               label:"Tête" },
-    { value:"HairAccessory",     label:"Cheveux" },
-    { value:"FaceAccessory",     label:"Visage" },
-    { value:"NeckAccessory",     label:"Cou" },
-    { value:"ShoulderAccessory", label:"Épaule" },
-    { value:"FrontAccessory",    label:"Avant" },
-    { value:"BackAccessory",     label:"Dos" },
-    { value:"WaistAccessory",    label:"Taille" },
-
-    // Vêtements (classiques)
-    { value:"TShirt", label:"T-Shirt" },
-    { value:"Shirt",  label:"Chemise" },
-    { value:"Pants",  label:"Pantalon" },
-
-    // Vêtements (Layered Clothing Roblox)
-    { value:"TShirtAccessory",    label:"T-Shirt (Layered)" },
-    { value:"ShirtAccessory",     label:"Chemise (Layered)" },
-    { value:"PantsAccessory",     label:"Pantalon (Layered)" },
-    { value:"JacketAccessory",    label:"Veste (Layered)" },
-    { value:"SweaterAccessory",   label:"Pull (Layered)" },
-    { value:"ShortsAccessory",    label:"Short (Layered)" },
-    { value:"LeftShoeAccessory",  label:"Chaussure gauche (Layered)" },
-    { value:"RightShoeAccessory", label:"Chaussure droite (Layered)" },
-    { value:"DressSkirtAccessory",label:"Robe/Jupe (Layered)" },
-  ];
-
-  const SORT_OPTIONS = [
-    { value:"newest",     label:"Plus récents" },
-    { value:"oldest",     label:"Plus anciens" },
-    { value:"price_low",  label:"Prix (croissant)" },
-    { value:"price_high", label:"Prix (décroissant)" },
-    { value:"name_az",    label:"Nom (A → Z)" },
-    { value:"name_za",    label:"Nom (Z → A)" },
-  ];
-
-  function normalizeItem(x){
-    const assetId = (typeof x.assetId === "number") ? x.assetId : (typeof x.id === "number" ? x.id : null);
-    const created = x.created || x.createdAt || x.createdUtc || null;
-    const createdTs = created ? (Date.parse(created) || null) : null;
-    const price = (typeof x.price === "number") ? x.price : (typeof x.priceInRobux === "number" ? x.priceInRobux : null);
-    const typeName = x.type || x.assetTypeName || "UGC";
-    const name = x.name || `Item ${assetId}`;
-    const badge = ugcBadge(typeName);
-
-    return {
-      assetId,
-      name,
-      type: typeName,
-      badge,
-      price,
-      created,
-      createdTs,
-      thumb: x.thumb || (assetId ? thumbFallback(assetId) : ""),
-      sales: (typeof x.sales === "number") ? x.sales : ((typeof x.totalSales === "number") ? x.totalSales : null)
-    };
-  }
-
-  
-    function numOrNullInput(v){
-    const s = String(v ?? "").trim();
-    if(!s) return null;
-    const n = Number(s);
-    return Number.isFinite(n) ? n : null;
-  }
-
-  function applyFilters(items, typeValue, kw, minPrice, maxPrice){
-    const q = String(kw || "").trim().toLowerCase();
-    const min = numOrNullInput(minPrice);
-    const max = numOrNullInput(maxPrice);
-    const type = String(typeValue || "ALL");
-
-    return items.filter(it => {
-      const name = String(it.name || "").toLowerCase();
-      const okKw = !q || name.includes(q);
-
-      const okType = (type === "ALL") || (String(it.type || "") === type);
-
-      const p = (typeof it.price === "number") ? it.price : null;
-      const okMin = (min == null) || (p != null && p >= min);
-      const okMax = (max == null) || (p != null && p <= max);
-
-      return okKw && okType && okMin && okMax;
-    });
-  }
-
-  function sortItems(items, sortKey){
-    const key = String(sortKey || "newest");
-    const safeTime = (it) => (it.createdTs != null ? it.createdTs : -1);
-    const safePrice = (it) => (typeof it.price === "number" ? it.price : Number.POSITIVE_INFINITY);
-    const safeName = (it) => String(it.name || "");
-
-    const out = [...items];
-
-    if(key === "oldest") return out.sort((a,b)=> safeTime(a) - safeTime(b));
-    if(key === "price_low") return out.sort((a,b)=> safePrice(a) - safePrice(b));
-    if(key === "price_high") return out.sort((a,b)=> safePrice(b) - safePrice(a));
-    if(key === "name_az") return out.sort((a,b)=> safeName(a).localeCompare(safeName(b), currentLocale(), {sensitivity:"base"}));
-    if(key === "name_za") return out.sort((a,b)=> safeName(b).localeCompare(safeName(a), currentLocale(), {sensitivity:"base"}));
-
-    // default newest
-    return out.sort((a,b)=> safeTime(b) - safeTime(a));
-  }
-
-  function render(gridId, items, prefix){
-    const grid = document.getElementById(gridId);
-    if(!grid) return;
-    if(!items.length){ grid.innerHTML = `<div class="empty">${t("ugc_empty")}</div>`; return; }
-
-    grid.innerHTML = items.map(it => {
-      const price = (typeof it.price === "number") ? `${it.price} R$` : "—";
-      const date = it.created ? fmtDate(it.created) : "";
-      const img = it.thumb || thumbFallback(it.assetId);
-      const safeTitle = (it.name || "").replaceAll('"', '&quot;');
-      return `
-        <div class="item reveal" id="${prefix}${it.assetId}">
-          <div class="thumb">
-            <span class="badge">${it.badge}</span>
-            <img loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous"
-                 alt="${safeTitle}" src="${img}"
-                 onerror="this.onerror=null;this.src='${thumbFallback(it.assetId)}';">
-          </div>
-          <div class="body">
-            <div class="title">${it.name || ""}</div>
-            <div class="meta2">
-              <span class="kv">Asset ${it.assetId}</span>
-              ${date ? `<span class="date">• ${date}</span>` : ""}
-            </div>
-            <div class="foot">
-              <div class="price">${price}</div>
-              <a class="link" href="${catalogUrl(it.assetId)}" target="_blank" rel="noopener">${t("open")}</a>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join("");
-    ensureRevealForGrid(grid);
-  }
-
-  async function fetchJsonLocal(path){
-    const res = await fetch(`${path}?v=${Date.now()}`, { cache:"no-store" });
-    if(!res.ok) throw new Error(`HTTP ${res.status}`);
-    return await res.json();
-  }
-
-
-  /* ---------- sales.json (Option A) ----------
-     Expected format (recommended):
-     {
-       "updated_at": "YYYY-MM-DD",
-       "items": {
-         "ASSET_ID": { "total_sales": 123, "sales_by_day": { "YYYY-MM-DD": 5 } }
-       }
-     }
-     - total_sales: total lifetime sales (number)
-     - sales_by_day: per-day sales counts (object)
-  ------------------------------------------- */
-  let SALES_STORE = null;
-
-  function numOrNull(x){ const n = Number(x); return (Number.isFinite(n) ? n : null); }
-
-  function normalizeByDay(byDay){
-    const m = {};
-    if(!byDay) return m;
-    if(Array.isArray(byDay)){
-      for(const e of byDay){
-        const d = e?.date ?? e?.day;
-        const c = numOrNull(e?.count ?? e?.sales ?? e?.v);
-        if(d && c!=null) m[String(d)] = c;
-      }
-      return m;
-    }
-    if(typeof byDay === "object"){
-      for(const [d,c] of Object.entries(byDay)){
-        const n = numOrNull(c);
-        if(n!=null) m[String(d)] = n;
-      }
-      return m;
-    }
-    return m;
-  }
-
-  function normalizeSales(raw){
-    const out = { updatedAt:null, items:{} };
-    if(!raw) return out;
-    out.updatedAt = raw.updated_at || raw.updatedAt || raw.updated || null;
-
-    const src = raw.items || raw.data || raw;
-    if(Array.isArray(src)){
-      for(const r of src){
-        const id = r?.assetId ?? r?.asset_id ?? r?.id;
-        if(!id) continue;
-        out.items[String(id)] = {
-          totalSales: numOrNull(r?.total_sales ?? r?.totalSales ?? r?.salesTotal ?? r?.sales ?? r?.total ?? null),
-          byDay: normalizeByDay(r?.sales_by_day ?? r?.salesByDay ?? r?.byDay ?? r?.daily ?? null),
-        };
-      }
-      return out;
-    }
-
-    if(typeof src === "object"){
-      for(const [k,v] of Object.entries(src)){
-        if(k==="updated_at" || k==="updatedAt" || k==="updated") continue;
-        if(!v || typeof v !== "object") continue;
-        out.items[String(k)] = {
-          totalSales: numOrNull(v?.total_sales ?? v?.totalSales ?? v?.salesTotal ?? v?.sales ?? v?.total ?? null),
-          byDay: normalizeByDay(v?.sales_by_day ?? v?.salesByDay ?? v?.byDay ?? v?.daily ?? null),
-        };
-      }
-    }
-    return out;
-  }
-
-  async function loadSales(){
-    try{
-      const raw = await fetchJsonLocal("sales.json");
-      SALES_STORE = normalizeSales(raw);
-    }catch(e){
-      SALES_STORE = null;
-    }
-  }
-
-
-  
-  
-  const SALES_RANGE_OPTIONS = [
-    { key:"day",   labelKey:"sales_range_day" },
-    { key:"week",  labelKey:"sales_range_week" },
-    { key:"month", labelKey:"sales_range_month" },
-    { key:"year",  labelKey:"sales_range_year" },
-  ];
-  function fillSalesSelects(){
-    const rSel = document.getElementById("salesRange");
-    if(rSel){
-      const cur = rSel.value || "day";
-      rSel.innerHTML = SALES_RANGES.map(o => `<option value="${o.key}">${o.label}</option>`).join("");
-      rSel.value = cur;
-    }
-  }
-
-  function parseYMD(s){
-    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s||""));
-    if(!m) return null;
-    const d = new Date(Date.UTC(+m[1], +m[2]-1, +m[3]));
-    return isNaN(d.getTime()) ? null : d;
-  }
-  function ymdUTC(d){
-    const y = d.getUTCFullYear();
-    const m = String(d.getUTCMonth()+1).padStart(2,"0");
-    const dd = String(d.getUTCDate()).padStart(2,"0");
-    return `${y}-${m}-${dd}`;
-  }
-  function startOfUTCDay(d){
-    const x = new Date(d);
-    x.setUTCHours(0,0,0,0);
-    return x;
-  }
-
-  function daysRangeUTC(start, end){
-    const s = startOfUTCDay(start);
-    const e = startOfUTCDay(end);
-    const out = [];
-    if(isNaN(s.getTime()) || isNaN(e.getTime())) return out;
-    let cur = (s <= e) ? s : e;
-    const last = (s <= e) ? e : s;
-    while(cur <= last){
-      out.push(ymdUTC(cur));
-      const n = new Date(cur);
-      n.setUTCDate(n.getUTCDate() + 1);
-      cur = n;
-    }
-    return out;
-  }
-
-  function isoWeekKey(d){
-    // ISO week: Thursday decides year
-    const date = startOfUTCDay(d);
-    const day = (date.getUTCDay()+6)%7; // 0=Mon
-    date.setUTCDate(date.getUTCDate() - day + 3);
-    const isoYear = date.getUTCFullYear();
-    const jan4 = new Date(Date.UTC(isoYear,0,4));
-    const jan4Day = (jan4.getUTCDay()+6)%7;
-    const week1Thu = new Date(jan4);
-    week1Thu.setUTCDate(jan4.getUTCDate() - jan4Day + 3);
-    const week = 1 + Math.round((date - week1Thu) / (7*24*3600*1000));
-    return `${isoYear}-W${String(week).padStart(2,"0")}`;
-  }
-  function monthKey(d){
-    return `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,"0")}`;
-  }
-  function yearKey(d){
-    return `${d.getUTCFullYear()}`;
-  }
-
-function fillTypeSelect(selId){
-    const sel = document.getElementById(selId);
-    if(!sel) return;
-
-    const cur = sel.value || "ALL";
-    sel.innerHTML = ROBLOX_TYPE_OPTIONS.map(o => {
-      const label = o.label || (o.labelKey ? (t(o.labelKey) || o.value) : o.value);
-      return `<option value="${o.value}">${label}</option>`;
-    }).join("");
-    sel.value = cur;
-  }
-
-  function fillSortSelect(selId){
-    const sel = document.getElementById(selId);
-    if(!sel) return;
-
-    const cur = sel.value || "newest";
-    sel.innerHTML = SORT_OPTIONS.map(o => {
-      const label = o.label || o.value;
-      return `<option value="${o.value}">${label}</option>`;
-    }).join("");
-    sel.value = cur;
-  }
-
-  function wireAllSection(els){
-    const state = { items: [], total: 0 };
-
-    function apply(){
-      const typeV = document.getElementById(els.typeSelId)?.value || "ALL";
-      const sortV = document.getElementById(els.sortSelId)?.value || "newest";
-      const kw = document.getElementById(els.kwId)?.value || "";
-      const minP = document.getElementById(els.minPriceId)?.value || "";
-      const maxP = document.getElementById(els.maxPriceId)?.value || "";
-
-      const filtered = applyFilters(state.items, typeV, kw, minP, maxP);
-      const sorted = sortItems(filtered, sortV);
-      render(els.gridId, sorted, els.itemPrefix);
-
-      // status = items affichés (après filtre)
-      setStatus(els.statusId, itemsCountText(sorted.length), false);
-    }
-
-    async function refresh(){
-      setStatus(els.statusId, t("loading"), true);
-      try{
-        const [uPayload, gPayload] = await Promise.all([
-          fetchJsonLocal("data_user.json"),
-          fetchJsonLocal("data_group.json"),
-        ]);
-
-        const userItems = (uPayload.items || []).map(normalizeItem).filter(x => x.assetId != null).map(x=>({ ...x, __src:"user" }));
-        const groupItems = (gPayload.items || []).map(normalizeItem).filter(x => x.assetId != null).map(x=>({ ...x, __src:"group" }));
-
-        (window.__UGC_STORE ||= {}).user = userItems;
-        (window.__UGC_STORE ||= {}).group = groupItems;
-
-        // Merge + dedupe
-        const byId = new Map();
-        for(const it of [...userItems, ...groupItems]){
-          if(it?.assetId == null) continue;
-          if(!byId.has(it.assetId)) byId.set(it.assetId, it);
-        }
-
-        state.items = Array.from(byId.values());
-        state.total = state.items.length;
-        (window.__UGC_STORE ||= {}).all = state.items;
-
-        const updatedTs = Math.max(
-          (Date.parse(uPayload.generatedAt || "") || 0),
-          (Date.parse(gPayload.generatedAt || "") || 0)
-        );
-        const updated = updatedTs ? new Date(updatedTs).toLocaleString(currentLocale()) : "—";
-
-        const metaEl = document.getElementById(els.metaId);
-        if(metaEl){
-          metaEl.innerHTML = `${saleCountText(state.total)} • <span style="color:rgba(255,255,255,0.72)">${t("updated")} :</span> ${updated}`;
-        }
-
-        apply();
-      }catch(e){
-        state.items = [];
-        state.total = 0;
-        const metaEl = document.getElementById(els.metaId);
-        if(metaEl) metaEl.textContent = t("err_short");
-        render(els.gridId, [], els.itemPrefix);
-        setStatus(els.statusId, t("error"), false);
-      }
-    }
-
-    document.getElementById(els.typeSelId)?.addEventListener("change", apply);
-    document.getElementById(els.sortSelId)?.addEventListener("change", apply);
-    document.getElementById(els.kwId)?.addEventListener("input", apply);
-    document.getElementById(els.minPriceId)?.addEventListener("input", apply);
-    document.getElementById(els.maxPriceId)?.addEventListener("input", apply);
-
-    return {
-      refresh,
-      fill: ()=>{
-        fillTypeSelect(els.typeSelId);
-        fillSortSelect(els.sortSelId);
-      }
-    };
-  }
-
-  const allSec = wireAllSection(
-    { statusId:"statusAll", metaId:"metaAll", gridId:"gridAll",
-      typeSelId:"typeAll", sortSelId:"sortAll", kwId:"kwAll",
-      minPriceId:"minPriceAll", maxPriceId:"maxPriceAll", itemPrefix:"a-" }
-  );
-
-  // Gallery lightbox (visual only) (visual only)
-  const imgModal = document.getElementById("imgModal");
-  const imgModalImg = document.getElementById("imgModalImg");
-  const imgModalCap = document.getElementById("imgModalCap");
-  const imgModalClose = document.getElementById("imgModalClose");
-
-  function openImgModal(src, caption){
-    if(!imgModal || !imgModalImg) return;
-    imgModalImg.src = src;
-    imgModalImg.alt = caption || "";
-    if(imgModalCap) imgModalCap.textContent = caption || "";
-    imgModal.classList.add("open");
-    imgModal.setAttribute("aria-hidden", "false");
-  }
-  function closeImgModal(){
-    if(!imgModal) return;
-    imgModal.classList.remove("open");
-    imgModal.setAttribute("aria-hidden", "true");
-    if(imgModalImg) imgModalImg.src = "";
-  }
-  function bindGalleryModal(){
-    const grid = document.getElementById("gridGallery");
-    if(!grid || grid.dataset.modalBound) return;
-    grid.dataset.modalBound = "1";
-    grid?.addEventListener("click", (e)=>{
-      const img = e.target.closest(".shotImg");
-      if(!img) return;
-      openImgModal(img.src, img.alt || "");
-    });
-  }
-  imgModalClose?.addEventListener("click", closeImgModal);
-  imgModal?.addEventListener("click", (e)=>{ if(e.target === imgModal) closeImgModal(); });
-  document?.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeImgModal(); });
-
-
-  async function refreshAll(){
-    await allSec.refresh();
-    // Sales UI removed: run sales refresh only if the sales controls exist
-    if (document.getElementById("salesRange")) {
-      await loadSales();
-      buildSales();
-    }
-  }
-
-
-  function escapeHtml(s){
-    return String(s || "")
-      .replace(/&/g,"&amp;")
-      .replace(/</g,"&lt;")
-      .replace(/>/g,"&gt;")
-      .replace(/"/g,"&quot;")
-      .replace(/'/g,"&#39;");
-  }
-
-  function fmtRobux(n){
-    const v = (typeof n === "number" && isFinite(n)) ? n : null;
-    return v == null ? "—" : `${v} R$`;
-  }
-  function fmtDate(ts){
-    if(!ts) return "—";
-    const d = new Date(ts);
-    const dd = String(d.getDate()).padStart(2,"0");
-    const mm = String(d.getMonth()+1).padStart(2,"0");
-    const yy = d.getFullYear();
-    return `${dd}/${mm}/${yy}`;
-  }
-  function sameDay(a, b){
-    return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
-  }
-
-  
-
-  function pickColors(n){
-    const base = ["rgba(180,200,255,0.95)","rgba(160,240,220,0.95)","rgba(255,200,160,0.95)","rgba(255,160,210,0.95)","rgba(200,255,160,0.95)","rgba(210,190,255,0.95)"];
-    const out = [];
-    for(let i=0;i<n;i++) out.push(base[i % base.length]);
-    return out;
-  }
-
-  function drawMultiLine(canvas, series, labels){
-    const ctx = canvas.getContext("2d");
-    const W = canvas.width = canvas.clientWidth * devicePixelRatio;
-    const H = canvas.height = canvas.clientHeight * devicePixelRatio;
-    ctx.clearRect(0,0,W,H);
-
-    const pad = 26 * devicePixelRatio;
-    const innerW = W - pad*2;
-    const innerH = H - pad*2;
-
-    // Grid
-    ctx.globalAlpha = 0.35;
-    ctx.strokeStyle = "rgba(255,255,255,0.18)";
-    ctx.lineWidth = 1 * devicePixelRatio;
-    for(let i=0;i<4;i++){
-      const y = pad + (innerH*(i/3));
-      ctx.beginPath();
-      ctx.moveTo(pad, y);
-      ctx.lineTo(W-pad, y);
-      ctx.stroke();
-    }
-    ctx.globalAlpha = 1;
-
-    const allVals = [];
-    series.forEach(s=>{ if(s.active) allVals.push(...s.values); });
-    const maxV = Math.max(1, ...allVals.map(v=>Number(v)||0));
-    const n = labels.length;
-    const xs = labels.map((_,i)=> pad + (innerW*(n<=1?0:(i/(n-1)))) );
-    const colors = pickColors(series.length);
-
-    // Store points for tooltip
-    const pts = [];
-    series.forEach((s, idx)=>{
-      s.color = s.color || colors[idx];
-      if(!s.active) return;
-      const ys = s.values.map(v => pad + innerH*(1 - ((Number(v)||0)/maxV)) );
-      // Line
-      ctx.strokeStyle = s.color;
-      ctx.lineWidth = 2.2 * devicePixelRatio;
-      ctx.beginPath();
-      xs.forEach((x,i)=>{
-        const y = ys[i];
-        if(i===0) ctx.moveTo(x,y);
-        else ctx.lineTo(x,y);
-      });
-      ctx.stroke();
-
-      // Dots
-      ctx.fillStyle = "rgba(255,255,255,0.90)";
-      xs.forEach((x,i)=>{
-        const y = ys[i];
-        ctx.beginPath();
-        ctx.arc(x,y,2.7*devicePixelRatio,0,Math.PI*2);
-        ctx.fill();
-        pts.push({x:x/devicePixelRatio, y:y/devicePixelRatio, lab:labels[i], series:s.name, v:(Number(s.values[i])||0)});
-      });
-    });
-
-    canvas.__multiPts = pts;
-
-    canvas.onmousemove = (ev)=>{
-      const r = canvas.getBoundingClientRect();
-      const mx = ev.clientX - r.left;
-      const my = ev.clientY - r.top;
-      let best = null;
-      for(const p of (canvas.__multiPts||[])){
-        const dx = p.x - mx, dy = p.y - my;
-        const d = Math.sqrt(dx*dx+dy*dy);
-        if(!best || d < best.d) best = {p, d};
-      }
-      if(best && best.d <= 14){
-        showChartTip(ev.clientX, ev.clientY, `<b>${escapeHtml(best.p.lab)}</b><br>${escapeHtml(best.p.series)}: <b>${best.p.v}</b>`);
-      }else{
-        hideChartTip();
-      }
-    };
-    canvas.onmouseleave = ()=> hideChartTip();
-  }
-function drawBars(canvas, labels, values, opts={}){
-    const ctx = canvas.getContext("2d");
-
-    // Accept both (labels[], values[]) OR an array of objects [{lab, v}, ...]
-    if(!Array.isArray(values)){
-      if(Array.isArray(labels) && labels.length && typeof labels[0] === "object" && labels[0] !== null){
-        const arr = labels;
-        labels = arr.map(o => (o.lab ?? o.label ?? "") + "");
-        values = arr.map(o => {
-          const n = Number(o.v ?? o.value ?? o.count ?? 0);
-          return Number.isFinite(n) ? n : 0;
-        });
-      }else{
-        values = [];
-      }
-    }
-    if(!Array.isArray(labels)) labels = [];
-
-    const dpr = Math.max(1, Math.floor(window.devicePixelRatio||1));
-    const w = canvas.clientWidth || canvas.width;
-    const h = canvas.height;
-    canvas.width = w * dpr; canvas.height = h * dpr;
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-
-    ctx.clearRect(0,0,w,h);
-
-    const safeVals = values.map(v => {
-      const n = Number(v);
-      return Number.isFinite(n) ? n : 0;
-    });
-    const max = Math.max(1, ...safeVals);
-
-    const pad = 18;
-    const baseY = h - pad;
-    const barH = h - pad*2;
-    const n = Math.max(1, safeVals.length);
-    const gap = 10;
-    const barW = Math.max(10, (w - pad*2 - gap*(n-1)) / n);
-
-    // grid
-    ctx.strokeStyle = "rgba(255,255,255,0.08)";
-    ctx.lineWidth = 1;
-    for(let i=0;i<=3;i++){
-      const y = pad + (barH * i/3);
-      ctx.beginPath();
-      ctx.moveTo(pad, y);
-      ctx.lineTo(w-pad, y);
-      ctx.stroke();
-    }
-
-    // bars
-    for(let i=0;i<safeVals.length;i++){
-      const v = safeVals[i];
-      const x = pad + i * (barW + gap);
-      const bh = Math.max(0, Math.round((v / max) * barH));
-      const y = baseY - bh;
-
-      const grad = ctx.createLinearGradient(0,y,0,baseY);
-      grad.addColorStop(0,"rgba(140,210,255,0.95)");
-      grad.addColorStop(1,"rgba(140,210,255,0.18)");
-      ctx.fillStyle = grad;
-      ctx.fillRect(x, y, barW, bh);
-
-      // label (small)
-      const lab = (labels[i] || "");
-      ctx.fillStyle = "rgba(255,255,255,0.8)";
-      ctx.font = "11px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
-      ctx.textAlign = "center";
-      ctx.fillText(lab.slice(0,10), x + barW/2, h-5);
-    }
-  }
-
-  function drawLine(canvas, points){
-    const ctx = canvas.getContext("2d");
-    const dpr = Math.max(1, Math.floor(window.devicePixelRatio||1));
-    const w = canvas.clientWidth || canvas.width;
-    const h = canvas.height;
-    canvas.width = w * dpr; canvas.height = h * dpr;
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-
-    ctx.clearRect(0,0,w,h);
-    const pad = 18;
-    const innerW = w - pad*2;
-    const innerH = h - pad*2;
-
-    const maxY = Math.max(1, ...points.map(p=>p.v));
-    const minY = 0;
-
-    // grid
-    ctx.globalAlpha = 0.35;
-    ctx.strokeStyle = "rgba(255,255,255,0.25)";
-    for(let i=0;i<=3;i++){
-      const y = pad + (innerH * i/3);
-      ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(w-pad, y); ctx.stroke();
-    }
-    ctx.globalAlpha = 1;
-
-    const n = points.length;
-    if(n<=1) return;
-
-    function px(i){ return pad + innerW * (i/(n-1)); }
-    function py(v){ return pad + innerH * (1 - ((v-minY)/(maxY-minY || 1))); }
-
-    // area
-    ctx.beginPath();
-    ctx.moveTo(px(0), py(points[0].v));
-    for(let i=1;i<n;i++) ctx.lineTo(px(i), py(points[i].v));
-    ctx.lineTo(px(n-1), pad+innerH);
-    ctx.lineTo(px(0), pad+innerH);
-    ctx.closePath();
-    const grad = ctx.createLinearGradient(0,pad,0,pad+innerH);
-    grad.addColorStop(0,"rgba(140,210,255,0.22)");
-    grad.addColorStop(1,"rgba(140,210,255,0.03)");
-    ctx.fillStyle = grad;
-    ctx.fill();
-
-    // line
-    ctx.beginPath();
-    ctx.moveTo(px(0), py(points[0].v));
-    for(let i=1;i<n;i++) ctx.lineTo(px(i), py(points[i].v));
-    ctx.strokeStyle = "rgba(170,235,255,0.9)";
-    ctx.lineWidth = 2;
-    ctx.stroke();
-
-    // dots
-    ctx.fillStyle = "rgba(255,255,255,0.9)";
-    for(let i=0;i<n;i++){
-      ctx.beginPath(); ctx.arc(px(i), py(points[i].v), 2.5, 0, Math.PI*2); ctx.fill();
-    }
-  }
-
-  function buildSales(){
-  const status = document.getElementById("statusSales");
-  const statsEl = document.getElementById("salesStats");
-  const listAll = document.getElementById("salesAll");
-  const listPeriod = document.getElementById("salesToday");
-  const topList = document.getElementById("salesTopList");
-  const legend = document.getElementById("salesSeriesLegend");
-  const cTop = document.getElementById("chartTop");
-  const cDaily = document.getElementById("chartDaily");
-
-  if(!status || !statsEl || !listAll || !listPeriod || !cTop || !cDaily) return;
-
-  const VALID_RANGE_KEYS = new Set(["day","week","month","year"]);
-  let rangeKey = (document.getElementById("salesRange")?.value) || "day";
-  if(!VALID_RANGE_KEYS.has(rangeKey)) rangeKey = "day";
-
-  const store = window.__UGC_STORE || {};
-  const userItems  = Array.isArray(store.user)  ? store.user.map(x=>({...x, __src:"user"}))  : [];
-  const groupItems = Array.isArray(store.group) ? store.group.map(x=>({...x, __src:"group"})) : [];
-  const allItems = [...userItems, ...groupItems].filter(it => it && it.assetId);
-
-  const sItems = (typeof SALES_STORE === "object" && SALES_STORE && SALES_STORE.items) ? SALES_STORE.items : {};
-  for(const it of allItems){
-    const s = sItems[String(it.assetId)];
-    it.salesTotal = (s && typeof s.totalSales==="number") ? s.totalSales : 0;
-    it.salesByDay = (s && s.byDay && typeof s.byDay==="object") ? s.byDay : {};
-    it.__knownSum = 0;
-    for(const k of Object.keys(it.salesByDay||{})){
-      const n = Number(it.salesByDay[k]||0);
-      if(Number.isFinite(n) && n>0) it.__knownSum += n;
-    }
-    it.__periodSales = 0;
-    it.__estByDay = null;
-  }
-
-  // end = last known sale day (fallback today)
-  let end = new Date(); end.setUTCHours(0,0,0,0);
-  let maxDay = null;
-  for(const it of allItems){
-    for(const k of Object.keys(it.salesByDay || {})){
-      const d = parseYMD(k);
-      if(!d) continue;
-      if(!maxDay || d > maxDay) maxDay = d;
-    }
-  }
-  if(maxDay) end = maxDay;
-
-  const y = end.getUTCFullYear();
-  const m = end.getUTCMonth();
-
-  // period start (calendar aligned for month/year)
-  let start = new Date(end);
-  if(rangeKey === "day"){
-    start = new Date(end);
-  }else if(rangeKey === "week"){
-    start = new Date(end); start.setUTCDate(end.getUTCDate()-6);
-  }else if(rangeKey === "month"){
-    start = new Date(Date.UTC(y, m, 1));
-  }else{
-    start = new Date(Date.UTC(y, 0, 1));
-  }
-
-  const periodDays = daysRangeUTC(start, end);
-
-  function hash32(str){
-    let h = 2166136261;
-    for(let i=0;i<str.length;i++){
-      h ^= str.charCodeAt(i);
-      h = Math.imul(h, 16777619);
-    }
-    return (h>>>0);
-  }
-
-  // distribute remaining sales across last 365 days (or since created date) for consistent period slicing
-  function buildGlobalEst(it){
-    if(it.__estByDay) return it.__estByDay;
-
-    const known = it.salesByDay || {};
-    const remaining = Math.max(0, (Number(it.salesTotal)||0) - (it.__knownSum||0));
-    if(remaining <= 0){ it.__estByDay = {}; return it.__estByDay; }
-
-    const created = parseYMD(it.createdTs) || new Date(Date.UTC(y,0,1));
-    const gs = new Date(end); gs.setUTCDate(end.getUTCDate()-364);
-    let globalStart = startOfUTCDay(gs);
-    const cDay = startOfUTCDay(created);
-    if(cDay > globalStart) globalStart = cDay;
-    if(globalStart > end) globalStart = new Date(end);
-
-    const allDays = daysRangeUTC(globalStart, end);
-
-    const weights = [];
-    let sumW = 0;
-    for(const d of allDays){
-      if(known[d] !== undefined) continue; // don't overwrite known days
-      const w = 1 + (hash32(String(it.assetId)+"|"+d) % 13); // 1..13
-      weights.push({d, w});
-      sumW += w;
-    }
-
-    const alloc = {};
-    if(sumW <= 0){ it.__estByDay = alloc; return alloc; }
-
-    let used = 0;
-    const fracs = [];
-    for(const o of weights){
-      const raw = remaining * (o.w / sumW);
-      const n = Math.floor(raw);
-      if(n>0){ alloc[o.d] = n; used += n; }
-      fracs.push({d:o.d, f: raw-n});
-    }
-    let left = remaining - used;
-    fracs.sort((a,b)=>b.f-a.f);
-    for(let i=0;i<fracs.length && left>0;i++){
-      alloc[fracs[i].d] = (alloc[fracs[i].d]||0) + 1;
-      left--;
-    }
-
-    it.__estByDay = alloc;
-    return alloc;
-  }
-
-  const dayTotals = Object.fromEntries(periodDays.map(d=>[d,0]));
-  for(const it of allItems){
-    const est = buildGlobalEst(it);
-    let ps = 0;
-    for(const d of periodDays){
-      const n = Number(it.salesByDay?.[d]||0) + Number(est?.[d]||0);
-      if(n>0){ ps += n; dayTotals[d] += n; }
-    }
-    it.__periodSales = ps;
-  }
-
-  const soldInPeriod = allItems.filter(it => (it.__periodSales||0) > 0);
-
-  const salesTotalAll = allItems.reduce((a,it)=>a+(Number(it.salesTotal)||0),0);
-  const salesTotalPeriod = Object.values(dayTotals).reduce((a,b)=>a+(Number(b)||0),0);
-
-  const salesTag = (typeof SALES_STORE === "object" && SALES_STORE && SALES_STORE.updatedAt)
-    ? ` • ${t("sales_updated")}: ${SALES_STORE.updatedAt}` : "";
-
-  const label =
-    (rangeKey==="day")   ? `${t("sales_range_day")} • ${fmtDate(end.toISOString())}` :
-    (rangeKey==="week")  ? `${t("sales_range_week")} • ${fmtDate(start.toISOString())} → ${fmtDate(end.toISOString())}` :
-    (rangeKey==="month") ? `${t("sales_range_month")} • ${fmtDate(start.toISOString())} → ${fmtDate(end.toISOString())}` :
-                           `${t("sales_range_year")} • ${fmtDate(start.toISOString())} → ${fmtDate(end.toISOString())}`;
-
-  const periodTitleEl = document.getElementById("salesPeriodTitle"); if(periodTitleEl) periodTitleEl.textContent = label;
-  status.textContent = `${allItems.length} item(s) • ${label}${salesTag}`;
-
-  statsEl.innerHTML = `
-    <div class="stat"><div class="k">${t("stat_total")}</div><div class="v">${soldInPeriod.length}</div></div>
-    <div class="stat"><div class="k">${t("stat_sales_period")}</div><div class="v">${salesTotalPeriod}</div></div>
-    <div class="stat"><div class="k">${t("stat_sales_total")}</div><div class="v">${salesTotalAll}</div></div>
-  `;
-
-  // Item filter: only items sold in selected period
-  const itemSel = document.getElementById("salesItemFilter");
-  let itemKey = itemSel?.value || "__ALL__";
-
-  const options = [{id:"__ALL__", name:`All sold items (${soldInPeriod.length})`}]
-    .concat(
-      soldInPeriod
-        .sort((a,b)=>(b.__periodSales||0)-(a.__periodSales||0))
-        .map(it=>({id:String(it.assetId), name:(it.name || ("Item "+it.assetId))}))
-    );
-
-  if(itemSel){
-    itemSel.innerHTML = options.map(o=>`<option value="${o.id}">${escapeHtml(o.name)}</option>`).join("");
-    if(!options.some(o=>o.id===itemKey)) itemKey="__ALL__";
-    itemSel.value = itemKey;
-  }
-
-  const filtered = (itemKey==="__ALL__")
-    ? soldInPeriod
-    : soldInPeriod.filter(it => String(it.assetId)===String(itemKey));
-
-  const sorted = [...filtered].sort((a,b)=>(b.__periodSales||0)-(a.__periodSales||0));
-
-  function row(it,count){
-    const creator = it.__src==="user" ? t("sale_creator_user") : t("sale_creator_group");
-    const url = `https://www.roblox.com/catalog/${it.assetId}`;
-    const sub = `${creator} • ${it.badge || "—"} • ${fmtDate(it.createdTs)} • ${count}`;
-    return `
-      <a class="saleRow hoverLift" href="${url}" target="_blank" rel="noreferrer">
-        <div class="saleThumb"><img loading="lazy" src="${it.thumb}" alt=""></div>
-        <div class="saleMeta">
-          <div class="saleName">${escapeHtml(it.name || ("Item "+it.assetId))}</div>
-          <div class="saleSub"><span>${escapeHtml(sub)}</span></div>
-        </div>
-      </a>
-    `;
-  }
-
-  // Period list (Top 20)
-  listPeriod.innerHTML = sorted.slice(0,20).map(it=>row(it,it.__periodSales||0)).join("")
-    || `<div class="muted">${t("empty_sales_day")}</div>`;
-
-  // All list (period-sold only) — stays one page (scroll inside)
-  listAll.innerHTML = sorted.map(it=>row(it,it.__periodSales||0)).join("")
-    || `<div class="muted">${t("empty_sales")}</div>`;
-
-  // Top bars (period)
-  const top = (itemKey==="__ALL__") ? sorted.slice(0,10) : sorted.slice(0,1);
-  drawBars(cTop, top.map(_=>""), top.map(it=>(it.__periodSales||0)));
-
-  if(topList){
-    topList.innerHTML = top.map(it=>{
-      const v = (it.__periodSales||0);
-      return `<div class="miniRow"><span class="name">${escapeHtml(it.name || ("Item "+it.assetId))}</span><span class="val">${v}</span></div>`;
-    }).join("");
-  }
-
-  // Multi-line evolution (one line per item sold in period; toggles in legend)
-  const itemsForLines = (itemKey==="__ALL__") ? soldInPeriod : sorted;
-
-  let labels = [];
-  let bucketDays = [];
-
-  if(rangeKey==="day"){
-    const s14 = new Date(end); s14.setUTCDate(end.getUTCDate()-13);
-    const d14 = daysRangeUTC(s14, end);
-    labels = d14.map(d=>d.slice(5));
-    bucketDays = d14.map(d=>[d]);
-  }else if(rangeKey==="week" || rangeKey==="month"){
-    labels = periodDays.map(d=>d.slice(5));
-    bucketDays = periodDays.map(d=>[d]);
-    if(labels.length>31){ labels=labels.slice(-31); bucketDays=bucketDays.slice(-31); }
-  }else{
-    const monthKeys = Array.from(new Set(periodDays.map(d=>d.slice(0,7)))).sort();
-    labels = monthKeys.map(mk=>mk.slice(5)+"/"+mk.slice(2,4));
-    bucketDays = monthKeys;
-  }
-
-  window.__salesActive ||= {};
-  const series = [];
-
-  for(const it of itemsForLines){
-    const id = String(it.assetId);
-    const name = (it.name || ("Item "+it.assetId));
-    const est = it.__estByDay || {};
-    const active = (window.__salesActive[id] !== undefined) ? window.__salesActive[id] : true;
-
-    let values = [];
-    if(rangeKey==="year"){
-      values = bucketDays.map(mk=>{
-        let sum=0;
-        for(const d of periodDays){
-          if(d.startsWith(mk)) sum += Number(it.salesByDay?.[d]||0) + Number(est?.[d]||0);
-        }
-        return sum;
-      });
-    }else{
-      values = bucketDays.map(arr=>{
-        const d = arr[0];
-        return (Number(it.salesByDay?.[d]||0) + Number(est?.[d]||0)) || 0;
-      });
-    }
-    series.push({id,name,values,active});
-  }
-
-  if(legend){
-    legend.innerHTML = series.map(s=>{
-      const checked = (window.__salesActive[s.id] !== undefined ? window.__salesActive[s.id] : s.active) ? "checked" : "";
-      return `<label><input type="checkbox" data-sid="${s.id}" ${checked}><span class="sw"></span>${escapeHtml(s.name)}</label>`;
-    }).join("");
-
-    legend.querySelectorAll("input[type=checkbox]").forEach(inp=>{
-      inp.onchange = ()=>{
-        const sid = inp.getAttribute("data-sid");
-        window.__salesActive[sid] = inp.checked;
-        drawMultiLine(cDaily, series.map(ss=>({ ...ss, active: !!window.__salesActive[ss.id] })), labels);
-      };
-    });
-  }
-
-  series.forEach(s=>{ if(window.__salesActive[s.id]===undefined) window.__salesActive[s.id]=s.active; });
-  drawMultiLine(cDaily, series.map(ss=>({ ...ss, active: !!window.__salesActive[ss.id] })), labels);
-}
-
-  document.getElementById("refreshAllBtn")?.addEventListener("click", refreshAll);
-
-  allSec.fill();
-  applyLang();
-  refreshAll();
-
-  // Sales controls
-  if (document.getElementById('viewSales')) fillSalesSelects();
-  document.getElementById("salesRange")?.addEventListener("change", ()=> buildSales());
-tabSales?.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
-
-
-  // Redraw charts on resize (mobile rotation, etc.)
-  let _salesRaf = 0;
-  window?.addEventListener("resize", ()=>{
-    cancelAnimationFrame(_salesRaf);
-    _salesRaf = requestAnimationFrame(()=> buildSales());
-  });
-
-  /* ---------- Gallery (progress images) ----------
-     - Lit gallery.json (généré par GitHub Actions à partir du dossier /gallery)
-  */
-  function setGalleryStatus(text){
-    document.getElementById("statusGallery").textContent = text;
-  }
-
-  function safeText(s){ return String(s || "").replaceAll("<","&lt;").replaceAll(">","&gt;"); }
-
-  function renderGallery(items){
-    const grid = document.getElementById("galleryGrid");
-    if(!items.length){
-      grid.innerHTML = `<div class="empty">Aucune image pour le moment. Ajoute des fichiers dans <b>gallery/</b> sur GitHub.</div>`;
-      return;
-    }
-    grid.innerHTML = items.map(x => {
-      const url = x.url || "";
-      const safeUrl = encodeURI(url);
-      const cap = x.caption ? safeText(x.caption) : "";
-      return `
-        <div class="shot reveal">
-          <div class="imgWrap">
-            <img loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous"
-                 src="${safeUrl}" alt="${cap}"
-                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'empty\'>Image invalide</div>';">
-          </div>
-          <div class="cap">${cap || "<span class='muted'>Sans légende</span>"}</div>
-        </div>
-      `;
-    }).join("");
-    ensureRevealForGrid(grid);
-    bindGalleryModal();
-  }
-
-  async function refreshGallery(){
-    setGalleryStatus("Chargement…");
-    try{
-      const j = await fetchJsonLocal("gallery.json");
-      const items = Array.isArray(j) ? j : (Array.isArray(j.items) ? j.items : []);
-      const clean = items.filter(x => x && typeof x.url === "string" && x.url.trim());
-      renderGallery(clean);
-      setGalleryStatus(`${clean.length} image(s)`);
-    }catch(e){
-      renderGallery([]);
-      setGalleryStatus("gallery.json introuvable");
-    }
-  }
-
-  // charge au clic (et si déjà sur galerie)
-  tabGallery?.addEventListener("click", refreshGallery);
-
-  
-  /* ---------- Viewport height fix (mobile address bar) ---------- */
-  function setVh(){
-    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
-  }
-  window?.addEventListener('resize', setVh);
-  setVh();
-
-  /* ---------- Language (in-place UI translation) ---------- */
-  
-
-  function t(key){
-    const lang = (localStorage.getItem("lang") || "fr");
-    return (I18N[lang] && I18N[lang][key]) || (I18N.en && I18N.en[key]) || (I18N.fr[key] || "");
-  }
-
-
-  function currentLang(){ return "en"; }
-  function currentLocale(){
-    const l=currentLang();
-    const map={fr:"fr-FR",en:"en-US",es:"es-ES",de:"de-DE",pt:"pt-PT",it:"it-IT",nl:"nl-NL",pl:"pl-PL",tr:"tr-TR",ru:"ru-RU",uk:"uk-UA",ar:"ar-SA",he:"he-IL",hi:"hi-IN",bn:"bn-BD",id:"id-ID",vi:"vi-VN",th:"th-TH",ja:"ja-JP",ko:"ko-KR",zh:"zh-CN",sv:"sv-SE",no:"nb-NO",da:"da-DK",fi:"fi-FI",el:"el-GR"};
-    return map[l] || undefined;
-  }
-  function saleCountText(n){
-    const l=currentLang();
-    const fn = (I18N[l] && I18N[l].saleCount) || (I18N.en && I18N.en.saleCount) || I18N.fr.saleCount;
-    return (typeof fn === "function") ? fn(n) : `${n}`;
-  }
-  function itemsCountText(n){
-    const l=currentLang();
-    const fn = (I18N[l] && I18N[l].itemsCount) || (I18N.en && I18N.en.itemsCount) || I18N.fr.itemsCount;
-    return (typeof fn === "function") ? fn(n) : `${n}`;
-  }
-
-
-  function applyLang(lang){
-    if(!lang) lang="fr";
-    localStorage.setItem("lang", lang);
-    window.__lang = lang;
-    document.documentElement.lang = lang;
-
-    // text nodes
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-      const k = el.getAttribute("data-i18n");
-      const v = (I18N[lang] && I18N[lang][k]) || (I18N.fr[k] || null);
-      if(v !== null) el.textContent = v;
-    });
-
-    // placeholders
-    document.querySelectorAll("[data-i18n-ph]").forEach(el => {
-      const k = el.getAttribute("data-i18n-ph");
-      const v = (I18N[lang] && I18N[lang][k]) || (I18N.fr[k] || null);
-      if(v !== null) el.setAttribute("placeholder", v);
-    });
-
-    // Rebuild translated selects
-    fillTypeSelect("typeAll");
-    fillSortSelect("sortAll");
-
-    // Refresh sales labels/stats without refetch
-
-    // Sales selects
-
-}
-
-  // language menu toggle
-  const btnLang = document.getElementById("btnLang");
-  const btnLangMini = document.getElementById("btnLangMini");
-  const langMenu = document.getElementById("langMenu");
-  const langSelect = document.getElementById("langSelect");
-
-  const FLAGS = {
-    fr:"🇫🇷", en:"🇺🇸", es:"🇪🇸", de:"🇩🇪", pt:"🇵🇹", it:"🇮🇹", nl:"🇳🇱", pl:"🇵🇱",
-    tr:"🇹🇷", ru:"🇷🇺", uk:"🇺🇦", ar:"🇸🇦", hi:"🇮🇳", bn:"🇧🇩", ur:"🇵🇰",
-    id:"🇮🇩", ms:"🇲🇾", vi:"🇻🇳", th:"🇹🇭", ja:"🇯🇵", ko:"🇰🇷", zh:"🇨🇳",
-    he:"🇮🇱", fa:"🇮🇷", sv:"🇸🇪", no:"🇳🇴", da:"🇩🇰", fi:"🇫🇮", el:"🇬🇷",
-    cs:"🇨🇿", hu:"🇭🇺", ro:"🇷🇴", bg:"🇧🇬", sr:"🇷🇸", hr:"🇭🇷", sk:"🇸🇰",
-    sl:"🇸🇮", lt:"🇱🇹", lv:"🇱🇻", et:"🇪🇪", sw:"🇰🇪", tl:"🇵🇭",
-    ta:"🇮🇳", te:"🇮🇳", mr:"🇮🇳"
-  };
-  function flagFor(code){ return FLAGS[code] || "🌐"; }
-
-  function syncLangMini(visible){
-    if(!btnLangMini) return;
-    btnLangMini.hidden = !visible;
-    btnLangMini.classList.toggle("show", !!visible);
-    if(visible) btnLangMini.textContent = flagFor(currentLang());
-  }
-
-  function positionLangMenu(){
-    if(!btnLang || !langMenu) return;
-    const r = btnLang.getBoundingClientRect();
-    const w = Math.min(360, window.innerWidth - 20);
-    langMenu.style.width = w + "px";
-    // align the menu to the left of the button (so it never overflows on the right)
-    const left = Math.max(10, Math.min(window.innerWidth - w - 10, Math.floor(r.right - w)));
-    langMenu.style.left = left + "px";
-    langMenu.style.top = Math.floor(r.bottom + 10) + "px";
-  }
-
-  function closeLangMenu(){
-    langMenu?.classList.remove("open");
-    langMenu?.setAttribute("aria-hidden", "true");
-    syncLangMini(false);
-  }
-
-  btnLang?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const open = langMenu.classList.toggle("open");
-    langMenu.setAttribute("aria-hidden", open ? "false" : "true");
-    if(open){
-      syncLangMini(true);
-      positionLangMenu();
-      // focus after paint for mobile
-      setTimeout(()=>{ try{ langSelect.focus(); }catch(_){} }, 0);
-    }else{
-      syncLangMini(false);
-    }
-  });
-  btnLangMini?.addEventListener("click", (e)=>{ e.stopPropagation(); btnLang?.click(); });
-  window?.addEventListener("resize", ()=>{ if(langMenu?.classList.contains("open")) positionLangMenu(); });
-
-  document?.addEventListener("click", (e)=>{
-    if(!langMenu) return;
-    if(langMenu.classList.contains("open") && !langMenu.contains(e.target) && e.target !== btnLang && e.target !== btnLangMini){
-      closeLangMenu();
-    }
-  });
-
-  langMenu?.addEventListener("click",(e)=>e.stopPropagation());
-  langMenu?.addEventListener("pointerdown",(e)=>e.stopPropagation());
-  
-  
-langSelect?.addEventListener("pointerdown",(e)=>e.stopPropagation());
-  langSelect?.addEventListener("click",(e)=>e.stopPropagation());
-
-  // set initial lang
-  const savedLang = localStorage.getItem("lang") || "fr";
-  if(langSelect) langSelect.value = savedLang;
-  applyLang(savedLang);
-
-  /* ---------- Mobile panel switch (Option A) ---------- */
-  langSelect?.addEventListener("change", (e) => {
-    applyLang(e.target.value);
-    closeLangMenu();
-  });
-
-  
-    /* ---------- Commission (images only) ----------
-   - Lit commissions.json (à la racine)
-   - 2 boutons : Modèles / Textures
-   - Affiche uniquement des images (pas d'infos client/projet)
-  */
-  const COMMISSIONS_FALLBACK = [
-    // Fallback si commissions.json n'existe pas :
-    // { images:{ model3d:"Commission/client/model.png", texturing:"Commission/client/texture.png" } }
-  ];
-
-  const comBtnModels = document.getElementById("comBtnModels");
-  const comBtnTextures = document.getElementById("comBtnTextures");
-
-  function asArr(v){
-    if(!v) return [];
-    if(Array.isArray(v)) return v.filter(Boolean).map(String);
-    return [String(v)];
-  }
-
-  function normalizeCommission(x){
-    const o = x || {};
-    const imgs = o.images || {};
-    const modelImgs = asArr(o.model3d ?? o.model ?? o.render ?? imgs.model3d ?? imgs.model ?? imgs.render ?? o.img);
-    const texImgs   = asArr(o.texturing ?? o.texture ?? imgs.texturing ?? imgs.texture ?? imgs.tex ?? o.textureImg);
-    return { modelImgs, texImgs };
-  }
-
-  async function loadCommissions(){
-    try{
-      const j = await fetchJsonLocal("commissions.json");
-      if(Array.isArray(j)) return j;
-      if(Array.isArray(j.items)) return j.items;
-      return [];
-    }catch(e){
-      return Array.isArray(COMMISSIONS_FALLBACK) ? COMMISSIONS_FALLBACK : [];
-    }
-  }
-
-  function collectMedia(items){
-    const models = [];
-    const textures = [];
-    const seen = new Set();
-
-    for(const it of items){
-      for(const p of (it.modelImgs || [])){
-        const src = String(p || "");
-        if(!src) continue;
-        const key = "m|" + src;
-        if(seen.has(key)) continue;
-        seen.add(key);
-        models.push(src);
-      }
-      for(const p of (it.texImgs || [])){
-        const src = String(p || "");
-        if(!src) continue;
-        const key = "t|" + src;
-        if(seen.has(key)) continue;
-        seen.add(key);
-        textures.push(src);
-      }
-    }
-    return { models, textures };
-  }
-
-  function bindCommissionThumbs(grid){
-    if(!grid || grid.dataset.thumbBound) return;
-    grid.dataset.thumbBound = "1";
-    grid.addEventListener("click", (e)=>{
-      const btn = e.target.closest(".commissionMediaThumb");
-      if(!btn || btn.disabled) return;
-      const src = btn.getAttribute("data-img");
-      if(src) openImgModal(src, "");
-    });
-  }
-
-  function setCommissionMode(mode){
-    const m = (mode === "textures") ? "textures" : "models";
-    localStorage.setItem("commissionMode", m);
-    comBtnModels?.classList.toggle("primary", m === "models");
-    comBtnTextures?.classList.toggle("primary", m === "textures");
-    return m;
-  }
-
-  async function renderCommission(mode){
-    const grid = document.getElementById("commissionGrid");
-    const status = document.getElementById("statusCommission");
-    if(!grid) return;
-
-    status && (status.textContent = "Chargement…");
-
-    const raw = await loadCommissions();
-    const items = (Array.isArray(raw) ? raw : []).map(normalizeCommission);
-    const media = collectMedia(items);
-
-    const list = (mode === "textures") ? media.textures : media.models;
-
-    status && (status.textContent = list.length ? `${list.length} image(s)` : "—");
-
-    if(!list.length){
-      grid.innerHTML = `<div class="muted">Ajoute tes images dans <b>commissions.json</b> (champs <b>images.model3d</b> et <b>images.texturing</b>).</div>`;
-      return;
-    }
-
-    grid.innerHTML = list.map((src)=>{
-      const safeSrc = src ? encodeURI(String(src)) : "";
-      return `
-        <div class="commissionCard reveal">
-          <button class="commissionMediaThumb" type="button" ${safeSrc ? `data-img="${escapeHtml(safeSrc)}"` : "disabled"}>
-            ${safeSrc ? `<img loading="lazy" src="${safeSrc}" alt="">` : `<div class="muted" style="padding:12px;">No image</div>`}
-          </button>
-        </div>
-      `;
-    }).join("");
-
-    ensureRevealForGrid(grid);
-    bindCommissionThumbs(grid);
-  }
-
-  async function refreshCommission(){
-    const saved = localStorage.getItem("commissionMode") || "models";
-    const mode = setCommissionMode(saved);
-    await renderCommission(mode);
-  }
-
-  comBtnModels?.addEventListener("click", async ()=>{
-    const mode = setCommissionMode("models");
-    await renderCommission(mode);
-  });
-  comBtnTextures?.addEventListener("click", async ()=>{
-    const mode = setCommissionMode("textures");
-    await renderCommission(mode);
-  });
-
-/* ---------- Scroll reveal (cards/images appear smoothly) ---------- */
-  function setupReveal(rootEl){
-    if(!rootEl) return;
-    const obs = new IntersectionObserver((entries) => {
-      for(const ent of entries){
-        if(ent.isIntersecting) ent.target.classList.add("in");
-      }
-    }, {root: rootEl, threshold: 0.08});
-    rootEl.querySelectorAll(".reveal").forEach(el => obs.observe(el));
-    // expose helper
-    rootEl._revealObserver = obs;
-  }
-  function addReveal(rootEl, els){
-    if(!rootEl || !els) return;
-    const obs = rootEl._revealObserver;
-    if(!obs) return;
-    els.forEach(el => obs.observe(el));
-  }
-
-
-  function ensureRevealForGrid(grid){
-    if(!grid) return;
-    const scroller = grid.closest(".scroller") || grid.parentElement;
-    const els = Array.from(grid.querySelectorAll(".reveal"));
-    if(!els.length) return;
-
-    // If IntersectionObserver is unavailable, show immediately.
-    if(!("IntersectionObserver" in window) || !scroller){
-      els.forEach(el => el.classList.add("in"));
-      return;
-    }
-
-    if(!scroller._revealObserver){
-      const obs = new IntersectionObserver((entries) => {
-        for(const ent of entries){
-          if(ent.isIntersecting) ent.target.classList.add("in");
-        }
-      }, {root: scroller, threshold: 0.08});
-      scroller._revealObserver = obs;
-    }
-    els.forEach(el => scroller._revealObserver.observe(el));
-
-    // Safety: first paint (avoid "empty page" if observer doesn't trigger immediately)
-    requestAnimationFrame(() => els.forEach(el => el.classList.add("in")));
-  }
-
-
-/* =====================================================================
-   SALES PRO OVERRIDE (v7)
-   - Does NOT touch UGC/Gallery.
-   - Shows ALL items (UGC + any ids found in sales.json) with TOTAL sales
-   - Period filter uses:
-     1) sales.json per-day if available
-     2) else local snapshots of total sales (stored in localStorage)
-   - Pro charts (Chart.js) + checkbox legend + tooltips
-   ===================================================================== */
-
-
-function salesProTodayUTC(){
-  const d = new Date();
-  d.setUTCHours(0,0,0,0);
-  return d;
-}
-function salesProYMD(d){
-  const y = d.getUTCFullYear();
-  const m = String(d.getUTCMonth()+1).padStart(2,"0");
-  const dd = String(d.getUTCDate()).padStart(2,"0");
-  return `${y}-${m}-${dd}`;
-}
-function salesProParseYMD(s){
-  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s||""));
-  if(!m) return null;
-  const d = new Date(Date.UTC(+m[1], +m[2]-1, +m[3]));
-  return isNaN(d.getTime()) ? null : d;
-}
-function salesProDaysUTC(start, end){
-  const s = new Date(start); s.setUTCHours(0,0,0,0);
-  const e = new Date(end);   e.setUTCHours(0,0,0,0);
-  const out = [];
-  if(isNaN(s)||isNaN(e)) return out;
-  let cur = s <= e ? s : e;
-  const last = s <= e ? e : s;
-  while(cur <= last){
-    out.push(salesProYMD(cur));
-    const n = new Date(cur);
-    n.setUTCDate(n.getUTCDate()+1);
-    cur = n;
-  }
-  return out;
-}
-function salesProHash32(str){
-  let h = 2166136261;
-  for(let i=0;i<str.length;i++){
-    h ^= str.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return (h>>>0);
-}
-function salesProAllocBuckets(total, buckets, seed){
-  // deterministic integer allocation: sum == total
-  const n = Math.max(1, buckets);
-  const weights = [];
-  let sumW = 0;
-  for(let i=0;i<n;i++){
-    const w = 1 + (salesProHash32(seed + "|" + i) % 17); // 1..17
-    weights.push(w);
-    sumW += w;
-  }
-  const vals = new Array(n).fill(0);
-  let used = 0;
-  const fr = [];
-  for(let i=0;i<n;i++){
-    const raw = total * (weights[i]/sumW);
-    const v = Math.floor(raw);
-    vals[i] = v;
-    used += v;
-    fr.push({i, f: raw - v});
-  }
-  let left = total - used;
-  fr.sort((a,b)=>b.f-a.f);
-  for(let k=0;k<fr.length && left>0;k++){
-    vals[fr[k].i] += 1;
-    left--;
-  }
-  return vals;
-}
-
-function salesProLoadSnaps(){
-  try{
-    const raw = localStorage.getItem(SALES_PRO.snapKey);
-    const j = raw ? JSON.parse(raw) : null;
-    if(!j || typeof j !== "object") return {};
-    return j;
-  }catch(_){ return {}; }
-}
-function salesProSaveSnaps(snaps){
-  try{
-    localStorage.setItem(SALES_PRO.snapKey, JSON.stringify(snaps));
-  }catch(_){}
-}
-function salesProTrimSnaps(snaps){
-  // keep only last maxDays by date sort
-  const keys = Object.keys(snaps).filter(k=>/^\d{4}-\d{2}-\d{2}$/.test(k)).sort();
-  if(keys.length <= SALES_PRO.maxDays) return snaps;
-  const drop = keys.slice(0, keys.length - SALES_PRO.maxDays);
-  for(const k of drop) delete snaps[k];
-  return snaps;
-}
-
-async function salesProFetchJson(url){
-  const res = await fetch(url, { cache:"no-store" });
-  if(!res.ok) throw new Error("HTTP " + res.status);
-  return await res.json();
-}
-
-async function salesProFetchThumbs(assetIds){
-  // best effort; fallback to roblox.com thumbnail endpoint
-  const map = {};
-  try{
-    const j = await salesProFetchJson(SALES_PRO.thumbsUrl(assetIds));
-    const data = Array.isArray(j?.data) ? j.data : [];
-    for(const d of data){
-      const id = String(d?.targetId ?? d?.assetId ?? "");
-      if(!id) continue;
-      if(d?.imageUrl) map[id] = d.imageUrl;
-    }
-  }catch(_){}
-  for(const id of assetIds){
-    const k = String(id);
-    if(!map[k]) map[k] = SALES_PRO.thumbFallback(k);
-  }
-  return map;
-}
-
-async function salesProFetchProductInfo(assetId){
-  const j = await salesProFetchJson(SALES_PRO.productInfoUrl(assetId));
-  // Many Roblox endpoints expose "Sales" for productinfo; fallback to null if absent.
-  const sales = (typeof j?.Sales === "number") ? j.Sales :
-                (typeof j?.sales === "number") ? j.sales :
-                (typeof j?.TotalSales === "number") ? j.TotalSales :
-                (typeof j?.totalSales === "number") ? j.totalSales : null;
-  const name = (typeof j?.Name === "string" && j.Name.trim()) ? j.Name.trim() :
-               (typeof j?.name === "string" && j.name.trim()) ? j.name.trim() : null;
-  const at = (typeof j?.AssetTypeId === "number") ? j.AssetTypeId : null;
-  const creatorName = (typeof j?.Creator?.Name === "string") ? j.Creator.Name : null;
-  return { sales, name, assetTypeId: at, creatorName };
-}
-
-async function salesProHydrateTotals(assetIds){
-  const ids = Array.from(new Set(assetIds.map(x=>String(x)).filter(Boolean)));
-  if(!ids.length) return { totals:{}, meta:{} };
-
-  // thumbs batch (fast)
-  const thumbs = await salesProFetchThumbs(ids);
-
-  // productinfo with concurrency limit
-  const totals = {};
-  const meta = {};
-  const limit = 6;
-  let i = 0;
-  async function worker(){
-    while(i < ids.length){
-      const id = ids[i++];
-
-      let info = null;
-      try{ info = await salesProFetchProductInfo(id); }catch(_){ info = null; }
-
-      // total sales: prefer productinfo sales, else sales.json total_sales if present
-      let total = null;
-      if(info && typeof info.sales === "number") total = info.sales;
-
-      if(total == null && SALES_STORE && SALES_STORE.items && SALES_STORE.items[id] && typeof SALES_STORE.items[id].totalSales === "number"){
-        total = SALES_STORE.items[id].totalSales;
-      }
-      totals[id] = Number.isFinite(total) ? total : 0;
-
-      const name = (info && info.name) ? info.name :
-        // If present in UGC store, keep its name
-        (()=>{
-          const st = window.__UGC_STORE || {};
-          const all = ([]).concat(st.user||[], st.group||[]);
-          const hit = all.find(x=>String(x.assetId)===id);
-          return hit?.name || null;
-        })() || `Asset ${id}`;
-
-      // type label (best effort)
-      const type = (()=>{
-        const st = window.__UGC_STORE || {};
-        const all = ([]).concat(st.user||[], st.group||[]);
-        const hit = all.find(x=>String(x.assetId)===id);
-        return hit?.badge || hit?.type || (info?.assetTypeId != null ? ("Type " + info.assetTypeId) : "Item");
-      })();
-
-      meta[id] = {
-        name,
-        thumb: thumbs[id] || SALES_PRO.thumbFallback(id),
-        badge: type,
-        creatorName: info?.creatorName || null
-      };
-    }
-  }
-  const workers = [];
-  for(let k=0;k<Math.min(limit, ids.length);k++) workers.push(worker());
-  await Promise.all(workers);
-  return { totals, meta };
-}
-
-function salesProUpdateSnapshot(todayYMD, totals){
-  const snaps = salesProLoadSnaps();
-  snaps[todayYMD] = snaps[todayYMD] || {};
-  for(const [id,val] of Object.entries(totals)){
-    const n = Number(val||0);
-    if(Number.isFinite(n)) snaps[todayYMD][id] = n;
-  }
-  salesProTrimSnaps(snaps);
-  salesProSaveSnaps(snaps);
-  return snaps;
-}
-
-function salesProGetBaseline(snaps, baselineYMD, assetId){
-  // closest snapshot <= baselineYMD
-  const keys = Object.keys(snaps).filter(k=>/^\d{4}-\d{2}-\d{2}$/.test(k) && k <= baselineYMD).sort();
-  for(let i=keys.length-1;i>=0;i--){
-    const day = keys[i];
-    const v = snaps[day] && snaps[day][assetId];
-    if(typeof v === "number") return v;
-  }
-  return null;
-}
-
-function salesProPeriodBounds(rangeKey, endDateUTC){
-  const end = new Date(endDateUTC);
-  end.setUTCHours(0,0,0,0);
-  let start = new Date(end);
-  if(rangeKey === "day"){
-    start = new Date(end);
-  }else if(rangeKey === "week"){
-    start.setUTCDate(end.getUTCDate()-6);
-  }else if(rangeKey === "month"){
-    start.setUTCDate(end.getUTCDate()-29);
-  }else{
-    start.setUTCDate(end.getUTCDate()-364);
-  }
-  return { start, end };
-}
-
-function salesProSumFromSalesJson(assetId, startYMD, endYMD){
-  // sum known per-day sales counts from SALES_STORE if present
-  const s = (SALES_STORE && SALES_STORE.items) ? SALES_STORE.items[String(assetId)] : null;
-  const byDay = s?.byDay;
-  if(!byDay || typeof byDay !== "object") return null;
-  let sum = 0;
-  for(const [d,v] of Object.entries(byDay)){
-    if(d < startYMD || d > endYMD) continue;
-    const n = Number(v||0);
-    if(Number.isFinite(n) && n>0) sum += n;
-  }
-  return sum;
-}
-
-function salesProComputePeriodSales({snaps, totals, rangeKey, endDateUTC}){
-  const { start, end } = salesProPeriodBounds(rangeKey, endDateUTC);
-  const startYMD = salesProYMD(start);
-  const endYMD = salesProYMD(end);
-
-  const baseline = new Date(start);
-  baseline.setUTCDate(start.getUTCDate()-1);
-  const baselineYMD = salesProYMD(baseline);
-
-  const out = {};
-  for(const [id,curTotal] of Object.entries(totals)){
-    // 1) if sales.json has per-day counts, use those
-    const fromJson = salesProSumFromSalesJson(id, startYMD, endYMD);
-    if(typeof fromJson === "number"){
-      out[id] = fromJson;
-      continue;
-    }
-
-    // 2) snapshots delta
-    const base = salesProGetBaseline(snaps, baselineYMD, id);
-    if(typeof base === "number"){
-      const delta = Math.max(0, (Number(curTotal)||0) - base);
-      out[id] = delta;
-    }else{
-      // no baseline yet => cannot know period delta; show 0 instead of wrong huge number
-      out[id] = 0;
-    }
-  }
-  return { startYMD, endYMD, periodSales: out };
-}
-
-function salesProEnsureCharts(){
-  if(!window.Chart) return;
-
-  const topCanvas = document.getElementById("chartTop");
-  const trendCanvas = document.getElementById("chartDaily");
-  if(!topCanvas || !trendCanvas) return;
-
-  if(!SALES_PRO.charts.top){
-    SALES_PRO.charts.top = new Chart(topCanvas, {
-      type: "bar",
-      data: { labels: [], datasets: [{ label:"Sales", data: [] }] },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display:false },
-          tooltip: { enabled:true }
-        },
-        scales: {
-          x: { ticks: { color:"rgba(255,255,255,0.75)" }, grid: { display:false } },
-          y: { ticks: { color:"rgba(255,255,255,0.75)" }, grid: { color:"rgba(255,255,255,0.08)" } }
-        }
-      }
-    });
-  }
-
-  if(!SALES_PRO.charts.trend){
-    SALES_PRO.charts.trend = new Chart(trendCanvas, {
-      type: "line",
-      data: { labels: [], datasets: [] },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: { mode:"nearest", intersect:false },
-        plugins: {
-          legend: { display:false },
-          tooltip: { enabled:true }
-        },
-        elements: { point: { radius:2, hoverRadius:4 }, line: { tension:0.35, borderWidth:2 } },
-        scales: {
-          x: { ticks: { color:"rgba(255,255,255,0.75)" }, grid: { color:"rgba(255,255,255,0.08)" } },
-          y: { ticks: { color:"rgba(255,255,255,0.75)" }, grid: { color:"rgba(255,255,255,0.08)" }, beginAtZero:true }
-        }
-      }
-    });
-  }
-}
-
-function salesProSetLegend(datasets){
-  const el = document.getElementById("salesSeriesLegend");
-  if(!el) return;
-  const chart = SALES_PRO.charts.trend;
-  if(!chart) return;
-
-  // limit legend height and keep it usable
-  el.innerHTML = datasets.map((ds, idx)=>{
-    const checked = !chart.isDatasetVisible(idx) ? "" : "checked";
-    const color = ds.borderColor || "rgba(255,255,255,0.6)";
-    return `<label title="${escapeHtml(ds.label)}"><input type="checkbox" data-idx="${idx}" ${checked}><span class="sw" style="background:${color}"></span>${escapeHtml(ds.label)}</label>`;
-  }).join("");
-
-  el.querySelectorAll("input[type=checkbox]").forEach(inp=>{
-    inp.onchange = ()=>{
-      const idx = Number(inp.getAttribute("data-idx"));
-      if(!Number.isFinite(idx)) return;
-      if(inp.checked) chart.show(idx);
-      else chart.hide(idx);
-      chart.update();
-    };
-  });
-}
-
-function salesProBarColor(i){
-  const base = [
-    "rgba(140,210,255,0.95)",
-    "rgba(140,255,225,0.90)",
-    "rgba(255,200,140,0.90)",
-    "rgba(255,140,210,0.90)",
-    "rgba(200,255,140,0.90)",
-    "rgba(210,190,255,0.90)",
-  ];
-  return base[i % base.length];
-}
-
-function salesProLineColor(i){
-  const base = [
-    "rgba(170,235,255,0.95)",
-    "rgba(160,240,220,0.95)",
-    "rgba(255,200,160,0.95)",
-    "rgba(255,160,210,0.95)",
-    "rgba(200,255,160,0.95)",
-    "rgba(210,190,255,0.95)",
-  ];
-  return base[i % base.length];
-}
-
-function salesProBuildSeries(rangeKey, ids, periodSalesMap, labels){
-  // Create a non-empty curve even without real per-day history:
-  // distribute period totals deterministically across buckets.
-  const buckets = labels.length;
-  const series = [];
-  ids.forEach((id, idx)=>{
-    const total = Number(periodSalesMap[id]||0);
-    const vals = salesProAllocBuckets(total, buckets, id + "|" + rangeKey);
-    series.push({ id, values: vals, color: salesProLineColor(idx) });
-  });
-  return series;
-}
-
-function salesProBuildLabels(rangeKey, startUTC, endUTC){
-  if(rangeKey === "day"){
-    // 24 buckets (hours)
-    const labs = [];
-    for(let h=0;h<24;h++) labs.push(String(h).padStart(2,"0")+":00");
-    return labs;
-  }
-  if(rangeKey === "week" || rangeKey === "month"){
-    const days = salesProDaysUTC(startUTC, endUTC);
-    // week => 7 labels; month => 30 labels
-    return days.map(d=>d.slice(5)); // MM-DD
-  }
-  // year => 12 months labels
-  const end = new Date(endUTC);
-  const labs = [];
-  for(let i=11;i>=0;i--){
-    const d = new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth()-i, 1));
-    labs.push(d.toLocaleString("en-US", {month:"short"}));
-  }
-  return labs;
-}
-
-function salesProBuildYearSeries(ids, periodSalesMap, endUTC){
-  // distribute across 12 months
-  const labels = salesProBuildLabels("year", null, endUTC);
-  const buckets = labels.length;
-  const series = [];
-  ids.forEach((id, idx)=>{
-    const total = Number(periodSalesMap[id]||0);
-    const vals = salesProAllocBuckets(total, buckets, id + "|year");
-    series.push({ id, values: vals, color: salesProLineColor(idx) });
-  });
-  return { labels, series };
-}
-
-function salesProEscape(s){ return escapeHtml(s); } // reuse existing escapeHtml
-
-function salesProRow(meta, id, count, badge, createdTs, src){
-  const url = `https://www.roblox.com/catalog/${id}`;
-  const creator = (src==="group") ? "Group" : (src==="user" ? "User" : "Sales");
-  const cap = meta?.name || ("Asset " + id);
-  const img = meta?.thumb || SALES_PRO.thumbFallback(id);
-  const sub = `${creator} • ${badge || meta?.badge || "—"} • ${count}`;
-  return `
-    <a class="saleRow hoverLift" href="${url}" target="_blank" rel="noreferrer">
-      <div class="saleThumb"><img loading="lazy" src="${img}" alt=""></div>
-      <div class="saleMeta">
-        <div class="saleName">${salesProEscape(cap)}</div>
-        <div class="saleSub"><span>${salesProEscape(sub)}</span></div>
-      </div>
-    </a>
-  `;
-}
-
-/* Override: loadSales() */
-async function loadSales(){
-  // keep sales.json parsing (original normalizeSales exists)
-  try{
-    const raw = await fetchJsonLocal("sales.json");
-    SALES_STORE = normalizeSales(raw);
-  }catch(_){
-    SALES_STORE = null;
-  }
-
-  // asset ids to track: union of UGC ids + sales.json ids
-  const st = window.__UGC_STORE || {};
-  const ugcIds = ([]).concat(st.user||[], st.group||[]).map(it=>String(it.assetId)).filter(Boolean);
-  const salesIds = SALES_STORE && SALES_STORE.items ? Object.keys(SALES_STORE.items) : [];
-  const ids = Array.from(new Set([...ugcIds, ...salesIds]));
-
-  // hydrate totals + meta (names/thumbs)
-  const hydrated = await salesProHydrateTotals(ids);
-  const today = salesProYMD(salesProTodayUTC());
-
-  // store snapshot (needed for period deltas)
-  const snaps = salesProUpdateSnapshot(today, hydrated.totals);
-
-  SALES_PRO.lastTotals = { date: today, totals: hydrated.totals, meta: hydrated.meta, snaps };
-}
-
-/* Override: buildSales() */
-function buildSales(){
-  const status = document.getElementById("statusSales");
-  const statsEl = document.getElementById("salesStats");
-  const listAll = document.getElementById("salesAll");
-  const listPeriod = document.getElementById("salesToday");
-  const topList = document.getElementById("salesTopList");
-  const cTop = document.getElementById("chartTop");
-  const cTrend = document.getElementById("chartDaily");
-  const legendEl = document.getElementById("salesSeriesLegend");
-  const periodTitleEl = document.getElementById("salesPeriodTitle");
-
-  if(!status || !statsEl || !listAll || !listPeriod || !cTop || !cTrend) return;
-
-  const VALID_RANGE_KEYS = new Set(["day","week","month","year"]);
-  let rangeKey = (document.getElementById("salesRange")?.value) || "day";
-  if(!VALID_RANGE_KEYS.has(rangeKey)) rangeKey = "day";
-
-  const data = SALES_PRO.lastTotals;
-  if(!data){
-    status.textContent = "Sales data loading…";
-    statsEl.innerHTML = "";
-    listAll.innerHTML = `<div class="muted">${t("empty_sales")}</div>`;
-    listPeriod.innerHTML = `<div class="muted">${t("empty_sales_day")}</div>`;
-    if(topList) topList.innerHTML = "";
-    if(legendEl) legendEl.innerHTML = "";
-    return;
-  }
-
-  const totals = data.totals || {};
-  const meta = data.meta || {};
-  const snaps = data.snaps || salesProLoadSnaps();
-
-  const endDateUTC = salesProTodayUTC();
-  const { start, end } = salesProPeriodBounds(rangeKey, endDateUTC);
-
-  const { startYMD, endYMD, periodSales } = salesProComputePeriodSales({snaps, totals, rangeKey, endDateUTC});
-
-  // Build list of items
-  const ids = Object.keys(totals);
-  const st = window.__UGC_STORE || {};
-  const userSet  = new Set((st.user||[]).map(x=>String(x.assetId)));
-  const groupSet = new Set((st.group||[]).map(x=>String(x.assetId)));
-
-  const items = ids.map(id=>{
-    const p = Number(periodSales[id]||0);
-    const total = Number(totals[id]||0);
-    const src = userSet.has(id) ? "user" : (groupSet.has(id) ? "group" : "sales");
-    const badge = meta[id]?.badge || "Item";
-    return { id, src, badge, period:p, total };
-  });
-
-  const soldInPeriod = items.filter(x=>x.period > 0).sort((a,b)=>b.period-a.period);
-  const totalPeriodSales = soldInPeriod.reduce((a,x)=>a+x.period,0);
-  const totalSalesAll = items.reduce((a,x)=>a+x.total,0);
-
-  // Update title + status
-  const label =
-    (rangeKey==="day")   ? `${t("sales_range_day")} • ${endYMD}` :
-    (rangeKey==="week")  ? `${t("sales_range_week")} • ${startYMD} → ${endYMD}` :
-    (rangeKey==="month") ? `${t("sales_range_month")} • ${startYMD} → ${endYMD}` :
-                           `${t("sales_range_year")} • ${startYMD} → ${endYMD}`;
-
-  if(periodTitleEl) periodTitleEl.textContent = label;
-
-  const updatedTag = (SALES_STORE && SALES_STORE.updatedAt) ? ` • ${t("sales_updated")}: ${SALES_STORE.updatedAt}` : "";
-  status.textContent = `${items.length} item(s) tracked • ${label}${updatedTag}`;
-
-  // Stats
-  statsEl.innerHTML = `
-    <div class="stat"><div class="k">${t("stat_total")}</div><div class="v">${soldInPeriod.length}</div></div>
-    <div class="stat"><div class="k">${t("stat_sales_period")}</div><div class="v">${totalPeriodSales}</div></div>
-    <div class="stat"><div class="k">${t("stat_sales_total")}</div><div class="v">${totalSalesAll}</div></div>
-  `;
-
-  // Item filter: only sold items in period
-  const itemSel = document.getElementById("salesItemFilter");
-  let itemKey = itemSel?.value || "__ALL__";
-  const opts = [{id:"__ALL__", name:`All sold items (${soldInPeriod.length})`}]
-    .concat(soldInPeriod.map(it=>({id:it.id, name: meta[it.id]?.name || ("Asset "+it.id)})));
-
-  if(itemSel){
-    itemSel.innerHTML = opts.map(o=>`<option value="${o.id}">${escapeHtml(o.name)}</option>`).join("");
-    if(!opts.some(o=>o.id===itemKey)) itemKey="__ALL__";
-    itemSel.value = itemKey;
-  }
-
-  const filtered = (itemKey==="__ALL__") ? soldInPeriod : soldInPeriod.filter(x=>x.id===itemKey);
-
-  // Lists
-  listPeriod.innerHTML = filtered.slice(0,20).map(it=>salesProRow(meta[it.id], it.id, it.period, it.badge, null, it.src)).join("")
-    || `<div class="muted">${t("empty_sales_day")}</div>`;
-
-  // All list: show tracked items sorted by period then total
-  const allSorted = [...items].sort((a,b)=> (b.period-a.period) || (b.total-a.total));
-  listAll.innerHTML = allSorted.map(it=>salesProRow(meta[it.id], it.id, it.period, it.badge, null, it.src)).join("")
-    || `<div class="muted">${t("empty_sales")}</div>`;
-
-  // Charts (Chart.js preferred)
-  salesProEnsureCharts();
-
-  // Top bars (period)
-  const top = filtered.slice(0, Math.min(10, filtered.length));
-  if(SALES_PRO.charts.top){
-    SALES_PRO.charts.top.data.labels = top.map(it=>{
-      const n = meta[it.id]?.name || ("Asset "+it.id);
-      return (n.length>14) ? (n.slice(0,14)+"…") : n;
-    });
-    SALES_PRO.charts.top.data.datasets[0].data = top.map(it=>it.period);
-    SALES_PRO.charts.top.data.datasets[0].backgroundColor = top.map((_,i)=>salesProBarColor(i));
-    SALES_PRO.charts.top.update();
-  }else{
-    // fallback to existing drawBars if Chart not available
-    try{ drawBars(cTop, top.map(_=>""), top.map(it=>it.period)); }catch(_){}
-  }
-
-  if(topList){
-    topList.innerHTML = top.map(it=>{
-      return `<div class="miniRow"><span class="name">${escapeHtml(meta[it.id]?.name || ("Asset "+it.id))}</span><span class="val">${it.period}</span></div>`;
-    }).join("");
-  }
-
-  // Trend multi-lines
-  let labels = [];
-  let series = [];
-
-  if(rangeKey === "year"){
-    const yr = salesProBuildYearSeries(filtered.map(x=>x.id), periodSales, endDateUTC);
-    labels = yr.labels;
-    series = yr.series;
-  }else{
-    labels = salesProBuildLabels(rangeKey, start, end);
-    series = salesProBuildSeries(rangeKey, filtered.map(x=>x.id), periodSales, labels);
-  }
-
-  if(SALES_PRO.charts.trend){
-    SALES_PRO.charts.trend.data.labels = labels;
-
-    const datasets = series.map((s, idx)=>({
-      label: meta[s.id]?.name || ("Asset "+s.id),
-      data: s.values,
-      borderColor: s.color || salesProLineColor(idx),
-      backgroundColor: "rgba(0,0,0,0)",
-      pointBackgroundColor: "rgba(255,255,255,0.9)",
-      pointBorderColor: "rgba(0,0,0,0.0)"
-    }));
-
-    SALES_PRO.charts.trend.data.datasets = datasets;
-    SALES_PRO.charts.trend.update();
-
-    salesProSetLegend(datasets);
-  }else{
-    // fallback to custom drawer
-    try{
-      drawMultiLine(cTrend, series.map(s=>({id:s.id, name: meta[s.id]?.name || ("Asset "+s.id), values:s.values, active:true, color:s.color})), labels);
-    }catch(_){}
-    if(legendEl) legendEl.innerHTML = "";
-  }
-}
-
-// Auto-refresh sales totals every 5 minutes when the app is open
-(function(){
-  if (!document.getElementById("salesRange")) return;
-  let timer = null;
-  function start(){
-    if(timer) return;
-    timer = setInterval(async ()=>{
-      try{ await loadSales(); buildSales(); }catch(_){}
-    }, 5*60*1000);
-  }
-  function stop(){
-    if(timer){ clearInterval(timer); timer=null; }
-  }
-  start();
-  document?.addEventListener("visibilitychange", ()=>{
-    if(document.hidden) stop();
-    else { start(); loadSales().then(buildSales).catch(()=>{}); }
-  });
-})();
-</script>
-
+  <!-- Modal Zoom -->
   <div class="modal" id="imgModal" aria-hidden="true">
     <div class="modalCard" role="dialog" aria-modal="true">
       <div class="modalBar">
         <div class="modalCap" id="imgModalCap"></div>
-        <button class="closeBtn" id="imgModalClose" type="button">✕</button>
+        <div class="modalBtns">
+          <button class="iconBtn" id="zoomOutBtn" type="button">−</button>
+          <button class="iconBtn" id="zoomResetBtn" type="button">⤢</button>
+          <button class="iconBtn" id="zoomInBtn" type="button">+</button>
+          <button class="iconBtn" id="imgModalClose" type="button">✕</button>
+        </div>
       </div>
-      <img class="modalImg" id="imgModalImg" alt="" />
+      <div class="modalStage" id="modalStage">
+        <img class="modalImg" id="imgModalImg" alt="" draggable="false" />
+        <div class="hint">Molette / + − • Drag • Échap</div>
+      </div>
     </div>
   </div>
 
+  <script>
+    /* ----------------
+       Tabs
+    ---------------- */
+    const tabs = [...document.querySelectorAll(".tab")];
+    const views = {
+      ugc: document.getElementById("view-ugc"),
+      gallery: document.getElementById("view-gallery"),
+      commission: document.getElementById("view-commission"),
+    };
+
+    function setView(which){
+      tabs.forEach(t => t.classList.toggle("active", t.dataset.view === which));
+      Object.entries(views).forEach(([k, el]) => el?.classList.toggle("active", k === which));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    tabs.forEach(t => t.addEventListener("click", () => setView(t.dataset.view)));
+
+    /* ----------------
+       Helpers
+    ---------------- */
+    function $(id){ return document.getElementById(id); }
+    function setStatus(el, text, spinning=false){
+      if(!el) return;
+      el.innerHTML = spinning ? `<span class="spinner"></span>${text}` : text;
+    }
+    function escapeHtml(s){
+      return String(s || "")
+        .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+    }
+    function fmtDate(iso){
+      if(!iso) return "";
+      const d = new Date(iso);
+      if(isNaN(d.getTime())) return "";
+      const dd = String(d.getDate()).padStart(2,"0");
+      const mm = String(d.getMonth()+1).padStart(2,"0");
+      const yy = d.getFullYear();
+      return `${dd}/${mm}/${yy}`;
+    }
+    function catalogUrl(assetId){ return `https://www.roblox.com/catalog/${assetId}`; }
+    function thumbFallback(assetId){ return `https://www.roblox.com/asset-thumbnail/image?assetId=${assetId}&width=420&height=420&format=png`; }
+    function fetchJson(path){
+      return fetch(`${path}?v=${Date.now()}`, { cache:"no-store" }).then(r => {
+        if(!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      });
+    }
+
+    /* ----------------
+       UGC / Créations
+    ---------------- */
+    const ugcGrid = $("ugcGrid");
+    const ugcType = $("ugcType");
+    const ugcSearch = $("ugcSearch");
+    const ugcMeta = $("ugcMeta");
+    const ugcStatus = $("ugcStatus");
+
+    const ROBLOX_FILTERS = [
+      { key:"ALL", label:"Tous" },
+
+      // Accessoires (Roblox)
+      { key:"HAT", label:"Tête (Hat)" },
+      { key:"HAIR", label:"Cheveux (Hair)" },
+      { key:"FACE", label:"Visage (Face)" },
+      { key:"NECK", label:"Cou (Neck)" },
+      { key:"SHOULDER", label:"Épaules (Shoulder)" },
+      { key:"FRONT", label:"Avant (Front)" },
+      { key:"BACK", label:"Dos (Back)" },
+      { key:"WAIST", label:"Taille (Waist)" },
+
+      // Vêtements (Roblox)
+      { key:"TSHIRT", label:"T-Shirt" },
+      { key:"SHIRT", label:"Haut (Shirt/Jacket/Sweater)" },
+      { key:"PANTS", label:"Bas (Pants/Shorts)" },
+      { key:"DRESSSKIRT", label:"Robe/Jupe" },
+      { key:"SHOES", label:"Chaussures" },
+
+      // Animations
+      { key:"ANIMATION", label:"Animations" },
+
+      { key:"OTHER", label:"Autres" },
+    ];
+
+    function typeKeyFromTypeName(typeName){
+      const t = String(typeName || "").toLowerCase();
+      if(t.includes("hat")) return "HAT";
+      if(t.includes("hair")) return "HAIR";
+      if(t.includes("face")) return "FACE";
+      if(t.includes("neck")) return "NECK";
+      if(t.includes("shoulder")) return "SHOULDER";
+      if(t.includes("front")) return "FRONT";
+      if(t.includes("back")) return "BACK";
+      if(t.includes("waist")) return "WAIST";
+
+      if(t.includes("tshirt")) return "TSHIRT";
+      if(t.includes("shirt") || t.includes("jacket") || t.includes("sweater")) return "SHIRT";
+      if(t.includes("pants") || t.includes("shorts")) return "PANTS";
+      if(t.includes("dress") || t.includes("skirt")) return "DRESSSKIRT";
+      if(t.includes("leftshoe") || t.includes("rightshoe") || t.includes("shoe")) return "SHOES";
+
+      if(t.includes("animation")) return "ANIMATION";
+      return "OTHER";
+    }
+
+    function badgeLabelFromKey(key){
+      switch(key){
+        case "HAT": return "Tête";
+        case "HAIR": return "Cheveux";
+        case "FACE": return "Visage";
+        case "NECK": return "Cou";
+        case "SHOULDER": return "Épaules";
+        case "FRONT": return "Avant";
+        case "BACK": return "Dos";
+        case "WAIST": return "Taille";
+        case "TSHIRT": return "T-Shirt";
+        case "SHIRT": return "Haut";
+        case "PANTS": return "Bas";
+        case "DRESSSKIRT": return "Robe/Jupe";
+        case "SHOES": return "Chaussures";
+        case "ANIMATION": return "Animation";
+        default: return "Autre";
+      }
+    }
+
+    function normalizeItem(x, srcLabel){
+      const assetId = (typeof x.assetId === "number") ? x.assetId : (typeof x.id === "number" ? x.id : null);
+      if(assetId == null) return null;
+
+      const typeName = x.type || x.assetTypeName || x.assetType || "Asset";
+      const typeKey = typeKeyFromTypeName(typeName);
+      const created = x.created || x.createdAt || x.createdUtc || null;
+      const createdTs = created ? (Date.parse(created) || null) : null;
+
+      const price = (typeof x.price === "number") ? x.price : (typeof x.priceInRobux === "number" ? x.priceInRobux : null);
+      const isForSale = (x.isForSale === true) || (x.IsForSale === true) || (typeof price === "number");
+
+      return {
+        assetId,
+        name: x.name || `Asset ${assetId}`,
+        typeName,
+        typeKey,
+        badge: badgeLabelFromKey(typeKey),
+        price,
+        isForSale,
+        created,
+        createdTs,
+        thumb: x.thumb || thumbFallback(assetId),
+        src: srcLabel || "",
+      };
+    }
+
+    let UGC_ITEMS = [];
+
+    function fillUgcTypeOptions(items){
+      // Only show filters that exist in data + keep ALL/OTHER/ANIMATION/Clothes + accessories when present.
+      const present = new Set(items.map(it => it.typeKey));
+      const opts = ROBLOX_FILTERS.filter(o => o.key === "ALL" || o.key === "OTHER" || present.has(o.key));
+      ugcType.innerHTML = opts.map(o => `<option value="${o.key}">${o.label}</option>`).join("");
+      if(!ugcType.value) ugcType.value = "ALL";
+    }
+
+    function renderUgc(){
+      const typeVal = ugcType.value || "ALL";
+      const q = String(ugcSearch.value || "").trim().toLowerCase();
+
+      let list = UGC_ITEMS;
+
+      if(typeVal !== "ALL"){
+        if(typeVal === "OTHER"){
+          list = list.filter(it => it.typeKey === "OTHER");
+        }else{
+          list = list.filter(it => it.typeKey === typeVal);
+        }
+      }
+      if(q){
+        list = list.filter(it => String(it.name || "").toLowerCase().includes(q));
+      }
+
+      // Sort newest first
+      list = [...list].sort((a,b)=> (b.createdTs ?? -1) - (a.createdTs ?? -1));
+
+      if(!list.length){
+        ugcGrid.innerHTML = `<div class="empty">Aucun résultat.</div>`;
+        return;
+      }
+
+      ugcGrid.innerHTML = list.map(it => {
+        const title = escapeHtml(it.name);
+        const img = it.thumb || thumbFallback(it.assetId);
+        const date = it.created ? fmtDate(it.created) : "";
+        const priceLabel = (typeof it.price === "number") ? `${it.price} R$` : (it.isForSale ? "—" : "Offsale");
+
+        return `
+          <div class="item">
+            <div class="thumb"
+                 data-zoom-src="${escapeHtml(img)}"
+                 data-zoom-cap="${title}">
+              <div class="badgeRow">
+                <span class="badge">${escapeHtml(it.badge)}</span>
+                <span class="src">${escapeHtml(it.src)}</span>
+              </div>
+              <img loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous"
+                   alt="${title}" src="${escapeHtml(img)}"
+                   onerror="this.onerror=null;this.src='${thumbFallback(it.assetId)}';">
+            </div>
+            <div class="body">
+              <div class="title">${title}</div>
+              <div class="meta2">
+                <span class="kv">Asset ${it.assetId}</span>
+                ${date ? `<span class="date">• ${escapeHtml(date)}</span>` : ""}
+              </div>
+              <div class="foot">
+                <span class="pill">${escapeHtml(priceLabel)}</span>
+                <a class="link" href="${catalogUrl(it.assetId)}" target="_blank" rel="noopener">Ouvrir</a>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      // reveal animation
+      requestAnimationFrame(() => {
+        [...ugcGrid.querySelectorAll(".item")].forEach((el, i) => {
+          setTimeout(() => el.classList.add("in"), Math.min(220, i * 12));
+        });
+      });
+    }
+
+    async function loadUgc(){
+      setStatus(ugcStatus, "Chargement…", true);
+      try{
+        const [u, g] = await Promise.all([fetchJson("data_user.json"), fetchJson("data_group.json")]);
+
+        const uItems = (u.items || []).map(x => normalizeItem(x, "Profil")).filter(Boolean);
+        const gItems = (g.items || []).map(x => normalizeItem(x, "Groupe")).filter(Boolean);
+
+        // Merge + dedupe by assetId
+        const map = new Map();
+        [...uItems, ...gItems].forEach(it => { map.set(it.assetId, it); });
+        UGC_ITEMS = [...map.values()];
+
+        // Meta
+        const upU = u.generatedAt ? new Date(u.generatedAt).toLocaleString() : "—";
+        const upG = g.generatedAt ? new Date(g.generatedAt).toLocaleString() : "—";
+        ugcMeta.textContent = `${UGC_ITEMS.length} créations • MAJ profil: ${upU} • MAJ groupe: ${upG}`;
+
+        fillUgcTypeOptions(UGC_ITEMS);
+        renderUgc();
+
+        setStatus(ugcStatus, `${UGC_ITEMS.length} items`, false);
+      }catch(e){
+        ugcMeta.textContent = "Erreur de chargement (data_user.json / data_group.json).";
+        ugcGrid.innerHTML = `<div class="empty">Impossible de charger les créations.</div>`;
+        setStatus(ugcStatus, "Erreur", false);
+      }
+    }
+
+    ugcType.addEventListener("change", () => { ugcType.classList.add("pulse"); renderUgc(); setTimeout(()=>ugcType.classList.remove("pulse"), 260); });
+    ugcSearch.addEventListener("input", () => renderUgc());
+
+    /* ----------------
+       Gallery
+    ---------------- */
+    const galGrid = $("galleryGrid");
+    const galSearch = $("galSearch");
+    const galMeta = $("galMeta");
+    const galStatus = $("galStatus");
+    let GALLERY = [];
+
+    function renderGallery(){
+      const q = String(galSearch.value || "").trim().toLowerCase();
+      const list = q ? GALLERY.filter(x => String(x.caption||"").toLowerCase().includes(q)) : GALLERY;
+
+      if(!list.length){
+        galGrid.innerHTML = `<div class="empty">Aucune image.</div>`;
+        return;
+      }
+
+      galGrid.innerHTML = list.map((x) => {
+        const url = x.url || "";
+        const cap = x.caption || "Sans légende";
+        return `
+          <div class="shot">
+            <div class="imgWrap"
+                 data-zoom-src="${escapeHtml(url)}"
+                 data-zoom-cap="${escapeHtml(cap)}">
+              <img loading="lazy" alt="${escapeHtml(cap)}" src="${escapeHtml(url)}" />
+            </div>
+            <div class="cap">
+              <div class="left">
+                <b>${escapeHtml(cap)}</b>
+                <span class="mini">Cliquer pour zoom</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      requestAnimationFrame(() => {
+        [...galGrid.querySelectorAll(".shot")].forEach((el, i) => {
+          setTimeout(() => el.classList.add("in"), Math.min(220, i * 12));
+        });
+      });
+    }
+
+    async function loadGallery(){
+      setStatus(galStatus, "Chargement…", true);
+      try{
+        const arr = await fetchJson("gallery.json");
+        GALLERY = Array.isArray(arr) ? arr : [];
+        galMeta.textContent = `${GALLERY.length} images`;
+        renderGallery();
+        setStatus(galStatus, "OK", false);
+      }catch(e){
+        galMeta.textContent = "Erreur de chargement (gallery.json).";
+        galGrid.innerHTML = `<div class="empty">Impossible de charger la galerie.</div>`;
+        setStatus(galStatus, "Erreur", false);
+      }
+    }
+    galSearch.addEventListener("input", () => renderGallery());
+
+    /* ----------------
+       Commission (Models / Textures)
+    ---------------- */
+    const comGrid = $("commissionGrid");
+    const comStatus = $("comStatus");
+    const btnModels = $("btnModels");
+    const btnTextures = $("btnTextures");
+
+    let COMMISSIONS = [];
+    let comMode = "model3d"; // model3d | texturing
+
+    function setComMode(mode){
+      comMode = mode;
+      btnModels.classList.toggle("active", mode === "model3d");
+      btnTextures.classList.toggle("active", mode === "texturing");
+      renderCommission();
+    }
+    btnModels.addEventListener("click", () => setComMode("model3d"));
+    btnTextures.addEventListener("click", () => setComMode("texturing"));
+
+    function renderCommission(){
+      const imgs = [];
+      for(const c of COMMISSIONS){
+        const im = c?.images || {};
+        if(comMode === "model3d" && im.model3d) imgs.push({ url: im.model3d, cap: "Modèle" });
+        if(comMode === "texturing" && im.texturing) imgs.push({ url: im.texturing, cap: "Texture" });
+      }
+
+      if(!imgs.length){
+        comGrid.innerHTML = `<div class="empty">Aucune image.</div>`;
+        return;
+      }
+
+      comGrid.innerHTML = imgs.map((x) => {
+        return `
+          <div class="shot">
+            <div class="imgWrap"
+                 data-zoom-src="${escapeHtml(x.url)}"
+                 data-zoom-cap="${escapeHtml(x.cap)}">
+              <img loading="lazy" alt="${escapeHtml(x.cap)}" src="${escapeHtml(x.url)}" />
+            </div>
+            <div class="cap">
+              <div class="left">
+                <b>${escapeHtml(x.cap)}</b>
+                <span class="mini">Cliquer pour zoom</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      requestAnimationFrame(() => {
+        [...comGrid.querySelectorAll(".shot")].forEach((el, i) => {
+          setTimeout(() => el.classList.add("in"), Math.min(220, i * 12));
+        });
+      });
+    }
+
+    async function loadCommission(){
+      setStatus(comStatus, "Chargement…", true);
+      try{
+        const arr = await fetchJson("commissions.json");
+        COMMISSIONS = Array.isArray(arr) ? arr : [];
+        setComMode(comMode); // render
+        setStatus(comStatus, "OK", false);
+      }catch(e){
+        comGrid.innerHTML = `<div class="empty">commissions.json manquant.</div>`;
+        setStatus(comStatus, "—", false);
+      }
+    }
+
+    /* ----------------
+       Global Zoom Modal
+    ---------------- */
+    const imgModal = $("imgModal");
+    const imgModalImg = $("imgModalImg");
+    const imgModalCap = $("imgModalCap");
+    const imgModalClose = $("imgModalClose");
+    const modalStage = $("modalStage");
+
+    const zoomInBtn = $("zoomInBtn");
+    const zoomOutBtn = $("zoomOutBtn");
+    const zoomResetBtn = $("zoomResetBtn");
+
+    let ZOOM = 1;
+    let PAN_X = 0;
+    let PAN_Y = 0;
+
+    function applyZoom(){
+      if(!imgModalImg) return;
+      imgModalImg.style.setProperty("--zoom", String(ZOOM));
+      imgModalImg.style.setProperty("--pan-x", `${PAN_X}px`);
+      imgModalImg.style.setProperty("--pan-y", `${PAN_Y}px`);
+    }
+    function resetZoom(){
+      ZOOM = 1; PAN_X = 0; PAN_Y = 0;
+      applyZoom();
+    }
+    function openImgModal(src, caption){
+      if(!imgModal || !imgModalImg) return;
+      imgModalImg.src = src;
+      imgModalImg.alt = caption || "";
+      if(imgModalCap) imgModalCap.textContent = caption || "";
+      imgModal.classList.add("open");
+      imgModal.setAttribute("aria-hidden","false");
+      resetZoom();
+    }
+    function closeImgModal(){
+      if(!imgModal) return;
+      imgModal.classList.remove("open");
+      imgModal.setAttribute("aria-hidden","true");
+      if(imgModalImg) imgModalImg.src = "";
+    }
+
+    // Delegation: click on any element with data-zoom-src
+    document.addEventListener("click", (e) => {
+      const z = e.target.closest("[data-zoom-src]");
+      if(!z) return;
+      const src = z.getAttribute("data-zoom-src");
+      const cap = z.getAttribute("data-zoom-cap") || "";
+      if(src) openImgModal(src, cap);
+    });
+
+    imgModalClose?.addEventListener("click", closeImgModal);
+    imgModal?.addEventListener("click", (e) => { if(e.target === imgModal) closeImgModal(); });
+    document.addEventListener("keydown", (e) => {
+      if(!imgModal?.classList.contains("open")) return;
+      if(e.key === "Escape") closeImgModal();
+      if(e.key === "+" || e.key === "=") { ZOOM = Math.min(4, ZOOM + 0.2); applyZoom(); }
+      if(e.key === "-" || e.key === "_") { ZOOM = Math.max(1, ZOOM - 0.2); applyZoom(); }
+      if(e.key === "0") resetZoom();
+    });
+
+    zoomInBtn?.addEventListener("click", () => { ZOOM = Math.min(4, ZOOM + 0.2); applyZoom(); });
+    zoomOutBtn?.addEventListener("click", () => { ZOOM = Math.max(1, ZOOM - 0.2); applyZoom(); });
+    zoomResetBtn?.addEventListener("click", () => resetZoom());
+
+    // Wheel zoom + drag pan
+    let dragging = false;
+    let startX = 0, startY = 0;
+    let panStartX = 0, panStartY = 0;
+
+    modalStage?.addEventListener("wheel", (e) => {
+      if(!imgModal?.classList.contains("open")) return;
+      e.preventDefault();
+      const dir = Math.sign(e.deltaY);
+      const step = 0.18;
+      if(dir > 0) ZOOM = Math.max(1, ZOOM - step);
+      else ZOOM = Math.min(4, ZOOM + step);
+      if(ZOOM === 1){ PAN_X = 0; PAN_Y = 0; }
+      applyZoom();
+    }, { passive:false });
+
+    modalStage?.addEventListener("pointerdown", (e) => {
+      if(ZOOM <= 1) return;
+      dragging = true;
+      modalStage.classList.add("grabbing");
+      startX = e.clientX; startY = e.clientY;
+      panStartX = PAN_X; panStartY = PAN_Y;
+      modalStage.setPointerCapture(e.pointerId);
+    });
+    modalStage?.addEventListener("pointermove", (e) => {
+      if(!dragging) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      PAN_X = panStartX + dx;
+      PAN_Y = panStartY + dy;
+      applyZoom();
+    });
+    modalStage?.addEventListener("pointerup", (e) => {
+      dragging = false;
+      modalStage.classList.remove("grabbing");
+      try{ modalStage.releasePointerCapture(e.pointerId); }catch(_){}
+    });
+
+    /* ----------------
+       Refresh
+    ---------------- */
+    async function refreshAll(){
+      await Promise.all([loadUgc(), loadGallery(), loadCommission()]);
+    }
+    $("refreshBtn")?.addEventListener("click", refreshAll);
+
+    // Init
+    refreshAll();
+  </script>
 </body>
 </html>
