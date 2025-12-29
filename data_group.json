@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-12-28T13:41:58.469449Z",
+  "generatedAt": "2025-12-29T04:21:30.729781Z",
   "items": [
     {
       "assetId": 93774719738585,
@@ -16,6 +16,22 @@
       "price": 100,
       "created": "2025-12-27T23:10:07.9492155Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a57c1894fba8d7b2c6ea7fd74a73c54d/420/420/FaceAccessory/Png/noFilter"
+    },
+    {
+      "assetId": 117578513893407,
+      "name": "[PBR] Red cyber mask",
+      "type": "FaceAccessory",
+      "price": 100,
+      "created": "2025-12-22T21:20:26.37Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-1a82a65b20f9022d650d4f5667336c1f/420/420/FaceAccessory/Png/noFilter"
+    },
+    {
+      "assetId": 74820048389112,
+      "name": "[PBR] Blue cyber wings",
+      "type": "BackAccessory",
+      "price": 135,
+      "created": "2025-12-21T16:40:33.183Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-a52d9fee1c19726f2cbba596afea37d6/420/420/BackAccessory/Png/noFilter"
     },
     {
       "assetId": 121640625346381,
@@ -64,6 +80,14 @@
       "price": 135,
       "created": "2025-09-17T10:48:24.237Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d2d472d979ad7bb83214a5bb985669e3/420/420/BackAccessory/Png/noFilter"
+    },
+    {
+      "assetId": 107095008480456,
+      "name": "[PBR] green metallic horns",
+      "type": "Hat",
+      "price": 90,
+      "created": "2025-09-07T19:19:34.547Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-54bc6172616ad8477dbef16a2871e4d0/420/420/Hat/Png/noFilter"
     },
     {
       "assetId": 103640681693848,
@@ -324,17 +348,6 @@
       "rank": 27
     },
     {
-      "assetId": 117578513893407,
-      "name": "[PBR] Red cyber mask",
-      "assetTypeId": 42,
-      "assetTypeName": "FaceAccessory",
-      "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://tr.rbxcdn.com/180DAY-1a82a65b20f9022d650d4f5667336c1f/420/420/FaceAccessory/Png/noFilter",
-      "rank": 11
-    },
-    {
       "assetId": 115245506922433,
       "name": "Black and gold valkyrie",
       "assetTypeId": 8,
@@ -377,17 +390,6 @@
       "priceStatus": null,
       "thumb": "https://tr.rbxcdn.com/180DAY-5af1600c27a53cf8f622d8dd6e52f263/420/420/BackAccessory/Png/noFilter",
       "rank": 45
-    },
-    {
-      "assetId": 107095008480456,
-      "name": "[PBR] green metallic horns",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 90,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://tr.rbxcdn.com/180DAY-54bc6172616ad8477dbef16a2871e4d0/420/420/Hat/Png/noFilter",
-      "rank": 25
     },
     {
       "assetId": 105461065154207,
@@ -564,17 +566,6 @@
       "priceStatus": null,
       "thumb": "https://tr.rbxcdn.com/180DAY-4b5a374980b7723aaf40156a93bba3df/420/420/Hat/Png/noFilter",
       "rank": 57
-    },
-    {
-      "assetId": 74820048389112,
-      "name": "[PBR] Blue cyber wings",
-      "assetTypeId": 46,
-      "assetTypeName": "BackAccessory",
-      "price": 135,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://tr.rbxcdn.com/180DAY-a52d9fee1c19726f2cbba596afea37d6/420/420/BackAccessory/Png/noFilter",
-      "rank": 7
     },
     {
       "assetId": 73886642022932,
