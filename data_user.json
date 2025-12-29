@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-12-29T13:52:57.592057Z",
+  "generatedAt": "2025-12-29T19:21:21.022602Z",
   "items": [
     {
       "assetId": 90778459718692,
@@ -18,12 +18,42 @@
       "thumb": "https://tr.rbxcdn.com/180DAY-0d774b302de1b3afaa0a73e46a0591cd/420/420/Hat/Png/noFilter"
     },
     {
+      "assetId": 105395775776058,
+      "name": "Gomi's teddybear",
+      "assetTypeId": 47,
+      "assetTypeName": "WaistAccessory",
+      "isForSale": false,
+      "price": null,
+      "created": "2025-09-08T14:53:48.51Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-bb17945d4e6f7d2e9d6f0174df8ccd4c/420/420/WaistAccessory/Png/noFilter"
+    },
+    {
       "assetId": 79433470925362,
       "name": "Brown messy hair",
       "type": "HairAccessory",
       "price": 70,
       "created": "2025-08-27T16:17:51.857Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-f58d12d0115edd6308874587d98a0c00/420/420/HairAccessory/Png/noFilter"
+    },
+    {
+      "assetId": 98552322484440,
+      "name": "Le seul et l'unique",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "isForSale": false,
+      "price": null,
+      "created": "2025-08-05T21:36:03.49Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-bc9181fbe01ad330f826aee2584d2b44/420/420/Hat/Png/noFilter"
+    },
+    {
+      "assetId": 78068249113582,
+      "name": "Valk GoMi",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "isForSale": false,
+      "price": null,
+      "created": "2025-07-13T18:29:08.083Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-ac9a9b5cc5002a10f8ce69905df9f92e/420/420/Hat/Png/noFilter"
     },
     {
       "assetId": 105405757476156,
@@ -34,9 +64,21 @@
       "thumb": "https://tr.rbxcdn.com/180DAY-937e094a0a51aa3f54a8e79beb1be2a7/420/420/BackAccessory/Png/noFilter"
     },
     {
+      "assetId": 104708824634621,
+      "name": "Inséparable",
+      "assetTypeId": 43,
+      "assetTypeName": "NeckAccessory",
+      "isForSale": false,
+      "price": null,
+      "created": "2025-02-17T22:38:01.817Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-74986c66ba2bc566c12c9d13eb4af838/420/420/NeckAccessory/Png/noFilter"
+    },
+    {
       "assetId": 78329863862393,
       "name": "Christmas wings",
-      "type": "BackAccessory",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "isForSale": true,
       "price": 135,
       "created": "2024-11-21T22:50:56.287Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-5f3ca706c5eef5a32ffed609f03b7963/420/420/BackAccessory/Png/noFilter"

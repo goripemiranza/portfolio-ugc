@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-12-29T13:54:16.916208Z",
+  "generatedAt": "2025-12-29T19:21:55.106248Z",
   "items": [
     {
       "assetId": 93774719738585,
@@ -12,7 +12,9 @@
     {
       "assetId": 112163449988496,
       "name": "[PBR] Blue cyber mask",
-      "type": "FaceAccessory",
+      "assetTypeId": 42,
+      "assetTypeName": "FaceAccessory",
+      "isForSale": true,
       "price": 100,
       "created": "2025-12-27T23:10:07.95Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a57c1894fba8d7b2c6ea7fd74a73c54d/420/420/FaceAccessory/Png/noFilter"
@@ -52,7 +54,9 @@
     {
       "assetId": 86312140095193,
       "name": "[PBR] Black/green golden jewelled horns",
-      "type": "Hat",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "isForSale": true,
       "price": 100,
       "created": "2025-10-19T11:40:08.133Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-df1fb1001a390a28c696e99868029064/420/420/Hat/Png/noFilter"
@@ -84,7 +88,9 @@
     {
       "assetId": 92867934281767,
       "name": "White and black dragon wings",
-      "type": "BackAccessory",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "isForSale": true,
       "price": 135,
       "created": "2025-09-17T10:48:24.237Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d2d472d979ad7bb83214a5bb985669e3/420/420/BackAccessory/Png/noFilter"
@@ -114,9 +120,21 @@
       "thumb": "https://tr.rbxcdn.com/180DAY-cac5a262cd9b82887980ed87f67f9d19/420/420/HairAccessory/Png/noFilter"
     },
     {
+      "assetId": 93842989030434,
+      "name": "T pose spinning troll",
+      "assetTypeId": 61,
+      "assetTypeName": "AssetType 61",
+      "isForSale": true,
+      "price": 50,
+      "created": "2025-08-09T14:43:49.987Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-03ef2793c2cf539d177478f3eac5326e/420/420/EmoteAnimation/Png/noFilter"
+    },
+    {
       "assetId": 76680987618680,
       "name": "[PBR] Crimson red metallic horns",
-      "type": "Hat",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "isForSale": true,
       "price": 100,
       "created": "2025-08-04T15:13:35.283Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-626052fbce1fddf0cbf84b43f4ca22f3/420/420/Hat/Png/noFilter"
@@ -132,15 +150,29 @@
     {
       "assetId": 97072088397988,
       "name": "[PBR] white metallic royal sword",
-      "type": "BackAccessory",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "isForSale": true,
       "price": 140,
       "created": "2025-07-28T22:29:02.213Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-337dfac4a53d39bb73020026da4d800a/420/420/BackAccessory/Png/noFilter"
     },
     {
+      "assetId": 79209314050343,
+      "name": "Moon valk",
+      "assetTypeId": 8,
+      "assetTypeName": "Hat",
+      "isForSale": false,
+      "price": 1,
+      "created": "2025-06-02T20:57:03.957Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-66a93a2ad61cad9dc512bea28f7c893e/420/420/Hat/Png/noFilter"
+    },
+    {
       "assetId": 132428921830890,
       "name": "Poppy flower parasol",
-      "type": "BackAccessory",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "isForSale": true,
       "price": 150,
       "created": "2025-04-24T13:25:21.483Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-deb3d0010a09501ac37611b9916b3631/420/420/BackAccessory/Png/noFilter"
@@ -172,7 +204,9 @@
     {
       "assetId": 112911367450195,
       "name": "Purple shadow sword",
-      "type": "BackAccessory",
+      "assetTypeId": 46,
+      "assetTypeName": "BackAccessory",
+      "isForSale": true,
       "price": 150,
       "created": "2025-03-09T17:40:46.817Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-83d2b68addb0e17daec6c016e12b822b/420/420/BackAccessory/Png/noFilter"
