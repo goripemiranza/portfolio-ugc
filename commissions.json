@@ -7,8 +7,8 @@
     "requested": "Demande du client",
     "delivered": "Ce qui a été fait",
     "images": {
-      "model3d": "Commission/client/model.png",
-      "texturing": "Commission/client/texture.png"
+      "model3d": "Commission/client/commission1 model1.png",
+      "texturing": "Commission/client/commission1 texture1.png"
     }
   }
 ]
