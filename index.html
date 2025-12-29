@@ -287,10 +287,7 @@
 
     footer{color:rgba(255,255,255,0.55);font-size:12px;text-align:center;padding:6px 0 0}
 
-    @media (max-width: 980px){
-      .dual{grid-template-columns:1fr;}
-      .filters{grid-template-columns:1fr;}
-    }
+    
   
     
     /* ---------- Mobile responsive (scroll + rescale) ---------- */
@@ -517,7 +514,7 @@
     }
 
     /* ---------- Mobile (Option A): 1 panel visible ---------- */
-    .mobileSwitch{display:none}
+    .mobileSwitch{display:none; gap:10px; justify-content:center; margin:10px 0 6px}
     .msBtn{
       border:1px solid rgba(255,255,255,0.12);
       background:rgba(0,0,0,0.18);
@@ -532,7 +529,7 @@
     .msBtn:active{transform:translateY(0) scale(0.98)}
     .msBtn.active{background:rgba(124,92,255,0.22); border-color:rgba(124,92,255,0.55)}
     @media (max-width: 980px){
-      .mobileSwitch{display:flex; gap:10px; justify-content:center; margin:10px 0 6px}
+      
       #viewUgc .dual{grid-template-columns:1fr}
       body.mobile-show-user #secGroup{display:none}
       body.mobile-show-group #secUser{display:none}
@@ -757,167 +754,34 @@
 #viewSales .panel{ height:calc(100% - 185px); }
 .seriesLegend{ max-height:clamp(80px, 14vh, 150px); }
 @media (max-width: 900px){
-  #viewSales .panel{ height:calc(100% - 205px); }
+  .wrap{padding:14px}
+  .hero{padding:18px 16px}
+  .heroTitle{font-size:40px;line-height:1.05}
+  .heroActions{flex-wrap:wrap;justify-content:center;gap:10px}
+  .heroActions .btn{flex:1 1 auto;min-width:140px}
 }
-
-
-/* Sales layout override (one-page fit) */
-#viewSales .panel{ height:calc(100% - 165px) !important; }
-@media (max-width: 900px){
-  #viewSales .panel{ height:calc(100% - 185px) !important; }
+@media (max-width: 720px){
+  /* Mobile/tablet: allow page scroll + compact layout */
+  html, body{height:auto;overflow:auto}
+  body{overflow-x:hidden}
+  .wrap{height:auto;min-height:100vh}
+  .view{height:auto;min-height:unset}
+  .dual{grid-template-columns:1fr;height:auto}
+  .section{min-height:unset}
+  .listWrap{overflow:visible;flex:0 0 auto;max-height:none;-webkit-overflow-scrolling:touch}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .filters{flex-direction:column;align-items:stretch}
+  .control{width:100%;min-width:0}
+  .mobileSwitch{display:flex;justify-content:center}
+  .mobileSwitch .seg{width:100%}
+  .mobileSwitch button{flex:1}
 }
-
-/* ---------- ALL DEVICES: scroll + responsive safety ---------- */
-html, body{
-  height:auto !important;
-  min-height:100%;
-  overflow-x:hidden !important;
-  overflow-y:auto !important;
-  -webkit-text-size-adjust:100%;
-  touch-action: pan-y;
-}
-.wrap{
-  height:auto !important;
-  min-height:100vh !important;
-  overflow:visible !important;
-}
-@supports (height: 100dvh){ .wrap{ min-height:100dvh !important; } }
-.views, .view, .dual{
-  height:auto !important;
-  min-height:auto !important;
-  overflow:visible !important;
-}
-.scroller{
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
-}
-
-/* Phones/Tablets: stack + avoid scroll traps */
-@media (max-width: 980px){
-  .dual{ grid-template-columns: 1fr !important; }
-  /* Let the page scroll naturally on mobile */
-  .scroller{ overflow:visible !important; padding-right:0 !important; }
-}
-
-
-
-    /* ===============================
-       RESPONSIVE FIX (v2)
-       - Allow full-page scroll (mobile + desktop)
-       - Prevent ugly gaps on resize
-       - Keep UGC/Gallery usable on phone/tablet/PC/console
-    =============================== */
-    html, body{
-      height:auto !important;
-      min-height:100%;
-      overflow-x:hidden !important;
-      overflow-y:auto !important;
-    }
-    body{
-      -webkit-overflow-scrolling:touch;
-      touch-action:pan-y;
-      overscroll-behavior-y:auto;
-    }
-
-    /* Let layout grow naturally (removes the 100vh trap) */
-    .wrap{
-      height:auto !important;
-      min-height:100vh;
-    }
-    .views{ flex:unset !important; }
-    .view{
-      height:auto !important;
-      min-height:auto !important;
-      flex:unset !important;
-    }
-
-    /* Two panels become responsive grid */
-    #viewUgc .dual{
-      height:auto !important;
-      grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)) !important;
-      align-items:start;
-    }
-
-    /* Filters: no forced min widths on small screens */
-    .control{ min-width:0 !important; }
-
-    /* Cards/sections: avoid stretching into empty space */
-    .section{ height:auto !important; }
-    .section .scroller{
-      /* Desktop: keep a clean contained scroll area without breaking page scroll */
-      max-height:min(62vh, 720px);
-      -webkit-overflow-scrolling:touch;
-    }
-
-    /* Grid: better behavior when resizing */
-    .grid{
-      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)) !important;
-      align-content:start;
-    }
-
-    /* Mobile/tablet: page scrolls, inner scrollers expand */
-    @media (max-width: 900px){
-      #viewUgc .dual{ grid-template-columns:1fr !important; }
-      .section .scroller{
-        max-height:none;
-        overflow:visible;
-      }
-      .tile{ min-height:0 !important; }
-    }
-    @media (max-width: 520px){
-      .grid{ grid-template-columns:1fr !important; }
-    }
-
-/* === Responsive overrides v3 (phone/tablet/PC/console) === */
-@media (max-width: 1100px){
-  /* allow cards/columns to shrink without overflow */
-  .dual{grid-template-columns: minmax(0,1fr) minmax(0,1fr);}
-  .section{min-width:0;}
-}
-
-@media (max-width: 900px){
-  /* avoid fixed viewport heights that block page scrolling */
-  .wrap, .views, .view{height:auto !important; min-height:0 !important;}
-  .wrap{min-height:100vh;}
-  @supports (height: 100dvh){ .wrap{min-height:100dvh;} }
-}
-
-@media (max-width: 520px){
-  /* keep 2 columns on mobile and make everything more compact */
-  html, body{overflow-y:auto !important; -webkit-overflow-scrolling:touch;}
-  .mobileSwitch{display:none !important;}
-
-  .topbar{padding:10px 12px !important;}
-  .nav{gap:8px !important;}
-  .nav .tab{padding:8px 12px !important; font-size:13px !important;}
-
-  .hero{padding:18px 14px !important;}
-  h1{font-size:32px !important; line-height:1.05 !important; letter-spacing:-0.02em;}
-  .sub{font-size:12px !important; margin-top:6px !important;}
-  .actions{gap:8px !important; margin-top:12px !important;}
-  .btn{padding:10px 12px !important; font-size:13px !important;}
-
-  .dual{grid-template-columns: minmax(0,1fr) minmax(0,1fr) !important; gap:8px !important;}
-  .section{padding:10px !important;}
-  .sectionHeader{flex-direction:column !important; align-items:flex-start !important; gap:6px !important;}
-  .status{white-space:normal !important;}
-
-  /* fix the big empty gaps in filters on narrow panels */
-  .filters{gap:8px !important;}
-  .control{min-width:0 !important; flex:1 1 100% !important;}
-  select, input[type="text"]{font-size:14px !important; padding:12px 14px !important;}
-
-  /* show more items per screen */
-  .grid{grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)) !important; gap:10px !important;}
-  .thumb{height:112px !important;}
-  .itemTitle{font-size:12px !important;}
-  .itemMeta{font-size:11px !important;}
-}
-
-@media (max-width: 380px){
-  h1{font-size:28px !important;}
-  .dual{gap:6px !important;}
-  .grid{grid-template-columns:repeat(auto-fit, minmax(132px, 1fr)) !important;}
+@media (max-width: 420px){
+  .heroTitle{font-size:34px}
+  .heroSubtitle{font-size:12px}
+  .btn{padding:10px 12px}
+  .sectionTitle{font-size:18px}
+  .card{border-radius:18px}
 }
 </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -3315,6 +3179,67 @@ function buildSales(){
     if(document.hidden) stop();
     else { start(); loadSales().then(buildSales).catch(()=>{}); }
   });
+})();
+/* --- Mobile UGC switch: place toggle under filters + show one section at a time --- */
+(function(){
+  const mobileSwitch = document.getElementById('mobileSwitch');
+  const msUser = document.getElementById('msUser');
+  const msGroup = document.getElementById('msGroup');
+  const secUser = document.getElementById('secUser');
+  const secGroup = document.getElementById('secGroup');
+  if(!mobileSwitch || !msUser || !msGroup || !secUser || !secGroup) return;
+
+  let active = 'user';
+  const mq = window.matchMedia('(max-width: 720px)');
+
+  function isMobile(){ return mq.matches; }
+
+  function place(){
+    if(isMobile()){
+      const activeSec = (active === 'group') ? secGroup : secUser;
+      const filters = activeSec.querySelector('.filters');
+      if(filters && mobileSwitch.parentElement !== activeSec){
+        filters.insertAdjacentElement('afterend', mobileSwitch);
+      }
+    }else{
+      // desktop: show both sections + keep switch hidden by CSS
+      secUser.style.display = 'flex';
+      secGroup.style.display = 'flex';
+      const viewUgc = document.getElementById('viewUgc');
+      if(viewUgc && mobileSwitch.parentElement !== viewUgc){
+        viewUgc.prepend(mobileSwitch);
+      }
+    }
+  }
+
+  function setActive(which){
+    active = which;
+    if(isMobile()){
+      secUser.style.display = (which === 'user') ? 'flex' : 'none';
+      secGroup.style.display = (which === 'group') ? 'flex' : 'none';
+      msUser.classList.toggle('active', which === 'user');
+      msGroup.classList.toggle('active', which === 'group');
+    }
+    place();
+  }
+
+  msUser.addEventListener('click', ()=> setActive('user'));
+  msGroup.addEventListener('click', ()=> setActive('group'));
+
+  // When switching between tabs or resizing, re-place the switch
+  function onMqChange(){
+    if(isMobile()){
+      setActive(active);
+    }else{
+      place();
+    }
+  }
+  if(mq.addEventListener){ mq.addEventListener('change', onMqChange); }
+  else if(mq.addListener){ mq.addListener(onMqChange); }
+  window.addEventListener('resize', ()=>{ place(); });
+
+  // init
+  setActive('user');
 })();
 </script>
 
