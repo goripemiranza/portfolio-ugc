@@ -229,29 +229,34 @@
     .podiumCard:nth-child(3){ grid-area:third }
 
     .podiumCard.is-first{
-      border-color: rgba(124,92,255,.75);
-      background: linear-gradient(135deg, rgba(124,92,255,.14), rgba(49,208,170,.08));
-      box-shadow: 0 0 0 1px rgba(124,92,255,.20), 0 18px 70px rgba(124,92,255,.18);
-      position:relative;
-      overflow:hidden;
-    }
-    .podiumCard.is-first::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: conic-gradient(from 180deg, rgba(124,92,255,.0), rgba(124,92,255,.55), rgba(49,208,170,.55), rgba(124,92,255,.0));
-      opacity:.55;
-      filter: blur(10px);
-      animation: glowSpin 4.6s linear infinite;
-      pointer-events:none;
-    }
-    .podiumCard.is-first::after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(500px 200px at 50% -20%, rgba(255,255,255,.20), transparent 60%);
-      opacity:.25;
-      pointer-events:none;
-    }
-    @keyframes glowSpin { to { transform: rotate(360deg) } }
+  position:relative;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  box-shadow: 0 0 0 1px rgba(124,92,255,.18), 0 18px 70px rgba(124,92,255,.18);
+  overflow:hidden;
+}
+/* Effet UNIQUEMENT sur le contour */
+.podiumCard.is-first::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: var(--r2);
+  padding:2px;
+  background: conic-gradient(from 180deg,
+    rgba(124,92,255,.0),
+    rgba(124,92,255,.90),
+    rgba(49,208,170,.90),
+    rgba(255,179,0,.90),
+    rgba(124,92,255,.0)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity:.95;
+  animation: borderSpin 7s linear infinite;
+  pointer-events:none;
+}
+@keyframes borderSpin { to { transform: rotate(360deg) } }
 
     .podiumThumb{
       position:relative;
@@ -367,7 +372,7 @@
     }
     .filtersRow{
       display:grid;
-      grid-template-columns: 1.2fr .9fr .9fr;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
       gap:12px;
       align-items:end;
     }
@@ -523,6 +528,17 @@
       text-overflow:ellipsis;
       max-width:100%;
     }
+.metaPill{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 10px;
+  border-radius:999px;
+  background: rgba(0,0,0,.18);
+  border:1px solid rgba(255,255,255,.10);
+}
+.metaK{ color:var(--muted); font-weight:900; letter-spacing:.01em; }
+.metaV{ color:var(--text); font-weight:950; }
 
     .actions{
       display:flex;
@@ -708,6 +724,16 @@
               <input id="q" type="text" placeholder="Nom, ID…" autocomplete="off" inputmode="search" />
             </div>
             <div class="control">
+              <div class="label">Catégorie</div>
+              <select id="catFilter">
+                <option value="__all__">Tout</option>
+                <option value="accessories">Accessoires</option>
+                <option value="clothing">Vêtements</option>
+                <option value="animations">Animations</option>
+                <option value="body">Corps</option>
+              </select>
+            </div>
+            <div class="control">
               <div class="label">Type Roblox</div>
               <select id="typeFilter">
                 <option value="__all__">Tous</option>
@@ -718,6 +744,7 @@
               <select id="sortMode">
                 <option value="new">Plus récents</option>
                 <option value="old">Plus anciens</option>
+                <option value="favDesc">Favoris ↓</option>
                 <option value="priceDesc">Prix ↓</option>
                 <option value="priceAsc">Prix ↑</option>
                 <option value="az">Nom A→Z</option>
@@ -805,24 +832,128 @@
     const yy = d.getFullYear();
     return `${dd}/${mm}/${yy}`;
   };
+  const fmtNum = (n) => {
+    const x = Number(n ?? 0);
+    if(!Number.isFinite(x)) return "0";
+    try{ return x.toLocaleString("fr-FR"); }catch{ return String(x); }
+  };
   const typeLabel = (t) => {
     const map = {
+      // Accessoires
+      Hat:"Chapeau",
+      HairAccessory:"Cheveux",
       FaceAccessory:"Visage",
-      BackAccessory:"Dos",
-      FrontAccessory:"Avant",
       NeckAccessory:"Cou",
       ShoulderAccessory:"Épaule",
+      FrontAccessory:"Avant",
+      BackAccessory:"Dos",
       WaistAccessory:"Taille",
-      HatAccessory:"Chapeau",
-      HairAccessory:"Cheveux",
+      EarAccessory:"Oreilles",
+      EyeAccessory:"Yeux",
+      EyebrowAccessory:"Sourcils",
+      EyelashAccessory:"Cils",
+
+      // Vêtements (classic + layered)
+      TShirt:"T-shirt",
+      Shirt:"Chemise",
+      Pants:"Pantalon",
+      TShirtAccessory:"T-shirt (layered)",
+      ShirtAccessory:"Haut (layered)",
+      PantsAccessory:"Bas (layered)",
+      JacketAccessory:"Veste",
+      SweaterAccessory:"Pull",
+      ShortsAccessory:"Short",
+      LeftShoeAccessory:"Chaussure G.",
+      RightShoeAccessory:"Chaussure D.",
+      DressSkirtAccessory:"Robe/Jupe",
+
+      // Corps
+      Head:"Tête",
+      Face:"Face",
+      DynamicHead:"Tête dynamique",
+
+      // Animations
       Animation:"Animation",
-      Shirt:"Shirt",
-      Pants:"Pants",
-      TShirt:"T-Shirt",
-      Decal:"Decal"
+      WalkAnimation:"Anim • Marche",
+      RunAnimation:"Anim • Course",
+      IdleAnimation:"Anim • Idle",
+      JumpAnimation:"Anim • Saut",
+      FallAnimation:"Anim • Chute",
+      SwimAnimation:"Anim • Nage",
+      ClimbAnimation:"Anim • Grimpe",
+      DeathAnimation:"Anim • Mort",
+      PoseAnimation:"Anim • Pose",
+      EmoteAnimation:"Emote",
+      MoodAnimation:"Mood"
     };
     return map[t] || t || "—";
   };
+
+  const KNOWN_TYPES = [
+    // Accessoires
+    "Hat","HairAccessory","FaceAccessory","NeckAccessory","ShoulderAccessory","FrontAccessory","BackAccessory","WaistAccessory",
+    "EarAccessory","EyeAccessory","EyebrowAccessory","EyelashAccessory",
+    // Vêtements
+    "TShirt","Shirt","Pants",
+    "TShirtAccessory","ShirtAccessory","PantsAccessory","JacketAccessory","SweaterAccessory","ShortsAccessory",
+    "LeftShoeAccessory","RightShoeAccessory","DressSkirtAccessory",
+    // Animations
+    "Animation","ClimbAnimation","DeathAnimation","FallAnimation","IdleAnimation","JumpAnimation","RunAnimation","SwimAnimation","WalkAnimation","PoseAnimation","EmoteAnimation","MoodAnimation",
+    // Corps
+    "Head","Face","DynamicHead"
+  ];
+
+  const TYPE_CATEGORY = {
+    // Accessoires
+    Hat:"accessories",
+    HairAccessory:"accessories",
+    FaceAccessory:"accessories",
+    NeckAccessory:"accessories",
+    ShoulderAccessory:"accessories",
+    FrontAccessory:"accessories",
+    BackAccessory:"accessories",
+    WaistAccessory:"accessories",
+    EarAccessory:"accessories",
+    EyeAccessory:"accessories",
+    EyebrowAccessory:"accessories",
+    EyelashAccessory:"accessories",
+
+    // Vêtements
+    TShirt:"clothing",
+    Shirt:"clothing",
+    Pants:"clothing",
+    TShirtAccessory:"clothing",
+    ShirtAccessory:"clothing",
+    PantsAccessory:"clothing",
+    JacketAccessory:"clothing",
+    SweaterAccessory:"clothing",
+    ShortsAccessory:"clothing",
+    LeftShoeAccessory:"clothing",
+    RightShoeAccessory:"clothing",
+    DressSkirtAccessory:"clothing",
+
+    // Animations
+    Animation:"animations",
+    ClimbAnimation:"animations",
+    DeathAnimation:"animations",
+    FallAnimation:"animations",
+    IdleAnimation:"animations",
+    JumpAnimation:"animations",
+    RunAnimation:"animations",
+    SwimAnimation:"animations",
+    WalkAnimation:"animations",
+    PoseAnimation:"animations",
+    EmoteAnimation:"animations",
+    MoodAnimation:"animations",
+
+    // Corps
+    Head:"body",
+    Face:"body",
+    DynamicHead:"body"
+  };
+
+  const typeCategory = (t) => TYPE_CATEGORY[t] || "__other__";
+
   const openUrlForType = (it) => {
     // Certaines créations (ex: Animation) sont mieux en /library
     const t = (it?.type || "").toLowerCase();
@@ -838,6 +969,11 @@
   }
 
   function normalizeItem(x, source){
+    const favRaw = (typeof x.favorites === "number" ? x.favorites :
+                    typeof x.favoriteCount === "number" ? x.favoriteCount :
+                    Number(x.favorites ?? x.favoriteCount ?? 0));
+    const favorites = Number.isFinite(favRaw) ? favRaw : 0;
+
     return {
       assetId: Number(x.assetId),
       name: String(x.name ?? ""),
@@ -845,6 +981,7 @@
       price: (typeof x.price === "number" ? x.price : Number(x.price ?? 0)),
       created: x.created ?? "",
       thumb: String(x.thumb ?? ""),
+      favorites,
       source
     };
   }
@@ -866,6 +1003,8 @@
     const copy = [...items];
     if(mode === "old"){
       copy.sort((a,b)=> new Date(a.created)-new Date(b.created));
+    }else if(mode === "favDesc"){
+      copy.sort((a,b)=> (b.favorites??0)-(a.favorites??0));
     }else if(mode === "priceAsc"){
       copy.sort((a,b)=> (a.price??0)-(b.price??0));
     }else if(mode === "priceDesc"){
@@ -1068,6 +1207,7 @@
       const name = safeText(it.name);
       const created = fmtDate(it.created);
       const price = (it.price ?? 0) ? `${it.price} R$` : "Gratuit";
+      const fav = fmtNum(it.favorites ?? 0);
       const url = openUrlForType(it);
       const thumb = it.thumb || "";
       const rank = isFirst ? "Dernier UGC" : "UGC";
@@ -1089,6 +1229,8 @@
               <span>${created}</span>
               <span>•</span>
               <span>${price}</span>
+              <span>•</span>
+              <span>Fav ${fav}</span>
             </div>
             <div class="podiumActions">
               <a class="btn primary" href="${safeText(url)}" target="_blank" rel="noopener">Ouvrir</a>
@@ -1101,23 +1243,40 @@
 
   function buildTypeOptions(items){
     const sel = $("typeFilter");
+    const cat = $("catFilter").value || "__all__";
     const current = sel.value || "__all__";
-    const types = [...new Set(items.map(x => x.type).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
-    sel.innerHTML = `<option value="__all__">Tous</option>` + types.map(t => {
+
+    const present = [...new Set((items||[]).map(x => x.type).filter(Boolean))];
+    const merged = [...KNOWN_TYPES];
+    for(const t of present){
+      if(!merged.includes(t)) merged.push(t);
+    }
+
+    let list = merged;
+    if(cat !== "__all__"){
+      list = list.filter(t => typeCategory(t) === cat);
+    }
+
+    sel.innerHTML = `<option value="__all__">Tous</option>` + list.map(t => {
       const label = `${typeLabel(t)} (${t})`;
       return `<option value="${safeText(t)}">${safeText(label)}</option>`;
     }).join("");
-    // restore if possible
+
     if([...sel.options].some(o => o.value === current)) sel.value = current;
+    else sel.value = "__all__";
   }
 
   function filterAndRenderUGC(){
     const q = ($("q").value || "").trim().toLowerCase();
+    const cat = $("catFilter").value || "__all__";
     const t = $("typeFilter").value || "__all__";
     const sortMode = $("sortMode").value || "new";
 
     let items = [...allItems];
 
+    if(cat !== "__all__"){
+      items = items.filter(x => typeCategory(x.type) === cat);
+    }
     if(t !== "__all__"){
       items = items.filter(x => x.type === t);
     }
@@ -1128,7 +1287,8 @@
     items = sortItems(items, sortMode);
 
     $("ugcCount").textContent = `${items.length} élément(s)`;
-    $("ugcStatus").textContent = t === "__all__" ? "Tous types" : typeLabel(t);
+    const catLabel = ({accessories:"Accessoires", clothing:"Vêtements", animations:"Animations", body:"Corps"})[cat] || "Tout";
+    $("ugcStatus").textContent = [cat !== "__all__" ? catLabel : null, t !== "__all__" ? typeLabel(t) : null].filter(Boolean).join(" • ") || "Tout";
 
     const grid = $("ugcGrid");
     if(!items.length){
@@ -1141,6 +1301,7 @@
       const src = it.source === "group" ? "Groupe" : "Profil";
       const name = safeText(it.name);
       const created = fmtDate(it.created);
+      const fav = fmtNum(it.favorites ?? 0);
       const price = (it.price ?? 0) ? `${it.price} R$` : "Gratuit";
       const url = openUrlForType(it);
       const thumb = it.thumb || "";
@@ -1157,13 +1318,13 @@
           <div class="body">
             <p class="title">${name}</p>
             <div class="meta">
-              <span>Asset ${safeText(it.assetId)}</span>
-              <span>•</span>
-              <span>${created}</span>
+              <span class="metaPill"><span class="metaK">Asset</span><span class="metaV">#${safeText(it.assetId)}</span></span>
+              <span class="metaPill"><span class="metaK">Fav</span><span class="metaV">${safeText(fav)}</span></span>
+              <span class="metaPill"><span class="metaK">Date</span><span class="metaV">${safeText(created)}</span></span>
             </div>
             <div class="actions">
               <span class="price">${safeText(price)}</span>
-              <a class="btn primary" href="${safeText(url)}" target="_blank" rel="noopener">Ouvrir</a>
+              <a class="btn" href="${safeText(url)}" target="_blank" rel="noopener">Ouvrir</a>
             </div>
           </div>
         </article>
@@ -1247,7 +1408,7 @@
       buildTypeOptions(allItems);
       renderPodium(allItems);
       filterAndRenderUGC();
-      $("ugcStatus").textContent = "OK";
+      // status handled by filterAndRenderUGC()
     }catch(e){
       allItems = [];
       $("ugcGeneratedAt").textContent = "—";
@@ -1317,6 +1478,7 @@
   $("btnRefresh").addEventListener("click", refreshAll);
 
   $("q").addEventListener("input", () => filterAndRenderUGC());
+  $("catFilter").addEventListener("change", () => { buildTypeOptions(allItems); filterAndRenderUGC(); });
   $("typeFilter").addEventListener("change", () => filterAndRenderUGC());
   $("sortMode").addEventListener("change", () => filterAndRenderUGC());
 
