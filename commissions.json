@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "client": "Client",
+    "title": "Nom du projet",
+    "date": "YYYY-MM-DD",
+    "status": "Livré / En cours",
+    "requested": "Demande du client",
+    "delivered": "Ce qui a été fait",
+    "images": {
+      "model3d": "Commission/client/model.png",
+      "texturing": "Commission/client/texture.png"
+    }
+  }
+]
