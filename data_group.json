@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-12-29T04:21:30.729781Z",
+  "generatedAt": "2025-12-29T13:54:16.916208Z",
   "items": [
     {
       "assetId": 93774719738585,
@@ -14,7 +14,7 @@
       "name": "[PBR] Blue cyber mask",
       "type": "FaceAccessory",
       "price": 100,
-      "created": "2025-12-27T23:10:07.9492155Z",
+      "created": "2025-12-27T23:10:07.95Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a57c1894fba8d7b2c6ea7fd74a73c54d/420/420/FaceAccessory/Png/noFilter"
     },
     {
@@ -48,6 +48,14 @@
       "price": 100,
       "created": "2025-10-19T11:42:55.59Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-8055d98b146511b71f0a0c274ec27f71/420/420/Hat/Png/noFilter"
+    },
+    {
+      "assetId": 86312140095193,
+      "name": "[PBR] Black/green golden jewelled horns",
+      "type": "Hat",
+      "price": 100,
+      "created": "2025-10-19T11:40:08.133Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-df1fb1001a390a28c696e99868029064/420/420/Hat/Png/noFilter"
     },
     {
       "assetId": 90895163434338,
@@ -104,6 +112,14 @@
       "price": 70,
       "created": "2025-08-25T20:18:08.163Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-cac5a262cd9b82887980ed87f67f9d19/420/420/HairAccessory/Png/noFilter"
+    },
+    {
+      "assetId": 76680987618680,
+      "name": "[PBR] Crimson red metallic horns",
+      "type": "Hat",
+      "price": 100,
+      "created": "2025-08-04T15:13:35.283Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-626052fbce1fddf0cbf84b43f4ca22f3/420/420/Hat/Png/noFilter"
     },
     {
       "assetId": 83398849212814,
@@ -469,17 +485,6 @@
       "rank": 28
     },
     {
-      "assetId": 86312140095193,
-      "name": "[PBR] Black/green golden jewelled horns",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://tr.rbxcdn.com/180DAY-df1fb1001a390a28c696e99868029064/420/420/Hat/Png/noFilter",
-      "rank": 19
-    },
-    {
       "assetId": 86296037478936,
       "name": "Black bunny umbrella",
       "assetTypeId": 46,
@@ -544,17 +549,6 @@
       "priceStatus": null,
       "thumb": "https://tr.rbxcdn.com/180DAY-b8ecc01d4e3c9455adc0220fd039606c/420/420/Hat/Png/noFilter",
       "rank": 41
-    },
-    {
-      "assetId": 76680987618680,
-      "name": "[PBR] Crimson red metallic horns",
-      "assetTypeId": 8,
-      "assetTypeName": "Hat",
-      "price": 100,
-      "isOffSale": null,
-      "priceStatus": null,
-      "thumb": "https://tr.rbxcdn.com/180DAY-626052fbce1fddf0cbf84b43f4ca22f3/420/420/Hat/Png/noFilter",
-      "rank": 13
     },
     {
       "assetId": 76090521545763,
