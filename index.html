@@ -115,9 +115,9 @@
     .filters{
       display:flex;
       flex-wrap:wrap;
-      gap:10px;
+      gap:8px;
       align-items:center;
-      margin:0 0 10px;
+      margin:0 0 8px;
     }
     .filters .label{
       color:rgba(255,255,255,0.72);
@@ -128,7 +128,7 @@
     .control{
       display:flex;
       flex-direction:column;
-      gap:6px;
+      gap:5px;
       min-width:190px;
       flex:1 1 220px;
       max-width:100%;
@@ -893,6 +893,37 @@
   }
 }
 
+
+/* --- Source filter + compact filters --- */
+.sourceRow{display:flex; gap:8px; margin:0 0 8px; align-items:flex-end; flex-wrap:wrap;}
+.sourceRow .control{min-width:190px; flex:1 1 220px;}
+.dual.one{grid-template-columns:1fr !important;}
+.commissionGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+  gap:12px;
+  padding-bottom:4px;
+}
+.commissionCard{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.10);
+  border-radius:16px;
+  overflow:hidden;
+  transform:translateZ(0);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.commissionCard:active{transform:scale(.99);}
+.commissionThumb{aspect-ratio:16/10; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center;}
+.commissionThumb img{width:100%; height:100%; object-fit:cover; display:block;}
+.commissionBody{padding:10px 11px;}
+.commissionTitle{font-weight:950; font-size:13px; line-height:1.2;}
+.commissionMeta{margin-top:6px; color:rgba(255,255,255,0.70); font-size:11px; font-weight:800;}
+@media (max-width: 520px){
+  /* remove ugly gaps on mobile */
+  .filters{gap:6px !important; margin:0 0 6px !important;}
+  .sourceRow{margin:0 0 6px !important;}
+  .control{min-width:0 !important; flex:1 1 100% !important;}
+}
 </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
@@ -903,7 +934,8 @@
       <div class="tabs">
         <button class="tab active" id="tabUgc" type="button" data-i18n="tab_ugc">UGC</button>
         <button class="tab" id="tabGallery" type="button" data-i18n="tab_gallery">Galerie</button>
-        </div>
+                <button class="tab" id="tabCommission" type="button">Commission</button>
+</div>
       <div class="rightTools">
         <button class="langMini" id="btnLangMini" type="button" aria-label="Langue actuelle" title="Langue" hidden>🇫🇷</button>
         <button class="langBtn" id="btnLang" type="button">🌐 <span data-i18n="lang">Langue</span></button>
@@ -973,10 +1005,16 @@
     <div class="views">
       <!-- VIEW: UGC -->
       <div class="view active" id="viewUgc">
-        
-        <div class="mobileSwitch" aria-label="Sélecteur mobile">
-          <button class="msBtn active" id="msUser" type="button" data-i18n="ms_profile">Profil</button>
-          <button class="msBtn" id="msGroup" type="button" data-i18n="ms_group">Groupe</button>
+
+        <div class="sourceRow">
+          <div class="control">
+            <div class="label">Source</div>
+            <select id="srcMode">
+              <option value="both">Profil + Groupe</option>
+              <option value="user">Profil</option>
+              <option value="group">Groupe</option>
+            </select>
+          </div>
         </div>
 <div class="dual">
           <div class="card section" id="secUser">
@@ -1049,6 +1087,25 @@
         </div>
       </div>
 
+      <!-- VIEW: COMMISSION -->
+      <div class="view" id="viewCommission">
+        <div class="card gallery">
+          <div class="galleryHeader">
+            <div>
+              <h2 id="t_commission_title">Commission</h2>
+              <p class="meta" id="t_commission_sub" style="margin:6px 0 0; color:rgba(255,255,255,0.72); font-weight:800;">
+                Logs de commandes / travaux réalisés pour clients.
+              </p>
+            </div>
+            <div class="status" id="statusCommission">—</div>
+          </div>
+
+          <div class="scroller">
+            <div class="commissionGrid" id="commissionGrid"></div>
+          </div>
+        </div>
+      </div>
+
       
     </div>
 
@@ -1083,6 +1140,7 @@ const I18N = {
       gal_missing:"Galerie introuvable.",
       choose_lang:"Choisir une langue",
       lang:"Langue", tab_ugc:"UGC", tab_gallery:"Galerie",
+      tab_commission:"Commission",
       btn_profile:"Profil Roblox", btn_group:"Groupe Roblox", btn_refresh:"Actualiser",
       label_type:"Type d’accessoire", label_kw:"Mot-clé (nom)", ph_kw:"Ex: corne, crown, sword…",
       open:"Ouvrir",
@@ -1286,6 +1344,7 @@ const I18N = {
     },
     de:{
       brand:"Roblox-Portfolio", tab_ugc:"UGC", tab_gallery:"Galerie",
+      tab_commission:"Commission",
       btn_profile:"Roblox-Profil", btn_group:"Roblox‑Gruppe", btn_refresh:"Aktualisieren",
       label_type:"Accessoire-Typ", label_kw:"Stichwort (Name)", ph_kw:"z.B. Horn, Krone, Schwert…",
       loading:"Lädt…", err_short:"Daten nicht verfügbar."
@@ -1363,29 +1422,41 @@ const I18N = {
   const tabGallery = document.getElementById("tabGallery");
   const viewUgc = document.getElementById("viewUgc");
   const viewGallery = document.getElementById("viewGallery");
-  const tabSales = document.getElementById("tabSales");
+    const tabCommission = document.getElementById("tabCommission");
+  const viewCommission = document.getElementById("viewCommission");
+const tabSales = document.getElementById("tabSales");
   const viewSales = document.getElementById("viewSales");
 
+  
   function setActiveView(which){
     const hasSales = !!tabSales && !!viewSales;
+    const hasCommission = !!tabCommission && !!viewCommission;
+
     if(which === "sales" && !hasSales) which = "ugc";
-    if(which !== "ugc" && which !== "gallery" && which !== "sales") which = "ugc";
+    if(which === "commission" && !hasCommission) which = "ugc";
+    if(which !== "ugc" && which !== "gallery" && which !== "sales" && which !== "commission") which = "ugc";
 
     const ugc = which === "ugc";
     const gal = which === "gallery";
     const sales = hasSales && which === "sales";
+    const com = hasCommission && which === "commission";
 
     tabUgc?.classList.toggle("active", ugc);
     tabGallery?.classList.toggle("active", gal);
     tabSales?.classList.toggle("active", sales);
+    tabCommission?.classList.toggle("active", com);
 
     viewUgc?.classList.toggle("active", ugc);
     viewGallery?.classList.toggle("active", gal);
     viewSales?.classList.toggle("active", sales);
+    viewCommission?.classList.toggle("active", com);
+
+    if(com) refreshCommission();
   }
   tabUgc?.addEventListener("click", ()=> setActiveView("ugc"));
   tabGallery?.addEventListener("click", ()=> setActiveView("gallery"));
-  tabSales?.addEventListener("click", ()=> setActiveView("sales"));
+    tabCommission?.addEventListener("click", ()=>setActiveView("commission"));
+tabSales?.addEventListener("click", ()=> setActiveView("sales"));
 
   /* ---------- UGC rendering ---------- */
   function setStatus(id, text, spinning=false){
@@ -2555,7 +2626,34 @@ tabSales?.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
 
   langMenu?.addEventListener("click",(e)=>e.stopPropagation());
   langMenu?.addEventListener("pointerdown",(e)=>e.stopPropagation());
-  langSelect?.addEventListener("pointerdown",(e)=>e.stopPropagation());
+  
+  /* ---------- Source filter (Profil / Groupe / Les deux) ---------- */
+  const srcMode = document.getElementById("srcMode");
+  const secUser = document.getElementById("secUser");
+  const secGroup = document.getElementById("secGroup");
+  const dual = document.querySelector("#viewUgc .dual");
+
+  function applySourceMode(mode){
+    const v = mode || (srcMode?.value || "both");
+    const showUser = (v === "both" || v === "user");
+    const showGroup = (v === "both" || v === "group");
+
+    if(secUser) secUser.style.display = showUser ? "" : "none";
+    if(secGroup) secGroup.style.display = showGroup ? "" : "none";
+
+    if(dual){
+      dual.classList.toggle("one", (showUser ^ showGroup) === 1); // exactly one visible
+    }
+    localStorage.setItem("srcMode", v);
+  }
+
+  // default: both (keeps PC-like layout), can be changed by user
+  const savedSrc = localStorage.getItem("srcMode") || "both";
+  if(srcMode) srcMode.value = savedSrc;
+  applySourceMode(savedSrc);
+  srcMode?.addEventListener("change", ()=>applySourceMode(srcMode.value));
+
+langSelect?.addEventListener("pointerdown",(e)=>e.stopPropagation());
   langSelect?.addEventListener("click",(e)=>e.stopPropagation());
 
   // set initial lang
@@ -2564,34 +2662,47 @@ tabSales?.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
   applyLang(savedLang);
 
   /* ---------- Mobile panel switch (Option A) ---------- */
-  const msUser = document.getElementById("msUser");
-  const msGroup = document.getElementById("msGroup");
-  function setMobilePanel(which){
-    if(which === "group"){
-      document.body.classList.add("mobile-show-group");
-      document.body.classList.remove("mobile-show-user");
-      msGroup?.classList.add("active");
-      msUser?.classList.remove("active");
-      localStorage.setItem("mobilePanel", "group");
-    }else{
-      document.body.classList.add("mobile-show-user");
-      document.body.classList.remove("mobile-show-group");
-      msUser?.classList.add("active");
-      msGroup?.classList.remove("active");
-      localStorage.setItem("mobilePanel", "user");
-    }
-  }
-  setMobilePanel(localStorage.getItem("mobilePanel") || "user");
-  msUser?.addEventListener("click", ()=>setMobilePanel("user"));
-  msGroup?.addEventListener("click", ()=>setMobilePanel("group"));
-
-
   langSelect?.addEventListener("change", (e) => {
     applyLang(e.target.value);
     closeLangMenu();
   });
 
-  /* ---------- Scroll reveal (cards/images appear smoothly) ---------- */
+  
+  /* ---------- Commission (simple gallery) ---------- */
+  const COMMISSIONS = [
+    // Ajouter vos commissions ici :
+    // { client: "ClientName", title:"Titre", date:"2025-12-01", img:"Commission/client1/preview.png" }
+  ];
+
+  function refreshCommission(){
+    const grid = document.getElementById("commissionGrid");
+    const status = document.getElementById("statusCommission");
+    if(!grid) return;
+
+    const items = Array.isArray(COMMISSIONS) ? COMMISSIONS : [];
+    status && (status.textContent = items.length ? `${items.length} item(s)` : "—");
+    if(!items.length){
+      grid.innerHTML = `<div class="muted">Ajoute des entrées dans <b>COMMISSIONS</b> (dans le script) ou crée un fichier <b>commissions.json</b>.</div>`;
+      return;
+    }
+
+    grid.innerHTML = items.map(x => {
+      const title = escapeHtml(x.title || x.client || "Commission");
+      const meta = escapeHtml([x.client, x.date].filter(Boolean).join(" • ") || "");
+      const img = x.img ? `<img loading="lazy" src="${x.img}" alt="">` : "";
+      return `
+        <div class="commissionCard">
+          <div class="commissionThumb">${img || "<span class='muted'>No image</span>"}</div>
+          <div class="commissionBody">
+            <div class="commissionTitle">${title}</div>
+            <div class="commissionMeta">${meta}</div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+/* ---------- Scroll reveal (cards/images appear smoothly) ---------- */
   function setupReveal(rootEl){
     if(!rootEl) return;
     const obs = new IntersectionObserver((entries) => {
