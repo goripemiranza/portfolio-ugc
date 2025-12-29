@@ -2,124 +2,147 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Portfolio Roblox — UGC</title>
-  <meta name="description" content="Portfolio Roblox : UGC (profil + groupe), galerie, commissions." />
-  <link rel="stylesheet" href="./styles.css" />
-  <script src="./app.js" defer></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio Roblox</title>
+  <meta name="description" content="Portfolio Roblox : UGC, Galerie, Commissions." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="app">
-    <header class="topbar card">
-      <div class="brand" title="Portfolio">
-        <span class="brand-dot" aria-hidden="true"></span>
-        <div class="brand-text">
-          <div class="brand-title">Portfolio Roblox</div>
-          <div class="brand-sub">UGC • Galerie • Commissions</div>
+  <div class="bg" aria-hidden="true"></div>
+
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <div class="brandText">
+          <div class="brandTitle">Portfolio Roblox</div>
+          <div class="brandSub">UGC • Galerie • Commissions</div>
         </div>
       </div>
 
-      <nav class="tabs" aria-label="Navigation">
-        <button class="tab-btn active" data-tab="ugc" type="button">UGC</button>
-        <button class="tab-btn" data-tab="gallery" type="button">Galerie</button>
-        <button class="tab-btn" data-tab="commissions" type="button">Commissions</button>
-      </nav>
+      <div class="nav">
+        <button class="tabBtn active" type="button" data-view="ugc">UGC</button>
+        <button class="tabBtn" type="button" data-view="gallery">Galerie</button>
+        <button class="tabBtn" type="button" data-view="commissions">Commissions</button>
+        <button class="actionBtn" id="btnRefresh" type="button">Actualiser</button>
+      </div>
     </header>
 
-    <main class="main">
-      <!-- UGC -->
-      <section id="view-ugc" class="view active" aria-label="UGC">
-        <div class="podium card">
-          <div class="podium-head">
-            <h2>Podium</h2>
-            <p class="muted">Les 3 derniers UGC en vente.</p>
+    <main class="views">
+
+      <!-- VIEW: UGC -->
+      <section class="view active" id="view-ugc">
+        <div class="card">
+          <div class="cardHead">
+            <div>
+              <h2 class="h2">Podium</h2>
+              <div class="muted">Les 3 derniers UGC en vente.</div>
+            </div>
+            <div class="muted" id="podiumHint">—</div>
           </div>
-          <div id="podiumGrid" class="podium-grid" aria-label="Podium des 3 derniers UGC"></div>
+
+          <div class="podiumRow" id="podiumRow"></div>
+          <div class="empty muted" id="podiumEmpty" hidden>Aucun item.</div>
         </div>
 
-        <div class="controls card">
-          <div class="controls-row">
+        <div class="card">
+          <div class="filtersGrid">
             <div class="control">
-              <label for="filterCategory">Catégorie</label>
-              <select id="filterCategory">
-                <option value="ALL">Tous</option>
-                <option value="ACCESSORIES">Accessoires</option>
-                <option value="CLOTHING">Vêtements</option>
-                <option value="BODY">Corps</option>
-                <option value="ANIMATIONS">Animations</option>
+              <div class="label">Catégorie</div>
+              <select id="fCategory" aria-label="Catégorie"></select>
+            </div>
+            <div class="control">
+              <div class="label">Type</div>
+              <select id="fType" aria-label="Type"></select>
+            </div>
+            <div class="control">
+              <div class="label">Tri</div>
+              <select id="fSort" aria-label="Tri">
+                <option value="new">Plus récents</option>
+                <option value="old">Plus anciens</option>
+                <option value="fav">Favoris ↓</option>
+                <option value="price_desc">Prix ↓</option>
+                <option value="price_asc">Prix ↑</option>
               </select>
             </div>
-
             <div class="control">
-              <label for="filterType">Type</label>
-              <select id="filterType"></select>
-            </div>
-
-            <div class="control">
-              <label for="filterSort">Tri</label>
-              <select id="filterSort">
-                <option value="NEW">Plus récents</option>
-                <option value="FAV">Favoris</option>
-                <option value="PRICE_DESC">Prix ↓</option>
-                <option value="PRICE_ASC">Prix ↑</option>
-              </select>
-            </div>
-
-            <div class="control control-wide">
-              <label for="filterSearch">Recherche</label>
-              <input id="filterSearch" type="text" placeholder="Nom / ID..." autocomplete="off" />
+              <div class="label">Recherche</div>
+              <input id="fSearch" type="search" placeholder="Nom / ID…" autocomplete="off" />
             </div>
           </div>
         </div>
 
-        <div class="section-head">
-          <h2>Tous les UGC</h2>
-          <p id="ugcCount" class="muted">Chargement...</p>
+        <div class="sectionHead">
+          <h2 class="h2">Tous les UGC</h2>
+          <div class="muted" id="ugcCount">—</div>
         </div>
 
-        <div id="ugcGrid" class="grid" aria-label="Liste UGC"></div>
+        <div class="ugcGrid" id="ugcGrid"></div>
+        <div class="empty muted" id="ugcEmpty" hidden>Aucun résultat.</div>
+
+        <div class="footInfo muted" id="updateInfo"></div>
       </section>
 
-      <!-- Galerie -->
-      <section id="view-gallery" class="view" aria-label="Galerie">
-        <div class="section-head">
-          <h2>Galerie</h2>
-          <p class="muted">Images uniquement.</p>
+      <!-- VIEW: GALLERY -->
+      <section class="view" id="view-gallery">
+        <div class="card">
+          <div class="cardHead">
+            <div>
+              <h2 class="h2">Galerie</h2>
+              <div class="muted">Images uniquement.</div>
+            </div>
+            <div class="muted" id="galleryCount">—</div>
+          </div>
+
+          <div class="galleryGrid" id="galleryGrid"></div>
+          <div class="empty muted" id="galleryEmpty" hidden>Aucune image.</div>
         </div>
-        <div id="galleryGrid" class="grid" aria-label="Images de galerie"></div>
       </section>
 
-      <!-- Commissions -->
-      <section id="view-commissions" class="view" aria-label="Commissions">
-        <div class="section-head">
-          <h2>Commissions</h2>
-          <p class="muted">Modèles & textures.</p>
-        </div>
+      <!-- VIEW: COMMISSIONS -->
+      <section class="view" id="view-commissions">
+        <div class="card">
+          <div class="cardHead">
+            <div>
+              <h2 class="h2">Commissions</h2>
+              <div class="muted">Modèles / Textures.</div>
+            </div>
 
-        <div class="commission-switch card">
-          <button class="pill active" data-comm-view="models" type="button">Modèles</button>
-          <button class="pill" data-comm-view="textures" type="button">Textures</button>
-        </div>
+            <div class="seg" role="tablist" aria-label="Commissions">
+              <button class="segBtn active" type="button" data-comm="models" role="tab" aria-selected="true">Modèles</button>
+              <button class="segBtn" type="button" data-comm="textures" role="tab" aria-selected="false">Textures</button>
+            </div>
+          </div>
 
-        <div id="commissionsGrid" class="grid" aria-label="Images commissions"></div>
+          <div class="commissionGrid" id="commissionGrid"></div>
+          <div class="empty muted" id="commissionEmpty" hidden>Aucune image.</div>
+        </div>
       </section>
+
     </main>
-
-    <footer class="footer muted">
-      <span id="buildInfo">—</span>
-    </footer>
   </div>
 
-  <!-- Zoom modal -->
-  <div id="zoom" class="zoom" aria-hidden="true">
-    <div class="zoom-backdrop" data-zoom-close></div>
-    <div class="zoom-inner card" role="dialog" aria-modal="true" aria-label="Aperçu image">
-      <button class="zoom-close" type="button" title="Fermer" data-zoom-close>×</button>
-      <img id="zoomImg" class="zoom-img" alt="" />
-      <div id="zoomCaption" class="zoom-caption muted"></div>
+  <!-- Modal (zoom) -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modalCard" role="dialog" aria-modal="true" aria-label="Image">
+      <button class="modalClose" id="modalClose" type="button" aria-label="Fermer">✕</button>
+
+      <div class="modalTools" aria-hidden="false">
+        <button class="toolBtn" id="zoomOut" type="button" title="Zoom -">−</button>
+        <button class="toolBtn" id="zoomReset" type="button" title="Reset">1×</button>
+        <button class="toolBtn" id="zoomIn" type="button" title="Zoom +">＋</button>
+      </div>
+
+      <div class="modalStage" id="modalStage">
+        <img id="modalImg" alt="" />
+      </div>
+
+      <div class="modalCaption" id="modalCaption"></div>
     </div>
   </div>
 
-  <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+  <div class="toast" id="toast" aria-hidden="true"></div>
+
+  <script src="app.js" defer></script>
 </body>
 </html>
