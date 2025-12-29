@@ -1,8 +1,13 @@
 /*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
   X-Frame-Options: DENY
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=()
   Cross-Origin-Opener-Policy: same-origin
-  Cross-Origin-Resource-Policy: same-site
-  Content-Security-Policy: default-src 'self' https: data: blob:; img-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https:; base-uri 'self'; frame-ancestors 'none'
+  Cross-Origin-Resource-Policy: same-origin
+  Permissions-Policy: accelerometer=(), autoplay=(), camera=(), clipboard-read=(), clipboard-write=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+  Content-Security-Policy: default-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; media-src 'none'; worker-src 'none'; manifest-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https://*.rbxcdn.com data:; connect-src 'self'; font-src 'self'; upgrade-insecure-requests
+}
+
+/*.json
+  Cache-Control: no-store
