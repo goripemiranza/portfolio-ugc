@@ -2632,27 +2632,60 @@ tabSales?.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
   const secUser = document.getElementById("secUser");
   const secGroup = document.getElementById("secGroup");
   const dual = document.querySelector("#viewUgc .dual");
+  const mqMobile = window.matchMedia("(max-width: 520px)");
+
+  function normalizeSrcMode(){
+    if(!srcMode) return;
+    if(mqMobile.matches){
+      // On mobile: one section only (no "both")
+      const optBoth = srcMode.querySelector('option[value="both"]');
+      if(optBoth) optBoth.remove();
+      if(srcMode.value === "both") srcMode.value = "user";
+    }else{
+      // On desktop/tablet: keep "both" if missing (optional)
+      if(!srcMode.querySelector('option[value="both"]')){
+        const o = document.createElement("option");
+        o.value = "both";
+        o.textContent = "Profil + Groupe";
+        srcMode.insertBefore(o, srcMode.firstChild);
+      }
+    }
+  }
 
   function applySourceMode(mode){
-    const v = mode || (srcMode?.value || "both");
+    if(!srcMode) return;
+    normalizeSrcMode();
+
+    let v = mode || srcMode.value || "both";
+    if(mqMobile.matches && v === "both") v = "user";
+
     const showUser = (v === "both" || v === "user");
     const showGroup = (v === "both" || v === "group");
 
     if(secUser) secUser.style.display = showUser ? "" : "none";
     if(secGroup) secGroup.style.display = showGroup ? "" : "none";
 
+    // On mobile: always one column stack
     if(dual){
-      dual.classList.toggle("one", (showUser ^ showGroup) === 1); // exactly one visible
+      const oneOnly = mqMobile.matches || ((showUser ^ showGroup) === 1);
+      dual.classList.toggle("one", oneOnly);
     }
+
     localStorage.setItem("srcMode", v);
   }
 
-  // default: both (keeps PC-like layout), can be changed by user
-  const savedSrc = localStorage.getItem("srcMode") || "both";
+  // Default: desktop shows both, mobile shows profile
+  normalizeSrcMode();
+  const defaultSrc = mqMobile.matches ? "user" : "both";
+  const savedSrc = localStorage.getItem("srcMode") || defaultSrc;
   if(srcMode) srcMode.value = savedSrc;
-  applySourceMode(savedSrc);
-  srcMode?.addEventListener("change", ()=>applySourceMode(srcMode.value));
+  applySourceMode(srcMode?.value || savedSrc);
 
+  srcMode?.addEventListener("change", ()=>applySourceMode(srcMode.value));
+  mqMobile.addEventListener?.("change", ()=>{
+    normalizeSrcMode();
+    applySourceMode(srcMode?.value || (mqMobile.matches ? "user" : "both"));
+  });
 langSelect?.addEventListener("pointerdown",(e)=>e.stopPropagation());
   langSelect?.addEventListener("click",(e)=>e.stopPropagation());
 
