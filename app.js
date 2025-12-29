@@ -2,6 +2,7 @@
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+const on = (el, evt, fn, opts) => { if (el) el.addEventListener(evt, fn, opts); };
 
 const FILES = {
   user: "data_user.json",
@@ -453,6 +454,7 @@ let ZOOM = { scale: 1, x: 0, y: 0, dragging: false, px: 0, py: 0 };
 
 function setModalTransform() {
   const img = $("#modalImg");
+  if (!img) return;
   img.style.transform = `translate(${ZOOM.x}px, ${ZOOM.y}px) scale(${ZOOM.scale})`;
 }
 
@@ -461,7 +463,8 @@ function modalReset() {
   ZOOM.x = 0;
   ZOOM.y = 0;
   setModalTransform();
-  $("#zoomReset").textContent = "1×";
+  const z = $("#zoomReset");
+  if (z) z.textContent = "1×";
 }
 
 function modalZoom(delta) {
@@ -472,16 +475,21 @@ function modalZoom(delta) {
     ZOOM.y = 0;
   }
   setModalTransform();
-  $("#zoomReset").textContent = `${ZOOM.scale.toFixed(1)}×`.replace(".0", "");
+  const z = $("#zoomReset");
+  if (z) z.textContent = `${ZOOM.scale.toFixed(1)}×`.replace(".0", "");
 }
 
 function openModal(src, caption = "") {
   const modal = $("#modal");
   const img = $("#modalImg");
   const cap = $("#modalCaption");
-
+  if (!modal || !img) {
+    // Fallback: open in new tab if modal is not present
+    window.open(src, "_blank", "noopener,noreferrer");
+    return;
+  }
   img.src = src;
-  cap.textContent = caption || "";
+  if (cap) cap.textContent = caption || "";
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
   modalReset();
@@ -490,15 +498,20 @@ function openModal(src, caption = "") {
 function closeModal() {
   const modal = $("#modal");
   const img = $("#modalImg");
+  if (!modal) return;
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden", "true");
-  img.src = "";
+  if (img) img.src = "";
 }
 
 /* Toast */
 let toastTimer = null;
 function showToast(text) {
   const t = $("#toast");
+  if (!t) {
+    console.log(String(text));
+    return;
+  }
   t.textContent = text;
   t.classList.add("show");
   t.setAttribute("aria-hidden", "false");
@@ -557,25 +570,25 @@ function onClickAction(e) {
 function wireUI() {
   // Tabs
   $$(".tabBtn").forEach((b) => {
-    b.addEventListener("click", () => setActiveView(b.dataset.view));
+    on(b, "click", () => setActiveView(b.dataset.view));
   });
 
-  // Refresh
-  $("#btnRefresh").addEventListener("click", () => boot());
+  // Refresh (optional button)
+  on($("#btnRefresh"), "click", () => boot());
 
-  // Filters
+  // Filters (optional)
   ["fCategory", "fType", "fSort", "fSearch"].forEach((id) => {
-    const el = $(`#${id}`);
-    el.addEventListener(id === "fSearch" ? "input" : "change", () => {
+    const el = document.getElementById(id);
+    on(el, id === "fSearch" ? "input" : "change", () => {
       applyFilters();
       renderPodium();
       renderUgcGrid();
     });
   });
 
-  // Commissions segment
+  // Commissions segment (optional)
   $$(".segBtn").forEach((b) => {
-    b.addEventListener("click", () => {
+    on(b, "click", () => {
       $$(".segBtn").forEach((x) => {
         x.classList.toggle("active", x === b);
         x.setAttribute("aria-selected", x === b ? "true" : "false");
@@ -585,44 +598,48 @@ function wireUI() {
     });
   });
 
-  // Click actions (UGC + gallery + commissions)
-  $("#ugcGrid").addEventListener("click", onClickAction);
-  $("#podiumRow").addEventListener("click", onClickAction);
-  $("#galleryGrid").addEventListener("click", onClickAction);
-  $("#commissionGrid").addEventListener("click", onClickAction);
+  // Click actions (UGC + gallery + commissions) — optional containers
+  on($("#ugcGrid"), "click", onClickAction);
+  on($("#podiumRow"), "click", onClickAction);
+  on($("#galleryGrid"), "click", onClickAction);
+  on($("#commissionGrid"), "click", onClickAction);
 
   // Modal close
-  $("#modalClose").addEventListener("click", closeModal);
-  $("#modal").addEventListener("click", (e) => {
-    if (e.target.id === "modal") closeModal();
+  on($("#modalClose"), "click", closeModal);
+  on($("#modal"), "click", (e) => {
+    if (e.target && e.target.id === "modal") closeModal();
   });
-  document.addEventListener("keydown", (e) => {
+  on(document, "keydown", (e) => {
     if (e.key === "Escape") closeModal();
   });
 
   // Modal tools
-  $("#zoomIn").addEventListener("click", () => modalZoom(+0.25));
-  $("#zoomOut").addEventListener("click", () => modalZoom(-0.25));
-  $("#zoomReset").addEventListener("click", modalReset);
+  on($("#zoomIn"), "click", () => modalZoom(+0.25));
+  on($("#zoomOut"), "click", () => modalZoom(-0.25));
+  on($("#zoomReset"), "click", modalReset);
 
   // Modal wheel zoom + drag
   const stage = $("#modalStage");
-  stage.addEventListener("wheel", (e) => {
-    if (!$("#modal").classList.contains("open")) return;
+  if (!stage) return;
+
+  on(stage, "wheel", (e) => {
+    const modal = $("#modal");
+    if (!modal || !modal.classList.contains("open")) return;
     e.preventDefault();
     modalZoom(e.deltaY < 0 ? +0.2 : -0.2);
   }, { passive: false });
 
-  stage.addEventListener("pointerdown", (e) => {
-    if (!$("#modal").classList.contains("open")) return;
+  on(stage, "pointerdown", (e) => {
+    const modal = $("#modal");
+    if (!modal || !modal.classList.contains("open")) return;
     if (ZOOM.scale <= 1) return;
     ZOOM.dragging = true;
     ZOOM.px = e.clientX;
     ZOOM.py = e.clientY;
-    stage.setPointerCapture(e.pointerId);
+    try { stage.setPointerCapture(e.pointerId); } catch {}
   });
 
-  stage.addEventListener("pointermove", (e) => {
+  on(stage, "pointermove", (e) => {
     if (!ZOOM.dragging) return;
     const dx = e.clientX - ZOOM.px;
     const dy = e.clientY - ZOOM.py;
@@ -633,9 +650,11 @@ function wireUI() {
     setModalTransform();
   });
 
-  stage.addEventListener("pointerup", () => { ZOOM.dragging = false; });
-  stage.addEventListener("pointercancel", () => { ZOOM.dragging = false; });
+  on(stage, "pointerup", () => { ZOOM.dragging = false; });
+  on(stage, "pointercancel", () => { ZOOM.dragging = false; });
 }
+
+
 
 function normalizeItems(raw, sourceLabel) {
   const items = Array.isArray(raw?.items) ? raw.items : [];
