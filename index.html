@@ -783,6 +783,107 @@
   .sectionTitle{font-size:18px}
   .card{border-radius:18px}
 }
+
+
+/* =====================
+   MOBILE/RESIZE OVERRIDES (v5)
+   - Fix missing UGC items on phone (avoid flex/height collapse)
+   - Enable finger scrolling on mobile
+   - Compact UI + 3x3 item grid on mobile
+   - Small touch effects
+   ===================== */
+
+/* Make the 2-panel grid behave nicely during resize */
+.dual{ align-items: stretch; align-content: start; }
+
+@media (max-width: 980px){
+  /* On smaller widths, stack panels to avoid awkward gaps */
+  .dual{ grid-template-columns: 1fr !important; height: auto !important; }
+  .section{ width: 100% !important; }
+}
+
+@media (max-width: 640px){
+  /* Always allow page scroll on mobile */
+  html, body{
+    height: auto !important;
+    min-height: 100% !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Let the layout flow naturally (no fixed viewport-height traps) */
+  .wrap{
+    height: auto !important;
+    min-height: 100dvh !important;
+    padding-bottom: 24px !important;
+  }
+  .views, .view{
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Prevent the UGC section scroller from collapsing (show items!) */
+  .section{
+    display: block !important;
+    height: auto !important;
+    min-height: unset !important;
+  }
+  .scroller{
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding-bottom: 6px !important;
+  }
+
+  /* Stack filters and keep them close */
+  .filters{ grid-template-columns: 1fr !important; gap: 10px !important; }
+
+  /* Compact hero so we see more content */
+  .hero{ padding: 18px 14px !important; }
+  .hero h1{ font-size: 40px !important; line-height: 1.05 !important; }
+  .hero .subtitle{ font-size: 12px !important; }
+  .heroActions{ flex-direction: column !important; align-items: stretch !important; gap: 10px !important; }
+  .heroActions .btn{ width: 100% !important; }
+
+  /* 3x3 compact grid on mobile */
+  .grid{ grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 10px !important; }
+  .item{ min-height: 0 !important; border-radius: 16px !important; }
+  .thumb{ height: 92px !important; padding: 6px !important; border-radius: 14px !important; }
+  .body{ padding: 8px !important; gap: 6px !important; }
+  .title{
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Hide heavy details to keep cards small */
+  .meta2, .kv, .date, .price, .foot{ display: none !important; }
+  .badge{ font-size: 10px !important; padding: 4px 7px !important; }
+
+  /* Sticky header feels better on phone */
+  .topbar{ position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px); }
+  .tabs{ flex-wrap: wrap; }
+
+  /* Touch-friendly micro effects */
+  .btn, .tab, .msBtn, .segBtn, .item{ -webkit-tap-highlight-color: transparent; }
+}
+
+@media (max-width: 640px) and (hover: none){
+  .btn:active, .tab:active, .msBtn:active, .segBtn:active{
+    transform: translateY(1px) scale(0.98);
+    filter: brightness(1.06);
+  }
+  .item:active{
+    transform: scale(0.99);
+    filter: brightness(1.04);
+  }
+}
+
 </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
