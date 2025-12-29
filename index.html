@@ -924,6 +924,21 @@
   .sourceRow{margin:0 0 6px !important;}
   .control{min-width:0 !important; flex:1 1 100% !important;}
 }
+
+
+/* ---------- Responsive: source selector only on mobile ---------- */
+.sourceRow{ display:none; }
+@media (max-width: 980px){
+  .sourceRow{ display:flex; }
+}
+
+
+/* ---------- Commission help ---------- */
+.commissionHelp{ margin-top:10px; border:1px solid rgba(255,255,255,.08); border-radius:16px; background:rgba(0,0,0,.12); padding:10px 12px; }
+.commissionHelp > summary{ cursor:pointer; list-style:none; font-weight:700; }
+.commissionHelp > summary::-webkit-details-marker{ display:none; }
+.commissionHelpBody{ margin-top:10px; display:grid; gap:10px; color:rgba(255,255,255,.86); }
+.commissionHelpCode{ margin:0; padding:10px 12px; border-radius:12px; background:rgba(0,0,0,.22); overflow:auto; font-size:12px; line-height:1.35; }
 </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
