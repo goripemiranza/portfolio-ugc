@@ -1108,69 +1108,51 @@
       <!-- VIEW: UGC -->
       <div class="view active" id="viewUgc">
 
-        <div class="sourceRow">
-          <div class="control">
-            <div class="label">Source</div>
-            <select id="srcMode">
-              <option value="both">Profil + Groupe</option>
-              <option value="user">Profil</option>
-              <option value="group">Groupe</option>
-            </select>
-          </div>
-        </div>
-<div class="dual">
-          <div class="card section" id="secUser">
+        
+
+        <div class="dual one">
+          <div class="card section" id="secAll">
             <div class="sectionHeader">
               <div>
-                <h2 id="titleUser">UGC — lulu8203 (en vente)</h2>
-                <p class="meta" id="metaUser">—</p>
+                <h2 id="titleAll">UGC — en vente</h2>
+                <p class="meta" id="metaAll">—</p>
               </div>
-              <div class="status" id="statusUser"><span class="spinner"></span><span data-i18n="loading">Chargement…</span></div>
+              <div class="status" id="statusAll"><span class="spinner"></span><span data-i18n="loading">Chargement…</span></div>
             </div>
 
-            <!-- ✅ ONLY 2 filters -->
             <div class="filters">
               <div class="control">
                 <div class="label" data-i18n="label_type">Type d’accessoire</div>
-                <select id="typeUser"></select>
+                <select id="typeAll"></select>
               </div>
+
+              <div class="control">
+                <div class="label" data-i18n="label_sort">Tri</div>
+                <select id="sortAll"></select>
+              </div>
+
+              <div class="control">
+                <div class="label" data-i18n="label_price_min">Prix min (R$)</div>
+                <input id="minPriceAll" type="number" inputmode="numeric" min="0" step="1" placeholder="0" />
+              </div>
+
+              <div class="control">
+                <div class="label" data-i18n="label_price_max">Prix max (R$)</div>
+                <input id="maxPriceAll" type="number" inputmode="numeric" min="0" step="1" placeholder="999" />
+              </div>
+
               <div class="control">
                 <div class="label" data-i18n="label_kw">Mot-clé (nom)</div>
-                <input id="kwUser" type="text" placeholder="Ex: corne, crown, sword…" data-i18n-ph="ph_kw" />
+                <input id="kwAll" type="text" placeholder="Ex: crown, hair, sword…" data-i18n-ph="ph_kw" />
               </div>
             </div>
 
             <div class="scroller">
-              <div class="grid" id="gridUser"></div>
-            </div>
-          </div>
-
-          <div class="card section" id="secGroup">
-            <div class="sectionHeader">
-              <div>
-                <h2 id="titleGroup">UGC — Powerful Artists (en vente)</h2>
-                <p class="meta" id="metaGroup">—</p>
-              </div>
-              <div class="status" id="statusGroup"><span class="spinner"></span><span data-i18n="loading">Chargement…</span></div>
-            </div>
-
-            <!-- ✅ ONLY 2 filters -->
-            <div class="filters">
-              <div class="control">
-                <div class="label" data-i18n="label_type">Type d’accessoire</div>
-                <select id="typeGroup"></select>
-              </div>
-              <div class="control">
-                <div class="label" data-i18n="label_kw">Mot-clé (nom)</div>
-                <input id="kwGroup" type="text" placeholder="Ex: wing, hair, dragon…" />
-              </div>
-            </div>
-
-            <div class="scroller">
-              <div class="grid" id="gridGroup"></div>
+              <div class="grid" id="gridAll"></div>
             </div>
           </div>
         </div>
+
       </div>
 
       <!-- VIEW: GALLERY -->
@@ -1625,53 +1607,89 @@ tabSales?.addEventListener("click", ()=> setActiveView("sales"));
 
 
   function ugcBadge(typeName){
-    const t = String(typeName || "").toLowerCase();
-    if(t.includes("back")) return "Dos";
-    if(t.includes("waist")) return "Taille";
-    if(t.includes("hat") || t.includes("head")) return "Tête";
-    if(t.includes("hair")) return "Cheveux";
-    if(t.includes("face")) return "Visage";
-    if(t.includes("neck")) return "Cou";
-    if(t.includes("shoulder")) return "Épaule";
-    if(t.includes("front")) return "Avant";
-    if(t.includes("shirt")) return "Haut";
-    if(t.includes("pants") || t.includes("shorts")) return "Bas";
-    if(t.includes("dress") || t.includes("skirt")) return "Robe/Jupe";
-    return typeName || "UGC";
+    const t = String(typeName || "");
+    // Exact Roblox types (stable)
+    if(t === "Hat") return "Tête";
+    if(t === "HairAccessory") return "Cheveux";
+    if(t === "FaceAccessory") return "Visage";
+    if(t === "NeckAccessory") return "Cou";
+    if(t === "ShoulderAccessory") return "Épaule";
+    if(t === "FrontAccessory") return "Avant";
+    if(t === "BackAccessory") return "Dos";
+    if(t === "WaistAccessory") return "Taille";
+
+    // Classic clothing
+    if(t === "TShirt") return "T-Shirt";
+    if(t === "Shirt") return "Chemise";
+    if(t === "Pants") return "Pantalon";
+
+    // Layered clothing (Roblox)
+    if(t === "TShirtAccessory") return "T-Shirt (Layered)";
+    if(t === "ShirtAccessory") return "Chemise (Layered)";
+    if(t === "PantsAccessory") return "Pantalon (Layered)";
+    if(t === "JacketAccessory") return "Veste (Layered)";
+    if(t === "SweaterAccessory") return "Pull (Layered)";
+    if(t === "ShortsAccessory") return "Short (Layered)";
+    if(t === "LeftShoeAccessory") return "Chaussure gauche";
+    if(t === "RightShoeAccessory") return "Chaussure droite";
+    if(t === "DressSkirtAccessory") return "Robe/Jupe (Layered)";
+
+    // Fallback (safe)
+    const tl = t.toLowerCase();
+    if(tl.includes("back")) return "Dos";
+    if(tl.includes("waist")) return "Taille";
+    if(tl.includes("hat") || tl.includes("head")) return "Tête";
+    if(tl.includes("hair")) return "Cheveux";
+    if(tl.includes("face")) return "Visage";
+    if(tl.includes("neck")) return "Cou";
+    if(tl.includes("shoulder")) return "Épaule";
+    if(tl.includes("front")) return "Avant";
+    if(tl.includes("shirt")) return "Chemise";
+    if(tl.includes("pants")) return "Pantalon";
+    if(tl.includes("shorts")) return "Short";
+    if(tl.includes("dress") || tl.includes("skirt")) return "Robe/Jupe";
+    return t || "UGC";
   }
 
-  // ✅ Requested accessory type groups: Tête / Corps / Taille (+ Vêtements)
-  
-  const TYPE_OPTIONS = [
-    { key:"ALL", labelKey:"type_all", badges:["Tous","All","—"] },
+  // ✅ Types Roblox (uniquement des filtres qui existent sur la plateforme)
+  const ROBLOX_TYPE_OPTIONS = [
+    { value:"ALL", label:"Tous" },
 
-    // Accessoires (Roblox)
-    { key:"HAT", labelKey:"type_hat", badges:["Chapeau","Hat","Head","Tête"] },
-    { key:"HAIR", labelKey:"type_hair", badges:["Cheveux","Hair"] },
-    { key:"FACE", labelKey:"type_face", badges:["Visage","Face"] },
-    { key:"EARS", labelKey:"type_ears", badges:["Oreilles","Ears"] },
-    { key:"NECK", labelKey:"type_neck", badges:["Cou","Neck"] },
-    { key:"SHOULDER", labelKey:"type_shoulder", badges:["Épaule","Epaule","Shoulder"] },
-    { key:"FRONT", labelKey:"type_front", badges:["Avant","Front"] },
-    { key:"BACK", labelKey:"type_back", badges:["Dos","Back"] },
-    { key:"WAIST", labelKey:"type_waist", badges:["Taille","Waist"] },
+    // Accessoires Roblox
+    { value:"Hat",               label:"Tête" },
+    { value:"HairAccessory",     label:"Cheveux" },
+    { value:"FaceAccessory",     label:"Visage" },
+    { value:"NeckAccessory",     label:"Cou" },
+    { value:"ShoulderAccessory", label:"Épaule" },
+    { value:"FrontAccessory",    label:"Avant" },
+    { value:"BackAccessory",     label:"Dos" },
+    { value:"WaistAccessory",    label:"Taille" },
 
-    // Vêtements (Classique / Layered)
-    { key:"TSHIRT", labelKey:"type_tshirt", badges:["T-Shirt","TShirt","T-shirt"] },
-    { key:"SHIRT", labelKey:"type_shirt", badges:["Shirt","Chemise","Haut"] },
-    { key:"PANTS", labelKey:"type_pants", badges:["Pants","Pantalon","Bas"] },
-    { key:"SWEATER", labelKey:"type_sweater", badges:["Sweater","Pull"] },
-    { key:"JACKET", labelKey:"type_jacket", badges:["Jacket","Veste"] },
-    { key:"DRESSSKIRT", labelKey:"type_dress", badges:["Dress","Skirt","Robe","Jupe","Dress & Skirt"] },
-    { key:"SHORTS", labelKey:"type_shorts", badges:["Shorts","Short"] },
-    { key:"SHOES", labelKey:"type_shoes", badges:["Shoes","Chaussures"] },
+    // Vêtements (classiques)
+    { value:"TShirt", label:"T-Shirt" },
+    { value:"Shirt",  label:"Chemise" },
+    { value:"Pants",  label:"Pantalon" },
 
-    // Autres (au cas où)
-    { key:"GEAR", labelKey:"type_gear", badges:["Gear","Équipement","Equipement"] },
-    { key:"BUNDLE", labelKey:"type_bundle", badges:["Bundle","Pack"] },
-    { key:"OTHER", labelKey:"type_other", badges:["Other","Autre"] },
+    // Vêtements (Layered Clothing Roblox)
+    { value:"TShirtAccessory",    label:"T-Shirt (Layered)" },
+    { value:"ShirtAccessory",     label:"Chemise (Layered)" },
+    { value:"PantsAccessory",     label:"Pantalon (Layered)" },
+    { value:"JacketAccessory",    label:"Veste (Layered)" },
+    { value:"SweaterAccessory",   label:"Pull (Layered)" },
+    { value:"ShortsAccessory",    label:"Short (Layered)" },
+    { value:"LeftShoeAccessory",  label:"Chaussure gauche (Layered)" },
+    { value:"RightShoeAccessory", label:"Chaussure droite (Layered)" },
+    { value:"DressSkirtAccessory",label:"Robe/Jupe (Layered)" },
   ];
 
+  const SORT_OPTIONS = [
+    { value:"newest",     label:"Plus récents" },
+    { value:"oldest",     label:"Plus anciens" },
+    { value:"price_low",  label:"Prix (croissant)" },
+    { value:"price_high", label:"Prix (décroissant)" },
+    { value:"name_az",    label:"Nom (A → Z)" },
+    { value:"name_za",    label:"Nom (Z → A)" },
+  ];
 
   function normalizeItem(x){
     const assetId = (typeof x.assetId === "number") ? x.assetId : (typeof x.id === "number" ? x.id : null);
@@ -1696,33 +1714,49 @@ tabSales?.addEventListener("click", ()=> setActiveView("sales"));
   }
 
   
-  function applyFilters(items, typeKey, kw){
+    function numOrNullInput(v){
+    const s = String(v ?? "").trim();
+    if(!s) return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  function applyFilters(items, typeValue, kw, minPrice, maxPrice){
     const q = String(kw || "").trim().toLowerCase();
-    const opt = TYPE_OPTIONS.find(o => o.key === typeKey) || TYPE_OPTIONS[0];
+    const min = numOrNullInput(minPrice);
+    const max = numOrNullInput(maxPrice);
+    const type = String(typeValue || "ALL");
 
     return items.filter(it => {
       const name = String(it.name || "").toLowerCase();
       const okKw = !q || name.includes(q);
 
-      let okType = true;
-      if(opt.key === "ALL"){
-        okType = true;
-      }else if(opt.key === "OTHER"){
-        const known = new Set(TYPE_OPTIONS.filter(o=>Array.isArray(o.badges)).flatMap(o=>o.badges));
-        okType = !known.has(it.badge);
-      }else if(Array.isArray(opt.badges)){
-        okType = opt.badges.includes(it.badge);
-      }else{
-        okType = true;
-      }
-      return okKw && okType;
+      const okType = (type === "ALL") || (String(it.type || "") === type);
+
+      const p = (typeof it.price === "number") ? it.price : null;
+      const okMin = (min == null) || (p != null && p >= min);
+      const okMax = (max == null) || (p != null && p <= max);
+
+      return okKw && okType && okMin && okMax;
     });
   }
 
-
-  function sortByNewest(items){
+  function sortItems(items, sortKey){
+    const key = String(sortKey || "newest");
     const safeTime = (it) => (it.createdTs != null ? it.createdTs : -1);
-    return [...items].sort((a,b)=> safeTime(b) - safeTime(a));
+    const safePrice = (it) => (typeof it.price === "number" ? it.price : Number.POSITIVE_INFINITY);
+    const safeName = (it) => String(it.name || "");
+
+    const out = [...items];
+
+    if(key === "oldest") return out.sort((a,b)=> safeTime(a) - safeTime(b));
+    if(key === "price_low") return out.sort((a,b)=> safePrice(a) - safePrice(b));
+    if(key === "price_high") return out.sort((a,b)=> safePrice(b) - safePrice(a));
+    if(key === "name_az") return out.sort((a,b)=> safeName(a).localeCompare(safeName(b), currentLocale(), {sensitivity:"base"}));
+    if(key === "name_za") return out.sort((a,b)=> safeName(b).localeCompare(safeName(a), currentLocale(), {sensitivity:"base"}));
+
+    // default newest
+    return out.sort((a,b)=> safeTime(b) - safeTime(a));
   }
 
   function render(gridId, items, prefix){
@@ -1918,70 +1952,114 @@ tabSales?.addEventListener("click", ()=> setActiveView("sales"));
 function fillTypeSelect(selId){
     const sel = document.getElementById(selId);
     if(!sel) return;
-    sel.innerHTML = TYPE_OPTIONS.map(o => {
-      const label = t(o.labelKey) || o.key;
-      return `<option value="${o.key}">${label}</option>`;
+
+    const cur = sel.value || "ALL";
+    sel.innerHTML = ROBLOX_TYPE_OPTIONS.map(o => {
+      const label = o.label || (o.labelKey ? (t(o.labelKey) || o.value) : o.value);
+      return `<option value="${o.value}">${label}</option>`;
     }).join("");
+    sel.value = cur;
   }
 
+  function fillSortSelect(selId){
+    const sel = document.getElementById(selId);
+    if(!sel) return;
 
-  function wireSection(source, els){
-    const state = { items: [] };
+    const cur = sel.value || "newest";
+    sel.innerHTML = SORT_OPTIONS.map(o => {
+      const label = o.label || o.value;
+      return `<option value="${o.value}">${label}</option>`;
+    }).join("");
+    sel.value = cur;
+  }
+
+  function wireAllSection(els){
+    const state = { items: [], total: 0 };
 
     function apply(){
-      const typeKey = document.getElementById(els.typeSelId).value;
-      const kw = document.getElementById(els.kwId).value;
-      const filtered = applyFilters(state.items, typeKey, kw);
-      const sorted = sortByNewest(filtered);
+      const typeV = document.getElementById(els.typeSelId)?.value || "ALL";
+      const sortV = document.getElementById(els.sortSelId)?.value || "newest";
+      const kw = document.getElementById(els.kwId)?.value || "";
+      const minP = document.getElementById(els.minPriceId)?.value || "";
+      const maxP = document.getElementById(els.maxPriceId)?.value || "";
+
+      const filtered = applyFilters(state.items, typeV, kw, minP, maxP);
+      const sorted = sortItems(filtered, sortV);
       render(els.gridId, sorted, els.itemPrefix);
+
+      // status = items affichés (après filtre)
+      setStatus(els.statusId, itemsCountText(sorted.length), false);
     }
 
     async function refresh(){
       setStatus(els.statusId, t("loading"), true);
       try{
-        const payload = await fetchJsonLocal(source.localJson);
-        const updated = payload.generatedAt ? new Date(payload.generatedAt).toLocaleString(currentLocale()) : "—";
+        const [uPayload, gPayload] = await Promise.all([
+          fetchJsonLocal("data_user.json"),
+          fetchJsonLocal("data_group.json"),
+        ]);
 
-        state.items = (payload.items || []).map(normalizeItem).filter(x => x.assetId != null);
+        const userItems = (uPayload.items || []).map(normalizeItem).filter(x => x.assetId != null).map(x=>({ ...x, __src:"user" }));
+        const groupItems = (gPayload.items || []).map(normalizeItem).filter(x => x.assetId != null).map(x=>({ ...x, __src:"group" }));
 
-        (window.__UGC_STORE ||= {})[els.storeKey || els.itemPrefix || els.gridId] = state.items;
-        // Mirror to stable keys used by Sales tab
-        if(els.itemPrefix === "u-" || els.gridId === "ugcUserGrid"){ (window.__UGC_STORE ||= {}).user = state.items; }
-        if(els.itemPrefix === "g-" || els.gridId === "ugcGroupGrid"){ (window.__UGC_STORE ||= {}).group = state.items; }
+        (window.__UGC_STORE ||= {}).user = userItems;
+        (window.__UGC_STORE ||= {}).group = groupItems;
 
+        // Merge + dedupe
+        const byId = new Map();
+        for(const it of [...userItems, ...groupItems]){
+          if(it?.assetId == null) continue;
+          if(!byId.has(it.assetId)) byId.set(it.assetId, it);
+        }
 
-        document.getElementById(els.metaId).innerHTML =
-          `${saleCountText(state.items.length)} • <span style="color:rgba(255,255,255,0.72)">${t("updated")} :</span> ${updated}`;
+        state.items = Array.from(byId.values());
+        state.total = state.items.length;
+        (window.__UGC_STORE ||= {}).all = state.items;
+
+        const updatedTs = Math.max(
+          (Date.parse(uPayload.generatedAt || "") || 0),
+          (Date.parse(gPayload.generatedAt || "") || 0)
+        );
+        const updated = updatedTs ? new Date(updatedTs).toLocaleString(currentLocale()) : "—";
+
+        const metaEl = document.getElementById(els.metaId);
+        if(metaEl){
+          metaEl.innerHTML = `${saleCountText(state.total)} • <span style="color:rgba(255,255,255,0.72)">${t("updated")} :</span> ${updated}`;
+        }
 
         apply();
-        setStatus(els.statusId, itemsCountText(state.items.length), false);
       }catch(e){
         state.items = [];
-        document.getElementById(els.metaId).textContent = t("err_short");
+        state.total = 0;
+        const metaEl = document.getElementById(els.metaId);
+        if(metaEl) metaEl.textContent = t("err_short");
         render(els.gridId, [], els.itemPrefix);
         setStatus(els.statusId, t("error"), false);
       }
     }
 
     document.getElementById(els.typeSelId)?.addEventListener("change", apply);
+    document.getElementById(els.sortSelId)?.addEventListener("change", apply);
     document.getElementById(els.kwId)?.addEventListener("input", apply);
+    document.getElementById(els.minPriceId)?.addEventListener("input", apply);
+    document.getElementById(els.maxPriceId)?.addEventListener("input", apply);
 
-    return { refresh, fill: ()=> fillTypeSelect(els.typeSelId) };
+    return {
+      refresh,
+      fill: ()=>{
+        fillTypeSelect(els.typeSelId);
+        fillSortSelect(els.sortSelId);
+      }
+    };
   }
 
-  const userSec = wireSection(
-    { localJson: "data_user.json" },
-    { statusId:"statusUser", metaId:"metaUser", gridId:"gridUser",
-      typeSelId:"typeUser", kwId:"kwUser", itemPrefix:"u-" }
+  const allSec = wireAllSection(
+    { statusId:"statusAll", metaId:"metaAll", gridId:"gridAll",
+      typeSelId:"typeAll", sortSelId:"sortAll", kwId:"kwAll",
+      minPriceId:"minPriceAll", maxPriceId:"maxPriceAll", itemPrefix:"a-" }
   );
 
-  const groupSec = wireSection(
-    { localJson: "data_group.json" },
-    { statusId:"statusGroup", metaId:"metaGroup", gridId:"gridGroup",
-      typeSelId:"typeGroup", kwId:"kwGroup", itemPrefix:"g-" }
-  );
-
-  // Gallery lightbox (visual only)
+  // Gallery lightbox (visual only) (visual only)
   const imgModal = document.getElementById("imgModal");
   const imgModalImg = document.getElementById("imgModalImg");
   const imgModalCap = document.getElementById("imgModalCap");
@@ -2017,7 +2095,7 @@ function fillTypeSelect(selId){
 
 
   async function refreshAll(){
-    await Promise.all([userSec.refresh(), groupSec.refresh()]);
+    await allSec.refresh();
     // Sales UI removed: run sales refresh only if the sales controls exist
     if (document.getElementById("salesRange")) {
       await loadSales();
@@ -2550,8 +2628,7 @@ function drawBars(canvas, labels, values, opts={}){
 
   document.getElementById("refreshAllBtn")?.addEventListener("click", refreshAll);
 
-  userSec.fill();
-  groupSec.fill();
+  allSec.fill();
   applyLang();
   refreshAll();
 
@@ -2675,8 +2752,8 @@ tabSales?.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
     });
 
     // Rebuild translated selects
-    fillTypeSelect("typeUser");
-    fillTypeSelect("typeGroup");
+    fillTypeSelect("typeAll");
+    fillSortSelect("sortAll");
 
     // Refresh sales labels/stats without refetch
 
@@ -2751,65 +2828,7 @@ tabSales?.addEventListener("click", ()=> { fillSalesSelects(); buildSales(); });
   langMenu?.addEventListener("click",(e)=>e.stopPropagation());
   langMenu?.addEventListener("pointerdown",(e)=>e.stopPropagation());
   
-  /* ---------- Source filter (Profil / Groupe / Les deux) ---------- */
-  const srcMode = document.getElementById("srcMode");
-  const secUser = document.getElementById("secUser");
-  const secGroup = document.getElementById("secGroup");
-  const dual = document.querySelector("#viewUgc .dual");
-  const mqMobile = window.matchMedia("(max-width: 520px)");
-
-  function normalizeSrcMode(){
-    if(!srcMode) return;
-    if(mqMobile.matches){
-      // On mobile: one section only (no "both")
-      const optBoth = srcMode.querySelector('option[value="both"]');
-      if(optBoth) optBoth.remove();
-      if(srcMode.value === "both") srcMode.value = "user";
-    }else{
-      // On desktop/tablet: keep "both" if missing (optional)
-      if(!srcMode.querySelector('option[value="both"]')){
-        const o = document.createElement("option");
-        o.value = "both";
-        o.textContent = "Profil + Groupe";
-        srcMode.insertBefore(o, srcMode.firstChild);
-      }
-    }
-  }
-
-  function applySourceMode(mode){
-    if(!srcMode) return;
-    normalizeSrcMode();
-
-    let v = mode || srcMode.value || "both";
-    if(mqMobile.matches && v === "both") v = "user";
-
-    const showUser = (v === "both" || v === "user");
-    const showGroup = (v === "both" || v === "group");
-
-    if(secUser) secUser.style.display = showUser ? "" : "none";
-    if(secGroup) secGroup.style.display = showGroup ? "" : "none";
-
-    // On mobile: always one column stack
-    if(dual){
-      const oneOnly = mqMobile.matches || ((showUser ^ showGroup) === 1);
-      dual.classList.toggle("one", oneOnly);
-    }
-
-    localStorage.setItem("srcMode", v);
-  }
-
-  // Default: desktop shows both, mobile shows profile
-  normalizeSrcMode();
-  const defaultSrc = mqMobile.matches ? "user" : "both";
-  const savedSrc = localStorage.getItem("srcMode") || defaultSrc;
-  if(srcMode) srcMode.value = savedSrc;
-  applySourceMode(srcMode?.value || savedSrc);
-
-  srcMode?.addEventListener("change", ()=>applySourceMode(srcMode.value));
-  mqMobile.addEventListener?.("change", ()=>{
-    normalizeSrcMode();
-    applySourceMode(srcMode?.value || (mqMobile.matches ? "user" : "both"));
-  });
+  
 langSelect?.addEventListener("pointerdown",(e)=>e.stopPropagation());
   langSelect?.addEventListener("click",(e)=>e.stopPropagation());
 
@@ -3657,67 +3676,6 @@ function buildSales(){
     if(document.hidden) stop();
     else { start(); loadSales().then(buildSales).catch(()=>{}); }
   });
-})();
-/* --- Mobile UGC switch: place toggle under filters + show one section at a time --- */
-(function(){
-  const mobileSwitch = document.getElementById('mobileSwitch');
-  const msUser = document.getElementById('msUser');
-  const msGroup = document.getElementById('msGroup');
-  const secUser = document.getElementById('secUser');
-  const secGroup = document.getElementById('secGroup');
-  if(!mobileSwitch || !msUser || !msGroup || !secUser || !secGroup) return;
-
-  let active = 'user';
-  const mq = window.matchMedia('(max-width: 720px)');
-
-  function isMobile(){ return mq.matches; }
-
-  function place(){
-    if(isMobile()){
-      const activeSec = (active === 'group') ? secGroup : secUser;
-      const filters = activeSec.querySelector('.filters');
-      if(filters && mobileSwitch.parentElement !== activeSec){
-        filters.insertAdjacentElement('afterend', mobileSwitch);
-      }
-    }else{
-      // desktop: show both sections + keep switch hidden by CSS
-      secUser.style.display = 'flex';
-      secGroup.style.display = 'flex';
-      const viewUgc = document.getElementById('viewUgc');
-      if(viewUgc && mobileSwitch.parentElement !== viewUgc){
-        viewUgc.prepend(mobileSwitch);
-      }
-    }
-  }
-
-  function setActive(which){
-    active = which;
-    if(isMobile()){
-      secUser.style.display = (which === 'user') ? 'flex' : 'none';
-      secGroup.style.display = (which === 'group') ? 'flex' : 'none';
-      msUser.classList.toggle('active', which === 'user');
-      msGroup.classList.toggle('active', which === 'group');
-    }
-    place();
-  }
-
-  msUser.addEventListener('click', ()=> setActive('user'));
-  msGroup.addEventListener('click', ()=> setActive('group'));
-
-  // When switching between tabs or resizing, re-place the switch
-  function onMqChange(){
-    if(isMobile()){
-      setActive(active);
-    }else{
-      place();
-    }
-  }
-  if(mq.addEventListener){ mq.addEventListener('change', onMqChange); }
-  else if(mq.addListener){ mq.addListener(onMqChange); }
-  window.addEventListener('resize', ()=>{ place(); });
-
-  // init
-  setActive('user');
 })();
 </script>
 
