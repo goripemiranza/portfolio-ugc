@@ -1,598 +1,734 @@
-/* Portfolio Roblox — app.js
-   - UGC (profil + groupe) + favoris + filtre types Roblox
-   - Podium 3 derniers UGC (bordure glow uniquement)
-   - Zoom image (UGC / Galerie / Commissions)
-   - Copier: clic sur Nom / ID
-*/
+/* app.js — Portfolio Roblox (UGC + Gallery + Commissions) */
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-const state = {
-  items: [],
-  filtered: [],
-  gallery: [],
-  commissions: null,
-  commView: "models",
+const FILES = {
+  user: "data_user.json",
+  group: "data_group.json",
+  gallery: "gallery.json",
+  commissions: "commissions.json",
 };
 
-const TYPE_FR_BY_ID = {
-  // Accessories
-  8: "Chapeau",
-  41: "Cheveux",
-  42: "Visage",
-  43: "Cou",
-  44: "Épaule",
-  45: "Avant",
-  46: "Dos",
-  47: "Taille",
-  57: "Oreilles",
-  58: "Yeux",
-  76: "Sourcils",
-  77: "Cils",
+const ROBLOX_ITEM_URL = (assetId) => `https://www.roblox.com/catalog/${assetId}`;
 
-  // Clothing (classic)
-  2: "T‑Shirt (classique)",
-  11: "Haut (classique)",
-  12: "Pantalon (classique)",
+const TYPE_LABEL_FR = {
+  // Accessories
+  Hat: "Chapeau",
+  HairAccessory: "Cheveux",
+  FaceAccessory: "Visage",
+  NeckAccessory: "Cou",
+  ShoulderAccessory: "Épaule",
+  FrontAccessory: "Avant",
+  BackAccessory: "Dos",
+  WaistAccessory: "Taille",
+  EarAccessory: "Oreille",
+  EyeAccessory: "Yeux",
+  EyebrowAccessory: "Sourcils",
+  EyelashAccessory: "Cils",
+
+  // Heads / Faces
+  Head: "Tête",
+  Face: "Visage (Classic)",
+  DynamicHead: "Tête (Dynamique)",
+
+  // Classic clothing
+  TShirt: "T-Shirt",
+  Shirt: "Chemise",
+  Pants: "Pantalon",
 
   // Layered clothing
-  64: "T‑Shirt (layered)",
-  65: "Haut (layered)",
-  66: "Pantalon (layered)",
-  67: "Veste",
-  68: "Pull",
-  69: "Short",
-  70: "Chaussure (G)",
-  71: "Chaussure (D)",
-  72: "Robe / Jupe",
-
-  // Body
-  17: "Tête",
-  18: "Face",
-  27: "Torse",
-  28: "Bras (D)",
-  29: "Bras (G)",
-  30: "Jambe (G)",
-  31: "Jambe (D)",
-  79: "Tête dynamique",
+  TShirtAccessory: "T-Shirt (LC)",
+  ShirtAccessory: "Chemise (LC)",
+  PantsAccessory: "Pantalon (LC)",
+  JacketAccessory: "Veste (LC)",
+  SweaterAccessory: "Pull (LC)",
+  ShortsAccessory: "Short (LC)",
+  LeftShoeAccessory: "Chaussure G. (LC)",
+  RightShoeAccessory: "Chaussure D. (LC)",
+  DressSkirtAccessory: "Robe/Jupe (LC)",
 
   // Animations
-  24: "Animation",
-  48: "Anim • Climb",
-  49: "Anim • Death",
-  50: "Anim • Fall",
-  51: "Anim • Idle",
-  52: "Anim • Jump",
-  53: "Anim • Run",
-  54: "Anim • Swim",
-  55: "Anim • Walk",
-  56: "Anim • Pose",
-  61: "Anim • Emote",
-  78: "Anim • Mood",
+  Animation: "Animation",
+  ClimbAnimation: "Anim. Escalade",
+  DeathAnimation: "Anim. Mort",
+  FallAnimation: "Anim. Chute",
+  IdleAnimation: "Anim. Idle",
+  JumpAnimation: "Anim. Saut",
+  RunAnimation: "Anim. Course",
+  SwimAnimation: "Anim. Nage",
+  WalkAnimation: "Anim. Marche",
+  PoseAnimation: "Anim. Pose",
+  EmoteAnimation: "Emote",
+  MoodAnimation: "Anim. Mood",
+  Package: "Package",
 };
 
-const CATEGORY_BY_TYPE_ID = new Map([
-  // Accessories
-  [8, "ACCESSORIES"], [41, "ACCESSORIES"], [42, "ACCESSORIES"], [43, "ACCESSORIES"], [44, "ACCESSORIES"],
-  [45, "ACCESSORIES"], [46, "ACCESSORIES"], [47, "ACCESSORIES"], [57, "ACCESSORIES"], [58, "ACCESSORIES"],
-  [76, "ACCESSORIES"], [77, "ACCESSORIES"],
-
-  // Clothing
-  [2, "CLOTHING"], [11, "CLOTHING"], [12, "CLOTHING"],
-  [64, "CLOTHING"], [65, "CLOTHING"], [66, "CLOTHING"], [67, "CLOTHING"], [68, "CLOTHING"],
-  [69, "CLOTHING"], [70, "CLOTHING"], [71, "CLOTHING"], [72, "CLOTHING"],
-
-  // Body
-  [17, "BODY"], [18, "BODY"], [27, "BODY"], [28, "BODY"], [29, "BODY"], [30, "BODY"], [31, "BODY"], [79, "BODY"],
-
-  // Animations
-  [24, "ANIMATIONS"], [48, "ANIMATIONS"], [49, "ANIMATIONS"], [50, "ANIMATIONS"], [51, "ANIMATIONS"],
-  [52, "ANIMATIONS"], [53, "ANIMATIONS"], [54, "ANIMATIONS"], [55, "ANIMATIONS"], [56, "ANIMATIONS"],
-  [61, "ANIMATIONS"], [78, "ANIMATIONS"],
-]);
-
-const TYPE_OPTIONS = {
-  ALL: [{ key: "ALL", label: "Tous", ids: null }],
-
-  ACCESSORIES: [
-    { key: "ALL", label: "Tous", ids: null },
-    { key: "HAT", label: "Chapeaux", ids: [8] },
-    { key: "HAIR", label: "Cheveux", ids: [41] },
-    { key: "FACE", label: "Visage", ids: [42] },
-    { key: "NECK", label: "Cou", ids: [43] },
-    { key: "SHOULDER", label: "Épaules", ids: [44] },
-    { key: "FRONT", label: "Avant", ids: [45] },
-    { key: "BACK", label: "Dos", ids: [46] },
-    { key: "WAIST", label: "Taille", ids: [47] },
-    { key: "EARS", label: "Oreilles", ids: [57] },
-    { key: "EYES", label: "Yeux", ids: [58] },
-    { key: "EYEBROW", label: "Sourcils", ids: [76] },
-    { key: "EYELASH", label: "Cils", ids: [77] },
-  ],
-
-  CLOTHING: [
-    { key: "ALL", label: "Tous", ids: null },
-    { key: "TSHIRT_CLASSIC", label: "T‑Shirts classiques", ids: [2] },
-    { key: "SHIRT_CLASSIC", label: "Hauts classiques", ids: [11] },
-    { key: "PANTS_CLASSIC", label: "Pantalons classiques", ids: [12] },
-    { key: "TSHIRT_LAYER", label: "T‑Shirts (layered)", ids: [64] },
-    { key: "SHIRT_LAYER", label: "Hauts (layered)", ids: [65] },
-    { key: "PANTS_LAYER", label: "Pantalons (layered)", ids: [66] },
-    { key: "JACKET", label: "Vestes", ids: [67] },
-    { key: "SWEATER", label: "Pulls", ids: [68] },
-    { key: "SHORTS", label: "Shorts", ids: [69] },
-    { key: "SHOES", label: "Chaussures", ids: [70, 71] },
-    { key: "DRESS", label: "Robes / Jupes", ids: [72] },
-  ],
-
-  BODY: [
-    { key: "ALL", label: "Tous", ids: null },
-    { key: "HEAD", label: "Têtes", ids: [17] },
-    { key: "FACE", label: "Faces", ids: [18] },
-    { key: "TORSO", label: "Torses", ids: [27] },
-    { key: "ARMS", label: "Bras", ids: [28, 29] },
-    { key: "LEGS", label: "Jambes", ids: [30, 31] },
-    { key: "DYNAMIC_HEAD", label: "Têtes dynamiques", ids: [79] },
-  ],
-
-  ANIMATIONS: [
-    { key: "ALL", label: "Tous", ids: null },
-    { key: "IDLE", label: "Idle", ids: [51] },
-    { key: "WALK", label: "Walk", ids: [55] },
-    { key: "RUN", label: "Run", ids: [53] },
-    { key: "JUMP", label: "Jump", ids: [52] },
-    { key: "FALL", label: "Fall", ids: [50] },
-    { key: "CLIMB", label: "Climb", ids: [48] },
-    { key: "SWIM", label: "Swim", ids: [54] },
-    { key: "POSE", label: "Pose", ids: [56] },
-    { key: "EMOTE", label: "Emotes", ids: [61] },
-    { key: "MOOD", label: "Mood", ids: [78] },
-    { key: "OTHER_ANIM", label: "Autres", ids: [24, 49] },
-  ],
-};
-
-function escapeHtml(str) {
-  return String(str).replace(/[&<>"']/g, (m) => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
-  }[m]));
+function typeToLabel(type) {
+  if (!type || typeof type !== "string") return "Autre";
+  return TYPE_LABEL_FR[type] || type;
 }
 
-function fmtNumber(n) {
-  if (!Number.isFinite(n)) return "0";
-  return new Intl.NumberFormat("fr-FR").format(n);
+function typeToCategory(type) {
+  const t = String(type || "");
+  if (t.endsWith("Animation") || t === "Animation" || t === "MoodAnimation" || t === "Package") return "Animations";
+  if (t.endsWith("Accessory") || t === "Hat") return "Accessoires";
+  if (t === "Head" || t === "DynamicHead") return "Têtes";
+  if (t === "Face") return "Visages";
+  if (t === "TShirt" || t === "Shirt" || t === "Pants") return "Vêtements";
+  if (t.endsWith("Accessory") && (t.includes("Shirt") || t.includes("Pants") || t.includes("Jacket") || t.includes("Sweater") || t.includes("Shorts") || t.includes("Shoe") || t.includes("Dress"))) return "Vêtements";
+  if (t.endsWith("Accessory") && (t.includes("Shirt") || t.includes("Pants"))) return "Vêtements";
+  if (t.endsWith("Accessory") && (t.includes("Shoe") || t.includes("Dress"))) return "Vêtements";
+  if (t.endsWith("Accessory") && (t.includes("Jacket") || t.includes("Sweater") || t.includes("Shorts"))) return "Vêtements";
+  if (t.endsWith("Accessory") && (t.includes("TShirt") || t.includes("Shirt") || t.includes("Pants"))) return "Vêtements";
+  return "Autres";
 }
 
-function fmtDate(ts) {
-  if (!Number.isFinite(ts) || ts <= 0) return "—";
-  const d = new Date(ts);
-  return d.toLocaleDateString("fr-FR", { year: "numeric", month: "short", day: "2-digit" });
+function safeDate(ts) {
+  const d = ts ? new Date(ts) : null;
+  if (!d || Number.isNaN(d.getTime())) return "—";
+  const dd = String(d.getDate()).padStart(2, "0");
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const yy = d.getFullYear();
+  return `${dd}/${mm}/${yy}`;
 }
 
-function normalizeItem(it) {
-  const assetId = Number(it.assetId ?? it.id ?? 0);
-  const name = String(it.name ?? `Item ${assetId}`);
-  const typeId = Number(it.assetTypeId ?? it.assetType ?? it.typeId ?? NaN);
-  const typeName = String(it.assetTypeName ?? it.type ?? it.typeName ?? "Autre");
-  const typeFr = String(it.typeFr ?? TYPE_FR_BY_ID[typeId] ?? typeName ?? "Autre");
-
-  const favorites = Number(it.favorites ?? it.favoriteCount ?? it.favouriteCount ?? 0);
-  const price = Number(it.price ?? it.priceInRobux ?? it.priceInRobux ?? NaN);
-
-  const created = it.created ? String(it.created) : "";
-  const createdTs = created ? Date.parse(created) : 0;
-
-  const category = String(it.category ?? CATEGORY_BY_TYPE_ID.get(typeId) ?? "ALL");
-  const thumb = String(it.thumb ?? it.thumbnail ?? "");
-
-  return {
-    assetId,
-    name,
-    typeId: Number.isFinite(typeId) ? typeId : null,
-    typeName,
-    typeFr,
-    category,
-    favorites: Number.isFinite(favorites) ? favorites : 0,
-    price: Number.isFinite(price) ? price : null,
-    created,
-    createdTs: Number.isFinite(createdTs) ? createdTs : 0,
-    thumb,
-    creator: String(it.creator ?? ""),
-  };
+function num(n) {
+  return typeof n === "number" && Number.isFinite(n) ? n : null;
 }
 
-function showToast(text) {
-  const toast = $("#toast");
-  toast.textContent = text;
-  toast.classList.add("show");
-  clearTimeout(showToast._t);
-  showToast._t = setTimeout(() => toast.classList.remove("show"), 1200);
+function fmtRobux(price) {
+  const p = num(price);
+  if (p == null) return "—";
+  return `${p} R$`;
 }
 
-async function copyToClipboard(text) {
+async function fetchJson(path, { optional = false } = {}) {
+  const url = `${path}${path.includes("?") ? "&" : "?"}v=${Date.now()}`;
   try {
-    await navigator.clipboard.writeText(text);
-    showToast("Copié ✅");
-    return true;
-  } catch {
-    // fallback
-    try {
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.position = "fixed";
-      ta.style.left = "-9999px";
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand("copy");
-      ta.remove();
-      showToast("Copié ✅");
-      return true;
-    } catch {
-      showToast("Copie impossible");
-      return false;
-    }
+    const r = await fetch(url, { cache: "no-store" });
+    if (!r.ok) throw new Error(`${path} HTTP ${r.status}`);
+    return await r.json();
+  } catch (e) {
+    if (optional) return null;
+    throw e;
   }
 }
 
-/* Zoom */
-function openZoom(src, caption = "") {
-  const zoom = $("#zoom");
-  const img = $("#zoomImg");
-  const cap = $("#zoomCaption");
+const STATE = {
+  all: [],
+  filtered: [],
+  gallery: [],
+  commissions: {
+    models: [],
+    textures: [],
+  },
+  commMode: "models",
+};
 
-  img.src = src;
-  img.alt = caption || "Image";
-  cap.textContent = caption || "";
-
-  zoom.setAttribute("aria-hidden", "false");
-}
-function closeZoom() {
-  const zoom = $("#zoom");
-  zoom.setAttribute("aria-hidden", "true");
-  $("#zoomImg").src = "";
-  $("#zoomCaption").textContent = "";
+function setActiveView(name) {
+  $$(".tabBtn").forEach((b) => b.classList.toggle("active", b.dataset.view === name));
+  $$(".view").forEach((v) => v.classList.toggle("active", v.id === `view-${name}`));
 }
 
-/* Tabs */
-function setTab(key) {
-  $$(".tab-btn").forEach((b) => b.classList.toggle("active", b.dataset.tab === key));
-  $$(".view").forEach((v) => v.classList.toggle("active", v.id === `view-${key}`));
+function fillSelect(selectEl, options, selectedValue) {
+  selectEl.innerHTML = "";
+  for (const opt of options) {
+    const o = document.createElement("option");
+    o.value = opt.value;
+    o.textContent = opt.label;
+    selectEl.appendChild(o);
+  }
+  if (selectedValue != null) selectEl.value = selectedValue;
 }
 
-/* Render podium */
-function podiumCard(it, rank) {
-  const badge = it.typeFr || "Autre";
-  const created = fmtDate(it.createdTs);
-  const fav = fmtNumber(it.favorites);
-  const price = it.price != null ? `${it.price} R$` : "—";
+function computePodium(items) {
+  const list = items.slice().sort((a, b) => (b.createdTs || 0) - (a.createdTs || 0));
+  return list.slice(0, 3);
+}
 
-  const featured = rank === 1 ? " featured" : "";
-  const href = `https://www.roblox.com/catalog/${it.assetId}/`;
+function createUgcCard(item, { featured = false } = {}) {
+  const card = document.createElement("article");
+  card.className = `ugcCard${featured ? " featured" : ""}`;
+  card.dataset.assetId = String(item.assetId);
 
-  return `
-    <div class="podium-card${featured}">
-      <div class="thumb" data-zoom-src="${escapeHtml(it.thumb)}" data-zoom-caption="${escapeHtml(it.name)}">
-        <img src="${escapeHtml(it.thumb)}" alt="${escapeHtml(it.name)}" loading="lazy" />
-      </div>
-      <div class="body">
-        <div class="name" data-copy="${escapeHtml(it.name)}" title="Copier le nom">${escapeHtml(it.name)}</div>
-        <div class="meta">
-          <span class="meta-pill">${escapeHtml(badge)}</span>
-          <span class="meta-pill copy" data-copy="${it.assetId}" title="Copier l'ID">ID: ${it.assetId}</span>
-          <span class="meta-pill">❤️ ${fav}</span>
-          <span class="meta-pill">${created}</span>
-        </div>
-        <div class="cta">
-          <div class="price">${price}</div>
-          <a class="btn small" href="${href}" target="_blank" rel="noopener">Ouvrir</a>
-        </div>
-      </div>
-    </div>
-  `;
+  const badge = document.createElement("div");
+  badge.className = "badge";
+  badge.textContent = typeToLabel(item.type);
+
+  const pill = document.createElement("div");
+  pill.className = "sourcePill";
+  pill.textContent = item.source;
+
+  const thumbBtn = document.createElement("button");
+  thumbBtn.type = "button";
+  thumbBtn.className = "thumbBtn";
+  thumbBtn.dataset.action = "zoom";
+  thumbBtn.dataset.src = item.thumb || "";
+  thumbBtn.dataset.caption = `${item.name} • ${item.assetId}`;
+
+  const img = document.createElement("img");
+  img.className = "thumb";
+  img.loading = "lazy";
+  img.alt = item.name || "UGC";
+  img.src = item.thumb || "";
+  thumbBtn.appendChild(img);
+
+  const body = document.createElement("div");
+  body.className = "body";
+
+  const title = document.createElement("div");
+  title.className = "title";
+  const titleBtn = document.createElement("button");
+  titleBtn.type = "button";
+  titleBtn.className = "linkLike";
+  titleBtn.dataset.action = "copy-name";
+  titleBtn.dataset.copy = item.name || "";
+  titleBtn.textContent = item.name || `Item ${item.assetId}`;
+  title.appendChild(titleBtn);
+
+  const meta = document.createElement("div");
+  meta.className = "metaRow";
+
+  const idBtn = document.createElement("button");
+  idBtn.type = "button";
+  idBtn.className = "kvBtn";
+  idBtn.dataset.action = "copy-id";
+  idBtn.dataset.copy = String(item.assetId);
+  idBtn.textContent = `Asset ${item.assetId}`;
+
+  const dateTag = document.createElement("span");
+  dateTag.className = "metaTag";
+  dateTag.textContent = safeDate(item.created);
+
+  const fav = document.createElement("span");
+  fav.className = "metaTag";
+  const f = num(item.favorites);
+  fav.textContent = `❤ ${f == null ? "—" : f}`;
+
+  const cat = document.createElement("span");
+  cat.className = "metaTag";
+  cat.textContent = typeToCategory(item.type);
+
+  meta.appendChild(idBtn);
+  meta.appendChild(dateTag);
+  meta.appendChild(fav);
+  meta.appendChild(cat);
+
+  const foot = document.createElement("div");
+  foot.className = "foot";
+
+  const price = document.createElement("div");
+  price.className = "price";
+  price.textContent = fmtRobux(item.price);
+
+  const openBtn = document.createElement("button");
+  openBtn.type = "button";
+  openBtn.className = "btnOpen";
+  openBtn.dataset.action = "open";
+  openBtn.textContent = "Ouvrir";
+
+  foot.appendChild(price);
+  foot.appendChild(openBtn);
+
+  body.appendChild(title);
+  body.appendChild(meta);
+  body.appendChild(foot);
+
+  card.appendChild(thumbBtn);
+  card.appendChild(badge);
+  card.appendChild(pill);
+  card.appendChild(body);
+
+  return card;
 }
 
 function renderPodium() {
-  const el = $("#podiumGrid");
-  const items = state.items.slice(0, 3);
+  const row = $("#podiumRow");
+  const empty = $("#podiumEmpty");
+  row.innerHTML = "";
 
-  if (!items.length) {
-    el.innerHTML = `<div class="muted">Aucun item.</div>`;
+  const podium = computePodium(STATE.all).filter((x) => num(x.price) != null && x.price > 0);
+  if (!podium.length) {
+    empty.hidden = false;
+    $("#podiumHint").textContent = "0 item";
     return;
   }
+  empty.hidden = true;
 
-  const first = items[0];
-  const second = items[1];
-  const third = items[2];
+  // order: left=2nd, mid=1st, right=3rd
+  const mid = podium[0] || null;
+  const left = podium[1] || null;
+  const right = podium[2] || null;
 
-  const html = [
-    second ? podiumCard(second, 2) : "",
-    first ? podiumCard(first, 1) : "",
-    third ? podiumCard(third, 3) : "",
-  ].filter(Boolean).join("");
+  const cards = [
+    left ? createUgcCard(left, { featured: false }) : null,
+    mid ? createUgcCard(mid, { featured: true }) : null,
+    right ? createUgcCard(right, { featured: false }) : null,
+  ].filter(Boolean);
 
-  el.innerHTML = html;
+  cards.forEach((c) => row.appendChild(c));
+  $("#podiumHint").textContent = `${podium.length} item(s)`;
 }
 
-/* Render UGC grid */
-function itemCard(it) {
-  const badge = it.typeFr || it.typeName || "Autre";
-  const created = fmtDate(it.createdTs);
-  const fav = fmtNumber(it.favorites);
-  const price = it.price != null ? `${it.price} R$` : "—";
-  const href = `https://www.roblox.com/catalog/${it.assetId}/`;
-
-  return `
-    <div class="item-card">
-      <div class="item-thumb" data-zoom-src="${escapeHtml(it.thumb)}" data-zoom-caption="${escapeHtml(it.name)}">
-        <img src="${escapeHtml(it.thumb)}" alt="${escapeHtml(it.name)}" loading="lazy" />
-        <span class="badge">${escapeHtml(badge)}</span>
-      </div>
-
-      <div class="item-body">
-        <div class="item-name" data-copy="${escapeHtml(it.name)}" title="Copier le nom">${escapeHtml(it.name)}</div>
-
-        <div class="item-meta">
-          <span class="meta-pill copy" data-copy="${it.assetId}" title="Copier l'ID">ID: ${it.assetId}</span>
-          <span class="meta-pill">❤️ ${fav}</span>
-          <span class="meta-pill">${created}</span>
-        </div>
-
-        <div class="item-footer">
-          <div class="price">${price}</div>
-          <a class="btn small" href="${href}" target="_blank" rel="noopener">Ouvrir</a>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function renderUGC() {
-  const grid = $("#ugcGrid");
-  const list = state.filtered;
-
-  $("#ugcCount").textContent = `${list.length} item(s)`;
-
-  grid.innerHTML = list.map(itemCard).join("") || `<div class="muted">Aucun résultat.</div>`;
-}
-
-/* Render gallery */
-function renderGallery() {
-  const grid = $("#galleryGrid");
-  if (!state.gallery.length) {
-    grid.innerHTML = `<div class="muted">Aucune image.</div>`;
-    return;
-  }
-
-  grid.innerHTML = state.gallery.map((g) => {
-    const src = String(g.url || "");
-    const caption = String(g.caption || "");
-    return `
-      <div class="item-card">
-        <div class="item-thumb media-thumb" data-zoom-src="${escapeHtml(src)}" data-zoom-caption="${escapeHtml(caption)}">
-          <img src="${escapeHtml(src)}" alt="${escapeHtml(caption || "Image")}" loading="lazy" />
-        </div>
-      </div>
-    `;
-  }).join("");
-}
-
-/* Render commissions */
-function extractCommissionImages(commissionsJson, mode) {
-  // mode: "models" or "textures"
-  const out = [];
-
-  const root = commissionsJson;
-  const arr = Array.isArray(root) ? root : (root?.commissions || root?.items || []);
-  if (!Array.isArray(arr)) return out;
-
-  const key = mode === "textures" ? "texturing" : "model3d";
-
-  for (const c of arr) {
-    const title = c?.client || c?.name || c?.title || "";
-    const images = c?.images?.[key] ?? c?.[key] ?? c?.images ?? [];
-    if (typeof images === "string") out.push({ src: images, caption: title });
-    else if (Array.isArray(images)) {
-      images.forEach((src) => out.push({ src, caption: title }));
-    }
-  }
-  return out.filter(x => typeof x.src === "string" && x.src.trim().length);
-}
-
-function renderCommissions() {
-  const grid = $("#commissionsGrid");
-  if (!state.commissions) {
-    grid.innerHTML = `<div class="muted">commissions.json manquant.</div>`;
-    return;
-  }
-
-  const imgs = extractCommissionImages(state.commissions, state.commView);
-  if (!imgs.length) {
-    grid.innerHTML = `<div class="muted">Aucune image.</div>`;
-    return;
-  }
-
-  grid.innerHTML = imgs.map((m) => `
-    <div class="item-card">
-      <div class="item-thumb media-thumb" data-zoom-src="${escapeHtml(m.src)}" data-zoom-caption="${escapeHtml(m.caption)}">
-        <img src="${escapeHtml(m.src)}" alt="${escapeHtml(m.caption || "Commission")}" loading="lazy" />
-      </div>
-    </div>
-  `).join("");
-}
-
-/* Filtering */
-function populateTypeSelect(category) {
-  const select = $("#filterType");
-  const opts = TYPE_OPTIONS[category] || TYPE_OPTIONS.ALL;
-
-  select.innerHTML = opts.map(o => `<option value="${o.key}">${escapeHtml(o.label)}</option>`).join("");
-}
-
-function getTypeIdsForFilter(category, typeKey) {
-  const opts = TYPE_OPTIONS[category] || TYPE_OPTIONS.ALL;
-  const hit = opts.find(o => o.key === typeKey) || opts[0];
-  if (!hit || !hit.ids) return null;
-  return new Set(hit.ids);
+function getFilters() {
+  const cat = $("#fCategory").value || "all";
+  const type = $("#fType").value || "all";
+  const sort = $("#fSort").value || "new";
+  const q = ($("#fSearch").value || "").trim().toLowerCase();
+  return { cat, type, sort, q };
 }
 
 function applyFilters() {
-  const cat = $("#filterCategory").value;
-  const typeKey = $("#filterType").value;
-  const sort = $("#filterSort").value;
-  const q = ($("#filterSearch").value || "").trim().toLowerCase();
+  const { cat, type, sort, q } = getFilters();
 
-  let list = state.items.slice();
+  let items = STATE.all.slice();
 
-  // Category
-  if (cat !== "ALL") list = list.filter(it => it.category === cat);
+  // Only on-sale paid items (if some slipped in)
+  items = items.filter((x) => num(x.price) != null && x.price > 0);
 
-  // Type
-  const ids = getTypeIdsForFilter(cat, typeKey);
-  if (ids) list = list.filter(it => it.typeId != null && ids.has(it.typeId));
+  if (cat !== "all") items = items.filter((x) => typeToCategory(x.type) === cat);
+  if (type !== "all") items = items.filter((x) => String(x.type) === type);
 
-  // Search
   if (q) {
-    list = list.filter(it => {
-      const idStr = String(it.assetId);
-      const name = it.name.toLowerCase();
-      return idStr.includes(q) || name.includes(q);
+    items = items.filter((x) => {
+      const name = String(x.name || "").toLowerCase();
+      const id = String(x.assetId || "");
+      return name.includes(q) || id.includes(q);
     });
   }
 
-  // Sort
-  if (sort === "FAV") {
-    list.sort((a, b) => (b.favorites || 0) - (a.favorites || 0) || (b.createdTs || 0) - (a.createdTs || 0));
-  } else if (sort === "PRICE_DESC") {
-    list.sort((a, b) => (b.price || 0) - (a.price || 0) || (b.createdTs || 0) - (a.createdTs || 0));
-  } else if (sort === "PRICE_ASC") {
-    list.sort((a, b) => (a.price || 0) - (b.price || 0) || (b.createdTs || 0) - (a.createdTs || 0));
-  } else {
-    // NEW
-    list.sort((a, b) => (b.createdTs || 0) - (a.createdTs || 0) || (b.assetId || 0) - (a.assetId || 0));
-  }
+  if (sort === "new") items.sort((a, b) => (b.createdTs || 0) - (a.createdTs || 0));
+  if (sort === "old") items.sort((a, b) => (a.createdTs || 0) - (b.createdTs || 0));
+  if (sort === "fav") items.sort((a, b) => (num(b.favorites) || -1) - (num(a.favorites) || -1));
+  if (sort === "price_desc") items.sort((a, b) => (num(b.price) || 0) - (num(a.price) || 0));
+  if (sort === "price_asc") items.sort((a, b) => (num(a.price) || 0) - (num(b.price) || 0));
 
-  state.filtered = list;
-  renderUGC();
+  STATE.filtered = items;
 }
 
-function wireEvents() {
+function renderUgcGrid() {
+  const grid = $("#ugcGrid");
+  const empty = $("#ugcEmpty");
+  grid.innerHTML = "";
+
+  const items = STATE.filtered;
+  $("#ugcCount").textContent = `${items.length} item(s)`;
+
+  if (!items.length) {
+    empty.hidden = false;
+    return;
+  }
+  empty.hidden = true;
+
+  for (const it of items) {
+    grid.appendChild(createUgcCard(it));
+  }
+}
+
+function renderFiltersUI() {
+  const catEl = $("#fCategory");
+  const typeEl = $("#fType");
+
+  const cats = ["Accessoires", "Vêtements", "Animations", "Têtes", "Visages", "Autres"];
+  const presentCats = new Set(STATE.all.map((x) => typeToCategory(x.type)));
+  const catOptions = [{ value: "all", label: "Tous" }].concat(
+    cats.filter((c) => presentCats.has(c)).map((c) => ({ value: c, label: c }))
+  );
+
+  const types = Array.from(new Set(STATE.all.map((x) => String(x.type || "")))).filter(Boolean);
+  types.sort((a, b) => typeToLabel(a).localeCompare(typeToLabel(b), "fr"));
+  const typeOptions = [{ value: "all", label: "Tous" }].concat(
+    types.map((t) => ({ value: t, label: typeToLabel(t) }))
+  );
+
+  const prevCat = catEl.value || "all";
+  const prevType = typeEl.value || "all";
+  fillSelect(catEl, catOptions, prevCat);
+  fillSelect(typeEl, typeOptions, prevType);
+}
+
+function renderGallery() {
+  const grid = $("#galleryGrid");
+  const empty = $("#galleryEmpty");
+  grid.innerHTML = "";
+
+  const items = STATE.gallery || [];
+  $("#galleryCount").textContent = `${items.length} image(s)`;
+
+  if (!items.length) {
+    empty.hidden = false;
+    return;
+  }
+  empty.hidden = true;
+
+  for (const g of items) {
+    const card = document.createElement("div");
+    card.className = "galCard";
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "galBtn";
+    btn.dataset.action = "zoom";
+    btn.dataset.src = g.url;
+    btn.dataset.caption = ""; // captions removed on purpose
+
+    const img = document.createElement("img");
+    img.className = "galImg";
+    img.loading = "lazy";
+    img.alt = "Galerie";
+    img.src = g.url;
+
+    btn.appendChild(img);
+    card.appendChild(btn);
+    grid.appendChild(card);
+  }
+}
+
+function normalizeCommissionJson(raw) {
+  const models = [];
+  const textures = [];
+
+  if (!raw) return { models, textures };
+
+  const list = Array.isArray(raw) ? raw : (Array.isArray(raw.commissions) ? raw.commissions : []);
+
+  for (const c of list) {
+    if (!c || typeof c !== "object") continue;
+    const imgs = c.images || c.media || c;
+    const m = imgs.model3d || imgs.models || imgs.model || [];
+    const t = imgs.texturing || imgs.textures || imgs.texture || [];
+
+    const pushAll = (arr, target) => {
+      if (!arr) return;
+      if (Array.isArray(arr)) arr.forEach((x) => typeof x === "string" && target.push(x));
+      else if (typeof arr === "string") target.push(arr);
+    };
+
+    pushAll(m, models);
+    pushAll(t, textures);
+  }
+
+  return { models, textures };
+}
+
+function renderCommissions() {
+  const grid = $("#commissionGrid");
+  const empty = $("#commissionEmpty");
+  grid.innerHTML = "";
+
+  const list = STATE.commissions[STATE.commMode] || [];
+
+  if (!list.length) {
+    empty.hidden = false;
+    return;
+  }
+  empty.hidden = true;
+
+  for (const url of list) {
+    const card = document.createElement("div");
+    card.className = "comCard";
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "comBtn";
+    btn.dataset.action = "zoom";
+    btn.dataset.src = url;
+    btn.dataset.caption = "";
+
+    const img = document.createElement("img");
+    img.className = "comImg";
+    img.loading = "lazy";
+    img.alt = "Commission";
+    img.src = url;
+
+    btn.appendChild(img);
+    card.appendChild(btn);
+    grid.appendChild(card);
+  }
+}
+
+/* Modal (zoom) */
+let ZOOM = { scale: 1, x: 0, y: 0, dragging: false, px: 0, py: 0 };
+
+function setModalTransform() {
+  const img = $("#modalImg");
+  img.style.transform = `translate(${ZOOM.x}px, ${ZOOM.y}px) scale(${ZOOM.scale})`;
+}
+
+function modalReset() {
+  ZOOM.scale = 1;
+  ZOOM.x = 0;
+  ZOOM.y = 0;
+  setModalTransform();
+  $("#zoomReset").textContent = "1×";
+}
+
+function modalZoom(delta) {
+  const next = Math.min(4, Math.max(1, ZOOM.scale + delta));
+  ZOOM.scale = next;
+  if (ZOOM.scale === 1) {
+    ZOOM.x = 0;
+    ZOOM.y = 0;
+  }
+  setModalTransform();
+  $("#zoomReset").textContent = `${ZOOM.scale.toFixed(1)}×`.replace(".0", "");
+}
+
+function openModal(src, caption = "") {
+  const modal = $("#modal");
+  const img = $("#modalImg");
+  const cap = $("#modalCaption");
+
+  img.src = src;
+  cap.textContent = caption || "";
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+  modalReset();
+}
+
+function closeModal() {
+  const modal = $("#modal");
+  const img = $("#modalImg");
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+  img.src = "";
+}
+
+/* Toast */
+let toastTimer = null;
+function showToast(text) {
+  const t = $("#toast");
+  t.textContent = text;
+  t.classList.add("show");
+  t.setAttribute("aria-hidden", "false");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    t.classList.remove("show");
+    t.setAttribute("aria-hidden", "true");
+  }, 1200);
+}
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(String(text));
+    showToast("Copié ✅");
+  } catch {
+    // Fallback
+    const ta = document.createElement("textarea");
+    ta.value = String(text);
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); showToast("Copié ✅"); } catch { showToast("Copie impossible"); }
+    document.body.removeChild(ta);
+  }
+}
+
+/* Delegated actions */
+function onClickAction(e) {
+  const target = e.target.closest("[data-action]");
+  if (!target) return;
+
+  const action = target.dataset.action;
+
+  if (action === "zoom") {
+    const src = target.dataset.src;
+    const cap = target.dataset.caption || "";
+    if (src) openModal(src, cap);
+    return;
+  }
+
+  if (action === "open") {
+    const card = target.closest("[data-asset-id]");
+    const assetId = card?.dataset.assetId;
+    if (assetId) window.open(ROBLOX_ITEM_URL(assetId), "_blank", "noopener,noreferrer");
+    return;
+  }
+
+  if (action === "copy-id" || action === "copy-name") {
+    const text = target.dataset.copy || "";
+    if (text) copyText(text);
+    return;
+  }
+}
+
+function wireUI() {
   // Tabs
-  $$(".tab-btn").forEach((b) => b.addEventListener("click", () => setTab(b.dataset.tab)));
-
-  // Zoom close
-  $$("[data-zoom-close]").forEach((el) => el.addEventListener("click", closeZoom));
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeZoom();
+  $$(".tabBtn").forEach((b) => {
+    b.addEventListener("click", () => setActiveView(b.dataset.view));
   });
 
-  // Delegation: zoom + copy
-  document.addEventListener("click", async (e) => {
-    const t = e.target;
-
-    const zoomEl = t.closest?.("[data-zoom-src]");
-    if (zoomEl) {
-      const src = zoomEl.getAttribute("data-zoom-src");
-      const cap = zoomEl.getAttribute("data-zoom-caption") || "";
-      if (src) openZoom(src, cap);
-      return;
-    }
-
-    const copyEl = t.closest?.("[data-copy]");
-    if (copyEl) {
-      const text = copyEl.getAttribute("data-copy") || "";
-      if (text) await copyToClipboard(text);
-      return;
-    }
-  });
+  // Refresh
+  $("#btnRefresh").addEventListener("click", () => boot());
 
   // Filters
-  $("#filterCategory").addEventListener("change", () => {
-    populateTypeSelect($("#filterCategory").value);
-    $("#filterType").value = "ALL";
-    applyFilters();
-  });
-  $("#filterType").addEventListener("change", applyFilters);
-  $("#filterSort").addEventListener("change", applyFilters);
-  $("#filterSearch").addEventListener("input", () => {
-    clearTimeout(wireEvents._st);
-    wireEvents._st = setTimeout(applyFilters, 90);
+  ["fCategory", "fType", "fSort", "fSearch"].forEach((id) => {
+    const el = $(`#${id}`);
+    el.addEventListener(id === "fSearch" ? "input" : "change", () => {
+      applyFilters();
+      renderPodium();
+      renderUgcGrid();
+    });
   });
 
-  // Commission switch
-  $$(".pill").forEach((p) => p.addEventListener("click", () => {
-    $$(".pill").forEach(x => x.classList.remove("active"));
-    p.classList.add("active");
-    state.commView = p.dataset.commView || "models";
-    renderCommissions();
-  }));
+  // Commissions segment
+  $$(".segBtn").forEach((b) => {
+    b.addEventListener("click", () => {
+      $$(".segBtn").forEach((x) => {
+        x.classList.toggle("active", x === b);
+        x.setAttribute("aria-selected", x === b ? "true" : "false");
+      });
+      STATE.commMode = b.dataset.comm;
+      renderCommissions();
+    });
+  });
 
-  // Basic anti-copy (dissuasion, pas une sécurité)
-  document.addEventListener("contextmenu", (e) => e.preventDefault());
+  // Click actions (UGC + gallery + commissions)
+  $("#ugcGrid").addEventListener("click", onClickAction);
+  $("#podiumRow").addEventListener("click", onClickAction);
+  $("#galleryGrid").addEventListener("click", onClickAction);
+  $("#commissionGrid").addEventListener("click", onClickAction);
+
+  // Modal close
+  $("#modalClose").addEventListener("click", closeModal);
+  $("#modal").addEventListener("click", (e) => {
+    if (e.target.id === "modal") closeModal();
+  });
   document.addEventListener("keydown", (e) => {
-    const k = e.key?.toLowerCase?.() || "";
-    const block =
-      (e.ctrlKey && ["u", "s"].includes(k)) ||
-      (e.ctrlKey && e.shiftKey && ["i", "j", "c"].includes(k)) ||
-      (e.key === "F12");
-    if (block) e.preventDefault();
+    if (e.key === "Escape") closeModal();
   });
+
+  // Modal tools
+  $("#zoomIn").addEventListener("click", () => modalZoom(+0.25));
+  $("#zoomOut").addEventListener("click", () => modalZoom(-0.25));
+  $("#zoomReset").addEventListener("click", modalReset);
+
+  // Modal wheel zoom + drag
+  const stage = $("#modalStage");
+  stage.addEventListener("wheel", (e) => {
+    if (!$("#modal").classList.contains("open")) return;
+    e.preventDefault();
+    modalZoom(e.deltaY < 0 ? +0.2 : -0.2);
+  }, { passive: false });
+
+  stage.addEventListener("pointerdown", (e) => {
+    if (!$("#modal").classList.contains("open")) return;
+    if (ZOOM.scale <= 1) return;
+    ZOOM.dragging = true;
+    ZOOM.px = e.clientX;
+    ZOOM.py = e.clientY;
+    stage.setPointerCapture(e.pointerId);
+  });
+
+  stage.addEventListener("pointermove", (e) => {
+    if (!ZOOM.dragging) return;
+    const dx = e.clientX - ZOOM.px;
+    const dy = e.clientY - ZOOM.py;
+    ZOOM.px = e.clientX;
+    ZOOM.py = e.clientY;
+    ZOOM.x += dx;
+    ZOOM.y += dy;
+    setModalTransform();
+  });
+
+  stage.addEventListener("pointerup", () => { ZOOM.dragging = false; });
+  stage.addEventListener("pointercancel", () => { ZOOM.dragging = false; });
 }
 
-async function fetchJson(path) {
-  const r = await fetch(path, { cache: "no-store" });
-  if (!r.ok) throw new Error(`${path} ${r.status}`);
-  return r.json();
+function normalizeItems(raw, sourceLabel) {
+  const items = Array.isArray(raw?.items) ? raw.items : [];
+  const updated = raw?.updated || null;
+  const out = [];
+
+  for (const it of items) {
+    if (!it || typeof it !== "object") continue;
+    const assetId = it.assetId ?? it.id;
+    const price = it.price ?? it.priceInRobux;
+    const created = it.created ?? it.createdUtc ?? null;
+    const fav = it.favorites ?? it.favoriteCount ?? it.favoritesCount ?? null;
+
+    if (!assetId) continue;
+
+    out.push({
+      assetId,
+      name: it.name || `Item ${assetId}`,
+      type: it.type || it.assetType || "Autre",
+      price,
+      created,
+      createdTs: created ? Date.parse(created) : 0,
+      thumb: it.thumb || it.thumbnail || "",
+      favorites: fav,
+      source: sourceLabel,
+      updated,
+    });
+  }
+
+  return { items: out, updated };
 }
 
-async function load() {
-  // Types
-  populateTypeSelect("ALL");
+async function boot() {
+  // keep UI responsive during reload
+  $("#ugcGrid").innerHTML = "";
+  $("#podiumRow").innerHTML = "";
+  $("#ugcEmpty").hidden = true;
+  $("#podiumEmpty").hidden = true;
+  $("#ugcCount").textContent = "…";
+  $("#podiumHint").textContent = "…";
+  $("#updateInfo").textContent = "";
 
-  // Data
-  const [u, g] = await Promise.allSettled([fetchJson("./data_user.json"), fetchJson("./data_group.json")]);
+  let userRaw = null;
+  let groupRaw = null;
 
-  const userItems = u.status === "fulfilled" ? (u.value.items || []) : [];
-  const groupItems = g.status === "fulfilled" ? (g.value.items || []) : [];
+  try {
+    [userRaw, groupRaw] = await Promise.all([
+      fetchJson(FILES.user, { optional: true }),
+      fetchJson(FILES.group, { optional: true }),
+    ]);
+  } catch {
+    // ignore, handled below
+  }
 
-  const merged = [
-    ...userItems.map(x => ({ ...x, creator: "Profil" })),
-    ...groupItems.map(x => ({ ...x, creator: "Groupe" })),
-  ].map(normalizeItem);
+  const u = normalizeItems(userRaw, "Profil");
+  const g = normalizeItems(groupRaw, "Groupe");
 
-  // Sort newest first for base list
-  merged.sort((a, b) => (b.createdTs || 0) - (a.createdTs || 0) || (b.assetId || 0) - (a.assetId || 0));
+  // Merge
+  STATE.all = [...u.items, ...g.items].filter((x) => x.thumb);
 
-  state.items = merged;
-  state.filtered = merged.slice();
+  // If nothing, show empty and bail early (but keep page usable)
+  if (!STATE.all.length) {
+    $("#ugcCount").textContent = "0 item(s)";
+    $("#podiumHint").textContent = "0 item";
+    $("#ugcEmpty").hidden = false;
+    $("#podiumEmpty").hidden = false;
+  }
 
-  // Build info
-  const uAt = (u.status === "fulfilled" && u.value.generatedAt) ? String(u.value.generatedAt) : "";
-  const gAt = (g.status === "fulfilled" && g.value.generatedAt) ? String(g.value.generatedAt) : "";
-  $("#buildInfo").textContent = `MAJ: ${uAt || "—"} ${gAt ? "• " + gAt : ""}`;
+  // Update info
+  const parts = [];
+  if (u.updated) parts.push(`MAJ Profil: ${u.updated}`);
+  if (g.updated) parts.push(`MAJ Groupe: ${g.updated}`);
+  $("#updateInfo").textContent = parts.join(" • ");
 
-  // Render UGC
-  renderPodium();
+  // Filters + grid
+  renderFiltersUI();
   applyFilters();
+  renderPodium();
+  renderUgcGrid();
 
   // Gallery
-  try {
-    const gal = await fetchJson("./gallery.json");
-    state.gallery = Array.isArray(gal) ? gal : [];
-  } catch {
-    state.gallery = [];
-  }
+  const gal = await fetchJson(FILES.gallery, { optional: true });
+  STATE.gallery = Array.isArray(gal) ? gal : (Array.isArray(gal?.images) ? gal.images : []);
   renderGallery();
 
-  // Commissions
-  try {
-    state.commissions = await fetchJson("./commissions.json");
-  } catch {
-    state.commissions = null;
-  }
+  // Commissions (optional)
+  const comRaw = await fetchJson(FILES.commissions, { optional: true });
+  const com = normalizeCommissionJson(comRaw);
+  STATE.commissions = com;
   renderCommissions();
 }
 
-wireEvents();
-load().catch(() => {
-  $("#ugcCount").textContent = "Erreur de chargement.";
+document.addEventListener("DOMContentLoaded", () => {
+  wireUI();
+  boot();
 });
