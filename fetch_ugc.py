@@ -1,34 +1,33 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 """
-fetch_ugc.py (v15)
-- Récupère TOUTES les créations Avatar d'un USER + d'un GROUPE (accessoires / vêtements / animations / corps)
-- Ne garde QUE les items EN VENTE et PAYANTS (PriceInRobux > 0)
-- Ajoute favorites (favoris) si dispo via Catalog, sinon fallback léger
-- Génère: data_user.json et data_group.json
+Fetch Roblox creator items (profil + groupe), keep ONLY purchasable items (onsale + price > 0),
+and write JSON files used by the portfolio.
+
+Outputs:
+- data_user.json
+- data_group.json
 """
 
 from __future__ import annotations
 
 import json
-import random
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 from urllib.parse import urlencode
-from urllib.request import Request, urlopen
-from urllib.error import HTTPError, URLError
+import urllib.request
 
-# -------------------- CONFIG --------------------
-USER_ID  = 828726934   # <= à modifier si besoin
-GROUP_ID = 16981319    # <= à modifier si besoin
 
-# Catalog v2: CreatorType (numérique)
-CREATOR_USER  = 1
-CREATOR_GROUP = 2
+# ===== CONFIG =====
+USER_ID = 4473141104          # lulu8203
+GROUP_ID = 32801371           # Powerful Artists
 
+OUT_USER = "data_user.json"
+OUT_GROUP = "data_group.json"
+
+# Roblox endpoints (with roproxy fallback)
 CATALOG_BASES = [
     "https://catalog.roblox.com",
     "https://catalog.roproxy.com",
@@ -37,26 +36,39 @@ ECONOMY_BASES = [
     "https://economy.roblox.com",
     "https://economy.roproxy.com",
 ]
-THUMBS_BASES = [
+THUMB_BASES = [
     "https://thumbnails.roblox.com",
     "https://thumbnails.roproxy.com",
 ]
-FAV_BASES = [
-    "https://www.roblox.com",
-    "https://www.roproxy.com",
-]
 
-CATALOG_SEARCH_PATH     = "/v2/search/items/details"
-ECONOMY_DETAILS_PATH    = "/v2/assets/{asset_id}/details"
-THUMBS_ASSET_PATH       = "/v1/assets"
-FAV_COUNT_PATH          = "/v1/favorites/assets/{asset_id}/count"
+# Important: keep thumbnails big enough for zoom
+THUMB_SIZE = "768x768"
+THUMB_FORMAT = "Png"
+THUMB_IS_CIRCULAR = "false"
 
-UA = "portfolio-ugc-bot/15 (+https://github.com/goripemiranza/portfolio-ugc)"
+# ===== SALE FILTER (strict) =====
+# Must be purchasable on the Roblox website (not experience-only):
+# SaleLocationType examples (devforum): 1=MarketplaceOnly, 5=Marketplace+AllExperiences, 7=Marketplace+ExperiencesById
+ALLOWED_SALE_LOCATION_TYPES = {1, 5, 7}
 
-# -------------------- Roblox AssetTypes (Avatar Shop) --------------------
+# Only avatar shop + animations types.
+# (Includes classic + layered clothing, accessories, body parts, avatar animations, dynamic head, eyebrow/eyelash)
+ALLOWED_ASSET_TYPE_IDS = {
+    # Accessories
+    8, 41, 42, 43, 44, 45, 46, 47, 57, 58, 76, 77,
+    # Clothing (classic)
+    2, 11, 12,
+    # Layered clothing
+    64, 65, 66, 67, 68, 69, 70, 71, 72,
+    # Body
+    17, 18, 27, 28, 29, 30, 31, 79,
+    # Animations
+    24, 48, 49, 50, 51, 52, 53, 54, 55, 56, 61, 78,
+}
+
 ASSET_TYPE_NAME: Dict[int, str] = {
     # Accessories
-    8:  "Hat",
+    8: "Hat",
     41: "HairAccessory",
     42: "FaceAccessory",
     43: "NeckAccessory",
@@ -70,11 +82,11 @@ ASSET_TYPE_NAME: Dict[int, str] = {
     77: "EyelashAccessory",
 
     # Clothing (classic)
-    2:  "TShirt",
+    2: "TShirt",
     11: "Shirt",
     12: "Pants",
 
-    # Clothing (layered)
+    # Layered clothing
     64: "TShirtAccessory",
     65: "ShirtAccessory",
     66: "PantsAccessory",
@@ -88,6 +100,11 @@ ASSET_TYPE_NAME: Dict[int, str] = {
     # Body
     17: "Head",
     18: "Face",
+    27: "Torso",
+    28: "RightArm",
+    29: "LeftArm",
+    30: "LeftLeg",
+    31: "RightLeg",
     79: "DynamicHead",
 
     # Animations
@@ -105,305 +122,340 @@ ASSET_TYPE_NAME: Dict[int, str] = {
     78: "MoodAnimation",
 }
 
-ALLOWED_ASSET_TYPE_IDS: Set[int] = set(ASSET_TYPE_NAME.keys())
+ASSET_TYPE_FR: Dict[int, str] = {
+    # Accessories
+    8: "Chapeau",
+    41: "Cheveux",
+    42: "Visage",
+    43: "Cou",
+    44: "Épaule",
+    45: "Avant",
+    46: "Dos",
+    47: "Taille",
+    57: "Oreilles",
+    58: "Yeux",
+    76: "Sourcils",
+    77: "Cils",
+    # Clothing
+    2: "T‑Shirt (classique)",
+    11: "Haut (classique)",
+    12: "Pantalon (classique)",
+    64: "T‑Shirt (layered)",
+    65: "Haut (layered)",
+    66: "Pantalon (layered)",
+    67: "Veste",
+    68: "Pull",
+    69: "Short",
+    70: "Chaussure (G)",
+    71: "Chaussure (D)",
+    72: "Robe / Jupe",
+    # Body
+    17: "Tête",
+    18: "Face",
+    27: "Torse",
+    28: "Bras (D)",
+    29: "Bras (G)",
+    30: "Jambe (G)",
+    31: "Jambe (D)",
+    79: "Tête dynamique",
+    # Animations
+    24: "Animation",
+    48: "Anim • Climb",
+    49: "Anim • Death",
+    50: "Anim • Fall",
+    51: "Anim • Idle",
+    52: "Anim • Jump",
+    53: "Anim • Run",
+    54: "Anim • Swim",
+    55: "Anim • Walk",
+    56: "Anim • Pose",
+    61: "Anim • Emote",
+    78: "Anim • Mood",
+}
 
-# tuning
-LIMIT = 30
-MAX_PAGES = 120
-SLEEP_BETWEEN_CALLS = (0.20, 0.45)
+CATEGORY_BY_TYPE: Dict[int, str] = {}
+for _i in (8, 41, 42, 43, 44, 45, 46, 47, 57, 58, 76, 77):
+    CATEGORY_BY_TYPE[_i] = "ACCESSORIES"
+for _i in (2, 11, 12, 64, 65, 66, 67, 68, 69, 70, 71, 72):
+    CATEGORY_BY_TYPE[_i] = "CLOTHING"
+for _i in (17, 18, 27, 28, 29, 30, 31, 79):
+    CATEGORY_BY_TYPE[_i] = "BODY"
+for _i in (24, 48, 49, 50, 51, 52, 53, 54, 55, 56, 61, 78):
+    CATEGORY_BY_TYPE[_i] = "ANIMATIONS"
 
 
-# -------------------- utils --------------------
-def now_iso() -> str:
-    return datetime.now(timezone.utc).isoformat()
-
-def _sleep():
-    time.sleep(random.uniform(*SLEEP_BETWEEN_CALLS))
-
-def read_json(path: str) -> Optional[Dict[str, Any]]:
-    try:
-        return json.loads(Path(path).read_text(encoding="utf-8"))
-    except Exception:
-        return None
-
-def write_json_atomic(path: str, payload: Dict[str, Any]) -> None:
-    p = Path(path)
-    tmp = p.with_suffix(p.suffix + ".tmp")
-    tmp.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    tmp.replace(p)
-
-def http_get_json_with_fallback(
-    bases: List[str],
-    path: str,
-    params: Optional[Dict[str, Any]] = None,
-    *,
-    timeout: int = 30,
-    retries: int = 6,
-) -> Any:
-    query = ""
+# ===== HTTP HELPERS =====
+def _http_get(base: str, path: str, params: Optional[Dict[str, Any]] = None, timeout: int = 12) -> Tuple[int, str]:
+    url = base + path
     if params:
-        query = "?" + urlencode({k: v for k, v in params.items() if v is not None}, doseq=True)
+        qs = urlencode({k: v for k, v in params.items() if v is not None})
+        url = url + ("?" if "?" not in url else "&") + qs
 
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "portfolio-ugc/1.0 (+https://github.com/)",
+        "Accept": "application/json,text/plain,*/*",
+    })
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        code = resp.getcode()
+        body = resp.read().decode("utf-8", errors="replace")
+        return code, body
+
+
+def get_json_with_fallback(bases: List[str], path: str, params: Optional[Dict[str, Any]] = None, retries: int = 2) -> Any:
     last_err: Optional[Exception] = None
-
-    # randomize bases a bit
-    bases = list(bases)
-    random.shuffle(bases)
-
     for base in bases:
-        url = base + path + query
-        for attempt in range(1, retries + 1):
+        for attempt in range(retries + 1):
             try:
-                req = Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
-                with urlopen(req, timeout=timeout) as r:
-                    raw = r.read().decode("utf-8", errors="replace")
-                return json.loads(raw)
-            except HTTPError as e:
-                last_err = e
-                code = getattr(e, "code", None)
-                if code == 429 or code in (500, 502, 503, 504):
-                    time.sleep(min(20.0, 1.2 * attempt + random.random() * 2.0))
-                    continue
-                break
-            except (URLError, TimeoutError) as e:
-                last_err = e
-                time.sleep(min(20.0, 1.1 * attempt + random.random() * 2.0))
-                continue
+                code, body = _http_get(base, path, params=params)
+                if code >= 400:
+                    raise RuntimeError(f"HTTP {code}")
+                return json.loads(body)
             except Exception as e:
                 last_err = e
-                time.sleep(min(20.0, 1.1 * attempt + random.random() * 2.0))
+                time.sleep(0.25 + 0.25 * attempt)
                 continue
-
-    raise RuntimeError(f"HTTP failed for {path}: {last_err}")
-
-def chunked(lst: List[int], size: int) -> List[List[int]]:
-    return [lst[i:i+size] for i in range(0, len(lst), size)]
+    raise RuntimeError(f"Request failed for {path}: {last_err}")
 
 
-# -------------------- Catalog fetch (IDs + favorites seed) --------------------
-def fetch_creator_seeds(creator_type: int, creator_target_id: int) -> Dict[int, Dict[str, Any]]:
+def get_text_with_fallback(bases: List[str], path: str, params: Optional[Dict[str, Any]] = None, retries: int = 2) -> str:
+    last_err: Optional[Exception] = None
+    for base in bases:
+        for attempt in range(retries + 1):
+            try:
+                code, body = _http_get(base, path, params=params)
+                if code >= 400:
+                    raise RuntimeError(f"HTTP {code}")
+                return body.strip()
+            except Exception as e:
+                last_err = e
+                time.sleep(0.25 + 0.25 * attempt)
+                continue
+    raise RuntimeError(f"Request failed for {path}: {last_err}")
+
+
+# ===== ROBLOX FETCH =====
+def fetch_creator_catalog_assets(creator_type: int, creator_target_id: int, limit: int = 120, max_pages: int = 60) -> List[Dict[str, Any]]:
     """
-    Retour: assetId -> {favoriteCount, assetTypeId, name}
+    Uses Catalog V2 search to list items created by a user/group.
+    We keep the raw fields we need (id, favoriteCount, etc.).
     """
-    out: Dict[int, Dict[str, Any]] = {}
-    cursor: Optional[str] = None
+    cursor = ""
+    out: List[Dict[str, Any]] = []
 
-    for _ in range(MAX_PAGES):
+    for _ in range(max_pages):
         params = {
             "CreatorType": creator_type,
             "CreatorTargetId": creator_target_id,
-            "SortType": 6,               # RecentlyCreated
-            "Limit": LIMIT,
-            "Category": 1,               # Avatar Shop
+            "Limit": limit,
+            "Cursor": cursor or None,
             "includeNotForSale": "true",
-            "Cursor": cursor,
+            "salesTypeFilter": 1,  # "All" in Roblox website params
         }
 
-        j = http_get_json_with_fallback(CATALOG_BASES, CATALOG_SEARCH_PATH, params)
-        data = j.get("data") or []
-        for it in data:
-            if not isinstance(it, dict):
-                continue
+        data = get_json_with_fallback(CATALOG_BASES, "/v2/search/items/details", params=params)
+
+        items = data.get("data", []) if isinstance(data, dict) else []
+        for it in items:
             if it.get("itemType") != "Asset":
                 continue
+            out.append(it)
 
-            try:
-                aid = int(it.get("id"))
-            except Exception:
-                continue
-
-            at = it.get("assetType")
-            try:
-                at_id = int(at) if at is not None else 0
-            except Exception:
-                at_id = 0
-
-            out[aid] = {
-                "favoriteCount": int(it.get("favoriteCount") or 0),
-                "assetTypeId": at_id,
-                "name": it.get("name") or "",
-            }
-
-        cursor = j.get("nextPageCursor")
+        cursor = data.get("nextPageCursor") if isinstance(data, dict) else None
         if not cursor:
             break
-        _sleep()
 
-    return out
+        time.sleep(0.15)
+
+    # Dedupe by id (keep max favoriteCount)
+    by_id: Dict[int, Dict[str, Any]] = {}
+    for it in out:
+        try:
+            aid = int(it.get("id"))
+        except Exception:
+            continue
+        prev = by_id.get(aid)
+        if not prev:
+            by_id[aid] = it
+        else:
+            try:
+                by_id[aid]["favoriteCount"] = max(int(prev.get("favoriteCount", 0)), int(it.get("favoriteCount", 0)))
+            except Exception:
+                pass
+    return list(by_id.values())
 
 
-# -------------------- Economy details --------------------
-def fetch_asset_details(asset_id: int) -> Dict[str, Any]:
-    path = ECONOMY_DETAILS_PATH.format(asset_id=asset_id)
-    return http_get_json_with_fallback(ECONOMY_BASES, path, None)
-
-def creator_matches(details: Dict[str, Any], expected_type: str, expected_id: int) -> bool:
-    c = details.get("Creator") or {}
-    c_id = c.get("Id")
-    c_type = c.get("CreatorType") or c.get("Type") or c.get("type")
-    # normalize
-    ct = str(c_type or "").strip().lower()
+def fetch_economy_details(asset_id: int) -> Optional[Dict[str, Any]]:
     try:
-        return int(c_id) == int(expected_id) and ct == str(expected_type).strip().lower()
+        return get_json_with_fallback(ECONOMY_BASES, f"/v2/assets/{asset_id}/details")
     except Exception:
+        return None
+
+
+def is_purchasable(details: Dict[str, Any]) -> bool:
+    if details.get("IsForSale") is not True:
         return False
 
-def is_paid_and_for_sale(details: Dict[str, Any]) -> Tuple[bool, int]:
-    if details.get("IsForSale") is not True:
-        return (False, 0)
     price = details.get("PriceInRobux")
-    if not isinstance(price, int):
-        return (False, 0)
-    if price <= 0:
-        return (False, 0)
-    return (True, price)
+    if not isinstance(price, int) or price <= 0:
+        return False
 
-def get_created(details: Dict[str, Any]) -> str:
-    return str(details.get("Created") or "")
+    sale_loc = details.get("SaleLocationType")
+    if isinstance(sale_loc, int) and sale_loc not in ALLOWED_SALE_LOCATION_TYPES:
+        return False
 
-def get_type(details: Dict[str, Any], seed: Dict[str, Any]) -> Tuple[int, str]:
-    at = details.get("AssetTypeId") or seed.get("assetTypeId") or 0
+    return True
+
+
+def fetch_favorite_count(asset_id: int) -> Optional[int]:
+    """
+    Catalog favorite count endpoint:
+    /v1/favorites/assets/{assetId}/count
+
+    Response can be:
+    - JSON number
+    - JSON object (rare)
+    - plain number (text)
+    """
     try:
-        at_id = int(at)
+        raw = get_text_with_fallback(CATALOG_BASES, f"/v1/favorites/assets/{asset_id}/count")
     except Exception:
-        at_id = 0
-    return at_id, ASSET_TYPE_NAME.get(at_id, f"AssetType{at_id}")
+        return None
+
+    try:
+        val = json.loads(raw)
+    except Exception:
+        try:
+            return int(raw)
+        except Exception:
+            return None
+
+    if isinstance(val, int):
+        return val
+    if isinstance(val, dict):
+        for k in ("favoritesCount", "favoriteCount", "count", "data"):
+            v = val.get(k)
+            if isinstance(v, int):
+                return v
+    return None
 
 
-# -------------------- Thumbnails --------------------
-def fetch_thumbnails(asset_ids: List[int], size: str = "420x420") -> Dict[int, str]:
+def fetch_thumbnails(asset_ids: List[int]) -> Dict[int, str]:
     out: Dict[int, str] = {}
     if not asset_ids:
         return out
 
-    for batch in chunked(asset_ids, 100):
+    chunk = 100
+    for i in range(0, len(asset_ids), chunk):
+        part = asset_ids[i:i+chunk]
         params = {
-            "assetIds": ",".join(str(x) for x in batch),
-            "size": size,
-            "format": "Png",
-            "isCircular": "false",
+            "assetIds": ",".join(str(x) for x in part),
+            "size": THUMB_SIZE,
+            "format": THUMB_FORMAT,
+            "isCircular": THUMB_IS_CIRCULAR,
         }
-        j = http_get_json_with_fallback(THUMBS_BASES, THUMBS_ASSET_PATH, params, timeout=30, retries=6)
-        for it in (j.get("data") or []):
+        data = get_json_with_fallback(THUMB_BASES, "/v1/assets", params=params)
+        for row in data.get("data", []) if isinstance(data, dict) else []:
             try:
-                aid = int(it.get("targetId"))
-                url = it.get("imageUrl") or ""
-                state = it.get("state") or ""
-                if url and (state == "Completed" or not state):
+                aid = int(row.get("targetId"))
+                url = row.get("imageUrl")
+                if isinstance(url, str) and url:
                     out[aid] = url
             except Exception:
-                pass
-        _sleep()
+                continue
+        time.sleep(0.12)
 
     return out
 
 
-# -------------------- Favorites fallback --------------------
-def fetch_favorite_count(asset_id: int) -> int:
-    path = FAV_COUNT_PATH.format(asset_id=asset_id)
-    try:
-        j = http_get_json_with_fallback(FAV_BASES, path, None, timeout=20, retries=3)
-        if isinstance(j, int):
-            return int(j)
-        if isinstance(j, dict) and "count" in j:
-            return int(j["count"])
-    except Exception:
-        pass
-    return 0
+def build_items(creator_type: int, creator_target_id: int) -> List[Dict[str, Any]]:
+    catalog_items = fetch_creator_catalog_assets(creator_type, creator_target_id)
 
-
-# -------------------- Build JSON --------------------
-def build_items_for_creator(creator_type_num: int, creator_id: int) -> List[Dict[str, Any]]:
-    expected_type_str = "User" if creator_type_num == CREATOR_USER else "Group"
-
-    seeds = fetch_creator_seeds(creator_type_num, creator_id)
-    asset_ids = sorted(seeds.keys(), reverse=True)
-
-    items: List[Dict[str, Any]] = []
-    for i, aid in enumerate(asset_ids):
-        seed = seeds.get(aid) or {}
-
+    fav_from_catalog: Dict[int, int] = {}
+    for it in catalog_items:
         try:
-            details = fetch_asset_details(aid)
+            aid = int(it.get("id"))
+            fav = int(it.get("favoriteCount", 0))
+            if fav >= 0:
+                fav_from_catalog[aid] = fav
         except Exception:
             continue
 
-        # sécurité: seulement ce creator
-        if not creator_matches(details, expected_type_str, creator_id):
+    results: List[Dict[str, Any]] = []
+    asset_ids: List[int] = []
+
+    for it in catalog_items:
+        try:
+            asset_id = int(it.get("id"))
+        except Exception:
             continue
 
-        ok, price = is_paid_and_for_sale(details)
-        if not ok:
+        details = fetch_economy_details(asset_id)
+        if not details:
             continue
 
-        at_id, at_name = get_type(details, seed)
-        if at_id not in ALLOWED_ASSET_TYPE_IDS:
+        atid = details.get("AssetTypeId")
+        if not isinstance(atid, int) or atid not in ALLOWED_ASSET_TYPE_IDS:
             continue
 
-        favorites = int(seed.get("favoriteCount") or 0)
-        if favorites <= 0:
-            favorites = fetch_favorite_count(aid)
+        if not is_purchasable(details):
+            continue
 
-        name = str(details.get("Name") or seed.get("name") or "")
-        created = get_created(details)
+        fav = fetch_favorite_count(asset_id)
+        if fav is None:
+            fav = fav_from_catalog.get(asset_id, 0)
 
-        items.append({
-            "assetId": aid,
+        name = details.get("Name") if isinstance(details.get("Name"), str) else (it.get("name") or f"Item {asset_id}")
+        created = details.get("Created") if isinstance(details.get("Created"), str) else ""
+        price = details.get("PriceInRobux") if isinstance(details.get("PriceInRobux"), int) else None
+
+        row = {
+            "assetId": asset_id,
             "name": name,
-            "type": at_name,
-            "assetTypeId": at_id,
-            "created": created,
+            "assetTypeId": atid,
+            "assetTypeName": ASSET_TYPE_NAME.get(atid, f"Type{atid}"),
+            "typeFr": ASSET_TYPE_FR.get(atid, "Autre"),
+            "category": CATEGORY_BY_TYPE.get(atid, "ALL"),
             "price": price,
-            "favorites": favorites,
-            "thumb": "",  # inject later
-        })
+            "favorites": int(fav) if isinstance(fav, int) and fav >= 0 else 0,
+            "created": created,
+            "thumb": "",
+        }
 
-        if (i + 1) % 10 == 0:
-            _sleep()
+        results.append(row)
+        asset_ids.append(asset_id)
 
-    # inject thumbs (rbxcdn)
-    thumb_map = fetch_thumbnails([it["assetId"] for it in items])
-    for it in items:
-        it["thumb"] = thumb_map.get(it["assetId"], "")
+        time.sleep(0.06)
 
-    # sort newest by created (fallback assetId)
-    def sort_key(x: Dict[str, Any]) -> Tuple[str, int]:
-        return (str(x.get("created") or ""), int(x.get("assetId") or 0))
-    items.sort(key=sort_key, reverse=True)
-    return items
+    thumbs = fetch_thumbnails(asset_ids)
+    for r in results:
+        r["thumb"] = thumbs.get(r["assetId"], "")
+
+    def _ts(s: str) -> float:
+        try:
+            dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
+            return dt.timestamp()
+        except Exception:
+            return 0.0
+
+    results.sort(key=lambda x: (_ts(x.get("created", "")), x.get("assetId", 0)), reverse=True)
+    return results
 
 
-def update_file(out_path: str, creator_type_num: int, creator_id: int) -> None:
-    prev = read_json(out_path)
-    prev_items = prev.get("items") if isinstance(prev, dict) else None
-
-    try:
-        items = build_items_for_creator(creator_type_num, creator_id)
-        if not items and isinstance(prev_items, list) and prev_items:
-            # évite de vider si l'API a un souci temporaire
-            return
-
-        write_json_atomic(out_path, {"generatedAt": now_iso(), "items": items})
-        print(f"[ok] {out_path}: {len(items)} item(s) en vente")
-    except Exception as e:
-        print(f"[warn] {out_path}: keep previous ({e})")
-        if prev is None:
-            write_json_atomic(out_path, {"generatedAt": now_iso(), "items": []})
+def write_json(path: str, payload: Dict[str, Any]) -> None:
+    Path(path).write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def main() -> None:
-    # petit jitter anti-burst
-    time.sleep(2.0 + random.random() * 4.0)
+    now = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
-    print("Fetching USER creations (on-sale only)...")
-    update_file("data_user.json", CREATOR_USER, USER_ID)
+    user_items = build_items(creator_type=1, creator_target_id=USER_ID)
+    group_items = build_items(creator_type=2, creator_target_id=GROUP_ID)
 
-    time.sleep(2.5 + random.random() * 5.0)
+    write_json(OUT_USER, {"generatedAt": now, "items": user_items})
+    write_json(OUT_GROUP, {"generatedAt": now, "items": group_items})
 
-    print("Fetching GROUP creations (on-sale only)...")
-    update_file("data_group.json", CREATOR_GROUP, GROUP_ID)
+    print(f"OK: {OUT_USER} ({len(user_items)} items), {OUT_GROUP} ({len(group_items)} items)")
 
-    print("Done.")
 
 if __name__ == "__main__":
     main()
