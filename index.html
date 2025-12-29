@@ -900,24 +900,111 @@
 .dual.one{grid-template-columns:1fr !important;}
 .commissionGrid{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
-  gap:12px;
-  padding-bottom:4px;
+  grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+  gap:14px;
+  padding-bottom:6px;
 }
 .commissionCard{
   background:rgba(255,255,255,0.05);
   border:1px solid rgba(255,255,255,0.10);
-  border-radius:16px;
+  border-radius:18px;
   overflow:hidden;
   transform:translateZ(0);
   transition:transform .15s ease, box-shadow .15s ease;
 }
 .commissionCard:active{transform:scale(.99);}
-.commissionThumb{aspect-ratio:16/10; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center;}
-.commissionThumb img{width:100%; height:100%; object-fit:cover; display:block;}
-.commissionBody{padding:10px 11px;}
-.commissionTitle{font-weight:950; font-size:13px; line-height:1.2;}
+.commissionHead{
+  padding:12px 12px 0;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+}
+.commissionTitle{font-weight:950; font-size:14px; line-height:1.2;}
 .commissionMeta{margin-top:6px; color:rgba(255,255,255,0.70); font-size:11px; font-weight:800;}
+.commissionPill{
+  margin-top:2px;
+  font-size:10px;
+  font-weight:950;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.14);
+  background:rgba(255,255,255,0.06);
+  color:rgba(255,255,255,0.92);
+  white-space:nowrap;
+}
+.commissionText{
+  padding:10px 12px 0;
+  display:grid;
+  gap:8px;
+}
+.commissionRow{display:flex; gap:10px; align-items:flex-start;}
+.commissionLabel{
+  min-width:72px;
+  font-size:11px;
+  font-weight:950;
+  color:rgba(255,255,255,0.62);
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.commissionValue{
+  flex:1;
+  font-size:12px;
+  font-weight:800;
+  color:rgba(255,255,255,0.88);
+  line-height:1.35;
+}
+.commissionMedia{
+  padding:12px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.commissionMediaBlock{
+  background:rgba(0,0,0,0.14);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+}
+.commissionMediaLabel{
+  padding:8px 10px;
+  font-size:11px;
+  font-weight:950;
+  color:rgba(255,255,255,0.85);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.commissionCount{
+  font-size:10px;
+  font-weight:900;
+  color:rgba(255,255,255,0.70);
+}
+.commissionMediaThumb{
+  border:0;
+  padding:0;
+  margin:0;
+  width:100%;
+  background:rgba(255,255,255,0.04);
+  cursor:pointer;
+}
+.commissionMediaThumb:disabled{cursor:not-allowed; opacity:0.6;}
+.commissionMediaThumb img{
+  width:100%;
+  height:auto;
+  aspect-ratio:16/10;
+  object-fit:cover;
+  display:block;
+}
+@media (max-width: 520px){
+  .commissionGrid{grid-template-columns:1fr;}
+  .commissionMedia{grid-template-columns:1fr;}
+  .commissionLabel{min-width:64px;}
+}
 @media (max-width: 520px){
   /* remove ugly gaps on mobile */
   .filters{gap:6px !important; margin:0 0 6px !important;}
@@ -1114,6 +1201,28 @@
             </div>
             <div class="status" id="statusCommission">—</div>
           </div>
+
+          <details class="commissionHelp">
+            <summary>➕ Ajouter une commission</summary>
+            <div class="commissionHelpBody">
+              <div>1) Ajoute tes images dans <b>Commission/</b> (ou autre dossier).</div>
+              <div>2) Ajoute/édite <b>commissions.json</b> à la racine.</div>
+              <pre class="commissionHelpCode">[
+  {
+    "client": "Client",
+    "title": "Nom du projet",
+    "date": "YYYY-MM-DD",
+    "status": "Livré / En cours",
+    "requested": "Demande du client",
+    "delivered": "Ce qui a été fait",
+    "images": {
+      "model3d": "Commission/client/model.png",
+      "texturing": "Commission/client/texture.png"
+    }
+  }
+]</pre>
+            </div>
+          </details>
 
           <div class="scroller">
             <div class="commissionGrid" id="commissionGrid"></div>
@@ -2716,38 +2825,138 @@ langSelect?.addEventListener("pointerdown",(e)=>e.stopPropagation());
   });
 
   
-  /* ---------- Commission (simple gallery) ---------- */
-  const COMMISSIONS = [
-    // Ajouter vos commissions ici :
-    // { client: "ClientName", title:"Titre", date:"2025-12-01", img:"Commission/client1/preview.png" }
+  /* ---------- Commission (blocks) ----------
+   - Lit commissions.json (à la racine)
+   - Chaque entrée = 1 bloc client + 2 types d'images (Modèle 3D + Texturing)
+*/
+  const COMMISSIONS_FALLBACK = [
+    // Fallback si commissions.json n'existe pas :
+    // {
+    //   client:"Client", title:"Nom du projet", date:"YYYY-MM-DD", status:"Livré",
+    //   requested:"Demande du client", delivered:"Ce qui a été fait",
+    //   images:{ model3d:"Commission/client/model.png", texturing:"Commission/client/texture.png" }
+    // }
   ];
 
-  function refreshCommission(){
+  function asArr(v){
+    if(!v) return [];
+    if(Array.isArray(v)) return v.filter(Boolean).map(String);
+    return [String(v)];
+  }
+
+  function normalizeCommission(x){
+    const o = x || {};
+    const imgs = o.images || {};
+    const modelImgs = asArr(o.model3d ?? o.model ?? o.render ?? imgs.model3d ?? imgs.model ?? imgs.render ?? o.img);
+    const texImgs   = asArr(o.texturing ?? o.texture ?? imgs.texturing ?? imgs.texture ?? imgs.tex ?? o.textureImg);
+
+    return {
+      client: String(o.client || ""),
+      title: String(o.title || ""),
+      date: String(o.date || ""),
+      status: String(o.status || ""),
+      requested: String(o.requested || o.request || ""),
+      delivered: String(o.delivered || o.done || o.result || ""),
+      modelImgs,
+      texImgs
+    };
+  }
+
+  async function loadCommissions(){
+    try{
+      const j = await fetchJsonLocal("commissions.json");
+      if(Array.isArray(j)) return j;
+      if(Array.isArray(j.items)) return j.items;
+      return [];
+    }catch(e){
+      return Array.isArray(COMMISSIONS_FALLBACK) ? COMMISSIONS_FALLBACK : [];
+    }
+  }
+
+  function renderCommissionCard(c){
+    const title = escapeHtml(c.title || c.client || "Commission");
+    const meta = escapeHtml([c.client, c.date].filter(Boolean).join(" • "));
+    const pill = c.status ? `<span class="commissionPill">${escapeHtml(c.status)}</span>` : "";
+
+    const row = (label, value)=>{
+      if(!value) return "";
+      return `
+        <div class="commissionRow">
+          <div class="commissionLabel">${escapeHtml(label)}</div>
+          <div class="commissionValue">${escapeHtml(value)}</div>
+        </div>
+      `;
+    };
+
+    const mediaBlock = (label, imgs)=>{
+      const list = Array.isArray(imgs) ? imgs : [];
+      const first = list[0] || "";
+      const safeSrc = first ? encodeURI(first) : "";
+      const count = (list.length > 1) ? `<span class="commissionCount">+${list.length-1}</span>` : "";
+      const cap = `${label}${c.title ? " — "+c.title : ""}${c.client ? " • "+c.client : ""}`;
+
+      return `
+        <div class="commissionMediaBlock">
+          <div class="commissionMediaLabel">${escapeHtml(label)}${count}</div>
+          <button class="commissionMediaThumb" type="button" ${safeSrc ? `data-img="${escapeHtml(safeSrc)}" data-cap="${escapeHtml(cap)}"` : "disabled"}>
+            ${safeSrc ? `<img loading="lazy" src="${safeSrc}" alt="${escapeHtml(label)}">` : `<div class="muted" style="padding:12px;">No image</div>`}
+          </button>
+        </div>
+      `;
+    };
+
+    return `
+      <div class="commissionCard reveal">
+        <div class="commissionHead">
+          <div>
+            <div class="commissionTitle">${title}</div>
+            <div class="commissionMeta">${meta}</div>
+          </div>
+          ${pill}
+        </div>
+
+        ${(c.requested || c.delivered) ? `<div class="commissionText">${row("Demande", c.requested)}${row("Réalisé", c.delivered)}</div>` : ""}
+
+        <div class="commissionMedia">
+          ${mediaBlock("Modèle 3D", c.modelImgs)}
+          ${mediaBlock("Texturing", c.texImgs)}
+        </div>
+      </div>
+    `;
+  }
+
+  function bindCommissionModal(grid){
+    if(!grid || grid.dataset.modalBound) return;
+    grid.dataset.modalBound = "1";
+    grid.addEventListener("click", (e)=>{
+      const btn = e.target.closest(".commissionMediaThumb");
+      if(!btn || btn.disabled) return;
+      const src = btn.getAttribute("data-img");
+      const cap = btn.getAttribute("data-cap") || "";
+      if(src) openImgModal(src, cap);
+    });
+  }
+
+  async function refreshCommission(){
     const grid = document.getElementById("commissionGrid");
     const status = document.getElementById("statusCommission");
     if(!grid) return;
 
-    const items = Array.isArray(COMMISSIONS) ? COMMISSIONS : [];
+    status && (status.textContent = "Chargement…");
+
+    const raw = await loadCommissions();
+    const items = (Array.isArray(raw) ? raw : []).map(normalizeCommission);
+
     status && (status.textContent = items.length ? `${items.length} item(s)` : "—");
+
     if(!items.length){
-      grid.innerHTML = `<div class="muted">Ajoute des entrées dans <b>COMMISSIONS</b> (dans le script) ou crée un fichier <b>commissions.json</b>.</div>`;
+      grid.innerHTML = `<div class="muted">Ajoute tes blocs dans <b>commissions.json</b> (à la racine) + tes images dans un dossier (ex: <b>Commission/</b>).</div>`;
       return;
     }
 
-    grid.innerHTML = items.map(x => {
-      const title = escapeHtml(x.title || x.client || "Commission");
-      const meta = escapeHtml([x.client, x.date].filter(Boolean).join(" • ") || "");
-      const img = x.img ? `<img loading="lazy" src="${x.img}" alt="">` : "";
-      return `
-        <div class="commissionCard">
-          <div class="commissionThumb">${img || "<span class='muted'>No image</span>"}</div>
-          <div class="commissionBody">
-            <div class="commissionTitle">${title}</div>
-            <div class="commissionMeta">${meta}</div>
-          </div>
-        </div>
-      `;
-    }).join("");
+    grid.innerHTML = items.map(renderCommissionCard).join("");
+    ensureRevealForGrid(grid);
+    bindCommissionModal(grid);
   }
 
 /* ---------- Scroll reveal (cards/images appear smoothly) ---------- */
