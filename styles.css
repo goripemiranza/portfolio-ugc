@@ -1,9 +1,7 @@
-/* styles.css — Roblox Portfolio (responsive, dark, podium glow border only) */
+/* styles.css — Roblox Portfolio (animations + ranked podium + hardened UI) */
 
 :root{
   --bg:#0b0f19;
-  --card:rgba(255,255,255,0.06);
-  --card2:rgba(255,255,255,0.04);
   --text:rgba(255,255,255,0.92);
   --muted:rgba(255,255,255,0.66);
   --line:rgba(255,255,255,0.12);
@@ -19,6 +17,15 @@
 
 *{box-sizing:border-box}
 html{color-scheme:dark}
+
+/* Make copying harder (still not 100% possible to block on the web) */
+body{ user-select:none; -webkit-user-select:none; }
+.allowSelect{ user-select:text !important; -webkit-user-select:text !important; }
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important; transition:none !important}
+}
+
 body{
   margin:0;
   min-height:100vh;
@@ -90,7 +97,27 @@ body{
   font-size:14px;
   cursor:pointer;
   transition: transform .14s ease, background .14s ease, border-color .14s ease, box-shadow .14s ease, opacity .14s ease;
+  position:relative;
+  overflow:hidden;
 }
+
+.tabBtn::before,
+.actionBtn::before,
+.segBtn::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.14), rgba(255,255,255,0));
+  transform: translateX(-120%);
+  transition: transform .35s ease;
+  pointer-events:none;
+}
+.tabBtn:hover::before,
+.actionBtn:hover::before,
+.segBtn:hover::before{
+  transform: translateX(120%);
+}
+
 .tabBtn:hover,
 .actionBtn:hover,
 .segBtn:hover,
@@ -116,8 +143,20 @@ body{
 }
 
 .views{margin-top:16px}
+
+/* View transitions */
 .view{display:none}
 .view.active{display:block}
+.view.entering{animation: viewIn .22s ease both}
+.view.leaving{animation: viewOut .22s ease both}
+@keyframes viewIn{
+  from{opacity:0; transform: translateY(10px); filter: blur(2px)}
+  to{opacity:1; transform: translateY(0px); filter:none}
+}
+@keyframes viewOut{
+  from{opacity:1; transform: translateY(0px); filter:none}
+  to{opacity:0; transform: translateY(6px); filter: blur(1px)}
+}
 
 .card{
   border:1px solid var(--line);
@@ -169,9 +208,9 @@ body{
 .control{display:flex;flex-direction:column;gap:6px;min-width:0}
 .control.active select,
 .control.active input[type="search"]{
-  border-color: rgba(124,92,255,0.65);
-  background: rgba(124,92,255,0.10);
-  box-shadow: 0 0 0 4px rgba(124,92,255,0.10);
+  border-color: rgba(124,92,255,0.72);
+  background: rgba(124,92,255,0.12);
+  box-shadow: 0 0 0 4px rgba(124,92,255,0.12);
 }
 
 .label{font-size:12px;font-weight:950;color:rgba(255,255,255,0.78);letter-spacing:.25px}
@@ -180,23 +219,25 @@ select,
 input[type="search"]{
   width:100%;
   border-radius:14px;
-  border:1px solid rgba(255,255,255,0.14);
-  background: rgba(0,0,0,0.28);
+  border:1px solid rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.30);
   color: var(--text);
   padding:11px 12px;
-  font-weight:850;
+  font-weight:900;
   outline:none;
   min-width:0;
   color-scheme: dark;
+  user-select:text;
+  -webkit-user-select:text;
 }
 select:hover,
 input[type="search"]:hover{
-  border-color: rgba(124,92,255,0.38);
+  border-color: rgba(124,92,255,0.45);
 }
 select:focus,
 input[type="search"]:focus{
-  border-color: rgba(124,92,255,0.60);
-  box-shadow: 0 0 0 4px rgba(124,92,255,0.12);
+  border-color: rgba(124,92,255,0.70);
+  box-shadow: 0 0 0 4px rgba(124,92,255,0.14);
 }
 
 select option,
@@ -224,13 +265,42 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   display:flex;
   flex-direction:column;
   min-width:0;
-  transition: transform .14s ease, background .14s ease, border-color .14s ease, box-shadow .14s ease;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease, filter .18s ease;
+  will-change: transform;
 }
+
+/* Scroll reveal */
+.reveal{
+  opacity:0;
+  transform: translateY(10px) scale(.995);
+  filter: blur(1.5px);
+}
+.reveal.revealed{
+  opacity:1;
+  transform: translateY(0px) scale(1);
+  filter:none;
+  transition: opacity .36s ease, transform .36s ease, filter .36s ease;
+}
+
 .ugcCard:hover{
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.01);
   background: rgba(255,255,255,0.055);
-  border-color: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.20);
 }
+
+/* Shine overlay on hover */
+.ugcCard::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.14) 45%, rgba(255,255,255,0) 70%);
+  transform: translateX(-120%);
+  transition: transform .55s ease;
+  pointer-events:none;
+  mix-blend-mode: screen;
+  opacity:.65;
+}
+.ugcCard:hover::after{ transform: translateX(120%); }
 
 .thumbBtn{
   padding:0;
@@ -244,6 +314,7 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   object-fit: cover;
   display:block;
   background: rgba(0,0,0,0.25);
+  transform: translateZ(0);
 }
 
 .badge{
@@ -278,8 +349,8 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   white-space:nowrap;
 }
 
-/* NEW badge (podium main item) */
-.newBadge{
+/* Podium badges: NEW + #2 silver + #3 bronze */
+.podiumBadge{
   position:absolute;
   top:44px;
   left:10px;
@@ -287,14 +358,37 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   border-radius:999px;
   font-size:11px;
   font-weight:1000;
-  letter-spacing:.6px;
+  letter-spacing:.7px;
   text-transform:uppercase;
+  border:1px solid rgba(255,255,255,0.22);
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  user-select:none;
+  -webkit-user-select:none;
+}
+.podiumBadge.new{
   color:#1a1400;
   background: linear-gradient(90deg, #ffe27a, #ffd24a, #fff3a6, #ffd24a, #ffe27a);
   background-size: 240% 100%;
-  border:1px solid rgba(255, 210, 74, 0.65);
+  border-color: rgba(255, 210, 74, 0.65);
   box-shadow: 0 0 0 4px rgba(255, 210, 74, 0.12);
   animation: shimmer 1.9s ease-in-out infinite;
+}
+.podiumBadge.rank2{
+  color:#0f1118;
+  background: linear-gradient(90deg, #f8fbff, #c4cfdf, #ffffff, #c4cfdf, #f8fbff);
+  background-size: 240% 100%;
+  border-color: rgba(220, 232, 255, 0.55);
+  box-shadow: 0 0 0 4px rgba(220, 232, 255, 0.10);
+  animation: shimmer 2.2s ease-in-out infinite;
+}
+.podiumBadge.rank3{
+  color:#1b0f00;
+  background: linear-gradient(90deg, #ffd4a8, #c1782c, #ffead0, #c1782c, #ffd4a8);
+  background-size: 240% 100%;
+  border-color: rgba(193, 120, 44, 0.55);
+  box-shadow: 0 0 0 4px rgba(193, 120, 44, 0.10);
+  animation: shimmer 2.2s ease-in-out infinite;
 }
 @keyframes shimmer{
   0%{background-position:0% 50%}
@@ -382,7 +476,9 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   white-space:nowrap;
 }
 
-.btnOpen{
+/* Open + Try buttons */
+.btnOpen,
+.btnTry{
   border:1px solid rgba(255,255,255,0.14);
   background: rgba(255,255,255,0.06);
   color:var(--text);
@@ -391,13 +487,44 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   font-weight:950;
   cursor:pointer;
   transition: transform .14s ease, background .14s ease, border-color .14s ease, box-shadow .14s ease;
+  position:relative;
+  overflow:hidden;
 }
-.btnOpen:hover{
+.btnOpen::before,
+.btnTry::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.22), rgba(255,255,255,0));
+  transform: translateX(-120%);
+  transition: transform .5s ease;
+  pointer-events:none;
+}
+.btnOpen:hover::before,
+.btnTry:hover::before{ transform: translateX(120%); }
+
+.btnOpen:hover,
+.btnTry:hover{
   background: rgba(255,255,255,0.10);
   transform: translateY(-1px);
   border-color: rgba(124,92,255,0.40);
 }
-.btnOpen:active{transform: translateY(0px) scale(.98)}
+.btnOpen:active,
+.btnTry:active{transform: translateY(0px) scale(.98)}
+
+.btnTry{
+  border-color: rgba(49,208,170,0.28);
+}
+.btnTry:hover{
+  border-color: rgba(49,208,170,0.55);
+  box-shadow: 0 0 0 4px rgba(49,208,170,0.10);
+}
+
+.btnRow{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
 
 /* Podium */
 .podiumRow{
@@ -407,12 +534,24 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   align-items:stretch;
 }
 .podiumRow .ugcCard{height:100%}
+
+/* subtle float motion for podium (stylish) */
+.podiumRow .ugcCard{
+  animation: float 3.6s ease-in-out infinite;
+}
+.podiumRow .ugcCard.podium-left{animation-delay:.0s}
+.podiumRow .ugcCard.podium-mid{animation-delay:.25s}
+.podiumRow .ugcCard.podium-right{animation-delay:.5s}
+@keyframes float{
+  0%,100%{ transform: translateY(0px); }
+  50%{ transform: translateY(-4px); }
+}
+
 .podiumRow .ugcCard.featured{
-  transform: translateY(-4px);
   z-index:2;
 }
 .podiumRow .ugcCard.featured:hover{
-  transform: translateY(-6px);
+  transform: translateY(-4px) scale(1.01);
 }
 
 /* Glow border ONLY (no inner animation) */
@@ -444,9 +583,9 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   border-radius: var(--r2);
   border:1px solid rgba(255,255,255,0.12);
   background: rgba(255,255,255,0.04);
-  transition: transform .14s ease, background .14s ease, border-color .14s ease;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
 }
-.galCard:hover{transform: translateY(-2px); border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.055)}
+.galCard:hover{transform: translateY(-2px) scale(1.01); border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.055)}
 .galBtn{padding:0;border:0;background:transparent;width:100%;cursor:zoom-in}
 .galImg{
   width:100%;
@@ -474,9 +613,9 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   border:1px solid rgba(255,255,255,0.12);
   background: rgba(255,255,255,0.04);
   overflow:hidden;
-  transition: transform .14s ease, background .14s ease, border-color .14s ease;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
 }
-.comCard:hover{transform: translateY(-2px); border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.055)}
+.comCard:hover{transform: translateY(-2px) scale(1.01); border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.055)}
 .comBtn{padding:0;border:0;background:transparent;width:100%;cursor:zoom-in}
 .comImg{
   width:100%;
@@ -618,8 +757,9 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   .podiumRow .podium-left{grid-area:left}
   .podiumRow .podium-mid{grid-area:mid}
   .podiumRow .podium-right{grid-area:right}
-  .podiumRow .ugcCard.featured{transform: translateY(0px)}
-  .podiumRow .ugcCard.featured:hover{transform: translateY(-2px)}
+
+  /* stop float on mobile to avoid cramped feel */
+  .podiumRow .ugcCard{animation:none}
 
   /* 3 columns on mobile for the main grid */
   .ugcGrid{
@@ -636,21 +776,30 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   .dateTag{display:none}
   .foot{gap:8px}
   .price{padding:5px 8px; font-size:12px}
-  .btnOpen{
+
+  .btnOpen, .btnTry{
     width:36px;
     height:32px;
     padding:0;
     border-radius:12px;
     font-size:0;
   }
-  .btnOpen::before{
+  .btnOpen::after{
     content:"↗";
     font-size:14px;
+    position:relative;
+    z-index:2;
+  }
+  .btnTry::after{
+    content:"👤";
+    font-size:14px;
+    position:relative;
+    z-index:2;
   }
 
   .badge{top:8px;left:8px;font-size:10px;padding:4px 7px}
   .sourcePill{top:8px;right:8px;font-size:10px;padding:4px 7px}
-  .newBadge{top:38px; left:8px; font-size:10px; padding:4px 9px}
+  .podiumBadge{top:38px; left:8px; font-size:10px; padding:4px 9px}
 
   .galleryGrid{grid-template-columns: repeat(2, minmax(0,1fr));}
   .commissionGrid{grid-template-columns: repeat(2, minmax(0,1fr));}
