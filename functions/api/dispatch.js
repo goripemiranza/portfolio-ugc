@@ -16,7 +16,8 @@ export async function onRequestPost({ request, env }) {
       fetchJson(`${origin}/data_group.json`),
     ]);
 
-    const items = normalizeItems(user, "Profile").concat(normalizeItems(group, "Group"))
+    const items = normalizeItems(user, "Profile")
+      .concat(normalizeItems(group, "Group"))
       .filter((x) => typeof x.price === "number" && x.price > 0)
       .sort((a, b) => (a.createdTs || 0) - (b.createdTs || 0));
 
@@ -26,21 +27,22 @@ export async function onRequestPost({ request, env }) {
     const lastTs = Number(lastTsStr || "0") || 0;
 
     if (!latestTs || latestTs <= lastTs) {
-      return json({ ok: true, new: 0, sentEmail: 0, sentSms: 0 }, 200);
+      return json({ ok: true, new: 0, sentEmail: 0 }, 200);
     }
 
     const newItems = items.filter((x) => (x.createdTs || 0) > lastTs);
     const newest = newItems.length ? (newItems[newItems.length - 1].createdTs || latestTs) : latestTs;
 
     const subject = `New UGC on sale (${newItems.length})`;
-    const lines = newItems.slice(-6).reverse().map((it) => `• ${it.name} — https://www.roblox.com/catalog/${it.assetId}`);
+    const lines = newItems
+      .slice(-6)
+      .reverse()
+      .map((it) => `• ${it.name} — https://www.roblox.com/catalog/${it.assetId}`);
     const bodyText = `New items on sale:\n\n${lines.join("\n")}\n\nPortfolio: ${origin}\n`;
 
     // Subscribers
     const aesKey = await importAesKey(env.NOTIFY_KEY);
-
     let sentEmail = 0;
-    let sentSms = 0;
 
     // List keys (KV list is paginated)
     let cursor = undefined;
@@ -62,19 +64,11 @@ export async function onRequestPost({ request, env }) {
         if (!payload) continue;
 
         const email = String(payload.email || "").trim();
-        const phone = String(payload.phone || "").trim();
         const channels = payload.channels || {};
 
-        // Email
         if (channels.email && email) {
           const ok = await sendEmail(env, email, subject, bodyText);
           if (ok) sentEmail++;
-        }
-
-        // SMS
-        if (channels.sms && phone) {
-          const ok = await sendSms(env, phone, `New UGC on sale: ${newItems[0]?.name || "New item"}\n${origin}`);
-          if (ok) sentSms++;
         }
       }
 
@@ -83,12 +77,12 @@ export async function onRequestPost({ request, env }) {
     }
 
     await env.NOTIFY_KV.put("state:last_ts", String(newest));
-
-    return json({ ok: true, new: newItems.length, sentEmail, sentSms }, 200);
+    return json({ ok: true, new: newItems.length, sentEmail }, 200);
   } catch (e) {
     return json({ ok: false, error: "server_error" }, 500);
   }
 };
+
 
 function json(obj, status = 200) {
   return new Response(JSON.stringify(obj), {
@@ -190,29 +184,5 @@ async function sendEmailMailChannels(from, to, subject, text) {
       content: [{ type: "text/plain", value: text }],
     }),
   });
-  return r.ok;
-}
-
-/* SMS provider (Twilio) */
-async function sendSms(env, to, message) {
-  if (!env.TWILIO_SID || !env.TWILIO_TOKEN || !env.TWILIO_FROM) return false;
-
-  const url = `https://api.twilio.com/2010-04-01/Accounts/${env.TWILIO_SID}/Messages.json`;
-  const body = new URLSearchParams();
-  body.set("To", to);
-  body.set("From", env.TWILIO_FROM);
-  body.set("Body", message);
-
-  const auth = btoa(`${env.TWILIO_SID}:${env.TWILIO_TOKEN}`);
-
-  const r = await fetch(url, {
-    method: "POST",
-    headers: {
-      "authorization": `Basic ${auth}`,
-      "content-type": "application/x-www-form-urlencoded",
-    },
-    body,
-  });
-
   return r.ok;
 }
