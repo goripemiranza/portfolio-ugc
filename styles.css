@@ -1,4 +1,4 @@
-/* styles.css — Portfolio Roblox (responsive, dark, podium glow border only) */
+/* styles.css — Roblox Portfolio (responsive, dark, podium glow border only) */
 
 :root{
   --bg:#0b0f19;
@@ -38,7 +38,6 @@ body{
   background:
     radial-gradient(1200px 600px at 10% 0%, rgba(124,92,255,0.18), rgba(0,0,0,0)),
     radial-gradient(1000px 650px at 90% 10%, rgba(49,208,170,0.14), rgba(0,0,0,0));
-  filter: blur(0px);
   opacity:.85;
 }
 
@@ -168,6 +167,13 @@ body{
 }
 
 .control{display:flex;flex-direction:column;gap:6px;min-width:0}
+.control.active select,
+.control.active input[type="search"]{
+  border-color: rgba(124,92,255,0.65);
+  background: rgba(124,92,255,0.10);
+  box-shadow: 0 0 0 4px rgba(124,92,255,0.10);
+}
+
 .label{font-size:12px;font-weight:950;color:rgba(255,255,255,0.78);letter-spacing:.25px}
 
 select,
@@ -181,6 +187,7 @@ input[type="search"]{
   font-weight:850;
   outline:none;
   min-width:0;
+  color-scheme: dark;
 }
 select:hover,
 input[type="search"]:hover{
@@ -190,6 +197,12 @@ select:focus,
 input[type="search"]:focus{
   border-color: rgba(124,92,255,0.60);
   box-shadow: 0 0 0 4px rgba(124,92,255,0.12);
+}
+
+select option,
+select optgroup{
+  background-color:#0f1524;
+  color:#ffffff;
 }
 
 input::placeholder{color:rgba(255,255,255,0.55)}
@@ -243,6 +256,10 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   border:1px solid rgba(255,255,255,0.18);
   backdrop-filter: blur(10px);
   font-weight:950;
+  max-width:48%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .sourcePill{
@@ -255,6 +272,34 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   background: rgba(255,255,255,0.06);
   backdrop-filter: blur(10px);
   font-weight:950;
+  max-width:48%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+/* NEW badge (podium main item) */
+.newBadge{
+  position:absolute;
+  top:44px;
+  left:10px;
+  padding:5px 10px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+  color:#1a1400;
+  background: linear-gradient(90deg, #ffe27a, #ffd24a, #fff3a6, #ffd24a, #ffe27a);
+  background-size: 240% 100%;
+  border:1px solid rgba(255, 210, 74, 0.65);
+  box-shadow: 0 0 0 4px rgba(255, 210, 74, 0.12);
+  animation: shimmer 1.9s ease-in-out infinite;
+}
+@keyframes shimmer{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 
 .body{
@@ -436,7 +481,7 @@ input::placeholder{color:rgba(255,255,255,0.55)}
 .comImg{
   width:100%;
   height: clamp(190px, 22vw, 280px);
-  object-fit: contain; /* show full image without forcing scroll */
+  object-fit: contain;
   display:block;
   background: rgba(0,0,0,0.25);
 }
@@ -554,13 +599,66 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   .podiumRow{grid-template-columns: 1fr 1fr 1fr;}
 }
 
+/* Mobile */
 @media (max-width: 560px){
   .shell{padding:14px 12px 50px;}
   .topbar{padding:14px 14px;}
-  .tabBtn,.actionBtn{padding:10px 12px}
-  .ugcGrid{grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));}
-  .galleryGrid{grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));}
-  .commissionGrid{grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));}
-  .podiumRow{gap:10px}
-  .podiumRow .ugcCard.featured{transform: translateY(-2px)}
+  .nav{width:100%; justify-content:space-between}
+  .tabBtn{flex:1 1 auto; text-align:center; padding:10px 12px}
+  .actionBtn{flex:1 1 auto; padding:10px 12px}
+
+  /* Podium: featured on top, 2 items below */
+  .podiumRow{
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "mid mid"
+      "left right";
+    gap:10px;
+  }
+  .podiumRow .podium-left{grid-area:left}
+  .podiumRow .podium-mid{grid-area:mid}
+  .podiumRow .podium-right{grid-area:right}
+  .podiumRow .ugcCard.featured{transform: translateY(0px)}
+  .podiumRow .ugcCard.featured:hover{transform: translateY(-2px)}
+
+  /* 3 columns on mobile for the main grid */
+  .ugcGrid{
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap:10px;
+  }
+
+  /* Make cards compact on small screens */
+  .body{padding:8px 8px 10px; gap:6px}
+  .title{font-size:12px}
+  .metaRow{gap:6px; font-size:11px}
+  .kvBtn{font-size:10px}
+  .metaTag{font-size:10px; padding:2px 6px}
+  .dateTag{display:none}
+  .foot{gap:8px}
+  .price{padding:5px 8px; font-size:12px}
+  .btnOpen{
+    width:36px;
+    height:32px;
+    padding:0;
+    border-radius:12px;
+    font-size:0;
+  }
+  .btnOpen::before{
+    content:"↗";
+    font-size:14px;
+  }
+
+  .badge{top:8px;left:8px;font-size:10px;padding:4px 7px}
+  .sourcePill{top:8px;right:8px;font-size:10px;padding:4px 7px}
+  .newBadge{top:38px; left:8px; font-size:10px; padding:4px 9px}
+
+  .galleryGrid{grid-template-columns: repeat(2, minmax(0,1fr));}
+  .commissionGrid{grid-template-columns: repeat(2, minmax(0,1fr));}
+}
+
+/* Very small phones */
+@media (max-width: 380px){
+  .ugcGrid{grid-template-columns: repeat(2, minmax(0,1fr));}
+  .galleryGrid{grid-template-columns: 1fr;}
+  .commissionGrid{grid-template-columns: 1fr;}
 }
