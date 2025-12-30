@@ -7,24 +7,19 @@ export async function onRequestPost({ request, env }) {
 
     const body = await request.json();
     const email = String(body?.email || "").trim();
-    const phone = String(body?.phone || "").trim();
     const channels = body?.channels || {};
-    const wantEmail = !!channels.email;
-    const wantSms = !!channels.sms;
+    const wantEmail = (channels.email === undefined) ? !!email : !!channels.email;
 
-    if (!wantEmail && !wantSms) return json({ ok: false, error: "no_channel" }, 400);
-
-    if (wantEmail && !looksLikeEmail(email)) return json({ ok: false, error: "bad_email" }, 400);
-    if (wantSms && !looksLikePhone(phone)) return json({ ok: false, error: "bad_phone" }, 400);
+    if (!wantEmail) return json({ ok: false, error: "no_channel" }, 400);
+    if (!looksLikeEmail(email)) return json({ ok: false, error: "bad_email" }, 400);
 
     if (!env?.NOTIFY_KV) return json({ ok: false, error: "kv_not_configured" }, 500);
     if (!env?.NOTIFY_KEY) return json({ ok: false, error: "key_not_configured" }, 500);
 
     const now = Date.now();
     const payload = {
-      email: wantEmail ? email : "",
-      phone: wantSms ? phone : "",
-      channels: { email: wantEmail, sms: wantSms },
+      email,
+      channels: { email: true },
       created: now,
       v: 1,
     };
@@ -32,7 +27,7 @@ export async function onRequestPost({ request, env }) {
     const aesKey = await importAesKey(env.NOTIFY_KEY);
     const enc = await aesGcmEncrypt(JSON.stringify(payload), aesKey);
 
-    const subId = await hmacId(env.NOTIFY_KEY, `${email.toLowerCase()}|${phone}`);
+    const subId = await hmacId(env.NOTIFY_KEY, email.toLowerCase());
     const rec = {
       v: 1,
       created: now,
@@ -59,10 +54,7 @@ function json(obj, status = 200) {
 }
 
 function looksLikeEmail(s) {
-  return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(s || ""));
-}
-function looksLikePhone(s) {
-  return /^\+?[0-9][0-9\s().-]{6,}$/.test(String(s || ""));
+  return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(s || "").trim());
 }
 
 function b64ToBytes(b64) {
