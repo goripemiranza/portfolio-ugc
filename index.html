@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portfolio Roblox</title>
-  <meta name="description" content="Portfolio Roblox : UGC, Galerie, Commissions." />
+  <title>Roblox Portfolio</title>
+  <meta name="description" content="Roblox Portfolio: UGC, Gallery, Commissions." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -15,16 +15,16 @@
       <div class="brand">
         <span class="dot" aria-hidden="true"></span>
         <div class="brandText">
-          <div class="brandTitle">Portfolio Roblox</div>
-          <div class="brandSub">UGC • Galerie • Commissions</div>
+          <div class="brandTitle">Roblox Portfolio</div>
+          <div class="brandSub">UGC • Gallery • Commissions</div>
         </div>
       </div>
 
       <div class="nav">
         <button class="tabBtn active" type="button" data-view="ugc">UGC</button>
-        <button class="tabBtn" type="button" data-view="gallery">Galerie</button>
+        <button class="tabBtn" type="button" data-view="gallery">Gallery</button>
         <button class="tabBtn" type="button" data-view="commissions">Commissions</button>
-        <button class="actionBtn" id="btnRefresh" type="button">Actualiser</button>
+        <button class="actionBtn" id="btnRefresh" type="button">Refresh</button>
       </div>
     </header>
 
@@ -36,49 +36,49 @@
           <div class="cardHead">
             <div>
               <h2 class="h2">Podium</h2>
-              <div class="muted">Les 3 derniers UGC en vente.</div>
+              <div class="muted">Latest 3 UGC on sale.</div>
             </div>
             <div class="muted" id="podiumHint">—</div>
           </div>
 
           <div class="podiumRow" id="podiumRow"></div>
-          <div class="empty muted" id="podiumEmpty" hidden>Aucun item.</div>
+          <div class="empty muted" id="podiumEmpty" hidden>No items.</div>
         </div>
 
         <div class="card">
           <div class="filtersGrid">
             <div class="control">
-              <div class="label">Catégorie</div>
-              <select id="fCategory" aria-label="Catégorie"></select>
+              <div class="label">Category</div>
+              <select id="fCategory" aria-label="Category"></select>
             </div>
             <div class="control">
               <div class="label">Type</div>
               <select id="fType" aria-label="Type"></select>
             </div>
             <div class="control">
-              <div class="label">Tri</div>
-              <select id="fSort" aria-label="Tri">
-                <option value="new">Plus récents</option>
-                <option value="old">Plus anciens</option>
-                <option value="fav">Favoris ↓</option>
-                <option value="price_desc">Prix ↓</option>
-                <option value="price_asc">Prix ↑</option>
+              <div class="label">Sort</div>
+              <select id="fSort" aria-label="Sort">
+                <option value="new">Newest</option>
+                <option value="old">Oldest</option>
+                <option value="fav">Favorites ↓</option>
+                <option value="price_desc">Price ↓</option>
+                <option value="price_asc">Price ↑</option>
               </select>
             </div>
             <div class="control">
-              <div class="label">Recherche</div>
-              <input id="fSearch" type="search" placeholder="Nom / ID…" autocomplete="off" />
+              <div class="label">Search</div>
+              <input id="fSearch" type="search" placeholder="Name / ID..." autocomplete="off" />
             </div>
           </div>
         </div>
 
         <div class="sectionHead">
-          <h2 class="h2">Tous les UGC</h2>
+          <h2 class="h2">All UGC</h2>
           <div class="muted" id="ugcCount">—</div>
         </div>
 
         <div class="ugcGrid" id="ugcGrid"></div>
-        <div class="empty muted" id="ugcEmpty" hidden>Aucun résultat.</div>
+        <div class="empty muted" id="ugcEmpty" hidden>No results.</div>
 
         <div class="footInfo muted" id="updateInfo"></div>
       </section>
@@ -88,14 +88,14 @@
         <div class="card">
           <div class="cardHead">
             <div>
-              <h2 class="h2">Galerie</h2>
-              <div class="muted">Images uniquement.</div>
+              <h2 class="h2">Gallery</h2>
+              <div class="muted">Images only.</div>
             </div>
             <div class="muted" id="galleryCount">—</div>
           </div>
 
           <div class="galleryGrid" id="galleryGrid"></div>
-          <div class="empty muted" id="galleryEmpty" hidden>Aucune image.</div>
+          <div class="empty muted" id="galleryEmpty" hidden>No images.</div>
         </div>
       </section>
 
@@ -105,17 +105,17 @@
           <div class="cardHead">
             <div>
               <h2 class="h2">Commissions</h2>
-              <div class="muted">Modèles / Textures.</div>
+              <div class="muted">Models / Textures.</div>
             </div>
 
             <div class="seg" role="tablist" aria-label="Commissions">
-              <button class="segBtn active" type="button" data-comm="models" role="tab" aria-selected="true">Modèles</button>
+              <button class="segBtn active" type="button" data-comm="models" role="tab" aria-selected="true">Models</button>
               <button class="segBtn" type="button" data-comm="textures" role="tab" aria-selected="false">Textures</button>
             </div>
           </div>
 
           <div class="commissionGrid" id="commissionGrid"></div>
-          <div class="empty muted" id="commissionEmpty" hidden>Aucune image.</div>
+          <div class="empty muted" id="commissionEmpty" hidden>No images.</div>
         </div>
       </section>
 
@@ -125,12 +125,12 @@
   <!-- Modal (zoom) -->
   <div class="modal" id="modal" aria-hidden="true">
     <div class="modalCard" role="dialog" aria-modal="true" aria-label="Image">
-      <button class="modalClose" id="modalClose" type="button" aria-label="Fermer">✕</button>
+      <button class="modalClose" id="modalClose" type="button" aria-label="Close">✕</button>
 
       <div class="modalTools" aria-hidden="false">
-        <button class="toolBtn" id="zoomOut" type="button" title="Zoom -">−</button>
+        <button class="toolBtn" id="zoomOut" type="button" title="Zoom out">−</button>
         <button class="toolBtn" id="zoomReset" type="button" title="Reset">1×</button>
-        <button class="toolBtn" id="zoomIn" type="button" title="Zoom +">＋</button>
+        <button class="toolBtn" id="zoomIn" type="button" title="Zoom in">＋</button>
       </div>
 
       <div class="modalStage" id="modalStage">
