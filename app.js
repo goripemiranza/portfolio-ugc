@@ -1,4 +1,4 @@
-/* app.js — Roblox Portfolio (animations + ranked podium + protection layer) */
+/* app.js — Roblox Portfolio (final) */
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -12,6 +12,7 @@ const FILES = {
 };
 
 const ROBLOX_ITEM_URL = (assetId) => `https://www.roblox.com/catalog/${assetId}`;
+const ROBLOX_PROFILE_URL = (username) => `https://www.roblox.com/users/profile?username=${encodeURIComponent(username)}`;
 const FALLBACK_THUMB = (assetId) =>
   `https://www.roblox.com/asset-thumbnail/image?assetId=${encodeURIComponent(assetId)}&width=420&height=420&format=png`;
 
@@ -137,24 +138,11 @@ function setActiveView(name) {
   const current = $(".view.active");
   if (current && current !== next) {
     current.classList.add("leaving");
-    setTimeout(() => {
-      current.classList.remove("active", "leaving");
-    }, 230);
+    setTimeout(() => current.classList.remove("active", "leaving"), 230);
   }
 
   next.classList.add("active", "entering");
   setTimeout(() => next.classList.remove("entering"), 230);
-}
-
-/* Podium */
-function computePodium(items) {
-  const list = items.slice().sort((a, b) => (b.createdTs || 0) - (a.createdTs || 0));
-  return list.slice(0, 3);
-}
-
-function setPodiumSlotClass(card, slot) {
-  if (!card || !slot) return;
-  card.classList.add(`podium-${slot}`);
 }
 
 /* Scroll reveal */
@@ -175,6 +163,17 @@ function reveal(el) {
   if (!el) return;
   el.classList.add("reveal");
   ensureRevealObserver().observe(el);
+}
+
+/* Podium */
+function computePodium(items) {
+  const list = items.slice().sort((a, b) => (b.createdTs || 0) - (a.createdTs || 0));
+  return list.slice(0, 3);
+}
+
+function setPodiumSlotClass(card, slot) {
+  if (!card || !slot) return;
+  card.classList.add(`podium-${slot}`);
 }
 
 function createPodiumBadge(kind) {
@@ -265,27 +264,14 @@ function createUgcCard(item, { featured = false, podiumSlot = null, podiumBadge 
   price.className = "price";
   price.textContent = fmtRobux(item.price);
 
-  const btnRow = document.createElement("div");
-  btnRow.className = "btnRow";
-
   const openBtn = document.createElement("button");
   openBtn.type = "button";
   openBtn.className = "btnOpen";
   openBtn.dataset.action = "open";
   openBtn.textContent = "Open";
 
-  const tryBtn = document.createElement("button");
-  tryBtn.type = "button";
-  tryBtn.className = "btnTry";
-  tryBtn.dataset.action = "try";
-  tryBtn.title = "Try on Roblox";
-  tryBtn.textContent = "Try";
-
-  btnRow.appendChild(tryBtn);
-  btnRow.appendChild(openBtn);
-
   foot.appendChild(price);
-  foot.appendChild(btnRow);
+  foot.appendChild(openBtn);
 
   body.appendChild(title);
   body.appendChild(meta);
@@ -305,6 +291,7 @@ function createUgcCard(item, { featured = false, podiumSlot = null, podiumBadge 
 function renderPodium() {
   const row = $("#podiumRow");
   const empty = $("#podiumEmpty");
+  if (!row || !empty) return;
   row.innerHTML = "";
 
   const podium = computePodium(STATE.all).filter((x) => num(x.price) != null && x.price > 0);
@@ -325,10 +312,12 @@ function renderPodium() {
     right ? createUgcCard(right, { featured: false, podiumSlot: "right", podiumBadge: "rank3" }) : null,
   ].filter(Boolean);
 
-  cards.forEach((c) => {
-    row.appendChild(c);
+  const frag = document.createDocumentFragment();
+  for (const c of cards) {
+    frag.appendChild(c);
     reveal(c);
-  });
+  }
+  row.appendChild(frag);
 
   $("#podiumHint").textContent = `${podium.length} ${plural(podium.length, "item", "items")}`;
 }
@@ -346,10 +335,10 @@ function fillSelect(selectEl, options, selectedValue) {
 }
 
 function getFilters() {
-  const cat = $("#fCategory").value || "all";
-  const type = $("#fType").value || "all";
-  const sort = $("#fSort").value || "new";
-  const q = ($("#fSearch").value || "").trim().toLowerCase();
+  const cat = $("#fCategory")?.value || "all";
+  const type = $("#fType")?.value || "all";
+  const sort = $("#fSort")?.value || "new";
+  const q = ($("#fSearch")?.value || "").trim().toLowerCase();
   return { cat, type, sort, q };
 }
 
@@ -395,6 +384,8 @@ function applyFilters() {
 function renderUgcGrid() {
   const grid = $("#ugcGrid");
   const empty = $("#ugcEmpty");
+  if (!grid || !empty) return;
+
   grid.innerHTML = "";
 
   const items = STATE.filtered;
@@ -406,16 +397,19 @@ function renderUgcGrid() {
   }
   empty.hidden = true;
 
+  const frag = document.createDocumentFragment();
   for (const it of items) {
     const c = createUgcCard(it);
-    grid.appendChild(c);
+    frag.appendChild(c);
     reveal(c);
   }
+  grid.appendChild(frag);
 }
 
 function renderFiltersUI() {
   const catEl = $("#fCategory");
   const typeEl = $("#fType");
+  if (!catEl || !typeEl) return;
 
   const cats = ["Accessories", "Clothing", "Animations", "Heads", "Faces", "Packages", "Other"];
   const presentCats = new Set(STATE.all.map((x) => typeToCategory(x.type)));
@@ -441,6 +435,8 @@ function renderFiltersUI() {
 function renderGallery() {
   const grid = $("#galleryGrid");
   const empty = $("#galleryEmpty");
+  if (!grid || !empty) return;
+
   grid.innerHTML = "";
 
   const items = STATE.gallery || [];
@@ -452,6 +448,7 @@ function renderGallery() {
   }
   empty.hidden = true;
 
+  const frag = document.createDocumentFragment();
   for (const g of items) {
     const card = document.createElement("div");
     card.className = "galCard";
@@ -473,8 +470,9 @@ function renderGallery() {
 
     btn.appendChild(img);
     card.appendChild(btn);
-    grid.appendChild(card);
+    frag.appendChild(card);
   }
+  grid.appendChild(frag);
 }
 
 /* Commissions */
@@ -508,6 +506,8 @@ function normalizeCommissionJson(raw) {
 function renderCommissions() {
   const grid = $("#commissionGrid");
   const empty = $("#commissionEmpty");
+  if (!grid || !empty) return;
+
   grid.innerHTML = "";
 
   const list = STATE.commissions[STATE.commMode] || [];
@@ -518,6 +518,7 @@ function renderCommissions() {
   }
   empty.hidden = true;
 
+  const frag = document.createDocumentFragment();
   for (const url of list) {
     const card = document.createElement("div");
     card.className = "comCard";
@@ -539,8 +540,9 @@ function renderCommissions() {
 
     btn.appendChild(img);
     card.appendChild(btn);
-    grid.appendChild(card);
+    frag.appendChild(card);
   }
+  grid.appendChild(frag);
 }
 
 /* Modal (zoom) */
@@ -649,19 +651,15 @@ function onClickAction(e) {
     return;
   }
 
-  if (action === "try") {
-    const card = target.closest("[data-asset-id]");
-    const assetId = card?.dataset.assetId;
-    if (!assetId) return;
-    // Best possible on a static site: open Roblox page (Try On is available there)
-    window.open(ROBLOX_ITEM_URL(assetId), "_blank", "noopener,noreferrer");
-    showToast("Try on Roblox ↗");
+  if (action === "copy-id" || action === "copy-name" || action === "copy-discord") {
+    const text = target.dataset.copy || "";
+    if (text) copyText(text);
     return;
   }
 
-  if (action === "copy-id" || action === "copy-name") {
-    const text = target.dataset.copy || "";
-    if (text) copyText(text);
+  if (action === "open-roblox-profile") {
+    const username = target.dataset.username || "";
+    if (username) window.open(ROBLOX_PROFILE_URL(username), "_blank", "noopener,noreferrer");
     return;
   }
 }
@@ -694,7 +692,6 @@ function hardenClient() {
     const k = String(e.key || "").toLowerCase();
     const ctrl = e.ctrlKey || e.metaKey;
 
-    // Block common inspect/save/view-source shortcuts (not bulletproof)
     if (e.key === "F12" || (ctrl && (k === "u" || k === "s" || k === "p")) || (ctrl && e.shiftKey && (k === "i" || k === "j" || k === "c"))) {
       e.preventDefault();
       showToast("Protected");
@@ -702,22 +699,195 @@ function hardenClient() {
   });
 }
 
+/* Notifications (best possible on static: while page is open) */
+const NOTIF = {
+  enabled: false,
+  lastTs: 0,
+  timer: null,
+  intervalMs: 5 * 60 * 1000,
+};
+
+function loadNotifPrefs() {
+  try {
+    const enabled = localStorage.getItem("notif_desktop") === "1";
+    const lastTs = Number(localStorage.getItem("notif_last_ts") || "0") || 0;
+    NOTIF.enabled = enabled;
+    NOTIF.lastTs = lastTs;
+  } catch {}
+}
+
+function saveNotifPrefs() {
+  try {
+    localStorage.setItem("notif_desktop", NOTIF.enabled ? "1" : "0");
+    localStorage.setItem("notif_last_ts", String(NOTIF.lastTs || 0));
+  } catch {}
+}
+
+function getLatestItem(items) {
+  let best = null;
+  for (const it of items) {
+    if (!best || (it.createdTs || 0) > (best.createdTs || 0)) best = it;
+  }
+  return best;
+}
+
+function fireDesktopNotification(item) {
+  if (!("Notification" in window)) return;
+  if (Notification.permission !== "granted") return;
+
+  try {
+    const n = new Notification("New UGC on sale", {
+      body: item?.name ? item.name : "A new item was published.",
+      icon: item?.thumb || undefined,
+      tag: "ugc-new",
+      renotify: true,
+    });
+    n.onclick = () => {
+      try { window.focus(); } catch {}
+      if (item?.assetId) window.open(ROBLOX_ITEM_URL(item.assetId), "_blank", "noopener,noreferrer");
+      try { n.close(); } catch {}
+    };
+  } catch {}
+}
+
+async function checkForNewUgc({ notify = true } = {}) {
+  const [userRaw, groupRaw] = await Promise.all([
+    fetchJson(FILES.user, { optional: true }),
+    fetchJson(FILES.group, { optional: true }),
+  ]);
+
+  const u = normalizeItems(userRaw, "Profile");
+  const g = normalizeItems(groupRaw, "Group");
+  const all = [...u.items, ...g.items].filter((x) => num(x.price) != null && x.price > 0);
+
+  const latest = getLatestItem(all);
+  if (!latest) return;
+
+  // init baseline
+  if (!NOTIF.lastTs) {
+    NOTIF.lastTs = latest.createdTs || 0;
+    saveNotifPrefs();
+    return;
+  }
+
+  if ((latest.createdTs || 0) > (NOTIF.lastTs || 0)) {
+    NOTIF.lastTs = latest.createdTs || 0;
+    saveNotifPrefs();
+
+    if (notify) {
+      showToast("New item detected ✨");
+      fireDesktopNotification(latest);
+    }
+
+    // auto refresh UI
+    boot();
+  }
+}
+
+function scheduleNotifLoop() {
+  clearTimeout(NOTIF.timer);
+  if (!NOTIF.enabled) return;
+
+  NOTIF.timer = setTimeout(async () => {
+    try { await checkForNewUgc({ notify: true }); } catch {}
+    scheduleNotifLoop();
+  }, NOTIF.intervalMs);
+}
+
+/* Notify modal */
+function openNotifyModal() {
+  const modal = $("#notifyModal");
+  if (!modal) return;
+
+  const chk = $("#chkDesktop");
+  if (chk) chk.checked = !!NOTIF.enabled;
+
+  const s = $("#notifyStatus");
+  if (s) s.textContent = NOTIF.enabled ? "Enabled" : "Disabled";
+
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+}
+
+function closeNotifyModal() {
+  const modal = $("#notifyModal");
+  if (!modal) return;
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+}
+
+async function saveNotifySettings() {
+  const chk = $("#chkDesktop");
+  const want = !!chk?.checked;
+
+  if (want) {
+    if (!("Notification" in window)) {
+      showToast("Not supported");
+      return;
+    }
+    const perm = await Notification.requestPermission();
+    if (perm !== "granted") {
+      showToast("Permission denied");
+      chk.checked = false;
+      NOTIF.enabled = false;
+      saveNotifPrefs();
+      scheduleNotifLoop();
+      return;
+    }
+
+    NOTIF.enabled = true;
+
+    // baseline now
+    try { await checkForNewUgc({ notify: false }); } catch {}
+
+    saveNotifPrefs();
+    scheduleNotifLoop();
+    showToast("Enabled ✅");
+  } else {
+    NOTIF.enabled = false;
+    saveNotifPrefs();
+    scheduleNotifLoop();
+    showToast("Disabled");
+  }
+
+  const s = $("#notifyStatus");
+  if (s) s.textContent = NOTIF.enabled ? "Enabled" : "Disabled";
+  closeNotifyModal();
+}
+
+/* Wiring */
 function wireUI() {
   // Tabs
-  $$(".tabBtn").forEach((b) => on(b, "click", () => setActiveView(b.dataset.view)));
+  $$(".tabBtn").forEach((b) => {
+    if (!b.dataset.view) return;
+    on(b, "click", () => setActiveView(b.dataset.view));
+  });
 
   // Refresh
   on($("#btnRefresh"), "click", () => boot());
 
-  // Filters
-  ["fCategory", "fType", "fSort", "fSearch"].forEach((id) => {
-    const el = document.getElementById(id);
-    on(el, id === "fSearch" ? "input" : "change", () => {
-      applyFilters();
-      updateFilterActiveUI();
-      renderPodium();
-      renderUgcGrid();
-    });
+  // Notify
+  on($("#btnNotify"), "click", () => openNotifyModal());
+  on($("#notifyClose"), "click", closeNotifyModal);
+  on($("#notifyCancel"), "click", closeNotifyModal);
+  on($("#notifySave"), "click", () => saveNotifySettings());
+  on($("#notifyModal"), "click", (e) => { if (e.target && e.target.id === "notifyModal") closeNotifyModal(); });
+
+  // Filters (debounced search)
+  const runFilter = () => {
+    applyFilters();
+    updateFilterActiveUI();
+    renderPodium();
+    renderUgcGrid();
+  };
+
+  ["fCategory", "fType", "fSort"].forEach((id) => on(document.getElementById(id), "change", runFilter));
+
+  const search = document.getElementById("fSearch");
+  let t = null;
+  on(search, "input", () => {
+    clearTimeout(t);
+    t = setTimeout(runFilter, 90);
   });
 
   // Commissions segment
@@ -737,11 +907,12 @@ function wireUI() {
   on($("#podiumRow"), "click", onClickAction);
   on($("#galleryGrid"), "click", onClickAction);
   on($("#commissionGrid"), "click", onClickAction);
+  on($("#contactGrid"), "click", onClickAction);
 
   // Modal close
   on($("#modalClose"), "click", closeModal);
   on($("#modal"), "click", (e) => { if (e.target && e.target.id === "modal") closeModal(); });
-  on(document, "keydown", (e) => { if (e.key === "Escape") closeModal(); });
+  on(document, "keydown", (e) => { if (e.key === "Escape") { closeModal(); closeNotifyModal(); } });
 
   // Modal tools
   on($("#zoomIn"), "click", () => modalZoom(+0.25));
@@ -795,7 +966,6 @@ function normalizeItems(raw, sourceLabel) {
     const price = it.price ?? it.priceInRobux;
     const created = it.created ?? it.createdUtc ?? null;
     const fav = it.favorites ?? it.favoriteCount ?? it.favoritesCount ?? null;
-
     if (!assetId) continue;
 
     out.push({
@@ -816,13 +986,13 @@ function normalizeItems(raw, sourceLabel) {
 }
 
 async function boot() {
-  $("#ugcGrid").innerHTML = "";
-  $("#podiumRow").innerHTML = "";
-  $("#ugcEmpty").hidden = true;
-  $("#podiumEmpty").hidden = true;
-  $("#ugcCount").textContent = "…";
-  $("#podiumHint").textContent = "…";
-  $("#updateInfo").textContent = "";
+  $("#ugcGrid")?.replaceChildren();
+  $("#podiumRow")?.replaceChildren();
+  $("#ugcEmpty") && ($("#ugcEmpty").hidden = true);
+  $("#podiumEmpty") && ($("#podiumEmpty").hidden = true);
+  $("#ugcCount") && ($("#ugcCount").textContent = "…");
+  $("#podiumHint") && ($("#podiumHint").textContent = "…");
+  $("#updateInfo") && ($("#updateInfo").textContent = "");
 
   let userRaw = null;
   let groupRaw = null;
@@ -836,20 +1006,19 @@ async function boot() {
 
   const u = normalizeItems(userRaw, "Profile");
   const g = normalizeItems(groupRaw, "Group");
-
   STATE.all = [...u.items, ...g.items];
 
   // Update info
   const parts = [];
   if (u.updated) parts.push(`Updated Profile: ${u.updated}`);
   if (g.updated) parts.push(`Updated Group: ${g.updated}`);
-  $("#updateInfo").textContent = parts.join(" • ");
+  $("#updateInfo") && ($("#updateInfo").textContent = parts.join(" • "));
 
   if (!STATE.all.length) {
-    $("#ugcCount").textContent = `0 ${plural(0, "item", "items")}`;
-    $("#podiumHint").textContent = `0 ${plural(0, "item", "items")}`;
-    $("#ugcEmpty").hidden = false;
-    $("#podiumEmpty").hidden = false;
+    $("#ugcCount") && ($("#ugcCount").textContent = `0 ${plural(0, "item", "items")}`);
+    $("#podiumHint") && ($("#podiumHint").textContent = `0 ${plural(0, "item", "items")}`);
+    $("#ugcEmpty") && ($("#ugcEmpty").hidden = false);
+    $("#podiumEmpty") && ($("#podiumEmpty").hidden = false);
   }
 
   renderFiltersUI();
@@ -858,18 +1027,28 @@ async function boot() {
   renderPodium();
   renderUgcGrid();
 
-  const gal = await fetchJson(FILES.gallery, { optional: true });
-  STATE.gallery = Array.isArray(gal) ? gal : (Array.isArray(gal?.images) ? gal.images : []);
-  renderGallery();
+  // Gallery + Commissions (defer a bit for smoothness)
+  setTimeout(async () => {
+    const gal = await fetchJson(FILES.gallery, { optional: true });
+    STATE.gallery = Array.isArray(gal) ? gal : (Array.isArray(gal?.images) ? gal.images : []);
+    renderGallery();
+  }, 0);
 
-  const comRaw = await fetchJson(FILES.commissions, { optional: true });
-  const com = normalizeCommissionJson(comRaw);
-  STATE.commissions = com;
-  renderCommissions();
+  setTimeout(async () => {
+    const comRaw = await fetchJson(FILES.commissions, { optional: true });
+    STATE.commissions = normalizeCommissionJson(comRaw);
+    renderCommissions();
+  }, 0);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  loadNotifPrefs();
   wireUI();
   hardenClient();
   boot();
+
+  // start loop if enabled
+  if (NOTIF.enabled) {
+    scheduleNotifLoop();
+  }
 });
