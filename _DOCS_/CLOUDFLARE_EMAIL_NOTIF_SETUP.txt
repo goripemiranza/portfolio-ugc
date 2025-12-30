@@ -1,0 +1,49 @@
+CLOUDFLARE EMAIL NOTIFICATIONS — SETUP (Pages Functions)
+
+1) Create KV (once)
+Cloudflare Dashboard → Workers & Pages → KV
+→ Create a namespace (example): portfolio_notify
+
+2) Bind KV to your Pages project (mandatory)
+Cloudflare Dashboard → Workers & Pages → Pages → (your project)
+→ Settings → Functions → Bindings
+→ Add binding:
+   - Type: KV namespace
+   - Variable name: NOTIFY_KV
+   - KV namespace: portfolio_notify
+Do this for BOTH: Production + Preview.
+
+3) Add the encryption key (mandatory)
+Pages → Settings → Environment variables
+→ Add Secret:
+   - Name: NOTIFY_KEY
+   - Value: a base64 key (32 bytes)
+Generate it (recommended):
+   openssl rand -base64 32
+
+4) Add Dispatch token (for email sending from GitHub Action)
+Pages → Settings → Environment variables
+→ Add Secret:
+   - Name: DISPATCH_TOKEN
+   - Value: any long random string (example: 64 chars)
+
+5) Configure an email provider (mandatory to actually SEND emails)
+Option A — SendGrid (recommended)
+→ Add Secret: SENDGRID_API_KEY
+→ Add Variable: MAIL_FROM  (example: noreply@yourdomain.com)
+
+Option B — MailChannels (no key)
+→ Add Variable: MAIL_FROM (must be a valid sender)
+
+6) Verify endpoints after deploy
+Your Pages URLs:
+- /api/subscribe
+- /api/dispatch
+
+Quick test:
+Open the site → Notify me → enable Email → Save
+If NOTIFY_KV + NOTIFY_KEY are OK, it saves without error.
+
+NOTE
+If you see: “Email backend not configured (Cloudflare KV + NOTIFY_KEY)”
+→ It means step 2 or 3 is missing or named wrong.
