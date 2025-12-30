@@ -1,4 +1,4 @@
-/* app.js — Roblox Portfolio (final) */
+/* app.js — Roblox Portfolio (notify: desktop + email + sms, commissions auto by name) */
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -29,15 +29,12 @@ const TYPE_LABEL_EN = {
   EyeAccessory: "Eye",
   EyebrowAccessory: "Eyebrow",
   EyelashAccessory: "Eyelash",
-
   Head: "Head",
   Face: "Face (Classic)",
   DynamicHead: "Dynamic Head",
-
   TShirt: "T-Shirt",
   Shirt: "Shirt",
   Pants: "Pants",
-
   TShirtAccessory: "T-Shirt (LC)",
   ShirtAccessory: "Shirt (LC)",
   PantsAccessory: "Pants (LC)",
@@ -47,7 +44,6 @@ const TYPE_LABEL_EN = {
   LeftShoeAccessory: "Left Shoe (LC)",
   RightShoeAccessory: "Right Shoe (LC)",
   DressSkirtAccessory: "Dress/Skirt (LC)",
-
   Animation: "Animation",
   ClimbAnimation: "Climb",
   DeathAnimation: "Death",
@@ -97,16 +93,12 @@ function safeDate(ts) {
 function num(n) {
   return typeof n === "number" && Number.isFinite(n) ? n : null;
 }
-
 function fmtRobux(price) {
   const p = num(price);
   if (p == null) return "—";
   return `${p} R$`;
 }
-
-function plural(n, one, many) {
-  return n === 1 ? one : many;
-}
+function plural(n, one, many) { return n === 1 ? one : many; }
 
 async function fetchJson(path, { optional = false } = {}) {
   const url = `${path}${path.includes("?") ? "&" : "?"}v=${Date.now()}`;
@@ -170,12 +162,10 @@ function computePodium(items) {
   const list = items.slice().sort((a, b) => (b.createdTs || 0) - (a.createdTs || 0));
   return list.slice(0, 3);
 }
-
 function setPodiumSlotClass(card, slot) {
   if (!card || !slot) return;
   card.classList.add(`podium-${slot}`);
 }
-
 function createPodiumBadge(kind) {
   const b = document.createElement("div");
   b.className = `podiumBadge ${kind}`;
@@ -280,9 +270,7 @@ function createUgcCard(item, { featured = false, podiumSlot = null, podiumBadge 
   card.appendChild(thumbBtn);
   card.appendChild(badge);
   card.appendChild(pill);
-
   if (podiumBadge) card.appendChild(createPodiumBadge(podiumBadge));
-
   card.appendChild(body);
 
   return card;
@@ -475,29 +463,74 @@ function renderGallery() {
   grid.appendChild(frag);
 }
 
-/* Commissions */
+/* Commissions — auto split by filename (Texture* => textures, Modèle/Modele/Model* => models) */
+function stripAccents(s) {
+  try { return String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, ""); }
+  catch { return String(s || ""); }
+}
+function filenameOnly(url) {
+  try {
+    const u = String(url || "");
+    const p = u.split("?")[0].split("#")[0];
+    const parts = p.split("/");
+    return parts[parts.length - 1] || p;
+  } catch { return String(url || ""); }
+}
+function isTextureName(name) {
+  const n = stripAccents(name).toLowerCase();
+  return n.startsWith("texture") || n.includes(" texture");
+}
+function isModelName(name) {
+  const n = stripAccents(name).toLowerCase();
+  return n.startsWith("modele") || n.includes(" modele") || n.startsWith("model") || n.includes(" model");
+}
 function normalizeCommissionJson(raw) {
   const models = [];
   const textures = [];
 
   if (!raw) return { models, textures };
 
-  const list = Array.isArray(raw) ? raw : (Array.isArray(raw.commissions) ? raw.commissions : []);
+  // New format: { models:[], textures:[] }
+  if (Array.isArray(raw.models) || Array.isArray(raw.textures)) {
+    (raw.models || []).forEach((x) => typeof x === "string" && models.push(x));
+    (raw.textures || []).forEach((x) => typeof x === "string" && textures.push(x));
+    return { models, textures };
+  }
 
+  // Flat arrays: ["commissions/Texture 1.png", ...]
+  if (Array.isArray(raw) && raw.every((x) => typeof x === "string")) {
+    for (const url of raw) {
+      const fn = filenameOnly(url);
+      if (isTextureName(fn)) textures.push(url);
+      else models.push(url);
+    }
+    return { models, textures };
+  }
+
+  // Legacy format: commissions blocks with images
+  const list = Array.isArray(raw) ? raw : (Array.isArray(raw.commissions) ? raw.commissions : []);
   for (const c of list) {
     if (!c || typeof c !== "object") continue;
     const imgs = c.images || c.media || c;
     const m = imgs.model3d || imgs.models || imgs.model || [];
     const t = imgs.texturing || imgs.textures || imgs.texture || [];
-
     const pushAll = (arr, target) => {
       if (!arr) return;
       if (Array.isArray(arr)) arr.forEach((x) => typeof x === "string" && target.push(x));
       else if (typeof arr === "string") target.push(arr);
     };
-
     pushAll(m, models);
     pushAll(t, textures);
+  }
+
+  // Extra: if raw.images is a list
+  if (Array.isArray(raw.images)) {
+    for (const url of raw.images) {
+      const fn = filenameOnly(url);
+      if (isTextureName(fn)) textures.push(url);
+      else if (isModelName(fn)) models.push(url);
+      else models.push(url);
+    }
   }
 
   return { models, textures };
@@ -509,7 +542,6 @@ function renderCommissions() {
   if (!grid || !empty) return;
 
   grid.innerHTML = "";
-
   const list = STATE.commissions[STATE.commMode] || [];
 
   if (!list.length) {
@@ -553,7 +585,6 @@ function setModalTransform() {
   if (!img) return;
   img.style.transform = `translate(${ZOOM.x}px, ${ZOOM.y}px) scale(${ZOOM.scale})`;
 }
-
 function modalReset() {
   ZOOM.scale = 1;
   ZOOM.x = 0;
@@ -562,19 +593,14 @@ function modalReset() {
   const z = $("#zoomReset");
   if (z) z.textContent = "1×";
 }
-
 function modalZoom(delta) {
   const next = Math.min(4, Math.max(1, ZOOM.scale + delta));
   ZOOM.scale = next;
-  if (ZOOM.scale === 1) {
-    ZOOM.x = 0;
-    ZOOM.y = 0;
-  }
+  if (ZOOM.scale === 1) { ZOOM.x = 0; ZOOM.y = 0; }
   setModalTransform();
   const z = $("#zoomReset");
   if (z) z.textContent = `${ZOOM.scale.toFixed(1)}×`.replace(".0", "");
 }
-
 function openModal(src, caption = "") {
   const modal = $("#modal");
   const img = $("#modalImg");
@@ -589,7 +615,6 @@ function openModal(src, caption = "") {
   modal.setAttribute("aria-hidden", "false");
   modalReset();
 }
-
 function closeModal() {
   const modal = $("#modal");
   const img = $("#modalImg");
@@ -611,9 +636,8 @@ function showToast(text) {
   toastTimer = setTimeout(() => {
     t.classList.remove("show");
     t.setAttribute("aria-hidden", "true");
-  }, 1200);
+  }, 1300);
 }
-
 async function copyText(text) {
   try {
     await navigator.clipboard.writeText(String(text));
@@ -683,7 +707,6 @@ function hardenClient() {
     e.preventDefault();
     showToast("Protected");
   };
-
   ["copy", "cut", "dragstart"].forEach((ev) => document.addEventListener(ev, block));
 
   document.addEventListener("keydown", (e) => {
@@ -699,9 +722,12 @@ function hardenClient() {
   });
 }
 
-/* Notifications (best possible on static: while page is open) */
+/* Notifications */
 const NOTIF = {
-  enabled: false,
+  desktop: false,
+  email: false,
+  sms: false,
+  subId: "",
   lastTs: 0,
   timer: null,
   intervalMs: 5 * 60 * 1000,
@@ -709,25 +735,32 @@ const NOTIF = {
 
 function loadNotifPrefs() {
   try {
-    const enabled = localStorage.getItem("notif_desktop") === "1";
-    const lastTs = Number(localStorage.getItem("notif_last_ts") || "0") || 0;
-    NOTIF.enabled = enabled;
-    NOTIF.lastTs = lastTs;
+    NOTIF.desktop = localStorage.getItem("notif_desktop") === "1";
+    NOTIF.email = localStorage.getItem("notif_email") === "1";
+    NOTIF.sms = localStorage.getItem("notif_sms") === "1";
+    NOTIF.subId = localStorage.getItem("notif_sub_id") || "";
+    NOTIF.lastTs = Number(localStorage.getItem("notif_last_ts") || "0") || 0;
   } catch {}
 }
 
 function saveNotifPrefs() {
   try {
-    localStorage.setItem("notif_desktop", NOTIF.enabled ? "1" : "0");
+    localStorage.setItem("notif_desktop", NOTIF.desktop ? "1" : "0");
+    localStorage.setItem("notif_email", NOTIF.email ? "1" : "0");
+    localStorage.setItem("notif_sms", NOTIF.sms ? "1" : "0");
+    localStorage.setItem("notif_sub_id", NOTIF.subId || "");
     localStorage.setItem("notif_last_ts", String(NOTIF.lastTs || 0));
   } catch {}
 }
 
+function setNotifyStatus(msg) {
+  const s = $("#notifyStatus");
+  if (s) s.textContent = msg || "";
+}
+
 function getLatestItem(items) {
   let best = null;
-  for (const it of items) {
-    if (!best || (it.createdTs || 0) > (best.createdTs || 0)) best = it;
-  }
+  for (const it of items) if (!best || (it.createdTs || 0) > (best.createdTs || 0)) best = it;
   return best;
 }
 
@@ -750,6 +783,25 @@ function fireDesktopNotification(item) {
   } catch {}
 }
 
+async function subscribeRemote({ email, phone, wantEmail, wantSms }) {
+  const payload = {
+    email: wantEmail ? email : "",
+    phone: wantSms ? phone : "",
+    channels: { email: !!wantEmail, sms: !!wantSms },
+  };
+
+  const r = await fetch("/api/subscribe", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!r.ok) throw new Error(`subscribe failed (${r.status})`);
+  const j = await r.json();
+  if (!j || j.ok !== true) throw new Error("subscribe failed");
+  return String(j.id || "");
+}
+
 async function checkForNewUgc({ notify = true } = {}) {
   const [userRaw, groupRaw] = await Promise.all([
     fetchJson(FILES.user, { optional: true }),
@@ -763,7 +815,6 @@ async function checkForNewUgc({ notify = true } = {}) {
   const latest = getLatestItem(all);
   if (!latest) return;
 
-  // init baseline
   if (!NOTIF.lastTs) {
     NOTIF.lastTs = latest.createdTs || 0;
     saveNotifPrefs();
@@ -774,19 +825,18 @@ async function checkForNewUgc({ notify = true } = {}) {
     NOTIF.lastTs = latest.createdTs || 0;
     saveNotifPrefs();
 
-    if (notify) {
+    if (notify && NOTIF.desktop) {
       showToast("New item detected ✨");
       fireDesktopNotification(latest);
     }
 
-    // auto refresh UI
     boot();
   }
 }
 
 function scheduleNotifLoop() {
   clearTimeout(NOTIF.timer);
-  if (!NOTIF.enabled) return;
+  if (!NOTIF.desktop) return;
 
   NOTIF.timer = setTimeout(async () => {
     try { await checkForNewUgc({ notify: true }); } catch {}
@@ -799,11 +849,21 @@ function openNotifyModal() {
   const modal = $("#notifyModal");
   if (!modal) return;
 
-  const chk = $("#chkDesktop");
-  if (chk) chk.checked = !!NOTIF.enabled;
+  $("#chkDesktop") && ($("#chkDesktop").checked = !!NOTIF.desktop);
+  $("#chkEmail") && ($("#chkEmail").checked = !!NOTIF.email);
+  $("#chkSMS") && ($("#chkSMS").checked = !!NOTIF.sms);
 
-  const s = $("#notifyStatus");
-  if (s) s.textContent = NOTIF.enabled ? "Enabled" : "Disabled";
+  // don't prefill email/phone (privacy)
+  $("#notifyEmail") && ($("#notifyEmail").value = "");
+  $("#notifyPhone") && ($("#notifyPhone").value = "");
+
+  updateNotifyFieldVisibility();
+
+  setNotifyStatus(
+    (NOTIF.desktop || NOTIF.email || NOTIF.sms)
+      ? "Enabled. Email/SMS are stored encrypted on the server."
+      : "Disabled."
+  );
 
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
@@ -816,11 +876,44 @@ function closeNotifyModal() {
   modal.setAttribute("aria-hidden", "true");
 }
 
-async function saveNotifySettings() {
-  const chk = $("#chkDesktop");
-  const want = !!chk?.checked;
+function updateNotifyFieldVisibility() {
+  const emailOn = !!$("#chkEmail")?.checked;
+  const smsOn = !!$("#chkSMS")?.checked;
+  const rowEmail = $("#rowEmail");
+  const rowPhone = $("#rowPhone");
+  if (rowEmail) rowEmail.style.display = emailOn ? "flex" : "none";
+  if (rowPhone) rowPhone.style.display = smsOn ? "flex" : "none";
+}
 
-  if (want) {
+function looksLikeEmail(s) {
+  const v = String(s || "").trim();
+  return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+}
+function looksLikePhone(s) {
+  const v = String(s || "").trim();
+  return /^\+?[0-9][0-9\s().-]{6,}$/.test(v);
+}
+
+async function saveNotifySettings() {
+  const wantDesktop = !!$("#chkDesktop")?.checked;
+  const wantEmail = !!$("#chkEmail")?.checked;
+  const wantSms = !!$("#chkSMS")?.checked;
+
+  const email = String($("#notifyEmail")?.value || "").trim();
+  const phone = String($("#notifyPhone")?.value || "").trim();
+
+  // Validate
+  if (wantEmail && !looksLikeEmail(email)) {
+    showToast("Invalid email");
+    return;
+  }
+  if (wantSms && !looksLikePhone(phone)) {
+    showToast("Invalid phone");
+    return;
+  }
+
+  // Desktop permission
+  if (wantDesktop) {
     if (!("Notification" in window)) {
       showToast("Not supported");
       return;
@@ -828,30 +921,35 @@ async function saveNotifySettings() {
     const perm = await Notification.requestPermission();
     if (perm !== "granted") {
       showToast("Permission denied");
-      chk.checked = false;
-      NOTIF.enabled = false;
-      saveNotifPrefs();
-      scheduleNotifLoop();
       return;
     }
-
-    NOTIF.enabled = true;
-
-    // baseline now
-    try { await checkForNewUgc({ notify: false }); } catch {}
-
-    saveNotifPrefs();
-    scheduleNotifLoop();
-    showToast("Enabled ✅");
-  } else {
-    NOTIF.enabled = false;
-    saveNotifPrefs();
-    scheduleNotifLoop();
-    showToast("Disabled");
   }
 
-  const s = $("#notifyStatus");
-  if (s) s.textContent = NOTIF.enabled ? "Enabled" : "Disabled";
+  // Remote subscribe (email/sms)
+  let subId = NOTIF.subId || "";
+  if (wantEmail || wantSms) {
+    try {
+      subId = await subscribeRemote({ email, phone, wantEmail, wantSms });
+      showToast("Saved ✅");
+    } catch {
+      showToast("Email/SMS unavailable");
+      // keep local desktop if enabled
+      if (!wantDesktop) return;
+    }
+  } else {
+    subId = "";
+  }
+
+  NOTIF.desktop = wantDesktop;
+  NOTIF.email = wantEmail;
+  NOTIF.sms = wantSms;
+  NOTIF.subId = subId;
+
+  // baseline for desktop loop
+  try { await checkForNewUgc({ notify: false }); } catch {}
+  saveNotifPrefs();
+  scheduleNotifLoop();
+
   closeNotifyModal();
 }
 
@@ -872,6 +970,9 @@ function wireUI() {
   on($("#notifyCancel"), "click", closeNotifyModal);
   on($("#notifySave"), "click", () => saveNotifySettings());
   on($("#notifyModal"), "click", (e) => { if (e.target && e.target.id === "notifyModal") closeNotifyModal(); });
+
+  on($("#chkEmail"), "change", updateNotifyFieldVisibility);
+  on($("#chkSMS"), "change", updateNotifyFieldVisibility);
 
   // Filters (debounced search)
   const runFilter = () => {
@@ -1027,7 +1128,7 @@ async function boot() {
   renderPodium();
   renderUgcGrid();
 
-  // Gallery + Commissions (defer a bit for smoothness)
+  // Gallery + Commissions (defer for smoothness)
   setTimeout(async () => {
     const gal = await fetchJson(FILES.gallery, { optional: true });
     STATE.gallery = Array.isArray(gal) ? gal : (Array.isArray(gal?.images) ? gal.images : []);
@@ -1046,9 +1147,5 @@ document.addEventListener("DOMContentLoaded", () => {
   wireUI();
   hardenClient();
   boot();
-
-  // start loop if enabled
-  if (NOTIF.enabled) {
-    scheduleNotifLoop();
-  }
+  if (NOTIF.desktop) scheduleNotifLoop();
 });
