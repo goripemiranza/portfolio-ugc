@@ -1,46 +1,78 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-build_gallery.py
-- Scanne le dossier ./gallery/
-- Génère ./gallery.json avec la liste des images (chemins relatifs)
-- Tri: par nom de fichier (stable)
-
-Notes:
-- Certains noms peuvent contenir des séquences type #U00e9 (utilisées pour représenter des accents).
-  On les décode dans la légende pour un rendu plus propre.
-- Les URLs restent basées sur les vrais noms de fichiers (le front encode correctement # / espaces / accents).
-"""
-
+import os
 import json
 import re
-from pathlib import Path
+import unicodedata
+from datetime import datetime, timezone
 
-GALLERY_DIR = Path("gallery")
-OUT_JSON = Path("gallery.json")
+ROOT_CANDIDATES = ["commissions", "Commission", "commission", "COMMISSIONS"]
+
 EXTS = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
 
-_u_re = re.compile(r"#U([0-9a-fA-F]{4})")
+def strip_accents(s: str) -> str:
+    return "".join(ch for ch in unicodedata.normalize("NFKD", s) if not unicodedata.combining(ch))
 
-def decode_u_escapes(s: str) -> str:
-    def repl(m):
-        try:
-            return chr(int(m.group(1), 16))
-        except Exception:
-            return m.group(0)
-    return _u_re.sub(repl, s)
+def classify(filename: str) -> str:
+    name = strip_accents(filename).lower()
+    # "texture", "texture 1"
+    if name.startswith("texture") or " texture" in name:
+        return "textures"
+    # "modele", "modele 1", "model", "model 1"
+    if name.startswith("modele") or " modele" in name or name.startswith("model") or " model" in name:
+        return "models"
+    # default
+    return "models"
 
-def main() -> None:
-    items = []
-    if GALLERY_DIR.exists() and GALLERY_DIR.is_dir():
-        for p in sorted(GALLERY_DIR.rglob("*")):
-            if p.is_file() and p.suffix.lower() in EXTS:
-                rel = p.as_posix()  # ex: "gallery/xxx.png"
-                cap_raw = p.stem.replace("_", " ").replace("-", " ").strip()
-                caption = decode_u_escapes(cap_raw)
-                items.append({"url": rel, "caption": caption})
-    OUT_JSON.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"[ok] {OUT_JSON} -> {len(items)} image(s)")
+_num_re = re.compile(r"(\d+)")
+
+def sort_key(filename: str):
+    base = os.path.basename(filename)
+    m = _num_re.search(base)
+    n = int(m.group(1)) if m else 10**9
+    return (n, base.lower())
+
+def find_root():
+    for r in ROOT_CANDIDATES:
+        if os.path.isdir(r):
+            return r
+    return None
+
+def main():
+    root = find_root()
+    if not root:
+        out = {"updated": datetime.now(timezone.utc).isoformat(), "models": [], "textures": []}
+        with open("commissions.json", "w", encoding="utf-8") as f:
+            json.dump(out, f, ensure_ascii=False, indent=2)
+        print("No commissions folder found. Wrote empty commissions.json")
+        return
+
+    models = []
+    textures = []
+
+    for dirpath, _, filenames in os.walk(root):
+        for fn in filenames:
+            ext = os.path.splitext(fn)[1].lower()
+            if ext not in EXTS:
+                continue
+            rel = os.path.join(dirpath, fn).replace("\\", "/")
+            bucket = classify(fn)
+            if bucket == "textures":
+                textures.append(rel)
+            else:
+                models.append(rel)
+
+    models.sort(key=sort_key)
+    textures.sort(key=sort_key)
+
+    out = {
+        "updated": datetime.now(timezone.utc).isoformat(),
+        "models": models,
+        "textures": textures,
+    }
+
+    with open("commissions.json", "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, indent=2)
+
+    print(f"Wrote commissions.json (models={len(models)} textures={len(textures)})")
 
 if __name__ == "__main__":
     main()
