@@ -196,19 +196,32 @@
 
       <div class="notifyHead">
         <div class="notifyTitle">Notifications</div>
-        <div class="muted">Get notified when a new UGC goes on sale (while this page is open).</div>
+        <div class="muted">Choose how you want to be notified when a new item goes on sale.</div>
       </div>
 
       <div class="notifyGrid">
         <label class="checkRow">
           <input id="chkDesktop" type="checkbox" />
-          <span>Desktop notifications</span>
+          <span>Desktop (Windows / Web)</span>
         </label>
 
-        <label class="checkRow disabled">
-          <input id="chkEmail" type="checkbox" disabled />
-          <span>Email notifications (requires backend)</span>
+        <label class="checkRow">
+          <input id="chkEmail" type="checkbox" />
+          <span>Email</span>
         </label>
+        <div class="fieldRow" id="rowEmail">
+          <div class="fieldLabel">Email address</div>
+          <input id="notifyEmail" class="allowSelect fieldInput" type="email" placeholder="you@example.com" autocomplete="email" />
+        </div>
+
+        <label class="checkRow">
+          <input id="chkSMS" type="checkbox" />
+          <span>SMS</span>
+        </label>
+        <div class="fieldRow" id="rowPhone">
+          <div class="fieldLabel">Phone number</div>
+          <input id="notifyPhone" class="allowSelect fieldInput" type="tel" placeholder="+33 6 00 00 00 00" autocomplete="tel" />
+        </div>
       </div>
 
       <div class="notifyActions">
@@ -216,7 +229,7 @@
         <button class="tabBtn" id="notifyCancel" type="button">Cancel</button>
       </div>
 
-      <div class="muted smallText" id="notifyStatus"></div>
+      <div class="muted smallText allowSelect" id="notifyStatus"></div>
     </div>
   </div>
 
