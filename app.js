@@ -1,4 +1,4 @@
-/* app.js — Roblox Portfolio (UGC + Gallery + Commissions) */
+/* app.js — Roblox Portfolio (animations + ranked podium + protection layer) */
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -16,7 +16,6 @@ const FALLBACK_THUMB = (assetId) =>
   `https://www.roblox.com/asset-thumbnail/image?assetId=${encodeURIComponent(assetId)}&width=420&height=420&format=png`;
 
 const TYPE_LABEL_EN = {
-  // Accessories
   Hat: "Hat",
   HairAccessory: "Hair",
   FaceAccessory: "Face",
@@ -30,17 +29,14 @@ const TYPE_LABEL_EN = {
   EyebrowAccessory: "Eyebrow",
   EyelashAccessory: "Eyelash",
 
-  // Heads / Faces
   Head: "Head",
   Face: "Face (Classic)",
   DynamicHead: "Dynamic Head",
 
-  // Classic clothing
   TShirt: "T-Shirt",
   Shirt: "Shirt",
   Pants: "Pants",
 
-  // Layered clothing
   TShirtAccessory: "T-Shirt (LC)",
   ShirtAccessory: "Shirt (LC)",
   PantsAccessory: "Pants (LC)",
@@ -51,7 +47,6 @@ const TYPE_LABEL_EN = {
   RightShoeAccessory: "Right Shoe (LC)",
   DressSkirtAccessory: "Dress/Skirt (LC)",
 
-  // Animations
   Animation: "Animation",
   ClimbAnimation: "Climb",
   DeathAnimation: "Death",
@@ -80,7 +75,6 @@ function typeToCategory(type) {
   if (t === "Head" || t === "DynamicHead") return "Heads";
   if (t === "Face") return "Faces";
   if (t === "TShirt" || t === "Shirt" || t === "Pants") return "Clothing";
-  // layered clothing types also end with Accessory, so detect by keyword
   if (t.includes("Jacket") || t.includes("Sweater") || t.includes("Shorts") || t.includes("Shoe") || t.includes("Dress")) return "Clothing";
   if (t.includes("TShirt") || t.includes("Shirt") || t.includes("Pants")) return "Clothing";
   return "Other";
@@ -129,40 +123,70 @@ const STATE = {
   all: [],
   filtered: [],
   gallery: [],
-  commissions: {
-    models: [],
-    textures: [],
-  },
+  commissions: { models: [], textures: [] },
   commMode: "models",
 };
 
+/* View transitions */
 function setActiveView(name) {
+  const next = $(`#view-${name}`);
+  if (!next) return;
+
   $$(".tabBtn").forEach((b) => b.classList.toggle("active", b.dataset.view === name));
-  $$(".view").forEach((v) => v.classList.toggle("active", v.id === `view-${name}`));
-}
 
-function fillSelect(selectEl, options, selectedValue) {
-  selectEl.innerHTML = "";
-  for (const opt of options) {
-    const o = document.createElement("option");
-    o.value = opt.value;
-    o.textContent = opt.label;
-    selectEl.appendChild(o);
+  const current = $(".view.active");
+  if (current && current !== next) {
+    current.classList.add("leaving");
+    setTimeout(() => {
+      current.classList.remove("active", "leaving");
+    }, 230);
   }
-  if (selectedValue != null) selectEl.value = selectedValue;
+
+  next.classList.add("active", "entering");
+  setTimeout(() => next.classList.remove("entering"), 230);
 }
 
+/* Podium */
 function computePodium(items) {
   const list = items.slice().sort((a, b) => (b.createdTs || 0) - (a.createdTs || 0));
   return list.slice(0, 3);
 }
 
 function setPodiumSlotClass(card, slot) {
-  if (!card) return;
-  if (slot) card.classList.add(`podium-${slot}`);
+  if (!card || !slot) return;
+  card.classList.add(`podium-${slot}`);
 }
 
-function createUgcCard(item, { featured = false, podiumSlot = null, isNew = false } = {}) {
+/* Scroll reveal */
+let REVEAL_OBS = null;
+function ensureRevealObserver() {
+  if (REVEAL_OBS) return REVEAL_OBS;
+  REVEAL_OBS = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) {
+        e.target.classList.add("revealed");
+        REVEAL_OBS.unobserve(e.target);
+      }
+    }
+  }, { threshold: 0.08, rootMargin: "120px 0px 120px 0px" });
+  return REVEAL_OBS;
+}
+function reveal(el) {
+  if (!el) return;
+  el.classList.add("reveal");
+  ensureRevealObserver().observe(el);
+}
+
+function createPodiumBadge(kind) {
+  const b = document.createElement("div");
+  b.className = `podiumBadge ${kind}`;
+  if (kind === "new") b.textContent = "NEW";
+  if (kind === "rank2") b.textContent = "2";
+  if (kind === "rank3") b.textContent = "3";
+  return b;
+}
+
+function createUgcCard(item, { featured = false, podiumSlot = null, podiumBadge = null } = {}) {
   const card = document.createElement("article");
   card.className = `ugcCard${featured ? " featured" : ""}`;
   card.dataset.assetId = String(item.assetId);
@@ -171,7 +195,7 @@ function createUgcCard(item, { featured = false, podiumSlot = null, isNew = fals
 
   const badge = document.createElement("div");
   badge.className = "badge";
-  badge.textContent = typeToCategory(item.type); // top-left = category
+  badge.textContent = typeToCategory(item.type);
 
   const pill = document.createElement("div");
   pill.className = "sourcePill";
@@ -189,6 +213,7 @@ function createUgcCard(item, { featured = false, podiumSlot = null, isNew = fals
   img.loading = "lazy";
   img.alt = item.name || "UGC";
   img.src = item.thumb || FALLBACK_THUMB(item.assetId);
+  img.draggable = false;
   thumbBtn.appendChild(img);
 
   const body = document.createElement("div");
@@ -196,6 +221,7 @@ function createUgcCard(item, { featured = false, podiumSlot = null, isNew = fals
 
   const title = document.createElement("div");
   title.className = "title";
+
   const titleBtn = document.createElement("button");
   titleBtn.type = "button";
   titleBtn.className = "linkLike";
@@ -239,14 +265,27 @@ function createUgcCard(item, { featured = false, podiumSlot = null, isNew = fals
   price.className = "price";
   price.textContent = fmtRobux(item.price);
 
+  const btnRow = document.createElement("div");
+  btnRow.className = "btnRow";
+
   const openBtn = document.createElement("button");
   openBtn.type = "button";
   openBtn.className = "btnOpen";
   openBtn.dataset.action = "open";
   openBtn.textContent = "Open";
 
+  const tryBtn = document.createElement("button");
+  tryBtn.type = "button";
+  tryBtn.className = "btnTry";
+  tryBtn.dataset.action = "try";
+  tryBtn.title = "Try on Roblox";
+  tryBtn.textContent = "Try";
+
+  btnRow.appendChild(tryBtn);
+  btnRow.appendChild(openBtn);
+
   foot.appendChild(price);
-  foot.appendChild(openBtn);
+  foot.appendChild(btnRow);
 
   body.appendChild(title);
   body.appendChild(meta);
@@ -256,12 +295,7 @@ function createUgcCard(item, { featured = false, podiumSlot = null, isNew = fals
   card.appendChild(badge);
   card.appendChild(pill);
 
-  if (isNew) {
-    const nb = document.createElement("div");
-    nb.className = "newBadge";
-    nb.textContent = "NEW";
-    card.appendChild(nb);
-  }
+  if (podiumBadge) card.appendChild(createPodiumBadge(podiumBadge));
 
   card.appendChild(body);
 
@@ -281,19 +315,34 @@ function renderPodium() {
   }
   empty.hidden = true;
 
-  // order: left=2nd, mid=1st, right=3rd
   const mid = podium[0] || null;
   const left = podium[1] || null;
   const right = podium[2] || null;
 
   const cards = [
-    left ? createUgcCard(left, { featured: false, podiumSlot: "left" }) : null,
-    mid ? createUgcCard(mid, { featured: true, podiumSlot: "mid", isNew: true }) : null,
-    right ? createUgcCard(right, { featured: false, podiumSlot: "right" }) : null,
+    left ? createUgcCard(left, { featured: false, podiumSlot: "left", podiumBadge: "rank2" }) : null,
+    mid ? createUgcCard(mid, { featured: true, podiumSlot: "mid", podiumBadge: "new" }) : null,
+    right ? createUgcCard(right, { featured: false, podiumSlot: "right", podiumBadge: "rank3" }) : null,
   ].filter(Boolean);
 
-  cards.forEach((c) => row.appendChild(c));
+  cards.forEach((c) => {
+    row.appendChild(c);
+    reveal(c);
+  });
+
   $("#podiumHint").textContent = `${podium.length} ${plural(podium.length, "item", "items")}`;
+}
+
+/* Filters */
+function fillSelect(selectEl, options, selectedValue) {
+  selectEl.innerHTML = "";
+  for (const opt of options) {
+    const o = document.createElement("option");
+    o.value = opt.value;
+    o.textContent = opt.label;
+    selectEl.appendChild(o);
+  }
+  if (selectedValue != null) selectEl.value = selectedValue;
 }
 
 function getFilters() {
@@ -305,19 +354,15 @@ function getFilters() {
 }
 
 function updateFilterActiveUI() {
-  const catEl = $("#fCategory");
-  const typeEl = $("#fType");
-  const sortEl = $("#fSort");
-  const qEl = $("#fSearch");
-
   const set = (el, active) => {
     const c = el?.closest?.(".control");
     if (c) c.classList.toggle("active", !!active);
   };
-
+  const catEl = $("#fCategory");
+  const typeEl = $("#fType");
+  const qEl = $("#fSearch");
   set(catEl, catEl && catEl.value !== "all");
   set(typeEl, typeEl && typeEl.value !== "all");
-  set(sortEl, false); // keep neutral
   set(qEl, qEl && qEl.value.trim().length > 0);
 }
 
@@ -325,8 +370,6 @@ function applyFilters() {
   const { cat, type, sort, q } = getFilters();
 
   let items = STATE.all.slice();
-
-  // Only on-sale paid items (if some slipped in)
   items = items.filter((x) => num(x.price) != null && x.price > 0);
 
   if (cat !== "all") items = items.filter((x) => typeToCategory(x.type) === cat);
@@ -364,7 +407,9 @@ function renderUgcGrid() {
   empty.hidden = true;
 
   for (const it of items) {
-    grid.appendChild(createUgcCard(it));
+    const c = createUgcCard(it);
+    grid.appendChild(c);
+    reveal(c);
   }
 }
 
@@ -392,6 +437,7 @@ function renderFiltersUI() {
   updateFilterActiveUI();
 }
 
+/* Gallery */
 function renderGallery() {
   const grid = $("#galleryGrid");
   const empty = $("#galleryEmpty");
@@ -409,6 +455,7 @@ function renderGallery() {
   for (const g of items) {
     const card = document.createElement("div");
     card.className = "galCard";
+    reveal(card);
 
     const btn = document.createElement("button");
     btn.type = "button";
@@ -422,6 +469,7 @@ function renderGallery() {
     img.loading = "lazy";
     img.alt = "Gallery";
     img.src = g.url;
+    img.draggable = false;
 
     btn.appendChild(img);
     card.appendChild(btn);
@@ -429,6 +477,7 @@ function renderGallery() {
   }
 }
 
+/* Commissions */
 function normalizeCommissionJson(raw) {
   const models = [];
   const textures = [];
@@ -472,6 +521,7 @@ function renderCommissions() {
   for (const url of list) {
     const card = document.createElement("div");
     card.className = "comCard";
+    reveal(card);
 
     const btn = document.createElement("button");
     btn.type = "button";
@@ -485,6 +535,7 @@ function renderCommissions() {
     img.loading = "lazy";
     img.alt = "Commission";
     img.src = url;
+    img.draggable = false;
 
     btn.appendChild(img);
     card.appendChild(btn);
@@ -550,10 +601,7 @@ function closeModal() {
 let toastTimer = null;
 function showToast(text) {
   const t = $("#toast");
-  if (!t) {
-    console.log(String(text));
-    return;
-  }
+  if (!t) return;
   t.textContent = text;
   t.classList.add("show");
   t.setAttribute("aria-hidden", "false");
@@ -575,7 +623,7 @@ async function copyText(text) {
     ta.style.left = "-9999px";
     document.body.appendChild(ta);
     ta.select();
-    try { document.execCommand("copy"); showToast("Copied ✅"); } catch { showToast("Copy failed"); }
+    try { document.execCommand("copy"); showToast("Copied ✅"); } catch { showToast("Copy blocked"); }
     document.body.removeChild(ta);
   }
 }
@@ -601,6 +649,16 @@ function onClickAction(e) {
     return;
   }
 
+  if (action === "try") {
+    const card = target.closest("[data-asset-id]");
+    const assetId = card?.dataset.assetId;
+    if (!assetId) return;
+    // Best possible on a static site: open Roblox page (Try On is available there)
+    window.open(ROBLOX_ITEM_URL(assetId), "_blank", "noopener,noreferrer");
+    showToast("Try on Roblox ↗");
+    return;
+  }
+
   if (action === "copy-id" || action === "copy-name") {
     const text = target.dataset.copy || "";
     if (text) copyText(text);
@@ -608,16 +666,50 @@ function onClickAction(e) {
   }
 }
 
-function wireUI() {
-  // Tabs
-  $$(".tabBtn").forEach((b) => {
-    on(b, "click", () => setActiveView(b.dataset.view));
+/* Protection layer (deterrence) */
+function hardenClient() {
+  const isEditable = (t) => {
+    if (!t) return false;
+    const tag = t.tagName;
+    return tag === "INPUT" || tag === "TEXTAREA" || t.isContentEditable === true;
+  };
+
+  document.addEventListener("contextmenu", (e) => {
+    if (isEditable(e.target)) return;
+    e.preventDefault();
+    showToast("Protected");
   });
 
-  // Refresh (optional button)
+  const block = (e) => {
+    if (isEditable(e.target)) return;
+    e.preventDefault();
+    showToast("Protected");
+  };
+
+  ["copy", "cut", "dragstart"].forEach((ev) => document.addEventListener(ev, block));
+
+  document.addEventListener("keydown", (e) => {
+    if (isEditable(e.target)) return;
+
+    const k = String(e.key || "").toLowerCase();
+    const ctrl = e.ctrlKey || e.metaKey;
+
+    // Block common inspect/save/view-source shortcuts (not bulletproof)
+    if (e.key === "F12" || (ctrl && (k === "u" || k === "s" || k === "p")) || (ctrl && e.shiftKey && (k === "i" || k === "j" || k === "c"))) {
+      e.preventDefault();
+      showToast("Protected");
+    }
+  });
+}
+
+function wireUI() {
+  // Tabs
+  $$(".tabBtn").forEach((b) => on(b, "click", () => setActiveView(b.dataset.view)));
+
+  // Refresh
   on($("#btnRefresh"), "click", () => boot());
 
-  // Filters (optional)
+  // Filters
   ["fCategory", "fType", "fSort", "fSearch"].forEach((id) => {
     const el = document.getElementById(id);
     on(el, id === "fSearch" ? "input" : "change", () => {
@@ -628,7 +720,7 @@ function wireUI() {
     });
   });
 
-  // Commissions segment (optional)
+  // Commissions segment
   $$(".segBtn").forEach((b) => {
     on(b, "click", () => {
       $$(".segBtn").forEach((x) => {
@@ -640,7 +732,7 @@ function wireUI() {
     });
   });
 
-  // Click actions (UGC + gallery + commissions) — optional containers
+  // Click actions
   on($("#ugcGrid"), "click", onClickAction);
   on($("#podiumRow"), "click", onClickAction);
   on($("#galleryGrid"), "click", onClickAction);
@@ -648,12 +740,8 @@ function wireUI() {
 
   // Modal close
   on($("#modalClose"), "click", closeModal);
-  on($("#modal"), "click", (e) => {
-    if (e.target && e.target.id === "modal") closeModal();
-  });
-  on(document, "keydown", (e) => {
-    if (e.key === "Escape") closeModal();
-  });
+  on($("#modal"), "click", (e) => { if (e.target && e.target.id === "modal") closeModal(); });
+  on(document, "keydown", (e) => { if (e.key === "Escape") closeModal(); });
 
   // Modal tools
   on($("#zoomIn"), "click", () => modalZoom(+0.25));
@@ -728,7 +816,6 @@ function normalizeItems(raw, sourceLabel) {
 }
 
 async function boot() {
-  // keep UI responsive during reload
   $("#ugcGrid").innerHTML = "";
   $("#podiumRow").innerHTML = "";
   $("#ugcEmpty").hidden = true;
@@ -745,23 +832,12 @@ async function boot() {
       fetchJson(FILES.user, { optional: true }),
       fetchJson(FILES.group, { optional: true }),
     ]);
-  } catch {
-    // ignore, handled below
-  }
+  } catch {}
 
   const u = normalizeItems(userRaw, "Profile");
   const g = normalizeItems(groupRaw, "Group");
 
-  // Merge (keep all; thumb always has a fallback)
   STATE.all = [...u.items, ...g.items];
-
-  // If nothing, show empty and bail early (but keep page usable)
-  if (!STATE.all.length) {
-    $("#ugcCount").textContent = `0 ${plural(0, "item", "items")}`;
-    $("#podiumHint").textContent = `0 ${plural(0, "item", "items")}`;
-    $("#ugcEmpty").hidden = false;
-    $("#podiumEmpty").hidden = false;
-  }
 
   // Update info
   const parts = [];
@@ -769,19 +845,23 @@ async function boot() {
   if (g.updated) parts.push(`Updated Group: ${g.updated}`);
   $("#updateInfo").textContent = parts.join(" • ");
 
-  // Filters + grid
+  if (!STATE.all.length) {
+    $("#ugcCount").textContent = `0 ${plural(0, "item", "items")}`;
+    $("#podiumHint").textContent = `0 ${plural(0, "item", "items")}`;
+    $("#ugcEmpty").hidden = false;
+    $("#podiumEmpty").hidden = false;
+  }
+
   renderFiltersUI();
   applyFilters();
   updateFilterActiveUI();
   renderPodium();
   renderUgcGrid();
 
-  // Gallery
   const gal = await fetchJson(FILES.gallery, { optional: true });
   STATE.gallery = Array.isArray(gal) ? gal : (Array.isArray(gal?.images) ? gal.images : []);
   renderGallery();
 
-  // Commissions (optional)
   const comRaw = await fetchJson(FILES.commissions, { optional: true });
   const com = normalizeCommissionJson(comRaw);
   STATE.commissions = com;
@@ -790,5 +870,6 @@ async function boot() {
 
 document.addEventListener("DOMContentLoaded", () => {
   wireUI();
+  hardenClient();
   boot();
 });
