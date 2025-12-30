@@ -1,7 +1,16 @@
 {
-  "updated": "2025-12-30T01:34:07Z",
-  "generatedAt": "2025-12-30T01:34:07Z",
+  "updated": "2025-12-30T13:55:16Z",
+  "generatedAt": "2025-12-30T13:55:16Z",
   "items": [
+    {
+      "assetId": 131304231036878,
+      "name": "Woman face with brown makeup and blue eyes",
+      "type": "FaceAccessory",
+      "price": 90,
+      "created": "2025-12-30T03:42:09.0122874Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-e4fa529bce63b3d3c9303609f1f229ee/420/420/FaceAccessory/Png/noFilter",
+      "favorites": 43
+    },
     {
       "assetId": 93774719738585,
       "name": "[PBR] Green cyber mask",
