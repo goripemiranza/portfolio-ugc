@@ -5,8 +5,8 @@ import requests
 import json
 import time
 
-USER_ID = 0      # <-- PUT YOUR USER ID
-GROUP_ID = 0     # <-- PUT YOUR GROUP ID
+USER_ID = 828726934      # <-- PUT YOUR USER ID
+GROUP_ID = 16981319     # <-- PUT YOUR GROUP ID
 
 OUTPUT_USER = "data_user.json"
 OUTPUT_GROUP = "data_group.json"
