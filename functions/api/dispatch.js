@@ -132,9 +132,18 @@ function bytesToB64(bytes) {
   for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
   return btoa(bin);
 }
-async function importAesKey(b64Key) {
-  const raw = b64ToBytes(b64Key);
-  if (raw.byteLength !== 32) throw new Error("bad_key_len");
+async function importAesKey(secret) {
+  // Accept base64-32, or any other string (derived to 32 bytes via SHA-256).
+  let raw = null;
+  try {
+    raw = b64ToBytes(secret);
+  } catch {
+    raw = new TextEncoder().encode(String(secret || ""));
+  }
+  if (raw.byteLength !== 32) {
+    const hash = await crypto.subtle.digest("SHA-256", raw);
+    raw = new Uint8Array(hash);
+  }
   return crypto.subtle.importKey("raw", raw, { name: "AES-GCM" }, false, ["encrypt", "decrypt"]);
 }
 async function aesGcmDecrypt(enc, key) {
