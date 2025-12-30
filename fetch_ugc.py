@@ -1,21 +1,18 @@
 # fetch_ugc.py
-# Roblox Marketplace v2 – fetch all onsale items (user + group)
+# Roblox Marketplace v2 – NO external libs (urllib only)
 
-import requests
 import json
 import time
+import urllib.request
+import urllib.parse
 
-USER_ID = 828726934      # <-- PUT YOUR USER ID
-GROUP_ID = 16981319     # <-- PUT YOUR GROUP ID
+USER_ID = 828726934      # PUT YOUR USER ID
+GROUP_ID = 16981319     # PUT YOUR GROUP ID
 
 OUTPUT_USER = "data_user.json"
 OUTPUT_GROUP = "data_group.json"
 
 BASE_URL = "https://catalog.roblox.com/v2/search/items/details"
-
-HEADERS = {
-    "User-Agent": "Mozilla/5.0"
-}
 
 def fetch_items(creator_type, creator_id):
     items = []
@@ -30,13 +27,17 @@ def fetch_items(creator_type, creator_id):
             "Limit": 30,
             "Cursor": cursor
         }
-        r = requests.get(BASE_URL, params=params, headers=HEADERS)
-        if r.status_code != 200:
+        url = BASE_URL + "?" + urllib.parse.urlencode(params)
+        try:
+            with urllib.request.urlopen(url) as r:
+                data = json.loads(r.read().decode())
+        except Exception:
             break
-        data = r.json()
+
         for item in data.get("data", []):
             if item.get("price", 0) > 0:
                 items.append(item)
+
         cursor = data.get("nextPageCursor")
         if not cursor:
             break
