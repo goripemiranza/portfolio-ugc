@@ -1,4 +1,4 @@
-/* app.js — Portfolio Roblox (UGC + Gallery + Commissions) */
+/* app.js — Roblox Portfolio (UGC + Gallery + Commissions) */
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -12,86 +12,91 @@ const FILES = {
 };
 
 const ROBLOX_ITEM_URL = (assetId) => `https://www.roblox.com/catalog/${assetId}`;
+const FALLBACK_THUMB = (assetId) =>
+  `https://www.roblox.com/asset-thumbnail/image?assetId=${encodeURIComponent(assetId)}&width=420&height=420&format=png`;
 
-const TYPE_LABEL_FR = {
+const TYPE_LABEL_EN = {
   // Accessories
-  Hat: "Chapeau",
-  HairAccessory: "Cheveux",
-  FaceAccessory: "Visage",
-  NeckAccessory: "Cou",
-  ShoulderAccessory: "Épaule",
-  FrontAccessory: "Avant",
-  BackAccessory: "Dos",
-  WaistAccessory: "Taille",
-  EarAccessory: "Oreille",
-  EyeAccessory: "Yeux",
-  EyebrowAccessory: "Sourcils",
-  EyelashAccessory: "Cils",
+  Hat: "Hat",
+  HairAccessory: "Hair",
+  FaceAccessory: "Face",
+  NeckAccessory: "Neck",
+  ShoulderAccessory: "Shoulder",
+  FrontAccessory: "Front",
+  BackAccessory: "Back",
+  WaistAccessory: "Waist",
+  EarAccessory: "Ear",
+  EyeAccessory: "Eye",
+  EyebrowAccessory: "Eyebrow",
+  EyelashAccessory: "Eyelash",
 
   // Heads / Faces
-  Head: "Tête",
-  Face: "Visage (Classic)",
-  DynamicHead: "Tête (Dynamique)",
+  Head: "Head",
+  Face: "Face (Classic)",
+  DynamicHead: "Dynamic Head",
 
   // Classic clothing
   TShirt: "T-Shirt",
-  Shirt: "Chemise",
-  Pants: "Pantalon",
+  Shirt: "Shirt",
+  Pants: "Pants",
 
   // Layered clothing
   TShirtAccessory: "T-Shirt (LC)",
-  ShirtAccessory: "Chemise (LC)",
-  PantsAccessory: "Pantalon (LC)",
-  JacketAccessory: "Veste (LC)",
-  SweaterAccessory: "Pull (LC)",
-  ShortsAccessory: "Short (LC)",
-  LeftShoeAccessory: "Chaussure G. (LC)",
-  RightShoeAccessory: "Chaussure D. (LC)",
-  DressSkirtAccessory: "Robe/Jupe (LC)",
+  ShirtAccessory: "Shirt (LC)",
+  PantsAccessory: "Pants (LC)",
+  JacketAccessory: "Jacket (LC)",
+  SweaterAccessory: "Sweater (LC)",
+  ShortsAccessory: "Shorts (LC)",
+  LeftShoeAccessory: "Left Shoe (LC)",
+  RightShoeAccessory: "Right Shoe (LC)",
+  DressSkirtAccessory: "Dress/Skirt (LC)",
 
   // Animations
   Animation: "Animation",
-  ClimbAnimation: "Anim. Escalade",
-  DeathAnimation: "Anim. Mort",
-  FallAnimation: "Anim. Chute",
-  IdleAnimation: "Anim. Idle",
-  JumpAnimation: "Anim. Saut",
-  RunAnimation: "Anim. Course",
-  SwimAnimation: "Anim. Nage",
-  WalkAnimation: "Anim. Marche",
-  PoseAnimation: "Anim. Pose",
+  ClimbAnimation: "Climb",
+  DeathAnimation: "Death",
+  FallAnimation: "Fall",
+  IdleAnimation: "Idle",
+  JumpAnimation: "Jump",
+  RunAnimation: "Run",
+  SwimAnimation: "Swim",
+  WalkAnimation: "Walk",
+  PoseAnimation: "Pose",
   EmoteAnimation: "Emote",
-  MoodAnimation: "Anim. Mood",
+  MoodAnimation: "Mood",
   Package: "Package",
 };
 
 function typeToLabel(type) {
-  if (!type || typeof type !== "string") return "Autre";
-  return TYPE_LABEL_FR[type] || type;
+  if (!type || typeof type !== "string") return "Other";
+  return TYPE_LABEL_EN[type] || type;
 }
 
 function typeToCategory(type) {
   const t = String(type || "");
-  if (t.endsWith("Animation") || t === "Animation" || t === "MoodAnimation" || t === "Package") return "Animations";
-  if (t.endsWith("Accessory") || t === "Hat") return "Accessoires";
-  if (t === "Head" || t === "DynamicHead") return "Têtes";
-  if (t === "Face") return "Visages";
-  if (t === "TShirt" || t === "Shirt" || t === "Pants") return "Vêtements";
-  if (t.endsWith("Accessory") && (t.includes("Shirt") || t.includes("Pants") || t.includes("Jacket") || t.includes("Sweater") || t.includes("Shorts") || t.includes("Shoe") || t.includes("Dress"))) return "Vêtements";
-  if (t.endsWith("Accessory") && (t.includes("Shirt") || t.includes("Pants"))) return "Vêtements";
-  if (t.endsWith("Accessory") && (t.includes("Shoe") || t.includes("Dress"))) return "Vêtements";
-  if (t.endsWith("Accessory") && (t.includes("Jacket") || t.includes("Sweater") || t.includes("Shorts"))) return "Vêtements";
-  if (t.endsWith("Accessory") && (t.includes("TShirt") || t.includes("Shirt") || t.includes("Pants"))) return "Vêtements";
-  return "Autres";
+  if (t.endsWith("Animation") || t === "Animation" || t === "MoodAnimation") return "Animations";
+  if (t === "Package") return "Packages";
+  if (t.endsWith("Accessory") || t === "Hat") return "Accessories";
+  if (t === "Head" || t === "DynamicHead") return "Heads";
+  if (t === "Face") return "Faces";
+  if (t === "TShirt" || t === "Shirt" || t === "Pants") return "Clothing";
+  // layered clothing types also end with Accessory, so detect by keyword
+  if (t.includes("Jacket") || t.includes("Sweater") || t.includes("Shorts") || t.includes("Shoe") || t.includes("Dress")) return "Clothing";
+  if (t.includes("TShirt") || t.includes("Shirt") || t.includes("Pants")) return "Clothing";
+  return "Other";
 }
 
 function safeDate(ts) {
   const d = ts ? new Date(ts) : null;
   if (!d || Number.isNaN(d.getTime())) return "—";
-  const dd = String(d.getDate()).padStart(2, "0");
-  const mm = String(d.getMonth() + 1).padStart(2, "0");
-  const yy = d.getFullYear();
-  return `${dd}/${mm}/${yy}`;
+  try {
+    return d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+  } catch {
+    const dd = String(d.getDate()).padStart(2, "0");
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const yy = d.getFullYear();
+    return `${dd}/${mm}/${yy}`;
+  }
 }
 
 function num(n) {
@@ -102,6 +107,10 @@ function fmtRobux(price) {
   const p = num(price);
   if (p == null) return "—";
   return `${p} R$`;
+}
+
+function plural(n, one, many) {
+  return n === 1 ? one : many;
 }
 
 async function fetchJson(path, { optional = false } = {}) {
@@ -148,14 +157,21 @@ function computePodium(items) {
   return list.slice(0, 3);
 }
 
-function createUgcCard(item, { featured = false } = {}) {
+function setPodiumSlotClass(card, slot) {
+  if (!card) return;
+  if (slot) card.classList.add(`podium-${slot}`);
+}
+
+function createUgcCard(item, { featured = false, podiumSlot = null, isNew = false } = {}) {
   const card = document.createElement("article");
   card.className = `ugcCard${featured ? " featured" : ""}`;
   card.dataset.assetId = String(item.assetId);
 
+  setPodiumSlotClass(card, podiumSlot);
+
   const badge = document.createElement("div");
   badge.className = "badge";
-  badge.textContent = typeToLabel(item.type);
+  badge.textContent = typeToCategory(item.type); // top-left = category
 
   const pill = document.createElement("div");
   pill.className = "sourcePill";
@@ -165,14 +181,14 @@ function createUgcCard(item, { featured = false } = {}) {
   thumbBtn.type = "button";
   thumbBtn.className = "thumbBtn";
   thumbBtn.dataset.action = "zoom";
-  thumbBtn.dataset.src = item.thumb || "";
+  thumbBtn.dataset.src = item.thumb || FALLBACK_THUMB(item.assetId);
   thumbBtn.dataset.caption = `${item.name} • ${item.assetId}`;
 
   const img = document.createElement("img");
   img.className = "thumb";
   img.loading = "lazy";
   img.alt = item.name || "UGC";
-  img.src = item.thumb || "";
+  img.src = item.thumb || FALLBACK_THUMB(item.assetId);
   thumbBtn.appendChild(img);
 
   const body = document.createElement("div");
@@ -196,25 +212,25 @@ function createUgcCard(item, { featured = false } = {}) {
   idBtn.className = "kvBtn";
   idBtn.dataset.action = "copy-id";
   idBtn.dataset.copy = String(item.assetId);
-  idBtn.textContent = `Asset ${item.assetId}`;
+  idBtn.textContent = `ID ${item.assetId}`;
 
   const dateTag = document.createElement("span");
-  dateTag.className = "metaTag";
+  dateTag.className = "metaTag dateTag";
   dateTag.textContent = safeDate(item.created);
 
   const fav = document.createElement("span");
-  fav.className = "metaTag";
+  fav.className = "metaTag favTag";
   const f = num(item.favorites);
   fav.textContent = `❤ ${f == null ? "—" : f}`;
 
-  const cat = document.createElement("span");
-  cat.className = "metaTag";
-  cat.textContent = typeToCategory(item.type);
+  const typeTag = document.createElement("span");
+  typeTag.className = "metaTag typeTag";
+  typeTag.textContent = typeToLabel(item.type);
 
   meta.appendChild(idBtn);
   meta.appendChild(dateTag);
   meta.appendChild(fav);
-  meta.appendChild(cat);
+  meta.appendChild(typeTag);
 
   const foot = document.createElement("div");
   foot.className = "foot";
@@ -227,7 +243,7 @@ function createUgcCard(item, { featured = false } = {}) {
   openBtn.type = "button";
   openBtn.className = "btnOpen";
   openBtn.dataset.action = "open";
-  openBtn.textContent = "Ouvrir";
+  openBtn.textContent = "Open";
 
   foot.appendChild(price);
   foot.appendChild(openBtn);
@@ -239,6 +255,14 @@ function createUgcCard(item, { featured = false } = {}) {
   card.appendChild(thumbBtn);
   card.appendChild(badge);
   card.appendChild(pill);
+
+  if (isNew) {
+    const nb = document.createElement("div");
+    nb.className = "newBadge";
+    nb.textContent = "NEW";
+    card.appendChild(nb);
+  }
+
   card.appendChild(body);
 
   return card;
@@ -252,7 +276,7 @@ function renderPodium() {
   const podium = computePodium(STATE.all).filter((x) => num(x.price) != null && x.price > 0);
   if (!podium.length) {
     empty.hidden = false;
-    $("#podiumHint").textContent = "0 item";
+    $("#podiumHint").textContent = `0 ${plural(0, "item", "items")}`;
     return;
   }
   empty.hidden = true;
@@ -263,13 +287,13 @@ function renderPodium() {
   const right = podium[2] || null;
 
   const cards = [
-    left ? createUgcCard(left, { featured: false }) : null,
-    mid ? createUgcCard(mid, { featured: true }) : null,
-    right ? createUgcCard(right, { featured: false }) : null,
+    left ? createUgcCard(left, { featured: false, podiumSlot: "left" }) : null,
+    mid ? createUgcCard(mid, { featured: true, podiumSlot: "mid", isNew: true }) : null,
+    right ? createUgcCard(right, { featured: false, podiumSlot: "right" }) : null,
   ].filter(Boolean);
 
   cards.forEach((c) => row.appendChild(c));
-  $("#podiumHint").textContent = `${podium.length} item(s)`;
+  $("#podiumHint").textContent = `${podium.length} ${plural(podium.length, "item", "items")}`;
 }
 
 function getFilters() {
@@ -278,6 +302,23 @@ function getFilters() {
   const sort = $("#fSort").value || "new";
   const q = ($("#fSearch").value || "").trim().toLowerCase();
   return { cat, type, sort, q };
+}
+
+function updateFilterActiveUI() {
+  const catEl = $("#fCategory");
+  const typeEl = $("#fType");
+  const sortEl = $("#fSort");
+  const qEl = $("#fSearch");
+
+  const set = (el, active) => {
+    const c = el?.closest?.(".control");
+    if (c) c.classList.toggle("active", !!active);
+  };
+
+  set(catEl, catEl && catEl.value !== "all");
+  set(typeEl, typeEl && typeEl.value !== "all");
+  set(sortEl, false); // keep neutral
+  set(qEl, qEl && qEl.value.trim().length > 0);
 }
 
 function applyFilters() {
@@ -314,7 +355,7 @@ function renderUgcGrid() {
   grid.innerHTML = "";
 
   const items = STATE.filtered;
-  $("#ugcCount").textContent = `${items.length} item(s)`;
+  $("#ugcCount").textContent = `${items.length} ${plural(items.length, "item", "items")}`;
 
   if (!items.length) {
     empty.hidden = false;
@@ -331,15 +372,15 @@ function renderFiltersUI() {
   const catEl = $("#fCategory");
   const typeEl = $("#fType");
 
-  const cats = ["Accessoires", "Vêtements", "Animations", "Têtes", "Visages", "Autres"];
+  const cats = ["Accessories", "Clothing", "Animations", "Heads", "Faces", "Packages", "Other"];
   const presentCats = new Set(STATE.all.map((x) => typeToCategory(x.type)));
-  const catOptions = [{ value: "all", label: "Tous" }].concat(
+  const catOptions = [{ value: "all", label: "All" }].concat(
     cats.filter((c) => presentCats.has(c)).map((c) => ({ value: c, label: c }))
   );
 
   const types = Array.from(new Set(STATE.all.map((x) => String(x.type || "")))).filter(Boolean);
-  types.sort((a, b) => typeToLabel(a).localeCompare(typeToLabel(b), "fr"));
-  const typeOptions = [{ value: "all", label: "Tous" }].concat(
+  types.sort((a, b) => typeToLabel(a).localeCompare(typeToLabel(b), "en"));
+  const typeOptions = [{ value: "all", label: "All" }].concat(
     types.map((t) => ({ value: t, label: typeToLabel(t) }))
   );
 
@@ -347,6 +388,8 @@ function renderFiltersUI() {
   const prevType = typeEl.value || "all";
   fillSelect(catEl, catOptions, prevCat);
   fillSelect(typeEl, typeOptions, prevType);
+
+  updateFilterActiveUI();
 }
 
 function renderGallery() {
@@ -355,7 +398,7 @@ function renderGallery() {
   grid.innerHTML = "";
 
   const items = STATE.gallery || [];
-  $("#galleryCount").textContent = `${items.length} image(s)`;
+  $("#galleryCount").textContent = `${items.length} ${plural(items.length, "image", "images")}`;
 
   if (!items.length) {
     empty.hidden = false;
@@ -372,12 +415,12 @@ function renderGallery() {
     btn.className = "galBtn";
     btn.dataset.action = "zoom";
     btn.dataset.src = g.url;
-    btn.dataset.caption = ""; // captions removed on purpose
+    btn.dataset.caption = "";
 
     const img = document.createElement("img");
     img.className = "galImg";
     img.loading = "lazy";
-    img.alt = "Galerie";
+    img.alt = "Gallery";
     img.src = g.url;
 
     btn.appendChild(img);
@@ -484,7 +527,6 @@ function openModal(src, caption = "") {
   const img = $("#modalImg");
   const cap = $("#modalCaption");
   if (!modal || !img) {
-    // Fallback: open in new tab if modal is not present
     window.open(src, "_blank", "noopener,noreferrer");
     return;
   }
@@ -525,16 +567,15 @@ function showToast(text) {
 async function copyText(text) {
   try {
     await navigator.clipboard.writeText(String(text));
-    showToast("Copié ✅");
+    showToast("Copied ✅");
   } catch {
-    // Fallback
     const ta = document.createElement("textarea");
     ta.value = String(text);
     ta.style.position = "fixed";
     ta.style.left = "-9999px";
     document.body.appendChild(ta);
     ta.select();
-    try { document.execCommand("copy"); showToast("Copié ✅"); } catch { showToast("Copie impossible"); }
+    try { document.execCommand("copy"); showToast("Copied ✅"); } catch { showToast("Copy failed"); }
     document.body.removeChild(ta);
   }
 }
@@ -581,6 +622,7 @@ function wireUI() {
     const el = document.getElementById(id);
     on(el, id === "fSearch" ? "input" : "change", () => {
       applyFilters();
+      updateFilterActiveUI();
       renderPodium();
       renderUgcGrid();
     });
@@ -654,8 +696,6 @@ function wireUI() {
   on(stage, "pointercancel", () => { ZOOM.dragging = false; });
 }
 
-
-
 function normalizeItems(raw, sourceLabel) {
   const items = Array.isArray(raw?.items) ? raw.items : [];
   const updated = raw?.updated || null;
@@ -673,11 +713,11 @@ function normalizeItems(raw, sourceLabel) {
     out.push({
       assetId,
       name: it.name || `Item ${assetId}`,
-      type: it.type || it.assetType || "Autre",
+      type: it.type || it.assetType || "Other",
       price,
       created,
       createdTs: created ? Date.parse(created) : 0,
-      thumb: it.thumb || it.thumbnail || "",
+      thumb: it.thumb || it.thumbnail || FALLBACK_THUMB(assetId),
       favorites: fav,
       source: sourceLabel,
       updated,
@@ -709,29 +749,30 @@ async function boot() {
     // ignore, handled below
   }
 
-  const u = normalizeItems(userRaw, "Profil");
-  const g = normalizeItems(groupRaw, "Groupe");
+  const u = normalizeItems(userRaw, "Profile");
+  const g = normalizeItems(groupRaw, "Group");
 
-  // Merge
-  STATE.all = [...u.items, ...g.items].filter((x) => x.thumb);
+  // Merge (keep all; thumb always has a fallback)
+  STATE.all = [...u.items, ...g.items];
 
   // If nothing, show empty and bail early (but keep page usable)
   if (!STATE.all.length) {
-    $("#ugcCount").textContent = "0 item(s)";
-    $("#podiumHint").textContent = "0 item";
+    $("#ugcCount").textContent = `0 ${plural(0, "item", "items")}`;
+    $("#podiumHint").textContent = `0 ${plural(0, "item", "items")}`;
     $("#ugcEmpty").hidden = false;
     $("#podiumEmpty").hidden = false;
   }
 
   // Update info
   const parts = [];
-  if (u.updated) parts.push(`MAJ Profil: ${u.updated}`);
-  if (g.updated) parts.push(`MAJ Groupe: ${g.updated}`);
+  if (u.updated) parts.push(`Updated Profile: ${u.updated}`);
+  if (g.updated) parts.push(`Updated Group: ${g.updated}`);
   $("#updateInfo").textContent = parts.join(" • ");
 
   // Filters + grid
   renderFiltersUI();
   applyFilters();
+  updateFilterActiveUI();
   renderPodium();
   renderUgcGrid();
 
