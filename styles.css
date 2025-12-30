@@ -1,4 +1,4 @@
-/* styles.css — Roblox Portfolio (animations + ranked podium + hardened UI) */
+/* styles.css — Roblox Portfolio (final polish + contact + notify) */
 
 :root{
   --bg:#0b0f19;
@@ -18,13 +18,13 @@
 *{box-sizing:border-box}
 html{color-scheme:dark}
 
-/* Make copying harder (still not 100% possible to block on the web) */
-body{ user-select:none; -webkit-user-select:none; }
-.allowSelect{ user-select:text !important; -webkit-user-select:text !important; }
-
 @media (prefers-reduced-motion: reduce){
   *{animation:none !important; transition:none !important}
 }
+
+/* Harder to copy (deterrence). Not 100% possible on the web. */
+body{ user-select:none; -webkit-user-select:none; }
+.allowSelect{ user-select:text !important; -webkit-user-select:text !important; }
 
 body{
   margin:0;
@@ -363,8 +363,6 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   border:1px solid rgba(255,255,255,0.22);
   box-shadow: 0 0 0 4px rgba(255,255,255,0.08);
   backdrop-filter: blur(10px);
-  user-select:none;
-  -webkit-user-select:none;
 }
 .podiumBadge.new{
   color:#1a1400;
@@ -476,9 +474,8 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   white-space:nowrap;
 }
 
-/* Open + Try buttons */
-.btnOpen,
-.btnTry{
+/* Open button */
+.btnOpen{
   border:1px solid rgba(255,255,255,0.14);
   background: rgba(255,255,255,0.06);
   color:var(--text);
@@ -490,8 +487,7 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   position:relative;
   overflow:hidden;
 }
-.btnOpen::before,
-.btnTry::before{
+.btnOpen::before{
   content:"";
   position:absolute;
   inset:-2px;
@@ -500,31 +496,13 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   transition: transform .5s ease;
   pointer-events:none;
 }
-.btnOpen:hover::before,
-.btnTry:hover::before{ transform: translateX(120%); }
-
-.btnOpen:hover,
-.btnTry:hover{
+.btnOpen:hover::before{ transform: translateX(120%); }
+.btnOpen:hover{
   background: rgba(255,255,255,0.10);
   transform: translateY(-1px);
   border-color: rgba(124,92,255,0.40);
 }
-.btnOpen:active,
-.btnTry:active{transform: translateY(0px) scale(.98)}
-
-.btnTry{
-  border-color: rgba(49,208,170,0.28);
-}
-.btnTry:hover{
-  border-color: rgba(49,208,170,0.55);
-  box-shadow: 0 0 0 4px rgba(49,208,170,0.10);
-}
-
-.btnRow{
-  display:flex;
-  gap:8px;
-  align-items:center;
-}
+.btnOpen:active{transform: translateY(0px) scale(.98)}
 
 /* Podium */
 .podiumRow{
@@ -535,7 +513,7 @@ input::placeholder{color:rgba(255,255,255,0.55)}
 }
 .podiumRow .ugcCard{height:100%}
 
-/* subtle float motion for podium (stylish) */
+/* subtle float motion for podium */
 .podiumRow .ugcCard{
   animation: float 3.6s ease-in-out infinite;
 }
@@ -554,7 +532,7 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   transform: translateY(-4px) scale(1.01);
 }
 
-/* Glow border ONLY (no inner animation) */
+/* Glow border ONLY */
 .ugcCard.featured::before{
   content:"";
   position:absolute;
@@ -625,7 +603,83 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   background: rgba(0,0,0,0.25);
 }
 
-/* Modal */
+/* Contact */
+.contactGrid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:12px;
+}
+.contactItem{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  padding:12px 12px;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  cursor:pointer;
+  transition: transform .14s ease, background .14s ease, border-color .14s ease;
+  text-align:left;
+}
+.contactItem:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.18);
+}
+.contactItem:active{ transform: translateY(0px) scale(.99); }
+.contactIcon{
+  width:36px;height:36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.22);
+  color: rgba(255,255,255,0.86);
+  flex:0 0 auto;
+}
+.contactText{display:flex;flex-direction:column;gap:2px;min-width:0}
+.contactLabel{font-size:12px;font-weight:950;color:rgba(255,255,255,0.70)}
+.contactValue{font-size:14px;font-weight:950;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.contactHint{margin-left:auto;font-size:12px;color:rgba(255,255,255,0.62);font-weight:900}
+
+/* Notify modal */
+.modalCard.small{
+  width: min(520px, 100%);
+  max-height: none;
+}
+.notifyHead{padding:16px 16px 6px}
+.notifyTitle{font-weight:1000; font-size:16px; letter-spacing:.2px; margin-bottom:4px}
+.notifyGrid{
+  padding:10px 16px 10px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.checkRow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius: 16px;
+  border:1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  font-weight:900;
+}
+.checkRow input{ width:18px; height:18px; }
+.checkRow.disabled{opacity:.55}
+.notifyActions{
+  padding: 0 16px 16px;
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+}
+.smallText{padding:0 16px 16px; font-size:12px}
+
+/* Modal (shared) */
 .modal{
   position:fixed;
   inset:0;
@@ -736,6 +790,7 @@ input::placeholder{color:rgba(255,255,255,0.55)}
 @media (max-width: 980px){
   .filtersGrid{grid-template-columns: repeat(2, minmax(0,1fr));}
   .podiumRow{grid-template-columns: 1fr 1fr 1fr;}
+  .contactGrid{grid-template-columns: 1fr;}
 }
 
 /* Mobile */
@@ -758,7 +813,7 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   .podiumRow .podium-mid{grid-area:mid}
   .podiumRow .podium-right{grid-area:right}
 
-  /* stop float on mobile to avoid cramped feel */
+  /* stop float on mobile */
   .podiumRow .ugcCard{animation:none}
 
   /* 3 columns on mobile for the main grid */
@@ -767,7 +822,7 @@ input::placeholder{color:rgba(255,255,255,0.55)}
     gap:10px;
   }
 
-  /* Make cards compact on small screens */
+  /* compact cards */
   .body{padding:8px 8px 10px; gap:6px}
   .title{font-size:12px}
   .metaRow{gap:6px; font-size:11px}
@@ -777,7 +832,7 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   .foot{gap:8px}
   .price{padding:5px 8px; font-size:12px}
 
-  .btnOpen, .btnTry{
+  .btnOpen{
     width:36px;
     height:32px;
     padding:0;
@@ -786,12 +841,6 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   }
   .btnOpen::after{
     content:"↗";
-    font-size:14px;
-    position:relative;
-    z-index:2;
-  }
-  .btnTry::after{
-    content:"👤";
     font-size:14px;
     position:relative;
     z-index:2;
