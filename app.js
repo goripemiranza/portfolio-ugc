@@ -920,9 +920,16 @@ async function saveNotifySettings() {
         setNotifyStatus("Email backend not configured (Cloudflare KV + NOTIFY_KEY).");
       } else if (code === "bad_email") {
         showToast("Invalid email");
+        setNotifyStatus("Invalid email.");
+      } else if (code === "bad_json" || code === "bad_content_type" || code === "no_channel") {
+        showToast("Email backend error");
+        setNotifyStatus(`Backend rejected request (${code}).`);
+      } else if (code === "server_error") {
+        showToast("Email backend error");
+        setNotifyStatus("Email backend error. Check NOTIFY_KEY and redeploy.");
       } else {
-        showToast("Email unavailable");
-        setNotifyStatus("Email subscription failed.");
+        showToast("Email subscription failed");
+        setNotifyStatus(`Email subscription failed (${code || "unknown"}).`);
       }
       // keep desktop if enabled, do not close modal
       return;
