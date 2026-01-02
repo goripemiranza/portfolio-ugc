@@ -889,7 +889,6 @@ async function setLike(assetId, like) {
   return j;
 }
 
-}
 
 function saveNotifPrefs() {
   try {
