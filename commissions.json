@@ -1,5 +1,17 @@
 {
-  "updated": "2026-01-02T22:57:04.255723+00:00",
+  "updated": "2026-01-02T22:59:30.854759+00:00",
   "models": [],
-  "textures": []
+  "textures": [
+    "commissions/Texture 1.png",
+    "commissions/Texture 2.png",
+    "commissions/Texture 3.png",
+    "commissions/Texture 4.png",
+    "commissions/Texture 5.png",
+    "commissions/Texture 6.png",
+    "commissions/Texture 7.png",
+    "commissions/Texture 8.png",
+    "commissions/Texture 9.png",
+    "commissions/Texture 10.png",
+    "commissions/Texture 11.png"
+  ]
 }
