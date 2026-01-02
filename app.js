@@ -118,6 +118,11 @@ const STATE = {
   gallery: [],
   commissions: { models: [], textures: [] },
   commMode: "models",
+
+  // Site likes (anonymous per browser)
+  likes: new Map(),        // assetId -> count
+  liked: new Set(),        // assetId set liked by this browser
+  likeUid: null,           // anonymous stable id for this browser
 };
 
 /* View transitions */
@@ -260,8 +265,38 @@ function createUgcCard(item, { featured = false, podiumSlot = null, podiumBadge 
   openBtn.dataset.action = "open";
   openBtn.textContent = "Open";
 
+  // Like button (site likes)
+  const likeBtn = document.createElement("button");
+  likeBtn.type = "button";
+  likeBtn.className = "likeBtn";
+  likeBtn.dataset.action = "like";
+  likeBtn.dataset.assetId = String(item.assetId);
+  likeBtn.setAttribute("aria-label", "Like");
+
+  const likeInner = document.createElement("span");
+  likeInner.className = "likeInner";
+
+  const likeHeart = document.createElement("span");
+  likeHeart.className = "likeHeart";
+  likeHeart.textContent = "♥";
+
+  const likeNum = document.createElement("span");
+  likeNum.className = "likeNum";
+  likeNum.textContent = String(getLikeCount(item.assetId));
+
+  likeInner.appendChild(likeHeart);
+  likeInner.appendChild(likeNum);
+  likeBtn.appendChild(likeInner);
+
+  likeBtn.classList.toggle("liked", isLiked(item.assetId));
+
+  const actions = document.createElement("div");
+  actions.className = "footActions";
+  actions.appendChild(likeBtn);
+  actions.appendChild(openBtn);
+
   foot.appendChild(price);
-  foot.appendChild(openBtn);
+  foot.appendChild(actions);
 
   body.appendChild(title);
   body.appendChild(meta);
@@ -668,6 +703,25 @@ function onClickAction(e) {
     return;
   }
 
+
+  if (action === "like") {
+    const btn = target;
+    const assetId = btn.dataset.assetId || btn.closest("[data-asset-id]")?.dataset.assetId || "";
+    if (!assetId) return;
+
+    const wantLike = !isLiked(assetId);
+
+    // Optimistic UI
+    btn.classList.add("pop");
+    setTimeout(() => btn.classList.remove("pop"), 320);
+
+    // Send to backend
+    setLike(assetId, wantLike).catch((err) => {
+      showToast("Like failed");
+    });
+    return;
+  }
+
   if (action === "open") {
     const card = target.closest("[data-asset-id]");
     const assetId = card?.dataset.assetId;
@@ -739,6 +793,101 @@ function loadNotifPrefs() {
     NOTIF.subId = localStorage.getItem("notif_sub_id") || "";
     NOTIF.lastTs = Number(localStorage.getItem("notif_last_ts") || "0") || 0;
   } catch {}
+
+// ===== Likes prefs (anonymous per browser) =====
+const LS_LIKE_UID = "ugc_like_uid_v1";
+const LS_LIKED_SET = "ugc_liked_set_v1";
+
+function loadLikePrefs() {
+  try {
+    let uid = localStorage.getItem(LS_LIKE_UID);
+    if (!uid) {
+      const buf = new Uint8Array(16);
+      crypto.getRandomValues(buf);
+      uid = Array.from(buf).map((b) => b.toString(16).padStart(2, "0")).join("");
+      localStorage.setItem(LS_LIKE_UID, uid);
+    }
+    STATE.likeUid = uid;
+
+    const raw = localStorage.getItem(LS_LIKED_SET);
+    const arr = raw ? JSON.parse(raw) : [];
+    STATE.liked = new Set(Array.isArray(arr) ? arr.map(String) : []);
+  } catch {
+    STATE.likeUid = STATE.likeUid || "anon";
+    STATE.liked = new Set();
+  }
+}
+
+function saveLikePrefs() {
+  try {
+    localStorage.setItem(LS_LIKED_SET, JSON.stringify(Array.from(STATE.liked)));
+  } catch {}
+}
+
+function getLikeCount(assetId) {
+  return num(STATE.likes.get(String(assetId))) || 0;
+}
+
+function isLiked(assetId) {
+  return STATE.liked.has(String(assetId));
+}
+
+function updateLikeButtons(assetId) {
+  const id = String(assetId);
+  const count = getLikeCount(id);
+  const liked = isLiked(id);
+
+  const btns = document.querySelectorAll(`.likeBtn[data-asset-id="${id}"]`);
+  btns.forEach((b) => {
+    b.classList.toggle("liked", liked);
+    const n = b.querySelector(".likeNum");
+    if (n) n.textContent = String(count);
+  });
+}
+
+async function fetchLikeCounts(ids) {
+  const unique = Array.from(new Set(ids.map(String))).filter(Boolean);
+  if (!unique.length) return;
+
+  // Keep URL small; split in chunks
+  const chunkSize = 120;
+  for (let i = 0; i < unique.length; i += chunkSize) {
+    const part = unique.slice(i, i + chunkSize);
+    const url = `/api/likes?ids=${encodeURIComponent(part.join(","))}&t=${Date.now()}`;
+    const r = await fetch(url, { cache: "no-store" });
+    const j = await r.json().catch(() => null);
+    if (!r.ok || !j?.ok) continue;
+
+    const counts = j.counts || {};
+    for (const k of Object.keys(counts)) {
+      STATE.likes.set(String(k), num(counts[k]) || 0);
+    }
+  }
+}
+
+async function setLike(assetId, like) {
+  const id = String(assetId);
+  const uid = String(STATE.likeUid || "");
+  if (!uid) throw new Error("no_uid");
+
+  const r = await fetch("/api/like", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ assetId: id, uid, like: !!like }),
+  });
+  const j = await r.json().catch(() => null);
+  if (!r.ok || !j?.ok) throw new Error(j?.error || "like_failed");
+
+  STATE.likes.set(id, num(j.count) || 0);
+
+  if (j.liked) STATE.liked.add(id);
+  else STATE.liked.delete(id);
+
+  saveLikePrefs();
+  updateLikeButtons(id);
+  return j;
+}
+
 }
 
 function saveNotifPrefs() {
@@ -976,6 +1125,11 @@ function wireUI() {
     updateFilterActiveUI();
     renderPodium();
     renderUgcGrid();
+
+    // Re-apply counts/classes on newly rendered cards
+    try {
+      STATE.filtered.forEach((x) => updateLikeButtons(x.assetId));
+    } catch {}
   };
 
   ["fCategory", "fType", "fSort"].forEach((id) => on(document.getElementById(id), "change", runFilter));
@@ -1123,6 +1277,15 @@ async function boot() {
   updateFilterActiveUI();
   renderPodium();
   renderUgcGrid();
+  // Likes: fetch counts for all items (async)
+  fetchLikeCounts(STATE.all.map((x) => x.assetId))
+    .then(() => {
+      // Sync visible cards
+      STATE.filtered.forEach((x) => updateLikeButtons(x.assetId));
+      // Podium too
+      computePodium(STATE.all).slice(0, 3).forEach((x) => updateLikeButtons(x.assetId));
+    })
+    .catch(() => {});
 
   // Gallery + Commissions (defer for smoothness)
   setTimeout(async () => {
@@ -1140,6 +1303,7 @@ async function boot() {
 
 document.addEventListener("DOMContentLoaded", () => {
   loadNotifPrefs();
+  loadLikePrefs();
   wireUI();
   hardenClient();
   boot();
