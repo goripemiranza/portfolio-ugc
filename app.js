@@ -794,6 +794,7 @@ function loadNotifPrefs() {
     NOTIF.lastTs = Number(localStorage.getItem("notif_last_ts") || "0") || 0;
   } catch {}
 
+}
 // ===== Likes prefs (anonymous per browser) =====
 const LS_LIKE_UID = "ugc_like_uid_v1";
 const LS_LIKED_SET = "ugc_liked_set_v1";
