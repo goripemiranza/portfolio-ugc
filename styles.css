@@ -693,3 +693,92 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   from{opacity:.0;transform:translateY(-6px)}
   to{opacity:1;transform:none}
 }
+
+
+/* Commission rules button (more visible, centered) */
+.termsAccordion{
+  border:0;
+  background:transparent;
+}
+
+.termsAccordion > summary.termsSummary{
+  width:min(620px, 100%);
+  margin: 10px auto 6px;
+  padding: 16px 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 210, 74, 0.45);
+  background: linear-gradient(135deg, rgba(255, 210, 74, 0.14), rgba(124, 92, 255, 0.10), rgba(49, 208, 170, 0.08));
+  box-shadow: 0 0 0 4px rgba(255, 210, 74, 0.08), 0 18px 55px rgba(0,0,0,0.35);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+/* subtle shine */
+.termsAccordion > summary.termsSummary::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255, 210, 74, 0.25) 40%, rgba(255,255,255,0) 70%);
+  transform: translateX(-120%);
+  transition: transform .55s ease;
+  pointer-events:none;
+}
+.termsAccordion > summary.termsSummary:hover::before{
+  transform: translateX(120%);
+}
+
+.termsSummaryTitle{
+  font-size: 16px;
+  font-weight: 1000;
+  letter-spacing:.2px;
+}
+
+.termsSummaryHint{
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+}
+
+.termsChevron{
+  position:absolute;
+  right: 14px;
+  top: 14px;
+  opacity:.9;
+}
+
+.termsAccordion[open] > summary.termsSummary{
+  border-color: rgba(255, 210, 74, 0.70);
+  box-shadow: 0 0 0 4px rgba(255, 210, 74, 0.12), 0 18px 55px rgba(0,0,0,0.35);
+}
+
+/* Payment block */
+.termsPay{
+  margin-top: 12px;
+  padding: 12px 12px;
+  border-radius: 18px;
+  border: 1px dashed rgba(255, 210, 74, 0.35);
+  background: rgba(255, 210, 74, 0.06);
+}
+
+/* Bottom reminder */
+.termsBottomNote{
+  margin-top: 14px;
+  padding: 12px 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 210, 74, 0.22);
+  background: rgba(255, 210, 74, 0.07);
+}
+.termsBottomTitle{
+  font-weight: 1000;
+  margin-bottom: 6px;
+}
+.termsBottomText{
+  color: rgba(255,255,255,0.86);
+  font-size: 14px;
+  line-height: 1.55;
+}
