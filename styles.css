@@ -855,3 +855,216 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   font-weight: 1000;
   margin: 2px 0 6px;
 }
+
+
+/* Live animated background (CSS only) */
+.bg{
+  position:fixed;
+  inset:-2px;
+  pointer-events:none;
+  opacity:.92;
+  overflow:hidden;
+}
+
+.bg::before,
+.bg::after{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  background:
+    radial-gradient(700px 420px at 15% 25%, rgba(124,92,255,0.32), rgba(0,0,0,0) 60%),
+    radial-gradient(620px 400px at 85% 30%, rgba(49,208,170,0.22), rgba(0,0,0,0) 62%),
+    radial-gradient(900px 600px at 45% 80%, rgba(255,210,74,0.12), rgba(0,0,0,0) 70%);
+  filter: blur(40px);
+  transform: translate3d(0,0,0);
+  will-change: transform;
+  mix-blend-mode: screen;
+  animation: bgFloat1 16s ease-in-out infinite;
+}
+
+.bg::after{
+  opacity:.75;
+  filter: blur(55px);
+  animation: bgFloat2 22s ease-in-out infinite;
+}
+
+@keyframes bgFloat1{
+  0%{ transform: translate3d(-2%, -1%, 0) scale(1.02) rotate(0deg); }
+  50%{ transform: translate3d(2%, 1.5%, 0) scale(1.05) rotate(6deg); }
+  100%{ transform: translate3d(-2%, -1%, 0) scale(1.02) rotate(0deg); }
+}
+
+@keyframes bgFloat2{
+  0%{ transform: translate3d(2%, 1%, 0) scale(1.03) rotate(0deg); }
+  50%{ transform: translate3d(-2%, -1.5%, 0) scale(1.07) rotate(-7deg); }
+  100%{ transform: translate3d(2%, 1%, 0) scale(1.03) rotate(0deg); }
+}
+
+/* Extra subtle sparkle layer */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.18), rgba(0,0,0,0) 60%),
+    radial-gradient(1px 1px at 82% 22%, rgba(255,255,255,0.15), rgba(0,0,0,0) 60%),
+    radial-gradient(1px 1px at 54% 70%, rgba(255,255,255,0.12), rgba(0,0,0,0) 60%),
+    radial-gradient(1px 1px at 26% 76%, rgba(255,255,255,0.10), rgba(0,0,0,0) 60%),
+    radial-gradient(1px 1px at 72% 82%, rgba(255,255,255,0.10), rgba(0,0,0,0) 60%);
+  opacity:.55;
+  animation: sparkleFade 4.8s ease-in-out infinite;
+}
+
+@keyframes sparkleFade{
+  0%,100%{ opacity:.45; }
+  50%{ opacity:.70; }
+}
+
+
+/* Make images feel alive (light, performant) */
+.ugcCard:hover .thumb,
+.galCard:hover .galImg,
+.comCard:hover .comImg{
+  transform: scale(1.03);
+}
+.thumb,
+.galImg,
+.comImg{
+  transition: transform .22s ease, filter .22s ease;
+  will-change: transform;
+}
+.ugcCard:hover .thumb,
+.galCard:hover .galImg,
+.comCard:hover .comImg{
+  filter: saturate(1.05) contrast(1.02);
+}
+
+
+/* Click ripple (added by JS) */
+.ripple{
+  position:absolute;
+  border-radius:999px;
+  transform: translate(-50%,-50%) scale(0);
+  background: rgba(255,255,255,0.35);
+  pointer-events:none;
+  width: 12px;
+  height: 12px;
+  opacity: .9;
+  animation: rippleAnim .65s ease-out forwards;
+  mix-blend-mode: screen;
+}
+
+@keyframes rippleAnim{
+  0%{ transform: translate(-50%,-50%) scale(0); opacity:.85; }
+  100%{ transform: translate(-50%,-50%) scale(18); opacity:0; }
+}
+
+
+/* Legal accordion */
+.legalCard{ margin-top:16px; }
+.legalAccordion{
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.03);
+  overflow:hidden;
+}
+.legalSummary{
+  list-style:none;
+  cursor:pointer;
+  padding: 14px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  user-select:none;
+  background: rgba(255,255,255,0.03);
+  position:relative;
+  overflow:hidden;
+}
+.legalSummary::-webkit-details-marker{display:none;}
+.legalSummary:hover{ background: rgba(255,255,255,0.05); }
+.legalSummary::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(124,92,255,0.18), rgba(255,255,255,0));
+  transform: translateX(-120%);
+  transition: transform .55s ease;
+  pointer-events:none;
+}
+.legalSummary:hover::before{ transform: translateX(120%); }
+
+.legalSummaryTitle{ font-weight:1000; letter-spacing:.2px; }
+.legalSummaryHint{ font-size:12px; color: rgba(255,255,255,0.70); }
+.legalChevron{ opacity:.9; transition: transform .18s ease; }
+.legalAccordion[open] .legalChevron{ transform: rotate(180deg); }
+
+.legalWrap{
+  padding: 14px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+.legalCols{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:12px;
+}
+.legalCol{
+  padding: 12px 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.16);
+}
+.legalH{
+  font-weight: 1000;
+  margin-bottom: 8px;
+}
+.legalP{
+  margin:0 0 10px 0;
+  color: rgba(255,255,255,0.86);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.legalTools{
+  margin-top:12px;
+  padding: 12px 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.16);
+}
+.legalLinks{
+  margin-top:12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.legalLink{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.92);
+  text-decoration:none;
+  font-weight: 950;
+  font-size: 13px;
+  transition: transform .14s ease, background .14s ease, border-color .14s ease;
+}
+.legalLink:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(124,92,255,0.42);
+}
+.legalLink:active{ transform: translateY(0px) scale(.99); }
+
+.legalFine{
+  margin-top: 10px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.68);
+}
+
+@media (max-width: 820px){
+  .legalCols{ grid-template-columns: 1fr; }
+}
