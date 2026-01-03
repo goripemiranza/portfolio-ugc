@@ -782,3 +782,76 @@ input::placeholder{color:rgba(255,255,255,0.55)}
   font-size: 14px;
   line-height: 1.55;
 }
+
+
+/* Commission request button */
+.requestAccordion{
+  margin-top: 12px;
+  border: 0;
+  background: transparent;
+}
+.requestAccordion > summary.requestSummary{
+  width: min(620px, 100%);
+  margin: 0 auto 6px;
+  padding: 16px 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(124, 92, 255, 0.55);
+  background: linear-gradient(135deg, rgba(124, 92, 255, 0.18), rgba(49, 208, 170, 0.10), rgba(255, 210, 74, 0.06));
+  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.10), 0 18px 55px rgba(0,0,0,0.35);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.requestAccordion > summary.requestSummary::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(124, 92, 255, 0.22) 40%, rgba(255,255,255,0) 70%);
+  transform: translateX(-120%);
+  transition: transform .55s ease;
+  pointer-events:none;
+}
+.requestAccordion > summary.requestSummary:hover::before{ transform: translateX(120%); }
+.requestSummaryTitle{ font-size:16px; font-weight:1000; letter-spacing:.2px; }
+.requestSummaryHint{ font-size:12px; color: rgba(255,255,255,0.75); }
+.requestChevron{
+  position:absolute;
+  right:14px;
+  top:14px;
+  opacity:.9;
+  transform: translateY(1px);
+  transition: transform .18s ease;
+}
+.requestAccordion[open] .requestChevron{ transform: rotate(180deg); }
+.requestAccordion[open] > summary.requestSummary{
+  border-color: rgba(124, 92, 255, 0.80);
+  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.14), 0 18px 55px rgba(0,0,0,0.35);
+}
+
+.requestWrap{
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.03);
+}
+
+.requestNote{
+  padding: 12px 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 210, 74, 0.22);
+  background: rgba(255, 210, 74, 0.06);
+  margin-bottom: 12px;
+}
+.requestNoteTitle{ font-weight: 1000; margin-bottom: 6px; }
+.requestNoteText{ color: rgba(255,255,255,0.88); font-size: 14px; line-height: 1.55; }
+
+.requestBlockTitle{
+  font-weight: 1000;
+  margin: 2px 0 6px;
+}
