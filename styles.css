@@ -599,3 +599,29 @@ input::placeholder{color:rgba(255,255,255,0.55)}
 .termsList{margin:12px 0 0 0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:8px}
 .termsList li{color:rgba(255,255,255,.86);font-size:14px;line-height:1.4}
 .termsList b{color:rgba(255,255,255,.95)}
+
+
+/* Commission terms (enhanced) */
+.termsWrap{margin-top:12px;display:flex;flex-direction:column;gap:14px}
+.termsHero{border-radius:16px;padding:14px 14px;background:linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.14)}
+.termsHeroTitle{font-weight:800;letter-spacing:.2px;font-size:15px;color:rgba(255,255,255,.96);margin-bottom:8px}
+.termsHeroText p{margin:0 0 8px 0;color:rgba(255,255,255,.86);font-size:14px;line-height:1.5}
+.termsHeroText p:last-child{margin-bottom:0}
+
+.termsBlock{border-radius:16px;padding:14px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10)}
+.termsWarn{border-radius:16px;padding:14px 14px;background:rgba(255, 209, 102, .10);border:1px solid rgba(255, 209, 102, .26)}
+.termsH3{margin:0 0 10px 0;font-size:15px;font-weight:850;color:rgba(255,255,255,.96)}
+.termsP{margin:0 0 10px 0;color:rgba(255,255,255,.86);font-size:14px;line-height:1.5}
+.termsP:last-child{margin-bottom:0}
+.termsMiniTitle{margin:10px 0 8px 0;color:rgba(255,255,255,.92);font-weight:750;font-size:13px}
+
+.termsBullets{margin:0 0 0 0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:8px}
+.termsBullets li{color:rgba(255,255,255,.86);font-size:14px;line-height:1.45}
+.termsBullets b{color:rgba(255,255,255,.96)}
+
+/* Mobile spacing */
+@media (max-width: 560px){
+  .termsHero,.termsBlock,.termsWarn{padding:12px}
+  .termsHeroTitle,.termsH3{font-size:14px}
+  .termsHeroText p,.termsBullets li,.termsP{font-size:13.5px}
+}
