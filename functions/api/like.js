@@ -1,8 +1,9 @@
+// /functions/api/like.js
+// Global likes (visible to everyone) stored in Cloudflare KV (binding: NOTIFY_KV)
+
 export async function onRequestPost({ request, env }) {
   const kv = env?.NOTIFY_KV;
-  const secret = env?.NOTIFY_KEY;
-
-  if (!kv || !secret) return json({ ok: false, error: "backend_not_configured" }, 500);
+  if (!kv) return json({ ok: false, error: "kv_not_configured" }, 500);
 
   const body = await request.json().catch(() => null);
   if (!body) return json({ ok: false, error: "bad_json" }, 400);
@@ -12,32 +13,37 @@ export async function onRequestPost({ request, env }) {
   const wantLike = !!body.like;
 
   if (!assetId || !/^\d+$/.test(assetId)) return json({ ok: false, error: "bad_asset" }, 400);
-  if (!uid) return json({ ok: false, error: "bad_uid" }, 400);
+  if (!uid || uid.length > 80) return json({ ok: false, error: "bad_uid" }, 400);
 
-  const uidHash = await hmacId(secret, uid);
-  const likedKey = `liked:${assetId}:${uidHash}`;
   const countKey = `likes:${assetId}`;
+  const userKey = `liked:${uid}:${assetId}`;
 
-  const already = await kv.get(likedKey);
-  let count = parseInt((await kv.get(countKey)) || "0", 10);
-  if (!Number.isFinite(count) || count < 0) count = 0;
+  // Read current state
+  const [countRaw, already] = await Promise.all([kv.get(countKey), kv.get(userKey)]);
+  let count = toInt(countRaw);
 
   if (wantLike) {
     if (!already) {
+      // Mark liked for this browser uid (prevents double-like from the same device)
+      await kv.put(userKey, "1", { expirationTtl: 60 * 60 * 24 * 365 });
       count = count + 1;
       await kv.put(countKey, String(count));
-      await kv.put(likedKey, "1", { expirationTtl: 60 * 60 * 24 * 365 });
     }
-    return json({ ok: true, liked: true, count });
+    return json({ ok: true, assetId, count, liked: true });
   }
 
-  // unlike
+  // Unlike
   if (already) {
+    await kv.delete(userKey);
     count = Math.max(0, count - 1);
     await kv.put(countKey, String(count));
-    await kv.delete(likedKey);
   }
-  return json({ ok: true, liked: false, count });
+  return json({ ok: true, assetId, count, liked: false });
+}
+
+function toInt(v) {
+  const n = parseInt(String(v ?? "0"), 10);
+  return Number.isFinite(n) ? n : 0;
 }
 
 function json(obj, status = 200) {
@@ -48,35 +54,4 @@ function json(obj, status = 200) {
       "cache-control": "no-store",
     },
   });
-}
-
-// HMAC id from secret + message (accept any secret format)
-async function hmacId(secret, msg) {
-  const keyBytes = await deriveKeyBytes(secret);
-  const key = await crypto.subtle.importKey("raw", keyBytes, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
-  const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(msg));
-  return b64url(sig).slice(0, 22);
-}
-
-async function deriveKeyBytes(secret) {
-  const s = String(secret || "").trim();
-
-  // Try base64 decode first
-  try {
-    const raw = atob(s);
-    const out = new Uint8Array(raw.length);
-    for (let i = 0; i < raw.length; i++) out[i] = raw.charCodeAt(i);
-    if (out.length >= 16) return out; // ok
-  } catch {}
-
-  // Fallback: hash string => 32 bytes
-  const dig = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s || "fallback"));
-  return new Uint8Array(dig);
-}
-
-function b64url(buf) {
-  const bytes = new Uint8Array(buf);
-  let s = "";
-  for (let i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]);
-  return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
 }
