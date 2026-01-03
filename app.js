@@ -852,9 +852,10 @@ async function fetchLikeCounts(ids) {
 
   // Keep URL small; split in chunks
   const chunkSize = 120;
-  for (let i = 0; i < unique.length; i += chunkSize) {
+    const uidEnc = encodeURIComponent(String(STATE.likeUid || ""));
+for (let i = 0; i < unique.length; i += chunkSize) {
     const part = unique.slice(i, i + chunkSize);
-    const url = `/api/likes?ids=${encodeURIComponent(part.join(","))}&t=${Date.now()}`;
+    const url = `/api/likes?ids=${encodeURIComponent(part.join(","))}&uid=${uidEnc}&t=${Date.now()}`;
     const r = await fetch(url, { cache: "no-store" });
     const j = await r.json().catch(() => null);
     if (!r.ok || !j?.ok) continue;
@@ -862,6 +863,14 @@ async function fetchLikeCounts(ids) {
     const counts = j.counts || {};
     for (const k of Object.keys(counts)) {
       STATE.likes.set(String(k), num(counts[k]) || 0);
+    }
+    const likedMap = j.liked || null;
+    if (likedMap) {
+      for (const k of Object.keys(likedMap)) {
+        if (likedMap[k]) STATE.liked.add(String(k));
+        else STATE.liked.delete(String(k));
+      }
+      saveLikePrefs();
     }
   }
 }
@@ -1301,11 +1310,45 @@ async function boot() {
   }, 0);
 }
 
+/* Ripple effects (lightweight) */
+function initRipples() {
+  const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) return;
+
+  document.addEventListener("pointerdown", (e) => {
+    const el = e.target.closest("button, a");
+    if (!el) return;
+
+    // Only for visible, clickable elements
+    const rect = el.getBoundingClientRect();
+    if (rect.width < 18 || rect.height < 18) return;
+
+    // Ensure containment
+    const cs = getComputedStyle(el);
+    if (cs.position === "static") el.style.position = "relative";
+    if (cs.overflow === "visible") el.style.overflow = "hidden";
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const r = document.createElement("span");
+    r.className = "ripple";
+    r.style.left = `${x}px`;
+    r.style.top = `${y}px`;
+
+    el.appendChild(r);
+
+    // cleanup
+    r.addEventListener("animationend", () => r.remove(), { once: true });
+  }, { passive: true });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   loadNotifPrefs();
   loadLikePrefs();
   wireUI();
   hardenClient();
+  initRipples();
   boot();
 
   // Baseline (no toast), then auto-refresh loop.
