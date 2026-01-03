@@ -101,9 +101,9 @@ function fmtRobux(price) {
 function plural(n, one, many) { return n === 1 ? one : many; }
 
 async function fetchJson(path, { optional = false } = {}) {
-  const url = `${path}${path.includes("?") ? "&" : "?"}v=${Date.now()}`;
+  // Performance: allow HTTP caching + revalidation (fast 304), no cache-busting query.
   try {
-    const r = await fetch(url, { cache: "no-store" });
+    const r = await fetch(path, { cache: "no-cache" });
     if (!r.ok) throw new Error(`${path} HTTP ${r.status}`);
     return await r.json();
   } catch (e) {
@@ -201,7 +201,7 @@ function setPodiumSlotClass(card, slot) {
 function createPodiumBadge(kind) {
   const b = document.createElement("div");
   b.className = `podiumBadge ${kind}`;
-  if (kind === "new") b.textContent = "NEW • #1";
+  if (kind === "new") b.textContent = "NEW";
   if (kind === "rank2") b.textContent = "2";
   if (kind === "rank3") b.textContent = "3";
   return b;
@@ -231,7 +231,11 @@ function createUgcCard(item, { featured = false, podiumSlot = null, podiumBadge 
 
   const img = document.createElement("img");
   img.className = "thumb";
-  img.loading = "lazy";
+  const isPodium = Boolean(podiumSlot);
+  img.loading = isPodium ? "eager" : "lazy";
+  img.decoding = "async";
+  try { if (isPodium && "fetchPriority" in img) img.fetchPriority = "high"; } catch (_) {}
+
   img.alt = item.name || "UGC";
   img.src = item.thumb || FALLBACK_THUMB(item.assetId);
   img.draggable = false;
@@ -1316,8 +1320,9 @@ async function boot() {
   updateFilterActiveUI();
   renderPodium();
   renderUgcGrid();
-  // Likes: fetch counts for all items (async)
-  fetchLikeCounts(STATE.all.map((x) => x.assetId))
+  // Likes: fetch counts for all items (async, idle)
+  scheduleIdle(() => {
+    fetchLikeCounts(STATE.all.map((x) => x.assetId))
     .then(() => {
       // Sync visible cards
       STATE.filtered.forEach((x) => updateLikeButtons(x.assetId));
@@ -1325,20 +1330,31 @@ async function boot() {
       computePodium(STATE.all).slice(0, 3).forEach((x) => updateLikeButtons(x.assetId));
     })
     .catch(() => {});
+  });
 
   // Gallery + Commissions (defer for smoothness)
-  setTimeout(async () => {
+  scheduleIdle(async () => {
     const gal = await fetchJson(FILES.gallery, { optional: true });
     STATE.gallery = Array.isArray(gal) ? gal : (Array.isArray(gal?.images) ? gal.images : []);
     renderGallery();
-  }, 0);
+  }, 1200);
 
-  setTimeout(async () => {
+  scheduleIdle(async () => {
     const comRaw = await fetchJson(FILES.commissions, { optional: true });
     STATE.commissions = normalizeCommissionJson(comRaw);
     renderCommissions();
-  }, 0);
+  }, 1400);
 }
+
+function scheduleIdle(fn, timeout = 1200) {
+  const ric = window.requestIdleCallback;
+  if (typeof ric === "function") {
+    ric(() => fn(), { timeout });
+  } else {
+    setTimeout(fn, 0);
+  }
+}
+
 
 /* Ripple effects (lightweight) */
 function initRipples() {
