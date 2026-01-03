@@ -34,153 +34,110 @@
 
       <!-- VIEW: UGC -->
       <section class="view active" id="view-ugc">
-        <div class="card">
+                <div class="card">
           <div class="cardHead">
             <div>
-              <h2 class="h2">Podium</h2>
-              <div class="muted">Latest 3 UGC on sale.</div>
-            </div>
-            <div class="muted" id="podiumHint">—</div>
-          </div>
-
-          <div class="podiumRow" id="podiumRow"></div>
-          <div class="empty muted" id="podiumEmpty" hidden>No items.</div>
-        </div>
-
-        <div class="card">
-          <div class="filtersGrid">
-            <div class="control">
-              <div class="label">Category</div>
-              <select id="fCategory" aria-label="Category"></select>
-            </div>
-            <div class="control">
-              <div class="label">Type</div>
-              <select id="fType" aria-label="Type"></select>
-            </div>
-            <div class="control">
-              <div class="label">Sort</div>
-              <select id="fSort" aria-label="Sort">
-                <option value="new">Newest</option>
-                <option value="old">Oldest</option>
-                <option value="fav">Favorites ↓</option>
-                <option value="price_desc">Price ↓</option>
-                <option value="price_asc">Price ↑</option>
-              </select>
-            </div>
-            <div class="control">
-              <div class="label">Search</div>
-              <input id="fSearch" class="allowSelect" type="search" placeholder="Name / ID..." autocomplete="off" />
-            </div>
-          </div>
-        </div>
-
-        <div class="sectionHead">
-          <h2 class="h2">All UGC</h2>
-          <div class="muted" id="ugcCount">—</div>
-        </div>
-
-        <div class="ugcGrid" id="ugcGrid"></div>
-        <div class="empty muted" id="ugcEmpty" hidden>No results.</div>
-
-        <div class="footInfo muted" id="updateInfo"></div>
-      </section>
-
-      <!-- VIEW: GALLERY -->
-      <section class="view" id="view-gallery">
-        <div class="card">
-          <div class="cardHead">
-            <div>
-              <h2 class="h2">Gallery</h2>
-              <div class="muted">Images only.</div>
-            </div>
-            <div class="muted" id="galleryCount">—</div>
-          </div>
-
-          <div class="galleryGrid" id="galleryGrid"></div>
-          <div class="empty muted" id="galleryEmpty" hidden>No images.</div>
-        </div>
-      </section>
-
-      <!-- VIEW: COMMISSIONS -->
-      <section class="view" id="view-commissions">
-        <div class="card">
-          <div class="cardHead">
-            <div>
-              <h2 class="h2">Commissions</h2>
-              <div class="muted">Models / Textures.</div>
-            </div>
-
-            <div class="seg" role="tablist" aria-label="Commissions">
-              <button class="segBtn active" type="button" data-comm="models" role="tab" aria-selected="true">Models</button>
-              <button class="segBtn" type="button" data-comm="textures" role="tab" aria-selected="false">Textures</button>
+              <h2 class="h2">📜 Règlement de commission</h2>
+              <div class="muted">Merci de lire avant toute demande.</div>
             </div>
           </div>
 
-          <div class="commissionGrid" id="commissionGrid"></div>
-          <div class="empty muted" id="commissionEmpty" hidden>No images.</div>
-        </div>
-
-        <!-- CONTACT -->
-        <div class="card">
-          <div class="cardHead">
-            <div>
-              <h2 class="h2">Contact</h2>
-              <div class="muted">Click to copy / open.</div>
-            </div>
-          </div>
-
-          <div class="contactGrid" id="contactGrid">
-            <button class="contactItem" type="button" data-action="copy-discord" data-copy="mimiugc_offi">
-              <span class="contactIcon" aria-hidden="true">
-                <!-- Discord -->
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
-                  <path d="M9.2 7.2c.9-.4 1.9-.7 2.8-.7s1.9.2 2.8.7l.3-.6c.9.3 1.8.7 2.6 1.2 1.6 2.2 2.2 4.7 2.1 7.2-1 .8-2.2 1.5-3.5 1.9l-.8-1.3c.4-.2.8-.4 1.2-.6-.3-.2-.6-.4-.8-.6-2.7 1.3-5.7 1.3-8.4 0-.3.2-.6.4-.8.6.4.2.8.4 1.2.6l-.8 1.3c-1.3-.4-2.5-1.1-3.5-1.9-.2-2.5.5-5 2.1-7.2.8-.5 1.7-.9 2.6-1.2l.3.6Z" stroke="currentColor" stroke-width="1.6" />
-                  <path d="M9.6 14.2c.6 0 1-.5 1-1.1s-.4-1.1-1-1.1-1 .5-1 1.1.4 1.1 1 1.1Zm4.8 0c.6 0 1-.5 1-1.1s-.4-1.1-1-1.1-1 .5-1 1.1.4 1.1 1 1.1Z" fill="currentColor"/>
-                </svg>
-              </span>
-
-              <div class="contactText">
-                <div class="contactLabel">Discord</div>
-                <div class="contactValue">mimiugc_offi</div>
+          <div class="termsWrap allowSelect">
+            <div class="termsHero">
+              <div class="termsHeroTitle">📌 Règles à respecter avant toute demande de commission</div>
+              <div class="termsHeroText">
+                <p>Avant de commencer toute commission, merci de lire attentivement et de respecter scrupuleusement les consignes ci-dessous, avant d’aborder toute création liée à votre demande.</p>
+                <p><b>Toute demande de commission implique l’acceptation complète de ces règles.</b></p>
               </div>
+            </div>
 
-              <span class="contactHint">Copy</span>
-            </button>
+            <div class="termsBlock">
+              <h3 class="termsH3">💰 Tarifs de base</h3>
+              <ul class="termsBullets">
+                <li><b>Commission basique (ex : UGC, modèle 3D simple) :</b> 6 000 Robux</li>
+                <li><b>Commission complexe (ex : structure, I-Poly, texture complexe) :</b> 12 000 Robux</li>
+              </ul>
+            </div>
 
-            <button class="contactItem" type="button" data-action="open-roblox-profile" data-username="lulu8203">
-              <span class="contactIcon" aria-hidden="true">
-                <!-- Roblox -->
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
-                  <path d="M5.3 3.9 20.1 5.3 18.7 20.1 3.9 18.7 5.3 3.9Z" stroke="currentColor" stroke-width="1.6"/>
-                  <path d="M10.1 10.1h3.8v3.8h-3.8v-3.8Z" stroke="currentColor" stroke-width="1.6"/>
-                </svg>
-              </span>
+            <div class="termsBlock">
+              <h3 class="termsH3">🎨 Ajustements et personnalisation</h3>
 
-              <div class="contactText">
-                <div class="contactLabel">Roblox</div>
-                <div class="contactValue">@lulu8203</div>
-              </div>
+              <div class="termsMiniTitle">Le prix peut augmenter fortement selon :</div>
+              <ul class="termsBullets">
+                <li>le travail demandé,</li>
+                <li>le niveau de personnalisation,</li>
+                <li>les modifications ajoutées en cours de réalisation (changements, retouches, ajouts).</li>
+              </ul>
 
-              <span class="contactHint">Open</span>
-            </button>
-          </div>
-        </div>
-      
-        <div class="card">
-          <div class="cardHead">
-            <div>
-              <h2 class="h2">Commission Terms</h2>
-              <div class="muted">Please read before ordering.</div>
+              <div class="termsMiniTitle">Pour éviter des frais d’ajustement supplémentaires :</div>
+              <ul class="termsBullets">
+                <li>merci d’être le plus descriptif possible dès le départ,</li>
+                <li>et de fournir des indications claires sur ce que vous souhaitez.</li>
+              </ul>
+            </div>
+
+            <div class="termsBlock">
+              <h3 class="termsH3">📦 Bundles et commandes multiples</h3>
+              <p class="termsP">Pour des bundles ou des réalisations 3D multiples, le prix peut varier entre <b>7 000 Robux</b> et <b>30 000 Robux</b>.</p>
+
+              <div class="termsMiniTitle">Plusieurs facteurs sont pris en compte :</div>
+              <ul class="termsBullets">
+                <li>la qualité et la complexité du modèle,</li>
+                <li>le style demandé (low-poly ou high-poly),</li>
+                <li>la qualité et la complexité de la texture,</li>
+                <li>le temps total de travail nécessaire.</li>
+              </ul>
+            </div>
+
+            <div class="termsBlock">
+              <h3 class="termsH3">⏳ Délais et organisation du travail</h3>
+
+              <p class="termsP">Le délai de réalisation (deadline) n’est pas imposé par le client.</p>
+              <p class="termsP">La deadline est définie uniquement par le créateur, selon :</p>
+
+              <ul class="termsBullets">
+                <li>la complexité du modèle,</li>
+                <li>la texture demandée,</li>
+                <li>le nombre de triangles,</li>
+                <li>la charge de travail en cours.</li>
+              </ul>
+
+              <p class="termsP">Une deadline vous sera annoncée par le créateur une fois votre demande évaluée.</p>
+            </div>
+
+            <div class="termsWarn">
+              <h3 class="termsH3">⚠️ Conditions strictes : négociation et remboursement</h3>
+              <p class="termsP">Avant de proposer une commission, merci de lire et respecter toutes les informations indiquées.</p>
+
+              <div class="termsMiniTitle">Une fois la commission acceptée :</div>
+              <ul class="termsBullets">
+                <li><b>aucun remboursement ne sera possible,</b></li>
+                <li><b>aucune négociation ne sera acceptée.</b></li>
+              </ul>
+            </div>
+
+            <div class="termsBlock">
+              <h3 class="termsH3">✅ Informations obligatoires à fournir dans votre demande</h3>
+              <p class="termsP">Pour que votre demande soit acceptée, vous devez fournir au minimum :</p>
+
+              <ul class="termsBullets">
+                <li>le type de modèle souhaité (Hi-poly ou Low-poly),</li>
+                <li>le style visuel (ex : cartoon, réaliste, etc.),</li>
+                <li>le type de texture attendu,</li>
+                <li>des références visuelles (images) pour appuyer la création.</li>
+              </ul>
+
+              <div class="termsMiniTitle">En cas d’informations manquantes :</div>
+              <ul class="termsBullets">
+                <li>le créateur pourra être amené à vous poser des questions complémentaires.</li>
+              </ul>
+
+              <div class="termsMiniTitle">Si le manque d’informations est trop important :</div>
+              <ul class="termsBullets">
+                <li>la demande de commission pourra être refusée.</li>
+              </ul>
             </div>
           </div>
-
-          <ul class="termsList allowSelect">
-            <li><b>References required:</b> send clear references + style you want.</li>
-            <li><b>Delivery time:</b> depends on complexity (you will get an ETA before we start).</li>
-            <li><b>Revisions:</b> small tweaks included, major changes may cost extra.</li>
-            <li><b>Payment:</b> upfront or 50/50 (agreed before work starts).</li>
-            <li><b>Rights:</b> no re-sale / no re-upload. Credit required when used.</li>
-          </ul>
         </div>
 </section>
 
