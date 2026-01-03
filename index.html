@@ -228,38 +228,51 @@
             </div>
           </details>
 
+          <details class="requestAccordion" id="commissionRequest">
+            <summary class="requestSummary">
+              <span class="requestSummaryTitle">📝 Demande de commission</span>
+              <span class="requestSummaryHint">Clique pour demander</span>
+              <span class="requestChevron" aria-hidden="true">▾</span>
+            </summary>
+
+            <div class="requestWrap allowSelect">
+              <div class="requestNote">
+                <div class="requestNoteTitle">⚠️ Important</div>
+                <div class="requestNoteText">
+                  Avant toute demande, merci de lire <b>scrupuleusement</b> le <b>Règlement de Commission</b> ci-dessus.<br/>
+                  <b>Tout manque d'information suspendra la demande de commission en cours.</b>
+                </div>
+              </div>
+
+              <div class="requestBlock">
+                <div class="requestBlockTitle">📩 Contact</div>
+                <div class="muted">Clique sur Discord pour copier • Clique sur Roblox pour ouvrir le profil.</div>
+
+                <div class="contactGrid" id="contactGrid">
+                  <button class="contactItem" type="button" data-action="copy-discord" data-copy="mimiugc_offi">
+                    <span class="contactIcon" aria-hidden="true">💬</span>
+                    <div class="contactText">
+                      <div class="contactLabel">Discord</div>
+                      <div class="contactValue">mimiugc_offi</div>
+                    </div>
+                    <span class="contactHint">Copy</span>
+                  </button>
+
+                  <button class="contactItem" type="button" data-action="open-roblox-profile" data-username="lulu8203">
+                    <span class="contactIcon" aria-hidden="true">🧱</span>
+                    <div class="contactText">
+                      <div class="contactLabel">Roblox</div>
+                      <div class="contactValue">@lulu8203</div>
+                    </div>
+                    <span class="contactHint">Open</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </details>
+
           <div class="commissionGrid" id="commissionGrid"></div>
           <div class="empty muted" id="commissionEmpty" hidden>No images.</div>
-        </div>
-
-        <!-- CONTACT -->
-        <div class="card">
-          <div class="cardHead">
-            <div>
-              <h2 class="h2">Contact</h2>
-              <div class="muted">Click to copy / open.</div>
-            </div>
-          </div>
-
-          <div class="contactGrid" id="contactGrid">
-            <button class="contactItem" type="button" data-action="copy-discord" data-copy="mimiugc_offi">
-              <span class="contactIcon" aria-hidden="true">💬</span>
-              <div class="contactText">
-                <div class="contactLabel">Discord</div>
-                <div class="contactValue">mimiugc_offi</div>
-              </div>
-              <span class="contactHint">Copy</span>
-            </button>
-
-            <button class="contactItem" type="button" data-action="open-roblox-profile" data-username="lulu8203">
-              <span class="contactIcon" aria-hidden="true">🧱</span>
-              <div class="contactText">
-                <div class="contactLabel">Roblox</div>
-                <div class="contactValue">@lulu8203</div>
-              </div>
-              <span class="contactHint">Open</span>
-            </button>
-          </div>
         </div>
 </section>
 
