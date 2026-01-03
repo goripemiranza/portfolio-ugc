@@ -133,14 +133,41 @@ function setActiveView(name) {
   $$(".tabBtn").forEach((b) => b.classList.toggle("active", b.dataset.view === name));
 
   const current = $(".view.active");
-  if (current && current !== next) {
-    current.classList.add("leaving");
-    setTimeout(() => current.classList.remove("active", "leaving"), 230);
-  }
+  if (current === next) return;
 
-  next.classList.add("active", "entering");
-  setTimeout(() => next.classList.remove("entering"), 230);
+  const showNext = () => {
+    next.classList.add("active", "entering");
+    setTimeout(() => next.classList.remove("entering"), 330);
+  };
+
+  if (current) {
+    current.classList.add("leaving");
+    setTimeout(() => {
+      current.classList.remove("active", "leaving");
+      showNext();
+    }, 260);
+  } else {
+    showNext();
+  }
 }
+
+function jumpToLegal() {
+  const active = document.querySelector(".view.active");
+  if (!active) return;
+
+  const card = active.querySelector(".legalCard") || active.querySelector(".legalAccordion");
+  const details = active.querySelector(".legalAccordion");
+  if (details) details.open = true;
+
+  if (card && card.scrollIntoView) {
+    card.scrollIntoView({ behavior: "smooth", block: "end" });
+    try {
+      card.classList.add("legalFlash");
+      setTimeout(() => card.classList.remove("legalFlash"), 900);
+    } catch {}
+  }
+}
+
 
 /* Scroll reveal */
 let REVEAL_OBS = null;
@@ -174,7 +201,7 @@ function setPodiumSlotClass(card, slot) {
 function createPodiumBadge(kind) {
   const b = document.createElement("div");
   b.className = `podiumBadge ${kind}`;
-  if (kind === "new") b.textContent = "NEW";
+  if (kind === "new") b.textContent = "NEW • #1";
   if (kind === "rank2") b.textContent = "2";
   if (kind === "rank3") b.textContent = "3";
   return b;
@@ -1115,6 +1142,9 @@ function wireUI() {
     if (!b.dataset.view) return;
     on(b, "click", () => setActiveView(b.dataset.view));
   });
+
+  // Legal jump
+  on($("#btnLegal"), "click", () => jumpToLegal());
 
   // Refresh
   on($("#btnRefresh"), "click", () => boot());
