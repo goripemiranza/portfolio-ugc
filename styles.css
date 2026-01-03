@@ -1140,3 +1140,11 @@ body::before{
   content-visibility: auto;
   contain-intrinsic-size: 320px 420px;
 }
+
+
+/* Performance: skip rendering offscreen cards (faster on low-end devices) */
+.ugcCard, .galCard, .comCard{
+  content-visibility: auto;
+  contain-intrinsic-size: 340px 420px;
+  contain: layout paint style;
+}
