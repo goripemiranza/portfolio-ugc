@@ -70,6 +70,21 @@ body{
 
 .brand{display:flex;align-items:center;gap:12px;min-width:220px}
 .dot{width:12px;height:12px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 0 4px rgba(124,92,255,0.15)}
+
+/* Header logo (original SVG, safe to use) */
+.logo{
+  width:36px;
+  height:36px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.18);
+  box-shadow: 0 0 0 4px rgba(124,92,255,0.10);
+  flex:0 0 auto;
+}
+.logo svg{display:block}
 .brandTitle{font-weight:950;letter-spacing:.2px}
 .brandSub{color:var(--muted);font-size:12px}
 
