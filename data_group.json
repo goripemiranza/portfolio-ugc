@@ -1,6 +1,6 @@
 {
-  "updated": "2026-01-04T23:55:04Z",
-  "generatedAt": "2026-01-04T23:55:04Z",
+  "updated": "2026-01-05T04:39:35Z",
+  "generatedAt": "2026-01-05T04:39:35Z",
   "items": [
     {
       "assetId": 130160862337869,
@@ -9,16 +9,16 @@
       "price": 50,
       "created": "2025-12-30T22:24:06.7253312Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-5aa6030dd33104a0466dfb9cfa4ebdbe/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 459
+      "favorites": 616
     },
     {
       "assetId": 131304231036878,
       "name": "Woman face with brown makeup and blue eyes",
       "type": "FaceAccessory",
       "price": 90,
-      "created": "2025-12-30T03:42:09.0122874Z",
+      "created": "2025-12-30T03:42:09.013Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e4fa529bce63b3d3c9303609f1f229ee/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 138
+      "favorites": 166
     },
     {
       "assetId": 93774719738585,
@@ -243,7 +243,7 @@
       "price": 50,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-03ef2793c2cf539d177478f3eac5326e/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 3999
+      "favorites": 4000
     },
     {
       "assetId": 73886642022932,
