@@ -164,7 +164,7 @@ function jumpToLegal() {
     try {
       card.classList.add("legalFlash");
       setTimeout(() => card.classList.remove("legalFlash"), 900);
-    } catch {}
+    } catch (e) { console.warn("[Silent error]", e); }
   }
 }
 
@@ -398,7 +398,7 @@ function getFilters() {
 
 function updateFilterActiveUI() {
   const set = (el, active) => {
-    const c = el?.closest?.(".control");
+    const c = el?.closest(".control");
     if (c) c.classList.toggle("active", !!active);
   };
   const catEl = $("#fCategory");
@@ -440,7 +440,7 @@ function renderUgcGrid() {
   const empty = $("#ugcEmpty");
   if (!grid || !empty) return;
 
-  grid.innerHTML = "";
+  grid.replaceChildren();
 
   const items = STATE.filtered;
   $("#ugcCount").textContent = `${items.length} ${plural(items.length, "item", "items")}`;
@@ -491,7 +491,7 @@ function renderGallery() {
   const empty = $("#galleryEmpty");
   if (!grid || !empty) return;
 
-  grid.innerHTML = "";
+  grid.replaceChildren();
 
   const items = STATE.gallery || [];
   $("#galleryCount").textContent = `${items.length} ${plural(items.length, "image", "images")}`;
@@ -607,7 +607,7 @@ function renderCommissions() {
   const empty = $("#commissionEmpty");
   if (!grid || !empty) return;
 
-  grid.innerHTML = "";
+  grid.replaceChildren();
   const list = STATE.commissions[STATE.commMode] || [];
 
   if (!list.length) {
@@ -715,7 +715,7 @@ async function copyText(text) {
     ta.style.left = "-9999px";
     document.body.appendChild(ta);
     ta.select();
-    try { document.execCommand("copy"); showToast("Copied ✅"); } catch { showToast("Copy blocked"); }
+    try { document.execCommand("copy"); showToast("Copied ✅"); } catch (e) { console.warn("[execCommand deprecated]", e); showToast("Copy blocked"); }
     document.body.removeChild(ta);
   }
 }
@@ -748,6 +748,7 @@ function onClickAction(e) {
 
     // Send to backend
     setLike(assetId, wantLike).catch((err) => {
+      console.warn("[Like error]", err);
       showToast("Like failed");
     });
     return;
@@ -823,7 +824,7 @@ function loadNotifPrefs() {
     NOTIF.email = localStorage.getItem("notif_email") === "1";
     NOTIF.subId = localStorage.getItem("notif_sub_id") || "";
     NOTIF.lastTs = Number(localStorage.getItem("notif_last_ts") || "0") || 0;
-  } catch {}
+  } catch (e) { console.warn("[Silent error]", e); }
 
 }
 // ===== Likes prefs (anonymous per browser) =====
@@ -853,7 +854,7 @@ function loadLikePrefs() {
 function saveLikePrefs() {
   try {
     localStorage.setItem(LS_LIKED_SET, JSON.stringify(Array.from(STATE.liked)));
-  } catch {}
+  } catch (e) { console.warn("[Silent error]", e); }
 }
 
 function getLikeCount(assetId) {
@@ -869,7 +870,7 @@ function updateLikeButtons(assetId) {
   const count = getLikeCount(id);
   const liked = isLiked(id);
 
-  const btns = document.querySelectorAll(`.likeBtn[data-asset-id="${id}"]`);
+  const btns = document.querySelectorAll(`.likeBtn[data-asset-id="${CSS.escape ? CSS.escape(String(id)) : id}"]`);
   btns.forEach((b) => {
     b.classList.toggle("liked", liked);
     const n = b.querySelector(".likeNum");
@@ -936,7 +937,7 @@ function saveNotifPrefs() {
     localStorage.setItem("notif_email", NOTIF.email ? "1" : "0");
     localStorage.setItem("notif_sub_id", NOTIF.subId || "");
     localStorage.setItem("notif_last_ts", String(NOTIF.lastTs || 0));
-  } catch {}
+  } catch (e) { console.warn("[Silent error]", e); }
 }
 
 function setNotifyStatus(msg) {
@@ -962,11 +963,11 @@ function fireDesktopNotification(item) {
       renotify: true,
     });
     n.onclick = () => {
-      try { window.focus(); } catch {}
+      try { window.focus(); } catch (e) { console.warn("[Silent error]", e); }
       if (item?.assetId) window.open(ROBLOX_ITEM_URL(item.assetId), "_blank", "noopener,noreferrer");
-      try { n.close(); } catch {}
+      try { n.close(); } catch (e) { console.warn("[Silent error]", e); }
     };
-  } catch {}
+  } catch (e) { console.warn("[Silent error]", e); }
 }
 
 async function subscribeRemoteEmail(email) {
@@ -1024,7 +1025,7 @@ async function checkForNewUgc({ notify = true } = {}) {
 function scheduleAutoRefreshLoop() {
   clearTimeout(NOTIF.timer);
   NOTIF.timer = setTimeout(async () => {
-    try { await checkForNewUgc({ notify: true }); } catch {}
+    try { await checkForNewUgc({ notify: true }); } catch (e) { console.warn("[Auto-refresh error]", e); }
     scheduleAutoRefreshLoop();
   }, NOTIF.intervalMs);
 }
@@ -1132,7 +1133,7 @@ async function saveNotifySettings() {
   NOTIF.subId = subId;
 
   // baseline & loop
-  try { await checkForNewUgc({ notify: false }); } catch {}
+  try { await checkForNewUgc({ notify: false }); } catch (e) { console.warn("[Silent error]", e); }
   saveNotifPrefs();
 
   closeNotifyModal();
@@ -1172,7 +1173,7 @@ function wireUI() {
     // Re-apply counts/classes on newly rendered cards
     try {
       STATE.filtered.forEach((x) => updateLikeButtons(x.assetId));
-    } catch {}
+    } catch (e) { console.warn("[Silent error]", e); }
   };
 
   ["fCategory", "fType", "fSort"].forEach((id) => on(document.getElementById(id), "change", runFilter));
@@ -1231,7 +1232,7 @@ function wireUI() {
     ZOOM.dragging = true;
     ZOOM.px = e.clientX;
     ZOOM.py = e.clientY;
-    try { stage.setPointerCapture(e.pointerId); } catch {}
+    try { stage.setPointerCapture(e.pointerId); } catch (e) { console.warn("[Silent error]", e); }
   });
 
   on(stage, "pointermove", (e) => {
@@ -1296,7 +1297,7 @@ async function boot() {
       fetchJson(FILES.user, { optional: true }),
       fetchJson(FILES.group, { optional: true }),
     ]);
-  } catch {}
+  } catch (e) { console.warn("[Silent error]", e); }
 
   const u = normalizeItems(userRaw, "Profile");
   const g = normalizeItems(groupRaw, "Group");
@@ -1398,10 +1399,10 @@ document.addEventListener("DOMContentLoaded", () => {
   boot();
 
   // Baseline (no toast), then auto-refresh loop.
-  setTimeout(() => { checkForNewUgc({ notify: false }).catch(() => {}); }, 600);
+  setTimeout(() => { checkForNewUgc({ notify: false }).catch((e) => console.warn("[Boot refresh error]", e)); }, 600);
   scheduleAutoRefreshLoop();
 
   document.addEventListener("visibilitychange", () => {
-    if (!document.hidden) checkForNewUgc({ notify: false }).catch(() => {});
+    if (!document.hidden) checkForNewUgc({ notify: false }).catch((e) => console.warn("[Boot refresh error]", e));
   });
 });
