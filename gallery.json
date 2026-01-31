@@ -1,14 +1,32 @@
 {
-  "updated": "2026-01-31T17:59:35.452583+00:00",
+  "updated": "2026-01-31T18:36:23.337721+00:00",
   "images": [
-    "gallery/Capture d'écran 2025-01-11 001849.png",
-    "gallery/Capture d'écran 2025-01-17 151042.png",
-    "gallery/Capture d'écran 2025-01-21 184408.png",
-    "gallery/Capture d'écran 2025-07-27 185037.png",
-    "gallery/Capture d'écran 2025-09-10 154743.png",
-    "gallery/Capture d'écran 2025-09-25 223828.png",
-    "gallery/Capture d'écran 2025-12-21 003907.png",
-    "gallery/Capture d'écran 2025-12-21 171529.png",
-    "gallery/Capture d'écran 2025-12-22 222057.png"
+    {
+      "url": "gallery/Capture d'écran 2025-01-11 001849.png"
+    },
+    {
+      "url": "gallery/Capture d'écran 2025-01-17 151042.png"
+    },
+    {
+      "url": "gallery/Capture d'écran 2025-01-21 184408.png"
+    },
+    {
+      "url": "gallery/Capture d'écran 2025-07-27 185037.png"
+    },
+    {
+      "url": "gallery/Capture d'écran 2025-09-10 154743.png"
+    },
+    {
+      "url": "gallery/Capture d'écran 2025-09-25 223828.png"
+    },
+    {
+      "url": "gallery/Capture d'écran 2025-12-21 003907.png"
+    },
+    {
+      "url": "gallery/Capture d'écran 2025-12-21 171529.png"
+    },
+    {
+      "url": "gallery/Capture d'écran 2025-12-22 222057.png"
+    }
   ]
 }

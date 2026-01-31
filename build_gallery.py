@@ -42,9 +42,9 @@ def main():
             if ext not in EXTS:
                 continue
             rel = os.path.join(dirpath, fn).replace("\\", "/")
-            images.append(rel)
+            images.append({"url": rel})
 
-    images.sort(key=sort_key)
+    images.sort(key=lambda x: sort_key(x["url"]))
 
     out = {
         "updated": datetime.now(timezone.utc).isoformat(),
