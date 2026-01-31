@@ -3,8 +3,8 @@ name: Update UGC data
 on:
   workflow_dispatch:
   schedule:
-    # Auto-update (no manual action needed)
-    - cron: "*/15 * * * *"
+    # Auto-update once per day at midnight UTC (30 executions/month)
+    - cron: "0 0 * * *"
 
 concurrency:
   group: ugc-update
