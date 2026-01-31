@@ -31,4 +31,4 @@ jobs:
           git config user.name "gallery-bot"
           git config user.email "gallery-bot@users.noreply.github.com"
           git add gallery.json
-          git diff --cached --quiet || (git commit -m "Update gallery" && git push)
+          git diff --cached --quiet || (git commit -m "Update gallery" && git pull --rebase origin main && git push)
