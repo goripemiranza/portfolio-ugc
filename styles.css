@@ -1163,3 +1163,397 @@ body::before{
   contain-intrinsic-size: 340px 420px;
   contain: layout paint style;
 }
+
+/* ===== IMPROVED RESPONSIVE DESIGN ===== */
+
+/* Tablet landscape (1024px and below) */
+@media (max-width: 1024px){
+  :root{
+    --maxw: 100%;
+  }
+  
+  .shell{
+    padding: 18px 16px 50px;
+  }
+  
+  .ugcGrid{
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  
+  .podiumRow{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+/* Tablet portrait (768px and below) */
+@media (max-width: 768px){
+  .shell{
+    padding: 16px 14px 50px;
+  }
+  
+  .topbar{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .brand{
+    justify-content: center;
+    min-width: auto;
+  }
+  
+  .nav{
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .tabBtn{
+    flex: 1 1 0;
+    min-width: 0;
+    font-size: 13px;
+    padding: 12px 10px;
+  }
+  
+  .iconBtn{
+    width: 46px;
+    height: 46px;
+  }
+  
+  .filtersGrid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  
+  .ugcGrid{
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  
+  .podiumRow{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: 
+      "mid mid"
+      "left right";
+    gap: 12px;
+  }
+  
+  .podiumRow .podium-left{
+    grid-area: left;
+  }
+  
+  .podiumRow .podium-mid{
+    grid-area: mid;
+  }
+  
+  .podiumRow .podium-right{
+    grid-area: right;
+  }
+  
+  .galleryGrid{
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+  
+  .commissionGrid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile large (640px and below) */
+@media (max-width: 640px){
+  .h2{
+    font-size: 16px;
+  }
+  
+  .card{
+    padding: 12px;
+  }
+  
+  .filtersGrid{
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .control{
+    gap: 4px;
+  }
+  
+  .label{
+    font-size: 11px;
+  }
+  
+  select,
+  input[type="search"],
+  .fieldInput{
+    padding: 10px 11px;
+    font-size: 14px;
+  }
+  
+  .ugcGrid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+}
+
+/* Mobile standard (560px and below) - Enhanced */
+@media (max-width: 560px){
+  .shell{
+    padding: 12px 10px 50px;
+  }
+  
+  .topbar{
+    padding: 12px;
+  }
+  
+  .brandTitle{
+    font-size: 15px;
+  }
+  
+  .brandSub{
+    font-size: 11px;
+  }
+  
+  .tabBtn{
+    font-size: 12px;
+    padding: 10px 8px;
+    min-height: 44px; /* Touch target */
+  }
+  
+  .actionBtn{
+    font-size: 12px;
+    padding: 10px 10px;
+    min-height: 44px; /* Touch target */
+  }
+  
+  .iconBtn{
+    width: 44px;
+    height: 44px; /* Touch target */
+    min-width: 44px;
+    font-size: 18px;
+  }
+  
+  .h2{
+    font-size: 15px;
+  }
+  
+  .card{
+    padding: 10px;
+    margin-top: 12px;
+  }
+  
+  .body{
+    padding: 8px;
+    gap: 5px;
+  }
+  
+  .title{
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  
+  .metaRow{
+    gap: 5px;
+    font-size: 10px;
+  }
+  
+  .price{
+    padding: 6px 9px;
+    font-size: 12px;
+  }
+  
+  .btnOpen{
+    width: 40px;
+    height: 36px;
+    min-height: 36px;
+    font-size: 0;
+  }
+  
+  .btnOpen::after{
+    content: "↗";
+    font-size: 15px;
+  }
+  
+  /* Ensure touch targets are at least 44x44px */
+  .likeBtn{
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+  
+  .footActions{
+    gap: 8px;
+  }
+}
+
+/* Mobile small (420px and below) */
+@media (max-width: 420px){
+  .shell{
+    padding: 10px 8px 45px;
+  }
+  
+  .topbar{
+    padding: 10px;
+  }
+  
+  .nav{
+    gap: 6px;
+  }
+  
+  .tabBtn{
+    font-size: 11px;
+    padding: 8px 6px;
+  }
+  
+  .card{
+    padding: 8px;
+  }
+  
+  .ugcGrid{
+    gap: 8px;
+  }
+  
+  .body{
+    padding: 6px;
+  }
+  
+  .title{
+    font-size: 11px;
+  }
+  
+  .metaRow{
+    font-size: 9px;
+  }
+  
+  .price{
+    font-size: 11px;
+    padding: 5px 7px;
+  }
+  
+  .galleryGrid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  
+  .commissionGrid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+}
+
+/* Mobile extra small (380px and below) - Enhanced */
+@media (max-width: 380px){
+  .brandTitle{
+    font-size: 14px;
+  }
+  
+  .tabBtn{
+    font-size: 10px;
+    padding: 8px 5px;
+  }
+  
+  .ugcGrid{
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  
+  .galleryGrid{
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .commissionGrid{
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .body{
+    padding: 5px;
+  }
+  
+  .title{
+    font-size: 10px;
+  }
+  
+  .price{
+    font-size: 10px;
+    padding: 4px 6px;
+  }
+}
+
+/* Landscape mode optimization for phones */
+@media (max-height: 500px) and (orientation: landscape){
+  .shell{
+    padding: 10px 12px 40px;
+  }
+  
+  .topbar{
+    padding: 8px 12px;
+  }
+  
+  .card{
+    padding: 10px;
+  }
+  
+  .ugcGrid{
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}
+
+/* High DPI / Retina displays - enhance visuals */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi){
+  .thumb{
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .ugcCard:hover{
+    transform: none;
+  }
+  
+  .reveal{
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Dark mode enhancements (already dark, but ensure consistency) */
+@media (prefers-color-scheme: dark){
+  :root{
+    color-scheme: dark;
+  }
+}
+
+/* Print styles (hide interactive elements) */
+@media print{
+  .topbar .nav,
+  .actionBtn,
+  .btnOpen,
+  .likeBtn,
+  .bg{
+    display: none !important;
+  }
+  
+  .shell{
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  .card{
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
