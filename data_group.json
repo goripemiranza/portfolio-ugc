@@ -1,7 +1,16 @@
 {
-  "updated": "2026-01-31T18:27:48Z",
-  "generatedAt": "2026-01-31T18:27:48Z",
+  "updated": "2026-02-01T02:03:23Z",
+  "generatedAt": "2026-02-01T02:03:23Z",
   "items": [
+    {
+      "assetId": 101443546725523,
+      "name": "[PBR] Winter ice sword",
+      "type": "BackAccessory",
+      "price": 135,
+      "created": "2026-01-31T15:46:07.2242816Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-cb87ae1ad4011763789529167879366c/420/420/BackAccessory/Png/noFilter",
+      "favorites": 104
+    },
     {
       "assetId": 139065374588767,
       "name": "[PBR] Pink heart crown",
@@ -9,7 +18,7 @@
       "price": 100,
       "created": "2026-01-30T23:06:45.2590234Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-3acb14ba106f5302a4ca784e09499a15/420/420/Hat/Png/noFilter",
-      "favorites": 37
+      "favorites": 75
     },
     {
       "assetId": 127360099587440,
@@ -135,7 +144,7 @@
       "price": 135,
       "created": "2025-12-21T16:40:33.183Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a52d9fee1c19726f2cbba596afea37d6/420/420/BackAccessory/Png/noFilter",
-      "favorites": 377
+      "favorites": 408
     },
     {
       "assetId": 105461065154207,
@@ -189,7 +198,7 @@
       "price": 100,
       "created": "2025-10-12T19:51:53.84Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4b5a374980b7723aaf40156a93bba3df/420/420/Hat/Png/noFilter",
-      "favorites": 308
+      "favorites": 310
     },
     {
       "assetId": 95110969483382,
@@ -405,7 +414,7 @@
       "price": 160,
       "created": "2025-07-19T14:22:27.64Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4d86f3e6bff2d8dcb88cf906424c43dd/420/420/BackAccessory/Png/noFilter",
-      "favorites": 3421
+      "favorites": 3422
     },
     {
       "assetId": 132428921830890,
@@ -531,7 +540,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-77077b25ab3e933a8069c9790d58dd2e/420/420/Hat/Png/noFilter",
-      "favorites": 22879
+      "favorites": 22912
     },
     {
       "assetId": 84062622353279,
