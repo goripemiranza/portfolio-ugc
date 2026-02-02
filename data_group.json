@@ -1,6 +1,6 @@
 {
-  "updated": "2026-02-01T02:03:23Z",
-  "generatedAt": "2026-02-01T02:03:23Z",
+  "updated": "2026-02-02T01:55:47Z",
+  "generatedAt": "2026-02-02T01:55:47Z",
   "items": [
     {
       "assetId": 101443546725523,
@@ -16,9 +16,9 @@
       "name": "[PBR] Pink heart crown",
       "type": "Hat",
       "price": 100,
-      "created": "2026-01-30T23:06:45.2590234Z",
+      "created": "2026-01-30T23:06:45.26Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-3acb14ba106f5302a4ca784e09499a15/420/420/Hat/Png/noFilter",
-      "favorites": 75
+      "favorites": 99
     },
     {
       "assetId": 127360099587440,
@@ -36,7 +36,7 @@
       "price": 140,
       "created": "2026-01-23T23:19:21.39Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-802bafebf1e61c849f4ce3842401a5dc/420/420/BackAccessory/Png/noFilter",
-      "favorites": 43
+      "favorites": 44
     },
     {
       "assetId": 88576858225400,
@@ -45,7 +45,7 @@
       "price": 90,
       "created": "2026-01-23T23:04:27.923Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d5a406093ce637f8df6921973d8ba47f/420/420/Hat/Png/noFilter",
-      "favorites": 89
+      "favorites": 90
     },
     {
       "assetId": 126950777863478,
@@ -234,7 +234,7 @@
       "price": 60,
       "created": "2025-09-18T19:57:55.397Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-44a9fa44652fca33c25477247d876a64/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 12
+      "favorites": 13
     },
     {
       "assetId": 92867934281767,
@@ -540,7 +540,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-77077b25ab3e933a8069c9790d58dd2e/420/420/Hat/Png/noFilter",
-      "favorites": 22912
+      "favorites": 22997
     },
     {
       "assetId": 84062622353279,
@@ -630,7 +630,7 @@
       "price": 145,
       "created": "2025-01-06T23:59:09.967Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-649d76d0946904c87bb4f08ab9b75bbe/420/420/BackAccessory/Png/noFilter",
-      "favorites": 6406
+      "favorites": 6426
     },
     {
       "assetId": 108418388012974,
