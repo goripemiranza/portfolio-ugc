@@ -1,7 +1,34 @@
 {
-  "updated": "2026-02-07T01:47:30Z",
-  "generatedAt": "2026-02-07T01:47:30Z",
+  "updated": "2026-02-08T02:14:01Z",
+  "generatedAt": "2026-02-08T02:14:01Z",
   "items": [
+    {
+      "assetId": 73626305203111,
+      "name": "Pink and black dragon tail",
+      "type": "WaistAccessory",
+      "price": 60,
+      "created": "2026-02-07T18:04:30.5264486Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-a8ce92d03c9d449f711c716e45065ff0/420/420/WaistAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 76510198102556,
+      "name": "Pink and black dragon wings",
+      "type": "BackAccessory",
+      "price": 135,
+      "created": "2026-02-07T18:00:11.1715898Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-d51b5b6521868d6609c263edcc4eddd8/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 72095218664763,
+      "name": "Pink and black horns",
+      "type": "Hat",
+      "price": 90,
+      "created": "2026-02-07T17:59:09.4096282Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-4858ca9e888cf329934773ee9dfa026d/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 82851433569054,
       "name": "[PBR] Valentines heart background",
@@ -18,7 +45,7 @@
       "price": 140,
       "created": "2026-02-03T21:58:40.0671705Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b39d1f6929b620ade4defd4b338f08a2/420/420/BackAccessory/Png/noFilter",
-      "favorites": 91
+      "favorites": 175
     },
     {
       "assetId": 101443546725523,
@@ -333,7 +360,7 @@
       "price": 100,
       "created": "2025-08-22T23:43:22.9Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d72b6dc2603733dd8ed35d9625782cf7/420/420/Hat/Png/noFilter",
-      "favorites": 64
+      "favorites": 65
     },
     {
       "assetId": 93842989030434,
@@ -513,7 +540,7 @@
       "price": 150,
       "created": "2025-03-21T20:25:38.197Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-582aa738f27db02c65e5252b5d98ca7a/420/420/BackAccessory/Png/noFilter",
-      "favorites": 3087
+      "favorites": 3088
     },
     {
       "assetId": 107830760895891,
@@ -648,7 +675,7 @@
       "price": 145,
       "created": "2025-01-06T23:59:09.967Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-649d76d0946904c87bb4f08ab9b75bbe/420/420/BackAccessory/Png/noFilter",
-      "favorites": 6426
+      "favorites": 6427
     },
     {
       "assetId": 108418388012974,
