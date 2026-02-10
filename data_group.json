@@ -1,6 +1,6 @@
 {
-  "updated": "2026-02-09T01:57:29Z",
-  "generatedAt": "2026-02-09T01:57:29Z",
+  "updated": "2026-02-10T02:08:15Z",
+  "generatedAt": "2026-02-10T02:08:15Z",
   "items": [
     {
       "assetId": 73626305203111,
@@ -36,16 +36,16 @@
       "price": 140,
       "created": "2026-02-04T19:33:50.467Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4dfe3a5d65d3ac22246bc9d76c8e0a30/420/420/BackAccessory/Png/noFilter",
-      "favorites": 11
+      "favorites": 29
     },
     {
       "assetId": 133021430549045,
       "name": "[PBR] Valentine eternal love sword",
       "type": "BackAccessory",
       "price": 140,
-      "created": "2026-02-03T21:58:40.0671705Z",
+      "created": "2026-02-03T21:58:40.067Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b39d1f6929b620ade4defd4b338f08a2/420/420/BackAccessory/Png/noFilter",
-      "favorites": 175
+      "favorites": 193
     },
     {
       "assetId": 101443546725523,
@@ -126,7 +126,7 @@
       "price": 90,
       "created": "2026-01-19T20:55:59.983Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6cf2c194230591cc82e623e97417cd6b/420/420/Hat/Png/noFilter",
-      "favorites": 328
+      "favorites": 329
     },
     {
       "assetId": 130160862337869,
@@ -369,7 +369,7 @@
       "price": 50,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4096
+      "favorites": 4120
     },
     {
       "assetId": 73886642022932,
