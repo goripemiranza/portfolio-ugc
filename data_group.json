@@ -1,7 +1,16 @@
 {
-  "updated": "2026-02-10T02:08:15Z",
-  "generatedAt": "2026-02-10T02:08:15Z",
+  "updated": "2026-02-11T02:04:14Z",
+  "generatedAt": "2026-02-11T02:04:14Z",
   "items": [
+    {
+      "assetId": 114241510292784,
+      "name": "[PBR] Y2K blue jean cap with stars",
+      "type": "Hat",
+      "price": 90,
+      "created": "2026-02-10T23:12:28.603Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-dfa60f85364e47ba87eb76315dcf4996/420/420/Hat/Png/noFilter",
+      "favorites": 31
+    },
     {
       "assetId": 73626305203111,
       "name": "Pink and black dragon tail",
@@ -9,14 +18,14 @@
       "price": 60,
       "created": "2026-02-07T18:04:30.5264486Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a8ce92d03c9d449f711c716e45065ff0/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 76510198102556,
       "name": "Pink and black dragon wings",
       "type": "BackAccessory",
       "price": 135,
-      "created": "2026-02-07T18:00:11.1715898Z",
+      "created": "2026-02-07T18:00:11.17Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d51b5b6521868d6609c263edcc4eddd8/420/420/BackAccessory/Png/noFilter",
       "favorites": 0
     },
@@ -27,7 +36,7 @@
       "price": 90,
       "created": "2026-02-07T17:59:09.4096282Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4858ca9e888cf329934773ee9dfa026d/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 82851433569054,
@@ -126,7 +135,7 @@
       "price": 90,
       "created": "2026-01-19T20:55:59.983Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6cf2c194230591cc82e623e97417cd6b/420/420/Hat/Png/noFilter",
-      "favorites": 329
+      "favorites": 330
     },
     {
       "assetId": 130160862337869,
@@ -198,7 +207,7 @@
       "price": 140,
       "created": "2025-12-21T16:10:51.533Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-958304f210ec32f13319a363a3fcc977/420/420/BackAccessory/Png/noFilter",
-      "favorites": 635
+      "favorites": 636
     },
     {
       "assetId": 121640625346381,
@@ -207,7 +216,7 @@
       "price": 100,
       "created": "2025-12-15T19:01:37.367Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-425cfb2e060109e7adbdcf31642856f2/420/420/Hat/Png/noFilter",
-      "favorites": 205
+      "favorites": 204
     },
     {
       "assetId": 76093476566308,
@@ -342,7 +351,7 @@
       "price": 80,
       "created": "2025-08-22T23:51:21.933Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b128dc08fc1d232daee9c1759ceaf960/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 114
+      "favorites": 115
     },
     {
       "assetId": 130462198935793,
@@ -369,7 +378,7 @@
       "price": 50,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4120
+      "favorites": 4124
     },
     {
       "assetId": 73886642022932,
@@ -531,7 +540,7 @@
       "price": 150,
       "created": "2025-03-21T21:02:45.043Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-23caae7d94f6b82a0fcb9bbf0afbc1be/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1045
+      "favorites": 1046
     },
     {
       "assetId": 84767700611805,
