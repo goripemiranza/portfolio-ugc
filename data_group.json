@@ -1,7 +1,16 @@
 {
-  "updated": "2026-02-12T01:57:03Z",
-  "generatedAt": "2026-02-12T01:57:03Z",
+  "updated": "2026-02-13T01:59:54Z",
+  "generatedAt": "2026-02-13T01:59:54Z",
   "items": [
+    {
+      "assetId": 74912310327127,
+      "name": "[PBR] Y2K white jean cap with stars",
+      "type": "Hat",
+      "price": 90,
+      "created": "2026-02-11T22:16:59.0512468Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-7836299642e6fba8548e7f581059b8af/420/420/Hat/Png/noFilter",
+      "favorites": 103
+    },
     {
       "assetId": 114241510292784,
       "name": "[PBR] Y2K blue jean cap with stars",
@@ -45,7 +54,7 @@
       "price": 140,
       "created": "2026-02-04T19:33:50.467Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4dfe3a5d65d3ac22246bc9d76c8e0a30/420/420/BackAccessory/Png/noFilter",
-      "favorites": 29
+      "favorites": 30
     },
     {
       "assetId": 133021430549045,
@@ -378,7 +387,7 @@
       "price": 50,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4125
+      "favorites": 4127
     },
     {
       "assetId": 73886642022932,
@@ -594,7 +603,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-77077b25ab3e933a8069c9790d58dd2e/420/420/Hat/Png/noFilter",
-      "favorites": 23185
+      "favorites": 23279
     },
     {
       "assetId": 84062622353279,
