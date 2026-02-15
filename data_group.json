@@ -1,7 +1,16 @@
 {
-  "updated": "2026-02-13T01:59:54Z",
-  "generatedAt": "2026-02-13T01:59:54Z",
+  "updated": "2026-02-15T01:59:27Z",
+  "generatedAt": "2026-02-15T01:59:27Z",
   "items": [
+    {
+      "assetId": 73947668529955,
+      "name": "[PBR] Y2K black jean cap with stars",
+      "type": "Hat",
+      "price": 100,
+      "created": "2026-02-13T12:38:42.117Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-a0b28da68975f52e47c847d8b5d26a84/420/420/Hat/Png/noFilter",
+      "favorites": 1
+    },
     {
       "assetId": 74912310327127,
       "name": "[PBR] Y2K white jean cap with stars",
@@ -9,7 +18,7 @@
       "price": 90,
       "created": "2026-02-11T22:16:59.0512468Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-7836299642e6fba8548e7f581059b8af/420/420/Hat/Png/noFilter",
-      "favorites": 103
+      "favorites": 128
     },
     {
       "assetId": 114241510292784,
@@ -144,7 +153,7 @@
       "price": 90,
       "created": "2026-01-19T20:55:59.983Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6cf2c194230591cc82e623e97417cd6b/420/420/Hat/Png/noFilter",
-      "favorites": 330
+      "favorites": 331
     },
     {
       "assetId": 130160862337869,
@@ -384,10 +393,10 @@
       "assetId": 93842989030434,
       "name": "T pose spinning troll",
       "type": "EmoteAnimation",
-      "price": 50,
+      "price": 100,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4127
+      "favorites": 4190
     },
     {
       "assetId": 73886642022932,
