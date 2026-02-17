@@ -1,6 +1,6 @@
 {
-  "updated": "2026-02-16T01:55:19Z",
-  "generatedAt": "2026-02-16T01:55:19Z",
+  "updated": "2026-02-17T01:53:01Z",
+  "generatedAt": "2026-02-17T01:53:01Z",
   "items": [
     {
       "assetId": 78560920993312,
@@ -72,7 +72,7 @@
       "price": 140,
       "created": "2026-02-04T19:33:50.467Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4dfe3a5d65d3ac22246bc9d76c8e0a30/420/420/BackAccessory/Png/noFilter",
-      "favorites": 30
+      "favorites": 31
     },
     {
       "assetId": 133021430549045,
@@ -342,7 +342,7 @@
       "price": 100,
       "created": "2025-09-10T14:08:35.023Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b8ecc01d4e3c9455adc0220fd039606c/420/420/Hat/Png/noFilter",
-      "favorites": 240
+      "favorites": 375
     },
     {
       "assetId": 107095008480456,
@@ -634,7 +634,7 @@
     },
     {
       "assetId": 107905103876831,
-      "name": "Heart scepter ",
+      "name": "Valentine heart scepter ",
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-02-13T21:50:21.283Z",
