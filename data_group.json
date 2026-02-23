@@ -1,6 +1,6 @@
 {
-  "updated": "2026-02-22T01:54:21Z",
-  "generatedAt": "2026-02-22T01:54:21Z",
+  "updated": "2026-02-23T01:55:38Z",
+  "generatedAt": "2026-02-23T01:55:38Z",
   "items": [
     {
       "assetId": 129885690371414,
@@ -216,7 +216,7 @@
       "price": 100,
       "created": "2025-12-22T21:20:26.37Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-1a82a65b20f9022d650d4f5667336c1f/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 236
+      "favorites": 237
     },
     {
       "assetId": 136428742434964,
@@ -486,7 +486,7 @@
       "price": 160,
       "created": "2025-07-25T19:47:38.777Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d2c56895841756d780c23505fe198c3b/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1573
+      "favorites": 1574
     },
     {
       "assetId": 90634979410540,
@@ -630,16 +630,16 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 23427
+      "favorites": 23446
     },
     {
       "assetId": 84062622353279,
-      "name": "Heart wings",
+      "name": "Valentine heart wings",
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-02-14T13:39:38.177Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4825a1f817e55147fe7fd53398d3e2e8/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1084
+      "favorites": 1102
     },
     {
       "assetId": 107905103876831,
