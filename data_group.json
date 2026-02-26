@@ -1,7 +1,16 @@
 {
-  "updated": "2026-02-25T01:55:29Z",
-  "generatedAt": "2026-02-25T01:55:29Z",
+  "updated": "2026-02-26T01:51:25Z",
+  "generatedAt": "2026-02-26T01:51:25Z",
   "items": [
+    {
+      "assetId": 123917531753802,
+      "name": "Cute pink rabbit plush",
+      "type": "WaistAccessory",
+      "price": 100,
+      "created": "2026-02-25T20:19:55.9557329Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-ea48f70db66f1f724e6da0f7620d8864/420/420/WaistAccessory/Png/noFilter",
+      "favorites": 22
+    },
     {
       "assetId": 129885690371414,
       "name": "Cute penguin plush ",
@@ -9,7 +18,7 @@
       "price": 135,
       "created": "2026-02-21T22:25:15.653Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-7ad7094189347b1037868edf0d84d84d/420/420/BackAccessory/Png/noFilter",
-      "favorites": 162
+      "favorites": 206
     },
     {
       "assetId": 78560920993312,
@@ -18,7 +27,7 @@
       "price": 140,
       "created": "2026-02-15T21:41:02.82Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-8a214b2223d098bc080024be2704a8f3/420/420/BackAccessory/Png/noFilter",
-      "favorites": 263
+      "favorites": 302
     },
     {
       "assetId": 73947668529955,
@@ -54,7 +63,7 @@
       "price": 60,
       "created": "2026-02-07T18:04:30.527Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a8ce92d03c9d449f711c716e45065ff0/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 76510198102556,
@@ -414,7 +423,7 @@
       "price": 200,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4308
+      "favorites": 4309
     },
     {
       "assetId": 73886642022932,
