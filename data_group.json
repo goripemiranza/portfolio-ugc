@@ -1,6 +1,6 @@
 {
-  "updated": "2026-03-02T01:52:56Z",
-  "generatedAt": "2026-03-02T01:52:56Z",
+  "updated": "2026-03-03T01:54:45Z",
+  "generatedAt": "2026-03-03T01:54:45Z",
   "items": [
     {
       "assetId": 125991289006003,
@@ -72,7 +72,7 @@
       "price": 60,
       "created": "2026-02-07T18:04:30.527Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a8ce92d03c9d449f711c716e45065ff0/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 2
+      "favorites": 3
     },
     {
       "assetId": 76510198102556,
@@ -240,7 +240,7 @@
       "assetId": 136428742434964,
       "name": "[PBR] Green cyber wings",
       "type": "BackAccessory",
-      "price": 135,
+      "price": 140,
       "created": "2025-12-21T17:18:58.433Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-33ac98f42ef0e666354bc832bb24653a/420/420/BackAccessory/Png/noFilter",
       "favorites": 152
@@ -432,7 +432,7 @@
       "price": 200,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4336
+      "favorites": 4486
     },
     {
       "assetId": 73886642022932,
@@ -720,7 +720,7 @@
       "price": 80,
       "created": "2025-01-16T20:19:58.877Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-73da8077a9fd1f7c26b01cb5bbc4767a/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 83
+      "favorites": 84
     },
     {
       "assetId": 134402963982838,
