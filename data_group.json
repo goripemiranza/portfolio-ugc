@@ -1,15 +1,24 @@
 {
-  "updated": "2026-03-03T01:54:45Z",
-  "generatedAt": "2026-03-03T01:54:45Z",
+  "updated": "2026-03-04T01:49:11Z",
+  "generatedAt": "2026-03-04T01:49:11Z",
   "items": [
+    {
+      "assetId": 102689688187379,
+      "name": "[PBR] Royal scepter",
+      "type": "BackAccessory",
+      "price": 135,
+      "created": "2026-03-03T20:49:28.3278121Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-35443787a14204b1a990c394a73ea02e/420/420/BackAccessory/Png/noFilter",
+      "favorites": 10
+    },
     {
       "assetId": 125991289006003,
       "name": "Pink lily flower parasol",
       "type": "BackAccessory",
       "price": 135,
-      "created": "2026-02-26T20:21:55.5289922Z",
+      "created": "2026-02-26T20:21:55.527Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-91d6e956bbc4171c725ad82583442593/420/420/BackAccessory/Png/noFilter",
-      "favorites": 3
+      "favorites": 4
     },
     {
       "assetId": 123917531753802,
@@ -432,7 +441,7 @@
       "price": 200,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4486
+      "favorites": 4521
     },
     {
       "assetId": 73886642022932,
@@ -504,7 +513,7 @@
       "price": 160,
       "created": "2025-07-25T19:47:38.777Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d2c56895841756d780c23505fe198c3b/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1575
+      "favorites": 1576
     },
     {
       "assetId": 90634979410540,
@@ -684,7 +693,7 @@
       "price": 80,
       "created": "2025-02-04T00:34:12.223Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-7ee18453ebbd1983e6f6b3d097af2968/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 68
+      "favorites": 69
     },
     {
       "assetId": 128611174976041,
@@ -747,7 +756,7 @@
       "price": 75,
       "created": "2024-12-25T19:01:01.19Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9c498f7ab151a28abfa78e691f171a89/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 304
+      "favorites": 305
     }
   ]
 }
