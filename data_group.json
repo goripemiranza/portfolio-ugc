@@ -1,7 +1,16 @@
 {
-  "updated": "2026-03-07T01:45:36Z",
-  "generatedAt": "2026-03-07T01:45:36Z",
+  "updated": "2026-03-08T01:53:09Z",
+  "generatedAt": "2026-03-08T01:53:09Z",
   "items": [
+    {
+      "assetId": 106185923778046,
+      "name": "[PBR] Black royal scepter",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-03-07T13:58:32.070052Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-03cfa00fc702e086b70a461e0127a05d/420/420/BackAccessory/Png/noFilter",
+      "favorites": 1
+    },
     {
       "assetId": 102689688187379,
       "name": "[PBR] Royal scepter",
@@ -594,7 +603,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2f7ad69ffabfea8aa192adce4616d696/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10106
+      "favorites": 10107
     },
     {
       "assetId": 134542294659432,
