@@ -1,7 +1,16 @@
 {
-  "updated": "2026-03-08T01:53:09Z",
-  "generatedAt": "2026-03-08T01:53:09Z",
+  "updated": "2026-03-09T01:54:39Z",
+  "generatedAt": "2026-03-09T01:54:39Z",
   "items": [
+    {
+      "assetId": 140399336096798,
+      "name": "Easter eggs ",
+      "type": "BackAccessory",
+      "price": 135,
+      "created": "2026-03-08T20:51:40.5699999Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-81821e150cde2f1b502a4a6175fafc5c/420/420/BackAccessory/Png/noFilter",
+      "favorites": 13
+    },
     {
       "assetId": 106185923778046,
       "name": "[PBR] Black royal scepter",
@@ -243,7 +252,7 @@
       "price": 100,
       "created": "2025-12-27T23:10:07.95Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a57c1894fba8d7b2c6ea7fd74a73c54d/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 85
+      "favorites": 86
     },
     {
       "assetId": 117578513893407,
@@ -279,7 +288,7 @@
       "price": 140,
       "created": "2025-12-21T16:10:51.533Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-958304f210ec32f13319a363a3fcc977/420/420/BackAccessory/Png/noFilter",
-      "favorites": 637
+      "favorites": 638
     },
     {
       "assetId": 121640625346381,
@@ -386,7 +395,7 @@
       "type": "Hat",
       "price": 100,
       "created": "2025-09-10T14:08:35.023Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-b8ecc01d4e3c9455adc0220fd039606c/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-5ffc7a28bcc0b547cc0ddfe7e2b83b25/420/420/Hat/Png/noFilter",
       "favorites": 375
     },
     {
@@ -666,7 +675,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 23527
+      "favorites": 23595
     },
     {
       "assetId": 84062622353279,
