@@ -1,7 +1,16 @@
 {
-  "updated": "2026-03-14T01:48:50Z",
-  "generatedAt": "2026-03-14T01:48:50Z",
+  "updated": "2026-03-15T02:04:52Z",
+  "generatedAt": "2026-03-15T02:04:52Z",
   "items": [
+    {
+      "assetId": 123474849043992,
+      "name": "Blue easter egg (mouth) ",
+      "type": "FaceAccessory",
+      "price": 90,
+      "created": "2026-03-14T22:12:31.6096168Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-e63774c7f0c44821f3ddf71bc63e6341/420/420/FaceAccessory/Png/noFilter",
+      "favorites": 2
+    },
     {
       "assetId": 118631655015914,
       "name": "Blue cracked easter egg (hat)",
@@ -9,7 +18,7 @@
       "price": 90,
       "created": "2026-03-12T19:02:56.937Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b6edaa997d7920debdcff239489f1529/420/420/Hat/Png/noFilter",
-      "favorites": 4
+      "favorites": 31
     },
     {
       "assetId": 80910958885713,
@@ -160,7 +169,7 @@
       "name": "[PBR] Winter ice sword",
       "type": "BackAccessory",
       "price": 135,
-      "created": "2026-01-31T15:46:07.223Z",
+      "created": "2026-01-31T15:46:07.224Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-cb87ae1ad4011763789529167879366c/420/420/BackAccessory/Png/noFilter",
       "favorites": 971
     },
