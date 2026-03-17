@@ -1,6 +1,6 @@
 {
-  "updated": "2026-03-16T02:07:01Z",
-  "generatedAt": "2026-03-16T02:07:01Z",
+  "updated": "2026-03-17T01:54:04Z",
+  "generatedAt": "2026-03-17T01:54:04Z",
   "items": [
     {
       "assetId": 123474849043992,
@@ -27,7 +27,7 @@
       "price": 135,
       "created": "2026-03-10T20:23:59.7Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b6510e9824e58d18b1d6bd186aa424aa/420/420/BackAccessory/Png/noFilter",
-      "favorites": 26
+      "favorites": 40
     },
     {
       "assetId": 140399336096798,
@@ -49,10 +49,10 @@
     },
     {
       "assetId": 102689688187379,
-      "name": "[PBR] Royal scepter",
+      "name": "[PBR] White royal scepter",
       "type": "BackAccessory",
-      "price": 135,
-      "created": "2026-03-03T20:49:28.3278121Z",
+      "price": 140,
+      "created": "2026-03-03T20:49:28.327Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-35443787a14204b1a990c394a73ea02e/420/420/BackAccessory/Png/noFilter",
       "favorites": 60
     },
@@ -88,7 +88,7 @@
       "name": "[PBR] Golden and blue mecha wings",
       "type": "BackAccessory",
       "price": 140,
-      "created": "2026-02-15T21:41:02.82Z",
+      "created": "2026-02-15T21:41:02.821Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-8a214b2223d098bc080024be2704a8f3/420/420/BackAccessory/Png/noFilter",
       "favorites": 302
     },
@@ -171,7 +171,7 @@
       "price": 135,
       "created": "2026-01-31T15:46:07.224Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-cb87ae1ad4011763789529167879366c/420/420/BackAccessory/Png/noFilter",
-      "favorites": 971
+      "favorites": 972
     },
     {
       "assetId": 139065374588767,
@@ -279,7 +279,7 @@
       "price": 100,
       "created": "2025-12-27T23:10:07.95Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a57c1894fba8d7b2c6ea7fd74a73c54d/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 86
+      "favorites": 88
     },
     {
       "assetId": 117578513893407,
@@ -513,7 +513,7 @@
       "price": 100,
       "created": "2025-08-03T16:32:30.947Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-35aa1c52371862c5e5fd6afbf871ce18/420/420/Hat/Png/noFilter",
-      "favorites": 46
+      "favorites": 47
     },
     {
       "assetId": 83398849212814,
