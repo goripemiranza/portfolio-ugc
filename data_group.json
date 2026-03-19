@@ -1,7 +1,34 @@
 {
-  "updated": "2026-03-18T01:58:37Z",
-  "generatedAt": "2026-03-18T01:58:37Z",
+  "updated": "2026-03-19T01:59:18Z",
+  "generatedAt": "2026-03-19T01:59:18Z",
   "items": [
+    {
+      "assetId": 100979537099207,
+      "name": "Green easter egg (mouth)",
+      "type": "FaceAccessory",
+      "price": 90,
+      "created": "2026-03-18T20:57:46.7447842Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-e3c614149bed4986aa37ca8c1097cee1/420/420/FaceAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 100256872095248,
+      "name": "Green cracked easter egg (hat)",
+      "type": "Hat",
+      "price": 90,
+      "created": "2026-03-18T20:49:58.5612869Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-6fe6fcb34b1af8deaf421c32d8288046/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 114771635280407,
+      "name": "Green cracked easter egg (body)",
+      "type": "BackAccessory",
+      "price": 135,
+      "created": "2026-03-18T20:48:28.8206812Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-1b16e16742b9a1b0596a44b11f7f9c58/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 123474849043992,
       "name": "Blue easter egg (mouth) ",
@@ -70,7 +97,7 @@
       "name": "Cute pink rabbit plush",
       "type": "WaistAccessory",
       "price": 100,
-      "created": "2026-02-25T20:19:55.957Z",
+      "created": "2026-02-25T20:19:55.955Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ea48f70db66f1f724e6da0f7620d8864/420/420/WaistAccessory/Png/noFilter",
       "favorites": 57
     },
@@ -133,7 +160,7 @@
       "name": "Pink and black dragon wings",
       "type": "BackAccessory",
       "price": 135,
-      "created": "2026-02-07T18:00:11.17Z",
+      "created": "2026-02-07T18:00:11.171Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d51b5b6521868d6609c263edcc4eddd8/420/420/BackAccessory/Png/noFilter",
       "favorites": 0
     },
@@ -234,7 +261,7 @@
       "price": 90,
       "created": "2026-01-21T17:32:44.91Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-1b3322f5a8c77851ac2636803d358566/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 718
+      "favorites": 717
     },
     {
       "assetId": 76014287906864,
@@ -243,7 +270,7 @@
       "price": 90,
       "created": "2026-01-19T20:55:59.983Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6cf2c194230591cc82e623e97417cd6b/420/420/Hat/Png/noFilter",
-      "favorites": 331
+      "favorites": 332
     },
     {
       "assetId": 130160862337869,
@@ -431,7 +458,7 @@
       "type": "Hat",
       "price": 90,
       "created": "2025-09-07T19:19:34.547Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-54bc6172616ad8477dbef16a2871e4d0/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-63ceeb8546c6ae71d391ee8ea878fe9b/420/420/Hat/Png/noFilter",
       "favorites": 7
     },
     {
@@ -558,7 +585,7 @@
       "price": 160,
       "created": "2025-07-25T19:47:38.777Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d2c56895841756d780c23505fe198c3b/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1576
+      "favorites": 1577
     },
     {
       "assetId": 90634979410540,
@@ -567,7 +594,7 @@
       "price": 90,
       "created": "2025-07-21T18:18:54.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2c50bf6fb1847469f9dd8db7e7436e38/420/420/Hat/Png/noFilter",
-      "favorites": 89
+      "favorites": 90
     },
     {
       "assetId": 131785932364189,
@@ -702,7 +729,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 23641
+      "favorites": 23700
     },
     {
       "assetId": 84062622353279,
@@ -711,7 +738,7 @@
       "price": 150,
       "created": "2025-02-14T13:39:38.177Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4825a1f817e55147fe7fd53398d3e2e8/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1102
+      "favorites": 1103
     },
     {
       "assetId": 107905103876831,
