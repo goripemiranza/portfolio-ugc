@@ -1,6 +1,6 @@
 {
-  "updated": "2026-03-20T01:53:44Z",
-  "generatedAt": "2026-03-20T01:53:44Z",
+  "updated": "2026-03-21T01:47:36Z",
+  "generatedAt": "2026-03-21T01:47:36Z",
   "items": [
     {
       "assetId": 100979537099207,
@@ -34,9 +34,9 @@
       "name": "Blue easter egg (mouth) ",
       "type": "FaceAccessory",
       "price": 90,
-      "created": "2026-03-14T22:12:31.6096168Z",
+      "created": "2026-03-14T22:12:31.609Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e63774c7f0c44821f3ddf71bc63e6341/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 2
+      "favorites": 3
     },
     {
       "assetId": 118631655015914,
@@ -513,7 +513,7 @@
       "price": 200,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4576
+      "favorites": 4623
     },
     {
       "assetId": 73886642022932,
@@ -666,7 +666,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2f7ad69ffabfea8aa192adce4616d696/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10107
+      "favorites": 10110
     },
     {
       "assetId": 134542294659432,
@@ -729,7 +729,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 23700
+      "favorites": 23726
     },
     {
       "assetId": 84062622353279,
@@ -819,7 +819,7 @@
       "price": 145,
       "created": "2025-01-06T23:59:09.967Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-649d76d0946904c87bb4f08ab9b75bbe/420/420/BackAccessory/Png/noFilter",
-      "favorites": 6506
+      "favorites": 6507
     },
     {
       "assetId": 108418388012974,
