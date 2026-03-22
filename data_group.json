@@ -1,15 +1,42 @@
 {
-  "updated": "2026-03-21T01:47:36Z",
-  "generatedAt": "2026-03-21T01:47:36Z",
+  "updated": "2026-03-22T01:59:37Z",
+  "generatedAt": "2026-03-22T01:59:37Z",
   "items": [
+    {
+      "assetId": 101046852916511,
+      "name": "Red easter egg (mouth)",
+      "type": "FaceAccessory",
+      "price": 90,
+      "created": "2026-03-21T15:09:50.339Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-13bf1eacca0ae25657bbe58035848435/420/420/FaceAccessory/Png/noFilter",
+      "favorites": 1
+    },
+    {
+      "assetId": 102055757942540,
+      "name": "Red cracked easter egg (hat)",
+      "type": "Hat",
+      "price": 90,
+      "created": "2026-03-21T15:06:23.051Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-76931c52462759b9e6a09cfd69882ac8/420/420/Hat/Png/noFilter",
+      "favorites": 1
+    },
+    {
+      "assetId": 78538960468885,
+      "name": "Red cracked easter egg (body)",
+      "type": "BackAccessory",
+      "price": 135,
+      "created": "2026-03-21T15:05:33.874Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-8495d6a340e0833169005a670733084f/420/420/BackAccessory/Png/noFilter",
+      "favorites": 1
+    },
     {
       "assetId": 100979537099207,
       "name": "Green easter egg (mouth)",
       "type": "FaceAccessory",
       "price": 90,
-      "created": "2026-03-18T20:57:46.7447842Z",
+      "created": "2026-03-18T20:57:46.744Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e3c614149bed4986aa37ca8c1097cee1/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 100256872095248,
@@ -18,7 +45,7 @@
       "price": 90,
       "created": "2026-03-18T20:49:58.5612869Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6fe6fcb34b1af8deaf421c32d8288046/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 114771635280407,
@@ -36,7 +63,7 @@
       "price": 90,
       "created": "2026-03-14T22:12:31.609Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e63774c7f0c44821f3ddf71bc63e6341/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 3
+      "favorites": 4
     },
     {
       "assetId": 118631655015914,
@@ -486,7 +513,7 @@
       "price": 80,
       "created": "2025-08-22T23:51:21.933Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b128dc08fc1d232daee9c1759ceaf960/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 118
+      "favorites": 119
     },
     {
       "assetId": 130462198935793,
@@ -711,7 +738,7 @@
       "price": 150,
       "created": "2025-03-09T00:59:26.023Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-f02d47e5411cbc970924201a91686ace/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1180
+      "favorites": 1181
     },
     {
       "assetId": 124182720625549,
