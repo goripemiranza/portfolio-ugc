@@ -1,7 +1,34 @@
 {
-  "updated": "2026-03-25T01:56:44Z",
-  "generatedAt": "2026-03-25T01:56:44Z",
+  "updated": "2026-03-26T02:03:21Z",
+  "generatedAt": "2026-03-26T02:03:21Z",
   "items": [
+    {
+      "assetId": 126322848312410,
+      "name": "Pink easter egg (mouth)",
+      "type": "FaceAccessory",
+      "price": 90,
+      "created": "2026-03-25T20:39:44.509Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-b503422cf19e4892a00d438ef4eb4ab0/420/420/FaceAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 77433437034798,
+      "name": "Pink cracked easter egg (hat)",
+      "type": "Hat",
+      "price": 90,
+      "created": "2026-03-25T20:38:10.368Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-3938103cd3b8ece1b343cb11ef171267/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 130536935950885,
+      "name": "Pink cracked easter egg (body)",
+      "type": "BackAccessory",
+      "price": 135,
+      "created": "2026-03-25T20:36:57.6898543Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-54855d88e8c04775c2d80b13f3833fd3/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 101046852916511,
       "name": "Red easter egg (mouth)",
@@ -178,7 +205,7 @@
       "name": "Pink and black dragon tail",
       "type": "WaistAccessory",
       "price": 60,
-      "created": "2026-02-07T18:04:30.527Z",
+      "created": "2026-02-07T18:04:30.526Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a8ce92d03c9d449f711c716e45065ff0/420/420/WaistAccessory/Png/noFilter",
       "favorites": 3
     },
@@ -234,7 +261,7 @@
       "price": 100,
       "created": "2026-01-30T23:06:45.26Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-3acb14ba106f5302a4ca784e09499a15/420/420/Hat/Png/noFilter",
-      "favorites": 133
+      "favorites": 134
     },
     {
       "assetId": 127360099587440,
@@ -540,7 +567,7 @@
       "price": 200,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4623
+      "favorites": 4624
     },
     {
       "assetId": 73886642022932,
@@ -657,7 +684,7 @@
       "price": 150,
       "created": "2025-04-22T13:21:40.487Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-8116d3a70bab5083a88b414e737bb787/420/420/BackAccessory/Png/noFilter",
-      "favorites": 282
+      "favorites": 283
     },
     {
       "assetId": 88010539838137,
