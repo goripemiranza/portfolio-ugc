@@ -1,7 +1,16 @@
 {
-  "updated": "2026-04-01T02:13:17Z",
-  "generatedAt": "2026-04-01T02:13:17Z",
+  "updated": "2026-04-02T02:00:35Z",
+  "generatedAt": "2026-04-02T02:00:35Z",
   "items": [
+    {
+      "assetId": 102409501443142,
+      "name": "Cartoon rabbit mask (drawing style)",
+      "type": "FaceAccessory",
+      "price": 110,
+      "created": "2026-04-01T20:01:10.0554889Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-b2a4d036086ca6ebd8ed3808428013fd/420/420/FaceAccessory/Png/noFilter",
+      "favorites": 5
+    },
     {
       "assetId": 116479189273231,
       "name": "Green and black dragon tail",
@@ -52,7 +61,7 @@
       "name": "Yellow cracked easter egg (body)",
       "type": "BackAccessory",
       "price": 111,
-      "created": "2026-03-27T22:13:50.4670884Z",
+      "created": "2026-03-27T22:13:50.467Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2e305dce572124f2d10b38c624b85a4e/420/420/BackAccessory/Png/noFilter",
       "favorites": 0
     },
@@ -171,7 +180,7 @@
       "price": 135,
       "created": "2026-03-08T20:51:40.57Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-81821e150cde2f1b502a4a6175fafc5c/420/420/BackAccessory/Png/noFilter",
-      "favorites": 438
+      "favorites": 550
     },
     {
       "assetId": 106185923778046,
@@ -882,7 +891,7 @@
       "price": 145,
       "created": "2025-01-28T20:00:18.98Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-f68738a70c9d56508c63fd85ffe2b850/420/420/BackAccessory/Png/noFilter",
-      "favorites": 719
+      "favorites": 720
     },
     {
       "assetId": 85708056856563,
@@ -909,7 +918,7 @@
       "price": 80,
       "created": "2025-01-16T20:19:58.877Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-73da8077a9fd1f7c26b01cb5bbc4767a/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 84
+      "favorites": 85
     },
     {
       "assetId": 134402963982838,
