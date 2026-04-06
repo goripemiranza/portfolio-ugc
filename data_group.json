@@ -1,6 +1,6 @@
 {
-  "updated": "2026-04-05T02:07:42Z",
-  "generatedAt": "2026-04-05T02:07:42Z",
+  "updated": "2026-04-06T02:08:56Z",
+  "generatedAt": "2026-04-06T02:08:56Z",
   "items": [
     {
       "assetId": 102409501443142,
@@ -34,7 +34,7 @@
       "name": "Green and black horns",
       "type": "Hat",
       "price": 90,
-      "created": "2026-03-30T19:10:51.3005996Z",
+      "created": "2026-03-30T19:10:51.3Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-74319c5e188ee4d6aa8293fed970e5ce/420/420/Hat/Png/noFilter",
       "favorites": 0
     },
@@ -180,7 +180,7 @@
       "price": 135,
       "created": "2026-03-08T20:51:40.57Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-81821e150cde2f1b502a4a6175fafc5c/420/420/BackAccessory/Png/noFilter",
-      "favorites": 652
+      "favorites": 750
     },
     {
       "assetId": 106185923778046,
@@ -603,7 +603,7 @@
       "price": 80,
       "created": "2025-08-22T23:51:21.933Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b128dc08fc1d232daee9c1759ceaf960/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 119
+      "favorites": 120
     },
     {
       "assetId": 130462198935793,
@@ -630,7 +630,7 @@
       "price": 200,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4626
+      "favorites": 4629
     },
     {
       "assetId": 73886642022932,
