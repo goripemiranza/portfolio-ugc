@@ -1,15 +1,15 @@
 {
-  "updated": "2026-04-10T02:10:29Z",
-  "generatedAt": "2026-04-10T02:10:29Z",
+  "updated": "2026-04-11T01:59:06Z",
+  "generatedAt": "2026-04-11T01:59:06Z",
   "items": [
     {
       "assetId": 134442603728020,
       "name": "Cartoon top hat (drawing style)\n",
       "type": "Hat",
       "price": 150,
-      "created": "2026-04-08T10:39:13.3889602Z",
+      "created": "2026-04-08T10:39:13.388Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-16558d503ee8ccd549a54f9c3d53af60/420/420/Hat/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 102409501443142,
@@ -189,7 +189,7 @@
       "price": 135,
       "created": "2026-03-08T20:51:40.57Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-81821e150cde2f1b502a4a6175fafc5c/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1054
+      "favorites": 1082
     },
     {
       "assetId": 106185923778046,
@@ -512,7 +512,7 @@
       "type": "Hat",
       "price": 100,
       "created": "2025-10-12T19:51:53.84Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-4b5a374980b7723aaf40156a93bba3df/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-7641102f52a95afc4f2eb48217f5fb4e/420/420/Hat/Png/noFilter",
       "favorites": 311
     },
     {
@@ -639,7 +639,7 @@
       "price": 200,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4663
+      "favorites": 4742
     },
     {
       "assetId": 73886642022932,
@@ -819,7 +819,7 @@
       "price": 150,
       "created": "2025-03-13T17:37:01.743Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4ed5755dd679b0559ceab285a4e87a9b/420/420/BackAccessory/Png/noFilter",
-      "favorites": 8033
+      "favorites": 8032
     },
     {
       "assetId": 112911367450195,
