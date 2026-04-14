@@ -1,7 +1,16 @@
 {
-  "updated": "2026-04-13T02:16:46Z",
-  "generatedAt": "2026-04-13T02:16:46Z",
+  "updated": "2026-04-14T02:11:32Z",
+  "generatedAt": "2026-04-14T02:11:32Z",
   "items": [
+    {
+      "assetId": 119531051437305,
+      "name": "[PBR] Royal butterfly sword ",
+      "type": "BackAccessory",
+      "price": 200,
+      "created": "2026-04-13T15:04:23.574Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-025f6ddbb8b00ba48b85c610f0ec8119/420/420/BackAccessory/Png/noFilter",
+      "favorites": 8
+    },
     {
       "assetId": 75337966370394,
       "name": "Cartoon tie (drawing style)",
@@ -9,7 +18,7 @@
       "price": 80,
       "created": "2026-04-10T22:51:14.1391081Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b2e80cd2ceee58d5d5b2eec86fe52db4/420/420/NeckAccessory/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 134442603728020,
