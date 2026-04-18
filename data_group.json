@@ -1,6 +1,6 @@
 {
-  "updated": "2026-04-17T02:11:58Z",
-  "generatedAt": "2026-04-17T02:11:58Z",
+  "updated": "2026-04-18T02:03:50Z",
+  "generatedAt": "2026-04-18T02:03:50Z",
   "items": [
     {
       "assetId": 111275298972938,
@@ -52,7 +52,7 @@
       "name": "Green and black dragon tail",
       "type": "WaistAccessory",
       "price": 60,
-      "created": "2026-03-30T19:13:19.0136052Z",
+      "created": "2026-03-30T19:13:19.013Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-573b30d4a49fbc9348e0e430e7f4e6e6/420/420/WaistAccessory/Png/noFilter",
       "favorites": 1
     },
@@ -63,7 +63,7 @@
       "price": 135,
       "created": "2026-03-30T19:11:47.437Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a7c19594c7f22d0300aaadbfcba40919/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 89127962097281,
@@ -521,8 +521,8 @@
       "type": "Hat",
       "price": 100,
       "created": "2025-10-19T11:40:08.133Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-df1fb1001a390a28c696e99868029064/420/420/Hat/Png/noFilter",
-      "favorites": 36
+      "thumb": "https://tr.rbxcdn.com/180DAY-ef63b3fbad343ac53aa288bd28a3b898/420/420/Hat/Png/noFilter",
+      "favorites": 37
     },
     {
       "assetId": 90895163434338,
@@ -693,7 +693,7 @@
       "price": 100,
       "created": "2025-08-03T16:32:30.947Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-35aa1c52371862c5e5fd6afbf871ce18/420/420/Hat/Png/noFilter",
-      "favorites": 47
+      "favorites": 48
     },
     {
       "assetId": 83398849212814,
