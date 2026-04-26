@@ -1,7 +1,25 @@
 {
-  "updated": "2026-04-25T02:05:34Z",
-  "generatedAt": "2026-04-25T02:05:34Z",
+  "updated": "2026-04-26T02:28:20Z",
+  "generatedAt": "2026-04-26T02:28:20Z",
   "items": [
+    {
+      "assetId": 122011928189838,
+      "name": "Cute koala beanie hat",
+      "type": "Hat",
+      "price": 90,
+      "created": "2026-04-25T19:29:15.499933Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-f152d3120a79255a18433e2ff9cd680d/420/420/Hat/Png/noFilter",
+      "favorites": 1
+    },
+    {
+      "assetId": 116621352116847,
+      "name": "Cute lion beanie hat",
+      "type": "Hat",
+      "price": 90,
+      "created": "2026-04-25T14:52:05.9197708Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-4706e7f898f933a45b374d88e507bd3e/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 113706917996053,
       "name": "[PBR] Royalty heart scepter",
@@ -18,7 +36,7 @@
       "price": 170,
       "created": "2026-04-14T15:56:36.902Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-c4019a72af432358c90b79aab35ed2d9/420/420/BackAccessory/Png/noFilter",
-      "favorites": 256
+      "favorites": 351
     },
     {
       "assetId": 119531051437305,
@@ -810,7 +828,7 @@
       "price": 150,
       "created": "2025-04-22T12:51:25.18Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-7fdee469609b06f07f66e52882b69667/420/420/BackAccessory/Png/noFilter",
-      "favorites": 799
+      "favorites": 798
     },
     {
       "assetId": 86984436602601,
@@ -828,7 +846,7 @@
       "price": 200,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2f7ad69ffabfea8aa192adce4616d696/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10126
+      "favorites": 10127
     },
     {
       "assetId": 134542294659432,
