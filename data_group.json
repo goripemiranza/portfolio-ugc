@@ -1,7 +1,16 @@
 {
-  "updated": "2026-04-27T02:30:31Z",
-  "generatedAt": "2026-04-27T02:30:31Z",
+  "updated": "2026-04-28T02:37:42Z",
+  "generatedAt": "2026-04-28T02:37:42Z",
   "items": [
+    {
+      "assetId": 115607331509128,
+      "name": "Cute panda beanie hat",
+      "type": "Hat",
+      "price": 90,
+      "created": "2026-04-26T20:14:26.4016191Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-6ddcea55c5dad6f9ac29286e5871ebfd/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 122011928189838,
       "name": "Cute koala beanie hat",
@@ -16,9 +25,9 @@
       "name": "Cute lion beanie hat",
       "type": "Hat",
       "price": 90,
-      "created": "2026-04-25T14:52:05.9197708Z",
+      "created": "2026-04-25T14:52:05.919Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4706e7f898f933a45b374d88e507bd3e/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 9
     },
     {
       "assetId": 113706917996053,
@@ -783,7 +792,7 @@
       "price": 160,
       "created": "2025-07-19T14:22:27.64Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4d86f3e6bff2d8dcb88cf906424c43dd/420/420/BackAccessory/Png/noFilter",
-      "favorites": 3424
+      "favorites": 3425
     },
     {
       "assetId": 132428921830890,
