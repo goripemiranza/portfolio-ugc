@@ -1,7 +1,16 @@
 {
-  "updated": "2026-04-29T02:38:01Z",
-  "generatedAt": "2026-04-29T02:38:01Z",
+  "updated": "2026-04-30T02:39:05Z",
+  "generatedAt": "2026-04-30T02:39:05Z",
   "items": [
+    {
+      "assetId": 102790002987389,
+      "name": "Cute cow beanie hat",
+      "type": "Hat",
+      "price": 90,
+      "created": "2026-04-29T18:26:12.6249528Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-d79e382cb09635554d31b402d6dfab8f/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 115607331509128,
       "name": "Cute panda beanie hat",
@@ -468,7 +477,7 @@
       "price": 50,
       "created": "2025-12-30T22:24:06.727Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-5aa6030dd33104a0466dfb9cfa4ebdbe/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 837
+      "favorites": 838
     },
     {
       "assetId": 131304231036878,
@@ -855,7 +864,7 @@
       "price": 200,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2f7ad69ffabfea8aa192adce4616d696/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10128
+      "favorites": 10129
     },
     {
       "assetId": 134542294659432,
