@@ -1,7 +1,16 @@
 {
-  "updated": "2026-05-01T02:44:42Z",
-  "generatedAt": "2026-05-01T02:44:42Z",
+  "updated": "2026-05-02T02:27:40Z",
+  "generatedAt": "2026-05-02T02:27:40Z",
   "items": [
+    {
+      "assetId": 73059612260385,
+      "name": "Cute bunny beanie hat",
+      "type": "Hat",
+      "price": 90,
+      "created": "2026-05-01T11:08:41.8636921Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-59147b3bbb78962deb46b3f034c453e4/420/420/Hat/Png/noFilter",
+      "favorites": 18
+    },
     {
       "assetId": 102790002987389,
       "name": "Cute cow beanie hat",
@@ -25,7 +34,7 @@
       "name": "Cute koala beanie hat",
       "type": "Hat",
       "price": 90,
-      "created": "2026-04-25T19:29:15.499933Z",
+      "created": "2026-04-25T19:29:15.499Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-f152d3120a79255a18433e2ff9cd680d/420/420/Hat/Png/noFilter",
       "favorites": 212
     },
@@ -528,7 +537,7 @@
       "assetId": 74820048389112,
       "name": "[PBR] Blue cyber wings",
       "type": "BackAccessory",
-      "price": 140,
+      "price": 200,
       "created": "2025-12-21T16:40:33.183Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a52d9fee1c19726f2cbba596afea37d6/420/420/BackAccessory/Png/noFilter",
       "favorites": 408
@@ -879,7 +888,7 @@
       "assetId": 84767700611805,
       "name": "Pink flower parasol",
       "type": "BackAccessory",
-      "price": 150,
+      "price": 200,
       "created": "2025-03-21T20:25:38.197Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-582aa738f27db02c65e5252b5d98ca7a/420/420/BackAccessory/Png/noFilter",
       "favorites": 3100
