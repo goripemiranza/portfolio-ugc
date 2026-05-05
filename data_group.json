@@ -1,15 +1,15 @@
 {
-  "updated": "2026-05-04T02:34:40Z",
-  "generatedAt": "2026-05-04T02:34:40Z",
+  "updated": "2026-05-05T02:29:06Z",
+  "generatedAt": "2026-05-05T02:29:06Z",
   "items": [
     {
       "assetId": 73059612260385,
       "name": "Cute bunny beanie hat",
       "type": "Hat",
       "price": 90,
-      "created": "2026-05-01T11:08:41.8636921Z",
+      "created": "2026-05-01T11:08:41.863Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-59147b3bbb78962deb46b3f034c453e4/420/420/Hat/Png/noFilter",
-      "favorites": 18
+      "favorites": 46
     },
     {
       "assetId": 102790002987389,
@@ -99,7 +99,7 @@
       "price": 90,
       "created": "2026-04-01T20:01:10.055Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b2a4d036086ca6ebd8ed3808428013fd/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 286
+      "favorites": 287
     },
     {
       "assetId": 116479189273231,
@@ -126,7 +126,7 @@
       "price": 90,
       "created": "2026-03-30T19:10:51.3Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-74319c5e188ee4d6aa8293fed970e5ce/420/420/Hat/Png/noFilter",
-      "favorites": 1
+      "favorites": 4
     },
     {
       "assetId": 112577329708228,
@@ -567,7 +567,7 @@
       "price": 100,
       "created": "2025-10-19T11:42:55.59Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9cc635041e93191ec16cb61e5c591349/420/420/Hat/Png/noFilter",
-      "favorites": 6
+      "favorites": 7
     },
     {
       "assetId": 86312140095193,
@@ -621,7 +621,7 @@
       "price": 100,
       "created": "2025-09-25T20:38:02.477Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-46b012387faa3cb4d1679a5b47d5c21a/420/420/Hat/Png/noFilter",
-      "favorites": 3501
+      "favorites": 3503
     },
     {
       "assetId": 131531497269464,
@@ -681,7 +681,7 @@
       "assetId": 119786498249719,
       "name": "Black and white messy hair",
       "type": "HairAccessory",
-      "price": 70,
+      "price": 65,
       "created": "2025-08-25T20:18:08.163Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-cac5a262cd9b82887980ed87f67f9d19/420/420/HairAccessory/Png/noFilter",
       "favorites": 744
@@ -1017,7 +1017,7 @@
       "price": 145,
       "created": "2025-01-10T23:46:07.677Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0fc7d4c911fb87a6e8e718104c2b0d85/420/420/BackAccessory/Png/noFilter",
-      "favorites": 481
+      "favorites": 482
     },
     {
       "assetId": 110319499372320,
