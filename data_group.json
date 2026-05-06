@@ -1,7 +1,16 @@
 {
-  "updated": "2026-05-05T02:29:06Z",
-  "generatedAt": "2026-05-05T02:29:06Z",
+  "updated": "2026-05-06T02:33:03Z",
+  "generatedAt": "2026-05-06T02:33:03Z",
   "items": [
+    {
+      "assetId": 73475003957037,
+      "name": "[PBR] Cute hair bow",
+      "type": "Hat",
+      "price": 100,
+      "created": "2026-05-05T20:22:30.8803584Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-a1aeff59570ca64106db45776f1f4c62/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 73059612260385,
       "name": "Cute bunny beanie hat",
@@ -16,9 +25,9 @@
       "name": "Cute cow beanie hat",
       "type": "Hat",
       "price": 90,
-      "created": "2026-04-29T18:26:12.6249528Z",
+      "created": "2026-04-29T18:26:12.624Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d79e382cb09635554d31b402d6dfab8f/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 6
     },
     {
       "assetId": 115607331509128,
@@ -27,7 +36,7 @@
       "price": 90,
       "created": "2026-04-26T20:14:26.401Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6ddcea55c5dad6f9ac29286e5871ebfd/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 27
     },
     {
       "assetId": 122011928189838,
@@ -45,7 +54,7 @@
       "price": 90,
       "created": "2026-04-25T14:52:05.919Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4706e7f898f933a45b374d88e507bd3e/420/420/Hat/Png/noFilter",
-      "favorites": 9
+      "favorites": 163
     },
     {
       "assetId": 113706917996053,
@@ -63,7 +72,7 @@
       "price": 170,
       "created": "2026-04-14T15:56:36.902Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-c4019a72af432358c90b79aab35ed2d9/420/420/BackAccessory/Png/noFilter",
-      "favorites": 351
+      "favorites": 391
     },
     {
       "assetId": 119531051437305,
@@ -936,7 +945,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 24286
+      "favorites": 24335
     },
     {
       "assetId": 84062622353279,
@@ -999,7 +1008,7 @@
       "price": 105,
       "created": "2025-01-17T14:21:58.877Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ecadb8eec0e937b5e8f9412b2bb2eca1/420/420/Hat/Png/noFilter",
-      "favorites": 178
+      "favorites": 179
     },
     {
       "assetId": 71154994010748,
