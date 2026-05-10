@@ -1,7 +1,16 @@
 {
-  "updated": "2026-05-09T02:35:55Z",
-  "generatedAt": "2026-05-09T02:35:55Z",
+  "updated": "2026-05-10T02:38:39Z",
+  "generatedAt": "2026-05-10T02:38:39Z",
   "items": [
+    {
+      "assetId": 133082686213652,
+      "name": "[PBR] Elegant crimson royalty sunhat",
+      "type": "Hat",
+      "price": 100,
+      "created": "2026-05-09T23:31:29.063Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-304f8cdc2531faf837d6eda87323e036/420/420/Hat/Png/noFilter",
+      "favorites": 8
+    },
     {
       "assetId": 73475003957037,
       "name": "[PBR] Cute hair bow",
@@ -87,7 +96,7 @@
       "assetId": 75337966370394,
       "name": "Cartoon tie (drawing style)",
       "type": "NeckAccessory",
-      "price": 90,
+      "price": 55,
       "created": "2026-04-10T22:51:14.139Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b2e80cd2ceee58d5d5b2eec86fe52db4/420/420/NeckAccessory/Png/noFilter",
       "favorites": 2
@@ -195,7 +204,7 @@
       "assetId": 101046852916511,
       "name": "Red easter egg (mouth)",
       "type": "FaceAccessory",
-      "price": 90,
+      "price": 95,
       "created": "2026-03-21T15:09:50.339Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-13bf1eacca0ae25657bbe58035848435/420/420/FaceAccessory/Png/noFilter",
       "favorites": 1
@@ -267,7 +276,7 @@
       "assetId": 80910958885713,
       "name": "Blue cracked easter egg (body)",
       "type": "BackAccessory",
-      "price": 111,
+      "price": 150,
       "created": "2026-03-10T20:23:59.7Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b6510e9824e58d18b1d6bd186aa424aa/420/420/BackAccessory/Png/noFilter",
       "favorites": 41
@@ -474,7 +483,7 @@
       "assetId": 132158434658250,
       "name": "Cute lovely face with hearts",
       "type": "FaceAccessory",
-      "price": 90,
+      "price": 95,
       "created": "2026-01-21T17:32:44.911Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-1b3322f5a8c77851ac2636803d358566/420/420/FaceAccessory/Png/noFilter",
       "favorites": 717
@@ -672,7 +681,7 @@
       "assetId": 107095008480456,
       "name": "[PBR] green metallic horns",
       "type": "Hat",
-      "price": 90,
+      "price": 95,
       "created": "2025-09-07T19:19:34.547Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-63ceeb8546c6ae71d391ee8ea878fe9b/420/420/Hat/Png/noFilter",
       "favorites": 7
@@ -765,13 +774,13 @@
       "price": 100,
       "created": "2025-08-02T14:15:33.503Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e0cc8d1f7cebf068efb744093df4642b/420/420/Hat/Png/noFilter",
-      "favorites": 175
+      "favorites": 176
     },
     {
       "assetId": 129193098836002,
       "name": "[PBR] black metallic royal sword",
       "type": "BackAccessory",
-      "price": 140,
+      "price": 150,
       "created": "2025-07-29T22:10:13.433Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-91158de6e822d4aa45f450c747e3c41e/420/420/BackAccessory/Png/noFilter",
       "favorites": 633
@@ -828,7 +837,7 @@
       "price": 150,
       "created": "2025-04-24T13:25:21.483Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-64b8c8f90706e47a2bc3796e6b315156/420/420/BackAccessory/Png/noFilter",
-      "favorites": 436
+      "favorites": 437
     },
     {
       "assetId": 83940501884631,
@@ -996,7 +1005,7 @@
       "assetId": 85708056856563,
       "name": "Black and gold wings ",
       "type": "BackAccessory",
-      "price": 140,
+      "price": 150,
       "created": "2025-01-24T21:11:27.313Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6445c240f10113b277e262779e6d552e/420/420/BackAccessory/Png/noFilter",
       "favorites": 5223
@@ -1032,7 +1041,7 @@
       "assetId": 110319499372320,
       "name": "White and gold wings ",
       "type": "BackAccessory",
-      "price": 180,
+      "price": 150,
       "created": "2025-01-06T23:59:09.967Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-649d76d0946904c87bb4f08ab9b75bbe/420/420/BackAccessory/Png/noFilter",
       "favorites": 6506
