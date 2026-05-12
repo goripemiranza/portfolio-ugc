@@ -1,6 +1,6 @@
 {
-  "updated": "2026-05-11T02:48:25Z",
-  "generatedAt": "2026-05-11T02:48:25Z",
+  "updated": "2026-05-12T02:41:05Z",
+  "generatedAt": "2026-05-12T02:41:05Z",
   "items": [
     {
       "assetId": 133082686213652,
@@ -24,7 +24,7 @@
       "assetId": 73059612260385,
       "name": "Cute bunny beanie hat",
       "type": "Hat",
-      "price": 90,
+      "price": 95,
       "created": "2026-05-01T11:08:41.863Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-59147b3bbb78962deb46b3f034c453e4/420/420/Hat/Png/noFilter",
       "favorites": 46
@@ -132,7 +132,7 @@
       "assetId": 97387768169820,
       "name": "Green and black dragon wings",
       "type": "BackAccessory",
-      "price": 135,
+      "price": 150,
       "created": "2026-03-30T19:11:47.437Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a7c19594c7f22d0300aaadbfcba40919/420/420/BackAccessory/Png/noFilter",
       "favorites": 2
@@ -267,7 +267,7 @@
       "assetId": 118631655015914,
       "name": "Blue cracked easter egg (hat)",
       "type": "Hat",
-      "price": 90,
+      "price": 95,
       "created": "2026-03-12T19:02:56.937Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b6edaa997d7920debdcff239489f1529/420/420/Hat/Png/noFilter",
       "favorites": 37
@@ -312,10 +312,10 @@
       "assetId": 125991289006003,
       "name": "Pink lily flower parasol",
       "type": "BackAccessory",
-      "price": 135,
+      "price": 150,
       "created": "2026-02-26T20:21:55.528Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-91d6e956bbc4171c725ad82583442593/420/420/BackAccessory/Png/noFilter",
-      "favorites": 4
+      "favorites": 5
     },
     {
       "assetId": 123917531753802,
@@ -342,7 +342,7 @@
       "price": 140,
       "created": "2026-02-15T21:41:02.821Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-8a214b2223d098bc080024be2704a8f3/420/420/BackAccessory/Png/noFilter",
-      "favorites": 409
+      "favorites": 494
     },
     {
       "assetId": 73947668529955,
@@ -432,7 +432,7 @@
       "price": 100,
       "created": "2026-01-30T23:06:45.26Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-3acb14ba106f5302a4ca784e09499a15/420/420/Hat/Png/noFilter",
-      "favorites": 135
+      "favorites": 136
     },
     {
       "assetId": 127360099587440,
@@ -663,10 +663,10 @@
       "assetId": 130134165438299,
       "name": "White and black horns",
       "type": "Hat",
-      "price": 90,
+      "price": 95,
       "created": "2025-09-15T08:41:29.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-1a67a6d9104914407d029e147ce59a9b/420/420/Hat/Png/noFilter",
-      "favorites": 8
+      "favorites": 9
     },
     {
       "assetId": 79738540625712,
@@ -726,10 +726,10 @@
       "assetId": 134630267020145,
       "name": "Blue and black horns",
       "type": "Hat",
-      "price": 100,
+      "price": 95,
       "created": "2025-08-22T23:43:22.9Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d72b6dc2603733dd8ed35d9625782cf7/420/420/Hat/Png/noFilter",
-      "favorites": 65
+      "favorites": 67
     },
     {
       "assetId": 93842989030434,
@@ -954,7 +954,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 24394
+      "favorites": 24463
     },
     {
       "assetId": 84062622353279,
@@ -1026,13 +1026,13 @@
       "price": 80,
       "created": "2025-01-16T20:19:58.877Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-73da8077a9fd1f7c26b01cb5bbc4767a/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 85
+      "favorites": 86
     },
     {
       "assetId": 134402963982838,
       "name": "White and gold scepter ",
       "type": "BackAccessory",
-      "price": 145,
+      "price": 150,
       "created": "2025-01-10T23:46:07.677Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0fc7d4c911fb87a6e8e718104c2b0d85/420/420/BackAccessory/Png/noFilter",
       "favorites": 482
