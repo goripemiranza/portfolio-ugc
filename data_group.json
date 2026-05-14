@@ -1,6 +1,6 @@
 {
-  "updated": "2026-05-13T02:47:28Z",
-  "generatedAt": "2026-05-13T02:47:28Z",
+  "updated": "2026-05-14T02:48:13Z",
+  "generatedAt": "2026-05-14T02:48:13Z",
   "items": [
     {
       "assetId": 133082686213652,
@@ -285,7 +285,7 @@
       "assetId": 140399336096798,
       "name": "Easter eggs (ground)",
       "type": "BackAccessory",
-      "price": 180,
+      "price": 150,
       "created": "2026-03-08T20:51:40.57Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-81821e150cde2f1b502a4a6175fafc5c/420/420/BackAccessory/Png/noFilter",
       "favorites": 1127
@@ -450,7 +450,7 @@
       "price": 150,
       "created": "2026-01-23T23:19:21.39Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-802bafebf1e61c849f4ce3842401a5dc/420/420/BackAccessory/Png/noFilter",
-      "favorites": 47
+      "favorites": 48
     },
     {
       "assetId": 88576858225400,
@@ -954,7 +954,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 24463
+      "favorites": 24471
     },
     {
       "assetId": 84062622353279,
