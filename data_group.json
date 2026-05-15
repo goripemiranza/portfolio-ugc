@@ -1,7 +1,16 @@
 {
-  "updated": "2026-05-14T02:48:13Z",
-  "generatedAt": "2026-05-14T02:48:13Z",
+  "updated": "2026-05-15T02:49:07Z",
+  "generatedAt": "2026-05-15T02:49:07Z",
   "items": [
+    {
+      "assetId": 76470787261993,
+      "name": "[PBR] Elegant white royalty sunhat",
+      "type": "Hat",
+      "price": 100,
+      "created": "2026-05-14T12:52:46.0100643Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-de4e0ad9b3b915731dd277ba9429d40d/420/420/Hat/Png/noFilter",
+      "favorites": 5
+    },
     {
       "assetId": 133082686213652,
       "name": "[PBR] Elegant crimson royalty sunhat",
@@ -9,16 +18,16 @@
       "price": 100,
       "created": "2026-05-09T23:31:29.063Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-304f8cdc2531faf837d6eda87323e036/420/420/Hat/Png/noFilter",
-      "favorites": 8
+      "favorites": 79
     },
     {
       "assetId": 73475003957037,
       "name": "[PBR] Cute hair bow",
       "type": "Hat",
       "price": 100,
-      "created": "2026-05-05T20:22:30.8803584Z",
+      "created": "2026-05-05T20:22:30.88Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a1aeff59570ca64106db45776f1f4c62/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 128
     },
     {
       "assetId": 73059612260385,
@@ -33,7 +42,7 @@
       "assetId": 102790002987389,
       "name": "Cute cow beanie hat",
       "type": "Hat",
-      "price": 90,
+      "price": 95,
       "created": "2026-04-29T18:26:12.624Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d79e382cb09635554d31b402d6dfab8f/420/420/Hat/Png/noFilter",
       "favorites": 6
@@ -114,7 +123,7 @@
       "assetId": 102409501443142,
       "name": "Cartoon rabbit mask (drawing style)",
       "type": "FaceAccessory",
-      "price": 90,
+      "price": 95,
       "created": "2026-04-01T20:01:10.055Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b2a4d036086ca6ebd8ed3808428013fd/420/420/FaceAccessory/Png/noFilter",
       "favorites": 287
@@ -126,7 +135,7 @@
       "price": 60,
       "created": "2026-03-30T19:13:19.013Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-573b30d4a49fbc9348e0e430e7f4e6e6/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 97387768169820,
@@ -144,7 +153,7 @@
       "price": 95,
       "created": "2026-03-30T19:10:51.3Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-74319c5e188ee4d6aa8293fed970e5ce/420/420/Hat/Png/noFilter",
-      "favorites": 3
+      "favorites": 4
     },
     {
       "assetId": 112577329708228,
@@ -168,7 +177,7 @@
       "assetId": 93287659110175,
       "name": "Yellow cracked easter egg (body)",
       "type": "BackAccessory",
-      "price": 111,
+      "price": 150,
       "created": "2026-03-27T22:13:50.467Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2e305dce572124f2d10b38c624b85a4e/420/420/BackAccessory/Png/noFilter",
       "favorites": 0
@@ -711,7 +720,7 @@
       "price": 80,
       "created": "2025-08-22T23:51:21.933Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-003b08be7779f6ef35f905102c128a50/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 120
+      "favorites": 121
     },
     {
       "assetId": 130462198935793,
@@ -807,7 +816,7 @@
       "assetId": 80602461847182,
       "name": "Sun phoenix wings ",
       "type": "BackAccessory",
-      "price": 160,
+      "price": 150,
       "created": "2025-07-25T19:47:38.777Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d2c56895841756d780c23505fe198c3b/420/420/BackAccessory/Png/noFilter",
       "favorites": 1578
@@ -825,7 +834,7 @@
       "assetId": 131785932364189,
       "name": "Moon phoenix wings ",
       "type": "BackAccessory",
-      "price": 160,
+      "price": 150,
       "created": "2025-07-19T14:22:27.64Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e772e2e90908d48950724fe0b72ebb5f/420/420/BackAccessory/Png/noFilter",
       "favorites": 3425
