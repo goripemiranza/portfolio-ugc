@@ -1,6 +1,6 @@
 {
-  "updated": "2026-05-15T02:49:07Z",
-  "generatedAt": "2026-05-15T02:49:07Z",
+  "updated": "2026-05-16T02:37:52Z",
+  "generatedAt": "2026-05-16T02:37:52Z",
   "items": [
     {
       "assetId": 76470787261993,
@@ -195,7 +195,7 @@
       "assetId": 77433437034798,
       "name": "Pink cracked easter egg (hat)",
       "type": "Hat",
-      "price": 90,
+      "price": 95,
       "created": "2026-03-25T20:38:10.368Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-3938103cd3b8ece1b343cb11ef171267/420/420/Hat/Png/noFilter",
       "favorites": 0
@@ -312,7 +312,7 @@
       "assetId": 102689688187379,
       "name": "[PBR] White royal scepter",
       "type": "BackAccessory",
-      "price": 140,
+      "price": 150,
       "created": "2026-03-03T20:49:28.327Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-35443787a14204b1a990c394a73ea02e/420/420/BackAccessory/Png/noFilter",
       "favorites": 60
@@ -504,7 +504,7 @@
       "price": 95,
       "created": "2026-01-19T20:55:59.983Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6cf2c194230591cc82e623e97417cd6b/420/420/Hat/Png/noFilter",
-      "favorites": 333
+      "favorites": 334
     },
     {
       "assetId": 130160862337869,
@@ -825,7 +825,7 @@
       "assetId": 90634979410540,
       "name": "Moon phoenix halo",
       "type": "Hat",
-      "price": 90,
+      "price": 95,
       "created": "2025-07-21T18:18:54.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2c50bf6fb1847469f9dd8db7e7436e38/420/420/Hat/Png/noFilter",
       "favorites": 90
