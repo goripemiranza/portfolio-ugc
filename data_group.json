@@ -1,15 +1,15 @@
 {
-  "updated": "2026-05-17T02:45:50Z",
-  "generatedAt": "2026-05-17T02:45:50Z",
+  "updated": "2026-05-18T02:56:10Z",
+  "generatedAt": "2026-05-18T02:56:10Z",
   "items": [
     {
       "assetId": 76470787261993,
       "name": "[PBR] Elegant white royalty sunhat",
       "type": "Hat",
       "price": 100,
-      "created": "2026-05-14T12:52:46.0100643Z",
+      "created": "2026-05-14T12:52:46.01Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-de4e0ad9b3b915731dd277ba9429d40d/420/420/Hat/Png/noFilter",
-      "favorites": 5
+      "favorites": 56
     },
     {
       "assetId": 133082686213652,
@@ -186,7 +186,7 @@
       "assetId": 126322848312410,
       "name": "Pink easter egg (mouth)",
       "type": "FaceAccessory",
-      "price": 90,
+      "price": 95,
       "created": "2026-03-25T20:39:44.509Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b503422cf19e4892a00d438ef4eb4ab0/420/420/FaceAccessory/Png/noFilter",
       "favorites": 1
@@ -234,13 +234,13 @@
       "price": 111,
       "created": "2026-03-21T15:05:33.874Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-8495d6a340e0833169005a670733084f/420/420/BackAccessory/Png/noFilter",
-      "favorites": 2
+      "favorites": 1
     },
     {
       "assetId": 100979537099207,
       "name": "Green easter egg (mouth)",
       "type": "FaceAccessory",
-      "price": 90,
+      "price": 95,
       "created": "2026-03-18T20:57:46.744Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e3c614149bed4986aa37ca8c1097cee1/420/420/FaceAccessory/Png/noFilter",
       "favorites": 1
@@ -267,7 +267,7 @@
       "assetId": 123474849043992,
       "name": "Blue easter egg (mouth) ",
       "type": "FaceAccessory",
-      "price": 90,
+      "price": 95,
       "created": "2026-03-14T22:12:31.609Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e63774c7f0c44821f3ddf71bc63e6341/420/420/FaceAccessory/Png/noFilter",
       "favorites": 5
@@ -798,7 +798,7 @@
       "assetId": 97072088397988,
       "name": "[PBR] white metallic royal sword",
       "type": "BackAccessory",
-      "price": 140,
+      "price": 150,
       "created": "2025-07-28T22:29:02.213Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d8abb921dd4e8d0671a40f9690bcc8c7/420/420/BackAccessory/Png/noFilter",
       "favorites": 646
@@ -897,10 +897,10 @@
       "assetId": 74983607789715,
       "name": "White flower parasol",
       "type": "BackAccessory",
-      "price": 200,
+      "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2f7ad69ffabfea8aa192adce4616d696/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10130
+      "favorites": 10132
     },
     {
       "assetId": 134542294659432,
@@ -963,7 +963,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 24471
+      "favorites": 24512
     },
     {
       "assetId": 84062622353279,
