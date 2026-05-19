@@ -1,7 +1,16 @@
 {
-  "updated": "2026-05-18T02:56:10Z",
-  "generatedAt": "2026-05-18T02:56:10Z",
+  "updated": "2026-05-19T02:53:12Z",
+  "generatedAt": "2026-05-19T02:53:12Z",
   "items": [
+    {
+      "assetId": 84388352063637,
+      "name": "[PBR] Elegant black royalty sunhat",
+      "type": "Hat",
+      "price": 100,
+      "created": "2026-05-17T20:16:59.7917122Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-99dffaba1e52b0c27b75ac76b0e1c891/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 76470787261993,
       "name": "[PBR] Elegant white royalty sunhat",
@@ -114,7 +123,7 @@
       "assetId": 134442603728020,
       "name": "Cartoon top hat (drawing style)\n",
       "type": "Hat",
-      "price": 150,
+      "price": 95,
       "created": "2026-04-08T10:39:13.388Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-16558d503ee8ccd549a54f9c3d53af60/420/420/Hat/Png/noFilter",
       "favorites": 2
@@ -429,7 +438,7 @@
       "assetId": 101443546725523,
       "name": "[PBR] Winter ice sword",
       "type": "BackAccessory",
-      "price": 135,
+      "price": 150,
       "created": "2026-01-31T15:46:07.224Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-cb87ae1ad4011763789529167879366c/420/420/BackAccessory/Png/noFilter",
       "favorites": 973
@@ -699,7 +708,7 @@
       "assetId": 103640681693848,
       "name": "Blonde messy hair",
       "type": "HairAccessory",
-      "price": 70,
+      "price": 65,
       "created": "2025-08-26T21:07:43.41Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0592d4783339d0a60392521922b7aabf/420/420/HairAccessory/Png/noFilter",
       "favorites": 170
@@ -837,7 +846,7 @@
       "price": 150,
       "created": "2025-07-19T14:22:27.64Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e772e2e90908d48950724fe0b72ebb5f/420/420/BackAccessory/Png/noFilter",
-      "favorites": 3425
+      "favorites": 3426
     },
     {
       "assetId": 132428921830890,
@@ -899,8 +908,8 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-2f7ad69ffabfea8aa192adce4616d696/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10132
+      "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
+      "favorites": 10133
     },
     {
       "assetId": 134542294659432,
@@ -963,7 +972,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 24512
+      "favorites": 24516
     },
     {
       "assetId": 84062622353279,
