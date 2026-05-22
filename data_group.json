@@ -1,7 +1,16 @@
 {
-  "updated": "2026-05-21T02:56:52Z",
-  "generatedAt": "2026-05-21T02:56:52Z",
+  "updated": "2026-05-22T02:57:18Z",
+  "generatedAt": "2026-05-22T02:57:18Z",
   "items": [
+    {
+      "assetId": 81415555781366,
+      "name": "[PBR] Elegant green royalty sunhat",
+      "type": "Hat",
+      "price": 100,
+      "created": "2026-05-21T15:42:31.5259608Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-317fad7eae326d17490a3f7b92ba9c94/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 123509368467137,
       "name": "[PBR] Elegant blue royalty sunhat",
@@ -9,7 +18,7 @@
       "price": 100,
       "created": "2026-05-19T15:45:13.2815638Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ec1a84d52b8dd0910ac9c74a5d5966cf/420/420/Hat/Png/noFilter",
-      "favorites": 2
+      "favorites": 3
     },
     {
       "assetId": 84388352063637,
