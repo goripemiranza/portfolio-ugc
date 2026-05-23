@@ -1,6 +1,6 @@
 {
-  "updated": "2026-05-22T02:57:18Z",
-  "generatedAt": "2026-05-22T02:57:18Z",
+  "updated": "2026-05-23T02:42:08Z",
+  "generatedAt": "2026-05-23T02:42:08Z",
   "items": [
     {
       "assetId": 81415555781366,
@@ -25,7 +25,7 @@
       "name": "[PBR] Elegant black royalty sunhat",
       "type": "Hat",
       "price": 100,
-      "created": "2026-05-17T20:16:59.7917122Z",
+      "created": "2026-05-17T20:16:59.791Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-99dffaba1e52b0c27b75ac76b0e1c891/420/420/Hat/Png/noFilter",
       "favorites": 1
     },
@@ -45,7 +45,7 @@
       "price": 100,
       "created": "2026-05-09T23:31:29.063Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-304f8cdc2531faf837d6eda87323e036/420/420/Hat/Png/noFilter",
-      "favorites": 79
+      "favorites": 96
     },
     {
       "assetId": 73475003957037,
@@ -105,7 +105,7 @@
       "assetId": 113706917996053,
       "name": "[PBR] Royalty heart scepter",
       "type": "BackAccessory",
-      "price": 200,
+      "price": 150,
       "created": "2026-04-18T19:57:31.484Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-35567366d82909f77746b0cbf737833c/420/420/BackAccessory/Png/noFilter",
       "favorites": 82
@@ -276,7 +276,7 @@
       "assetId": 100256872095248,
       "name": "Green cracked easter egg (hat)",
       "type": "Hat",
-      "price": 90,
+      "price": 95,
       "created": "2026-03-18T20:49:58.561Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6fe6fcb34b1af8deaf421c32d8288046/420/420/Hat/Png/noFilter",
       "favorites": 1
@@ -510,7 +510,7 @@
       "assetId": 118876179350955,
       "name": "Black diva ponytail",
       "type": "HairAccessory",
-      "price": 60,
+      "price": 65,
       "created": "2026-01-22T21:43:29.206Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-8a838c8e871ccad78c6a5fba531b2401/420/420/HairAccessory/Png/noFilter",
       "favorites": 93
@@ -774,7 +774,7 @@
       "price": 100,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4884
+      "favorites": 4886
     },
     {
       "assetId": 73886642022932,
@@ -810,7 +810,7 @@
       "price": 100,
       "created": "2025-08-02T14:15:33.503Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e0cc8d1f7cebf068efb744093df4642b/420/420/Hat/Png/noFilter",
-      "favorites": 176
+      "favorites": 177
     },
     {
       "assetId": 129193098836002,
