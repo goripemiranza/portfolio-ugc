@@ -1,7 +1,16 @@
 {
-  "updated": "2026-05-27T03:01:15Z",
-  "generatedAt": "2026-05-27T03:01:15Z",
+  "updated": "2026-05-28T02:48:46Z",
+  "generatedAt": "2026-05-28T02:48:46Z",
   "items": [
+    {
+      "assetId": 88485663553013,
+      "name": "[PBR] Elegant pink royalty sunhat",
+      "type": "Hat",
+      "price": 100,
+      "created": "2026-05-27T17:39:23.3814242Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-1845bf7d11cc178a626f496f7b661a45/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 81415555781366,
       "name": "[PBR] Elegant green royalty sunhat",
@@ -117,7 +126,7 @@
       "price": 150,
       "created": "2026-04-14T15:56:36.902Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-c4019a72af432358c90b79aab35ed2d9/420/420/BackAccessory/Png/noFilter",
-      "favorites": 539
+      "favorites": 540
     },
     {
       "assetId": 119531051437305,
@@ -375,7 +384,7 @@
       "assetId": 78560920993312,
       "name": "[PBR] Golden and blue mecha wings",
       "type": "BackAccessory",
-      "price": 140,
+      "price": 150,
       "created": "2026-02-15T21:41:02.821Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-8a214b2223d098bc080024be2704a8f3/420/420/BackAccessory/Png/noFilter",
       "favorites": 494
@@ -942,7 +951,7 @@
       "assetId": 84767700611805,
       "name": "Pink flower parasol",
       "type": "BackAccessory",
-      "price": 200,
+      "price": 150,
       "created": "2025-03-21T20:25:38.197Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-582aa738f27db02c65e5252b5d98ca7a/420/420/BackAccessory/Png/noFilter",
       "favorites": 3101
@@ -990,7 +999,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 24522
+      "favorites": 24523
     },
     {
       "assetId": 84062622353279,
