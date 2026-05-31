@@ -1,6 +1,6 @@
 {
-  "updated": "2026-05-30T02:46:04Z",
-  "generatedAt": "2026-05-30T02:46:04Z",
+  "updated": "2026-05-31T03:27:22Z",
+  "generatedAt": "2026-05-31T03:27:22Z",
   "items": [
     {
       "assetId": 88485663553013,
@@ -18,7 +18,7 @@
       "price": 100,
       "created": "2026-05-21T15:42:31.5259608Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-317fad7eae326d17490a3f7b92ba9c94/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 123509368467137,
@@ -783,7 +783,7 @@
       "price": 100,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4888
+      "favorites": 4927
     },
     {
       "assetId": 73886642022932,
@@ -936,7 +936,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10132
+      "favorites": 10134
     },
     {
       "assetId": 134542294659432,
@@ -954,7 +954,7 @@
       "price": 150,
       "created": "2025-03-21T20:25:38.197Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-582aa738f27db02c65e5252b5d98ca7a/420/420/BackAccessory/Png/noFilter",
-      "favorites": 3101
+      "favorites": 3100
     },
     {
       "assetId": 107830760895891,
@@ -999,7 +999,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 24523
+      "favorites": 24524
     },
     {
       "assetId": 84062622353279,
@@ -1053,7 +1053,7 @@
       "price": 150,
       "created": "2025-01-24T21:11:27.313Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6445c240f10113b277e262779e6d552e/420/420/BackAccessory/Png/noFilter",
-      "favorites": 5223
+      "favorites": 5222
     },
     {
       "assetId": 76584283871633,
