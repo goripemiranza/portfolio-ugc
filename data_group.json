@@ -1,7 +1,16 @@
 {
-  "updated": "2026-06-06T02:48:20Z",
-  "generatedAt": "2026-06-06T02:48:20Z",
+  "updated": "2026-06-07T03:31:52Z",
+  "generatedAt": "2026-06-07T03:31:52Z",
   "items": [
+    {
+      "assetId": 100644221517745,
+      "name": "Nightmare grin: scary teeth mask",
+      "type": "FaceAccessory",
+      "price": 90,
+      "created": "2026-06-06T21:54:16.2184017Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-0cdbe66d61f1d5d90cf45dfd97114a2f/420/420/FaceAccessory/Png/noFilter",
+      "favorites": 33
+    },
     {
       "assetId": 127382605792964,
       "name": "[PBR] Elegant silver yellow royalty sunhat",
@@ -22,12 +31,12 @@
     },
     {
       "assetId": 88485663553013,
-      "name": "[PBR] Elegant pink royalty sunhat",
+      "name": "[PBR] Elegant golden pink royalty sunhat",
       "type": "Hat",
       "price": 100,
-      "created": "2026-05-27T17:39:23.3814242Z",
+      "created": "2026-05-27T17:39:23.381Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-1845bf7d11cc178a626f496f7b661a45/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 81415555781366,
@@ -150,7 +159,7 @@
       "assetId": 119531051437305,
       "name": "[PBR] Royal butterfly sword ",
       "type": "BackAccessory",
-      "price": 200,
+      "price": 150,
       "created": "2026-04-13T15:04:23.574Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-025f6ddbb8b00ba48b85c610f0ec8119/420/420/BackAccessory/Png/noFilter",
       "favorites": 629
@@ -657,7 +666,7 @@
       "price": 100,
       "created": "2025-10-19T11:40:08.133Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ef63b3fbad343ac53aa288bd28a3b898/420/420/Hat/Png/noFilter",
-      "favorites": 37
+      "favorites": 38
     },
     {
       "assetId": 90895163434338,
@@ -891,7 +900,7 @@
       "price": 150,
       "created": "2025-07-19T14:22:27.64Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e772e2e90908d48950724fe0b72ebb5f/420/420/BackAccessory/Png/noFilter",
-      "favorites": 3426
+      "favorites": 3425
     },
     {
       "assetId": 132428921830890,
@@ -954,7 +963,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10134
+      "favorites": 10135
     },
     {
       "assetId": 134542294659432,
