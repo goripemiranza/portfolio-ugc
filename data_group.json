@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-12T03:35:04Z",
-  "generatedAt": "2026-06-12T03:35:04Z",
+  "updated": "2026-06-13T03:00:29Z",
+  "generatedAt": "2026-06-13T03:00:29Z",
   "items": [
     {
       "assetId": 100644221517745,
@@ -72,16 +72,16 @@
       "price": 100,
       "created": "2026-05-14T12:52:46.01Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-de4e0ad9b3b915731dd277ba9429d40d/420/420/Hat/Png/noFilter",
-      "favorites": 70
+      "favorites": 95
     },
     {
       "assetId": 133082686213652,
-      "name": "[PBR] Elegant crimson royalty sunhat",
+      "name": "[PBR] Elegant golden crimson royalty sunhat",
       "type": "Hat",
       "price": 100,
       "created": "2026-05-09T23:31:29.063Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-304f8cdc2531faf837d6eda87323e036/420/420/Hat/Png/noFilter",
-      "favorites": 96
+      "favorites": 105
     },
     {
       "assetId": 73475003957037,
@@ -123,7 +123,7 @@
       "assetId": 122011928189838,
       "name": "Cute koala beanie hat",
       "type": "Hat",
-      "price": 90,
+      "price": 95,
       "created": "2026-04-25T19:29:15.499Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-f152d3120a79255a18433e2ff9cd680d/420/420/Hat/Png/noFilter",
       "favorites": 212
@@ -216,7 +216,7 @@
       "price": 95,
       "created": "2026-03-30T19:10:51.3Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-74319c5e188ee4d6aa8293fed970e5ce/420/420/Hat/Png/noFilter",
-      "favorites": 4
+      "favorites": 7
     },
     {
       "assetId": 112577329708228,
@@ -963,7 +963,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10135
+      "favorites": 10136
     },
     {
       "assetId": 134542294659432,
@@ -1116,7 +1116,7 @@
       "price": 150,
       "created": "2025-01-06T23:59:09.967Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-649d76d0946904c87bb4f08ab9b75bbe/420/420/BackAccessory/Png/noFilter",
-      "favorites": 6505
+      "favorites": 6506
     },
     {
       "assetId": 108418388012974,
