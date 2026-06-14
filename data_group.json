@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-13T03:00:29Z",
-  "generatedAt": "2026-06-13T03:00:29Z",
+  "updated": "2026-06-14T03:38:21Z",
+  "generatedAt": "2026-06-14T03:38:21Z",
   "items": [
     {
       "assetId": 100644221517745,
@@ -85,7 +85,7 @@
     },
     {
       "assetId": 73475003957037,
-      "name": "[PBR] Cute hair bow",
+      "name": "Cute hair bow",
       "type": "Hat",
       "price": 100,
       "created": "2026-05-05T20:22:30.88Z",
@@ -175,7 +175,7 @@
     },
     {
       "assetId": 134442603728020,
-      "name": "Cartoon top hat (drawing style)\n",
+      "name": "Cartoon top hat",
       "type": "Hat",
       "price": 95,
       "created": "2026-04-08T10:39:13.388Z",
@@ -229,7 +229,7 @@
     },
     {
       "assetId": 138369478382646,
-      "name": "Yellow cracked easter egg (hat)",
+      "name": "Yellow cracked egg",
       "type": "Hat",
       "price": 95,
       "created": "2026-03-27T22:15:02.617Z",
@@ -283,7 +283,7 @@
     },
     {
       "assetId": 102055757942540,
-      "name": "Red cracked easter egg (hat)",
+      "name": "Red cracked egg",
       "type": "Hat",
       "price": 95,
       "created": "2026-03-21T15:06:23.051Z",
@@ -310,7 +310,7 @@
     },
     {
       "assetId": 100256872095248,
-      "name": "Green cracked easter egg (hat)",
+      "name": "Green cracked egg",
       "type": "Hat",
       "price": 95,
       "created": "2026-03-18T20:49:58.561Z",
@@ -400,7 +400,7 @@
     },
     {
       "assetId": 129885690371414,
-      "name": "Cute penguin plush ",
+      "name": "Cute penguin plush",
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-02-21T22:25:15.653Z",
@@ -418,7 +418,7 @@
     },
     {
       "assetId": 73947668529955,
-      "name": "[PBR] Y2K black jean cap with stars",
+      "name": "Y2K black jean cap",
       "type": "Hat",
       "price": 100,
       "created": "2026-02-13T12:38:42.115Z",
@@ -436,7 +436,7 @@
     },
     {
       "assetId": 114241510292784,
-      "name": "[PBR] Y2K blue jean cap with stars",
+      "name": "Y2K blue jean cap",
       "type": "Hat",
       "price": 95,
       "created": "2026-02-10T23:12:28.603Z",
@@ -647,7 +647,7 @@
       "type": "Hat",
       "price": 100,
       "created": "2025-12-15T19:01:37.367Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-425cfb2e060109e7adbdcf31642856f2/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-c5c22a9b224b53cfb4f167c7333dffab/420/420/Hat/Png/noFilter",
       "favorites": 205
     },
     {
