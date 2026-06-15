@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-14T03:38:21Z",
-  "generatedAt": "2026-06-14T03:38:21Z",
+  "updated": "2026-06-15T03:48:58Z",
+  "generatedAt": "2026-06-15T03:48:58Z",
   "items": [
     {
       "assetId": 100644221517745,
@@ -465,7 +465,7 @@
       "assetId": 72095218664763,
       "name": "Pink and black horns",
       "type": "Hat",
-      "price": 90,
+      "price": 95,
       "created": "2026-02-07T17:59:09.409Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4858ca9e888cf329934773ee9dfa026d/420/420/Hat/Png/noFilter",
       "favorites": 3
@@ -598,7 +598,7 @@
     },
     {
       "assetId": 112163449988496,
-      "name": "[PBR] Blue cyber mask",
+      "name": "Blue cyber mask",
       "type": "FaceAccessory",
       "price": 100,
       "created": "2025-12-27T23:10:07.95Z",
