@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-16T03:42:51Z",
-  "generatedAt": "2026-06-16T03:42:51Z",
+  "updated": "2026-06-17T03:42:15Z",
+  "generatedAt": "2026-06-17T03:42:15Z",
   "items": [
     {
       "assetId": 100644221517745,
@@ -9,7 +9,7 @@
       "price": 90,
       "created": "2026-06-06T21:54:16.218Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0cdbe66d61f1d5d90cf45dfd97114a2f/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 143
+      "favorites": 218
     },
     {
       "assetId": 127382605792964,
@@ -247,7 +247,7 @@
     },
     {
       "assetId": 126322848312410,
-      "name": "Pink easter egg (mouth)",
+      "name": "Pink egg",
       "type": "FaceAccessory",
       "price": 95,
       "created": "2026-03-25T20:39:44.509Z",
@@ -301,7 +301,7 @@
     },
     {
       "assetId": 100979537099207,
-      "name": "Green easter egg (mouth)",
+      "name": "Green egg",
       "type": "FaceAccessory",
       "price": 95,
       "created": "2026-03-18T20:57:46.744Z",
@@ -477,7 +477,7 @@
       "price": 150,
       "created": "2026-02-04T19:33:50.467Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4dfe3a5d65d3ac22246bc9d76c8e0a30/420/420/BackAccessory/Png/noFilter",
-      "favorites": 33
+      "favorites": 34
     },
     {
       "assetId": 133021430549045,
@@ -508,12 +508,12 @@
     },
     {
       "assetId": 127360099587440,
-      "name": "[PBR] White cyber mask",
+      "name": "White cyber mask",
       "type": "FaceAccessory",
       "price": 100,
       "created": "2026-01-23T23:20:16.44Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-68961c677694f777bc392c65df583911/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 19
+      "favorites": 21
     },
     {
       "assetId": 124492190423394,
@@ -670,7 +670,7 @@
     },
     {
       "assetId": 90895163434338,
-      "name": "[PBR] Black/blue golden jewelled horns",
+      "name": "Blackand blue horns",
       "type": "Hat",
       "price": 100,
       "created": "2025-10-19T11:36:59.36Z",
@@ -810,7 +810,7 @@
       "price": 100,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4928
+      "favorites": 4927
     },
     {
       "assetId": 73886642022932,
