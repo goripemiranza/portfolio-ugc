@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-17T03:42:15Z",
-  "generatedAt": "2026-06-17T03:42:15Z",
+  "updated": "2026-06-18T03:35:09Z",
+  "generatedAt": "2026-06-18T03:35:09Z",
   "items": [
     {
       "assetId": 100644221517745,
@@ -87,7 +87,7 @@
       "assetId": 73475003957037,
       "name": "Cute hair bow",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2026-05-05T20:22:30.88Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a1aeff59570ca64106db45776f1f4c62/420/420/Hat/Png/noFilter",
       "favorites": 127
@@ -274,7 +274,7 @@
     },
     {
       "assetId": 101046852916511,
-      "name": "Red easter egg (mouth)",
+      "name": "Red egg",
       "type": "FaceAccessory",
       "price": 95,
       "created": "2026-03-21T15:09:50.339Z",
@@ -510,7 +510,7 @@
       "assetId": 127360099587440,
       "name": "White cyber mask",
       "type": "FaceAccessory",
-      "price": 100,
+      "price": 105,
       "created": "2026-01-23T23:20:16.44Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-68961c677694f777bc392c65df583911/420/420/FaceAccessory/Png/noFilter",
       "favorites": 21
@@ -537,7 +537,7 @@
       "assetId": 126950777863478,
       "name": "Spaceship",
       "type": "EmoteAnimation",
-      "price": 50,
+      "price": 55,
       "created": "2026-01-23T20:56:08.769Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2a1eb246ae213cda64dd8fca790de760/420/420/EmoteAnimation/Png/noFilter",
       "favorites": 90
@@ -654,7 +654,7 @@
       "assetId": 76093476566308,
       "name": "Golden white crown",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2025-10-19T11:42:55.59Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9cc635041e93191ec16cb61e5c591349/420/420/Hat/Png/noFilter",
       "favorites": 7
@@ -738,20 +738,20 @@
       "price": 95,
       "created": "2025-09-15T08:41:29.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-1a67a6d9104914407d029e147ce59a9b/420/420/Hat/Png/noFilter",
-      "favorites": 10
+      "favorites": 11
     },
     {
       "assetId": 79738540625712,
-      "name": "[PBR] Golden red royal crown ",
+      "name": "Golden red crown",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2025-09-10T14:08:35.023Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-5ffc7a28bcc0b547cc0ddfe7e2b83b25/420/420/Hat/Png/noFilter",
       "favorites": 375
     },
     {
       "assetId": 107095008480456,
-      "name": "[PBR] green metallic horns",
+      "name": "green horns",
       "type": "Hat",
       "price": 95,
       "created": "2025-09-07T19:19:34.547Z",
