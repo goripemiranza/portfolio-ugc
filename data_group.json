@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-18T03:35:09Z",
-  "generatedAt": "2026-06-18T03:35:09Z",
+  "updated": "2026-06-19T03:56:17Z",
+  "generatedAt": "2026-06-19T03:56:17Z",
   "items": [
     {
       "assetId": 100644221517745,
@@ -24,7 +24,7 @@
       "assetId": 117145702060439,
       "name": "red royalty hat",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2026-05-31T10:54:49.503Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-543029ea7192e0806fe426f714420862/420/420/Hat/Png/noFilter",
       "favorites": 4
@@ -49,9 +49,9 @@
     },
     {
       "assetId": 123509368467137,
-      "name": "[PBR] Elegant golden blue royalty sunhat",
+      "name": "blue royalty hat",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2026-05-19T15:45:13.281Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ec1a84d52b8dd0910ac9c74a5d5966cf/420/420/Hat/Png/noFilter",
       "favorites": 3
@@ -81,7 +81,7 @@
       "price": 100,
       "created": "2026-05-09T23:31:29.063Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-304f8cdc2531faf837d6eda87323e036/420/420/Hat/Png/noFilter",
-      "favorites": 105
+      "favorites": 114
     },
     {
       "assetId": 73475003957037,
@@ -139,7 +139,7 @@
     },
     {
       "assetId": 113706917996053,
-      "name": "[PBR] Royalty heart scepter",
+      "name": "Royalty heart scepter",
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-04-18T19:57:31.484Z",
@@ -292,9 +292,9 @@
     },
     {
       "assetId": 78538960468885,
-      "name": "Red cracked easter egg (body)",
+      "name": "Red cracked easter egg",
       "type": "BackAccessory",
-      "price": 111,
+      "price": 150,
       "created": "2026-03-21T15:05:33.874Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-8495d6a340e0833169005a670733084f/420/420/BackAccessory/Png/noFilter",
       "favorites": 1
@@ -661,9 +661,9 @@
     },
     {
       "assetId": 86312140095193,
-      "name": "[PBR] Black/green golden jewelled horns",
+      "name": "Black and green horns",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2025-10-19T11:40:08.133Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ef63b3fbad343ac53aa288bd28a3b898/420/420/Hat/Png/noFilter",
       "favorites": 38
@@ -717,7 +717,7 @@
       "assetId": 131531497269464,
       "name": "White and black dragon tail",
       "type": "WaistAccessory",
-      "price": 60,
+      "price": 65,
       "created": "2025-09-18T19:57:55.397Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-15ae8e38831d2d1958aa53a420dd3b16/420/420/WaistAccessory/Png/noFilter",
       "favorites": 16
