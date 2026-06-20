@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-19T03:56:17Z",
-  "generatedAt": "2026-06-19T03:56:17Z",
+  "updated": "2026-06-20T02:58:38Z",
+  "generatedAt": "2026-06-20T02:58:38Z",
   "items": [
     {
       "assetId": 100644221517745,
@@ -220,7 +220,7 @@
     },
     {
       "assetId": 112577329708228,
-      "name": "Yellow easter egg (mouth)",
+      "name": "Yellow egg",
       "type": "FaceAccessory",
       "price": 95,
       "created": "2026-03-27T22:20:30.076Z",
@@ -328,7 +328,7 @@
     },
     {
       "assetId": 123474849043992,
-      "name": "Blue easter egg (mouth) ",
+      "name": "Blue egg",
       "type": "FaceAccessory",
       "price": 95,
       "created": "2026-03-14T22:12:31.609Z",
@@ -337,7 +337,7 @@
     },
     {
       "assetId": 118631655015914,
-      "name": "Blue cracked easter egg (hat)",
+      "name": "Blue cracked egg",
       "type": "Hat",
       "price": 95,
       "created": "2026-03-12T19:02:56.937Z",
@@ -373,7 +373,7 @@
     },
     {
       "assetId": 102689688187379,
-      "name": "[PBR] White royal scepter",
+      "name": "White royal scepter",
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-03-03T20:49:28.327Z",
@@ -427,7 +427,7 @@
     },
     {
       "assetId": 74912310327127,
-      "name": "[PBR] Y2K white jean cap with stars",
+      "name": "Y2K white jean cap",
       "type": "Hat",
       "price": 95,
       "created": "2026-02-11T22:16:59.051Z",
@@ -620,7 +620,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-12-21T17:18:58.433Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-33ac98f42ef0e666354bc832bb24653a/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-2de70e946356261d0a84e9de6a9cabd5/420/420/BackAccessory/Png/noFilter",
       "favorites": 152
     },
     {
@@ -629,7 +629,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-12-21T16:40:33.183Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-a52d9fee1c19726f2cbba596afea37d6/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-ffdbdb94f952a2f00333090de0e17c62/420/420/BackAccessory/Png/noFilter",
       "favorites": 408
     },
     {
@@ -638,7 +638,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-12-21T16:10:51.533Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-958304f210ec32f13319a363a3fcc977/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-b5bc635e99a7aa5839b8b6036d085735/420/420/BackAccessory/Png/noFilter",
       "favorites": 638
     },
     {
@@ -697,9 +697,9 @@
     },
     {
       "assetId": 120646608021988,
-      "name": "[PBR] Halloween witch hat",
+      "name": "Halloween witch hat",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2025-09-30T21:40:14.917Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-df7174e0cbce272b43bc1850643752b8/420/420/Hat/Png/noFilter",
       "favorites": 695
@@ -990,7 +990,7 @@
       "price": 150,
       "created": "2025-03-13T17:37:01.743Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4ed5755dd679b0559ceab285a4e87a9b/420/420/BackAccessory/Png/noFilter",
-      "favorites": 8032
+      "favorites": 8031
     },
     {
       "assetId": 112911367450195,
@@ -1026,7 +1026,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 24579
+      "favorites": 24587
     },
     {
       "assetId": 84062622353279,
