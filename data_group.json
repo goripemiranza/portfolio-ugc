@@ -1,15 +1,15 @@
 {
-  "updated": "2026-06-20T02:58:38Z",
-  "generatedAt": "2026-06-20T02:58:38Z",
+  "updated": "2026-06-21T03:44:39Z",
+  "generatedAt": "2026-06-21T03:44:39Z",
   "items": [
     {
       "assetId": 100644221517745,
-      "name": "Nightmare grin: scary teeth mask",
+      "name": "scary mask",
       "type": "FaceAccessory",
-      "price": 90,
+      "price": 95,
       "created": "2026-06-06T21:54:16.218Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0cdbe66d61f1d5d90cf45dfd97114a2f/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 218
+      "favorites": 340
     },
     {
       "assetId": 127382605792964,
@@ -31,9 +31,9 @@
     },
     {
       "assetId": 88485663553013,
-      "name": "[PBR] Elegant golden pink royalty sunhat",
+      "name": "pink royalty hat",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2026-05-27T17:39:23.381Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-1845bf7d11cc178a626f496f7b661a45/420/420/Hat/Png/noFilter",
       "favorites": 1
@@ -153,7 +153,7 @@
       "price": 150,
       "created": "2026-04-14T15:56:36.902Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-c4019a72af432358c90b79aab35ed2d9/420/420/BackAccessory/Png/noFilter",
-      "favorites": 543
+      "favorites": 544
     },
     {
       "assetId": 119531051437305,
@@ -600,18 +600,18 @@
       "assetId": 112163449988496,
       "name": "Blue cyber mask",
       "type": "FaceAccessory",
-      "price": 100,
+      "price": 105,
       "created": "2025-12-27T23:10:07.95Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a57c1894fba8d7b2c6ea7fd74a73c54d/420/420/FaceAccessory/Png/noFilter",
       "favorites": 91
     },
     {
       "assetId": 117578513893407,
-      "name": "[PBR] Red cyber mask",
+      "name": "Red cyber mask",
       "type": "FaceAccessory",
-      "price": 100,
+      "price": 105,
       "created": "2025-12-22T21:20:26.37Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-1a82a65b20f9022d650d4f5667336c1f/420/420/FaceAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-b7525cf306124ff16ba54687788fb3cc/420/420/FaceAccessory/Png/noFilter",
       "favorites": 239
     },
     {
