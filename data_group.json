@@ -1,7 +1,16 @@
 {
-  "updated": "2026-06-21T03:44:39Z",
-  "generatedAt": "2026-06-21T03:44:39Z",
+  "updated": "2026-06-22T03:49:04Z",
+  "generatedAt": "2026-06-22T03:49:04Z",
   "items": [
+    {
+      "assetId": 87928448050617,
+      "name": "Tempest skies wings",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-06-21T16:57:51.9255455Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-868d4dab042974c4ecd29db0f01e3faa/420/420/BackAccessory/Png/noFilter",
+      "favorites": 136
+    },
     {
       "assetId": 100644221517745,
       "name": "scary mask",
@@ -69,16 +78,16 @@
       "assetId": 76470787261993,
       "name": "white royalty hat",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2026-05-14T12:52:46.01Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-de4e0ad9b3b915731dd277ba9429d40d/420/420/Hat/Png/noFilter",
       "favorites": 95
     },
     {
       "assetId": 133082686213652,
-      "name": "[PBR] Elegant golden crimson royalty sunhat",
+      "name": "crimson royalty hat",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2026-05-09T23:31:29.063Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-304f8cdc2531faf837d6eda87323e036/420/420/Hat/Png/noFilter",
       "favorites": 114
@@ -238,7 +247,7 @@
     },
     {
       "assetId": 93287659110175,
-      "name": "Yellow cracked easter egg (body)",
+      "name": "Yellow cracked easter egg",
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-03-27T22:13:50.467Z",
@@ -409,7 +418,7 @@
     },
     {
       "assetId": 78560920993312,
-      "name": "[PBR] Golden and blue mecha wings",
+      "name": "Golden and blue mecha wings",
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-02-15T21:41:02.821Z",
@@ -553,7 +562,7 @@
     },
     {
       "assetId": 132158434658250,
-      "name": "Cute lovely face with hearts",
+      "name": "Cute lovely face",
       "type": "FaceAccessory",
       "price": 95,
       "created": "2026-01-21T17:32:44.911Z",
@@ -612,7 +621,7 @@
       "price": 105,
       "created": "2025-12-22T21:20:26.37Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b7525cf306124ff16ba54687788fb3cc/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 239
+      "favorites": 240
     },
     {
       "assetId": 136428742434964,
@@ -843,7 +852,7 @@
       "assetId": 83398849212814,
       "name": "silver horns",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2025-08-02T14:15:33.503Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e0cc8d1f7cebf068efb744093df4642b/420/420/Hat/Png/noFilter",
       "favorites": 177
@@ -882,7 +891,7 @@
       "price": 150,
       "created": "2025-07-25T19:47:38.777Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d2c56895841756d780c23505fe198c3b/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1579
+      "favorites": 1580
     },
     {
       "assetId": 90634979410540,
@@ -1084,7 +1093,7 @@
     },
     {
       "assetId": 76584283871633,
-      "name": "White and gold valkyrie ",
+      "name": "White and gold valkyrie",
       "type": "Hat",
       "price": 95,
       "created": "2025-01-17T14:21:58.877Z",
