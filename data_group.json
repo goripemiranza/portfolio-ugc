@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-22T03:49:04Z",
-  "generatedAt": "2026-06-22T03:49:04Z",
+  "updated": "2026-06-23T02:52:50Z",
+  "generatedAt": "2026-06-23T02:52:50Z",
   "items": [
     {
       "assetId": 87928448050617,
@@ -193,7 +193,7 @@
     },
     {
       "assetId": 102409501443142,
-      "name": "Cartoon rabbit mask (drawing style)",
+      "name": "Cartoon rabbit mask",
       "type": "FaceAccessory",
       "price": 95,
       "created": "2026-04-01T20:01:10.055Z",
@@ -589,7 +589,7 @@
     },
     {
       "assetId": 131304231036878,
-      "name": "Woman face with brown makeup and blue eyes",
+      "name": "Woman face",
       "type": "FaceAccessory",
       "price": 95,
       "created": "2025-12-30T03:42:09.013Z",
