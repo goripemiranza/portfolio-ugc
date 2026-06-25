@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-24T02:54:05Z",
-  "generatedAt": "2026-06-24T02:54:05Z",
+  "updated": "2026-06-25T02:53:04Z",
+  "generatedAt": "2026-06-25T02:53:04Z",
   "items": [
     {
       "assetId": 87928448050617,
@@ -162,7 +162,7 @@
       "price": 150,
       "created": "2026-04-14T15:56:36.902Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-c4019a72af432358c90b79aab35ed2d9/420/420/BackAccessory/Png/noFilter",
-      "favorites": 544
+      "favorites": 545
     },
     {
       "assetId": 119531051437305,
@@ -175,12 +175,12 @@
     },
     {
       "assetId": 75337966370394,
-      "name": "Cartoon tie (drawing style)",
+      "name": "Cartoon tie",
       "type": "NeckAccessory",
       "price": 55,
       "created": "2026-04-10T22:51:14.139Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b2e80cd2ceee58d5d5b2eec86fe52db4/420/420/NeckAccessory/Png/noFilter",
-      "favorites": 4
+      "favorites": 6
     },
     {
       "assetId": 134442603728020,
@@ -274,7 +274,7 @@
     },
     {
       "assetId": 130536935950885,
-      "name": "Pink cracked easter egg (body)",
+      "name": "Pink cracked easter egg",
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-03-25T20:36:57.689Z",
@@ -582,7 +582,7 @@
       "assetId": 130160862337869,
       "name": "Possessed",
       "type": "EmoteAnimation",
-      "price": 50,
+      "price": 55,
       "created": "2025-12-30T22:24:06.727Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-5aa6030dd33104a0466dfb9cfa4ebdbe/420/420/EmoteAnimation/Png/noFilter",
       "favorites": 971
@@ -612,7 +612,7 @@
       "price": 105,
       "created": "2025-12-27T23:10:07.95Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a57c1894fba8d7b2c6ea7fd74a73c54d/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 91
+      "favorites": 92
     },
     {
       "assetId": 117578513893407,
@@ -652,9 +652,9 @@
     },
     {
       "assetId": 121640625346381,
-      "name": "[PBR] Mystic jewelled horns",
+      "name": "Mystic jewelled horns",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2025-12-15T19:01:37.367Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-c5c22a9b224b53cfb4f167c7333dffab/420/420/Hat/Png/noFilter",
       "favorites": 205
@@ -679,12 +679,12 @@
     },
     {
       "assetId": 90895163434338,
-      "name": "Blackand blue horns",
+      "name": "Black and blue horns",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2025-10-19T11:36:59.36Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d379bd3a725fd4dbf407a4f5f3ed10ae/420/420/Hat/Png/noFilter",
-      "favorites": 726
+      "favorites": 725
     },
     {
       "assetId": 76090521545763,
@@ -877,7 +877,7 @@
     },
     {
       "assetId": 125587794762914,
-      "name": "Sun phoenix halo",
+      "name": "Sun Phoenix halo",
       "type": "Hat",
       "price": 95,
       "created": "2025-07-27T00:02:53.647Z",
