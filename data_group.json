@@ -1,7 +1,16 @@
 {
-  "updated": "2026-06-25T02:53:04Z",
-  "generatedAt": "2026-06-25T02:53:04Z",
+  "updated": "2026-06-26T02:58:11Z",
+  "generatedAt": "2026-06-26T02:58:11Z",
   "items": [
+    {
+      "assetId": 103225723544533,
+      "name": "Tempest bear heart",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-06-24T16:20:13.0708949Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-9accc51cde81b0352451fb656be3507e/420/420/Hat/Png/noFilter",
+      "favorites": 34
+    },
     {
       "assetId": 87928448050617,
       "name": "Tempest skies wings",
@@ -180,7 +189,7 @@
       "price": 55,
       "created": "2026-04-10T22:51:14.139Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b2e80cd2ceee58d5d5b2eec86fe52db4/420/420/NeckAccessory/Png/noFilter",
-      "favorites": 6
+      "favorites": 7
     },
     {
       "assetId": 134442603728020,
@@ -602,7 +611,7 @@
       "type": "FaceAccessory",
       "price": 100,
       "created": "2025-12-27T23:11:28.73Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-0af3c719ea6d37a49f0166cf6f9fae9c/420/420/FaceAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-2d1b3716101f5c717b02ddaa10c615a2/420/420/FaceAccessory/Png/noFilter",
       "favorites": 29
     },
     {
@@ -611,7 +620,7 @@
       "type": "FaceAccessory",
       "price": 105,
       "created": "2025-12-27T23:10:07.95Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-a57c1894fba8d7b2c6ea7fd74a73c54d/420/420/FaceAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-f079e49f5f54d46bdc109008691d25b0/420/420/FaceAccessory/Png/noFilter",
       "favorites": 92
     },
     {
@@ -1035,7 +1044,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 24587
+      "favorites": 24586
     },
     {
       "assetId": 84062622353279,
