@@ -1,7 +1,16 @@
 {
-  "updated": "2026-06-26T02:58:11Z",
-  "generatedAt": "2026-06-26T02:58:11Z",
+  "updated": "2026-06-27T02:47:46Z",
+  "generatedAt": "2026-06-27T02:47:46Z",
   "items": [
+    {
+      "assetId": 125177197277197,
+      "name": "Tempest white butterflies ",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-06-26T16:27:53.572Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-642eca4e1c4a9c26dc27d1bfb56c954b/420/420/Hat/Png/noFilter",
+      "favorites": 1
+    },
     {
       "assetId": 103225723544533,
       "name": "Tempest bear heart",
@@ -76,9 +85,9 @@
     },
     {
       "assetId": 84388352063637,
-      "name": "[PBR] Elegant golden black royalty sunhat",
+      "name": "black royalty hat",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2026-05-17T20:16:59.791Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-99dffaba1e52b0c27b75ac76b0e1c891/420/420/Hat/Png/noFilter",
       "favorites": 1
@@ -153,7 +162,7 @@
       "price": 95,
       "created": "2026-04-25T14:52:05.919Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4706e7f898f933a45b374d88e507bd3e/420/420/Hat/Png/noFilter",
-      "favorites": 165
+      "favorites": 166
     },
     {
       "assetId": 113706917996053,
@@ -198,7 +207,7 @@
       "price": 95,
       "created": "2026-04-08T10:39:13.388Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-16558d503ee8ccd549a54f9c3d53af60/420/420/Hat/Png/noFilter",
-      "favorites": 2
+      "favorites": 3
     },
     {
       "assetId": 102409501443142,
@@ -213,10 +222,10 @@
       "assetId": 116479189273231,
       "name": "Green and black dragon tail",
       "type": "WaistAccessory",
-      "price": 60,
+      "price": 65,
       "created": "2026-03-30T19:13:19.013Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-573b30d4a49fbc9348e0e430e7f4e6e6/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 3
+      "favorites": 4
     },
     {
       "assetId": 97387768169820,
@@ -337,7 +346,7 @@
     },
     {
       "assetId": 114771635280407,
-      "name": "Green cracked easter egg (body)",
+      "name": "Green cracked easter egg",
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-03-18T20:48:28.82Z",
@@ -373,7 +382,7 @@
     },
     {
       "assetId": 140399336096798,
-      "name": "Easter eggs (ground)",
+      "name": "Easter eggs",
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-03-08T20:51:40.57Z",
@@ -465,7 +474,7 @@
       "assetId": 73626305203111,
       "name": "Pink and black dragon tail",
       "type": "WaistAccessory",
-      "price": 60,
+      "price": 65,
       "created": "2026-02-07T18:04:30.526Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a8ce92d03c9d449f711c716e45065ff0/420/420/WaistAccessory/Png/noFilter",
       "favorites": 3
@@ -508,7 +517,7 @@
     },
     {
       "assetId": 101443546725523,
-      "name": "[PBR] Winter ice sword",
+      "name": "Winter ice sword",
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-01-31T15:46:07.224Z",
@@ -621,7 +630,7 @@
       "price": 105,
       "created": "2025-12-27T23:10:07.95Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-f079e49f5f54d46bdc109008691d25b0/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 92
+      "favorites": 94
     },
     {
       "assetId": 117578513893407,
@@ -828,7 +837,7 @@
       "price": 100,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4927
+      "favorites": 4928
     },
     {
       "assetId": 73886642022932,
@@ -868,7 +877,7 @@
     },
     {
       "assetId": 129193098836002,
-      "name": "[PBR] black metallic royal sword",
+      "name": "Black metallic royal sword",
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-07-29T22:10:13.433Z",
