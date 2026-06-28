@@ -1,7 +1,16 @@
 {
-  "updated": "2026-06-27T02:47:46Z",
-  "generatedAt": "2026-06-27T02:47:46Z",
+  "updated": "2026-06-28T03:27:00Z",
+  "generatedAt": "2026-06-28T03:27:00Z",
   "items": [
+    {
+      "assetId": 74864073279132,
+      "name": "Purple arcane fedora",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-06-27T18:05:46.2596986Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-0deba4b5a5390359725ef8dc5380d289/420/420/Hat/Png/noFilter",
+      "favorites": 76
+    },
     {
       "assetId": 125177197277197,
       "name": "Tempest white butterflies ",
@@ -9,7 +18,7 @@
       "price": 95,
       "created": "2026-06-26T16:27:53.572Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-642eca4e1c4a9c26dc27d1bfb56c954b/420/420/Hat/Png/noFilter",
-      "favorites": 1
+      "favorites": 79
     },
     {
       "assetId": 103225723544533,
@@ -27,7 +36,7 @@
       "price": 140,
       "created": "2026-06-21T16:57:51.9255455Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-868d4dab042974c4ecd29db0f01e3faa/420/420/BackAccessory/Png/noFilter",
-      "favorites": 136
+      "favorites": 1433
     },
     {
       "assetId": 100644221517745,
@@ -67,9 +76,9 @@
     },
     {
       "assetId": 81415555781366,
-      "name": "[PBR] Elegant golden green royalty sunhat",
+      "name": "green royalty hat",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2026-05-21T15:42:31.525Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-317fad7eae326d17490a3f7b92ba9c94/420/420/Hat/Png/noFilter",
       "favorites": 2
@@ -369,7 +378,7 @@
       "price": 95,
       "created": "2026-03-12T19:02:56.937Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b6edaa997d7920debdcff239489f1529/420/420/Hat/Png/noFilter",
-      "favorites": 37
+      "favorites": 38
     },
     {
       "assetId": 80910958885713,
@@ -447,7 +456,7 @@
       "assetId": 73947668529955,
       "name": "Y2K black jean cap",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2026-02-13T12:38:42.115Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a0b28da68975f52e47c847d8b5d26a84/420/420/Hat/Png/noFilter",
       "favorites": 1
@@ -526,9 +535,9 @@
     },
     {
       "assetId": 139065374588767,
-      "name": "[PBR] Valentine pink heart crown",
+      "name": "Valentine pink heart crown",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2026-01-30T23:06:45.26Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-3acb14ba106f5302a4ca784e09499a15/420/420/Hat/Png/noFilter",
       "favorites": 136
@@ -927,7 +936,7 @@
       "price": 150,
       "created": "2025-07-19T14:22:27.64Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e772e2e90908d48950724fe0b72ebb5f/420/420/BackAccessory/Png/noFilter",
-      "favorites": 3425
+      "favorites": 3427
     },
     {
       "assetId": 132428921830890,
@@ -990,7 +999,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10136
+      "favorites": 10209
     },
     {
       "assetId": 134542294659432,
