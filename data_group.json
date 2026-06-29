@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-28T03:27:00Z",
-  "generatedAt": "2026-06-28T03:27:00Z",
+  "updated": "2026-06-29T03:32:08Z",
+  "generatedAt": "2026-06-29T03:32:08Z",
   "items": [
     {
       "assetId": 74864073279132,
@@ -18,7 +18,7 @@
       "price": 95,
       "created": "2026-06-26T16:27:53.572Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-642eca4e1c4a9c26dc27d1bfb56c954b/420/420/Hat/Png/noFilter",
-      "favorites": 79
+      "favorites": 101
     },
     {
       "assetId": 103225723544533,
@@ -49,10 +49,10 @@
     },
     {
       "assetId": 127382605792964,
-      "name": "[PBR] Elegant silver yellow royalty sunhat",
+      "name": "yellow royalty hat",
       "type": "Hat",
-      "price": 100,
-      "created": "2026-06-03T19:59:21.1417486Z",
+      "price": 105,
+      "created": "2026-06-03T19:59:21.141Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-318af1eb20e3e804ccc7da334fea3233/420/420/Hat/Png/noFilter",
       "favorites": 0
     },
@@ -517,7 +517,7 @@
     },
     {
       "assetId": 133021430549045,
-      "name": "[PBR] Valentine eternal love sword",
+      "name": "Valentine eternal love sword",
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-02-03T21:58:40.067Z",
@@ -611,7 +611,7 @@
       "type": "EmoteAnimation",
       "price": 55,
       "created": "2025-12-30T22:24:06.727Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-5aa6030dd33104a0466dfb9cfa4ebdbe/420/420/EmoteAnimation/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-0ccfe6bdff185329d72d90c7006a15c8/420/420/EmoteAnimation/Png/noFilter",
       "favorites": 971
     },
     {
@@ -620,7 +620,7 @@
       "type": "FaceAccessory",
       "price": 95,
       "created": "2025-12-30T03:42:09.013Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-e4fa529bce63b3d3c9303609f1f229ee/420/420/FaceAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-a30f07c1eeb0cd22603d85432560075a/420/420/FaceAccessory/Png/noFilter",
       "favorites": 187
     },
     {
@@ -715,9 +715,9 @@
     },
     {
       "assetId": 76090521545763,
-      "name": "[PBR] Black/white golden jewelled horns",
+      "name": "Black and white horns",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2025-10-12T19:51:53.84Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-7641102f52a95afc4f2eb48217f5fb4e/420/420/Hat/Png/noFilter",
       "favorites": 311
@@ -945,7 +945,7 @@
       "price": 150,
       "created": "2025-04-24T13:25:21.483Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-64b8c8f90706e47a2bc3796e6b315156/420/420/BackAccessory/Png/noFilter",
-      "favorites": 437
+      "favorites": 438
     },
     {
       "assetId": 83940501884631,
@@ -1125,7 +1125,7 @@
       "price": 95,
       "created": "2025-01-17T14:21:58.877Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ecadb8eec0e937b5e8f9412b2bb2eca1/420/420/Hat/Png/noFilter",
-      "favorites": 179
+      "favorites": 180
     },
     {
       "assetId": 71154994010748,
