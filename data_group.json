@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-29T03:32:08Z",
-  "generatedAt": "2026-06-29T03:32:08Z",
+  "updated": "2026-06-30T02:57:07Z",
+  "generatedAt": "2026-06-30T02:57:07Z",
   "items": [
     {
       "assetId": 74864073279132,
@@ -9,7 +9,7 @@
       "price": 95,
       "created": "2026-06-27T18:05:46.2596986Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0deba4b5a5390359725ef8dc5380d289/420/420/Hat/Png/noFilter",
-      "favorites": 76
+      "favorites": 183
     },
     {
       "assetId": 125177197277197,
@@ -193,7 +193,7 @@
     },
     {
       "assetId": 119531051437305,
-      "name": "[PBR] Royal butterfly sword ",
+      "name": "Royal butterfly sword",
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-04-13T15:04:23.574Z",
@@ -297,7 +297,7 @@
       "price": 95,
       "created": "2026-03-25T20:38:10.368Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-3938103cd3b8ece1b343cb11ef171267/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 130536935950885,
@@ -369,7 +369,7 @@
       "price": 95,
       "created": "2026-03-14T22:12:31.609Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e63774c7f0c44821f3ddf71bc63e6341/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 5
+      "favorites": 6
     },
     {
       "assetId": 118631655015914,
@@ -450,7 +450,7 @@
       "price": 150,
       "created": "2026-02-15T21:41:02.821Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-8a214b2223d098bc080024be2704a8f3/420/420/BackAccessory/Png/noFilter",
-      "favorites": 494
+      "favorites": 495
     },
     {
       "assetId": 73947668529955,
@@ -652,7 +652,7 @@
     },
     {
       "assetId": 136428742434964,
-      "name": "[PBR] Green cyber wings",
+      "name": "Green cyber wings",
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-12-21T17:18:58.433Z",
@@ -670,7 +670,7 @@
     },
     {
       "assetId": 105461065154207,
-      "name": "[PBR] Red cyber wings",
+      "name": "Red cyber wings",
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-12-21T16:10:51.533Z",
@@ -724,7 +724,7 @@
     },
     {
       "assetId": 95110969483382,
-      "name": "[PBR] Bat wings sword",
+      "name": "Bat wings sword",
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-10-06T17:25:16.92Z",
@@ -1057,12 +1057,12 @@
     },
     {
       "assetId": 93192337059930,
-      "name": "Golden and cyan horns",
+      "name": "LIMITED golden and cyan horns code : CCHHMPO",
       "type": "Hat",
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 24586
+      "favorites": 24654
     },
     {
       "assetId": 84062622353279,
