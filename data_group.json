@@ -1,15 +1,24 @@
 {
-  "updated": "2026-06-30T02:57:07Z",
-  "generatedAt": "2026-06-30T02:57:07Z",
+  "updated": "2026-07-01T03:27:12Z",
+  "generatedAt": "2026-07-01T03:27:12Z",
   "items": [
+    {
+      "assetId": 97661607279475,
+      "name": "Blue and pink kawaii bear hood ",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-06-29T20:54:09.7886985Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-9e728fa59043f11209af014f4e504ed1/420/420/Hat/Png/noFilter",
+      "favorites": 455
+    },
     {
       "assetId": 74864073279132,
       "name": "Purple arcane fedora",
       "type": "Hat",
       "price": 95,
-      "created": "2026-06-27T18:05:46.2596986Z",
+      "created": "2026-06-27T18:05:46.259Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0deba4b5a5390359725ef8dc5380d289/420/420/Hat/Png/noFilter",
-      "favorites": 183
+      "favorites": 272
     },
     {
       "assetId": 125177197277197,
@@ -45,7 +54,7 @@
       "price": 95,
       "created": "2026-06-06T21:54:16.218Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0cdbe66d61f1d5d90cf45dfd97114a2f/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 340
+      "favorites": 368
     },
     {
       "assetId": 127382605792964,
@@ -243,7 +252,7 @@
       "price": 150,
       "created": "2026-03-30T19:11:47.437Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a7c19594c7f22d0300aaadbfcba40919/420/420/BackAccessory/Png/noFilter",
-      "favorites": 2
+      "favorites": 3
     },
     {
       "assetId": 89127962097281,
@@ -558,7 +567,7 @@
       "price": 150,
       "created": "2026-01-23T23:19:21.39Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-802bafebf1e61c849f4ce3842401a5dc/420/420/BackAccessory/Png/noFilter",
-      "favorites": 51
+      "favorites": 52
     },
     {
       "assetId": 88576858225400,
@@ -661,7 +670,7 @@
     },
     {
       "assetId": 74820048389112,
-      "name": "[PBR] Blue cyber wings",
+      "name": "Blue cyber wings",
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-12-21T16:40:33.183Z",
@@ -850,9 +859,9 @@
     },
     {
       "assetId": 73886642022932,
-      "name": "[PBR] Black metallic horns",
+      "name": "Black horns",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2025-08-05T20:41:58.18Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e1d85b7dc09e06f7fc3eb8129ab4fd81/420/420/Hat/Png/noFilter",
       "favorites": 395
