@@ -1,7 +1,25 @@
 {
-  "updated": "2026-07-01T03:27:12Z",
-  "generatedAt": "2026-07-01T03:27:12Z",
+  "updated": "2026-07-02T02:54:00Z",
+  "generatedAt": "2026-07-02T02:54:00Z",
   "items": [
+    {
+      "assetId": 77973736333610,
+      "name": "Green arcane fedora",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-06-30T20:07:14.793Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-9e851cd123850b10bfd2ece4add14bd6/420/420/Hat/Png/noFilter",
+      "favorites": 23
+    },
+    {
+      "assetId": 109850560822505,
+      "name": "Cyan arcane fedora",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-06-30T18:12:39.598Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-6834d6197b13c0ef88a055b61d202dc1/420/420/Hat/Png/noFilter",
+      "favorites": 20
+    },
     {
       "assetId": 97661607279475,
       "name": "Blue and pink kawaii bear hood ",
@@ -18,7 +36,7 @@
       "price": 95,
       "created": "2026-06-27T18:05:46.259Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0deba4b5a5390359725ef8dc5380d289/420/420/Hat/Png/noFilter",
-      "favorites": 272
+      "favorites": 341
     },
     {
       "assetId": 125177197277197,
@@ -162,7 +180,7 @@
       "price": 95,
       "created": "2026-04-26T20:14:26.401Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6ddcea55c5dad6f9ac29286e5871ebfd/420/420/Hat/Png/noFilter",
-      "favorites": 27
+      "favorites": 28
     },
     {
       "assetId": 122011928189838,
@@ -301,7 +319,7 @@
     },
     {
       "assetId": 77433437034798,
-      "name": "Pink cracked easter egg (hat)",
+      "name": "Pink cracked egg",
       "type": "Hat",
       "price": 95,
       "created": "2026-03-25T20:38:10.368Z",
@@ -432,7 +450,7 @@
       "price": 150,
       "created": "2026-02-26T20:21:55.528Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-91d6e956bbc4171c725ad82583442593/420/420/BackAccessory/Png/noFilter",
-      "favorites": 5
+      "favorites": 6
     },
     {
       "assetId": 123917531753802,
@@ -562,7 +580,7 @@
     },
     {
       "assetId": 124492190423394,
-      "name": "[PBR] White cyber wings",
+      "name": "White cyber wings",
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-01-23T23:19:21.39Z",
@@ -756,7 +774,7 @@
       "price": 105,
       "created": "2025-09-25T20:38:02.477Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-46b012387faa3cb4d1679a5b47d5c21a/420/420/Hat/Png/noFilter",
-      "favorites": 3505
+      "favorites": 3506
     },
     {
       "assetId": 131531497269464,
@@ -846,7 +864,7 @@
       "price": 95,
       "created": "2025-08-22T23:43:22.9Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d72b6dc2603733dd8ed35d9625782cf7/420/420/Hat/Png/noFilter",
-      "favorites": 68
+      "favorites": 67
     },
     {
       "assetId": 93842989030434,
@@ -999,7 +1017,7 @@
       "price": 150,
       "created": "2025-03-21T21:26:27.98Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-8946052619ae871ad4f76f4cf23e5e84/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1438
+      "favorites": 1439
     },
     {
       "assetId": 74983607789715,
@@ -1116,7 +1134,7 @@
       "price": 150,
       "created": "2025-01-28T20:00:18.98Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-f68738a70c9d56508c63fd85ffe2b850/420/420/BackAccessory/Png/noFilter",
-      "favorites": 720
+      "favorites": 721
     },
     {
       "assetId": 85708056856563,
