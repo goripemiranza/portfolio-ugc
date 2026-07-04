@@ -1,13 +1,40 @@
 {
-  "updated": "2026-07-03T02:36:54Z",
-  "generatedAt": "2026-07-03T02:36:54Z",
+  "updated": "2026-07-04T02:34:26Z",
+  "generatedAt": "2026-07-04T02:34:26Z",
   "items": [
+    {
+      "assetId": 124454124754646,
+      "name": "White frost wyrm's helm",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-07-03T19:55:32.588Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-4c15a5b5968b94ceedbc26eafa454d7f/420/420/Hat/Png/noFilter",
+      "favorites": 16
+    },
+    {
+      "assetId": 88402147775203,
+      "name": "Black frost wyrm's helm",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-07-03T19:54:08.2643722Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-058d7ca573fa32dc4e8ad3772b3af304/420/420/Hat/Png/noFilter",
+      "favorites": 18
+    },
+    {
+      "assetId": 104964070207299,
+      "name": "Red frost wyrm's helm",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-07-02T20:35:39.7029587Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-59f92fef3f4d32a82a9a89260d4dd6ca/420/420/Hat/Png/noFilter",
+      "favorites": 40
+    },
     {
       "assetId": 84750572219288,
       "name": "White tempest skies wings",
       "type": "BackAccessory",
       "price": 140,
-      "created": "2026-07-02T10:20:38.952944Z",
+      "created": "2026-07-02T10:20:38.952Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-3417fc126237b7d7e8821d9c15bf5a05/420/420/BackAccessory/Png/noFilter",
       "favorites": 0
     },
@@ -36,7 +63,7 @@
       "price": 95,
       "created": "2026-06-30T18:12:39.598Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6834d6197b13c0ef88a055b61d202dc1/420/420/Hat/Png/noFilter",
-      "favorites": 20
+      "favorites": 52
     },
     {
       "assetId": 97661607279475,
@@ -54,7 +81,7 @@
       "price": 95,
       "created": "2026-06-27T18:05:46.259Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0deba4b5a5390359725ef8dc5380d289/420/420/Hat/Png/noFilter",
-      "favorites": 429
+      "favorites": 457
     },
     {
       "assetId": 125177197277197,
@@ -693,7 +720,7 @@
       "price": 105,
       "created": "2025-12-22T21:20:26.37Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b7525cf306124ff16ba54687788fb3cc/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 240
+      "favorites": 243
     },
     {
       "assetId": 136428742434964,
@@ -720,7 +747,7 @@
       "price": 150,
       "created": "2025-12-21T16:10:51.533Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b5bc635e99a7aa5839b8b6036d085735/420/420/BackAccessory/Png/noFilter",
-      "favorites": 638
+      "favorites": 639
     },
     {
       "assetId": 121640625346381,
@@ -915,7 +942,7 @@
       "assetId": 134159126419346,
       "name": "cyan horns",
       "type": "Hat",
-      "price": 100,
+      "price": 105,
       "created": "2025-08-03T16:32:30.947Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-35aa1c52371862c5e5fd6afbf871ce18/420/420/Hat/Png/noFilter",
       "favorites": 48
