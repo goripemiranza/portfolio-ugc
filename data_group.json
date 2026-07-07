@@ -1,7 +1,25 @@
 {
-  "updated": "2026-07-06T02:49:14Z",
-  "generatedAt": "2026-07-06T02:49:14Z",
+  "updated": "2026-07-07T02:45:17Z",
+  "generatedAt": "2026-07-07T02:45:17Z",
   "items": [
+    {
+      "assetId": 92900132464202,
+      "name": "White flame wyrm's axe",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-07-06T20:57:10.7725247Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-7096ac1b91ed8e43bc0381f9702ba34e/420/420/BackAccessory/Png/noFilter",
+      "favorites": 1
+    },
+    {
+      "assetId": 100877776062325,
+      "name": "Black flame wyrm's axe",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-07-06T20:49:39.0831816Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-4e72719a73b1b7c00bc540254cc07a93/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 101274755300304,
       "name": "Pink cute frost wyrm's helm",
@@ -24,10 +42,10 @@
       "assetId": 88402147775203,
       "name": "Black frost wyrm's helm",
       "type": "Hat",
-      "price": 95,
-      "created": "2026-07-03T19:54:08.2643722Z",
+      "price": 115,
+      "created": "2026-07-03T19:54:08.264Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-058d7ca573fa32dc4e8ad3772b3af304/420/420/Hat/Png/noFilter",
-      "favorites": 18
+      "favorites": 114
     },
     {
       "assetId": 104964070207299,
@@ -117,7 +135,7 @@
       "price": 140,
       "created": "2026-06-21T16:57:51.9255455Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-868d4dab042974c4ecd29db0f01e3faa/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1433
+      "favorites": 1827
     },
     {
       "assetId": 100644221517745,
@@ -589,7 +607,7 @@
     },
     {
       "assetId": 82851433569054,
-      "name": "[PBR] Valentines heart background",
+      "name": "Valentines heart background",
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-02-04T19:33:50.467Z",
@@ -837,7 +855,7 @@
       "price": 65,
       "created": "2025-09-18T19:57:55.397Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-15ae8e38831d2d1958aa53a420dd3b16/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 16
+      "favorites": 17
     },
     {
       "assetId": 92867934281767,
@@ -927,7 +945,7 @@
       "price": 100,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4928
+      "favorites": 4931
     },
     {
       "assetId": 73886642022932,
@@ -1080,7 +1098,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10209
+      "favorites": 10312
     },
     {
       "assetId": 134542294659432,
@@ -1206,7 +1224,7 @@
       "price": 95,
       "created": "2025-01-17T14:21:58.877Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ecadb8eec0e937b5e8f9412b2bb2eca1/420/420/Hat/Png/noFilter",
-      "favorites": 180
+      "favorites": 181
     },
     {
       "assetId": 71154994010748,
