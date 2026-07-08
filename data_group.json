@@ -1,7 +1,25 @@
 {
-  "updated": "2026-07-07T02:45:17Z",
-  "generatedAt": "2026-07-07T02:45:17Z",
+  "updated": "2026-07-08T02:24:08Z",
+  "generatedAt": "2026-07-08T02:24:08Z",
   "items": [
+    {
+      "assetId": 87295278435884,
+      "name": "Black green frost wyrm's helm",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-07-07T10:40:04.2064654Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-383f67d5c806e56edb3560a6b617643d/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 77924949169952,
+      "name": "Black red frost wyrm's helm",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-07-07T10:38:27.814Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-b52363f014931c95ed94216e5776d461/420/420/Hat/Png/noFilter",
+      "favorites": 3
+    },
     {
       "assetId": 92900132464202,
       "name": "White flame wyrm's axe",
@@ -18,7 +36,7 @@
       "price": 140,
       "created": "2026-07-06T20:49:39.0831816Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4e72719a73b1b7c00bc540254cc07a93/420/420/BackAccessory/Png/noFilter",
-      "favorites": 0
+      "favorites": 3
     },
     {
       "assetId": 101274755300304,
@@ -45,7 +63,7 @@
       "price": 115,
       "created": "2026-07-03T19:54:08.264Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-058d7ca573fa32dc4e8ad3772b3af304/420/420/Hat/Png/noFilter",
-      "favorites": 114
+      "favorites": 136
     },
     {
       "assetId": 104964070207299,
@@ -72,7 +90,7 @@
       "price": 95,
       "created": "2026-07-01T20:56:40.2487373Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-69fb50178852b0cf28fe6a7d2ffd1727/420/420/Hat/Png/noFilter",
-      "favorites": 2
+      "favorites": 3
     },
     {
       "assetId": 77973736333610,
@@ -117,7 +135,7 @@
       "price": 95,
       "created": "2026-06-26T16:27:53.572Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-642eca4e1c4a9c26dc27d1bfb56c954b/420/420/Hat/Png/noFilter",
-      "favorites": 234
+      "favorites": 235
     },
     {
       "assetId": 103225723544533,
@@ -720,7 +738,7 @@
       "price": 95,
       "created": "2025-12-30T03:42:09.013Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a30f07c1eeb0cd22603d85432560075a/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 187
+      "favorites": 188
     },
     {
       "assetId": 93774719738585,
