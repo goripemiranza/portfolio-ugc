@@ -1,13 +1,13 @@
 {
-  "updated": "2026-07-08T02:24:08Z",
-  "generatedAt": "2026-07-08T02:24:08Z",
+  "updated": "2026-07-09T02:36:45Z",
+  "generatedAt": "2026-07-09T02:36:45Z",
   "items": [
     {
       "assetId": 87295278435884,
       "name": "Black green frost wyrm's helm",
       "type": "Hat",
       "price": 95,
-      "created": "2026-07-07T10:40:04.2064654Z",
+      "created": "2026-07-07T10:40:04.206Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-383f67d5c806e56edb3560a6b617643d/420/420/Hat/Png/noFilter",
       "favorites": 0
     },
@@ -34,7 +34,7 @@
       "name": "Black flame wyrm's axe",
       "type": "BackAccessory",
       "price": 140,
-      "created": "2026-07-06T20:49:39.0831816Z",
+      "created": "2026-07-06T20:49:39.083Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4e72719a73b1b7c00bc540254cc07a93/420/420/BackAccessory/Png/noFilter",
       "favorites": 3
     },
@@ -63,7 +63,7 @@
       "price": 115,
       "created": "2026-07-03T19:54:08.264Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-058d7ca573fa32dc4e8ad3772b3af304/420/420/Hat/Png/noFilter",
-      "favorites": 136
+      "favorites": 139
     },
     {
       "assetId": 104964070207299,
@@ -139,19 +139,19 @@
     },
     {
       "assetId": 103225723544533,
-      "name": "Tempest bear heart",
+      "name": "Tempest white bear heart",
       "type": "Hat",
       "price": 95,
-      "created": "2026-06-24T16:20:13.0708949Z",
+      "created": "2026-06-24T16:20:13.07Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9accc51cde81b0352451fb656be3507e/420/420/Hat/Png/noFilter",
-      "favorites": 34
+      "favorites": 180
     },
     {
       "assetId": 87928448050617,
       "name": "Tempest skies wings",
       "type": "BackAccessory",
       "price": 140,
-      "created": "2026-06-21T16:57:51.9255455Z",
+      "created": "2026-06-21T16:57:51.925Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-868d4dab042974c4ecd29db0f01e3faa/420/420/BackAccessory/Png/noFilter",
       "favorites": 1827
     },
@@ -162,7 +162,7 @@
       "price": 95,
       "created": "2026-06-06T21:54:16.218Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0cdbe66d61f1d5d90cf45dfd97114a2f/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 368
+      "favorites": 369
     },
     {
       "assetId": 127382605792964,
@@ -765,7 +765,7 @@
       "price": 105,
       "created": "2025-12-22T21:20:26.37Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b7525cf306124ff16ba54687788fb3cc/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 243
+      "favorites": 245
     },
     {
       "assetId": 136428742434964,
@@ -981,7 +981,7 @@
       "price": 105,
       "created": "2025-08-04T15:13:35.283Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-626052fbce1fddf0cbf84b43f4ca22f3/420/420/Hat/Png/noFilter",
-      "favorites": 586
+      "favorites": 587
     },
     {
       "assetId": 134159126419346,
@@ -1062,7 +1062,7 @@
       "price": 150,
       "created": "2025-04-24T13:25:21.483Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-64b8c8f90706e47a2bc3796e6b315156/420/420/BackAccessory/Png/noFilter",
-      "favorites": 438
+      "favorites": 439
     },
     {
       "assetId": 83940501884631,
@@ -1116,7 +1116,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10312
+      "favorites": 10313
     },
     {
       "assetId": 134542294659432,
