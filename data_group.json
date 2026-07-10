@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-09T02:36:45Z",
-  "generatedAt": "2026-07-09T02:36:45Z",
+  "updated": "2026-07-10T02:39:20Z",
+  "generatedAt": "2026-07-10T02:39:20Z",
   "items": [
     {
       "assetId": 87295278435884,
@@ -18,7 +18,7 @@
       "price": 95,
       "created": "2026-07-07T10:38:27.814Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b52363f014931c95ed94216e5776d461/420/420/Hat/Png/noFilter",
-      "favorites": 3
+      "favorites": 4
     },
     {
       "assetId": 92900132464202,
@@ -63,7 +63,7 @@
       "price": 115,
       "created": "2026-07-03T19:54:08.264Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-058d7ca573fa32dc4e8ad3772b3af304/420/420/Hat/Png/noFilter",
-      "favorites": 139
+      "favorites": 140
     },
     {
       "assetId": 104964070207299,
@@ -324,7 +324,7 @@
       "price": 55,
       "created": "2026-04-10T22:51:14.139Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b2e80cd2ceee58d5d5b2eec86fe52db4/420/420/NeckAccessory/Png/noFilter",
-      "favorites": 7
+      "favorites": 8
     },
     {
       "assetId": 134442603728020,
@@ -558,7 +558,7 @@
       "price": 150,
       "created": "2026-02-21T22:25:15.653Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-7ad7094189347b1037868edf0d84d84d/420/420/BackAccessory/Png/noFilter",
-      "favorites": 349
+      "favorites": 348
     },
     {
       "assetId": 78560920993312,
@@ -742,12 +742,12 @@
     },
     {
       "assetId": 93774719738585,
-      "name": "[PBR] Green cyber mask",
+      "name": "Green cyber mask",
       "type": "FaceAccessory",
-      "price": 100,
+      "price": 105,
       "created": "2025-12-27T23:11:28.73Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2d1b3716101f5c717b02ddaa10c615a2/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 29
+      "favorites": 31
     },
     {
       "assetId": 112163449988496,
@@ -1269,7 +1269,7 @@
       "price": 150,
       "created": "2025-01-06T23:59:09.967Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-649d76d0946904c87bb4f08ab9b75bbe/420/420/BackAccessory/Png/noFilter",
-      "favorites": 6506
+      "favorites": 6508
     },
     {
       "assetId": 108418388012974,
