@@ -1,7 +1,16 @@
 {
-  "updated": "2026-07-10T02:39:20Z",
-  "generatedAt": "2026-07-10T02:39:20Z",
+  "updated": "2026-07-11T02:14:44Z",
+  "generatedAt": "2026-07-11T02:14:44Z",
   "items": [
+    {
+      "assetId": 82376371661109,
+      "name": "Tempest sky sword",
+      "type": "WaistAccessory",
+      "price": 65,
+      "created": "2026-07-10T14:44:29.3737921Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-ffb5c783bec931aa534a5864803ab5d6/420/420/WaistAccessory/Png/noFilter",
+      "favorites": 1
+    },
     {
       "assetId": 87295278435884,
       "name": "Black green frost wyrm's helm",
@@ -25,9 +34,9 @@
       "name": "White flame wyrm's axe",
       "type": "BackAccessory",
       "price": 140,
-      "created": "2026-07-06T20:57:10.7725247Z",
+      "created": "2026-07-06T20:57:10.772Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-7096ac1b91ed8e43bc0381f9702ba34e/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 100877776062325,
@@ -63,7 +72,7 @@
       "price": 115,
       "created": "2026-07-03T19:54:08.264Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-058d7ca573fa32dc4e8ad3772b3af304/420/420/Hat/Png/noFilter",
-      "favorites": 140
+      "favorites": 147
     },
     {
       "assetId": 104964070207299,
@@ -88,7 +97,7 @@
       "name": "Tempest black bear heart",
       "type": "Hat",
       "price": 95,
-      "created": "2026-07-01T20:56:40.2487373Z",
+      "created": "2026-07-01T20:56:40.248Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-69fb50178852b0cf28fe6a7d2ffd1727/420/420/Hat/Png/noFilter",
       "favorites": 3
     },
@@ -504,7 +513,7 @@
       "price": 150,
       "created": "2026-03-10T20:23:59.7Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b6510e9824e58d18b1d6bd186aa424aa/420/420/BackAccessory/Png/noFilter",
-      "favorites": 41
+      "favorites": 42
     },
     {
       "assetId": 140399336096798,
@@ -891,7 +900,7 @@
       "price": 95,
       "created": "2025-09-15T08:41:29.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-1a67a6d9104914407d029e147ce59a9b/420/420/Hat/Png/noFilter",
-      "favorites": 11
+      "favorites": 12
     },
     {
       "assetId": 79738540625712,
