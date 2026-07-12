@@ -1,7 +1,34 @@
 {
-  "updated": "2026-07-11T02:14:44Z",
-  "generatedAt": "2026-07-11T02:14:44Z",
+  "updated": "2026-07-12T02:25:34Z",
+  "generatedAt": "2026-07-12T02:25:34Z",
   "items": [
+    {
+      "assetId": 119636429786394,
+      "name": "Cute pink jumping spider",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-07-12T00:17:35.6458254Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-b9e178f9e00f8698b257242d9fbaf271/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 94108990538614,
+      "name": "Cute blue jumping spider",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-07-12T00:16:04.0901808Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-3e0b1b117fa62b5055377602b6b9df9c/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 127639637056741,
+      "name": "Cute brown jumping spider",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-07-12T00:13:59.6883773Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-bb367d4331e1a2758e253e39e6213bd0/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 82376371661109,
       "name": "Tempest sky sword",
@@ -72,7 +99,7 @@
       "price": 115,
       "created": "2026-07-03T19:54:08.264Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-058d7ca573fa32dc4e8ad3772b3af304/420/420/Hat/Png/noFilter",
-      "favorites": 147
+      "favorites": 148
     },
     {
       "assetId": 104964070207299,
@@ -972,7 +999,7 @@
       "price": 100,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-296c25b20f3046a82cbbbfd77902c04c/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4931
+      "favorites": 4933
     },
     {
       "assetId": 73886642022932,
@@ -1125,7 +1152,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10313
+      "favorites": 10312
     },
     {
       "assetId": 134542294659432,
