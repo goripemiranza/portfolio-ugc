@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-12T02:25:34Z",
-  "generatedAt": "2026-07-12T02:25:34Z",
+  "updated": "2026-07-13T02:27:09Z",
+  "generatedAt": "2026-07-13T02:27:09Z",
   "items": [
     {
       "assetId": 119636429786394,
@@ -36,7 +36,7 @@
       "price": 65,
       "created": "2026-07-10T14:44:29.3737921Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ffb5c783bec931aa534a5864803ab5d6/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 1
+      "favorites": 47
     },
     {
       "assetId": 87295278435884,
@@ -99,7 +99,7 @@
       "price": 115,
       "created": "2026-07-03T19:54:08.264Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-058d7ca573fa32dc4e8ad3772b3af304/420/420/Hat/Png/noFilter",
-      "favorites": 148
+      "favorites": 150
     },
     {
       "assetId": 104964070207299,
@@ -151,9 +151,9 @@
       "name": "Blue and pink kawaii bear hood ",
       "type": "Hat",
       "price": 95,
-      "created": "2026-06-29T20:54:09.7886985Z",
+      "created": "2026-06-29T20:54:09.788Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9e728fa59043f11209af014f4e504ed1/420/420/Hat/Png/noFilter",
-      "favorites": 455
+      "favorites": 727
     },
     {
       "assetId": 74864073279132,
@@ -1048,7 +1048,7 @@
     },
     {
       "assetId": 97072088397988,
-      "name": "[PBR] white metallic royal sword",
+      "name": "White metallic royal sword",
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-07-28T22:29:02.213Z",
@@ -1170,7 +1170,7 @@
       "price": 150,
       "created": "2025-03-21T20:25:38.197Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-582aa738f27db02c65e5252b5d98ca7a/420/420/BackAccessory/Png/noFilter",
-      "favorites": 3101
+      "favorites": 3102
     },
     {
       "assetId": 107830760895891,
