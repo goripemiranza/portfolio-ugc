@@ -1,7 +1,16 @@
 {
-  "updated": "2026-07-13T02:27:09Z",
-  "generatedAt": "2026-07-13T02:27:09Z",
+  "updated": "2026-07-14T02:06:46Z",
+  "generatedAt": "2026-07-14T02:06:46Z",
   "items": [
+    {
+      "assetId": 134832529854753,
+      "name": "Black White Red Top Hat",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-07-13T10:39:30.7025607Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-be1e8e2042a94aacf792ae461ec02aba/420/420/Hat/Png/noFilter",
+      "favorites": 18
+    },
     {
       "assetId": 119636429786394,
       "name": "Cute pink jumping spider",
@@ -27,7 +36,7 @@
       "price": 95,
       "created": "2026-07-12T00:13:59.6883773Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bb367d4331e1a2758e253e39e6213bd0/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 3
     },
     {
       "assetId": 82376371661109,
@@ -549,7 +558,7 @@
       "price": 150,
       "created": "2026-03-08T20:51:40.57Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-81821e150cde2f1b502a4a6175fafc5c/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1128
+      "favorites": 1129
     },
     {
       "assetId": 106185923778046,
@@ -1170,7 +1179,7 @@
       "price": 150,
       "created": "2025-03-21T20:25:38.197Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-582aa738f27db02c65e5252b5d98ca7a/420/420/BackAccessory/Png/noFilter",
-      "favorites": 3102
+      "favorites": 3103
     },
     {
       "assetId": 107830760895891,
@@ -1215,7 +1224,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 24773
+      "favorites": 24802
     },
     {
       "assetId": 84062622353279,
