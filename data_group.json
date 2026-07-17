@@ -1,15 +1,24 @@
 {
-  "updated": "2026-07-16T02:13:14Z",
-  "generatedAt": "2026-07-16T02:13:14Z",
+  "updated": "2026-07-17T02:16:41Z",
+  "generatedAt": "2026-07-17T02:16:41Z",
   "items": [
+    {
+      "assetId": 123578458711518,
+      "name": "Golden ice crystal wings",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-07-15T20:15:36.7941379Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-9d11dfc6186b6c1734aeab9b4b7f9596/420/420/BackAccessory/Png/noFilter",
+      "favorites": 183
+    },
     {
       "assetId": 134832529854753,
       "name": "Black White Red Top Hat",
       "type": "Hat",
       "price": 95,
-      "created": "2026-07-13T10:39:30.7025607Z",
+      "created": "2026-07-13T10:39:30.702Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-be1e8e2042a94aacf792ae461ec02aba/420/420/Hat/Png/noFilter",
-      "favorites": 18
+      "favorites": 45
     },
     {
       "assetId": 119636429786394,
@@ -25,7 +34,7 @@
       "name": "Cute blue jumping spider",
       "type": "Hat",
       "price": 95,
-      "created": "2026-07-12T00:16:04.0901808Z",
+      "created": "2026-07-12T00:16:04.09Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-3e0b1b117fa62b5055377602b6b9df9c/420/420/Hat/Png/noFilter",
       "favorites": 0
     },
@@ -43,9 +52,9 @@
       "name": "Tempest sky sword",
       "type": "WaistAccessory",
       "price": 65,
-      "created": "2026-07-10T14:44:29.3737921Z",
+      "created": "2026-07-10T14:44:29.373Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ffb5c783bec931aa534a5864803ab5d6/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 47
+      "favorites": 88
     },
     {
       "assetId": 87295278435884,
@@ -1224,7 +1233,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 24825
+      "favorites": 24839
     },
     {
       "assetId": 84062622353279,
