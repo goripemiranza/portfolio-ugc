@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-18T02:06:17Z",
-  "generatedAt": "2026-07-18T02:06:17Z",
+  "updated": "2026-07-19T02:17:39Z",
+  "generatedAt": "2026-07-19T02:17:39Z",
   "items": [
     {
       "assetId": 137116809276904,
@@ -16,9 +16,9 @@
       "name": "Golden ice crystal wings",
       "type": "BackAccessory",
       "price": 140,
-      "created": "2026-07-15T20:15:36.7941379Z",
+      "created": "2026-07-15T20:15:36.794Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9d11dfc6186b6c1734aeab9b4b7f9596/420/420/BackAccessory/Png/noFilter",
-      "favorites": 183
+      "favorites": 237
     },
     {
       "assetId": 134832529854753,
@@ -106,9 +106,9 @@
       "name": "Pink cute frost wyrm's helm",
       "type": "Hat",
       "price": 95,
-      "created": "2026-07-05T19:19:38.2669915Z",
+      "created": "2026-07-05T19:19:38.266Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-145455beb617a1b1cd0612f16521b033/420/420/Hat/Png/noFilter",
-      "favorites": 8
+      "favorites": 40
     },
     {
       "assetId": 124454124754646,
@@ -450,7 +450,7 @@
       "price": 95,
       "created": "2026-03-27T22:15:02.617Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-22267c498687baef6618cc868b4155b5/420/420/Hat/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 93287659110175,
@@ -782,7 +782,7 @@
       "type": "Hat",
       "price": 95,
       "created": "2026-01-19T20:55:59.983Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-6cf2c194230591cc82e623e97417cd6b/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-509f068e74b35b64c4641715c9b0e125/420/420/Hat/Png/noFilter",
       "favorites": 334
     },
     {
@@ -864,7 +864,7 @@
       "price": 105,
       "created": "2025-12-15T19:01:37.367Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-c5c22a9b224b53cfb4f167c7333dffab/420/420/Hat/Png/noFilter",
-      "favorites": 214
+      "favorites": 215
     },
     {
       "assetId": 76093476566308,
@@ -999,7 +999,7 @@
       "price": 80,
       "created": "2025-08-22T23:51:21.933Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-003b08be7779f6ef35f905102c128a50/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 122
+      "favorites": 123
     },
     {
       "assetId": 130462198935793,
@@ -1242,7 +1242,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 24839
+      "favorites": 24843
     },
     {
       "assetId": 84062622353279,
@@ -1304,7 +1304,7 @@
       "type": "Hat",
       "price": 95,
       "created": "2025-01-17T14:21:58.877Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-ecadb8eec0e937b5e8f9412b2bb2eca1/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-7869cb4ac6a261def511b0c1186e70d2/420/420/Hat/Png/noFilter",
       "favorites": 181
     },
     {
@@ -1340,7 +1340,7 @@
       "type": "WaistAccessory",
       "price": 75,
       "created": "2024-12-25T19:01:01.19Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-9c498f7ab151a28abfa78e691f171a89/420/420/WaistAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-114cf6036bd6478be226e2ed4aa8359f/420/420/WaistAccessory/Png/noFilter",
       "favorites": 305
     }
   ]
