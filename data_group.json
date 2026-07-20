@@ -1,7 +1,16 @@
 {
-  "updated": "2026-07-19T02:17:39Z",
-  "generatedAt": "2026-07-19T02:17:39Z",
+  "updated": "2026-07-20T03:39:32Z",
+  "generatedAt": "2026-07-20T03:39:32Z",
   "items": [
+    {
+      "assetId": 74520466858079,
+      "name": "Cute pastel butterfly hearts hair Kawaii",
+      "type": "HairAccessory",
+      "price": 65,
+      "created": "2026-07-18T23:52:10.8060943Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-700634ea395e0d58a23f6a94facd2c34/420/420/HairAccessory/Png/noFilter",
+      "favorites": 2
+    },
     {
       "assetId": 137116809276904,
       "name": "Cyan cyber wings",
@@ -117,7 +126,7 @@
       "price": 95,
       "created": "2026-07-03T19:55:32.588Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4c15a5b5968b94ceedbc26eafa454d7f/420/420/Hat/Png/noFilter",
-      "favorites": 16
+      "favorites": 33
     },
     {
       "assetId": 88402147775203,
@@ -729,7 +738,7 @@
       "price": 105,
       "created": "2026-01-23T23:20:16.44Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-68961c677694f777bc392c65df583911/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 26
+      "favorites": 28
     },
     {
       "assetId": 124492190423394,
@@ -1097,7 +1106,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-07-25T19:47:38.777Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-d2c56895841756d780c23505fe198c3b/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-c072cb2e5684489592ba8afbf33de105/420/420/BackAccessory/Png/noFilter",
       "favorites": 1581
     },
     {
@@ -1125,7 +1134,7 @@
       "price": 150,
       "created": "2025-04-24T13:25:21.483Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-64b8c8f90706e47a2bc3796e6b315156/420/420/BackAccessory/Png/noFilter",
-      "favorites": 439
+      "favorites": 440
     },
     {
       "assetId": 83940501884631,
@@ -1169,7 +1178,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-03-21T21:26:27.98Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-8946052619ae871ad4f76f4cf23e5e84/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-e86f408ffe86d1580a0138742d63f771/420/420/BackAccessory/Png/noFilter",
       "favorites": 1439
     },
     {
