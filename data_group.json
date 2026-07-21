@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-20T03:39:32Z",
-  "generatedAt": "2026-07-20T03:39:32Z",
+  "updated": "2026-07-21T02:16:54Z",
+  "generatedAt": "2026-07-21T02:16:54Z",
   "items": [
     {
       "assetId": 74520466858079,
@@ -142,9 +142,9 @@
       "name": "Red frost wyrm's helm",
       "type": "Hat",
       "price": 95,
-      "created": "2026-07-02T20:35:39.7029587Z",
+      "created": "2026-07-02T20:35:39.702Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-59f92fef3f4d32a82a9a89260d4dd6ca/420/420/Hat/Png/noFilter",
-      "favorites": 40
+      "favorites": 71
     },
     {
       "assetId": 84750572219288,
@@ -414,7 +414,7 @@
       "price": 95,
       "created": "2026-04-01T20:01:10.055Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b2a4d036086ca6ebd8ed3808428013fd/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 287
+      "favorites": 288
     },
     {
       "assetId": 116479189273231,
@@ -837,7 +837,7 @@
       "price": 105,
       "created": "2025-12-22T21:20:26.37Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b7525cf306124ff16ba54687788fb3cc/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 245
+      "favorites": 246
     },
     {
       "assetId": 136428742434964,
@@ -1133,7 +1133,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-04-24T13:25:21.483Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-64b8c8f90706e47a2bc3796e6b315156/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-1450c98b70e18b15dd2b6d37f01fdf8a/420/420/BackAccessory/Png/noFilter",
       "favorites": 440
     },
     {
@@ -1214,7 +1214,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-03-13T17:37:01.743Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-4ed5755dd679b0559ceab285a4e87a9b/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-b37b552595ca12b9806cd67e8a587439/420/420/BackAccessory/Png/noFilter",
       "favorites": 8031
     },
     {
@@ -1259,7 +1259,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-02-14T13:39:38.177Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-4825a1f817e55147fe7fd53398d3e2e8/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-e20792e334cbf2efc3e63d7c858cd877/420/420/BackAccessory/Png/noFilter",
       "favorites": 1103
     },
     {
