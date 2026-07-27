@@ -1,7 +1,25 @@
 {
-  "updated": "2026-07-26T02:29:31Z",
-  "generatedAt": "2026-07-26T02:29:31Z",
+  "updated": "2026-07-27T02:35:27Z",
+  "generatedAt": "2026-07-27T02:35:27Z",
   "items": [
+    {
+      "assetId": 131095441258245,
+      "name": "Cute white jumping spider",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-07-26T20:04:19.3654434Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-9ea39bd803fb1334ae7a4a94c64aa038/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 93876979367445,
+      "name": "\nCute black jumping spider",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-07-26T20:02:25.0220303Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-4189d1ed2757dfea3fcb00e2a91da462/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 74520466858079,
       "name": "Cute pastel butterfly hearts hair Kawaii",
@@ -9,7 +27,7 @@
       "price": 65,
       "created": "2026-07-18T23:52:10.8060943Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-700634ea395e0d58a23f6a94facd2c34/420/420/HairAccessory/Png/noFilter",
-      "favorites": 2
+      "favorites": 68
     },
     {
       "assetId": 137116809276904,
@@ -63,7 +81,7 @@
       "price": 95,
       "created": "2026-07-12T00:13:59.688Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bb367d4331e1a2758e253e39e6213bd0/420/420/Hat/Png/noFilter",
-      "favorites": 4
+      "favorites": 5
     },
     {
       "assetId": 82376371661109,
@@ -1188,7 +1206,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10313
+      "favorites": 10314
     },
     {
       "assetId": 134542294659432,
@@ -1196,8 +1214,8 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-03-21T21:02:45.043Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-23caae7d94f6b82a0fcb9bbf0afbc1be/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1046
+      "thumb": "https://tr.rbxcdn.com/180DAY-4e84f320e1ff2abd8edc5bb01b5b5d94/420/420/BackAccessory/Png/noFilter",
+      "favorites": 1047
     },
     {
       "assetId": 84767700611805,
