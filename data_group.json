@@ -1,15 +1,24 @@
 {
-  "updated": "2026-07-28T02:10:04Z",
-  "generatedAt": "2026-07-28T02:10:04Z",
+  "updated": "2026-07-29T02:13:42Z",
+  "generatedAt": "2026-07-29T02:13:42Z",
   "items": [
+    {
+      "assetId": 131591020796323,
+      "name": "Cute red jumping spider",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-07-28T10:49:46.3655467Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-caf45fb733b2cdb59f277de6b8214226/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 131095441258245,
       "name": "Cute white jumping spider",
       "type": "Hat",
       "price": 95,
-      "created": "2026-07-26T20:04:19.3654434Z",
+      "created": "2026-07-26T20:04:19.365Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9ea39bd803fb1334ae7a4a94c64aa038/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 93876979367445,
@@ -18,14 +27,14 @@
       "price": 95,
       "created": "2026-07-26T20:02:25.0220303Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4189d1ed2757dfea3fcb00e2a91da462/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 74520466858079,
       "name": "Cute pastel butterfly hearts hair Kawaii",
       "type": "HairAccessory",
       "price": 65,
-      "created": "2026-07-18T23:52:10.8060943Z",
+      "created": "2026-07-18T23:52:10.806Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-700634ea395e0d58a23f6a94facd2c34/420/420/HairAccessory/Png/noFilter",
       "favorites": 68
     },
@@ -45,7 +54,7 @@
       "price": 140,
       "created": "2026-07-15T20:15:36.794Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9d11dfc6186b6c1734aeab9b4b7f9596/420/420/BackAccessory/Png/noFilter",
-      "favorites": 238
+      "favorites": 264
     },
     {
       "assetId": 134832529854753,
@@ -61,7 +70,7 @@
       "name": "Cute pink jumping spider",
       "type": "Hat",
       "price": 95,
-      "created": "2026-07-12T00:17:35.6458254Z",
+      "created": "2026-07-12T00:17:35.645Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b9e178f9e00f8698b257242d9fbaf271/420/420/Hat/Png/noFilter",
       "favorites": 0
     },
@@ -846,7 +855,7 @@
       "price": 105,
       "created": "2025-12-27T23:10:07.95Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-f079e49f5f54d46bdc109008691d25b0/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 94
+      "favorites": 96
     },
     {
       "assetId": 117578513893407,
@@ -1088,7 +1097,7 @@
       "type": "Hat",
       "price": 105,
       "created": "2025-08-02T14:15:33.503Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-e0cc8d1f7cebf068efb744093df4642b/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-cc4292a09ddac86f7bb08633ee278c68/420/420/Hat/Png/noFilter",
       "favorites": 177
     },
     {
@@ -1314,7 +1323,7 @@
       "price": 150,
       "created": "2025-01-28T20:00:18.98Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ae02bd91b3ed618018e4d167515d5aa8/420/420/BackAccessory/Png/noFilter",
-      "favorites": 722
+      "favorites": 723
     },
     {
       "assetId": 85708056856563,
