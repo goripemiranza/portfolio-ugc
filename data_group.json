@@ -1,7 +1,16 @@
 {
-  "updated": "2026-07-30T02:02:22Z",
-  "generatedAt": "2026-07-30T02:02:22Z",
+  "updated": "2026-07-31T02:28:00Z",
+  "generatedAt": "2026-07-31T02:28:00Z",
   "items": [
+    {
+      "assetId": 77745503037034,
+      "name": "Golden divine celestial halo",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-07-30T17:57:39.839Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-63d05048c4bd375bd532be5e54609d9a/420/420/Hat/Png/noFilter",
+      "favorites": 22
+    },
     {
       "assetId": 131591020796323,
       "name": "Cute red jumping spider",
@@ -162,7 +171,7 @@
       "price": 115,
       "created": "2026-07-03T19:54:08.264Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-058d7ca573fa32dc4e8ad3772b3af304/420/420/Hat/Png/noFilter",
-      "favorites": 152
+      "favorites": 159
     },
     {
       "assetId": 104964070207299,
@@ -746,7 +755,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-01-31T15:46:07.224Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-cb87ae1ad4011763789529167879366c/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-89ad65f8c859186a765731eea4c6417c/420/420/BackAccessory/Png/noFilter",
       "favorites": 974
     },
     {
@@ -963,7 +972,7 @@
       "price": 105,
       "created": "2025-09-25T20:38:02.477Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-46b012387faa3cb4d1679a5b47d5c21a/420/420/Hat/Png/noFilter",
-      "favorites": 3506
+      "favorites": 3507
     },
     {
       "assetId": 131531497269464,
@@ -1070,7 +1079,7 @@
       "type": "Hat",
       "price": 105,
       "created": "2025-08-05T20:41:58.18Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-e1d85b7dc09e06f7fc3eb8129ab4fd81/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-74684510f7b34a7559d0437f7421f563/420/420/Hat/Png/noFilter",
       "favorites": 395
     },
     {
@@ -1314,7 +1323,7 @@
       "price": 80,
       "created": "2025-02-04T00:34:12.223Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-129f82daafe1271ba4670bd47b654ac6/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 70
+      "favorites": 71
     },
     {
       "assetId": 128611174976041,
@@ -1367,7 +1376,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-01-06T23:59:09.967Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-649d76d0946904c87bb4f08ab9b75bbe/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-fc99d9c43790785504be04df6bf1a5bb/420/420/BackAccessory/Png/noFilter",
       "favorites": 6508
     },
     {
