@@ -1,7 +1,16 @@
 {
-  "updated": "2026-08-05T02:08:01Z",
-  "generatedAt": "2026-08-05T02:08:01Z",
+  "updated": "2026-08-06T02:11:39Z",
+  "generatedAt": "2026-08-06T02:11:39Z",
   "items": [
+    {
+      "assetId": 77606879810990,
+      "name": "Cute cottagecore green bow straw sun hat",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-05T10:56:43.6227796Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-a1ae0ad151c888ca18d86c838cce55de/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 77745503037034,
       "name": "Golden divine celestial halo",
@@ -90,7 +99,7 @@
       "price": 95,
       "created": "2026-07-12T00:16:04.09Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-3e0b1b117fa62b5055377602b6b9df9c/420/420/Hat/Png/noFilter",
-      "favorites": 1
+      "favorites": 32
     },
     {
       "assetId": 127639637056741,
@@ -99,7 +108,7 @@
       "price": 95,
       "created": "2026-07-12T00:13:59.688Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bb367d4331e1a2758e253e39e6213bd0/420/420/Hat/Png/noFilter",
-      "favorites": 8
+      "favorites": 10
     },
     {
       "assetId": 82376371661109,
@@ -414,7 +423,7 @@
       "price": 150,
       "created": "2026-04-14T15:56:36.902Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-c4019a72af432358c90b79aab35ed2d9/420/420/BackAccessory/Png/noFilter",
-      "favorites": 548
+      "favorites": 551
     },
     {
       "assetId": 119531051437305,
@@ -719,7 +728,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-02-07T18:00:11.171Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-d51b5b6521868d6609c263edcc4eddd8/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-7cc8725fce9bd6ca9324aff1a7a6ed03/420/420/BackAccessory/Png/noFilter",
       "favorites": 1
     },
     {
@@ -1287,7 +1296,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 25169
+      "favorites": 25226
     },
     {
       "assetId": 84062622353279,
@@ -1341,7 +1350,7 @@
       "price": 150,
       "created": "2025-01-24T21:11:27.313Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6445c240f10113b277e262779e6d552e/420/420/BackAccessory/Png/noFilter",
-      "favorites": 5222
+      "favorites": 5223
     },
     {
       "assetId": 76584283871633,
@@ -1359,7 +1368,7 @@
       "price": 80,
       "created": "2025-01-16T20:19:58.877Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-73da8077a9fd1f7c26b01cb5bbc4767a/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 87
+      "favorites": 88
     },
     {
       "assetId": 134402963982838,
