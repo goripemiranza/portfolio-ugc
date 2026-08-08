@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-07T02:30:12Z",
-  "generatedAt": "2026-08-07T02:30:12Z",
+  "updated": "2026-08-08T01:18:24Z",
+  "generatedAt": "2026-08-08T01:18:24Z",
   "items": [
     {
       "assetId": 77606879810990,
@@ -9,7 +9,7 @@
       "price": 95,
       "created": "2026-08-05T10:56:43.6227796Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a1ae0ad151c888ca18d86c838cce55de/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 77745503037034,
@@ -43,7 +43,7 @@
       "name": "\nCute black jumping spider",
       "type": "Hat",
       "price": 95,
-      "created": "2026-07-26T20:02:25.0220303Z",
+      "created": "2026-07-26T20:02:25.022Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4189d1ed2757dfea3fcb00e2a91da462/420/420/Hat/Png/noFilter",
       "favorites": 41
     },
@@ -981,7 +981,7 @@
       "price": 105,
       "created": "2025-09-25T20:38:02.477Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-46b012387faa3cb4d1679a5b47d5c21a/420/420/Hat/Png/noFilter",
-      "favorites": 3507
+      "favorites": 3508
     },
     {
       "assetId": 131531497269464,
