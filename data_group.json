@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-08T01:18:24Z",
-  "generatedAt": "2026-08-08T01:18:24Z",
+  "updated": "2026-08-09T01:22:43Z",
+  "generatedAt": "2026-08-09T01:22:43Z",
   "items": [
     {
       "assetId": 77606879810990,
@@ -27,7 +27,7 @@
       "price": 95,
       "created": "2026-07-28T10:49:46.3655467Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-caf45fb733b2cdb59f277de6b8214226/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 42
     },
     {
       "assetId": 131095441258245,
@@ -90,7 +90,7 @@
       "price": 95,
       "created": "2026-07-12T00:17:35.645Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b9e178f9e00f8698b257242d9fbaf271/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 10
     },
     {
       "assetId": 94108990538614,
@@ -252,7 +252,7 @@
       "price": 95,
       "created": "2026-06-26T16:27:53.572Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-642eca4e1c4a9c26dc27d1bfb56c954b/420/420/Hat/Png/noFilter",
-      "favorites": 235
+      "favorites": 236
     },
     {
       "assetId": 103225723544533,
@@ -306,7 +306,7 @@
       "price": 105,
       "created": "2026-05-27T17:39:23.381Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-1845bf7d11cc178a626f496f7b661a45/420/420/Hat/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 81415555781366,
@@ -1179,7 +1179,7 @@
       "price": 150,
       "created": "2025-04-24T13:25:21.483Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-1450c98b70e18b15dd2b6d37f01fdf8a/420/420/BackAccessory/Png/noFilter",
-      "favorites": 440
+      "favorites": 441
     },
     {
       "assetId": 83940501884631,
@@ -1291,12 +1291,12 @@
     },
     {
       "assetId": 93192337059930,
-      "name": "LIMITED golden and cyan horns code : CCHHMPO",
+      "name": "LIMITED - code : HORNS10",
       "type": "Hat",
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 25226
+      "favorites": 25399
     },
     {
       "assetId": 84062622353279,
