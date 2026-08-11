@@ -1,7 +1,25 @@
 {
-  "updated": "2026-08-10T01:24:35Z",
-  "generatedAt": "2026-08-10T01:24:35Z",
+  "updated": "2026-08-11T01:23:04Z",
+  "generatedAt": "2026-08-11T01:23:04Z",
   "items": [
+    {
+      "assetId": 114340278311965,
+      "name": "Sigma candy corn",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-10T19:23:54.8590558Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-96f47d05aa3cce7f2196db30a6ef7f3a/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 127799795094917,
+      "name": "Cute halloween kawaii candy corn",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-10T19:09:05.1973369Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-3bf064bb82529f527c7ab1282a1fb9d4/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 77606879810990,
       "name": "Cute cottagecore green bow straw sun hat",
@@ -25,7 +43,7 @@
       "name": "Cute red jumping spider",
       "type": "Hat",
       "price": 95,
-      "created": "2026-07-28T10:49:46.3655467Z",
+      "created": "2026-07-28T10:49:46.365Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-caf45fb733b2cdb59f277de6b8214226/420/420/Hat/Png/noFilter",
       "favorites": 42
     },
@@ -701,7 +719,7 @@
       "type": "Hat",
       "price": 95,
       "created": "2026-02-11T22:16:59.051Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-7836299642e6fba8548e7f581059b8af/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-381fa2e3a080ef5dbed093ce8872f737/420/420/Hat/Png/noFilter",
       "favorites": 128
     },
     {
@@ -774,7 +792,7 @@
       "price": 105,
       "created": "2026-01-30T23:06:45.26Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-286e5f67564430cf00dd5eb38f86f5e7/420/420/Hat/Png/noFilter",
-      "favorites": 136
+      "favorites": 137
     },
     {
       "assetId": 127360099587440,
@@ -990,7 +1008,7 @@
       "price": 65,
       "created": "2025-09-18T19:57:55.397Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-15ae8e38831d2d1958aa53a420dd3b16/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 18
+      "favorites": 19
     },
     {
       "assetId": 92867934281767,
