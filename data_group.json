@@ -1,7 +1,43 @@
 {
-  "updated": "2026-08-11T01:23:04Z",
-  "generatedAt": "2026-08-11T01:23:04Z",
+  "updated": "2026-08-12T01:31:35Z",
+  "generatedAt": "2026-08-12T01:31:35Z",
   "items": [
+    {
+      "assetId": 86833032942528,
+      "name": "Cute poisonous halloween jumping spider",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-11T13:09:38.4991095Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-be6ded1d6bec78924f18ce8f2608904e/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 90177725866592,
+      "name": "Cute purple halloween jumping spider",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-11T13:08:18.3246034Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-805e2e4d440541c5d1f5ca4d6c68103b/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 138544038926871,
+      "name": "Cute green halloween jumping spider",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-11T13:07:17.6197755Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-3fe4c479b119fb86175f8f101c042546/420/420/Hat/Png/noFilter",
+      "favorites": 1
+    },
+    {
+      "assetId": 72720874482067,
+      "name": "Cute orange halloween jumping spider",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-11T12:59:12.4886078Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-48e5f85e7822d556839303b4ad83335c/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 114340278311965,
       "name": "Sigma candy corn",
@@ -18,7 +54,7 @@
       "price": 95,
       "created": "2026-08-10T19:09:05.1973369Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-3bf064bb82529f527c7ab1282a1fb9d4/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 4
     },
     {
       "assetId": 77606879810990,
@@ -36,7 +72,7 @@
       "price": 95,
       "created": "2026-07-30T17:57:39.839Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-63d05048c4bd375bd532be5e54609d9a/420/420/Hat/Png/noFilter",
-      "favorites": 66
+      "favorites": 325
     },
     {
       "assetId": 131591020796323,
