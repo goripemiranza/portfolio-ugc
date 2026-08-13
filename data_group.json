@@ -1,7 +1,25 @@
 {
-  "updated": "2026-08-12T01:31:35Z",
-  "generatedAt": "2026-08-12T01:31:35Z",
+  "updated": "2026-08-13T01:33:38Z",
+  "generatedAt": "2026-08-13T01:33:38Z",
   "items": [
+    {
+      "assetId": 103580402023205,
+      "name": "Goth dark elegant lily umbrella",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-08-12T22:27:18.4078411Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-b5c3d35c565149cd08caaa38f7cd7592/420/420/BackAccessory/Png/noFilter",
+      "favorites": 2
+    },
+    {
+      "assetId": 131368958862340,
+      "name": "Black White top hat",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-12T11:27:40.7198485Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-25909e06a590ac847a1a1cc06c50881d/420/420/Hat/Png/noFilter",
+      "favorites": 12
+    },
     {
       "assetId": 86833032942528,
       "name": "Cute poisonous halloween jumping spider",
@@ -72,7 +90,7 @@
       "price": 95,
       "created": "2026-07-30T17:57:39.839Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-63d05048c4bd375bd532be5e54609d9a/420/420/Hat/Png/noFilter",
-      "favorites": 325
+      "favorites": 326
     },
     {
       "assetId": 131591020796323,
@@ -99,7 +117,7 @@
       "price": 95,
       "created": "2026-07-26T20:02:25.022Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4189d1ed2757dfea3fcb00e2a91da462/420/420/Hat/Png/noFilter",
-      "favorites": 41
+      "favorites": 59
     },
     {
       "assetId": 74520466858079,
@@ -495,7 +513,7 @@
       "price": 55,
       "created": "2026-04-10T22:51:14.139Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b2e80cd2ceee58d5d5b2eec86fe52db4/420/420/NeckAccessory/Png/noFilter",
-      "favorites": 10
+      "favorites": 11
     },
     {
       "assetId": 134442603728020,
@@ -513,7 +531,7 @@
       "price": 95,
       "created": "2026-04-01T20:01:10.055Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b2a4d036086ca6ebd8ed3808428013fd/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 288
+      "favorites": 289
     },
     {
       "assetId": 116479189273231,
@@ -746,7 +764,7 @@
       "type": "Hat",
       "price": 105,
       "created": "2026-02-13T12:38:42.115Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-a0b28da68975f52e47c847d8b5d26a84/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-666f1c3594807df9a81d907fbb3ce831/420/420/Hat/Png/noFilter",
       "favorites": 1
     },
     {
@@ -774,7 +792,7 @@
       "price": 65,
       "created": "2026-02-07T18:04:30.526Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0270b5cbbf1b56674f0b62b13fd78f93/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 3
+      "favorites": 4
     },
     {
       "assetId": 76510198102556,
@@ -819,7 +837,7 @@
       "price": 150,
       "created": "2026-01-31T15:46:07.224Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-89ad65f8c859186a765731eea4c6417c/420/420/BackAccessory/Png/noFilter",
-      "favorites": 974
+      "favorites": 975
     },
     {
       "assetId": 139065374588767,
@@ -828,7 +846,7 @@
       "price": 105,
       "created": "2026-01-30T23:06:45.26Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-286e5f67564430cf00dd5eb38f86f5e7/420/420/Hat/Png/noFilter",
-      "favorites": 137
+      "favorites": 138
     },
     {
       "assetId": 127360099587440,
@@ -990,7 +1008,7 @@
       "price": 105,
       "created": "2025-10-19T11:40:08.133Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ef63b3fbad343ac53aa288bd28a3b898/420/420/Hat/Png/noFilter",
-      "favorites": 38
+      "favorites": 40
     },
     {
       "assetId": 90895163434338,
@@ -1116,7 +1134,7 @@
       "price": 150,
       "created": "2025-08-22T23:49:56.897Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9d5bcfa3de33a9324b640361364e2965/420/420/BackAccessory/Png/noFilter",
-      "favorites": 681
+      "favorites": 682
     },
     {
       "assetId": 134630267020145,
@@ -1134,7 +1152,7 @@
       "price": 100,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e1ce76de3e916584ec53afb963574880/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4935
+      "favorites": 4936
     },
     {
       "assetId": 73886642022932,
@@ -1350,7 +1368,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 25399
+      "favorites": 25621
     },
     {
       "assetId": 84062622353279,
