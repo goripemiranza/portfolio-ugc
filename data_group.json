@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-13T01:33:38Z",
-  "generatedAt": "2026-08-13T01:33:38Z",
+  "updated": "2026-08-14T01:32:15Z",
+  "generatedAt": "2026-08-14T01:32:15Z",
   "items": [
     {
       "assetId": 103580402023205,
@@ -351,7 +351,7 @@
       "price": 95,
       "created": "2026-06-06T21:54:16.218Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0cdbe66d61f1d5d90cf45dfd97114a2f/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 369
+      "favorites": 370
     },
     {
       "assetId": 127382605792964,
@@ -855,7 +855,7 @@
       "price": 105,
       "created": "2026-01-23T23:20:16.44Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bfb54f292f5f694bfd165160d42bc47a/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 29
+      "favorites": 31
     },
     {
       "assetId": 124492190423394,
@@ -999,7 +999,7 @@
       "price": 105,
       "created": "2025-10-19T11:42:55.59Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9cc635041e93191ec16cb61e5c591349/420/420/Hat/Png/noFilter",
-      "favorites": 7
+      "favorites": 9
     },
     {
       "assetId": 86312140095193,
@@ -1143,7 +1143,7 @@
       "price": 95,
       "created": "2025-08-22T23:43:22.9Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d72b6dc2603733dd8ed35d9625782cf7/420/420/Hat/Png/noFilter",
-      "favorites": 68
+      "favorites": 69
     },
     {
       "assetId": 93842989030434,
@@ -1152,7 +1152,7 @@
       "price": 100,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e1ce76de3e916584ec53afb963574880/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4936
+      "favorites": 4937
     },
     {
       "assetId": 73886642022932,
@@ -1367,8 +1367,8 @@
       "type": "Hat",
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-d555f0060b95bd6d152ed9c9b8149962/420/420/Hat/Png/noFilter",
-      "favorites": 25621
+      "thumb": "https://tr.rbxcdn.com/180DAY-5327c8dd3cbbe27d1d80a61c69be0707/420/420/Hat/Png/noFilter",
+      "favorites": 25701
     },
     {
       "assetId": 84062622353279,
@@ -1440,7 +1440,7 @@
       "price": 80,
       "created": "2025-01-16T20:19:58.877Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-73da8077a9fd1f7c26b01cb5bbc4767a/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 89
+      "favorites": 90
     },
     {
       "assetId": 134402963982838,
