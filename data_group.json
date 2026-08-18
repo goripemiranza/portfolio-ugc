@@ -1,13 +1,22 @@
 {
-  "updated": "2026-08-17T01:03:13Z",
-  "generatedAt": "2026-08-17T01:03:13Z",
+  "updated": "2026-08-18T01:01:25Z",
+  "generatedAt": "2026-08-18T01:01:25Z",
   "items": [
+    {
+      "assetId": 99568009371295,
+      "name": "Sakura antlers purple stormbreak ",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-17T00:06:13.773Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-98e6e015361d3eb3b9bf6f4ea098d495/420/420/Hat/Png/noFilter",
+      "favorites": 72
+    },
     {
       "assetId": 130638074348045,
       "name": "\nSakura antlers wings",
       "type": "BackAccessory",
       "price": 140,
-      "created": "2026-08-15T20:42:20.2336528Z",
+      "created": "2026-08-15T20:42:20.233Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9e68e06e79c29bfa30238a139633e5c0/420/420/BackAccessory/Png/noFilter",
       "favorites": 2
     },
@@ -115,9 +124,9 @@
       "name": "Sigma candy corn",
       "type": "Hat",
       "price": 95,
-      "created": "2026-08-10T19:23:54.8590558Z",
+      "created": "2026-08-10T19:23:54.859Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-96f47d05aa3cce7f2196db30a6ef7f3a/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 83
     },
     {
       "assetId": 127799795094917,
@@ -567,7 +576,7 @@
       "price": 55,
       "created": "2026-04-10T22:51:14.139Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b2e80cd2ceee58d5d5b2eec86fe52db4/420/420/NeckAccessory/Png/noFilter",
-      "favorites": 11
+      "favorites": 12
     },
     {
       "assetId": 134442603728020,
@@ -1116,7 +1125,7 @@
       "price": 65,
       "created": "2025-09-18T19:57:55.397Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-15ae8e38831d2d1958aa53a420dd3b16/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 19
+      "favorites": 21
     },
     {
       "assetId": 92867934281767,
@@ -1134,7 +1143,7 @@
       "price": 95,
       "created": "2025-09-15T08:41:29.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-1a67a6d9104914407d029e147ce59a9b/420/420/Hat/Png/noFilter",
-      "favorites": 13
+      "favorites": 14
     },
     {
       "assetId": 79738540625712,
@@ -1179,7 +1188,7 @@
       "price": 80,
       "created": "2025-08-22T23:51:21.933Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-003b08be7779f6ef35f905102c128a50/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 124
+      "favorites": 125
     },
     {
       "assetId": 130462198935793,
@@ -1187,7 +1196,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-08-22T23:49:56.897Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-9d5bcfa3de33a9324b640361364e2965/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-60e9300ee67117c312ff79729711fa0e/420/420/BackAccessory/Png/noFilter",
       "favorites": 682
     },
     {
@@ -1196,7 +1205,7 @@
       "type": "Hat",
       "price": 95,
       "created": "2025-08-22T23:43:22.9Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-d72b6dc2603733dd8ed35d9625782cf7/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-4fe244b9700b13a9eb7f82ffb0a17b85/420/420/Hat/Png/noFilter",
       "favorites": 69
     },
     {
@@ -1359,7 +1368,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10317
+      "favorites": 10319
     },
     {
       "assetId": 134542294659432,
