@@ -1,7 +1,16 @@
 {
-  "updated": "2026-08-20T01:01:50Z",
-  "generatedAt": "2026-08-20T01:01:50Z",
+  "updated": "2026-08-21T01:06:21Z",
+  "generatedAt": "2026-08-21T01:06:21Z",
   "items": [
+    {
+      "assetId": 95715493004522,
+      "name": "Sakura antlers pink crystals addon",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-19T21:24:16.412647Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-2e5b450b0a7f3dbe2e22011f6cff899a/420/420/Hat/Png/noFilter",
+      "favorites": 1
+    },
     {
       "assetId": 99568009371295,
       "name": "Sakura antlers purple stormbreak ",
@@ -63,7 +72,7 @@
       "price": 95,
       "created": "2026-08-14T17:55:29.932Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-32010bc3388dcd91bb7cb106ede776c2/420/420/Hat/Png/noFilter",
-      "favorites": 50
+      "favorites": 51
     },
     {
       "assetId": 103580402023205,
@@ -189,7 +198,7 @@
       "price": 65,
       "created": "2026-07-18T23:52:10.806Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-700634ea395e0d58a23f6a94facd2c34/420/420/HairAccessory/Png/noFilter",
-      "favorites": 68
+      "favorites": 69
     },
     {
       "assetId": 137116809276904,
@@ -809,7 +818,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-02-21T22:25:15.653Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-7ad7094189347b1037868edf0d84d84d/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-218680695cd5733bb31f90afc7c641b0/420/420/BackAccessory/Png/noFilter",
       "favorites": 348
     },
     {
@@ -1178,7 +1187,7 @@
       "type": "HairAccessory",
       "price": 65,
       "created": "2025-08-25T20:18:08.163Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-cac5a262cd9b82887980ed87f67f9d19/420/420/HairAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-5fd404c8d707b54704b3d756f13e7d2b/420/420/HairAccessory/Png/noFilter",
       "favorites": 744
     },
     {
@@ -1386,7 +1395,7 @@
       "price": 150,
       "created": "2025-03-21T20:25:38.197Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9a93a8674f78b15ecca35b7f5d37382d/420/420/BackAccessory/Png/noFilter",
-      "favorites": 3103
+      "favorites": 3104
     },
     {
       "assetId": 107830760895891,
@@ -1431,7 +1440,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-5327c8dd3cbbe27d1d80a61c69be0707/420/420/Hat/Png/noFilter",
-      "favorites": 25701
+      "favorites": 25922
     },
     {
       "assetId": 84062622353279,
