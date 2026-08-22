@@ -1,24 +1,51 @@
 {
-  "updated": "2026-08-21T01:06:21Z",
-  "generatedAt": "2026-08-21T01:06:21Z",
+  "updated": "2026-08-22T01:02:27Z",
+  "generatedAt": "2026-08-22T01:02:27Z",
   "items": [
+    {
+      "assetId": 135054072554421,
+      "name": "Sakura antlers white crystals addon",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-19T21:28:28.504Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-79e1a66292e0234e0062e374f016af26/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 104437432462824,
+      "name": "Sakura antlers red crystals addon",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-19T21:26:51.533Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-edda5deb6c69541dae43ad7708eb46dd/420/420/Hat/Png/noFilter",
+      "favorites": 2
+    },
     {
       "assetId": 95715493004522,
       "name": "Sakura antlers pink crystals addon",
       "type": "Hat",
       "price": 95,
-      "created": "2026-08-19T21:24:16.412647Z",
+      "created": "2026-08-19T21:24:16.412Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2e5b450b0a7f3dbe2e22011f6cff899a/420/420/Hat/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
+    },
+    {
+      "assetId": 133426095076104,
+      "name": "Sakura antlers black crystals addon",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-19T21:14:54.001Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-a2cb462c629e3b64e32c18b173a8d6b5/420/420/Hat/Png/noFilter",
+      "favorites": 0
     },
     {
       "assetId": 99568009371295,
-      "name": "Sakura antlers purple stormbreak ",
+      "name": "Sakura antlers purple stormbreak addon",
       "type": "Hat",
       "price": 95,
       "created": "2026-08-17T00:06:13.773Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-98e6e015361d3eb3b9bf6f4ea098d495/420/420/Hat/Png/noFilter",
-      "favorites": 72
+      "favorites": 257
     },
     {
       "assetId": 130638074348045,
@@ -81,7 +108,7 @@
       "price": 140,
       "created": "2026-08-12T22:27:18.407Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b5c3d35c565149cd08caaa38f7cd7592/420/420/BackAccessory/Png/noFilter",
-      "favorites": 32
+      "favorites": 33
     },
     {
       "assetId": 131368958862340,
@@ -1178,7 +1205,7 @@
       "type": "HairAccessory",
       "price": 65,
       "created": "2025-08-26T21:07:43.41Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-0592d4783339d0a60392521922b7aabf/420/420/HairAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-2cc9b41cad5fe2f4c377a104c888d364/420/420/HairAccessory/Png/noFilter",
       "favorites": 171
     },
     {
@@ -1377,7 +1404,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10319
+      "favorites": 10320
     },
     {
       "assetId": 134542294659432,
@@ -1440,7 +1467,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-5327c8dd3cbbe27d1d80a61c69be0707/420/420/Hat/Png/noFilter",
-      "favorites": 25922
+      "favorites": 25954
     },
     {
       "assetId": 84062622353279,
