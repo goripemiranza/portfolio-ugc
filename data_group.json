@@ -1,7 +1,16 @@
 {
-  "updated": "2026-08-24T01:04:51Z",
-  "generatedAt": "2026-08-24T01:04:51Z",
+  "updated": "2026-08-25T01:04:08Z",
+  "generatedAt": "2026-08-25T01:04:08Z",
   "items": [
+    {
+      "assetId": 131808482667255,
+      "name": "Sakura antlers magical scepter",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-08-23T21:48:42.1345848Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-401da41ff74af9ca8abe74eb396db0a3/420/420/BackAccessory/Png/noFilter",
+      "favorites": 1
+    },
     {
       "assetId": 135054072554421,
       "name": "Sakura antlers white crystals addon",
@@ -45,7 +54,7 @@
       "price": 95,
       "created": "2026-08-17T00:06:13.773Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-98e6e015361d3eb3b9bf6f4ea098d495/420/420/Hat/Png/noFilter",
-      "favorites": 275
+      "favorites": 310
     },
     {
       "assetId": 130638074348045,
@@ -827,7 +836,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-02-26T20:21:55.528Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-91d6e956bbc4171c725ad82583442593/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-068a3c1527493202e528283bfdaa69ba/420/420/BackAccessory/Png/noFilter",
       "favorites": 7
     },
     {
@@ -836,7 +845,7 @@
       "type": "WaistAccessory",
       "price": 100,
       "created": "2026-02-25T20:19:55.955Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-ea48f70db66f1f724e6da0f7620d8864/420/420/WaistAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-e3af9857c2c59d6ca2821c336d2c117c/420/420/WaistAccessory/Png/noFilter",
       "favorites": 57
     },
     {
