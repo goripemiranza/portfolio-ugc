@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-27T07:02:16Z",
-  "generatedAt": "2026-08-27T07:02:16Z",
+  "updated": "2026-08-28T08:50:16Z",
+  "generatedAt": "2026-08-28T08:50:16Z",
   "items": [
     {
       "assetId": 131808482667255,
@@ -72,7 +72,7 @@
       "price": 95,
       "created": "2026-08-17T00:06:13.773Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-98e6e015361d3eb3b9bf6f4ea098d495/420/420/Hat/Png/noFilter",
-      "favorites": 357
+      "favorites": 360
     },
     {
       "assetId": 130638074348045,
@@ -81,23 +81,23 @@
       "price": 140,
       "created": "2026-08-15T20:42:20.233Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9e68e06e79c29bfa30238a139633e5c0/420/420/BackAccessory/Png/noFilter",
-      "favorites": 126
+      "favorites": 127
     },
     {
       "assetId": 119390403678782,
-      "name": "\nSakura antlers bubble spark lights",
+      "name": "Sakura antlers bubble spark lights addon",
       "type": "Hat",
       "price": 95,
-      "created": "2026-08-15T14:44:21.1397461Z",
+      "created": "2026-08-15T14:44:21.139Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-00327adc773afd3b55cee65619bf24e8/420/420/Hat/Png/noFilter",
       "favorites": 7
     },
     {
       "assetId": 74205514452748,
-      "name": "\nSakura antlers cute bee ",
+      "name": "Sakura antlers cute bee addon",
       "type": "Hat",
       "price": 95,
-      "created": "2026-08-15T13:57:02.8531968Z",
+      "created": "2026-08-15T13:57:02.853Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2c5dd4d8ffd9f22784b9f5b18607120d/420/420/Hat/Png/noFilter",
       "favorites": 5
     },
@@ -207,7 +207,7 @@
       "price": 95,
       "created": "2026-08-05T10:56:43.622Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a1ae0ad151c888ca18d86c838cce55de/420/420/Hat/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 77745503037034,
@@ -477,7 +477,7 @@
       "price": 95,
       "created": "2026-06-06T21:54:16.218Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0cdbe66d61f1d5d90cf45dfd97114a2f/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 370
+      "favorites": 372
     },
     {
       "assetId": 127382605792964,
@@ -657,7 +657,7 @@
       "price": 95,
       "created": "2026-04-01T20:01:10.055Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b2a4d036086ca6ebd8ed3808428013fd/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 289
+      "favorites": 290
     },
     {
       "assetId": 116479189273231,
@@ -1547,7 +1547,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-01-24T21:11:27.313Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-6445c240f10113b277e262779e6d552e/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-376f6af31d57d2c2325afb3f54be394e/420/420/BackAccessory/Png/noFilter",
       "favorites": 5224
     },
     {
