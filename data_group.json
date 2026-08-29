@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-28T08:50:16Z",
-  "generatedAt": "2026-08-28T08:50:16Z",
+  "updated": "2026-08-29T05:27:36Z",
+  "generatedAt": "2026-08-29T05:27:36Z",
   "items": [
     {
       "assetId": 131808482667255,
@@ -72,7 +72,7 @@
       "price": 95,
       "created": "2026-08-17T00:06:13.773Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-98e6e015361d3eb3b9bf6f4ea098d495/420/420/Hat/Png/noFilter",
-      "favorites": 360
+      "favorites": 361
     },
     {
       "assetId": 130638074348045,
@@ -81,7 +81,7 @@
       "price": 140,
       "created": "2026-08-15T20:42:20.233Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9e68e06e79c29bfa30238a139633e5c0/420/420/BackAccessory/Png/noFilter",
-      "favorites": 127
+      "favorites": 128
     },
     {
       "assetId": 119390403678782,
@@ -648,7 +648,7 @@
       "price": 95,
       "created": "2026-04-08T10:39:13.388Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-16558d503ee8ccd549a54f9c3d53af60/420/420/Hat/Png/noFilter",
-      "favorites": 3
+      "favorites": 4
     },
     {
       "assetId": 102409501443142,
@@ -792,7 +792,7 @@
       "price": 150,
       "created": "2026-03-18T20:48:28.82Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-1b16e16742b9a1b0596a44b11f7f9c58/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 123474849043992,
@@ -1565,7 +1565,7 @@
       "type": "WaistAccessory",
       "price": 80,
       "created": "2025-01-16T20:19:58.877Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-73da8077a9fd1f7c26b01cb5bbc4767a/420/420/WaistAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-13a5a7d34dc01e0c8977a9fde8b774c2/420/420/WaistAccessory/Png/noFilter",
       "favorites": 90
     },
     {
