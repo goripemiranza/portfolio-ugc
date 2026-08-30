@@ -1,7 +1,16 @@
 {
-  "updated": "2026-08-29T05:27:36Z",
-  "generatedAt": "2026-08-29T05:27:36Z",
+  "updated": "2026-08-30T03:22:56Z",
+  "generatedAt": "2026-08-30T03:22:56Z",
   "items": [
+    {
+      "assetId": 131458359285249,
+      "name": "CODE : PCGM Limited halloween pumpkin ",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-29T12:05:38.5133325Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-0c93b62f8c03dc01ae01f875a096133f/420/420/Hat/Png/noFilter",
+      "favorites": 27
+    },
     {
       "assetId": 131808482667255,
       "name": "Sakura antlers magical scepter",
@@ -46,6 +55,24 @@
       "created": "2026-08-19T21:24:16.412Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2e5b450b0a7f3dbe2e22011f6cff899a/420/420/Hat/Png/noFilter",
       "favorites": 2
+    },
+    {
+      "assetId": 123789403759030,
+      "name": "Sakura antlers green crystals addon",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-19T21:18:31.027Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-d72fceb923c595a43f35b3e843b69624/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 78914139786882,
+      "name": "Sakura antlers blue crystals addon",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-08-19T21:16:39.381Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-d660d541e308d4de35e349c88d7f52a1/420/420/Hat/Png/noFilter",
+      "favorites": 0
     },
     {
       "assetId": 133426095076104,
@@ -243,7 +270,7 @@
       "price": 95,
       "created": "2026-07-26T20:02:25.022Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4189d1ed2757dfea3fcb00e2a91da462/420/420/Hat/Png/noFilter",
-      "favorites": 59
+      "favorites": 60
     },
     {
       "assetId": 74520466858079,
@@ -845,7 +872,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-03-03T20:49:28.327Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-35443787a14204b1a990c394a73ea02e/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-8f9402f048790cc96298f176f046b7bc/420/420/BackAccessory/Png/noFilter",
       "favorites": 60
     },
     {
@@ -1080,7 +1107,7 @@
       "price": 105,
       "created": "2025-12-22T21:20:26.37Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b7525cf306124ff16ba54687788fb3cc/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 250
+      "favorites": 251
     },
     {
       "assetId": 136428742434964,
