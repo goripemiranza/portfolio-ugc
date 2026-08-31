@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-30T03:22:56Z",
-  "generatedAt": "2026-08-30T03:22:56Z",
+  "updated": "2026-08-31T03:18:00Z",
+  "generatedAt": "2026-08-31T03:18:00Z",
   "items": [
     {
       "assetId": 131458359285249,
@@ -9,7 +9,7 @@
       "price": 95,
       "created": "2026-08-29T12:05:38.5133325Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0c93b62f8c03dc01ae01f875a096133f/420/420/Hat/Png/noFilter",
-      "favorites": 27
+      "favorites": 79
     },
     {
       "assetId": 131808482667255,
@@ -139,12 +139,12 @@
     },
     {
       "assetId": 106071659314804,
-      "name": "Sakura antlers pink heart garland ",
+      "name": "Sakura antlers pink heart garland addon",
       "type": "Hat",
       "price": 95,
-      "created": "2026-08-14T22:08:06.6108772Z",
+      "created": "2026-08-14T22:08:06.61Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-aca24cd86f2baf15035af1f2f6551a21/420/420/Hat/Png/noFilter",
-      "favorites": 15
+      "favorites": 148
     },
     {
       "assetId": 72828578382974,
@@ -180,7 +180,7 @@
       "price": 95,
       "created": "2026-08-11T13:09:38.499Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-be6ded1d6bec78924f18ce8f2608904e/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 90177725866592,
@@ -196,9 +196,9 @@
       "name": "Cute green halloween jumping spider",
       "type": "Hat",
       "price": 95,
-      "created": "2026-08-11T13:07:17.6197755Z",
+      "created": "2026-08-11T13:07:17.619Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-3fe4c479b119fb86175f8f101c042546/420/420/Hat/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 72720874482067,
@@ -360,15 +360,6 @@
       "price": 95,
       "created": "2026-07-07T10:38:27.814Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b52363f014931c95ed94216e5776d461/420/420/Hat/Png/noFilter",
-      "favorites": 4
-    },
-    {
-      "assetId": 92900132464202,
-      "name": "White flame wyrm's axe",
-      "type": "BackAccessory",
-      "price": 140,
-      "created": "2026-07-06T20:57:10.772Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-7096ac1b91ed8e43bc0381f9702ba34e/420/420/BackAccessory/Png/noFilter",
       "favorites": 4
     },
     {
@@ -657,7 +648,7 @@
       "price": 150,
       "created": "2026-04-13T15:04:23.574Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-025f6ddbb8b00ba48b85c610f0ec8119/420/420/BackAccessory/Png/noFilter",
-      "favorites": 629
+      "favorites": 628
     },
     {
       "assetId": 75337966370394,
@@ -1278,7 +1269,7 @@
       "price": 80,
       "created": "2025-08-22T23:51:21.933Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-003b08be7779f6ef35f905102c128a50/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 125
+      "favorites": 126
     },
     {
       "assetId": 130462198935793,
@@ -1458,7 +1449,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10319
+      "favorites": 10320
     },
     {
       "assetId": 134542294659432,
@@ -1521,7 +1512,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-5327c8dd3cbbe27d1d80a61c69be0707/420/420/Hat/Png/noFilter",
-      "favorites": 25954
+      "favorites": 26334
     },
     {
       "assetId": 84062622353279,
