@@ -1,15 +1,15 @@
 {
-  "updated": "2026-08-31T03:18:00Z",
-  "generatedAt": "2026-08-31T03:18:00Z",
+  "updated": "2026-09-01T03:21:36Z",
+  "generatedAt": "2026-09-01T03:21:36Z",
   "items": [
     {
       "assetId": 131458359285249,
       "name": "CODE : PCGM Limited halloween pumpkin ",
       "type": "Hat",
       "price": 95,
-      "created": "2026-08-29T12:05:38.5133325Z",
+      "created": "2026-08-29T12:05:38.513Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0c93b62f8c03dc01ae01f875a096133f/420/420/Hat/Png/noFilter",
-      "favorites": 79
+      "favorites": 190
     },
     {
       "assetId": 131808482667255,
@@ -354,15 +354,6 @@
       "favorites": 0
     },
     {
-      "assetId": 77924949169952,
-      "name": "Black red frost wyrm's helm",
-      "type": "Hat",
-      "price": 95,
-      "created": "2026-07-07T10:38:27.814Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-b52363f014931c95ed94216e5776d461/420/420/Hat/Png/noFilter",
-      "favorites": 4
-    },
-    {
       "assetId": 100877776062325,
       "name": "Black flame wyrm's axe",
       "type": "BackAccessory",
@@ -675,7 +666,7 @@
       "price": 95,
       "created": "2026-04-01T20:01:10.055Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b2a4d036086ca6ebd8ed3808428013fd/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 290
+      "favorites": 291
     },
     {
       "assetId": 116479189273231,
@@ -981,7 +972,7 @@
       "price": 150,
       "created": "2026-01-31T15:46:07.224Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-89ad65f8c859186a765731eea4c6417c/420/420/BackAccessory/Png/noFilter",
-      "favorites": 975
+      "favorites": 976
     },
     {
       "assetId": 139065374588767,
@@ -1098,7 +1089,7 @@
       "price": 105,
       "created": "2025-12-22T21:20:26.37Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b7525cf306124ff16ba54687788fb3cc/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 251
+      "favorites": 253
     },
     {
       "assetId": 136428742434964,
@@ -1152,7 +1143,7 @@
       "price": 105,
       "created": "2025-10-19T11:40:08.133Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ef63b3fbad343ac53aa288bd28a3b898/420/420/Hat/Png/noFilter",
-      "favorites": 40
+      "favorites": 41
     },
     {
       "assetId": 90895163434338,
@@ -1287,7 +1278,7 @@
       "price": 95,
       "created": "2025-08-22T23:43:22.9Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4fe244b9700b13a9eb7f82ffb0a17b85/420/420/Hat/Png/noFilter",
-      "favorites": 69
+      "favorites": 70
     },
     {
       "assetId": 93842989030434,
@@ -1557,7 +1548,7 @@
       "price": 150,
       "created": "2025-01-28T20:00:18.98Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ae02bd91b3ed618018e4d167515d5aa8/420/420/BackAccessory/Png/noFilter",
-      "favorites": 724
+      "favorites": 725
     },
     {
       "assetId": 85708056856563,
