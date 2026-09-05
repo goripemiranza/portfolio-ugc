@@ -1,7 +1,16 @@
 {
-  "updated": "2026-09-04T02:43:39Z",
-  "generatedAt": "2026-09-04T02:43:39Z",
+  "updated": "2026-09-05T02:44:38Z",
+  "generatedAt": "2026-09-05T02:44:38Z",
   "items": [
+    {
+      "assetId": 114353511232461,
+      "name": "Emissive Halloween Classic Pumpkin",
+      "type": "BackAccessory",
+      "price": 500,
+      "created": "2026-09-04T13:04:45.934098Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-4c55a3591fc51a3d29c3593ab4014f9e/420/420/BackAccessory/Png/noFilter",
+      "favorites": 17
+    },
     {
       "assetId": 112502808137006,
       "name": "Emissive Glowing Classic Katana",
@@ -18,7 +27,7 @@
       "price": 95,
       "created": "2026-08-29T12:05:38.513Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0c93b62f8c03dc01ae01f875a096133f/420/420/Hat/Png/noFilter",
-      "favorites": 394
+      "favorites": 452
     },
     {
       "assetId": 131808482667255,
@@ -315,7 +324,7 @@
       "price": 95,
       "created": "2026-07-13T10:39:30.702Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-be1e8e2042a94aacf792ae461ec02aba/420/420/Hat/Png/noFilter",
-      "favorites": 133
+      "favorites": 134
     },
     {
       "assetId": 119636429786394,
@@ -819,7 +828,7 @@
       "price": 95,
       "created": "2026-03-12T19:02:56.937Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b6edaa997d7920debdcff239489f1529/420/420/Hat/Png/noFilter",
-      "favorites": 38
+      "favorites": 39
     },
     {
       "assetId": 80910958885713,
@@ -836,7 +845,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-03-08T20:51:40.57Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-81821e150cde2f1b502a4a6175fafc5c/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-dab84ee3a2dfdf9b2c671b8a6dd69f0e/420/420/BackAccessory/Png/noFilter",
       "favorites": 1129
     },
     {
@@ -915,7 +924,7 @@
       "assetId": 114241510292784,
       "name": "Y2K blue jean cap",
       "type": "Hat",
-      "price": 95,
+      "price": 105,
       "created": "2026-02-10T23:12:28.603Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2631676c7da1d35ba2b632dae829be29/420/420/Hat/Png/noFilter",
       "favorites": 187
@@ -1044,7 +1053,7 @@
       "price": 95,
       "created": "2026-01-19T20:55:59.983Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-509f068e74b35b64c4641715c9b0e125/420/420/Hat/Png/noFilter",
-      "favorites": 334
+      "favorites": 333
     },
     {
       "assetId": 130160862337869,
@@ -1223,14 +1232,14 @@
       "type": "Hat",
       "price": 105,
       "created": "2025-09-10T14:08:35.023Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-5ffc7a28bcc0b547cc0ddfe7e2b83b25/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-16bfa2aec92d09f57b953c0f6c3cf4a1/420/420/Hat/Png/noFilter",
       "favorites": 375
     },
     {
       "assetId": 107095008480456,
       "name": "green horns",
       "type": "Hat",
-      "price": 95,
+      "price": 105,
       "created": "2025-09-07T19:19:34.547Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-63ceeb8546c6ae71d391ee8ea878fe9b/420/420/Hat/Png/noFilter",
       "favorites": 8
@@ -1440,7 +1449,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10320
+      "favorites": 10322
     },
     {
       "assetId": 134542294659432,
@@ -1530,7 +1539,7 @@
       "price": 95,
       "created": "2025-02-10T09:37:01.39Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-5790dd191a3f805833027026969df78f/420/420/Hat/Png/noFilter",
-      "favorites": 53
+      "favorites": 55
     },
     {
       "assetId": 132266745430466,
