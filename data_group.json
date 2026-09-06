@@ -1,7 +1,16 @@
 {
-  "updated": "2026-09-05T02:44:38Z",
-  "generatedAt": "2026-09-05T02:44:38Z",
+  "updated": "2026-09-06T02:41:50Z",
+  "generatedAt": "2026-09-06T02:41:50Z",
   "items": [
+    {
+      "assetId": 78831772788133,
+      "name": "Emissive Green Crystal Crown ",
+      "type": "Hat",
+      "price": 500,
+      "created": "2026-09-05T15:23:27.3129956Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-6eac38a968866a81565b2612ee1bf115/420/420/Hat/Png/noFilter",
+      "favorites": 130
+    },
     {
       "assetId": 114353511232461,
       "name": "Emissive Halloween Classic Pumpkin",
@@ -27,16 +36,16 @@
       "price": 95,
       "created": "2026-08-29T12:05:38.513Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0c93b62f8c03dc01ae01f875a096133f/420/420/Hat/Png/noFilter",
-      "favorites": 452
+      "favorites": 516
     },
     {
       "assetId": 131808482667255,
       "name": "Sakura antlers magical scepter",
       "type": "BackAccessory",
       "price": 140,
-      "created": "2026-08-23T21:48:42.1345848Z",
+      "created": "2026-08-23T21:48:42.134Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-401da41ff74af9ca8abe74eb396db0a3/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 135054072554421,
@@ -372,15 +381,6 @@
       "favorites": 0
     },
     {
-      "assetId": 101274755300304,
-      "name": "Pink cute frost wyrm's helm",
-      "type": "Hat",
-      "price": 95,
-      "created": "2026-07-05T19:19:38.266Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-145455beb617a1b1cd0612f16521b033/420/420/Hat/Png/noFilter",
-      "favorites": 40
-    },
-    {
       "assetId": 124454124754646,
       "name": "White frost wyrm's helm",
       "type": "Hat",
@@ -388,15 +388,6 @@
       "created": "2026-07-03T19:55:32.588Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4c15a5b5968b94ceedbc26eafa454d7f/420/420/Hat/Png/noFilter",
       "favorites": 33
-    },
-    {
-      "assetId": 88402147775203,
-      "name": "Black frost wyrm's helm",
-      "type": "Hat",
-      "price": 115,
-      "created": "2026-07-03T19:54:08.264Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-058d7ca573fa32dc4e8ad3772b3af304/420/420/Hat/Png/noFilter",
-      "favorites": 159
     },
     {
       "assetId": 104964070207299,
@@ -801,7 +792,7 @@
       "price": 95,
       "created": "2026-03-18T20:49:58.561Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6fe6fcb34b1af8deaf421c32d8288046/420/420/Hat/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 114771635280407,
@@ -1287,7 +1278,7 @@
       "price": 95,
       "created": "2025-08-22T23:43:22.9Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4fe244b9700b13a9eb7f82ffb0a17b85/420/420/Hat/Png/noFilter",
-      "favorites": 70
+      "favorites": 71
     },
     {
       "assetId": 93842989030434,
@@ -1557,7 +1548,7 @@
       "price": 150,
       "created": "2025-01-28T20:00:18.98Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ae02bd91b3ed618018e4d167515d5aa8/420/420/BackAccessory/Png/noFilter",
-      "favorites": 725
+      "favorites": 726
     },
     {
       "assetId": 85708056856563,
