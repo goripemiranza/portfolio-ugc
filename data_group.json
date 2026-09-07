@@ -1,7 +1,16 @@
 {
-  "updated": "2026-09-06T02:41:50Z",
-  "generatedAt": "2026-09-06T02:41:50Z",
+  "updated": "2026-09-07T02:39:38Z",
+  "generatedAt": "2026-09-07T02:39:38Z",
   "items": [
+    {
+      "assetId": 80860606569189,
+      "name": "I am a UGC creator text bubble",
+      "type": "ShoulderAccessory",
+      "price": 55,
+      "created": "2026-09-06T19:59:59.7378674Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-cfb732fccdbb36df99b4f0728e0b8427/420/420/ShoulderAccessory/Png/noFilter",
+      "favorites": 36
+    },
     {
       "assetId": 78831772788133,
       "name": "Emissive Green Crystal Crown ",
@@ -16,9 +25,9 @@
       "name": "Emissive Halloween Classic Pumpkin",
       "type": "BackAccessory",
       "price": 500,
-      "created": "2026-09-04T13:04:45.934098Z",
+      "created": "2026-09-04T13:04:45.934Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4c55a3591fc51a3d29c3593ab4014f9e/420/420/BackAccessory/Png/noFilter",
-      "favorites": 17
+      "favorites": 34
     },
     {
       "assetId": 112502808137006,
@@ -36,7 +45,7 @@
       "price": 95,
       "created": "2026-08-29T12:05:38.513Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0c93b62f8c03dc01ae01f875a096133f/420/420/Hat/Png/noFilter",
-      "favorites": 516
+      "favorites": 557
     },
     {
       "assetId": 131808482667255,
@@ -144,7 +153,7 @@
       "price": 95,
       "created": "2026-08-15T14:44:21.139Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-00327adc773afd3b55cee65619bf24e8/420/420/Hat/Png/noFilter",
-      "favorites": 7
+      "favorites": 8
     },
     {
       "assetId": 74205514452748,
@@ -288,7 +297,7 @@
       "price": 95,
       "created": "2026-07-26T20:04:19.365Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9ea39bd803fb1334ae7a4a94c64aa038/420/420/Hat/Png/noFilter",
-      "favorites": 11
+      "favorites": 12
     },
     {
       "assetId": 93876979367445,
@@ -390,15 +399,6 @@
       "favorites": 33
     },
     {
-      "assetId": 104964070207299,
-      "name": "Red frost wyrm's helm",
-      "type": "Hat",
-      "price": 95,
-      "created": "2026-07-02T20:35:39.702Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-59f92fef3f4d32a82a9a89260d4dd6ca/420/420/Hat/Png/noFilter",
-      "favorites": 72
-    },
-    {
       "assetId": 84750572219288,
       "name": "White tempest skies wings",
       "type": "BackAccessory",
@@ -450,7 +450,7 @@
       "price": 95,
       "created": "2026-06-27T18:05:46.259Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0deba4b5a5390359725ef8dc5380d289/420/420/Hat/Png/noFilter",
-      "favorites": 495
+      "favorites": 496
     },
     {
       "assetId": 125177197277197,
@@ -666,7 +666,7 @@
       "price": 95,
       "created": "2026-04-01T20:01:10.055Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b2a4d036086ca6ebd8ed3808428013fd/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 291
+      "favorites": 292
     },
     {
       "assetId": 116479189273231,
@@ -827,7 +827,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-03-10T20:23:59.7Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-b6510e9824e58d18b1d6bd186aa424aa/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-c35b38be3f0fedaeed3ce49bc17f0e08/420/420/BackAccessory/Png/noFilter",
       "favorites": 42
     },
     {
@@ -927,7 +927,7 @@
       "price": 65,
       "created": "2026-02-07T18:04:30.526Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0270b5cbbf1b56674f0b62b13fd78f93/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 4
+      "favorites": 5
     },
     {
       "assetId": 76510198102556,
@@ -972,7 +972,7 @@
       "price": 150,
       "created": "2026-01-31T15:46:07.224Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-89ad65f8c859186a765731eea4c6417c/420/420/BackAccessory/Png/noFilter",
-      "favorites": 976
+      "favorites": 977
     },
     {
       "assetId": 139065374588767,
@@ -1215,7 +1215,7 @@
       "price": 95,
       "created": "2025-09-15T08:41:29.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-1a67a6d9104914407d029e147ce59a9b/420/420/Hat/Png/noFilter",
-      "favorites": 14
+      "favorites": 15
     },
     {
       "assetId": 79738540625712,
