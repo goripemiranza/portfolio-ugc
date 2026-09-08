@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-07T02:39:38Z",
-  "generatedAt": "2026-09-07T02:39:38Z",
+  "updated": "2026-09-08T02:53:31Z",
+  "generatedAt": "2026-09-08T02:53:31Z",
   "items": [
     {
       "assetId": 80860606569189,
@@ -45,7 +45,7 @@
       "price": 95,
       "created": "2026-08-29T12:05:38.513Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0c93b62f8c03dc01ae01f875a096133f/420/420/Hat/Png/noFilter",
-      "favorites": 557
+      "favorites": 609
     },
     {
       "assetId": 131808482667255,
@@ -333,7 +333,7 @@
       "price": 140,
       "created": "2026-07-15T20:15:36.794Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9d11dfc6186b6c1734aeab9b4b7f9596/420/420/BackAccessory/Png/noFilter",
-      "favorites": 467
+      "favorites": 468
     },
     {
       "assetId": 134832529854753,
@@ -379,24 +379,6 @@
       "created": "2026-07-10T14:44:29.373Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ffb5c783bec931aa534a5864803ab5d6/420/420/WaistAccessory/Png/noFilter",
       "favorites": 90
-    },
-    {
-      "assetId": 87295278435884,
-      "name": "Black green frost wyrm's helm",
-      "type": "Hat",
-      "price": 95,
-      "created": "2026-07-07T10:40:04.206Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-383f67d5c806e56edb3560a6b617643d/420/420/Hat/Png/noFilter",
-      "favorites": 0
-    },
-    {
-      "assetId": 124454124754646,
-      "name": "White frost wyrm's helm",
-      "type": "Hat",
-      "price": 95,
-      "created": "2026-07-03T19:55:32.588Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-4c15a5b5968b94ceedbc26eafa454d7f/420/420/Hat/Png/noFilter",
-      "favorites": 33
     },
     {
       "assetId": 84750572219288,
@@ -906,7 +888,7 @@
       "assetId": 74912310327127,
       "name": "Y2K white jean cap",
       "type": "Hat",
-      "price": 95,
+      "price": 105,
       "created": "2026-02-11T22:16:59.051Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-381fa2e3a080ef5dbed093ce8872f737/420/420/Hat/Png/noFilter",
       "favorites": 128
@@ -990,7 +972,7 @@
       "price": 105,
       "created": "2026-01-23T23:20:16.44Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bfb54f292f5f694bfd165160d42bc47a/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 34
+      "favorites": 35
     },
     {
       "assetId": 124492190423394,
@@ -999,7 +981,7 @@
       "price": 150,
       "created": "2026-01-23T23:19:21.39Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-627dcf5019bbfd14e137b4d7cc13036a/420/420/BackAccessory/Png/noFilter",
-      "favorites": 52
+      "favorites": 53
     },
     {
       "assetId": 88576858225400,
@@ -1233,7 +1215,7 @@
       "price": 105,
       "created": "2025-09-07T19:19:34.547Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-63ceeb8546c6ae71d391ee8ea878fe9b/420/420/Hat/Png/noFilter",
-      "favorites": 8
+      "favorites": 9
     },
     {
       "assetId": 103640681693848,
@@ -1377,7 +1359,7 @@
       "price": 150,
       "created": "2025-07-19T14:22:27.64Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e772e2e90908d48950724fe0b72ebb5f/420/420/BackAccessory/Png/noFilter",
-      "favorites": 3427
+      "favorites": 3426
     },
     {
       "assetId": 132428921830890,
