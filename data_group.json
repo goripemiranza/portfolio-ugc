@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-09T02:53:01Z",
-  "generatedAt": "2026-09-09T02:53:01Z",
+  "updated": "2026-09-10T02:54:27Z",
+  "generatedAt": "2026-09-10T02:54:27Z",
   "items": [
     {
       "assetId": 80860606569189,
@@ -9,16 +9,16 @@
       "price": 55,
       "created": "2026-09-06T19:59:59.7378674Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-cfb732fccdbb36df99b4f0728e0b8427/420/420/ShoulderAccessory/Png/noFilter",
-      "favorites": 36
+      "favorites": 302
     },
     {
       "assetId": 78831772788133,
       "name": "Emissive Green Crystal Crown ",
       "type": "Hat",
       "price": 500,
-      "created": "2026-09-05T15:23:27.3129956Z",
+      "created": "2026-09-05T15:23:27.312Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6eac38a968866a81565b2612ee1bf115/420/420/Hat/Png/noFilter",
-      "favorites": 130
+      "favorites": 336
     },
     {
       "assetId": 114353511232461,
@@ -45,7 +45,7 @@
       "price": 95,
       "created": "2026-08-29T12:05:38.513Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0c93b62f8c03dc01ae01f875a096133f/420/420/Hat/Png/noFilter",
-      "favorites": 632
+      "favorites": 687
     },
     {
       "assetId": 131808482667255,
@@ -369,7 +369,7 @@
       "price": 95,
       "created": "2026-07-12T00:13:59.688Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bb367d4331e1a2758e253e39e6213bd0/420/420/Hat/Png/noFilter",
-      "favorites": 11
+      "favorites": 12
     },
     {
       "assetId": 82376371661109,
@@ -612,7 +612,7 @@
       "price": 150,
       "created": "2026-04-14T15:56:36.902Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-c4019a72af432358c90b79aab35ed2d9/420/420/BackAccessory/Png/noFilter",
-      "favorites": 554
+      "favorites": 555
     },
     {
       "assetId": 119531051437305,
@@ -675,7 +675,7 @@
       "price": 95,
       "created": "2026-03-30T19:10:51.3Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-74319c5e188ee4d6aa8293fed970e5ce/420/420/Hat/Png/noFilter",
-      "favorites": 10
+      "favorites": 11
     },
     {
       "assetId": 112577329708228,
@@ -888,7 +888,7 @@
       "assetId": 74912310327127,
       "name": "Y2K white jean cap",
       "type": "Hat",
-      "price": 105,
+      "price": 95,
       "created": "2026-02-11T22:16:59.051Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-381fa2e3a080ef5dbed093ce8872f737/420/420/Hat/Png/noFilter",
       "favorites": 128
@@ -1196,7 +1196,7 @@
       "type": "Hat",
       "price": 95,
       "created": "2025-09-15T08:41:29.76Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-1a67a6d9104914407d029e147ce59a9b/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-74ad1aaec406080b7e287288a6fcc764/420/420/Hat/Png/noFilter",
       "favorites": 15
     },
     {
@@ -1212,7 +1212,7 @@
       "assetId": 107095008480456,
       "name": "green horns",
       "type": "Hat",
-      "price": 105,
+      "price": 95,
       "created": "2025-09-07T19:19:34.547Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-63ceeb8546c6ae71d391ee8ea878fe9b/420/420/Hat/Png/noFilter",
       "favorites": 9
@@ -1242,7 +1242,7 @@
       "price": 80,
       "created": "2025-08-22T23:51:21.933Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-003b08be7779f6ef35f905102c128a50/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 126
+      "favorites": 127
     },
     {
       "assetId": 130462198935793,
