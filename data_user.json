@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-17T03:08:08Z",
-  "generatedAt": "2026-09-17T03:08:08Z",
+  "updated": "2026-09-18T02:55:47Z",
+  "generatedAt": "2026-09-18T02:55:47Z",
   "items": [
     {
       "assetId": 90778459718692,
@@ -105,10 +105,10 @@
       "assetId": 78329863862393,
       "name": "Christmas wings",
       "type": "BackAccessory",
-      "price": 135,
+      "price": 140,
       "created": "2024-11-21T22:50:56.287Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4b24e2612af128956533b51d22430424/420/420/BackAccessory/Png/noFilter",
-      "favorites": 906
+      "favorites": 907
     }
   ]
 }

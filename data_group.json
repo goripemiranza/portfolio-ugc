@@ -1,7 +1,16 @@
 {
-  "updated": "2026-09-17T03:12:00Z",
-  "generatedAt": "2026-09-17T03:12:00Z",
+  "updated": "2026-09-18T03:00:08Z",
+  "generatedAt": "2026-09-18T03:00:08Z",
   "items": [
+    {
+      "assetId": 101006208425128,
+      "name": "Halloween Candle Crown",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-09-17T18:35:20.7612319Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-4646da3e692c83a7619b0759637f8982/420/420/Hat/Png/noFilter",
+      "favorites": 1
+    },
     {
       "assetId": 112945433462745,
       "name": "Animated White Fairy Wings",
@@ -72,7 +81,7 @@
       "price": 95,
       "created": "2026-08-19T21:28:28.504Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-79e1a66292e0234e0062e374f016af26/420/420/Hat/Png/noFilter",
-      "favorites": 2
+      "favorites": 4
     },
     {
       "assetId": 104437432462824,
@@ -180,7 +189,7 @@
       "price": 95,
       "created": "2026-08-15T00:59:21.7301428Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-20e242673d2be463e2d61cd8545d5e2a/420/420/Hat/Png/noFilter",
-      "favorites": 15
+      "favorites": 39
     },
     {
       "assetId": 106071659314804,
@@ -342,7 +351,7 @@
       "price": 140,
       "created": "2026-07-15T20:15:36.794Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9d11dfc6186b6c1734aeab9b4b7f9596/420/420/BackAccessory/Png/noFilter",
-      "favorites": 469
+      "favorites": 470
     },
     {
       "assetId": 134832529854753,
@@ -764,7 +773,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-03-21T15:05:33.874Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-8495d6a340e0833169005a670733084f/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-36ad67509ef39baeed8cf2103df5a66b/420/420/BackAccessory/Png/noFilter",
       "favorites": 1
     },
     {
@@ -855,7 +864,7 @@
       "price": 150,
       "created": "2026-02-26T20:21:55.528Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-068a3c1527493202e528283bfdaa69ba/420/420/BackAccessory/Png/noFilter",
-      "favorites": 7
+      "favorites": 8
     },
     {
       "assetId": 123917531753802,
@@ -1431,7 +1440,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10324
+      "favorites": 10327
     },
     {
       "assetId": 134542294659432,
@@ -1449,7 +1458,7 @@
       "price": 150,
       "created": "2025-03-21T20:25:38.197Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9a93a8674f78b15ecca35b7f5d37382d/420/420/BackAccessory/Png/noFilter",
-      "favorites": 3104
+      "favorites": 3106
     },
     {
       "assetId": 107830760895891,
