@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-19T02:58:29Z",
-  "generatedAt": "2026-09-19T02:58:29Z",
+  "updated": "2026-09-20T03:10:19Z",
+  "generatedAt": "2026-09-20T03:10:19Z",
   "items": [
     {
       "assetId": 101006208425128,
@@ -9,16 +9,16 @@
       "price": 95,
       "created": "2026-09-17T18:35:20.7612319Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4646da3e692c83a7619b0759637f8982/420/420/Hat/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 112945433462745,
       "name": "Animated White Fairy Wings",
       "type": "BackAccessory",
       "price": 140,
-      "created": "2026-09-14T11:12:45.9898832Z",
+      "created": "2026-09-14T11:12:45.989Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e31330f2281bcca6991b41de452dd653/420/420/BackAccessory/Png/noFilter",
-      "favorites": 11
+      "favorites": 456
     },
     {
       "assetId": 80860606569189,
@@ -324,7 +324,7 @@
       "price": 95,
       "created": "2026-07-26T20:02:25.022Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4189d1ed2757dfea3fcb00e2a91da462/420/420/Hat/Png/noFilter",
-      "favorites": 60
+      "favorites": 61
     },
     {
       "assetId": 74520466858079,
@@ -648,7 +648,7 @@
       "price": 55,
       "created": "2026-04-10T22:51:14.139Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b2e80cd2ceee58d5d5b2eec86fe52db4/420/420/NeckAccessory/Png/noFilter",
-      "favorites": 13
+      "favorites": 14
     },
     {
       "assetId": 134442603728020,
@@ -990,7 +990,7 @@
       "price": 105,
       "created": "2026-01-23T23:20:16.44Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bfb54f292f5f694bfd165160d42bc47a/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 38
+      "favorites": 39
     },
     {
       "assetId": 124492190423394,
@@ -1187,7 +1187,7 @@
       "type": "Hat",
       "price": 105,
       "created": "2025-09-25T20:38:02.477Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-46b012387faa3cb4d1679a5b47d5c21a/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-008eed8a8278f7714ecae349c4ee333f/420/420/Hat/Png/noFilter",
       "favorites": 3509
     },
     {
@@ -1377,7 +1377,7 @@
       "price": 150,
       "created": "2025-07-19T14:22:27.64Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e772e2e90908d48950724fe0b72ebb5f/420/420/BackAccessory/Png/noFilter",
-      "favorites": 3426
+      "favorites": 3427
     },
     {
       "assetId": 132428921830890,
