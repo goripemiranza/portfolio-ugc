@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-21T03:06:40Z",
-  "generatedAt": "2026-09-21T03:06:40Z",
+  "updated": "2026-09-22T03:06:23Z",
+  "generatedAt": "2026-09-22T03:06:23Z",
   "items": [
     {
       "assetId": 101006208425128,
@@ -9,7 +9,7 @@
       "price": 95,
       "created": "2026-09-17T18:35:20.7612319Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4646da3e692c83a7619b0759637f8982/420/420/Hat/Png/noFilter",
-      "favorites": 37
+      "favorites": 63
     },
     {
       "assetId": 112945433462745,
@@ -18,7 +18,7 @@
       "price": 140,
       "created": "2026-09-14T11:12:45.989Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e31330f2281bcca6991b41de452dd653/420/420/BackAccessory/Png/noFilter",
-      "favorites": 456
+      "favorites": 489
     },
     {
       "assetId": 80860606569189,
@@ -54,7 +54,7 @@
       "price": 350,
       "created": "2026-09-03T17:30:11.2838752Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-3f748b52a3ede998f917ffa46f3f379e/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 1345
+      "favorites": 1621
     },
     {
       "assetId": 131458359285249,
@@ -728,7 +728,7 @@
       "type": "FaceAccessory",
       "price": 95,
       "created": "2026-03-25T20:39:44.509Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-b503422cf19e4892a00d438ef4eb4ab0/420/420/FaceAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-fed6b2a45a0f23c44117c7a3a7a4cc85/420/420/FaceAccessory/Png/noFilter",
       "favorites": 1
     },
     {
@@ -737,7 +737,7 @@
       "type": "Hat",
       "price": 95,
       "created": "2026-03-25T20:38:10.368Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-3938103cd3b8ece1b343cb11ef171267/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-ba8d4baaf7ea2a03b1b06bad3f7e7f7b/420/420/Hat/Png/noFilter",
       "favorites": 1
     },
     {
@@ -746,7 +746,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-03-25T20:36:57.689Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-54855d88e8c04775c2d80b13f3833fd3/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-300daf7cf3eb79c45be896a95e8403d4/420/420/BackAccessory/Png/noFilter",
       "favorites": 1
     },
     {
@@ -1224,7 +1224,7 @@
       "price": 105,
       "created": "2025-09-10T14:08:35.023Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-16bfa2aec92d09f57b953c0f6c3cf4a1/420/420/Hat/Png/noFilter",
-      "favorites": 375
+      "favorites": 376
     },
     {
       "assetId": 107095008480456,
@@ -1242,7 +1242,7 @@
       "price": 65,
       "created": "2025-08-26T21:07:43.41Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2cc9b41cad5fe2f4c377a104c888d364/420/420/HairAccessory/Png/noFilter",
-      "favorites": 171
+      "favorites": 172
     },
     {
       "assetId": 119786498249719,
@@ -1584,7 +1584,7 @@
       "price": 150,
       "created": "2025-01-10T23:46:07.677Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0fc7d4c911fb87a6e8e718104c2b0d85/420/420/BackAccessory/Png/noFilter",
-      "favorites": 482
+      "favorites": 485
     },
     {
       "assetId": 110319499372320,
