@@ -1,7 +1,16 @@
 {
-  "updated": "2026-09-23T03:06:37Z",
-  "generatedAt": "2026-09-23T03:06:37Z",
+  "updated": "2026-09-24T02:57:35Z",
+  "generatedAt": "2026-09-24T02:57:35Z",
   "items": [
+    {
+      "assetId": 117522141427814,
+      "name": "Animated Black Fairy Wings",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-09-23T17:39:31.309003Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-241832bce6e4ed10d687fdac59fd197a/420/420/BackAccessory/Png/noFilter",
+      "favorites": 72
+    },
     {
       "assetId": 101006208425128,
       "name": "Halloween Candle Crown",
@@ -25,9 +34,9 @@
       "name": "I am a UGC creator text bubble",
       "type": "ShoulderAccessory",
       "price": 55,
-      "created": "2026-09-06T19:59:59.7378674Z",
+      "created": "2026-09-06T19:59:59.737Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-cfb732fccdbb36df99b4f0728e0b8427/420/420/ShoulderAccessory/Png/noFilter",
-      "favorites": 312
+      "favorites": 370
     },
     {
       "assetId": 78831772788133,
@@ -36,7 +45,7 @@
       "price": 500,
       "created": "2026-09-05T15:23:27.312Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6eac38a968866a81565b2612ee1bf115/420/420/Hat/Png/noFilter",
-      "favorites": 518
+      "favorites": 522
     },
     {
       "assetId": 114353511232461,
@@ -171,7 +180,7 @@
       "price": 95,
       "created": "2026-08-15T14:44:21.139Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-00327adc773afd3b55cee65619bf24e8/420/420/Hat/Png/noFilter",
-      "favorites": 8
+      "favorites": 9
     },
     {
       "assetId": 74205514452748,
@@ -710,7 +719,7 @@
       "type": "Hat",
       "price": 95,
       "created": "2026-03-27T22:15:02.617Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-22267c498687baef6618cc868b4155b5/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-1104b14843b149e8a15e1851c294538d/420/420/Hat/Png/noFilter",
       "favorites": 2
     },
     {
@@ -1044,7 +1053,7 @@
       "price": 95,
       "created": "2026-01-19T20:55:59.983Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-509f068e74b35b64c4641715c9b0e125/420/420/Hat/Png/noFilter",
-      "favorites": 333
+      "favorites": 335
     },
     {
       "assetId": 130160862337869,
