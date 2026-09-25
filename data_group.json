@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-24T02:57:35Z",
-  "generatedAt": "2026-09-24T02:57:35Z",
+  "updated": "2026-09-25T03:14:07Z",
+  "generatedAt": "2026-09-25T03:14:07Z",
   "items": [
     {
       "assetId": 117522141427814,
@@ -9,7 +9,7 @@
       "price": 140,
       "created": "2026-09-23T17:39:31.309003Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-241832bce6e4ed10d687fdac59fd197a/420/420/BackAccessory/Png/noFilter",
-      "favorites": 72
+      "favorites": 124
     },
     {
       "assetId": 101006208425128,
@@ -171,7 +171,7 @@
       "price": 140,
       "created": "2026-08-15T20:42:20.233Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9e68e06e79c29bfa30238a139633e5c0/420/420/BackAccessory/Png/noFilter",
-      "favorites": 129
+      "favorites": 130
     },
     {
       "assetId": 119390403678782,
@@ -180,7 +180,7 @@
       "price": 95,
       "created": "2026-08-15T14:44:21.139Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-00327adc773afd3b55cee65619bf24e8/420/420/Hat/Png/noFilter",
-      "favorites": 9
+      "favorites": 10
     },
     {
       "assetId": 74205514452748,
@@ -1080,7 +1080,7 @@
       "price": 105,
       "created": "2025-12-27T23:11:28.73Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2d1b3716101f5c717b02ddaa10c615a2/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 32
+      "favorites": 33
     },
     {
       "assetId": 112163449988496,
@@ -1507,12 +1507,12 @@
     },
     {
       "assetId": 93192337059930,
-      "name": "LIMITED - code : HORNS10",
+      "name": "LIMITED - code : HO100",
       "type": "Hat",
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-5327c8dd3cbbe27d1d80a61c69be0707/420/420/Hat/Png/noFilter",
-      "favorites": 26624
+      "favorites": 26807
     },
     {
       "assetId": 84062622353279,
