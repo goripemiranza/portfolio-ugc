@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-25T03:14:07Z",
-  "generatedAt": "2026-09-25T03:14:07Z",
+  "updated": "2026-09-26T03:18:51Z",
+  "generatedAt": "2026-09-26T03:18:51Z",
   "items": [
     {
       "assetId": 117522141427814,
@@ -16,9 +16,9 @@
       "name": "Halloween Candle Crown",
       "type": "Hat",
       "price": 95,
-      "created": "2026-09-17T18:35:20.7612319Z",
+      "created": "2026-09-17T18:35:20.761Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4646da3e692c83a7619b0759637f8982/420/420/Hat/Png/noFilter",
-      "favorites": 63
+      "favorites": 110
     },
     {
       "assetId": 112945433462745,
@@ -243,7 +243,7 @@
       "price": 95,
       "created": "2026-08-11T13:09:38.499Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-be6ded1d6bec78924f18ce8f2608904e/420/420/Hat/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 90177725866592,
@@ -683,8 +683,8 @@
       "type": "WaistAccessory",
       "price": 65,
       "created": "2026-03-30T19:13:19.013Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-573b30d4a49fbc9348e0e430e7f4e6e6/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 4
+      "thumb": "https://tr.rbxcdn.com/180DAY-016cdc7cd54ad117d676e3cb08605f19/420/420/WaistAccessory/Png/noFilter",
+      "favorites": 5
     },
     {
       "assetId": 97387768169820,
@@ -692,7 +692,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2026-03-30T19:11:47.437Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-a7c19594c7f22d0300aaadbfcba40919/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-a7a6eb10d1e2104965eb64a4853ab45c/420/420/BackAccessory/Png/noFilter",
       "favorites": 4
     },
     {
@@ -981,7 +981,7 @@
       "price": 150,
       "created": "2026-01-31T15:46:07.224Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-89ad65f8c859186a765731eea4c6417c/420/420/BackAccessory/Png/noFilter",
-      "favorites": 977
+      "favorites": 979
     },
     {
       "assetId": 139065374588767,
@@ -1187,7 +1187,7 @@
       "type": "Hat",
       "price": 105,
       "created": "2025-09-30T21:40:14.917Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-df7174e0cbce272b43bc1850643752b8/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-500cf7680076a083a1f351d5543fc0f1/420/420/Hat/Png/noFilter",
       "favorites": 695
     },
     {
@@ -1224,7 +1224,7 @@
       "price": 95,
       "created": "2025-09-15T08:41:29.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-74ad1aaec406080b7e287288a6fcc764/420/420/Hat/Png/noFilter",
-      "favorites": 15
+      "favorites": 16
     },
     {
       "assetId": 79738540625712,
@@ -1440,7 +1440,7 @@
       "price": 150,
       "created": "2025-03-21T21:26:27.98Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e86f408ffe86d1580a0138742d63f771/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1445
+      "favorites": 1446
     },
     {
       "assetId": 74983607789715,
@@ -1458,7 +1458,7 @@
       "price": 150,
       "created": "2025-03-21T21:02:45.043Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4e84f320e1ff2abd8edc5bb01b5b5d94/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1048
+      "favorites": 1049
     },
     {
       "assetId": 84767700611805,
