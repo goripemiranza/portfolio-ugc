@@ -1,7 +1,34 @@
 {
-  "updated": "2026-09-28T03:23:33Z",
-  "generatedAt": "2026-09-28T03:23:33Z",
+  "updated": "2026-09-29T03:59:26Z",
+  "generatedAt": "2026-09-29T03:59:26Z",
   "items": [
+    {
+      "assetId": 128470748656680,
+      "name": "Sword of Gossamer Reignment of Authority",
+      "type": "WaistAccessory",
+      "price": 75,
+      "created": "2026-09-27T20:30:42.6777111Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-ff1c73b3e1481a4d28e24750871015a7/420/420/WaistAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 127436210303338,
+      "name": "Sword of Obsidian Reignment of Creation",
+      "type": "WaistAccessory",
+      "price": 75,
+      "created": "2026-09-27T19:15:40.5310928Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-92cef247f610e71b14c5926eaec835ce/420/420/WaistAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 91262271743273,
+      "name": "Sword of Aureate Reignment of Renown ",
+      "type": "WaistAccessory",
+      "price": 75,
+      "created": "2026-09-27T18:01:07.7482012Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-967a1b759a462b8a8757ce6fb7032674/420/420/WaistAccessory/Png/noFilter",
+      "favorites": 158
+    },
     {
       "assetId": 117522141427814,
       "name": "Animated Black Fairy Wings",
@@ -234,7 +261,7 @@
       "price": 95,
       "created": "2026-08-12T11:27:40.719Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-25909e06a590ac847a1a1cc06c50881d/420/420/Hat/Png/noFilter",
-      "favorites": 14
+      "favorites": 15
     },
     {
       "assetId": 86833032942528,
@@ -674,7 +701,7 @@
       "type": "FaceAccessory",
       "price": 95,
       "created": "2026-04-01T20:01:10.055Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-b2a4d036086ca6ebd8ed3808428013fd/420/420/FaceAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-f40c59129d56fecd853bb4c709713f9e/420/420/FaceAccessory/Png/noFilter",
       "favorites": 292
     },
     {
@@ -1107,7 +1134,7 @@
       "price": 150,
       "created": "2025-12-21T17:18:58.433Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-2de70e946356261d0a84e9de6a9cabd5/420/420/BackAccessory/Png/noFilter",
-      "favorites": 152
+      "favorites": 153
     },
     {
       "assetId": 74820048389112,
@@ -1449,7 +1476,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10328
+      "favorites": 10333
     },
     {
       "assetId": 134542294659432,
@@ -1512,7 +1539,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-5327c8dd3cbbe27d1d80a61c69be0707/420/420/Hat/Png/noFilter",
-      "favorites": 26807
+      "favorites": 26881
     },
     {
       "assetId": 84062622353279,
@@ -1602,7 +1629,7 @@
       "price": 150,
       "created": "2025-01-06T23:59:09.967Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-fc99d9c43790785504be04df6bf1a5bb/420/420/BackAccessory/Png/noFilter",
-      "favorites": 6510
+      "favorites": 6509
     },
     {
       "assetId": 108418388012974,
