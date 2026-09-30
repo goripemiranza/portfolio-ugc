@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-29T03:59:26Z",
-  "generatedAt": "2026-09-29T03:59:26Z",
+  "updated": "2026-09-30T03:47:52Z",
+  "generatedAt": "2026-09-30T03:47:52Z",
   "items": [
     {
       "assetId": 128470748656680,
@@ -54,7 +54,7 @@
       "price": 140,
       "created": "2026-09-14T11:12:45.989Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e31330f2281bcca6991b41de452dd653/420/420/BackAccessory/Png/noFilter",
-      "favorites": 489
+      "favorites": 550
     },
     {
       "assetId": 80860606569189,
@@ -90,11 +90,11 @@
       "price": 350,
       "created": "2026-09-03T17:30:11.2838752Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-3f748b52a3ede998f917ffa46f3f379e/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 1621
+      "favorites": 1785
     },
     {
       "assetId": 131458359285249,
-      "name": "CODE : PCGM Limited halloween pumpkin ",
+      "name": "Limited halloween pumpkin crown",
       "type": "Hat",
       "price": 95,
       "created": "2026-08-29T12:05:38.513Z",
@@ -351,7 +351,7 @@
       "price": 95,
       "created": "2026-07-26T20:04:19.365Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9ea39bd803fb1334ae7a4a94c64aa038/420/420/Hat/Png/noFilter",
-      "favorites": 14
+      "favorites": 15
     },
     {
       "assetId": 93876979367445,
@@ -1008,7 +1008,7 @@
       "price": 150,
       "created": "2026-01-31T15:46:07.224Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-89ad65f8c859186a765731eea4c6417c/420/420/BackAccessory/Png/noFilter",
-      "favorites": 979
+      "favorites": 980
     },
     {
       "assetId": 139065374588767,
@@ -1026,7 +1026,7 @@
       "price": 105,
       "created": "2026-01-23T23:20:16.44Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bfb54f292f5f694bfd165160d42bc47a/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 39
+      "favorites": 41
     },
     {
       "assetId": 124492190423394,
@@ -1152,7 +1152,7 @@
       "price": 150,
       "created": "2025-12-21T16:10:51.533Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b5bc635e99a7aa5839b8b6036d085735/420/420/BackAccessory/Png/noFilter",
-      "favorites": 639
+      "favorites": 640
     },
     {
       "assetId": 121640625346381,
