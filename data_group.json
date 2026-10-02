@@ -1,13 +1,58 @@
 {
-  "updated": "2026-10-01T03:54:30Z",
-  "generatedAt": "2026-10-01T03:54:30Z",
+  "updated": "2026-10-02T03:52:53Z",
+  "generatedAt": "2026-10-02T03:52:53Z",
   "items": [
+    {
+      "assetId": 126107313665690,
+      "name": "Sparkling Robux Shades Yellow Add on",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-10-01T18:06:41.3071583Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-39885105a9e68d708f1b24b41df744ab/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 77875906258816,
+      "name": "Sparkling Robux Shades Green Add on",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-10-01T18:05:37.7049761Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-5dbdd38b4b731b9ae9b81a0c761a96c6/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 137307517896168,
+      "name": "Sparkling Robux Shades Red Add on",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-10-01T17:57:32.1680403Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-98a864b1c885cb487480dc7195dd9313/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 96055677428592,
+      "name": "Sparkling Robux Shades White Add on",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-10-01T16:29:46.8689744Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-69d1c2716c0cbe1e48433421fb1cc141/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 100316341807358,
+      "name": "Halloween Black and Red dragon wings",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-09-30T20:06:55.2874637Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-1d8374c60a092dafcb6e2ad0271496a8/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 128470748656680,
       "name": "Sword of Gossamer Reignment of Authority",
       "type": "WaistAccessory",
       "price": 75,
-      "created": "2026-09-27T20:30:42.6777111Z",
+      "created": "2026-09-27T20:30:42.677Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ff1c73b3e1481a4d28e24750871015a7/420/420/WaistAccessory/Png/noFilter",
       "favorites": 0
     },
@@ -16,9 +61,9 @@
       "name": "Sword of Obsidian Reignment of Creation",
       "type": "WaistAccessory",
       "price": 75,
-      "created": "2026-09-27T19:15:40.5310928Z",
+      "created": "2026-09-27T19:15:40.531Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-92cef247f610e71b14c5926eaec835ce/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 0
+      "favorites": 2
     },
     {
       "assetId": 91262271743273,
@@ -36,7 +81,7 @@
       "price": 140,
       "created": "2026-09-23T17:39:31.309003Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-241832bce6e4ed10d687fdac59fd197a/420/420/BackAccessory/Png/noFilter",
-      "favorites": 242
+      "favorites": 268
     },
     {
       "assetId": 101006208425128,
@@ -81,7 +126,7 @@
       "price": 500,
       "created": "2026-09-04T13:04:45.934Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4c55a3591fc51a3d29c3593ab4014f9e/420/420/BackAccessory/Png/noFilter",
-      "favorites": 59
+      "favorites": 72
     },
     {
       "assetId": 112502808137006,
@@ -1026,7 +1071,7 @@
       "price": 105,
       "created": "2026-01-23T23:20:16.44Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bfb54f292f5f694bfd165160d42bc47a/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 41
+      "favorites": 42
     },
     {
       "assetId": 124492190423394,
@@ -1205,7 +1250,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-10-06T17:25:16.92Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-0d336085ae565d33efb359a02ded9608/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-aa91a878285a60d9b74737110ed08313/420/420/BackAccessory/Png/noFilter",
       "favorites": 392
     },
     {
