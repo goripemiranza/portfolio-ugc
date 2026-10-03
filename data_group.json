@@ -1,6 +1,6 @@
 {
-  "updated": "2026-10-02T03:52:53Z",
-  "generatedAt": "2026-10-02T03:52:53Z",
+  "updated": "2026-10-03T03:37:04Z",
+  "generatedAt": "2026-10-03T03:37:04Z",
   "items": [
     {
       "assetId": 126107313665690,
@@ -99,7 +99,7 @@
       "price": 140,
       "created": "2026-09-14T11:12:45.989Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e31330f2281bcca6991b41de452dd653/420/420/BackAccessory/Png/noFilter",
-      "favorites": 550
+      "favorites": 632
     },
     {
       "assetId": 80860606569189,
@@ -171,7 +171,7 @@
       "price": 95,
       "created": "2026-08-19T21:26:51.533Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-edda5deb6c69541dae43ad7708eb46dd/420/420/Hat/Png/noFilter",
-      "favorites": 3
+      "favorites": 4
     },
     {
       "assetId": 121283015314802,
@@ -243,7 +243,7 @@
       "price": 140,
       "created": "2026-08-15T20:42:20.233Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9e68e06e79c29bfa30238a139633e5c0/420/420/BackAccessory/Png/noFilter",
-      "favorites": 130
+      "favorites": 131
     },
     {
       "assetId": 119390403678782,
@@ -265,12 +265,12 @@
     },
     {
       "assetId": 120029676737760,
-      "name": "Sakura orange halloween antlers  ",
+      "name": "Sakura orange halloween antlers  addon",
       "type": "Hat",
       "price": 95,
-      "created": "2026-08-15T00:59:21.7301428Z",
+      "created": "2026-08-15T00:59:21.73Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-20e242673d2be463e2d61cd8545d5e2a/420/420/Hat/Png/noFilter",
-      "favorites": 40
+      "favorites": 41
     },
     {
       "assetId": 106071659314804,
@@ -450,7 +450,7 @@
       "price": 95,
       "created": "2026-07-12T00:17:35.645Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b9e178f9e00f8698b257242d9fbaf271/420/420/Hat/Png/noFilter",
-      "favorites": 10
+      "favorites": 11
     },
     {
       "assetId": 94108990538614,
@@ -1368,7 +1368,7 @@
       "price": 100,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e1ce76de3e916584ec53afb963574880/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4942
+      "favorites": 4943
     },
     {
       "assetId": 73886642022932,
