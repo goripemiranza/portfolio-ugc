@@ -1,13 +1,13 @@
 {
-  "updated": "2026-10-04T04:06:27Z",
-  "generatedAt": "2026-10-04T04:06:27Z",
+  "updated": "2026-10-05T03:51:15Z",
+  "generatedAt": "2026-10-05T03:51:15Z",
   "items": [
     {
       "assetId": 126107313665690,
       "name": "Sparkling Robux Shades Yellow Add on",
       "type": "Hat",
       "price": 95,
-      "created": "2026-10-01T18:06:41.3071583Z",
+      "created": "2026-10-01T18:06:41.307Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-39885105a9e68d708f1b24b41df744ab/420/420/Hat/Png/noFilter",
       "favorites": 0
     },
@@ -54,7 +54,7 @@
       "price": 75,
       "created": "2026-09-27T20:30:42.677Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ff1c73b3e1481a4d28e24750871015a7/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 127436210303338,
@@ -99,7 +99,7 @@
       "price": 140,
       "created": "2026-09-14T11:12:45.989Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e31330f2281bcca6991b41de452dd653/420/420/BackAccessory/Png/noFilter",
-      "favorites": 632
+      "favorites": 633
     },
     {
       "assetId": 80860606569189,
@@ -1071,7 +1071,7 @@
       "price": 105,
       "created": "2026-01-23T23:20:16.44Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bfb54f292f5f694bfd165160d42bc47a/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 42
+      "favorites": 43
     },
     {
       "assetId": 124492190423394,
@@ -1170,7 +1170,7 @@
       "price": 105,
       "created": "2025-12-22T21:20:26.37Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b7525cf306124ff16ba54687788fb3cc/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 256
+      "favorites": 257
     },
     {
       "assetId": 136428742434964,
