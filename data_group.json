@@ -1,6 +1,6 @@
 {
-  "updated": "2026-10-07T04:04:56Z",
-  "generatedAt": "2026-10-07T04:04:56Z",
+  "updated": "2026-10-08T04:18:01Z",
+  "generatedAt": "2026-10-08T04:18:01Z",
   "items": [
     {
       "assetId": 126107313665690,
@@ -25,7 +25,7 @@
       "name": "Sparkling Robux Shades Red Add on",
       "type": "Hat",
       "price": 95,
-      "created": "2026-10-01T17:57:32.1680403Z",
+      "created": "2026-10-01T17:57:32.168Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-98a864b1c885cb487480dc7195dd9313/420/420/Hat/Png/noFilter",
       "favorites": 0
     },
@@ -34,7 +34,7 @@
       "name": "Sparkling Robux Shades White Add on",
       "type": "Hat",
       "price": 95,
-      "created": "2026-10-01T16:29:46.8689744Z",
+      "created": "2026-10-01T16:29:46.868Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-69d1c2716c0cbe1e48433421fb1cc141/420/420/Hat/Png/noFilter",
       "favorites": 0
     },
@@ -79,9 +79,9 @@
       "name": "Animated Black Fairy Wings",
       "type": "BackAccessory",
       "price": 140,
-      "created": "2026-09-23T17:39:31.309003Z",
+      "created": "2026-09-23T17:39:31.309Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-241832bce6e4ed10d687fdac59fd197a/420/420/BackAccessory/Png/noFilter",
-      "favorites": 268
+      "favorites": 299
     },
     {
       "assetId": 101006208425128,
@@ -490,7 +490,7 @@
     },
     {
       "assetId": 123115108449581,
-      "name": "Tempest black bear heart",
+      "name": "Stormbreak of the tempest skies black bear heart",
       "type": "Hat",
       "price": 95,
       "created": "2026-07-01T20:56:40.248Z",
@@ -535,7 +535,7 @@
     },
     {
       "assetId": 125177197277197,
-      "name": "Tempest white butterflies ",
+      "name": "Stormbreak of the tempest skies white butterflies",
       "type": "Hat",
       "price": 95,
       "created": "2026-06-26T16:27:53.572Z",
@@ -711,7 +711,7 @@
       "price": 150,
       "created": "2026-04-14T15:56:36.902Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-c4019a72af432358c90b79aab35ed2d9/420/420/BackAccessory/Png/noFilter",
-      "favorites": 557
+      "favorites": 559
     },
     {
       "assetId": 119531051437305,
@@ -728,7 +728,7 @@
       "type": "NeckAccessory",
       "price": 55,
       "created": "2026-04-10T22:51:14.139Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-b2e80cd2ceee58d5d5b2eec86fe52db4/420/420/NeckAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-4a58b39d7d4c051d674df8a53f5a8c49/420/420/NeckAccessory/Png/noFilter",
       "favorites": 14
     },
     {
@@ -738,7 +738,7 @@
       "price": 95,
       "created": "2026-04-08T10:39:13.388Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-55cbb76d46d3d2608536f1d190cf8fea/420/420/Hat/Png/noFilter",
-      "favorites": 4
+      "favorites": 5
     },
     {
       "assetId": 102409501443142,
@@ -1008,7 +1008,7 @@
       "price": 65,
       "created": "2026-02-07T18:04:30.526Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0270b5cbbf1b56674f0b62b13fd78f93/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 5
+      "favorites": 6
     },
     {
       "assetId": 76510198102556,
@@ -1241,7 +1241,7 @@
       "type": "Hat",
       "price": 105,
       "created": "2025-10-12T19:51:53.84Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-7641102f52a95afc4f2eb48217f5fb4e/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-51ab247b7bf1d819faffc6acd4edfac4/420/420/Hat/Png/noFilter",
       "favorites": 311
     },
     {
@@ -1386,7 +1386,7 @@
       "price": 105,
       "created": "2025-08-04T15:13:35.283Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ab87d7929fccb387fb3d73b650198241/420/420/Hat/Png/noFilter",
-      "favorites": 588
+      "favorites": 590
     },
     {
       "assetId": 134159126419346,
@@ -1431,7 +1431,7 @@
       "price": 95,
       "created": "2025-07-27T00:02:53.647Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-91e2d5354a7e337c0b980b38513ab6bc/420/420/Hat/Png/noFilter",
-      "favorites": 11
+      "favorites": 12
     },
     {
       "assetId": 80602461847182,
@@ -1584,7 +1584,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-5327c8dd3cbbe27d1d80a61c69be0707/420/420/Hat/Png/noFilter",
-      "favorites": 26881
+      "favorites": 26908
     },
     {
       "assetId": 84062622353279,
