@@ -1,7 +1,16 @@
 {
-  "updated": "2026-10-12T04:08:18Z",
-  "generatedAt": "2026-10-12T04:08:18Z",
+  "updated": "2026-10-13T05:16:38Z",
+  "generatedAt": "2026-10-13T05:16:38Z",
   "items": [
+    {
+      "assetId": 120363885763797,
+      "name": "Frutiger aero bubble",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-10-12T18:40:16.881Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-b54bfbffb9a603315c434e4218d61c42/420/420/BackAccessory/Png/noFilter",
+      "favorites": 1
+    },
     {
       "assetId": 73673382076237,
       "name": "Fedora of Obsidian Reignment of Creation",
@@ -157,10 +166,10 @@
     },
     {
       "assetId": 112502808137006,
-      "name": "Emissive Glowing Classic Katana",
+      "name": "Emissive Glowing Cartoony Katana",
       "type": "WaistAccessory",
       "price": 350,
-      "created": "2026-09-03T17:30:11.2838752Z",
+      "created": "2026-09-03T17:30:11.283Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-3f748b52a3ede998f917ffa46f3f379e/420/420/WaistAccessory/Png/noFilter",
       "favorites": 1895
     },
@@ -432,7 +441,7 @@
       "price": 95,
       "created": "2026-07-26T20:02:25.022Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4189d1ed2757dfea3fcb00e2a91da462/420/420/Hat/Png/noFilter",
-      "favorites": 62
+      "favorites": 64
     },
     {
       "assetId": 74520466858079,
@@ -495,7 +504,7 @@
       "price": 95,
       "created": "2026-07-12T00:13:59.688Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bb367d4331e1a2758e253e39e6213bd0/420/420/Hat/Png/noFilter",
-      "favorites": 14
+      "favorites": 16
     },
     {
       "assetId": 82376371661109,
@@ -540,7 +549,7 @@
       "price": 95,
       "created": "2026-06-30T18:12:39.598Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6834d6197b13c0ef88a055b61d202dc1/420/420/Hat/Png/noFilter",
-      "favorites": 52
+      "favorites": 53
     },
     {
       "assetId": 97661607279475,
@@ -738,7 +747,7 @@
       "price": 150,
       "created": "2026-04-14T15:56:36.902Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-706ee630cee3161eb5b3e0d30cbc8c54/420/420/BackAccessory/Png/noFilter",
-      "favorites": 559
+      "favorites": 560
     },
     {
       "assetId": 119531051437305,
@@ -783,7 +792,7 @@
       "price": 65,
       "created": "2026-03-30T19:13:19.013Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-016cdc7cd54ad117d676e3cb08605f19/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 6
+      "favorites": 7
     },
     {
       "assetId": 97387768169820,
@@ -1611,7 +1620,7 @@
       "price": 110,
       "created": "2025-02-21T10:51:45.76Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-5327c8dd3cbbe27d1d80a61c69be0707/420/420/Hat/Png/noFilter",
-      "favorites": 26925
+      "favorites": 26955
     },
     {
       "assetId": 84062622353279,
