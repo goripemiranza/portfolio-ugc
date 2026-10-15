@@ -1,7 +1,25 @@
 {
-  "updated": "2026-10-14T03:22:13Z",
-  "generatedAt": "2026-10-14T03:22:13Z",
+  "updated": "2026-10-15T03:01:01Z",
+  "generatedAt": "2026-10-15T03:01:01Z",
   "items": [
+    {
+      "assetId": 75471727918035,
+      "name": "Frutiger Aero Aqua Floatie 1.0",
+      "type": "WaistAccessory",
+      "price": 65,
+      "created": "2026-10-13T23:59:56.003Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-0b87dde917b3e3b5c735d3a2f804d916/420/420/WaistAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 113433654073129,
+      "name": "Frutiger Aero Aqua Floatie 3.0",
+      "type": "WaistAccessory",
+      "price": 65,
+      "created": "2026-10-13T23:32:53.912Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-84cb6ecb9004687943fcbc050e307318/420/420/WaistAccessory/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 120363885763797,
       "name": "Frutiger aero bubble",
@@ -9,7 +27,7 @@
       "price": 140,
       "created": "2026-10-12T18:40:16.881Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b54bfbffb9a603315c434e4218d61c42/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 73673382076237,
@@ -18,7 +36,7 @@
       "price": 105,
       "created": "2026-10-09T12:41:38.793Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-493cc54da35c50248fc87c20495bc555/420/420/Hat/Png/noFilter",
-      "favorites": 2
+      "favorites": 3
     },
     {
       "assetId": 90059438162442,
@@ -1044,7 +1062,7 @@
       "price": 65,
       "created": "2026-02-07T18:04:30.526Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0270b5cbbf1b56674f0b62b13fd78f93/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 6
+      "favorites": 7
     },
     {
       "assetId": 76510198102556,
@@ -1404,7 +1422,7 @@
       "price": 100,
       "created": "2025-08-09T14:43:49.987Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-e1ce76de3e916584ec53afb963574880/420/420/EmoteAnimation/Png/noFilter",
-      "favorites": 4972
+      "favorites": 4974
     },
     {
       "assetId": 73886642022932,
@@ -1557,7 +1575,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10338
+      "favorites": 10339
     },
     {
       "assetId": 134542294659432,
