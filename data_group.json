@@ -1,7 +1,16 @@
 {
-  "updated": "2026-10-16T02:59:37Z",
-  "generatedAt": "2026-10-16T02:59:37Z",
+  "updated": "2026-10-17T02:50:51Z",
+  "generatedAt": "2026-10-17T02:50:51Z",
   "items": [
+    {
+      "assetId": 111341378132134,
+      "name": "Diwali Sparkler Headband Halloween Addon",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-10-16T12:00:17.815Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-ed6825e528ee24fc8af5cad76bbe16c7/420/420/Hat/Png/noFilter",
+      "favorites": 21
+    },
     {
       "assetId": 127506043559903,
       "name": "Diwali Sparkler Headband Halloween Addon",
@@ -45,7 +54,7 @@
       "price": 95,
       "created": "2026-10-15T15:03:39.195Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-272046d73720ffb2d60ebdef8dadbb2a/420/420/Hat/Png/noFilter",
-      "favorites": 4
+      "favorites": 7
     },
     {
       "assetId": 88668802249348,
@@ -54,7 +63,7 @@
       "price": 95,
       "created": "2026-10-15T14:20:17.87Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0e8cd6d5091a46a8633937df359be791/420/420/Hat/Png/noFilter",
-      "favorites": 28
+      "favorites": 89
     },
     {
       "assetId": 139838381794802,
@@ -99,7 +108,7 @@
       "price": 95,
       "created": "2026-10-14T21:45:53.576Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-68cd18321fc891474fe5cc651fd99f03/420/420/Hat/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 75471727918035,
@@ -144,7 +153,7 @@
       "price": 105,
       "created": "2026-10-09T12:39:46.549Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-eb15d35c84d3dbdb1008941f2e750f18/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 2
     },
     {
       "assetId": 103977792507446,
@@ -882,7 +891,7 @@
       "price": 55,
       "created": "2026-04-10T22:51:14.139Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4a58b39d7d4c051d674df8a53f5a8c49/420/420/NeckAccessory/Png/noFilter",
-      "favorites": 14
+      "favorites": 15
     },
     {
       "assetId": 134442603728020,
@@ -1422,7 +1431,7 @@
       "price": 105,
       "created": "2025-09-25T20:38:02.477Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-008eed8a8278f7714ecae349c4ee333f/420/420/Hat/Png/noFilter",
-      "favorites": 3510
+      "favorites": 3511
     },
     {
       "assetId": 131531497269464,
@@ -1530,7 +1539,7 @@
       "price": 105,
       "created": "2025-08-05T20:41:58.18Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-74684510f7b34a7559d0437f7421f563/420/420/Hat/Png/noFilter",
-      "favorites": 398
+      "favorites": 399
     },
     {
       "assetId": 76680987618680,
