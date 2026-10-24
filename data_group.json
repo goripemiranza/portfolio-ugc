@@ -1,7 +1,52 @@
 {
-  "updated": "2026-10-23T03:12:30Z",
-  "generatedAt": "2026-10-23T03:12:30Z",
+  "updated": "2026-10-24T03:08:04Z",
+  "generatedAt": "2026-10-24T03:08:04Z",
   "items": [
+    {
+      "assetId": 73620586805638,
+      "name": "Quack-o'-Lantern Black Pumpkin Addon",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-10-22T19:30:22.277Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-a66b770a8637d79bdbd82b6d9c1bf1ad/420/420/Hat/Png/noFilter",
+      "favorites": 4
+    },
+    {
+      "assetId": 76002160753891,
+      "name": "Quack-o'-Lantern Black Duck Addon",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-10-22T19:26:59.899Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-23239657470b23dcf00b45d1522f9864/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 121580999904060,
+      "name": "All-Seeking Antlers Eyes Addon ",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-10-22T18:49:15.581Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-49432bcf42cbb1184c968548fbf66824/420/420/Hat/Png/noFilter",
+      "favorites": 2
+    },
+    {
+      "assetId": 131630874341279,
+      "name": "All-Seeking Antlers Spider Addon ",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-10-22T18:45:13.068Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-3393becaa5aec77596506124d4b94317/420/420/Hat/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 82464258691103,
+      "name": "All-Seeking Antlers Orb Addon ",
+      "type": "Hat",
+      "price": 95,
+      "created": "2026-10-22T18:37:24.8Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-d1f7cf7616dff969a8adf9b3dacbc3f7/420/420/Hat/Png/noFilter",
+      "favorites": 1
+    },
     {
       "assetId": 93114474338088,
       "name": "Diwali Sparkler Headband Christmas Snowflake Addon",
@@ -90,7 +135,7 @@
       "price": 95,
       "created": "2026-10-15T14:20:17.87Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0e8cd6d5091a46a8633937df359be791/420/420/Hat/Png/noFilter",
-      "favorites": 201
+      "favorites": 208
     },
     {
       "assetId": 139838381794802,
@@ -333,7 +378,7 @@
       "price": 95,
       "created": "2026-08-29T12:05:38.513Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0c93b62f8c03dc01ae01f875a096133f/420/420/Hat/Png/noFilter",
-      "favorites": 748
+      "favorites": 749
     },
     {
       "assetId": 131808482667255,
@@ -657,7 +702,7 @@
       "price": 95,
       "created": "2026-07-12T00:13:59.688Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bb367d4331e1a2758e253e39e6213bd0/420/420/Hat/Png/noFilter",
-      "favorites": 16
+      "favorites": 19
     },
     {
       "assetId": 82376371661109,
@@ -863,7 +908,7 @@
       "type": "Hat",
       "price": 95,
       "created": "2026-04-26T20:14:26.401Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-6ddcea55c5dad6f9ac29286e5871ebfd/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-5587c12c5f7aaca93735aaad31347280/420/420/Hat/Png/noFilter",
       "favorites": 28
     },
     {
