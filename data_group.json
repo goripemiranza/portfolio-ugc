@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-03T05:10:11Z",
-  "generatedAt": "2026-11-03T05:10:11Z",
+  "updated": "2026-11-04T04:41:03Z",
+  "generatedAt": "2026-11-04T04:41:03Z",
   "items": [
     {
       "assetId": 135612386566371,
@@ -45,7 +45,7 @@
       "price": 95,
       "created": "2026-10-24T12:17:04.636Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6ee6ccc644fbbbf03a9c893b53e16df2/420/420/Hat/Png/noFilter",
-      "favorites": 4
+      "favorites": 5
     },
     {
       "assetId": 73620586805638,
@@ -180,7 +180,7 @@
       "price": 95,
       "created": "2026-10-15T14:20:17.87Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0e8cd6d5091a46a8633937df359be791/420/420/Hat/Png/noFilter",
-      "favorites": 346
+      "favorites": 347
     },
     {
       "assetId": 139838381794802,
@@ -216,7 +216,7 @@
       "price": 140,
       "created": "2026-10-14T21:46:58.752Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9d088a24c7587ed17a6cb47e4b36955b/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 107002859031662,
@@ -315,7 +315,7 @@
       "price": 95,
       "created": "2026-10-01T16:29:46.868Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-69d1c2716c0cbe1e48433421fb1cc141/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 100316341807358,
@@ -720,7 +720,7 @@
       "price": 95,
       "created": "2026-07-13T10:39:30.702Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-be1e8e2042a94aacf792ae461ec02aba/420/420/Hat/Png/noFilter",
-      "favorites": 134
+      "favorites": 135
     },
     {
       "assetId": 119636429786394,
@@ -1350,7 +1350,7 @@
       "price": 105,
       "created": "2026-01-23T23:20:16.44Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bfb54f292f5f694bfd165160d42bc47a/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 47
+      "favorites": 50
     },
     {
       "assetId": 124492190423394,
@@ -1619,7 +1619,7 @@
       "type": "WaistAccessory",
       "price": 80,
       "created": "2025-08-22T23:51:21.933Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-003b08be7779f6ef35f905102c128a50/420/420/WaistAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-cc2e7bcc1c743f7bf3a972c75d509a9e/420/420/WaistAccessory/Png/noFilter",
       "favorites": 129
     },
     {
