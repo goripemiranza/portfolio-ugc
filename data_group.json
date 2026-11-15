@@ -1,7 +1,97 @@
 {
-  "updated": "2026-11-14T04:48:09Z",
-  "generatedAt": "2026-11-14T04:48:09Z",
+  "updated": "2026-11-15T04:37:40Z",
+  "generatedAt": "2026-11-15T04:37:40Z",
   "items": [
+    {
+      "assetId": 99321379452051,
+      "name": "Cute White and Pink Neon Cat Mask",
+      "type": "FaceAccessory",
+      "price": 95,
+      "created": "2026-11-14T22:07:19.56Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-42f18d42b80bd2b2a6221f2292464199/420/420/FaceAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 112642614050263,
+      "name": "Cute White and Blue Neon Cat Mask",
+      "type": "FaceAccessory",
+      "price": 95,
+      "created": "2026-11-14T22:05:11.494Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-dca52788237c21e9730547bb55aecccf/420/420/FaceAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 102579367810614,
+      "name": "Cute Black and White Neon Cat Mask",
+      "type": "FaceAccessory",
+      "price": 95,
+      "created": "2026-11-14T22:03:43.399Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-2233dd64d25090b04da1288cb189bbcf/420/420/FaceAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 88139935293801,
+      "name": "Cute Black and Pink Neon Cat Mask",
+      "type": "FaceAccessory",
+      "price": 95,
+      "created": "2026-11-14T22:02:12.679Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-c31e9019b0dd79947d7c338719afb88e/420/420/FaceAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 104565330761128,
+      "name": "Cute Black and Blue Neon Cat Mask",
+      "type": "FaceAccessory",
+      "price": 95,
+      "created": "2026-11-14T22:00:19.176Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-74a294572c6e89240987ee8823adaa49/420/420/FaceAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 72704188547860,
+      "name": "Cute White and Pink Neon Cat Hammer",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-11-14T00:47:50.333Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-516d4b2f20bf0cad6d0bbefbac3f13ad/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 123828632840533,
+      "name": "Cute White and Blue Neon Cat Hammer",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-11-14T00:46:20.811Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-fd3b92aa64b0a2dfb5840c58c95f55bd/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 104230297207809,
+      "name": "Cute Black and White Neon Cat Hammer",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-11-14T00:44:17.485Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-72af76f81dba8ef614942ce9e3963f0b/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 75787457168372,
+      "name": "Cute Black and Blue Neon Cat Hammer",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-11-14T00:42:57.299Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-68e2794594e375f8f8cb81c8e461dd40/420/420/BackAccessory/Png/noFilter",
+      "favorites": 1
+    },
+    {
+      "assetId": 132285409852347,
+      "name": "Cute Black and Pink Neon Cat Hammer",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-11-14T00:41:04.321Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-c925a513614d2156bbf2133f481d909c/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 94043960127597,
       "name": "Cute White and Pink Neon Cat Headphones",
@@ -63,7 +153,7 @@
       "price": 95,
       "created": "2026-11-10T01:27:36.272Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-d7b7bdd0103ca190c51d044a873da1d8/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 1
+      "favorites": 2
     },
     {
       "assetId": 70715541598341,
@@ -171,7 +261,7 @@
       "price": 95,
       "created": "2026-10-22T18:49:15.581Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-49432bcf42cbb1184c968548fbf66824/420/420/Hat/Png/noFilter",
-      "favorites": 18
+      "favorites": 19
     },
     {
       "assetId": 131630874341279,
@@ -279,7 +369,7 @@
       "price": 95,
       "created": "2026-10-15T14:20:17.87Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0e8cd6d5091a46a8633937df359be791/420/420/Hat/Png/noFilter",
-      "favorites": 377
+      "favorites": 379
     },
     {
       "assetId": 139838381794802,
@@ -342,7 +432,7 @@
       "price": 65,
       "created": "2026-10-13T23:32:53.912Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-84cb6ecb9004687943fcbc050e307318/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 12
+      "favorites": 13
     },
     {
       "assetId": 120363885763797,
@@ -989,7 +1079,7 @@
       "type": "Hat",
       "price": 105,
       "created": "2026-05-19T15:45:13.281Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-ec1a84d52b8dd0910ac9c74a5d5966cf/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-01c806543075781bb9858b48d1d9bb91/420/420/Hat/Png/noFilter",
       "favorites": 4
     },
     {
@@ -1007,7 +1097,7 @@
       "type": "Hat",
       "price": 105,
       "created": "2026-05-14T12:52:46.01Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-de4e0ad9b3b915731dd277ba9429d40d/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-58560804f7d212322e7fa3a7420fc49f/420/420/Hat/Png/noFilter",
       "favorites": 95
     },
     {
@@ -1898,7 +1988,7 @@
       "type": "BackAccessory",
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-a147c8fea1d879189f96d2a56b18abec/420/420/BackAccessory/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-9b8260384f03b5a23197731d10ac333e/420/420/BackAccessory/Png/noFilter",
       "favorites": 10347
     },
     {
