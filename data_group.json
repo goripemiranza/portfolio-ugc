@@ -1,7 +1,16 @@
 {
-  "updated": "2026-11-16T04:36:00Z",
-  "generatedAt": "2026-11-16T04:36:00Z",
+  "updated": "2026-11-17T06:21:33Z",
+  "generatedAt": "2026-11-17T06:21:33Z",
   "items": [
+    {
+      "assetId": 131930032559308,
+      "name": "Cute Waist White Cloud",
+      "type": "WaistAccessory",
+      "price": 65,
+      "created": "2026-11-16T21:10:30.849Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-2e852d594e079e02abda59edf3756576/420/420/WaistAccessory/Png/noFilter",
+      "favorites": 2
+    },
     {
       "assetId": 107266478573081,
       "name": "Cute Kawaii Black and White Bunny Moon Backpack",
@@ -162,7 +171,7 @@
       "price": 95,
       "created": "2026-11-13T14:34:57.505Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-b81fc8c1fd55a80a5f8f71f5702575cc/420/420/Hat/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 130317676092345,
@@ -252,7 +261,7 @@
       "price": 95,
       "created": "2026-10-24T12:41:04.096Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-59f5539a7b3825d6376826857409f557/420/420/Hat/Png/noFilter",
-      "favorites": 44
+      "favorites": 45
     },
     {
       "assetId": 90297978063940,
@@ -342,7 +351,7 @@
       "price": 95,
       "created": "2026-10-16T12:00:17.815Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-ed6825e528ee24fc8af5cad76bbe16c7/420/420/Hat/Png/noFilter",
-      "favorites": 21
+      "favorites": 777
     },
     {
       "assetId": 127506043559903,
@@ -396,7 +405,7 @@
       "price": 95,
       "created": "2026-10-15T14:20:17.87Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0e8cd6d5091a46a8633937df359be791/420/420/Hat/Png/noFilter",
-      "favorites": 382
+      "favorites": 384
     },
     {
       "assetId": 139838381794802,
@@ -405,7 +414,7 @@
       "price": 95,
       "created": "2026-10-15T14:19:02.072Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0125080600bcee6518d6e11c75fd8302/420/420/Hat/Png/noFilter",
-      "favorites": 70
+      "favorites": 71
     },
     {
       "assetId": 123262857669616,
@@ -459,7 +468,7 @@
       "price": 65,
       "created": "2026-10-13T23:32:53.912Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-84cb6ecb9004687943fcbc050e307318/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 13
+      "favorites": 15
     },
     {
       "assetId": 120363885763797,
@@ -603,7 +612,7 @@
       "price": 55,
       "created": "2026-09-06T19:59:59.737Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-cfb732fccdbb36df99b4f0728e0b8427/420/420/ShoulderAccessory/Png/noFilter",
-      "favorites": 371
+      "favorites": 372
     },
     {
       "assetId": 78831772788133,
@@ -1097,7 +1106,7 @@
       "type": "Hat",
       "price": 105,
       "created": "2026-05-21T15:42:31.525Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-317fad7eae326d17490a3f7b92ba9c94/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-9239ecb11aee1373a5fc1df9e3ceec95/420/420/Hat/Png/noFilter",
       "favorites": 3
     },
     {
@@ -1566,7 +1575,7 @@
       "price": 105,
       "created": "2026-01-23T23:20:16.44Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bfb54f292f5f694bfd165160d42bc47a/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 50
+      "favorites": 53
     },
     {
       "assetId": 124492190423394,
@@ -1575,7 +1584,7 @@
       "price": 150,
       "created": "2026-01-23T23:19:21.39Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-627dcf5019bbfd14e137b4d7cc13036a/420/420/BackAccessory/Png/noFilter",
-      "favorites": 53
+      "favorites": 54
     },
     {
       "assetId": 88576858225400,
