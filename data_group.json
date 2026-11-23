@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-22T04:53:53Z",
-  "generatedAt": "2026-11-22T04:53:53Z",
+  "updated": "2026-11-23T05:33:13Z",
+  "generatedAt": "2026-11-23T05:33:13Z",
   "items": [
     {
       "assetId": 131930032559308,
@@ -228,15 +228,6 @@
       "favorites": 0
     },
     {
-      "assetId": 135612386566371,
-      "name": "The Ashen Reaper Hood White Addon",
-      "type": "Hat",
-      "price": 95,
-      "created": "2026-10-27T17:25:07.03Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-a9b2213d68783e5b04fbe243b2498f00/420/420/Hat/Png/noFilter",
-      "favorites": 3
-    },
-    {
       "assetId": 92236468645113,
       "name": "The Ashen Reaper Hood Black Addon",
       "type": "Hat",
@@ -246,15 +237,6 @@
       "favorites": 20
     },
     {
-      "assetId": 88425240868829,
-      "name": "Mr. Trick or Treat Black Addon",
-      "type": "Hat",
-      "price": 95,
-      "created": "2026-10-24T12:41:04.096Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-59f5539a7b3825d6376826857409f557/420/420/Hat/Png/noFilter",
-      "favorites": 45
-    },
-    {
       "assetId": 90297978063940,
       "name": "The Great White Pumpkin Black Addon",
       "type": "Hat",
@@ -262,15 +244,6 @@
       "created": "2026-10-24T12:17:04.636Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6ee6ccc644fbbbf03a9c893b53e16df2/420/420/Hat/Png/noFilter",
       "favorites": 5
-    },
-    {
-      "assetId": 76002160753891,
-      "name": "Quack-o'-Lantern Black Duck Addon",
-      "type": "Hat",
-      "price": 95,
-      "created": "2026-10-22T19:26:59.899Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-23239657470b23dcf00b45d1522f9864/420/420/Hat/Png/noFilter",
-      "favorites": 3
     },
     {
       "assetId": 121580999904060,
@@ -324,7 +297,7 @@
       "price": 95,
       "created": "2026-10-18T13:51:07.011Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-f37e02c71886eb737bf6f5a9380dbf24/420/420/Hat/Png/noFilter",
-      "favorites": 138
+      "favorites": 142
     },
     {
       "assetId": 111341378132134,
@@ -441,7 +414,7 @@
       "price": 65,
       "created": "2026-10-13T23:59:56.003Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0b87dde917b3e3b5c735d3a2f804d916/420/420/WaistAccessory/Png/noFilter",
-      "favorites": 2
+      "favorites": 3
     },
     {
       "assetId": 113433654073129,
@@ -567,7 +540,7 @@
       "price": 95,
       "created": "2026-09-17T18:35:20.761Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-4646da3e692c83a7619b0759637f8982/420/420/Hat/Png/noFilter",
-      "favorites": 112
+      "favorites": 113
     },
     {
       "assetId": 112945433462745,
@@ -1070,7 +1043,7 @@
       "type": "Hat",
       "price": 105,
       "created": "2026-05-27T17:39:23.381Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-1845bf7d11cc178a626f496f7b661a45/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-fe6257aedbf4af10517877b88a25f70b/420/420/Hat/Png/noFilter",
       "favorites": 2
     },
     {
@@ -1548,7 +1521,7 @@
       "price": 105,
       "created": "2026-01-23T23:20:16.44Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bfb54f292f5f694bfd165160d42bc47a/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 55
+      "favorites": 56
     },
     {
       "assetId": 124492190423394,
