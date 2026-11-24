@@ -1,7 +1,61 @@
 {
-  "updated": "2026-11-23T05:33:13Z",
-  "generatedAt": "2026-11-23T05:33:13Z",
+  "updated": "2026-11-24T08:12:45Z",
+  "generatedAt": "2026-11-24T08:12:45Z",
   "items": [
+    {
+      "assetId": 92807657572238,
+      "name": "Red Christmas Chocolate Candy",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-11-22T20:36:39.8Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-12b712eef0b774dd67cd5aaada72eef6/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 134431914341522,
+      "name": "Pink Christmas Chocolate Candy",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-11-22T20:35:43.53Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-f4bf55a36bb96b6bc7e72bce75764e96/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 101714494157561,
+      "name": "Green Christmas Chocolate Candy",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-11-22T20:33:21.278Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-8d0fb8eeb5c993efd0890f209d9cd1f3/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 95604317709350,
+      "name": "Gold Christmas Chocolate Candy",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-11-22T20:32:08.439Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-672ee05719924b60d96a9339b1ac1fa1/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 95941139282151,
+      "name": "Brown Christmas Chocolate Candy",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-11-22T20:30:49.596Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-6aa425324d7adc3d7fd84b25fc894e72/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
+    {
+      "assetId": 101237209952911,
+      "name": "Beige Christmas Chocolate Candy",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-11-22T20:29:38.725Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-12820b58a22499c2465dc0f4a5b6ac4a/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 131930032559308,
       "name": "Cute Waist White Cloud",
@@ -198,7 +252,7 @@
       "price": 140,
       "created": "2026-11-09T23:53:25.829Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-6b9da248d11bc84d21d4a32a76c285a0/420/420/BackAccessory/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 130092849124186,
@@ -297,7 +351,7 @@
       "price": 95,
       "created": "2026-10-18T13:51:07.011Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-f37e02c71886eb737bf6f5a9380dbf24/420/420/Hat/Png/noFilter",
-      "favorites": 142
+      "favorites": 145
     },
     {
       "assetId": 111341378132134,
@@ -369,7 +423,7 @@
       "price": 95,
       "created": "2026-10-15T14:19:02.072Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-0125080600bcee6518d6e11c75fd8302/420/420/Hat/Png/noFilter",
-      "favorites": 71
+      "favorites": 72
     },
     {
       "assetId": 123262857669616,
@@ -460,15 +514,6 @@
       "created": "2026-10-09T12:27:57.284Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-fabc9be650b01d0305ea10493f9d5cf5/420/420/Hat/Png/noFilter",
       "favorites": 4
-    },
-    {
-      "assetId": 126107313665690,
-      "name": "Sparkling Robux Shades Yellow Add on",
-      "type": "Hat",
-      "price": 95,
-      "created": "2026-10-01T18:06:41.307Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-39885105a9e68d708f1b24b41df744ab/420/420/Hat/Png/noFilter",
-      "favorites": 3
     },
     {
       "assetId": 77875906258816,
@@ -918,7 +963,7 @@
       "price": 95,
       "created": "2026-07-12T00:13:59.688Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bb367d4331e1a2758e253e39e6213bd0/420/420/Hat/Png/noFilter",
-      "favorites": 21
+      "favorites": 22
     },
     {
       "assetId": 82376371661109,
@@ -1971,7 +2016,7 @@
       "price": 150,
       "created": "2025-03-21T21:19:04.767Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9b8260384f03b5a23197731d10ac333e/420/420/BackAccessory/Png/noFilter",
-      "favorites": 10350
+      "favorites": 10352
     },
     {
       "assetId": 134542294659432,
@@ -1989,7 +2034,7 @@
       "price": 150,
       "created": "2025-03-21T20:25:38.197Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-9a93a8674f78b15ecca35b7f5d37382d/420/420/BackAccessory/Png/noFilter",
-      "favorites": 3108
+      "favorites": 3109
     },
     {
       "assetId": 107830760895891,
