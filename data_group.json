@@ -1,7 +1,16 @@
 {
-  "updated": "2026-11-24T08:12:45Z",
-  "generatedAt": "2026-11-24T08:12:45Z",
+  "updated": "2026-11-25T06:48:31Z",
+  "generatedAt": "2026-11-25T06:48:31Z",
   "items": [
+    {
+      "assetId": 133992114921042,
+      "name": "Snowy Christmas Deer Antler Wings",
+      "type": "BackAccessory",
+      "price": 140,
+      "created": "2026-11-24T21:50:33.375Z",
+      "thumb": "https://tr.rbxcdn.com/180DAY-2ba77522ea4b913419a9dbc8fa28120b/420/420/BackAccessory/Png/noFilter",
+      "favorites": 0
+    },
     {
       "assetId": 92807657572238,
       "name": "Red Christmas Chocolate Candy",
@@ -135,7 +144,7 @@
       "price": 95,
       "created": "2026-11-14T22:00:19.176Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-74a294572c6e89240987ee8823adaa49/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 0
+      "favorites": 1
     },
     {
       "assetId": 72704188547860,
@@ -351,7 +360,7 @@
       "price": 95,
       "created": "2026-10-18T13:51:07.011Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-f37e02c71886eb737bf6f5a9380dbf24/420/420/Hat/Png/noFilter",
-      "favorites": 145
+      "favorites": 146
     },
     {
       "assetId": 111341378132134,
@@ -1269,7 +1278,7 @@
       "price": 95,
       "created": "2026-03-30T19:10:51.3Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-70a6124afb3216620e106d610adb1647/420/420/Hat/Png/noFilter",
-      "favorites": 13
+      "favorites": 14
     },
     {
       "assetId": 112577329708228,
@@ -1935,7 +1944,7 @@
       "price": 150,
       "created": "2025-07-25T19:47:38.777Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-c072cb2e5684489592ba8afbf33de105/420/420/BackAccessory/Png/noFilter",
-      "favorites": 1584
+      "favorites": 1585
     },
     {
       "assetId": 90634979410540,
