@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-26T06:42:29Z",
-  "generatedAt": "2026-11-26T06:42:29Z",
+  "updated": "2026-11-27T06:31:42Z",
+  "generatedAt": "2026-11-27T06:31:42Z",
   "items": [
     {
       "assetId": 133992114921042,
@@ -291,15 +291,6 @@
       "favorites": 0
     },
     {
-      "assetId": 92236468645113,
-      "name": "The Ashen Reaper Hood Black Addon",
-      "type": "Hat",
-      "price": 95,
-      "created": "2026-10-27T17:19:41.901Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-737c3048fe2306b5eb28c2de05cf620a/420/420/Hat/Png/noFilter",
-      "favorites": 20
-    },
-    {
       "assetId": 90297978063940,
       "name": "The Great White Pumpkin Black Addon",
       "type": "Hat",
@@ -360,7 +351,7 @@
       "price": 95,
       "created": "2026-10-18T13:51:07.011Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-f37e02c71886eb737bf6f5a9380dbf24/420/420/Hat/Png/noFilter",
-      "favorites": 149
+      "favorites": 154
     },
     {
       "assetId": 111341378132134,
@@ -378,7 +369,7 @@
       "price": 95,
       "created": "2026-10-15T17:53:38.977Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-042e862f2fbf39fde2135e8cbeda1f57/420/420/Hat/Png/noFilter",
-      "favorites": 25
+      "favorites": 26
     },
     {
       "assetId": 107836134451613,
@@ -1088,7 +1079,7 @@
       "type": "Hat",
       "price": 105,
       "created": "2026-05-31T10:54:49.503Z",
-      "thumb": "https://tr.rbxcdn.com/180DAY-543029ea7192e0806fe426f714420862/420/420/Hat/Png/noFilter",
+      "thumb": "https://tr.rbxcdn.com/180DAY-1fdb25f793b0673ffebd642b38dffa0c/420/420/Hat/Png/noFilter",
       "favorites": 4
     },
     {
@@ -1575,7 +1566,7 @@
       "price": 105,
       "created": "2026-01-23T23:20:16.44Z",
       "thumb": "https://tr.rbxcdn.com/180DAY-bfb54f292f5f694bfd165160d42bc47a/420/420/FaceAccessory/Png/noFilter",
-      "favorites": 56
+      "favorites": 57
     },
     {
       "assetId": 124492190423394,
